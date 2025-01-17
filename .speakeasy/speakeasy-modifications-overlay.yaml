@@ -1,0 +1,17 @@
+overlay: 1.0.0
+info:
+  title: Speakeasy Modifications
+  version: 0.0.1
+  x-speakeasy-metadata:
+    type: speakeasy-modifications
+    before: ""
+    after: ""
+actions:
+  - target: $["paths"]["/projects/{projectIdOrName}/integrations/{integrationId}/objects/{objectName}"]["post"]
+    update:
+      x-speakeasy-name-override: records
+    x-speakeasy-metadata:
+      type: method-name
+      before: sdk.Write.writeRecords()
+      after: sdk.write.records()
+      created_at: 1737123634286

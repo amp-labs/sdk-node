@@ -3,8 +3,18 @@ speakeasyVersion: latest
 sources:
     amp-sdk-source:
         inputs:
-            - location: https://github.com/amp-labs/openapi/blob/main/api/generated/write.json
+            - location: https://raw.githubusercontent.com/amp-labs/openapi/refs/heads/main/api/generated/write.json
+        overlays:
+            - location: .speakeasy/speakeasy-modifications-overlay.yaml
+        registry:
+            location: registry.speakeasyapi.dev/ampersand/ts/amp-sdk-source
 targets:
     amp-sdk-ts:
         target: typescript
         source: amp-sdk-source
+        codeSamples:
+            registry:
+                location: registry.speakeasyapi.dev/ampersand/ts/amp-sdk-source-typescript-code-samples
+            labelOverride:
+                fixedValue: Typescript (SDK)
+            blocking: false
