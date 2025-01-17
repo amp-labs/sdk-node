@@ -1,0 +1,10 @@
+workflowVersion: 1.0.0
+speakeasyVersion: latest
+sources:
+    amp-sdk-source:
+        inputs:
+            - location: https://github.com/amp-labs/openapi/blob/main/api/generated/write.json
+targets:
+    amp-sdk-ts:
+        target: typescript
+        source: amp-sdk-source
