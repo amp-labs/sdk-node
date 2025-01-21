@@ -1,9 +1,13 @@
 {
   "name": "openapi",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "author": "Speakeasy",
   "main": "./index.js",
   "sideEffects": false,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/amp-labs/amp-sdk-ts.git"
+  },
   "scripts": {
     "lint": "eslint --max-warnings=0 src",
     "build": "tsc",
