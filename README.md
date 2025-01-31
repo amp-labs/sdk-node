@@ -1,6 +1,27 @@
-# openapi
+<br/>
+<div align="center">
+    <a href="https://www.withampersand.com/?utm_source=github&utm_medium=readme&utm_campaign=connectors-repo&utm_content=logo">
+    <img src="https://res.cloudinary.com/dycvts6vp/image/upload/v1723671980/ampersand-logo-black.svg" height="30" align="center" alt="Ampersand logo" >
+    </a>
+<br/>
+<br/>
 
-Developer-friendly & type-safe Typescript SDK specifically catered to leverage the Ampersand API.
+<div align="center">
+
+[![Star us on GitHub](https://img.shields.io/github/stars/amp-labs/connectors?color=FFD700&label=Stars&logo=Github)](https://github.com/amp-labs/connectors) [![Discord](https://img.shields.io/badge/Join%20The%20Community-black?logo=discord)](https://discord.gg/BWP4BpKHvf) [![Documentation](https://img.shields.io/badge/Read%20our%20Documentation-black?logo=book)](https://docs.withampersand.com) ![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg) <img src="https://img.shields.io/static/v1?label=license&message=MIT&color=white" alt="License">
+</div>
+
+</div>
+
+# Overview
+
+[Ampersand](https://withampersand.com?trk=readme-github) is a declarative platform for SaaS builders who are creating product integrations. It allows you to:
+
+* Read data from your customer’s SaaS
+* Write data to your customer’s SaaS
+* Coming soon: subscribe to events (creates, deletes, and field changes) in your customer’s SaaS
+
+This repo hosts a developer-friendly & type-safe Typescript SDK specifically catered to leverage the Ampersand API.
 
 <div align="left">
     <a href="https://www.speakeasy.com/?utm_source=openapi&utm_campaign=typescript"><img src="https://custom-icon-badges.demolab.com/badge/-Built%20By%20Speakeasy-212015?style=for-the-badge&logoColor=FBE331&logo=speakeasy&labelColor=545454" /></a>
