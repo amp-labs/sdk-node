@@ -1,18 +1,20 @@
 lockVersion: 2.0.0
 id: 9323fb0c-51c0-423a-ae97-da9ff22a9f89
 management:
-  docChecksum: f16bd9d594f7c8c2ca505bbb744f2637
+  docChecksum: 63d178e2f58b0fd310c2a9e3c981a6c7
   docVersion: 1.0.0
-  speakeasyVersion: 1.469.0
-  generationVersion: 2.493.21
-  releaseVersion: 0.1.1
-  configChecksum: 23960c4c69fb9d66c87285c94b526dd3
+  speakeasyVersion: 1.480.0
+  generationVersion: 2.499.0
+  releaseVersion: 0.1.2
+  configChecksum: bf2ca6ab8fe1a98d59d5e9a7a8da98fb
+  repoURL: https://github.com/amp-labs/sdk-node.git
+  installationURL: https://github.com/amp-labs/sdk-node
 features:
   typescript:
     acceptHeaders: 2.81.2
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.11
-    core: 3.18.16
+    core: 3.18.20
     defaultEnabledRetries: 0.1.0
     enumUnions: 0.1.0
     envVarSecurityUsage: 0.1.2
@@ -25,7 +27,6 @@ features:
     retries: 2.83.0
     sdkHooks: 0.2.0
 generatedFiles:
-  - .eslintrc.cjs
   - .gitattributes
   - .npmignore
   - FUNCTIONS.md
@@ -36,6 +37,7 @@ generatedFiles:
   - docs/models/errors/data.md
   - docs/models/errors/result.md
   - docs/models/errors/writerecordsresponsebody.md
+  - docs/models/operations/associations.md
   - docs/models/operations/data.md
   - docs/models/operations/mode.md
   - docs/models/operations/recordt.md
@@ -48,6 +50,7 @@ generatedFiles:
   - docs/models/operations/writerecordswriteresponsebody.md
   - docs/sdks/sdk/README.md
   - docs/sdks/write/README.md
+  - eslint.config.mjs
   - jsr.json
   - package.json
   - src/core.ts
@@ -101,7 +104,7 @@ examples:
           integrationId: "<id>"
           objectName: "<value>"
       requestBody:
-        application/json: {"groupRef": "<value>", "type": "create", "mode": "synchronous"}
+        application/json: {"groupRef": "<value>", "type": "create", "mode": "synchronous", "associations": [{}]}
       responses:
         "200":
           application/json: {"result": {"success": true, "recordId": "003Dp0X#@RG7IAP"}}
@@ -109,4 +112,5 @@ examples:
           application/json: {"errors": ["The record with ID 003Dp0X#@RG7IAP was not found"], "result": {"success": true, "recordId": "003Dp0X#@RG7IAP"}, "warnings": ["Ampersand Operation failed to be updated"], "operationId": "acb0d75a-1b59-4aad-a191-48c5b75ea9e4"}
         default:
           application/problem+json: {"type": "urn:problem-type:exampleOrganization:exampleProblem", "href": "https://www.belgif.be/specification/rest/api-guide/#standardized-problem-types", "title": "Service Unavailable", "status": 503, "detail": "Description of specific occurrence of the problem", "instance": "urn:uuid:123e4567-e89b-12d3-a456-426614174000"}
+examplesVersion: 1.0.0
 generatedTests: {}

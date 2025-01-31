@@ -37,6 +37,8 @@ export type Mode = ClosedEnum<typeof Mode>;
  */
 export type RecordT = {};
 
+export type Associations = {};
+
 /**
  * Write request
  */
@@ -57,6 +59,10 @@ export type WriteRecordsRequestBody = {
    * The record to write
    */
   record?: RecordT | undefined;
+  /**
+   * To write associations to the record. Note: currently only HubSpot associations are supported
+   */
+  associations?: Array<Associations> | undefined;
 };
 
 export type WriteRecordsRequest = {
@@ -263,6 +269,50 @@ export function recordFromJSON(
 }
 
 /** @internal */
+export const Associations$inboundSchema: z.ZodType<
+  Associations,
+  z.ZodTypeDef,
+  unknown
+> = z.object({});
+
+/** @internal */
+export type Associations$Outbound = {};
+
+/** @internal */
+export const Associations$outboundSchema: z.ZodType<
+  Associations$Outbound,
+  z.ZodTypeDef,
+  Associations
+> = z.object({});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace Associations$ {
+  /** @deprecated use `Associations$inboundSchema` instead. */
+  export const inboundSchema = Associations$inboundSchema;
+  /** @deprecated use `Associations$outboundSchema` instead. */
+  export const outboundSchema = Associations$outboundSchema;
+  /** @deprecated use `Associations$Outbound` instead. */
+  export type Outbound = Associations$Outbound;
+}
+
+export function associationsToJSON(associations: Associations): string {
+  return JSON.stringify(Associations$outboundSchema.parse(associations));
+}
+
+export function associationsFromJSON(
+  jsonString: string,
+): SafeParseResult<Associations, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Associations$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Associations' from JSON`,
+  );
+}
+
+/** @internal */
 export const WriteRecordsRequestBody$inboundSchema: z.ZodType<
   WriteRecordsRequestBody,
   z.ZodTypeDef,
@@ -272,6 +322,7 @@ export const WriteRecordsRequestBody$inboundSchema: z.ZodType<
   type: Type$inboundSchema,
   mode: Mode$inboundSchema.optional(),
   record: z.lazy(() => RecordT$inboundSchema).optional(),
+  associations: z.array(z.lazy(() => Associations$inboundSchema)).optional(),
 });
 
 /** @internal */
@@ -280,6 +331,7 @@ export type WriteRecordsRequestBody$Outbound = {
   type: string;
   mode?: string | undefined;
   record?: RecordT$Outbound | undefined;
+  associations?: Array<Associations$Outbound> | undefined;
 };
 
 /** @internal */
@@ -292,6 +344,7 @@ export const WriteRecordsRequestBody$outboundSchema: z.ZodType<
   type: Type$outboundSchema,
   mode: Mode$outboundSchema.optional(),
   record: z.lazy(() => RecordT$outboundSchema).optional(),
+  associations: z.array(z.lazy(() => Associations$outboundSchema)).optional(),
 });
 
 /**

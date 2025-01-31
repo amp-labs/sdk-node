@@ -142,8 +142,8 @@ export async function writeRecords(
     | ConnectionError
   >(
     M.json(200, operations.WriteRecordsResponse$inboundSchema),
-    M.fail([400, "4XX"]),
     M.jsonErr(422, errors.WriteRecordsResponseBody$inboundSchema),
+    M.fail([400, "4XX"]),
     M.fail("5XX"),
     M.json("default", operations.WriteRecordsResponse$inboundSchema, {
       ctype: "application/problem+json",
