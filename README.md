@@ -97,17 +97,14 @@ const sdk = new SDK({
 });
 
 async function run() {
-  const result = await sdk.write.records({
+  const result = await sdk.read.records({
     projectIdOrName: "<value>",
     integrationId: "<id>",
     objectName: "<value>",
     requestBody: {
       groupRef: "<value>",
-      type: "create",
-      mode: "synchronous",
-      associations: [
-        {},
-      ],
+      mode: "async",
+      sinceTimestamp: "2024-07-01T18:22:30.323771761Z",
     },
   });
 
@@ -140,17 +137,14 @@ const sdk = new SDK({
 });
 
 async function run() {
-  const result = await sdk.write.records({
+  const result = await sdk.read.records({
     projectIdOrName: "<value>",
     integrationId: "<id>",
     objectName: "<value>",
     requestBody: {
       groupRef: "<value>",
-      type: "create",
-      mode: "synchronous",
-      associations: [
-        {},
-      ],
+      mode: "async",
+      sinceTimestamp: "2024-07-01T18:22:30.323771761Z",
     },
   });
 
@@ -169,10 +163,121 @@ run();
 <details open>
 <summary>Available methods</summary>
 
+### [apiKey](docs/sdks/apikey/README.md)
 
-### [write](docs/sdks/write/README.md)
+* [listApiKeys](docs/sdks/apikey/README.md#listapikeys) - List API keys
+* [createApiKey](docs/sdks/apikey/README.md#createapikey) - Create a new API key
+* [getApiKey](docs/sdks/apikey/README.md#getapikey) - Get an API key
+* [deleteApiKey](docs/sdks/apikey/README.md#deleteapikey) - Delete an API key
+* [updateApiKey](docs/sdks/apikey/README.md#updateapikey) - Update an API key
 
-* [records](docs/sdks/write/README.md#records) - Write records
+### [billingAccount](docs/sdks/billingaccount/README.md)
+
+* [getOrgBillingAccount](docs/sdks/billingaccount/README.md#getorgbillingaccount) - Get the billing account for an organization
+* [createBillingAccountSession](docs/sdks/billingaccount/README.md#createbillingaccountsession) - Create a portal session for a billing account
+
+### [connection](docs/sdks/connection/README.md)
+
+* [listConnections](docs/sdks/connection/README.md#listconnections) - List connections
+* [generateConnection](docs/sdks/connection/README.md#generateconnection) - Generate a new connection
+* [getConnection](docs/sdks/connection/README.md#getconnection) - Get a connection
+* [deleteConnection](docs/sdks/connection/README.md#deleteconnection) - Delete a connection
+
+### [consumer](docs/sdks/consumer/README.md)
+
+* [createConsumer](docs/sdks/consumer/README.md#createconsumer) - Create a new consumer
+
+### [destination](docs/sdks/destination/README.md)
+
+* [createDestination](docs/sdks/destination/README.md#createdestination) - Create a new destination
+* [listDestinations](docs/sdks/destination/README.md#listdestinations) - List destinations
+* [getDestination](docs/sdks/destination/README.md#getdestination) - Get a destination
+* [updateDestination](docs/sdks/destination/README.md#updatedestination) - Update a destination
+* [deleteDestination](docs/sdks/destination/README.md#deletedestination) - Delete a destination
+
+### [group](docs/sdks/group/README.md)
+
+* [createGroup](docs/sdks/group/README.md#creategroup) - Create a new group
+
+### [installation](docs/sdks/installation/README.md)
+
+* [listInstallations](docs/sdks/installation/README.md#listinstallations) - List installations
+* [createInstallation](docs/sdks/installation/README.md#createinstallation) - Create a new installation
+* [getInstallation](docs/sdks/installation/README.md#getinstallation) - Get an installation
+* [deleteInstallation](docs/sdks/installation/README.md#deleteinstallation) - Delete an installation
+* [updateInstallation](docs/sdks/installation/README.md#updateinstallation) - Update an installation
+
+### [integration](docs/sdks/integration/README.md)
+
+* [listIntegrations](docs/sdks/integration/README.md#listintegrations) - List integrations
+* [createIntegration](docs/sdks/integration/README.md#createintegration) - Create a new integration
+* [deleteIntegration](docs/sdks/integration/README.md#deleteintegration) - Delete an integration
+* [batchUpsertIntegrations](docs/sdks/integration/README.md#batchupsertintegrations) - Batch upsert a group of integrations
+
+### [oAuth](docs/sdks/oauth/README.md)
+
+* [oauthConnect](docs/sdks/oauth/README.md#oauthconnect) - Get URL for OAuth flow
+
+### [objectsAndFields](docs/sdks/objectsandfields/README.md)
+
+* [getObjectMetadata](docs/sdks/objectsandfields/README.md#getobjectmetadata) - Get object and field data
+
+### [operation](docs/sdks/operation/README.md)
+
+* [listOperations](docs/sdks/operation/README.md#listoperations) - List operations
+* [getOperation](docs/sdks/operation/README.md#getoperation) - Get an operation
+* [listOperationLogs](docs/sdks/operation/README.md#listoperationlogs) - List logs for an operation
+
+### [org](docs/sdks/org/README.md)
+
+* [createOrg](docs/sdks/org/README.md#createorg) - Create a new organization
+* [getOrg](docs/sdks/org/README.md#getorg) - Get an organization
+* [updateOrg](docs/sdks/org/README.md#updateorg) - Update an organization
+* [listOrgBuilders](docs/sdks/org/README.md#listorgbuilders) - List builders for an organization
+* [createOrgInvite](docs/sdks/org/README.md#createorginvite) - Invite a user to an organization
+* [listOrgInvites](docs/sdks/org/README.md#listorginvites) - List invites for an organization
+* [getOrgInvite](docs/sdks/org/README.md#getorginvite) - Get an invite
+* [deleteOrgInvite](docs/sdks/org/README.md#deleteorginvite) - Revoke an invite
+
+### [project](docs/sdks/project/README.md)
+
+* [listProjects](docs/sdks/project/README.md#listprojects) - List all projects that the API key or user credential has access to
+* [createProject](docs/sdks/project/README.md#createproject) - Create a new project
+* [getProject](docs/sdks/project/README.md#getproject) - Get a project
+* [deleteProject](docs/sdks/project/README.md#deleteproject) - Delete a project
+* [updateProject](docs/sdks/project/README.md#updateproject) - Update a project
+
+### [provider](docs/sdks/provider/README.md)
+
+* [listProviders](docs/sdks/provider/README.md#listproviders) - List providers
+* [getProvider](docs/sdks/provider/README.md#getprovider) - Get provider
+
+### [providerApp](docs/sdks/providerapp/README.md)
+
+* [listProviderApps](docs/sdks/providerapp/README.md#listproviderapps) - List provider apps
+* [createProviderApp](docs/sdks/providerapp/README.md#createproviderapp) - Create a new provider app
+* [deleteProviderApp](docs/sdks/providerapp/README.md#deleteproviderapp) - Delete a provider app
+* [updateProviderApp](docs/sdks/providerapp/README.md#updateproviderapp) - Update a provider app
+
+### [read](docs/sdks/read/README.md)
+
+* [records](docs/sdks/read/README.md#records) - Trigger a read
+* [deliverResults](docs/sdks/read/README.md#deliverresults) - Deliver results
+
+### [revision](docs/sdks/revision/README.md)
+
+* [createRevision](docs/sdks/revision/README.md#createrevision) - Create a new revision
+* [getHydratedRevision](docs/sdks/revision/README.md#gethydratedrevision) - Hydrate a revision
+
+
+### [uploadURL](docs/sdks/uploadurl/README.md)
+
+* [generateUploadUrl](docs/sdks/uploadurl/README.md#generateuploadurl) - Generate a signed URL to upload a zip file to.
+
+### [user](docs/sdks/user/README.md)
+
+* [getMyInfo](docs/sdks/user/README.md#getmyinfo) - Get information about the current user
+* [acceptInvite](docs/sdks/user/README.md#acceptinvite) - Accept an invite
 
 </details>
 <!-- End Available Resources and Operations [operations] -->
@@ -192,7 +297,64 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 
 <summary>Available standalone functions</summary>
 
-- [`writeRecords`](docs/sdks/write/README.md#records) - Write records
+- [`apiKeyCreateAPIKey`](docs/sdks/apikey/README.md#createapikey) - Create a new API key
+- [`apiKeyDeleteAPIKey`](docs/sdks/apikey/README.md#deleteapikey) - Delete an API key
+- [`apiKeyGetAPIKey`](docs/sdks/apikey/README.md#getapikey) - Get an API key
+- [`apiKeyListAPIKeys`](docs/sdks/apikey/README.md#listapikeys) - List API keys
+- [`apiKeyUpdateAPIKey`](docs/sdks/apikey/README.md#updateapikey) - Update an API key
+- [`billingAccountCreateBillingAccountSession`](docs/sdks/billingaccount/README.md#createbillingaccountsession) - Create a portal session for a billing account
+- [`billingAccountGetOrgBillingAccount`](docs/sdks/billingaccount/README.md#getorgbillingaccount) - Get the billing account for an organization
+- [`connectionDeleteConnection`](docs/sdks/connection/README.md#deleteconnection) - Delete a connection
+- [`connectionGenerateConnection`](docs/sdks/connection/README.md#generateconnection) - Generate a new connection
+- [`connectionGetConnection`](docs/sdks/connection/README.md#getconnection) - Get a connection
+- [`connectionListConnections`](docs/sdks/connection/README.md#listconnections) - List connections
+- [`consumerCreateConsumer`](docs/sdks/consumer/README.md#createconsumer) - Create a new consumer
+- [`destinationCreateDestination`](docs/sdks/destination/README.md#createdestination) - Create a new destination
+- [`destinationDeleteDestination`](docs/sdks/destination/README.md#deletedestination) - Delete a destination
+- [`destinationGetDestination`](docs/sdks/destination/README.md#getdestination) - Get a destination
+- [`destinationListDestinations`](docs/sdks/destination/README.md#listdestinations) - List destinations
+- [`destinationUpdateDestination`](docs/sdks/destination/README.md#updatedestination) - Update a destination
+- [`groupCreateGroup`](docs/sdks/group/README.md#creategroup) - Create a new group
+- [`installationCreateInstallation`](docs/sdks/installation/README.md#createinstallation) - Create a new installation
+- [`installationDeleteInstallation`](docs/sdks/installation/README.md#deleteinstallation) - Delete an installation
+- [`installationGetInstallation`](docs/sdks/installation/README.md#getinstallation) - Get an installation
+- [`installationListInstallations`](docs/sdks/installation/README.md#listinstallations) - List installations
+- [`installationUpdateInstallation`](docs/sdks/installation/README.md#updateinstallation) - Update an installation
+- [`integrationBatchUpsertIntegrations`](docs/sdks/integration/README.md#batchupsertintegrations) - Batch upsert a group of integrations
+- [`integrationCreateIntegration`](docs/sdks/integration/README.md#createintegration) - Create a new integration
+- [`integrationDeleteIntegration`](docs/sdks/integration/README.md#deleteintegration) - Delete an integration
+- [`integrationListIntegrations`](docs/sdks/integration/README.md#listintegrations) - List integrations
+- [`oAuthOauthConnect`](docs/sdks/oauth/README.md#oauthconnect) - Get URL for OAuth flow
+- [`objectsAndFieldsGetObjectMetadata`](docs/sdks/objectsandfields/README.md#getobjectmetadata) - Get object and field data
+- [`operationGetOperation`](docs/sdks/operation/README.md#getoperation) - Get an operation
+- [`operationListOperationLogs`](docs/sdks/operation/README.md#listoperationlogs) - List logs for an operation
+- [`operationListOperations`](docs/sdks/operation/README.md#listoperations) - List operations
+- [`orgCreateOrg`](docs/sdks/org/README.md#createorg) - Create a new organization
+- [`orgCreateOrgInvite`](docs/sdks/org/README.md#createorginvite) - Invite a user to an organization
+- [`orgDeleteOrgInvite`](docs/sdks/org/README.md#deleteorginvite) - Revoke an invite
+- [`orgGetOrg`](docs/sdks/org/README.md#getorg) - Get an organization
+- [`orgGetOrgInvite`](docs/sdks/org/README.md#getorginvite) - Get an invite
+- [`orgListOrgBuilders`](docs/sdks/org/README.md#listorgbuilders) - List builders for an organization
+- [`orgListOrgInvites`](docs/sdks/org/README.md#listorginvites) - List invites for an organization
+- [`orgUpdateOrg`](docs/sdks/org/README.md#updateorg) - Update an organization
+- [`projectCreateProject`](docs/sdks/project/README.md#createproject) - Create a new project
+- [`projectDeleteProject`](docs/sdks/project/README.md#deleteproject) - Delete a project
+- [`projectGetProject`](docs/sdks/project/README.md#getproject) - Get a project
+- [`projectListProjects`](docs/sdks/project/README.md#listprojects) - List all projects that the API key or user credential has access to
+- [`projectUpdateProject`](docs/sdks/project/README.md#updateproject) - Update a project
+- [`providerAppCreateProviderApp`](docs/sdks/providerapp/README.md#createproviderapp) - Create a new provider app
+- [`providerAppDeleteProviderApp`](docs/sdks/providerapp/README.md#deleteproviderapp) - Delete a provider app
+- [`providerAppListProviderApps`](docs/sdks/providerapp/README.md#listproviderapps) - List provider apps
+- [`providerAppUpdateProviderApp`](docs/sdks/providerapp/README.md#updateproviderapp) - Update a provider app
+- [`providerGetProvider`](docs/sdks/provider/README.md#getprovider) - Get provider
+- [`providerListProviders`](docs/sdks/provider/README.md#listproviders) - List providers
+- [`readDeliverResults`](docs/sdks/read/README.md#deliverresults) - Deliver results
+- [`readRecords`](docs/sdks/read/README.md#records) - Trigger a read
+- [`revisionCreateRevision`](docs/sdks/revision/README.md#createrevision) - Create a new revision
+- [`revisionGetHydratedRevision`](docs/sdks/revision/README.md#gethydratedrevision) - Hydrate a revision
+- [`uploadURLGenerateUploadURL`](docs/sdks/uploadurl/README.md#generateuploadurl) - Generate a signed URL to upload a zip file to.
+- [`userAcceptInvite`](docs/sdks/user/README.md#acceptinvite) - Accept an invite
+- [`userGetMyInfo`](docs/sdks/user/README.md#getmyinfo) - Get information about the current user
 
 </details>
 <!-- End Standalone functions [standalone-funcs] -->
@@ -211,17 +373,14 @@ const sdk = new SDK({
 });
 
 async function run() {
-  const result = await sdk.write.records({
+  const result = await sdk.read.records({
     projectIdOrName: "<value>",
     integrationId: "<id>",
     objectName: "<value>",
     requestBody: {
       groupRef: "<value>",
-      type: "create",
-      mode: "synchronous",
-      associations: [
-        {},
-      ],
+      mode: "async",
+      sinceTimestamp: "2024-07-01T18:22:30.323771761Z",
     },
   }, {
     retries: {
@@ -263,17 +422,14 @@ const sdk = new SDK({
 });
 
 async function run() {
-  const result = await sdk.write.records({
+  const result = await sdk.read.records({
     projectIdOrName: "<value>",
     integrationId: "<id>",
     objectName: "<value>",
     requestBody: {
       groupRef: "<value>",
-      type: "create",
-      mode: "synchronous",
-      associations: [
-        {},
-      ],
+      mode: "async",
+      sinceTimestamp: "2024-07-01T18:22:30.323771761Z",
     },
   });
 
@@ -291,10 +447,11 @@ run();
 
 Some methods specify known errors which can be thrown. All the known errors are enumerated in the `models/errors/errors.ts` module. The known errors for a method are documented under the *Errors* tables in SDK docs. For example, the `records` method may throw the following errors:
 
-| Error Type                      | Status Code | Content Type     |
-| ------------------------------- | ----------- | ---------------- |
-| errors.WriteRecordsResponseBody | 422         | application/json |
-| errors.APIError                 | 4XX, 5XX    | \*/\*            |
+| Error Type                         | Status Code | Content Type     |
+| ---------------------------------- | ----------- | ---------------- |
+| errors.TriggerReadResponseBody     | 400         | application/json |
+| errors.TriggerReadReadResponseBody | 500         | application/json |
+| errors.APIError                    | 4XX, 5XX    | \*/\*            |
 
 If the method throws an error and it is not captured by the known errors, it will default to throwing a `APIError`.
 
@@ -302,7 +459,8 @@ If the method throws an error and it is not captured by the known errors, it wil
 import { SDK } from "openapi";
 import {
   SDKValidationError,
-  WriteRecordsResponseBody,
+  TriggerReadReadResponseBody,
+  TriggerReadResponseBody,
 } from "openapi/models/errors";
 
 const sdk = new SDK({
@@ -312,17 +470,14 @@ const sdk = new SDK({
 async function run() {
   let result;
   try {
-    result = await sdk.write.records({
+    result = await sdk.read.records({
       projectIdOrName: "<value>",
       integrationId: "<id>",
       objectName: "<value>",
       requestBody: {
         groupRef: "<value>",
-        type: "create",
-        mode: "synchronous",
-        associations: [
-          {},
-        ],
+        mode: "async",
+        sinceTimestamp: "2024-07-01T18:22:30.323771761Z",
       },
     });
 
@@ -338,8 +493,13 @@ async function run() {
         console.error(err.rawValue);
         return;
       }
-      case (err instanceof WriteRecordsResponseBody): {
-        // Handle err.data$: WriteRecordsResponseBodyData
+      case (err instanceof TriggerReadResponseBody): {
+        // Handle err.data$: TriggerReadResponseBodyData
+        console.error(err);
+        return;
+      }
+      case (err instanceof TriggerReadReadResponseBody): {
+        // Handle err.data$: TriggerReadReadResponseBodyData
         console.error(err);
         return;
       }
@@ -378,23 +538,47 @@ The default server can also be overridden globally by passing a URL to the `serv
 import { SDK } from "openapi";
 
 const sdk = new SDK({
-  serverURL: "https://write.withampersand.com/v1",
+  serverURL: "https://read.withampersand.com/v1",
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
-  const result = await sdk.write.records({
+  const result = await sdk.read.records({
     projectIdOrName: "<value>",
     integrationId: "<id>",
     objectName: "<value>",
     requestBody: {
       groupRef: "<value>",
-      type: "create",
-      mode: "synchronous",
-      associations: [
-        {},
-      ],
+      mode: "async",
+      sinceTimestamp: "2024-07-01T18:22:30.323771761Z",
     },
+  });
+
+  // Handle the result
+  console.log(result);
+}
+
+run();
+
+```
+
+### Override Server URL Per-Operation
+
+The server URL can also be overridden on a per-operation basis, provided a server list was specified for the operation. For example:
+```typescript
+import { SDK } from "openapi";
+
+const sdk = new SDK();
+
+async function run() {
+  const result = await sdk.oAuth.oauthConnect({
+    providerWorkspaceRef: "salesforce-instance-domain",
+    projectId: "<id>",
+    groupRef: "<value>",
+    consumerRef: "<value>",
+    provider: "salesforce",
+  }, {
+    serverURL: "https://api.withampersand.com/v1",
   });
 
   // Handle the result

@@ -7,17 +7,14 @@ const sdk = new SDK({
 });
 
 async function run() {
-  const result = await sdk.write.records({
+  const result = await sdk.read.records({
     projectIdOrName: "<value>",
     integrationId: "<id>",
     objectName: "<value>",
     requestBody: {
       groupRef: "<value>",
-      type: "create",
-      mode: "synchronous",
-      associations: [
-        {},
-      ],
+      mode: "async",
+      sinceTimestamp: "2024-07-01T18:22:30.323771761Z",
     },
   });
 
