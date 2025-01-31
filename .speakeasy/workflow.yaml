@@ -4,8 +4,11 @@ sources:
     amp-sdk-source:
         inputs:
             - location: https://raw.githubusercontent.com/amp-labs/openapi/refs/heads/main/api/generated/write.json
+            - location: https://raw.githubusercontent.com/amp-labs/openapi/refs/heads/main/api/generated/api.json
+            - location: https://raw.githubusercontent.com/amp-labs/openapi/refs/heads/main/api/generated/read.json
         overlays:
             - location: .speakeasy/speakeasy-modifications-overlay.yaml
+            - location: https://raw.githubusercontent.com/amp-labs/openapi/refs/heads/main/api/.speakeasy-overlay.yaml
         registry:
             location: registry.speakeasyapi.dev/ampersand/ts/amp-sdk-source
 targets:
