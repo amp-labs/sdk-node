@@ -53,25 +53,25 @@ The SDK can be installed with either [npm](https://www.npmjs.com/), [pnpm](https
 ### NPM
 
 ```bash
-npm add <UNSET>
+npm add https://github.com/amp-labs/sdk-node
 ```
 
 ### PNPM
 
 ```bash
-pnpm add <UNSET>
+pnpm add https://github.com/amp-labs/sdk-node
 ```
 
 ### Bun
 
 ```bash
-bun add <UNSET>
+bun add https://github.com/amp-labs/sdk-node
 ```
 
 ### Yarn
 
 ```bash
-yarn add <UNSET> zod
+yarn add https://github.com/amp-labs/sdk-node zod
 
 # Note that Yarn does not install peer dependencies automatically. You will need
 # to install zod as shown above.
@@ -105,6 +105,9 @@ async function run() {
       groupRef: "<value>",
       type: "create",
       mode: "synchronous",
+      associations: [
+        {},
+      ],
     },
   });
 
@@ -145,6 +148,9 @@ async function run() {
       groupRef: "<value>",
       type: "create",
       mode: "synchronous",
+      associations: [
+        {},
+      ],
     },
   });
 
@@ -213,6 +219,9 @@ async function run() {
       groupRef: "<value>",
       type: "create",
       mode: "synchronous",
+      associations: [
+        {},
+      ],
     },
   }, {
     retries: {
@@ -262,6 +271,9 @@ async function run() {
       groupRef: "<value>",
       type: "create",
       mode: "synchronous",
+      associations: [
+        {},
+      ],
     },
   });
 
@@ -308,6 +320,9 @@ async function run() {
         groupRef: "<value>",
         type: "create",
         mode: "synchronous",
+        associations: [
+          {},
+        ],
       },
     });
 
@@ -376,6 +391,9 @@ async function run() {
       groupRef: "<value>",
       type: "create",
       mode: "synchronous",
+      associations: [
+        {},
+      ],
     },
   });
 

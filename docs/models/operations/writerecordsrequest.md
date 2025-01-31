@@ -14,6 +14,9 @@ let value: WriteRecordsRequest = {
     type: "create",
     mode: "synchronous",
     record: {},
+    associations: [
+      {},
+    ],
   },
 };
 ```

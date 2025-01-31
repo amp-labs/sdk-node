@@ -29,6 +29,9 @@ async function run() {
       groupRef: "<value>",
       type: "create",
       mode: "synchronous",
+      associations: [
+        {},
+      ],
     },
   });
 
@@ -62,6 +65,9 @@ async function run() {
       groupRef: "<value>",
       type: "create",
       mode: "synchronous",
+      associations: [
+        {},
+      ],
     },
   });
 
