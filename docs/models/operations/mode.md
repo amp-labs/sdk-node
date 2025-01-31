@@ -1,17 +1,17 @@
 # Mode
 
-The mode of write operation. The only supported mode currently is synchronous.
+The mode of read operation. Currently only asynchronus operation is supported.
 
 ## Example Usage
 
 ```typescript
 import { Mode } from "openapi/models/operations";
 
-let value: Mode = "synchronous";
+let value: Mode = "async";
 ```
 
 ## Values
 
 ```typescript
-"synchronous"
+"async"
 ```

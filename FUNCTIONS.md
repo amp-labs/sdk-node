@@ -20,7 +20,7 @@ specific category of applications.
 
 ```typescript
 import { SDKCore } from "openapi/core.js";
-import { writeRecords } from "openapi/funcs/writeRecords.js";
+import { readRecords } from "openapi/funcs/readRecords.js";
 import { SDKValidationError } from "openapi/models/errors/sdkvalidationerror.js";
 
 // Use `SDKCore` for best tree-shaking performance.
@@ -30,17 +30,14 @@ const sdk = new SDKCore({
 });
 
 async function run() {
-  const res = await writeRecords(sdk, {
+  const res = await readRecords(sdk, {
     projectIdOrName: "<value>",
     integrationId: "<id>",
     objectName: "<value>",
     requestBody: {
       groupRef: "<value>",
-      type: "create",
-      mode: "synchronous",
-      associations: [
-        {},
-      ],
+      mode: "async",
+      sinceTimestamp: "2024-07-01T18:22:30.323771761Z",
     },
   });
 

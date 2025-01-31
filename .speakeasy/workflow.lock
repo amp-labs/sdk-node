@@ -1,21 +1,21 @@
-speakeasyVersion: 1.480.0
+speakeasyVersion: 1.480.1
 sources:
     amp-sdk-source:
         sourceNamespace: amp-sdk-source
-        sourceRevisionDigest: sha256:b11deaacaf4655233e9902d9086f51fbe7f4a8c0fa31da91f2bd360850816892
-        sourceBlobDigest: sha256:2b321d6ef834cdad217ae6858760057f635518a3f0e99b58ad8f4383548c3d4d
+        sourceRevisionDigest: sha256:83a5907f8a0e8a81c3ae6cd6dbab3a86c972cf208298e8e8bedd75888e0c8542
+        sourceBlobDigest: sha256:5c32017d4b86671ba13dc34c639abbcef8c6547fec7de1a98f03c7ce32347404
         tags:
             - latest
-            - speakeasy-sdk-regen-1738303655
+            - speakeasy-sdk-regen-1738304022
             - 1.0.0
 targets:
     amp-sdk-ts:
         source: amp-sdk-source
         sourceNamespace: amp-sdk-source
-        sourceRevisionDigest: sha256:b11deaacaf4655233e9902d9086f51fbe7f4a8c0fa31da91f2bd360850816892
-        sourceBlobDigest: sha256:2b321d6ef834cdad217ae6858760057f635518a3f0e99b58ad8f4383548c3d4d
+        sourceRevisionDigest: sha256:83a5907f8a0e8a81c3ae6cd6dbab3a86c972cf208298e8e8bedd75888e0c8542
+        sourceBlobDigest: sha256:5c32017d4b86671ba13dc34c639abbcef8c6547fec7de1a98f03c7ce32347404
         codeSamplesNamespace: amp-sdk-source-typescript-code-samples
-        codeSamplesRevisionDigest: sha256:4ace9601dd05019620d76477f47ee04720b19dfe98a6b381e439ea7260eafc78
+        codeSamplesRevisionDigest: sha256:5c607cedb99a40dabdbead728d4b821ab59806190a3e7b88457e7f13ba725546
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
@@ -23,8 +23,11 @@ workflow:
         amp-sdk-source:
             inputs:
                 - location: https://raw.githubusercontent.com/amp-labs/openapi/refs/heads/main/api/generated/write.json
+                - location: https://raw.githubusercontent.com/amp-labs/openapi/refs/heads/main/api/generated/api.json
+                - location: https://raw.githubusercontent.com/amp-labs/openapi/refs/heads/main/api/generated/read.json
             overlays:
                 - location: .speakeasy/speakeasy-modifications-overlay.yaml
+                - location: https://raw.githubusercontent.com/amp-labs/openapi/refs/heads/main/api/.speakeasy-overlay.yaml
             registry:
                 location: registry.speakeasyapi.dev/ampersand/ts/amp-sdk-source
     targets:

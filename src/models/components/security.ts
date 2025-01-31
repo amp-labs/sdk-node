@@ -9,7 +9,7 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type Security = {
-  apiKeyHeader: string;
+  apiKeyHeader?: string | undefined;
 };
 
 /** @internal */
@@ -18,7 +18,7 @@ export const Security$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  APIKeyHeader: z.string(),
+  APIKeyHeader: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     "APIKeyHeader": "apiKeyHeader",
@@ -27,7 +27,7 @@ export const Security$inboundSchema: z.ZodType<
 
 /** @internal */
 export type Security$Outbound = {
-  APIKeyHeader: string;
+  APIKeyHeader?: string | undefined;
 };
 
 /** @internal */
@@ -36,7 +36,7 @@ export const Security$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   Security
 > = z.object({
-  apiKeyHeader: z.string(),
+  apiKeyHeader: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     apiKeyHeader: "APIKeyHeader",

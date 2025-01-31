@@ -3,11 +3,119 @@
  */
 
 import { ClientSDK } from "../lib/sdks.js";
-import { Write } from "./write.js";
+import { APIKey } from "./apikey.js";
+import { BillingAccount } from "./billingaccount.js";
+import { Connection } from "./connection.js";
+import { Consumer } from "./consumer.js";
+import { Destination } from "./destination.js";
+import { Group } from "./group.js";
+import { Installation } from "./installation.js";
+import { Integration } from "./integration.js";
+import { OAuth } from "./oauth.js";
+import { ObjectsAndFields } from "./objectsandfields.js";
+import { Operation } from "./operation.js";
+import { Org } from "./org.js";
+import { Project } from "./project.js";
+import { Provider } from "./provider.js";
+import { ProviderApp } from "./providerapp.js";
+import { Read } from "./read.js";
+import { Revision } from "./revision.js";
+import { UploadURL } from "./uploadurl.js";
+import { User } from "./user.js";
 
 export class SDK extends ClientSDK {
-  private _write?: Write;
-  get write(): Write {
-    return (this._write ??= new Write(this._options));
+  private _read?: Read;
+  get read(): Read {
+    return (this._read ??= new Read(this._options));
+  }
+
+  private _oAuth?: OAuth;
+  get oAuth(): OAuth {
+    return (this._oAuth ??= new OAuth(this._options));
+  }
+
+  private _project?: Project;
+  get project(): Project {
+    return (this._project ??= new Project(this._options));
+  }
+
+  private _providerApp?: ProviderApp;
+  get providerApp(): ProviderApp {
+    return (this._providerApp ??= new ProviderApp(this._options));
+  }
+
+  private _integration?: Integration;
+  get integration(): Integration {
+    return (this._integration ??= new Integration(this._options));
+  }
+
+  private _revision?: Revision;
+  get revision(): Revision {
+    return (this._revision ??= new Revision(this._options));
+  }
+
+  private _installation?: Installation;
+  get installation(): Installation {
+    return (this._installation ??= new Installation(this._options));
+  }
+
+  private _objectsAndFields?: ObjectsAndFields;
+  get objectsAndFields(): ObjectsAndFields {
+    return (this._objectsAndFields ??= new ObjectsAndFields(this._options));
+  }
+
+  private _operation?: Operation;
+  get operation(): Operation {
+    return (this._operation ??= new Operation(this._options));
+  }
+
+  private _provider?: Provider;
+  get provider(): Provider {
+    return (this._provider ??= new Provider(this._options));
+  }
+
+  private _apiKey?: APIKey;
+  get apiKey(): APIKey {
+    return (this._apiKey ??= new APIKey(this._options));
+  }
+
+  private _connection?: Connection;
+  get connection(): Connection {
+    return (this._connection ??= new Connection(this._options));
+  }
+
+  private _group?: Group;
+  get group(): Group {
+    return (this._group ??= new Group(this._options));
+  }
+
+  private _consumer?: Consumer;
+  get consumer(): Consumer {
+    return (this._consumer ??= new Consumer(this._options));
+  }
+
+  private _destination?: Destination;
+  get destination(): Destination {
+    return (this._destination ??= new Destination(this._options));
+  }
+
+  private _uploadURL?: UploadURL;
+  get uploadURL(): UploadURL {
+    return (this._uploadURL ??= new UploadURL(this._options));
+  }
+
+  private _org?: Org;
+  get org(): Org {
+    return (this._org ??= new Org(this._options));
+  }
+
+  private _user?: User;
+  get user(): User {
+    return (this._user ??= new User(this._options));
+  }
+
+  private _billingAccount?: BillingAccount;
+  get billingAccount(): BillingAccount {
+    return (this._billingAccount ??= new BillingAccount(this._options));
   }
 }

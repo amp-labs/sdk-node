@@ -1,0 +1,61 @@
+# ListIntegrationsContent
+
+## Example Usage
+
+```typescript
+import { ListIntegrationsContent } from "openapi/models/operations";
+
+let value: ListIntegrationsContent = {
+  name: "<value>",
+  provider: "<value>",
+  read: {
+    objects: [
+      {
+        objectName: "<value>",
+        destination: "<value>",
+        schedule: "<value>",
+        mapToName: "people",
+        mapToDisplayName: "People",
+        requiredFields: [
+          {
+            mapToName: "<value>",
+          },
+        ],
+        optionalFields: [
+          {
+            mapToName: "<value>",
+          },
+        ],
+        backfill: {
+          defaultPeriod: {
+            days: 30,
+            fullHistory: false,
+          },
+        },
+      },
+    ],
+  },
+  write: {
+    objects: [
+      {
+        objectName: "<value>",
+        inheritMapping: true,
+        valueDefaults: {
+          allowAnyFields: true,
+        },
+      },
+    ],
+  },
+};
+```
+
+## Fields
+
+| Field                                                                                | Type                                                                                 | Required                                                                             | Description                                                                          |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
+| `name`                                                                               | *string*                                                                             | :heavy_check_mark:                                                                   | N/A                                                                                  |
+| `displayName`                                                                        | *string*                                                                             | :heavy_minus_sign:                                                                   | N/A                                                                                  |
+| `provider`                                                                           | *string*                                                                             | :heavy_check_mark:                                                                   | N/A                                                                                  |
+| `read`                                                                               | [operations.ListIntegrationsRead](../../models/operations/listintegrationsread.md)   | :heavy_minus_sign:                                                                   | N/A                                                                                  |
+| `write`                                                                              | [operations.ListIntegrationsWrite](../../models/operations/listintegrationswrite.md) | :heavy_minus_sign:                                                                   | N/A                                                                                  |
+| `proxy`                                                                              | [operations.ListIntegrationsProxy](../../models/operations/listintegrationsproxy.md) | :heavy_minus_sign:                                                                   | N/A                                                                                  |
