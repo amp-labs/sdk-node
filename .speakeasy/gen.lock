@@ -3,10 +3,10 @@ id: 9323fb0c-51c0-423a-ae97-da9ff22a9f89
 management:
   docChecksum: 48fa442c869ff00681490d2694ab2bd7
   docVersion: 1.0.0
-  speakeasyVersion: 1.493.1
+  speakeasyVersion: 1.493.2
   generationVersion: 2.512.4
-  releaseVersion: 0.3.6
-  configChecksum: b514b33303096eef69d3f0ac5157de66
+  releaseVersion: 0.4.0
+  configChecksum: e7b95d657f45b820566cbc4228027f21
   repoURL: https://github.com/amp-labs/sdk-node.git
   installationURL: https://github.com/amp-labs/sdk-node
   published: true
