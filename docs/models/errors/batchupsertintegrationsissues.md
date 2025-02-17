@@ -6,7 +6,7 @@ An issue detected during input validation.
 ## Example Usage
 
 ```typescript
-import { BatchUpsertIntegrationsIssues } from "openapi/models/errors";
+import { BatchUpsertIntegrationsIssues } from "sdk-node/models/errors";
 
 let value: BatchUpsertIntegrationsIssues = {
   href:

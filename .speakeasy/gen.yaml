@@ -9,11 +9,12 @@ generation:
     nameResolutionDec2023: true
     parameterOrderingFeb2024: true
     requestResponseComponentNamesFeb2024: true
+    securityFeb2025: false
   auth:
     oAuth2ClientCredentialsEnabled: false
     oAuth2PasswordEnabled: false
 typescript:
-  version: 0.2.0
+  version: 0.3.1
   additionalDependencies:
     dependencies: {}
     devDependencies: {}
@@ -40,7 +41,7 @@ typescript:
   methodArguments: require-security-and-request
   moduleFormat: commonjs
   outputModelSuffix: output
-  packageName: openapi
+  packageName: sdk-node
   responseFormat: flat
   templateVersion: v2
   useIndexModules: true

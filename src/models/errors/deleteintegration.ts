@@ -11,7 +11,7 @@ import { SDKValidationError } from "./sdkvalidationerror.js";
 /**
  * The location of the invalid input
  */
-export const DeleteIntegrationIntegrationIn = {
+export const DeleteIntegrationIntegrationsIn = {
   Body: "body",
   Header: "header",
   Path: "path",
@@ -20,8 +20,8 @@ export const DeleteIntegrationIntegrationIn = {
 /**
  * The location of the invalid input
  */
-export type DeleteIntegrationIntegrationIn = ClosedEnum<
-  typeof DeleteIntegrationIntegrationIn
+export type DeleteIntegrationIntegrationsIn = ClosedEnum<
+  typeof DeleteIntegrationIntegrationsIn
 >;
 
 /**
@@ -29,7 +29,7 @@ export type DeleteIntegrationIntegrationIn = ClosedEnum<
  *
  * @remarks
  */
-export type DeleteIntegrationIntegrationIssues = {
+export type DeleteIntegrationIntegrationsIssues = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -104,7 +104,7 @@ export type DeleteIntegrationIntegrationIssues = {
   /**
    * The location of the invalid input
    */
-  in?: DeleteIntegrationIntegrationIn | undefined;
+  in?: DeleteIntegrationIntegrationsIn | undefined;
   /**
    * The name of the invalid input
    */
@@ -122,7 +122,7 @@ export type DeleteIntegrationIntegrationIssues = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export type DeleteIntegrationIntegrationResponseBodyData = {
+export type DeleteIntegrationIntegrationsResponseBodyData = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -194,7 +194,7 @@ export type DeleteIntegrationIntegrationResponseBodyData = {
    * Additional context for the problem
    */
   context?: { [k: string]: any } | undefined;
-  issues?: Array<DeleteIntegrationIntegrationIssues> | undefined;
+  issues?: Array<DeleteIntegrationIntegrationsIssues> | undefined;
 };
 
 /**
@@ -204,7 +204,7 @@ export type DeleteIntegrationIntegrationResponseBodyData = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export class DeleteIntegrationIntegrationResponseBody extends Error {
+export class DeleteIntegrationIntegrationsResponseBody extends Error {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -276,12 +276,12 @@ export class DeleteIntegrationIntegrationResponseBody extends Error {
    * Additional context for the problem
    */
   context?: { [k: string]: any } | undefined;
-  issues?: Array<DeleteIntegrationIntegrationIssues> | undefined;
+  issues?: Array<DeleteIntegrationIntegrationsIssues> | undefined;
 
   /** The original data that was passed to this error instance. */
-  data$: DeleteIntegrationIntegrationResponseBodyData;
+  data$: DeleteIntegrationIntegrationsResponseBodyData;
 
-  constructor(err: DeleteIntegrationIntegrationResponseBodyData) {
+  constructor(err: DeleteIntegrationIntegrationsResponseBodyData) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
@@ -307,7 +307,7 @@ export class DeleteIntegrationIntegrationResponseBody extends Error {
     if (err.context != null) this.context = err.context;
     if (err.issues != null) this.issues = err.issues;
 
-    this.name = "DeleteIntegrationIntegrationResponseBody";
+    this.name = "DeleteIntegrationIntegrationsResponseBody";
   }
 }
 
@@ -613,29 +613,29 @@ export class DeleteIntegrationResponseBody extends Error {
 }
 
 /** @internal */
-export const DeleteIntegrationIntegrationIn$inboundSchema: z.ZodNativeEnum<
-  typeof DeleteIntegrationIntegrationIn
-> = z.nativeEnum(DeleteIntegrationIntegrationIn);
+export const DeleteIntegrationIntegrationsIn$inboundSchema: z.ZodNativeEnum<
+  typeof DeleteIntegrationIntegrationsIn
+> = z.nativeEnum(DeleteIntegrationIntegrationsIn);
 
 /** @internal */
-export const DeleteIntegrationIntegrationIn$outboundSchema: z.ZodNativeEnum<
-  typeof DeleteIntegrationIntegrationIn
-> = DeleteIntegrationIntegrationIn$inboundSchema;
+export const DeleteIntegrationIntegrationsIn$outboundSchema: z.ZodNativeEnum<
+  typeof DeleteIntegrationIntegrationsIn
+> = DeleteIntegrationIntegrationsIn$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace DeleteIntegrationIntegrationIn$ {
-  /** @deprecated use `DeleteIntegrationIntegrationIn$inboundSchema` instead. */
-  export const inboundSchema = DeleteIntegrationIntegrationIn$inboundSchema;
-  /** @deprecated use `DeleteIntegrationIntegrationIn$outboundSchema` instead. */
-  export const outboundSchema = DeleteIntegrationIntegrationIn$outboundSchema;
+export namespace DeleteIntegrationIntegrationsIn$ {
+  /** @deprecated use `DeleteIntegrationIntegrationsIn$inboundSchema` instead. */
+  export const inboundSchema = DeleteIntegrationIntegrationsIn$inboundSchema;
+  /** @deprecated use `DeleteIntegrationIntegrationsIn$outboundSchema` instead. */
+  export const outboundSchema = DeleteIntegrationIntegrationsIn$outboundSchema;
 }
 
 /** @internal */
-export const DeleteIntegrationIntegrationIssues$inboundSchema: z.ZodType<
-  DeleteIntegrationIntegrationIssues,
+export const DeleteIntegrationIntegrationsIssues$inboundSchema: z.ZodType<
+  DeleteIntegrationIntegrationsIssues,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -658,13 +658,13 @@ export const DeleteIntegrationIntegrationIssues$inboundSchema: z.ZodType<
   retryAfter: z.string().datetime({ offset: true }).transform(v => new Date(v))
     .optional(),
   context: z.record(z.any()).optional(),
-  in: DeleteIntegrationIntegrationIn$inboundSchema.optional(),
+  in: DeleteIntegrationIntegrationsIn$inboundSchema.optional(),
   name: z.string().optional(),
   value: z.any().optional(),
 });
 
 /** @internal */
-export type DeleteIntegrationIntegrationIssues$Outbound = {
+export type DeleteIntegrationIntegrationsIssues$Outbound = {
   type: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -688,10 +688,10 @@ export type DeleteIntegrationIntegrationIssues$Outbound = {
 };
 
 /** @internal */
-export const DeleteIntegrationIntegrationIssues$outboundSchema: z.ZodType<
-  DeleteIntegrationIntegrationIssues$Outbound,
+export const DeleteIntegrationIntegrationsIssues$outboundSchema: z.ZodType<
+  DeleteIntegrationIntegrationsIssues$Outbound,
   z.ZodTypeDef,
-  DeleteIntegrationIntegrationIssues
+  DeleteIntegrationIntegrationsIssues
 > = z.object({
   type: z.string().default("about:blank"),
   href: z.string().optional(),
@@ -710,7 +710,7 @@ export const DeleteIntegrationIntegrationIssues$outboundSchema: z.ZodType<
   retryable: z.boolean().optional(),
   retryAfter: z.date().transform(v => v.toISOString()).optional(),
   context: z.record(z.any()).optional(),
-  in: DeleteIntegrationIntegrationIn$outboundSchema.optional(),
+  in: DeleteIntegrationIntegrationsIn$outboundSchema.optional(),
   name: z.string().optional(),
   value: z.any().optional(),
 });
@@ -719,40 +719,41 @@ export const DeleteIntegrationIntegrationIssues$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace DeleteIntegrationIntegrationIssues$ {
-  /** @deprecated use `DeleteIntegrationIntegrationIssues$inboundSchema` instead. */
-  export const inboundSchema = DeleteIntegrationIntegrationIssues$inboundSchema;
-  /** @deprecated use `DeleteIntegrationIntegrationIssues$outboundSchema` instead. */
+export namespace DeleteIntegrationIntegrationsIssues$ {
+  /** @deprecated use `DeleteIntegrationIntegrationsIssues$inboundSchema` instead. */
+  export const inboundSchema =
+    DeleteIntegrationIntegrationsIssues$inboundSchema;
+  /** @deprecated use `DeleteIntegrationIntegrationsIssues$outboundSchema` instead. */
   export const outboundSchema =
-    DeleteIntegrationIntegrationIssues$outboundSchema;
-  /** @deprecated use `DeleteIntegrationIntegrationIssues$Outbound` instead. */
-  export type Outbound = DeleteIntegrationIntegrationIssues$Outbound;
+    DeleteIntegrationIntegrationsIssues$outboundSchema;
+  /** @deprecated use `DeleteIntegrationIntegrationsIssues$Outbound` instead. */
+  export type Outbound = DeleteIntegrationIntegrationsIssues$Outbound;
 }
 
-export function deleteIntegrationIntegrationIssuesToJSON(
-  deleteIntegrationIntegrationIssues: DeleteIntegrationIntegrationIssues,
+export function deleteIntegrationIntegrationsIssuesToJSON(
+  deleteIntegrationIntegrationsIssues: DeleteIntegrationIntegrationsIssues,
 ): string {
   return JSON.stringify(
-    DeleteIntegrationIntegrationIssues$outboundSchema.parse(
-      deleteIntegrationIntegrationIssues,
+    DeleteIntegrationIntegrationsIssues$outboundSchema.parse(
+      deleteIntegrationIntegrationsIssues,
     ),
   );
 }
 
-export function deleteIntegrationIntegrationIssuesFromJSON(
+export function deleteIntegrationIntegrationsIssuesFromJSON(
   jsonString: string,
-): SafeParseResult<DeleteIntegrationIntegrationIssues, SDKValidationError> {
+): SafeParseResult<DeleteIntegrationIntegrationsIssues, SDKValidationError> {
   return safeParse(
     jsonString,
     (x) =>
-      DeleteIntegrationIntegrationIssues$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'DeleteIntegrationIntegrationIssues' from JSON`,
+      DeleteIntegrationIntegrationsIssues$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'DeleteIntegrationIntegrationsIssues' from JSON`,
   );
 }
 
 /** @internal */
-export const DeleteIntegrationIntegrationResponseBody$inboundSchema: z.ZodType<
-  DeleteIntegrationIntegrationResponseBody,
+export const DeleteIntegrationIntegrationsResponseBody$inboundSchema: z.ZodType<
+  DeleteIntegrationIntegrationsResponseBody,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -776,15 +777,15 @@ export const DeleteIntegrationIntegrationResponseBody$inboundSchema: z.ZodType<
     .optional(),
   context: z.record(z.any()).optional(),
   issues: z.array(
-    z.lazy(() => DeleteIntegrationIntegrationIssues$inboundSchema),
+    z.lazy(() => DeleteIntegrationIntegrationsIssues$inboundSchema),
   ).optional(),
 })
   .transform((v) => {
-    return new DeleteIntegrationIntegrationResponseBody(v);
+    return new DeleteIntegrationIntegrationsResponseBody(v);
   });
 
 /** @internal */
-export type DeleteIntegrationIntegrationResponseBody$Outbound = {
+export type DeleteIntegrationIntegrationsResponseBody$Outbound = {
   type?: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -802,52 +803,53 @@ export type DeleteIntegrationIntegrationResponseBody$Outbound = {
   retryable?: boolean | undefined;
   retryAfter?: string | undefined;
   context?: { [k: string]: any } | undefined;
-  issues?: Array<DeleteIntegrationIntegrationIssues$Outbound> | undefined;
+  issues?: Array<DeleteIntegrationIntegrationsIssues$Outbound> | undefined;
 };
 
 /** @internal */
-export const DeleteIntegrationIntegrationResponseBody$outboundSchema: z.ZodType<
-  DeleteIntegrationIntegrationResponseBody$Outbound,
-  z.ZodTypeDef,
-  DeleteIntegrationIntegrationResponseBody
-> = z.instanceof(DeleteIntegrationIntegrationResponseBody)
-  .transform(v => v.data$)
-  .pipe(z.object({
-    type: z.string().default("about:blank"),
-    href: z.string().optional(),
-    title: z.string().optional(),
-    status: z.number().int().optional(),
-    detail: z.string().optional(),
-    instance: z.string().optional(),
-    subsystem: z.string().optional(),
-    time: z.date().transform(v => v.toISOString()).optional(),
-    requestId: z.string().optional(),
-    causes: z.array(z.string()).optional(),
-    remedy: z.string().optional(),
-    supportEmail: z.string().optional(),
-    supportPhone: z.string().optional(),
-    supportUrl: z.string().optional(),
-    retryable: z.boolean().optional(),
-    retryAfter: z.date().transform(v => v.toISOString()).optional(),
-    context: z.record(z.any()).optional(),
-    issues: z.array(
-      z.lazy(() => DeleteIntegrationIntegrationIssues$outboundSchema),
-    ).optional(),
-  }));
+export const DeleteIntegrationIntegrationsResponseBody$outboundSchema:
+  z.ZodType<
+    DeleteIntegrationIntegrationsResponseBody$Outbound,
+    z.ZodTypeDef,
+    DeleteIntegrationIntegrationsResponseBody
+  > = z.instanceof(DeleteIntegrationIntegrationsResponseBody)
+    .transform(v => v.data$)
+    .pipe(z.object({
+      type: z.string().default("about:blank"),
+      href: z.string().optional(),
+      title: z.string().optional(),
+      status: z.number().int().optional(),
+      detail: z.string().optional(),
+      instance: z.string().optional(),
+      subsystem: z.string().optional(),
+      time: z.date().transform(v => v.toISOString()).optional(),
+      requestId: z.string().optional(),
+      causes: z.array(z.string()).optional(),
+      remedy: z.string().optional(),
+      supportEmail: z.string().optional(),
+      supportPhone: z.string().optional(),
+      supportUrl: z.string().optional(),
+      retryable: z.boolean().optional(),
+      retryAfter: z.date().transform(v => v.toISOString()).optional(),
+      context: z.record(z.any()).optional(),
+      issues: z.array(
+        z.lazy(() => DeleteIntegrationIntegrationsIssues$outboundSchema),
+      ).optional(),
+    }));
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace DeleteIntegrationIntegrationResponseBody$ {
-  /** @deprecated use `DeleteIntegrationIntegrationResponseBody$inboundSchema` instead. */
+export namespace DeleteIntegrationIntegrationsResponseBody$ {
+  /** @deprecated use `DeleteIntegrationIntegrationsResponseBody$inboundSchema` instead. */
   export const inboundSchema =
-    DeleteIntegrationIntegrationResponseBody$inboundSchema;
-  /** @deprecated use `DeleteIntegrationIntegrationResponseBody$outboundSchema` instead. */
+    DeleteIntegrationIntegrationsResponseBody$inboundSchema;
+  /** @deprecated use `DeleteIntegrationIntegrationsResponseBody$outboundSchema` instead. */
   export const outboundSchema =
-    DeleteIntegrationIntegrationResponseBody$outboundSchema;
-  /** @deprecated use `DeleteIntegrationIntegrationResponseBody$Outbound` instead. */
-  export type Outbound = DeleteIntegrationIntegrationResponseBody$Outbound;
+    DeleteIntegrationIntegrationsResponseBody$outboundSchema;
+  /** @deprecated use `DeleteIntegrationIntegrationsResponseBody$Outbound` instead. */
+  export type Outbound = DeleteIntegrationIntegrationsResponseBody$Outbound;
 }
 
 /** @internal */

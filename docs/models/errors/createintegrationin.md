@@ -5,9 +5,9 @@ The location of the invalid input
 ## Example Usage
 
 ```typescript
-import { CreateIntegrationIn } from "openapi/models/errors";
+import { CreateIntegrationIn } from "sdk-node/models/errors";
 
-let value: CreateIntegrationIn = "header";
+let value: CreateIntegrationIn = "body";
 ```
 
 ## Values

@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { ListInstallationsConfig } from "openapi/models/operations";
+import { ListInstallationsConfig } from "sdk-node/models/operations";
 
 let value: ListInstallationsConfig = {
   id: "config-123",

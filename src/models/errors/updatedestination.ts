@@ -11,7 +11,7 @@ import { SDKValidationError } from "./sdkvalidationerror.js";
 /**
  * The location of the invalid input
  */
-export const UpdateDestinationDestinationResponseIn = {
+export const UpdateDestinationDestinationsResponseIn = {
   Body: "body",
   Header: "header",
   Path: "path",
@@ -20,8 +20,8 @@ export const UpdateDestinationDestinationResponseIn = {
 /**
  * The location of the invalid input
  */
-export type UpdateDestinationDestinationResponseIn = ClosedEnum<
-  typeof UpdateDestinationDestinationResponseIn
+export type UpdateDestinationDestinationsResponseIn = ClosedEnum<
+  typeof UpdateDestinationDestinationsResponseIn
 >;
 
 /**
@@ -29,7 +29,7 @@ export type UpdateDestinationDestinationResponseIn = ClosedEnum<
  *
  * @remarks
  */
-export type UpdateDestinationDestinationResponseIssues = {
+export type UpdateDestinationDestinationsResponseIssues = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -104,7 +104,7 @@ export type UpdateDestinationDestinationResponseIssues = {
   /**
    * The location of the invalid input
    */
-  in?: UpdateDestinationDestinationResponseIn | undefined;
+  in?: UpdateDestinationDestinationsResponseIn | undefined;
   /**
    * The name of the invalid input
    */
@@ -122,7 +122,7 @@ export type UpdateDestinationDestinationResponseIssues = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export type UpdateDestinationDestinationResponseResponseBodyData = {
+export type UpdateDestinationDestinationsResponseResponseBodyData = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -194,7 +194,7 @@ export type UpdateDestinationDestinationResponseResponseBodyData = {
    * Additional context for the problem
    */
   context?: { [k: string]: any } | undefined;
-  issues?: Array<UpdateDestinationDestinationResponseIssues> | undefined;
+  issues?: Array<UpdateDestinationDestinationsResponseIssues> | undefined;
 };
 
 /**
@@ -204,7 +204,7 @@ export type UpdateDestinationDestinationResponseResponseBodyData = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export class UpdateDestinationDestinationResponseResponseBody extends Error {
+export class UpdateDestinationDestinationsResponseResponseBody extends Error {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -276,12 +276,12 @@ export class UpdateDestinationDestinationResponseResponseBody extends Error {
    * Additional context for the problem
    */
   context?: { [k: string]: any } | undefined;
-  issues?: Array<UpdateDestinationDestinationResponseIssues> | undefined;
+  issues?: Array<UpdateDestinationDestinationsResponseIssues> | undefined;
 
   /** The original data that was passed to this error instance. */
-  data$: UpdateDestinationDestinationResponseResponseBodyData;
+  data$: UpdateDestinationDestinationsResponseResponseBodyData;
 
-  constructor(err: UpdateDestinationDestinationResponseResponseBodyData) {
+  constructor(err: UpdateDestinationDestinationsResponseResponseBodyData) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
@@ -307,14 +307,14 @@ export class UpdateDestinationDestinationResponseResponseBody extends Error {
     if (err.context != null) this.context = err.context;
     if (err.issues != null) this.issues = err.issues;
 
-    this.name = "UpdateDestinationDestinationResponseResponseBody";
+    this.name = "UpdateDestinationDestinationsResponseResponseBody";
   }
 }
 
 /**
  * The location of the invalid input
  */
-export const UpdateDestinationDestinationIn = {
+export const UpdateDestinationDestinationsIn = {
   Body: "body",
   Header: "header",
   Path: "path",
@@ -323,8 +323,8 @@ export const UpdateDestinationDestinationIn = {
 /**
  * The location of the invalid input
  */
-export type UpdateDestinationDestinationIn = ClosedEnum<
-  typeof UpdateDestinationDestinationIn
+export type UpdateDestinationDestinationsIn = ClosedEnum<
+  typeof UpdateDestinationDestinationsIn
 >;
 
 /**
@@ -332,7 +332,7 @@ export type UpdateDestinationDestinationIn = ClosedEnum<
  *
  * @remarks
  */
-export type UpdateDestinationDestinationIssues = {
+export type UpdateDestinationDestinationsIssues = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -407,7 +407,7 @@ export type UpdateDestinationDestinationIssues = {
   /**
    * The location of the invalid input
    */
-  in?: UpdateDestinationDestinationIn | undefined;
+  in?: UpdateDestinationDestinationsIn | undefined;
   /**
    * The name of the invalid input
    */
@@ -425,7 +425,7 @@ export type UpdateDestinationDestinationIssues = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export type UpdateDestinationDestinationResponseBodyData = {
+export type UpdateDestinationDestinationsResponseBodyData = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -497,7 +497,7 @@ export type UpdateDestinationDestinationResponseBodyData = {
    * Additional context for the problem
    */
   context?: { [k: string]: any } | undefined;
-  issues?: Array<UpdateDestinationDestinationIssues> | undefined;
+  issues?: Array<UpdateDestinationDestinationsIssues> | undefined;
 };
 
 /**
@@ -507,7 +507,7 @@ export type UpdateDestinationDestinationResponseBodyData = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export class UpdateDestinationDestinationResponseBody extends Error {
+export class UpdateDestinationDestinationsResponseBody extends Error {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -579,12 +579,12 @@ export class UpdateDestinationDestinationResponseBody extends Error {
    * Additional context for the problem
    */
   context?: { [k: string]: any } | undefined;
-  issues?: Array<UpdateDestinationDestinationIssues> | undefined;
+  issues?: Array<UpdateDestinationDestinationsIssues> | undefined;
 
   /** The original data that was passed to this error instance. */
-  data$: UpdateDestinationDestinationResponseBodyData;
+  data$: UpdateDestinationDestinationsResponseBodyData;
 
-  constructor(err: UpdateDestinationDestinationResponseBodyData) {
+  constructor(err: UpdateDestinationDestinationsResponseBodyData) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
@@ -610,7 +610,7 @@ export class UpdateDestinationDestinationResponseBody extends Error {
     if (err.context != null) this.context = err.context;
     if (err.issues != null) this.issues = err.issues;
 
-    this.name = "UpdateDestinationDestinationResponseBody";
+    this.name = "UpdateDestinationDestinationsResponseBody";
   }
 }
 
@@ -916,60 +916,62 @@ export class UpdateDestinationResponseBody extends Error {
 }
 
 /** @internal */
-export const UpdateDestinationDestinationResponseIn$inboundSchema:
-  z.ZodNativeEnum<typeof UpdateDestinationDestinationResponseIn> = z.nativeEnum(
-    UpdateDestinationDestinationResponseIn,
-  );
+export const UpdateDestinationDestinationsResponseIn$inboundSchema:
+  z.ZodNativeEnum<typeof UpdateDestinationDestinationsResponseIn> = z
+    .nativeEnum(UpdateDestinationDestinationsResponseIn);
 
 /** @internal */
-export const UpdateDestinationDestinationResponseIn$outboundSchema:
-  z.ZodNativeEnum<typeof UpdateDestinationDestinationResponseIn> =
-    UpdateDestinationDestinationResponseIn$inboundSchema;
+export const UpdateDestinationDestinationsResponseIn$outboundSchema:
+  z.ZodNativeEnum<typeof UpdateDestinationDestinationsResponseIn> =
+    UpdateDestinationDestinationsResponseIn$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace UpdateDestinationDestinationResponseIn$ {
-  /** @deprecated use `UpdateDestinationDestinationResponseIn$inboundSchema` instead. */
+export namespace UpdateDestinationDestinationsResponseIn$ {
+  /** @deprecated use `UpdateDestinationDestinationsResponseIn$inboundSchema` instead. */
   export const inboundSchema =
-    UpdateDestinationDestinationResponseIn$inboundSchema;
-  /** @deprecated use `UpdateDestinationDestinationResponseIn$outboundSchema` instead. */
+    UpdateDestinationDestinationsResponseIn$inboundSchema;
+  /** @deprecated use `UpdateDestinationDestinationsResponseIn$outboundSchema` instead. */
   export const outboundSchema =
-    UpdateDestinationDestinationResponseIn$outboundSchema;
+    UpdateDestinationDestinationsResponseIn$outboundSchema;
 }
 
 /** @internal */
-export const UpdateDestinationDestinationResponseIssues$inboundSchema:
-  z.ZodType<UpdateDestinationDestinationResponseIssues, z.ZodTypeDef, unknown> =
-    z.object({
-      type: z.string().default("about:blank"),
-      href: z.string().optional(),
-      title: z.string().optional(),
-      status: z.number().int().optional(),
-      detail: z.string().optional(),
-      instance: z.string().optional(),
-      subsystem: z.string().optional(),
-      time: z.string().datetime({ offset: true }).transform(v => new Date(v))
-        .optional(),
-      requestId: z.string().optional(),
-      causes: z.array(z.string()).optional(),
-      remedy: z.string().optional(),
-      supportEmail: z.string().optional(),
-      supportPhone: z.string().optional(),
-      supportUrl: z.string().optional(),
-      retryable: z.boolean().optional(),
-      retryAfter: z.string().datetime({ offset: true }).transform(v =>
-        new Date(v)
-      ).optional(),
-      context: z.record(z.any()).optional(),
-      in: UpdateDestinationDestinationResponseIn$inboundSchema.optional(),
-      name: z.string().optional(),
-      value: z.any().optional(),
-    });
+export const UpdateDestinationDestinationsResponseIssues$inboundSchema:
+  z.ZodType<
+    UpdateDestinationDestinationsResponseIssues,
+    z.ZodTypeDef,
+    unknown
+  > = z.object({
+    type: z.string().default("about:blank"),
+    href: z.string().optional(),
+    title: z.string().optional(),
+    status: z.number().int().optional(),
+    detail: z.string().optional(),
+    instance: z.string().optional(),
+    subsystem: z.string().optional(),
+    time: z.string().datetime({ offset: true }).transform(v => new Date(v))
+      .optional(),
+    requestId: z.string().optional(),
+    causes: z.array(z.string()).optional(),
+    remedy: z.string().optional(),
+    supportEmail: z.string().optional(),
+    supportPhone: z.string().optional(),
+    supportUrl: z.string().optional(),
+    retryable: z.boolean().optional(),
+    retryAfter: z.string().datetime({ offset: true }).transform(v =>
+      new Date(v)
+    ).optional(),
+    context: z.record(z.any()).optional(),
+    in: UpdateDestinationDestinationsResponseIn$inboundSchema.optional(),
+    name: z.string().optional(),
+    value: z.any().optional(),
+  });
 
 /** @internal */
-export type UpdateDestinationDestinationResponseIssues$Outbound = {
+export type UpdateDestinationDestinationsResponseIssues$Outbound = {
   type: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -993,11 +995,11 @@ export type UpdateDestinationDestinationResponseIssues$Outbound = {
 };
 
 /** @internal */
-export const UpdateDestinationDestinationResponseIssues$outboundSchema:
+export const UpdateDestinationDestinationsResponseIssues$outboundSchema:
   z.ZodType<
-    UpdateDestinationDestinationResponseIssues$Outbound,
+    UpdateDestinationDestinationsResponseIssues$Outbound,
     z.ZodTypeDef,
-    UpdateDestinationDestinationResponseIssues
+    UpdateDestinationDestinationsResponseIssues
   > = z.object({
     type: z.string().default("about:blank"),
     href: z.string().optional(),
@@ -1016,7 +1018,7 @@ export const UpdateDestinationDestinationResponseIssues$outboundSchema:
     retryable: z.boolean().optional(),
     retryAfter: z.date().transform(v => v.toISOString()).optional(),
     context: z.record(z.any()).optional(),
-    in: UpdateDestinationDestinationResponseIn$outboundSchema.optional(),
+    in: UpdateDestinationDestinationsResponseIn$outboundSchema.optional(),
     name: z.string().optional(),
     value: z.any().optional(),
   });
@@ -1025,48 +1027,48 @@ export const UpdateDestinationDestinationResponseIssues$outboundSchema:
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace UpdateDestinationDestinationResponseIssues$ {
-  /** @deprecated use `UpdateDestinationDestinationResponseIssues$inboundSchema` instead. */
+export namespace UpdateDestinationDestinationsResponseIssues$ {
+  /** @deprecated use `UpdateDestinationDestinationsResponseIssues$inboundSchema` instead. */
   export const inboundSchema =
-    UpdateDestinationDestinationResponseIssues$inboundSchema;
-  /** @deprecated use `UpdateDestinationDestinationResponseIssues$outboundSchema` instead. */
+    UpdateDestinationDestinationsResponseIssues$inboundSchema;
+  /** @deprecated use `UpdateDestinationDestinationsResponseIssues$outboundSchema` instead. */
   export const outboundSchema =
-    UpdateDestinationDestinationResponseIssues$outboundSchema;
-  /** @deprecated use `UpdateDestinationDestinationResponseIssues$Outbound` instead. */
-  export type Outbound = UpdateDestinationDestinationResponseIssues$Outbound;
+    UpdateDestinationDestinationsResponseIssues$outboundSchema;
+  /** @deprecated use `UpdateDestinationDestinationsResponseIssues$Outbound` instead. */
+  export type Outbound = UpdateDestinationDestinationsResponseIssues$Outbound;
 }
 
-export function updateDestinationDestinationResponseIssuesToJSON(
-  updateDestinationDestinationResponseIssues:
-    UpdateDestinationDestinationResponseIssues,
+export function updateDestinationDestinationsResponseIssuesToJSON(
+  updateDestinationDestinationsResponseIssues:
+    UpdateDestinationDestinationsResponseIssues,
 ): string {
   return JSON.stringify(
-    UpdateDestinationDestinationResponseIssues$outboundSchema.parse(
-      updateDestinationDestinationResponseIssues,
+    UpdateDestinationDestinationsResponseIssues$outboundSchema.parse(
+      updateDestinationDestinationsResponseIssues,
     ),
   );
 }
 
-export function updateDestinationDestinationResponseIssuesFromJSON(
+export function updateDestinationDestinationsResponseIssuesFromJSON(
   jsonString: string,
 ): SafeParseResult<
-  UpdateDestinationDestinationResponseIssues,
+  UpdateDestinationDestinationsResponseIssues,
   SDKValidationError
 > {
   return safeParse(
     jsonString,
     (x) =>
-      UpdateDestinationDestinationResponseIssues$inboundSchema.parse(
+      UpdateDestinationDestinationsResponseIssues$inboundSchema.parse(
         JSON.parse(x),
       ),
-    `Failed to parse 'UpdateDestinationDestinationResponseIssues' from JSON`,
+    `Failed to parse 'UpdateDestinationDestinationsResponseIssues' from JSON`,
   );
 }
 
 /** @internal */
-export const UpdateDestinationDestinationResponseResponseBody$inboundSchema:
+export const UpdateDestinationDestinationsResponseResponseBody$inboundSchema:
   z.ZodType<
-    UpdateDestinationDestinationResponseResponseBody,
+    UpdateDestinationDestinationsResponseResponseBody,
     z.ZodTypeDef,
     unknown
   > = z.object({
@@ -1091,15 +1093,15 @@ export const UpdateDestinationDestinationResponseResponseBody$inboundSchema:
     ).optional(),
     context: z.record(z.any()).optional(),
     issues: z.array(
-      z.lazy(() => UpdateDestinationDestinationResponseIssues$inboundSchema),
+      z.lazy(() => UpdateDestinationDestinationsResponseIssues$inboundSchema),
     ).optional(),
   })
     .transform((v) => {
-      return new UpdateDestinationDestinationResponseResponseBody(v);
+      return new UpdateDestinationDestinationsResponseResponseBody(v);
     });
 
 /** @internal */
-export type UpdateDestinationDestinationResponseResponseBody$Outbound = {
+export type UpdateDestinationDestinationsResponseResponseBody$Outbound = {
   type?: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -1118,17 +1120,17 @@ export type UpdateDestinationDestinationResponseResponseBody$Outbound = {
   retryAfter?: string | undefined;
   context?: { [k: string]: any } | undefined;
   issues?:
-    | Array<UpdateDestinationDestinationResponseIssues$Outbound>
+    | Array<UpdateDestinationDestinationsResponseIssues$Outbound>
     | undefined;
 };
 
 /** @internal */
-export const UpdateDestinationDestinationResponseResponseBody$outboundSchema:
+export const UpdateDestinationDestinationsResponseResponseBody$outboundSchema:
   z.ZodType<
-    UpdateDestinationDestinationResponseResponseBody$Outbound,
+    UpdateDestinationDestinationsResponseResponseBody$Outbound,
     z.ZodTypeDef,
-    UpdateDestinationDestinationResponseResponseBody
-  > = z.instanceof(UpdateDestinationDestinationResponseResponseBody)
+    UpdateDestinationDestinationsResponseResponseBody
+  > = z.instanceof(UpdateDestinationDestinationsResponseResponseBody)
     .transform(v => v.data$)
     .pipe(z.object({
       type: z.string().default("about:blank"),
@@ -1149,7 +1151,9 @@ export const UpdateDestinationDestinationResponseResponseBody$outboundSchema:
       retryAfter: z.date().transform(v => v.toISOString()).optional(),
       context: z.record(z.any()).optional(),
       issues: z.array(
-        z.lazy(() => UpdateDestinationDestinationResponseIssues$outboundSchema),
+        z.lazy(() =>
+          UpdateDestinationDestinationsResponseIssues$outboundSchema
+        ),
       ).optional(),
     }));
 
@@ -1157,42 +1161,42 @@ export const UpdateDestinationDestinationResponseResponseBody$outboundSchema:
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace UpdateDestinationDestinationResponseResponseBody$ {
-  /** @deprecated use `UpdateDestinationDestinationResponseResponseBody$inboundSchema` instead. */
+export namespace UpdateDestinationDestinationsResponseResponseBody$ {
+  /** @deprecated use `UpdateDestinationDestinationsResponseResponseBody$inboundSchema` instead. */
   export const inboundSchema =
-    UpdateDestinationDestinationResponseResponseBody$inboundSchema;
-  /** @deprecated use `UpdateDestinationDestinationResponseResponseBody$outboundSchema` instead. */
+    UpdateDestinationDestinationsResponseResponseBody$inboundSchema;
+  /** @deprecated use `UpdateDestinationDestinationsResponseResponseBody$outboundSchema` instead. */
   export const outboundSchema =
-    UpdateDestinationDestinationResponseResponseBody$outboundSchema;
-  /** @deprecated use `UpdateDestinationDestinationResponseResponseBody$Outbound` instead. */
+    UpdateDestinationDestinationsResponseResponseBody$outboundSchema;
+  /** @deprecated use `UpdateDestinationDestinationsResponseResponseBody$Outbound` instead. */
   export type Outbound =
-    UpdateDestinationDestinationResponseResponseBody$Outbound;
+    UpdateDestinationDestinationsResponseResponseBody$Outbound;
 }
 
 /** @internal */
-export const UpdateDestinationDestinationIn$inboundSchema: z.ZodNativeEnum<
-  typeof UpdateDestinationDestinationIn
-> = z.nativeEnum(UpdateDestinationDestinationIn);
+export const UpdateDestinationDestinationsIn$inboundSchema: z.ZodNativeEnum<
+  typeof UpdateDestinationDestinationsIn
+> = z.nativeEnum(UpdateDestinationDestinationsIn);
 
 /** @internal */
-export const UpdateDestinationDestinationIn$outboundSchema: z.ZodNativeEnum<
-  typeof UpdateDestinationDestinationIn
-> = UpdateDestinationDestinationIn$inboundSchema;
+export const UpdateDestinationDestinationsIn$outboundSchema: z.ZodNativeEnum<
+  typeof UpdateDestinationDestinationsIn
+> = UpdateDestinationDestinationsIn$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace UpdateDestinationDestinationIn$ {
-  /** @deprecated use `UpdateDestinationDestinationIn$inboundSchema` instead. */
-  export const inboundSchema = UpdateDestinationDestinationIn$inboundSchema;
-  /** @deprecated use `UpdateDestinationDestinationIn$outboundSchema` instead. */
-  export const outboundSchema = UpdateDestinationDestinationIn$outboundSchema;
+export namespace UpdateDestinationDestinationsIn$ {
+  /** @deprecated use `UpdateDestinationDestinationsIn$inboundSchema` instead. */
+  export const inboundSchema = UpdateDestinationDestinationsIn$inboundSchema;
+  /** @deprecated use `UpdateDestinationDestinationsIn$outboundSchema` instead. */
+  export const outboundSchema = UpdateDestinationDestinationsIn$outboundSchema;
 }
 
 /** @internal */
-export const UpdateDestinationDestinationIssues$inboundSchema: z.ZodType<
-  UpdateDestinationDestinationIssues,
+export const UpdateDestinationDestinationsIssues$inboundSchema: z.ZodType<
+  UpdateDestinationDestinationsIssues,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -1215,13 +1219,13 @@ export const UpdateDestinationDestinationIssues$inboundSchema: z.ZodType<
   retryAfter: z.string().datetime({ offset: true }).transform(v => new Date(v))
     .optional(),
   context: z.record(z.any()).optional(),
-  in: UpdateDestinationDestinationIn$inboundSchema.optional(),
+  in: UpdateDestinationDestinationsIn$inboundSchema.optional(),
   name: z.string().optional(),
   value: z.any().optional(),
 });
 
 /** @internal */
-export type UpdateDestinationDestinationIssues$Outbound = {
+export type UpdateDestinationDestinationsIssues$Outbound = {
   type: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -1245,10 +1249,10 @@ export type UpdateDestinationDestinationIssues$Outbound = {
 };
 
 /** @internal */
-export const UpdateDestinationDestinationIssues$outboundSchema: z.ZodType<
-  UpdateDestinationDestinationIssues$Outbound,
+export const UpdateDestinationDestinationsIssues$outboundSchema: z.ZodType<
+  UpdateDestinationDestinationsIssues$Outbound,
   z.ZodTypeDef,
-  UpdateDestinationDestinationIssues
+  UpdateDestinationDestinationsIssues
 > = z.object({
   type: z.string().default("about:blank"),
   href: z.string().optional(),
@@ -1267,7 +1271,7 @@ export const UpdateDestinationDestinationIssues$outboundSchema: z.ZodType<
   retryable: z.boolean().optional(),
   retryAfter: z.date().transform(v => v.toISOString()).optional(),
   context: z.record(z.any()).optional(),
-  in: UpdateDestinationDestinationIn$outboundSchema.optional(),
+  in: UpdateDestinationDestinationsIn$outboundSchema.optional(),
   name: z.string().optional(),
   value: z.any().optional(),
 });
@@ -1276,40 +1280,41 @@ export const UpdateDestinationDestinationIssues$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace UpdateDestinationDestinationIssues$ {
-  /** @deprecated use `UpdateDestinationDestinationIssues$inboundSchema` instead. */
-  export const inboundSchema = UpdateDestinationDestinationIssues$inboundSchema;
-  /** @deprecated use `UpdateDestinationDestinationIssues$outboundSchema` instead. */
+export namespace UpdateDestinationDestinationsIssues$ {
+  /** @deprecated use `UpdateDestinationDestinationsIssues$inboundSchema` instead. */
+  export const inboundSchema =
+    UpdateDestinationDestinationsIssues$inboundSchema;
+  /** @deprecated use `UpdateDestinationDestinationsIssues$outboundSchema` instead. */
   export const outboundSchema =
-    UpdateDestinationDestinationIssues$outboundSchema;
-  /** @deprecated use `UpdateDestinationDestinationIssues$Outbound` instead. */
-  export type Outbound = UpdateDestinationDestinationIssues$Outbound;
+    UpdateDestinationDestinationsIssues$outboundSchema;
+  /** @deprecated use `UpdateDestinationDestinationsIssues$Outbound` instead. */
+  export type Outbound = UpdateDestinationDestinationsIssues$Outbound;
 }
 
-export function updateDestinationDestinationIssuesToJSON(
-  updateDestinationDestinationIssues: UpdateDestinationDestinationIssues,
+export function updateDestinationDestinationsIssuesToJSON(
+  updateDestinationDestinationsIssues: UpdateDestinationDestinationsIssues,
 ): string {
   return JSON.stringify(
-    UpdateDestinationDestinationIssues$outboundSchema.parse(
-      updateDestinationDestinationIssues,
+    UpdateDestinationDestinationsIssues$outboundSchema.parse(
+      updateDestinationDestinationsIssues,
     ),
   );
 }
 
-export function updateDestinationDestinationIssuesFromJSON(
+export function updateDestinationDestinationsIssuesFromJSON(
   jsonString: string,
-): SafeParseResult<UpdateDestinationDestinationIssues, SDKValidationError> {
+): SafeParseResult<UpdateDestinationDestinationsIssues, SDKValidationError> {
   return safeParse(
     jsonString,
     (x) =>
-      UpdateDestinationDestinationIssues$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'UpdateDestinationDestinationIssues' from JSON`,
+      UpdateDestinationDestinationsIssues$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'UpdateDestinationDestinationsIssues' from JSON`,
   );
 }
 
 /** @internal */
-export const UpdateDestinationDestinationResponseBody$inboundSchema: z.ZodType<
-  UpdateDestinationDestinationResponseBody,
+export const UpdateDestinationDestinationsResponseBody$inboundSchema: z.ZodType<
+  UpdateDestinationDestinationsResponseBody,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -1333,15 +1338,15 @@ export const UpdateDestinationDestinationResponseBody$inboundSchema: z.ZodType<
     .optional(),
   context: z.record(z.any()).optional(),
   issues: z.array(
-    z.lazy(() => UpdateDestinationDestinationIssues$inboundSchema),
+    z.lazy(() => UpdateDestinationDestinationsIssues$inboundSchema),
   ).optional(),
 })
   .transform((v) => {
-    return new UpdateDestinationDestinationResponseBody(v);
+    return new UpdateDestinationDestinationsResponseBody(v);
   });
 
 /** @internal */
-export type UpdateDestinationDestinationResponseBody$Outbound = {
+export type UpdateDestinationDestinationsResponseBody$Outbound = {
   type?: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -1359,52 +1364,53 @@ export type UpdateDestinationDestinationResponseBody$Outbound = {
   retryable?: boolean | undefined;
   retryAfter?: string | undefined;
   context?: { [k: string]: any } | undefined;
-  issues?: Array<UpdateDestinationDestinationIssues$Outbound> | undefined;
+  issues?: Array<UpdateDestinationDestinationsIssues$Outbound> | undefined;
 };
 
 /** @internal */
-export const UpdateDestinationDestinationResponseBody$outboundSchema: z.ZodType<
-  UpdateDestinationDestinationResponseBody$Outbound,
-  z.ZodTypeDef,
-  UpdateDestinationDestinationResponseBody
-> = z.instanceof(UpdateDestinationDestinationResponseBody)
-  .transform(v => v.data$)
-  .pipe(z.object({
-    type: z.string().default("about:blank"),
-    href: z.string().optional(),
-    title: z.string().optional(),
-    status: z.number().int().optional(),
-    detail: z.string().optional(),
-    instance: z.string().optional(),
-    subsystem: z.string().optional(),
-    time: z.date().transform(v => v.toISOString()).optional(),
-    requestId: z.string().optional(),
-    causes: z.array(z.string()).optional(),
-    remedy: z.string().optional(),
-    supportEmail: z.string().optional(),
-    supportPhone: z.string().optional(),
-    supportUrl: z.string().optional(),
-    retryable: z.boolean().optional(),
-    retryAfter: z.date().transform(v => v.toISOString()).optional(),
-    context: z.record(z.any()).optional(),
-    issues: z.array(
-      z.lazy(() => UpdateDestinationDestinationIssues$outboundSchema),
-    ).optional(),
-  }));
+export const UpdateDestinationDestinationsResponseBody$outboundSchema:
+  z.ZodType<
+    UpdateDestinationDestinationsResponseBody$Outbound,
+    z.ZodTypeDef,
+    UpdateDestinationDestinationsResponseBody
+  > = z.instanceof(UpdateDestinationDestinationsResponseBody)
+    .transform(v => v.data$)
+    .pipe(z.object({
+      type: z.string().default("about:blank"),
+      href: z.string().optional(),
+      title: z.string().optional(),
+      status: z.number().int().optional(),
+      detail: z.string().optional(),
+      instance: z.string().optional(),
+      subsystem: z.string().optional(),
+      time: z.date().transform(v => v.toISOString()).optional(),
+      requestId: z.string().optional(),
+      causes: z.array(z.string()).optional(),
+      remedy: z.string().optional(),
+      supportEmail: z.string().optional(),
+      supportPhone: z.string().optional(),
+      supportUrl: z.string().optional(),
+      retryable: z.boolean().optional(),
+      retryAfter: z.date().transform(v => v.toISOString()).optional(),
+      context: z.record(z.any()).optional(),
+      issues: z.array(
+        z.lazy(() => UpdateDestinationDestinationsIssues$outboundSchema),
+      ).optional(),
+    }));
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace UpdateDestinationDestinationResponseBody$ {
-  /** @deprecated use `UpdateDestinationDestinationResponseBody$inboundSchema` instead. */
+export namespace UpdateDestinationDestinationsResponseBody$ {
+  /** @deprecated use `UpdateDestinationDestinationsResponseBody$inboundSchema` instead. */
   export const inboundSchema =
-    UpdateDestinationDestinationResponseBody$inboundSchema;
-  /** @deprecated use `UpdateDestinationDestinationResponseBody$outboundSchema` instead. */
+    UpdateDestinationDestinationsResponseBody$inboundSchema;
+  /** @deprecated use `UpdateDestinationDestinationsResponseBody$outboundSchema` instead. */
   export const outboundSchema =
-    UpdateDestinationDestinationResponseBody$outboundSchema;
-  /** @deprecated use `UpdateDestinationDestinationResponseBody$Outbound` instead. */
-  export type Outbound = UpdateDestinationDestinationResponseBody$Outbound;
+    UpdateDestinationDestinationsResponseBody$outboundSchema;
+  /** @deprecated use `UpdateDestinationDestinationsResponseBody$Outbound` instead. */
+  export type Outbound = UpdateDestinationDestinationsResponseBody$Outbound;
 }
 
 /** @internal */

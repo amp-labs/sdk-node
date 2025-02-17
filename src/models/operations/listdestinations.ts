@@ -107,7 +107,7 @@ export type ListDestinationsMetadata = {
   headers?: { [k: string]: string } | null | undefined;
 };
 
-export type ListDestinationsDestinationResponseBody = {
+export type ListDestinationsDestinationsResponseBody = {
   /**
    * The destination ID.
    */
@@ -133,7 +133,7 @@ export type ListDestinationsDestinationResponseBody = {
 
 export type ListDestinationsResponse =
   | ListDestinationsResponseBody
-  | Array<ListDestinationsDestinationResponseBody>;
+  | Array<ListDestinationsDestinationsResponseBody>;
 
 /** @internal */
 export const ListDestinationsRequest$inboundSchema: z.ZodType<
@@ -353,8 +353,8 @@ export function listDestinationsMetadataFromJSON(
 }
 
 /** @internal */
-export const ListDestinationsDestinationResponseBody$inboundSchema: z.ZodType<
-  ListDestinationsDestinationResponseBody,
+export const ListDestinationsDestinationsResponseBody$inboundSchema: z.ZodType<
+  ListDestinationsDestinationsResponseBody,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -368,7 +368,7 @@ export const ListDestinationsDestinationResponseBody$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type ListDestinationsDestinationResponseBody$Outbound = {
+export type ListDestinationsDestinationsResponseBody$Outbound = {
   id: string;
   name: string;
   type: string;
@@ -378,10 +378,10 @@ export type ListDestinationsDestinationResponseBody$Outbound = {
 };
 
 /** @internal */
-export const ListDestinationsDestinationResponseBody$outboundSchema: z.ZodType<
-  ListDestinationsDestinationResponseBody$Outbound,
+export const ListDestinationsDestinationsResponseBody$outboundSchema: z.ZodType<
+  ListDestinationsDestinationsResponseBody$Outbound,
   z.ZodTypeDef,
-  ListDestinationsDestinationResponseBody
+  ListDestinationsDestinationsResponseBody
 > = z.object({
   id: z.string(),
   name: z.string(),
@@ -395,41 +395,41 @@ export const ListDestinationsDestinationResponseBody$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace ListDestinationsDestinationResponseBody$ {
-  /** @deprecated use `ListDestinationsDestinationResponseBody$inboundSchema` instead. */
+export namespace ListDestinationsDestinationsResponseBody$ {
+  /** @deprecated use `ListDestinationsDestinationsResponseBody$inboundSchema` instead. */
   export const inboundSchema =
-    ListDestinationsDestinationResponseBody$inboundSchema;
-  /** @deprecated use `ListDestinationsDestinationResponseBody$outboundSchema` instead. */
+    ListDestinationsDestinationsResponseBody$inboundSchema;
+  /** @deprecated use `ListDestinationsDestinationsResponseBody$outboundSchema` instead. */
   export const outboundSchema =
-    ListDestinationsDestinationResponseBody$outboundSchema;
-  /** @deprecated use `ListDestinationsDestinationResponseBody$Outbound` instead. */
-  export type Outbound = ListDestinationsDestinationResponseBody$Outbound;
+    ListDestinationsDestinationsResponseBody$outboundSchema;
+  /** @deprecated use `ListDestinationsDestinationsResponseBody$Outbound` instead. */
+  export type Outbound = ListDestinationsDestinationsResponseBody$Outbound;
 }
 
-export function listDestinationsDestinationResponseBodyToJSON(
-  listDestinationsDestinationResponseBody:
-    ListDestinationsDestinationResponseBody,
+export function listDestinationsDestinationsResponseBodyToJSON(
+  listDestinationsDestinationsResponseBody:
+    ListDestinationsDestinationsResponseBody,
 ): string {
   return JSON.stringify(
-    ListDestinationsDestinationResponseBody$outboundSchema.parse(
-      listDestinationsDestinationResponseBody,
+    ListDestinationsDestinationsResponseBody$outboundSchema.parse(
+      listDestinationsDestinationsResponseBody,
     ),
   );
 }
 
-export function listDestinationsDestinationResponseBodyFromJSON(
+export function listDestinationsDestinationsResponseBodyFromJSON(
   jsonString: string,
 ): SafeParseResult<
-  ListDestinationsDestinationResponseBody,
+  ListDestinationsDestinationsResponseBody,
   SDKValidationError
 > {
   return safeParse(
     jsonString,
     (x) =>
-      ListDestinationsDestinationResponseBody$inboundSchema.parse(
+      ListDestinationsDestinationsResponseBody$inboundSchema.parse(
         JSON.parse(x),
       ),
-    `Failed to parse 'ListDestinationsDestinationResponseBody' from JSON`,
+    `Failed to parse 'ListDestinationsDestinationsResponseBody' from JSON`,
   );
 }
 
@@ -440,13 +440,13 @@ export const ListDestinationsResponse$inboundSchema: z.ZodType<
   unknown
 > = z.union([
   z.lazy(() => ListDestinationsResponseBody$inboundSchema),
-  z.array(z.lazy(() => ListDestinationsDestinationResponseBody$inboundSchema)),
+  z.array(z.lazy(() => ListDestinationsDestinationsResponseBody$inboundSchema)),
 ]);
 
 /** @internal */
 export type ListDestinationsResponse$Outbound =
   | ListDestinationsResponseBody$Outbound
-  | Array<ListDestinationsDestinationResponseBody$Outbound>;
+  | Array<ListDestinationsDestinationsResponseBody$Outbound>;
 
 /** @internal */
 export const ListDestinationsResponse$outboundSchema: z.ZodType<
@@ -455,7 +455,9 @@ export const ListDestinationsResponse$outboundSchema: z.ZodType<
   ListDestinationsResponse
 > = z.union([
   z.lazy(() => ListDestinationsResponseBody$outboundSchema),
-  z.array(z.lazy(() => ListDestinationsDestinationResponseBody$outboundSchema)),
+  z.array(
+    z.lazy(() => ListDestinationsDestinationsResponseBody$outboundSchema),
+  ),
 ]);
 
 /**

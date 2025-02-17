@@ -1,8 +1,8 @@
 
 
 {
-  "name": "openapi",
-  "version": "0.2.0",
+  "name": "sdk-node",
+  "version": "0.3.1",
   "exports": {
     ".": "./src/index.ts",    
     "./models/errors": "./src/models/errors/index.ts",    

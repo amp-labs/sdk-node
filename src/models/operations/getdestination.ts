@@ -26,7 +26,7 @@ export type GetDestinationRequest = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export type GetDestinationDestinationResponseBody = {
+export type GetDestinationDestinationsResponseBody = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -140,7 +140,7 @@ export type GetDestinationResponseBody = {
 
 export type GetDestinationResponse =
   | GetDestinationResponseBody
-  | GetDestinationDestinationResponseBody;
+  | GetDestinationDestinationsResponseBody;
 
 /** @internal */
 export const GetDestinationRequest$inboundSchema: z.ZodType<
@@ -200,8 +200,8 @@ export function getDestinationRequestFromJSON(
 }
 
 /** @internal */
-export const GetDestinationDestinationResponseBody$inboundSchema: z.ZodType<
-  GetDestinationDestinationResponseBody,
+export const GetDestinationDestinationsResponseBody$inboundSchema: z.ZodType<
+  GetDestinationDestinationsResponseBody,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -227,7 +227,7 @@ export const GetDestinationDestinationResponseBody$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type GetDestinationDestinationResponseBody$Outbound = {
+export type GetDestinationDestinationsResponseBody$Outbound = {
   type: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -248,10 +248,10 @@ export type GetDestinationDestinationResponseBody$Outbound = {
 };
 
 /** @internal */
-export const GetDestinationDestinationResponseBody$outboundSchema: z.ZodType<
-  GetDestinationDestinationResponseBody$Outbound,
+export const GetDestinationDestinationsResponseBody$outboundSchema: z.ZodType<
+  GetDestinationDestinationsResponseBody$Outbound,
   z.ZodTypeDef,
-  GetDestinationDestinationResponseBody
+  GetDestinationDestinationsResponseBody
 > = z.object({
   type: z.string().default("about:blank"),
   href: z.string().optional(),
@@ -276,35 +276,36 @@ export const GetDestinationDestinationResponseBody$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace GetDestinationDestinationResponseBody$ {
-  /** @deprecated use `GetDestinationDestinationResponseBody$inboundSchema` instead. */
+export namespace GetDestinationDestinationsResponseBody$ {
+  /** @deprecated use `GetDestinationDestinationsResponseBody$inboundSchema` instead. */
   export const inboundSchema =
-    GetDestinationDestinationResponseBody$inboundSchema;
-  /** @deprecated use `GetDestinationDestinationResponseBody$outboundSchema` instead. */
+    GetDestinationDestinationsResponseBody$inboundSchema;
+  /** @deprecated use `GetDestinationDestinationsResponseBody$outboundSchema` instead. */
   export const outboundSchema =
-    GetDestinationDestinationResponseBody$outboundSchema;
-  /** @deprecated use `GetDestinationDestinationResponseBody$Outbound` instead. */
-  export type Outbound = GetDestinationDestinationResponseBody$Outbound;
+    GetDestinationDestinationsResponseBody$outboundSchema;
+  /** @deprecated use `GetDestinationDestinationsResponseBody$Outbound` instead. */
+  export type Outbound = GetDestinationDestinationsResponseBody$Outbound;
 }
 
-export function getDestinationDestinationResponseBodyToJSON(
-  getDestinationDestinationResponseBody: GetDestinationDestinationResponseBody,
+export function getDestinationDestinationsResponseBodyToJSON(
+  getDestinationDestinationsResponseBody:
+    GetDestinationDestinationsResponseBody,
 ): string {
   return JSON.stringify(
-    GetDestinationDestinationResponseBody$outboundSchema.parse(
-      getDestinationDestinationResponseBody,
+    GetDestinationDestinationsResponseBody$outboundSchema.parse(
+      getDestinationDestinationsResponseBody,
     ),
   );
 }
 
-export function getDestinationDestinationResponseBodyFromJSON(
+export function getDestinationDestinationsResponseBodyFromJSON(
   jsonString: string,
-): SafeParseResult<GetDestinationDestinationResponseBody, SDKValidationError> {
+): SafeParseResult<GetDestinationDestinationsResponseBody, SDKValidationError> {
   return safeParse(
     jsonString,
     (x) =>
-      GetDestinationDestinationResponseBody$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetDestinationDestinationResponseBody' from JSON`,
+      GetDestinationDestinationsResponseBody$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetDestinationDestinationsResponseBody' from JSON`,
   );
 }
 
@@ -442,13 +443,13 @@ export const GetDestinationResponse$inboundSchema: z.ZodType<
   unknown
 > = z.union([
   z.lazy(() => GetDestinationResponseBody$inboundSchema),
-  z.lazy(() => GetDestinationDestinationResponseBody$inboundSchema),
+  z.lazy(() => GetDestinationDestinationsResponseBody$inboundSchema),
 ]);
 
 /** @internal */
 export type GetDestinationResponse$Outbound =
   | GetDestinationResponseBody$Outbound
-  | GetDestinationDestinationResponseBody$Outbound;
+  | GetDestinationDestinationsResponseBody$Outbound;
 
 /** @internal */
 export const GetDestinationResponse$outboundSchema: z.ZodType<
@@ -457,7 +458,7 @@ export const GetDestinationResponse$outboundSchema: z.ZodType<
   GetDestinationResponse
 > = z.union([
   z.lazy(() => GetDestinationResponseBody$outboundSchema),
-  z.lazy(() => GetDestinationDestinationResponseBody$outboundSchema),
+  z.lazy(() => GetDestinationDestinationsResponseBody$outboundSchema),
 ]);
 
 /**

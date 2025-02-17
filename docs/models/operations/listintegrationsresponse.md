@@ -3,10 +3,10 @@
 
 ## Supported Types
 
-### `operations.ListIntegrationsIntegrationResponseBody[]`
+### `operations.ListIntegrationsIntegrationsResponseBody[]`
 
 ```typescript
-const value: operations.ListIntegrationsIntegrationResponseBody[] = [
+const value: operations.ListIntegrationsIntegrationsResponseBody[] = [
   {
     id: "integration-123",
     projectId: "project-456",

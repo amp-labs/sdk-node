@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { ListIntegrationsBackfill } from "openapi/models/operations";
+import { ListIntegrationsBackfill } from "sdk-node/models/operations";
 
 let value: ListIntegrationsBackfill = {
   defaultPeriod: {

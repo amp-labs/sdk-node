@@ -3,9 +3,9 @@
 ## Example Usage
 
 ```typescript
-import { GrantType } from "openapi/models/operations";
+import { GrantType } from "sdk-node/models/operations";
 
-let value: GrantType = "password";
+let value: GrantType = "clientCredentials";
 ```
 
 ## Values

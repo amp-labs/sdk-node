@@ -5,9 +5,9 @@ The type of authentication required by the provider.
 ## Example Usage
 
 ```typescript
-import { GetProviderAuthType } from "openapi/models/operations";
+import { GetProviderAuthType } from "sdk-node/models/operations";
 
-let value: GetProviderAuthType = "none";
+let value: GetProviderAuthType = "basic";
 ```
 
 ## Values

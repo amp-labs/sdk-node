@@ -3,16 +3,16 @@
 
 ## Supported Types
 
-### `{ [k: string]: operations.ListProvidersProviderResponseBody }`
+### `{ [k: string]: operations.ListProvidersProvidersResponseBody }`
 
 ```typescript
-const value: { [k: string]: operations.ListProvidersProviderResponseBody } = {
+const value: { [k: string]: operations.ListProvidersProvidersResponseBody } = {
   "key": {
     name: "<value>",
-    authType: "basic",
-    baseURL: "https://ugly-flame.org",
+    authType: "none",
+    baseURL: "https://afraid-folklore.com",
     oauth2Opts: {
-      grantType: "authorizationCode",
+      grantType: "password",
       authURL: "https://login.salesforce.com/services/oauth2/authorize",
       tokenURL: "https://login.salesforce.com/services/oauth2/token",
       explicitScopesRequired: true,
@@ -32,7 +32,7 @@ const value: { [k: string]: operations.ListProvidersProviderResponseBody } = {
       },
     },
     apiKeyOpts: {
-      attachmentType: "header",
+      attachmentType: "query",
       query: {
         name: "api_key",
       },

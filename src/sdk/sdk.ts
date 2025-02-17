@@ -3,25 +3,21 @@
  */
 
 import { ClientSDK } from "../lib/sdks.js";
-import { APIKey } from "./apikey.js";
-import { BillingAccount } from "./billingaccount.js";
-import { Connection } from "./connection.js";
-import { Consumer } from "./consumer.js";
-import { Destination } from "./destination.js";
-import { Group } from "./group.js";
-import { Installation } from "./installation.js";
-import { Integration } from "./integration.js";
-import { OAuth } from "./oauth.js";
+import { Connections } from "./connections.js";
+import { Consumers } from "./consumers.js";
+import { Destinations } from "./destinations.js";
+import { Groups } from "./groups.js";
+import { Installations } from "./installations.js";
+import { Integrations } from "./integrations.js";
+import { Oauth } from "./oauth.js";
 import { ObjectsAndFields } from "./objectsandfields.js";
-import { Operation } from "./operation.js";
-import { Org } from "./org.js";
-import { Project } from "./project.js";
-import { Provider } from "./provider.js";
-import { ProviderApp } from "./providerapp.js";
+import { Operations } from "./operations.js";
+import { Projects } from "./projects.js";
+import { ProviderApps } from "./providerapps.js";
+import { Providers } from "./providers.js";
 import { Read } from "./read.js";
-import { Revision } from "./revision.js";
-import { UploadURL } from "./uploadurl.js";
-import { User } from "./user.js";
+import { Revisions } from "./revisions.js";
+import { UploadUrls } from "./uploadurls.js";
 
 export class SDK extends ClientSDK {
   private _read?: Read;
@@ -29,34 +25,34 @@ export class SDK extends ClientSDK {
     return (this._read ??= new Read(this._options));
   }
 
-  private _oAuth?: OAuth;
-  get oAuth(): OAuth {
-    return (this._oAuth ??= new OAuth(this._options));
+  private _oauth?: Oauth;
+  get oauth(): Oauth {
+    return (this._oauth ??= new Oauth(this._options));
   }
 
-  private _project?: Project;
-  get project(): Project {
-    return (this._project ??= new Project(this._options));
+  private _projects?: Projects;
+  get projects(): Projects {
+    return (this._projects ??= new Projects(this._options));
   }
 
-  private _providerApp?: ProviderApp;
-  get providerApp(): ProviderApp {
-    return (this._providerApp ??= new ProviderApp(this._options));
+  private _providerApps?: ProviderApps;
+  get providerApps(): ProviderApps {
+    return (this._providerApps ??= new ProviderApps(this._options));
   }
 
-  private _integration?: Integration;
-  get integration(): Integration {
-    return (this._integration ??= new Integration(this._options));
+  private _integrations?: Integrations;
+  get integrations(): Integrations {
+    return (this._integrations ??= new Integrations(this._options));
   }
 
-  private _revision?: Revision;
-  get revision(): Revision {
-    return (this._revision ??= new Revision(this._options));
+  private _revisions?: Revisions;
+  get revisions(): Revisions {
+    return (this._revisions ??= new Revisions(this._options));
   }
 
-  private _installation?: Installation;
-  get installation(): Installation {
-    return (this._installation ??= new Installation(this._options));
+  private _installations?: Installations;
+  get installations(): Installations {
+    return (this._installations ??= new Installations(this._options));
   }
 
   private _objectsAndFields?: ObjectsAndFields;
@@ -64,58 +60,38 @@ export class SDK extends ClientSDK {
     return (this._objectsAndFields ??= new ObjectsAndFields(this._options));
   }
 
-  private _operation?: Operation;
-  get operation(): Operation {
-    return (this._operation ??= new Operation(this._options));
+  private _operations?: Operations;
+  get operations(): Operations {
+    return (this._operations ??= new Operations(this._options));
   }
 
-  private _provider?: Provider;
-  get provider(): Provider {
-    return (this._provider ??= new Provider(this._options));
+  private _providers?: Providers;
+  get providers(): Providers {
+    return (this._providers ??= new Providers(this._options));
   }
 
-  private _apiKey?: APIKey;
-  get apiKey(): APIKey {
-    return (this._apiKey ??= new APIKey(this._options));
+  private _connections?: Connections;
+  get connections(): Connections {
+    return (this._connections ??= new Connections(this._options));
   }
 
-  private _connection?: Connection;
-  get connection(): Connection {
-    return (this._connection ??= new Connection(this._options));
+  private _groups?: Groups;
+  get groups(): Groups {
+    return (this._groups ??= new Groups(this._options));
   }
 
-  private _group?: Group;
-  get group(): Group {
-    return (this._group ??= new Group(this._options));
+  private _consumers?: Consumers;
+  get consumers(): Consumers {
+    return (this._consumers ??= new Consumers(this._options));
   }
 
-  private _consumer?: Consumer;
-  get consumer(): Consumer {
-    return (this._consumer ??= new Consumer(this._options));
+  private _destinations?: Destinations;
+  get destinations(): Destinations {
+    return (this._destinations ??= new Destinations(this._options));
   }
 
-  private _destination?: Destination;
-  get destination(): Destination {
-    return (this._destination ??= new Destination(this._options));
-  }
-
-  private _uploadURL?: UploadURL;
-  get uploadURL(): UploadURL {
-    return (this._uploadURL ??= new UploadURL(this._options));
-  }
-
-  private _org?: Org;
-  get org(): Org {
-    return (this._org ??= new Org(this._options));
-  }
-
-  private _user?: User;
-  get user(): User {
-    return (this._user ??= new User(this._options));
-  }
-
-  private _billingAccount?: BillingAccount;
-  get billingAccount(): BillingAccount {
-    return (this._billingAccount ??= new BillingAccount(this._options));
+  private _uploadUrls?: UploadUrls;
+  get uploadUrls(): UploadUrls {
+    return (this._uploadUrls ??= new UploadUrls(this._options));
   }
 }

@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { LatestRevision } from "openapi/models/operations";
+import { LatestRevision } from "sdk-node/models/operations";
 
 let value: LatestRevision = {
   specVersion: "1.0.0",

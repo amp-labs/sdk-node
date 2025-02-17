@@ -5,7 +5,7 @@ The location of the invalid input
 ## Example Usage
 
 ```typescript
-import { GetDestinationIn } from "openapi/models/errors";
+import { GetDestinationIn } from "sdk-node/models/errors";
 
 let value: GetDestinationIn = "header";
 ```

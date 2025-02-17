@@ -15,16 +15,15 @@ const value: operations.GetOperationResponseBody = {
   installationId: "installation-123",
   status: "success",
   result: "[object] No changes",
-  latestOperationEventId: "operation-event-123",
   metadata: {},
   createTime: new Date("2023-07-13T21:34:44.816Z"),
 };
 ```
 
-### `operations.GetOperationOperationResponseBody`
+### `operations.GetOperationOperationsResponseBody`
 
 ```typescript
-const value: operations.GetOperationOperationResponseBody = {
+const value: operations.GetOperationOperationsResponseBody = {
   href:
     "https://www.belgif.be/specification/rest/api-guide/#standardized-problem-types",
   title: "Description of the type of problem that occurred",

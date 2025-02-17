@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { BatchUpsertIntegrationsDefaultPeriod } from "openapi/models/operations";
+import { BatchUpsertIntegrationsDefaultPeriod } from "sdk-node/models/operations";
 
 let value: BatchUpsertIntegrationsDefaultPeriod = {
   days: 30,

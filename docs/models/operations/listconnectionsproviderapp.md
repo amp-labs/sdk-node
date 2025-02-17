@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { ListConnectionsProviderApp } from "openapi/models/operations";
+import { ListConnectionsProviderApp } from "sdk-node/models/operations";
 
 let value: ListConnectionsProviderApp = {
   id: "provider-app-123",
@@ -14,7 +14,7 @@ let value: ListConnectionsProviderApp = {
   scopes: [
     "[\"oauth\",\"offline\",\"crm.read\"]",
   ],
-  createTime: new Date("2023-09-03T20:26:06.468Z"),
+  createTime: new Date("2023-04-09T04:55:05.565Z"),
 };
 ```
 

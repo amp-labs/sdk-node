@@ -8,7 +8,7 @@ Additional properties specific to the problem type may be present.
 ## Example Usage
 
 ```typescript
-import { GenerateUploadUrlResponseBody } from "openapi/models/errors";
+import { GenerateUploadUrlResponseBody } from "sdk-node/models/errors";
 
 // No examples available for this model
 ```

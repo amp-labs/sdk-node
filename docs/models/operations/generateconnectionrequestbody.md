@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { GenerateConnectionRequestBody } from "openapi/models/operations";
+import { GenerateConnectionRequestBody } from "sdk-node/models/operations";
 
 let value: GenerateConnectionRequestBody = {
   groupRef: "<value>",

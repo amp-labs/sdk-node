@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { ListInstallationsGroup } from "openapi/models/operations";
+import { ListInstallationsGroup } from "sdk-node/models/operations";
 
 let value: ListInstallationsGroup = {
   groupRef: "group-123",

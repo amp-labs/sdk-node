@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { ResponseBody } from "openapi/models/operations";
+import { ResponseBody } from "sdk-node/models/operations";
 
 let value: ResponseBody = {
   id: "project-id-123",

@@ -5,7 +5,7 @@ Fields to be used to extract token metadata from the token response.
 ## Example Usage
 
 ```typescript
-import { TokenMetadataFields } from "openapi/models/operations";
+import { TokenMetadataFields } from "sdk-node/models/operations";
 
 let value: TokenMetadataFields = {
   workspaceRefField: "account-id",

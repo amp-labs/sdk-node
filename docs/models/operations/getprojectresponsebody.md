@@ -5,7 +5,7 @@ Project
 ## Example Usage
 
 ```typescript
-import { GetProjectResponseBody } from "openapi/models/operations";
+import { GetProjectResponseBody } from "sdk-node/models/operations";
 
 let value: GetProjectResponseBody = {
   id: "project-id-123",

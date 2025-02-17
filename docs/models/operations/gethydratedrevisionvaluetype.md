@@ -5,7 +5,7 @@ A normalized field type
 ## Example Usage
 
 ```typescript
-import { GetHydratedRevisionValueType } from "openapi/models/operations";
+import { GetHydratedRevisionValueType } from "sdk-node/models/operations";
 
 let value: GetHydratedRevisionValueType = "int";
 ```

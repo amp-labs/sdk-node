@@ -8,7 +8,7 @@ Additional properties specific to the problem type may be present.
 ## Example Usage
 
 ```typescript
-import { ListProviderAppsResponseBody } from "openapi/models/operations";
+import { ListProviderAppsResponseBody } from "sdk-node/models/operations";
 
 let value: ListProviderAppsResponseBody = {
   href:

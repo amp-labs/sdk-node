@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { ListIntegrationsOptionalFieldsAuto } from "openapi/models/operations";
+import { ListIntegrationsOptionalFieldsAuto } from "sdk-node/models/operations";
 
 let value: ListIntegrationsOptionalFieldsAuto = "all";
 ```

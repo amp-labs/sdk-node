@@ -5,7 +5,7 @@ The config of the installation.
 ## Example Usage
 
 ```typescript
-import { Config } from "openapi/models/operations";
+import { Config } from "sdk-node/models/operations";
 
 let value: Config = {
   content: {

@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { BatchUpsertIntegrationsWrite } from "openapi/models/operations";
+import { BatchUpsertIntegrationsWrite } from "sdk-node/models/operations";
 
 let value: BatchUpsertIntegrationsWrite = {
   objects: [
@@ -20,6 +20,6 @@ let value: BatchUpsertIntegrationsWrite = {
 
 ## Fields
 
-| Field                                                                                                                          | Type                                                                                                                           | Required                                                                                                                       | Description                                                                                                                    |
-| ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ |
-| `objects`                                                                                                                      | [operations.BatchUpsertIntegrationsIntegrationObjects](../../models/operations/batchupsertintegrationsintegrationobjects.md)[] | :heavy_minus_sign:                                                                                                             | N/A                                                                                                                            |
+| Field                                                                                                                            | Type                                                                                                                             | Required                                                                                                                         | Description                                                                                                                      |
+| -------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| `objects`                                                                                                                        | [operations.BatchUpsertIntegrationsIntegrationsObjects](../../models/operations/batchupsertintegrationsintegrationsobjects.md)[] | :heavy_minus_sign:                                                                                                               | N/A                                                                                                                              |

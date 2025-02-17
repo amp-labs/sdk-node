@@ -5,7 +5,7 @@ Media for light/regular mode.
 ## Example Usage
 
 ```typescript
-import { GetProviderRegular } from "openapi/models/operations";
+import { GetProviderRegular } from "sdk-node/models/operations";
 
 let value: GetProviderRegular = {
   iconURL: "https://example.com/icon.png",

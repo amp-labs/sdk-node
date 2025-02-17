@@ -8,7 +8,7 @@ Additional properties specific to the problem type may be present.
 ## Example Usage
 
 ```typescript
-import { DeleteConnectionResponseBody } from "openapi/models/operations";
+import { DeleteConnectionResponseBody } from "sdk-node/models/operations";
 
 let value: DeleteConnectionResponseBody = {
   href:

@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { GetProviderBulkWrite } from "openapi/models/operations";
+import { GetProviderBulkWrite } from "sdk-node/models/operations";
 
 let value: GetProviderBulkWrite = {
   insert: false,

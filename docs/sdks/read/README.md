@@ -15,7 +15,7 @@ Triggers reading data from a SaaS instance. See [Trigger a read](https://docs.wi
 ### Example Usage
 
 ```typescript
-import { SDK } from "openapi";
+import { SDK } from "sdk-node";
 
 const sdk = new SDK({
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
@@ -45,8 +45,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { SDKCore } from "openapi/core.js";
-import { readRecords } from "openapi/funcs/readRecords.js";
+import { SDKCore } from "sdk-node/core.js";
+import { readRecords } from "sdk-node/funcs/readRecords.js";
 
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -107,7 +107,7 @@ If a read action has delivery mode set to onRequest, then use this endpoint to r
 ### Example Usage
 
 ```typescript
-import { SDK } from "openapi";
+import { SDK } from "sdk-node";
 
 const sdk = new SDK({
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
@@ -132,8 +132,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { SDKCore } from "openapi/core.js";
-import { readDeliverResults } from "openapi/funcs/readDeliverResults.js";
+import { SDKCore } from "sdk-node/core.js";
+import { readDeliverResults } from "sdk-node/funcs/readDeliverResults.js";
 
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

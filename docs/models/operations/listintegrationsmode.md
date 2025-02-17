@@ -5,7 +5,7 @@ The data delivery mode for this object. If not specified, defaults to automatic.
 ## Example Usage
 
 ```typescript
-import { ListIntegrationsMode } from "openapi/models/operations";
+import { ListIntegrationsMode } from "sdk-node/models/operations";
 
 let value: ListIntegrationsMode = "onRequest";
 ```

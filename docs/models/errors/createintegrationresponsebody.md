@@ -8,7 +8,7 @@ Additional properties specific to the problem type may be present.
 ## Example Usage
 
 ```typescript
-import { CreateIntegrationResponseBody } from "openapi/models/errors";
+import { CreateIntegrationResponseBody } from "sdk-node/models/errors";
 
 // No examples available for this model
 ```

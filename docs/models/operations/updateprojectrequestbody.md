@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { UpdateProjectRequestBody } from "openapi/models/operations";
+import { UpdateProjectRequestBody } from "sdk-node/models/operations";
 
 let value: UpdateProjectRequestBody = {
   updateMask: [

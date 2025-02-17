@@ -11,7 +11,7 @@ import { SDKValidationError } from "./sdkvalidationerror.js";
 /**
  * The location of the invalid input
  */
-export const CreateProviderAppProviderAppIn = {
+export const CreateProviderAppProviderAppsIn = {
   Body: "body",
   Header: "header",
   Path: "path",
@@ -20,8 +20,8 @@ export const CreateProviderAppProviderAppIn = {
 /**
  * The location of the invalid input
  */
-export type CreateProviderAppProviderAppIn = ClosedEnum<
-  typeof CreateProviderAppProviderAppIn
+export type CreateProviderAppProviderAppsIn = ClosedEnum<
+  typeof CreateProviderAppProviderAppsIn
 >;
 
 /**
@@ -29,7 +29,7 @@ export type CreateProviderAppProviderAppIn = ClosedEnum<
  *
  * @remarks
  */
-export type CreateProviderAppProviderAppIssues = {
+export type CreateProviderAppProviderAppsIssues = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -104,7 +104,7 @@ export type CreateProviderAppProviderAppIssues = {
   /**
    * The location of the invalid input
    */
-  in?: CreateProviderAppProviderAppIn | undefined;
+  in?: CreateProviderAppProviderAppsIn | undefined;
   /**
    * The name of the invalid input
    */
@@ -122,7 +122,7 @@ export type CreateProviderAppProviderAppIssues = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export type CreateProviderAppProviderAppResponseBodyData = {
+export type CreateProviderAppProviderAppsResponseBodyData = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -194,7 +194,7 @@ export type CreateProviderAppProviderAppResponseBodyData = {
    * Additional context for the problem
    */
   context?: { [k: string]: any } | undefined;
-  issues?: Array<CreateProviderAppProviderAppIssues> | undefined;
+  issues?: Array<CreateProviderAppProviderAppsIssues> | undefined;
 };
 
 /**
@@ -204,7 +204,7 @@ export type CreateProviderAppProviderAppResponseBodyData = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export class CreateProviderAppProviderAppResponseBody extends Error {
+export class CreateProviderAppProviderAppsResponseBody extends Error {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -276,12 +276,12 @@ export class CreateProviderAppProviderAppResponseBody extends Error {
    * Additional context for the problem
    */
   context?: { [k: string]: any } | undefined;
-  issues?: Array<CreateProviderAppProviderAppIssues> | undefined;
+  issues?: Array<CreateProviderAppProviderAppsIssues> | undefined;
 
   /** The original data that was passed to this error instance. */
-  data$: CreateProviderAppProviderAppResponseBodyData;
+  data$: CreateProviderAppProviderAppsResponseBodyData;
 
-  constructor(err: CreateProviderAppProviderAppResponseBodyData) {
+  constructor(err: CreateProviderAppProviderAppsResponseBodyData) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
@@ -307,7 +307,7 @@ export class CreateProviderAppProviderAppResponseBody extends Error {
     if (err.context != null) this.context = err.context;
     if (err.issues != null) this.issues = err.issues;
 
-    this.name = "CreateProviderAppProviderAppResponseBody";
+    this.name = "CreateProviderAppProviderAppsResponseBody";
   }
 }
 
@@ -613,29 +613,29 @@ export class CreateProviderAppResponseBody extends Error {
 }
 
 /** @internal */
-export const CreateProviderAppProviderAppIn$inboundSchema: z.ZodNativeEnum<
-  typeof CreateProviderAppProviderAppIn
-> = z.nativeEnum(CreateProviderAppProviderAppIn);
+export const CreateProviderAppProviderAppsIn$inboundSchema: z.ZodNativeEnum<
+  typeof CreateProviderAppProviderAppsIn
+> = z.nativeEnum(CreateProviderAppProviderAppsIn);
 
 /** @internal */
-export const CreateProviderAppProviderAppIn$outboundSchema: z.ZodNativeEnum<
-  typeof CreateProviderAppProviderAppIn
-> = CreateProviderAppProviderAppIn$inboundSchema;
+export const CreateProviderAppProviderAppsIn$outboundSchema: z.ZodNativeEnum<
+  typeof CreateProviderAppProviderAppsIn
+> = CreateProviderAppProviderAppsIn$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace CreateProviderAppProviderAppIn$ {
-  /** @deprecated use `CreateProviderAppProviderAppIn$inboundSchema` instead. */
-  export const inboundSchema = CreateProviderAppProviderAppIn$inboundSchema;
-  /** @deprecated use `CreateProviderAppProviderAppIn$outboundSchema` instead. */
-  export const outboundSchema = CreateProviderAppProviderAppIn$outboundSchema;
+export namespace CreateProviderAppProviderAppsIn$ {
+  /** @deprecated use `CreateProviderAppProviderAppsIn$inboundSchema` instead. */
+  export const inboundSchema = CreateProviderAppProviderAppsIn$inboundSchema;
+  /** @deprecated use `CreateProviderAppProviderAppsIn$outboundSchema` instead. */
+  export const outboundSchema = CreateProviderAppProviderAppsIn$outboundSchema;
 }
 
 /** @internal */
-export const CreateProviderAppProviderAppIssues$inboundSchema: z.ZodType<
-  CreateProviderAppProviderAppIssues,
+export const CreateProviderAppProviderAppsIssues$inboundSchema: z.ZodType<
+  CreateProviderAppProviderAppsIssues,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -658,13 +658,13 @@ export const CreateProviderAppProviderAppIssues$inboundSchema: z.ZodType<
   retryAfter: z.string().datetime({ offset: true }).transform(v => new Date(v))
     .optional(),
   context: z.record(z.any()).optional(),
-  in: CreateProviderAppProviderAppIn$inboundSchema.optional(),
+  in: CreateProviderAppProviderAppsIn$inboundSchema.optional(),
   name: z.string().optional(),
   value: z.any().optional(),
 });
 
 /** @internal */
-export type CreateProviderAppProviderAppIssues$Outbound = {
+export type CreateProviderAppProviderAppsIssues$Outbound = {
   type: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -688,10 +688,10 @@ export type CreateProviderAppProviderAppIssues$Outbound = {
 };
 
 /** @internal */
-export const CreateProviderAppProviderAppIssues$outboundSchema: z.ZodType<
-  CreateProviderAppProviderAppIssues$Outbound,
+export const CreateProviderAppProviderAppsIssues$outboundSchema: z.ZodType<
+  CreateProviderAppProviderAppsIssues$Outbound,
   z.ZodTypeDef,
-  CreateProviderAppProviderAppIssues
+  CreateProviderAppProviderAppsIssues
 > = z.object({
   type: z.string().default("about:blank"),
   href: z.string().optional(),
@@ -710,7 +710,7 @@ export const CreateProviderAppProviderAppIssues$outboundSchema: z.ZodType<
   retryable: z.boolean().optional(),
   retryAfter: z.date().transform(v => v.toISOString()).optional(),
   context: z.record(z.any()).optional(),
-  in: CreateProviderAppProviderAppIn$outboundSchema.optional(),
+  in: CreateProviderAppProviderAppsIn$outboundSchema.optional(),
   name: z.string().optional(),
   value: z.any().optional(),
 });
@@ -719,40 +719,41 @@ export const CreateProviderAppProviderAppIssues$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace CreateProviderAppProviderAppIssues$ {
-  /** @deprecated use `CreateProviderAppProviderAppIssues$inboundSchema` instead. */
-  export const inboundSchema = CreateProviderAppProviderAppIssues$inboundSchema;
-  /** @deprecated use `CreateProviderAppProviderAppIssues$outboundSchema` instead. */
+export namespace CreateProviderAppProviderAppsIssues$ {
+  /** @deprecated use `CreateProviderAppProviderAppsIssues$inboundSchema` instead. */
+  export const inboundSchema =
+    CreateProviderAppProviderAppsIssues$inboundSchema;
+  /** @deprecated use `CreateProviderAppProviderAppsIssues$outboundSchema` instead. */
   export const outboundSchema =
-    CreateProviderAppProviderAppIssues$outboundSchema;
-  /** @deprecated use `CreateProviderAppProviderAppIssues$Outbound` instead. */
-  export type Outbound = CreateProviderAppProviderAppIssues$Outbound;
+    CreateProviderAppProviderAppsIssues$outboundSchema;
+  /** @deprecated use `CreateProviderAppProviderAppsIssues$Outbound` instead. */
+  export type Outbound = CreateProviderAppProviderAppsIssues$Outbound;
 }
 
-export function createProviderAppProviderAppIssuesToJSON(
-  createProviderAppProviderAppIssues: CreateProviderAppProviderAppIssues,
+export function createProviderAppProviderAppsIssuesToJSON(
+  createProviderAppProviderAppsIssues: CreateProviderAppProviderAppsIssues,
 ): string {
   return JSON.stringify(
-    CreateProviderAppProviderAppIssues$outboundSchema.parse(
-      createProviderAppProviderAppIssues,
+    CreateProviderAppProviderAppsIssues$outboundSchema.parse(
+      createProviderAppProviderAppsIssues,
     ),
   );
 }
 
-export function createProviderAppProviderAppIssuesFromJSON(
+export function createProviderAppProviderAppsIssuesFromJSON(
   jsonString: string,
-): SafeParseResult<CreateProviderAppProviderAppIssues, SDKValidationError> {
+): SafeParseResult<CreateProviderAppProviderAppsIssues, SDKValidationError> {
   return safeParse(
     jsonString,
     (x) =>
-      CreateProviderAppProviderAppIssues$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreateProviderAppProviderAppIssues' from JSON`,
+      CreateProviderAppProviderAppsIssues$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreateProviderAppProviderAppsIssues' from JSON`,
   );
 }
 
 /** @internal */
-export const CreateProviderAppProviderAppResponseBody$inboundSchema: z.ZodType<
-  CreateProviderAppProviderAppResponseBody,
+export const CreateProviderAppProviderAppsResponseBody$inboundSchema: z.ZodType<
+  CreateProviderAppProviderAppsResponseBody,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -776,15 +777,15 @@ export const CreateProviderAppProviderAppResponseBody$inboundSchema: z.ZodType<
     .optional(),
   context: z.record(z.any()).optional(),
   issues: z.array(
-    z.lazy(() => CreateProviderAppProviderAppIssues$inboundSchema),
+    z.lazy(() => CreateProviderAppProviderAppsIssues$inboundSchema),
   ).optional(),
 })
   .transform((v) => {
-    return new CreateProviderAppProviderAppResponseBody(v);
+    return new CreateProviderAppProviderAppsResponseBody(v);
   });
 
 /** @internal */
-export type CreateProviderAppProviderAppResponseBody$Outbound = {
+export type CreateProviderAppProviderAppsResponseBody$Outbound = {
   type?: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -802,52 +803,53 @@ export type CreateProviderAppProviderAppResponseBody$Outbound = {
   retryable?: boolean | undefined;
   retryAfter?: string | undefined;
   context?: { [k: string]: any } | undefined;
-  issues?: Array<CreateProviderAppProviderAppIssues$Outbound> | undefined;
+  issues?: Array<CreateProviderAppProviderAppsIssues$Outbound> | undefined;
 };
 
 /** @internal */
-export const CreateProviderAppProviderAppResponseBody$outboundSchema: z.ZodType<
-  CreateProviderAppProviderAppResponseBody$Outbound,
-  z.ZodTypeDef,
-  CreateProviderAppProviderAppResponseBody
-> = z.instanceof(CreateProviderAppProviderAppResponseBody)
-  .transform(v => v.data$)
-  .pipe(z.object({
-    type: z.string().default("about:blank"),
-    href: z.string().optional(),
-    title: z.string().optional(),
-    status: z.number().int().optional(),
-    detail: z.string().optional(),
-    instance: z.string().optional(),
-    subsystem: z.string().optional(),
-    time: z.date().transform(v => v.toISOString()).optional(),
-    requestId: z.string().optional(),
-    causes: z.array(z.string()).optional(),
-    remedy: z.string().optional(),
-    supportEmail: z.string().optional(),
-    supportPhone: z.string().optional(),
-    supportUrl: z.string().optional(),
-    retryable: z.boolean().optional(),
-    retryAfter: z.date().transform(v => v.toISOString()).optional(),
-    context: z.record(z.any()).optional(),
-    issues: z.array(
-      z.lazy(() => CreateProviderAppProviderAppIssues$outboundSchema),
-    ).optional(),
-  }));
+export const CreateProviderAppProviderAppsResponseBody$outboundSchema:
+  z.ZodType<
+    CreateProviderAppProviderAppsResponseBody$Outbound,
+    z.ZodTypeDef,
+    CreateProviderAppProviderAppsResponseBody
+  > = z.instanceof(CreateProviderAppProviderAppsResponseBody)
+    .transform(v => v.data$)
+    .pipe(z.object({
+      type: z.string().default("about:blank"),
+      href: z.string().optional(),
+      title: z.string().optional(),
+      status: z.number().int().optional(),
+      detail: z.string().optional(),
+      instance: z.string().optional(),
+      subsystem: z.string().optional(),
+      time: z.date().transform(v => v.toISOString()).optional(),
+      requestId: z.string().optional(),
+      causes: z.array(z.string()).optional(),
+      remedy: z.string().optional(),
+      supportEmail: z.string().optional(),
+      supportPhone: z.string().optional(),
+      supportUrl: z.string().optional(),
+      retryable: z.boolean().optional(),
+      retryAfter: z.date().transform(v => v.toISOString()).optional(),
+      context: z.record(z.any()).optional(),
+      issues: z.array(
+        z.lazy(() => CreateProviderAppProviderAppsIssues$outboundSchema),
+      ).optional(),
+    }));
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace CreateProviderAppProviderAppResponseBody$ {
-  /** @deprecated use `CreateProviderAppProviderAppResponseBody$inboundSchema` instead. */
+export namespace CreateProviderAppProviderAppsResponseBody$ {
+  /** @deprecated use `CreateProviderAppProviderAppsResponseBody$inboundSchema` instead. */
   export const inboundSchema =
-    CreateProviderAppProviderAppResponseBody$inboundSchema;
-  /** @deprecated use `CreateProviderAppProviderAppResponseBody$outboundSchema` instead. */
+    CreateProviderAppProviderAppsResponseBody$inboundSchema;
+  /** @deprecated use `CreateProviderAppProviderAppsResponseBody$outboundSchema` instead. */
   export const outboundSchema =
-    CreateProviderAppProviderAppResponseBody$outboundSchema;
-  /** @deprecated use `CreateProviderAppProviderAppResponseBody$Outbound` instead. */
-  export type Outbound = CreateProviderAppProviderAppResponseBody$Outbound;
+    CreateProviderAppProviderAppsResponseBody$outboundSchema;
+  /** @deprecated use `CreateProviderAppProviderAppsResponseBody$Outbound` instead. */
+  export type Outbound = CreateProviderAppProviderAppsResponseBody$Outbound;
 }
 
 /** @internal */

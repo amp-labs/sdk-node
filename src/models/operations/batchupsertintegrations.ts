@@ -249,7 +249,7 @@ export type BatchUpsertIntegrationsValueDefaults = {
   allowAnyFields?: boolean | undefined;
 };
 
-export type BatchUpsertIntegrationsIntegrationObjects = {
+export type BatchUpsertIntegrationsIntegrationsObjects = {
   objectName: string;
   /**
    * If true, the write object will inherit the mapping from the read object. If false, the write object will have no mapping.
@@ -262,7 +262,7 @@ export type BatchUpsertIntegrationsIntegrationObjects = {
 };
 
 export type BatchUpsertIntegrationsWrite = {
-  objects?: Array<BatchUpsertIntegrationsIntegrationObjects> | undefined;
+  objects?: Array<BatchUpsertIntegrationsIntegrationsObjects> | undefined;
 };
 
 export type BatchUpsertIntegrationsProxy = {
@@ -294,7 +294,7 @@ export type BatchUpsertIntegrationsLatestRevision = {
   content: BatchUpsertIntegrationsContent;
 };
 
-export type BatchUpsertIntegrationsIntegrationResponseBody = {
+export type BatchUpsertIntegrationsIntegrationsResponseBody = {
   /**
    * The integration ID.
    */
@@ -324,7 +324,7 @@ export type BatchUpsertIntegrationsIntegrationResponseBody = {
 
 export type BatchUpsertIntegrationsResponse =
   | BatchUpsertIntegrationsResponseBody
-  | Array<BatchUpsertIntegrationsIntegrationResponseBody>;
+  | Array<BatchUpsertIntegrationsIntegrationsResponseBody>;
 
 /** @internal */
 export const BatchUpsertIntegrationsRequestBody$inboundSchema: z.ZodType<
@@ -1419,31 +1419,29 @@ export function batchUpsertIntegrationsValueDefaultsFromJSON(
 }
 
 /** @internal */
-export const BatchUpsertIntegrationsIntegrationObjects$inboundSchema: z.ZodType<
-  BatchUpsertIntegrationsIntegrationObjects,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  objectName: z.string(),
-  inheritMapping: z.boolean().optional(),
-  valueDefaults: z.lazy(() =>
-    BatchUpsertIntegrationsValueDefaults$inboundSchema
-  ).optional(),
-});
+export const BatchUpsertIntegrationsIntegrationsObjects$inboundSchema:
+  z.ZodType<BatchUpsertIntegrationsIntegrationsObjects, z.ZodTypeDef, unknown> =
+    z.object({
+      objectName: z.string(),
+      inheritMapping: z.boolean().optional(),
+      valueDefaults: z.lazy(() =>
+        BatchUpsertIntegrationsValueDefaults$inboundSchema
+      ).optional(),
+    });
 
 /** @internal */
-export type BatchUpsertIntegrationsIntegrationObjects$Outbound = {
+export type BatchUpsertIntegrationsIntegrationsObjects$Outbound = {
   objectName: string;
   inheritMapping?: boolean | undefined;
   valueDefaults?: BatchUpsertIntegrationsValueDefaults$Outbound | undefined;
 };
 
 /** @internal */
-export const BatchUpsertIntegrationsIntegrationObjects$outboundSchema:
+export const BatchUpsertIntegrationsIntegrationsObjects$outboundSchema:
   z.ZodType<
-    BatchUpsertIntegrationsIntegrationObjects$Outbound,
+    BatchUpsertIntegrationsIntegrationsObjects$Outbound,
     z.ZodTypeDef,
-    BatchUpsertIntegrationsIntegrationObjects
+    BatchUpsertIntegrationsIntegrationsObjects
   > = z.object({
     objectName: z.string(),
     inheritMapping: z.boolean().optional(),
@@ -1456,41 +1454,41 @@ export const BatchUpsertIntegrationsIntegrationObjects$outboundSchema:
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace BatchUpsertIntegrationsIntegrationObjects$ {
-  /** @deprecated use `BatchUpsertIntegrationsIntegrationObjects$inboundSchema` instead. */
+export namespace BatchUpsertIntegrationsIntegrationsObjects$ {
+  /** @deprecated use `BatchUpsertIntegrationsIntegrationsObjects$inboundSchema` instead. */
   export const inboundSchema =
-    BatchUpsertIntegrationsIntegrationObjects$inboundSchema;
-  /** @deprecated use `BatchUpsertIntegrationsIntegrationObjects$outboundSchema` instead. */
+    BatchUpsertIntegrationsIntegrationsObjects$inboundSchema;
+  /** @deprecated use `BatchUpsertIntegrationsIntegrationsObjects$outboundSchema` instead. */
   export const outboundSchema =
-    BatchUpsertIntegrationsIntegrationObjects$outboundSchema;
-  /** @deprecated use `BatchUpsertIntegrationsIntegrationObjects$Outbound` instead. */
-  export type Outbound = BatchUpsertIntegrationsIntegrationObjects$Outbound;
+    BatchUpsertIntegrationsIntegrationsObjects$outboundSchema;
+  /** @deprecated use `BatchUpsertIntegrationsIntegrationsObjects$Outbound` instead. */
+  export type Outbound = BatchUpsertIntegrationsIntegrationsObjects$Outbound;
 }
 
-export function batchUpsertIntegrationsIntegrationObjectsToJSON(
-  batchUpsertIntegrationsIntegrationObjects:
-    BatchUpsertIntegrationsIntegrationObjects,
+export function batchUpsertIntegrationsIntegrationsObjectsToJSON(
+  batchUpsertIntegrationsIntegrationsObjects:
+    BatchUpsertIntegrationsIntegrationsObjects,
 ): string {
   return JSON.stringify(
-    BatchUpsertIntegrationsIntegrationObjects$outboundSchema.parse(
-      batchUpsertIntegrationsIntegrationObjects,
+    BatchUpsertIntegrationsIntegrationsObjects$outboundSchema.parse(
+      batchUpsertIntegrationsIntegrationsObjects,
     ),
   );
 }
 
-export function batchUpsertIntegrationsIntegrationObjectsFromJSON(
+export function batchUpsertIntegrationsIntegrationsObjectsFromJSON(
   jsonString: string,
 ): SafeParseResult<
-  BatchUpsertIntegrationsIntegrationObjects,
+  BatchUpsertIntegrationsIntegrationsObjects,
   SDKValidationError
 > {
   return safeParse(
     jsonString,
     (x) =>
-      BatchUpsertIntegrationsIntegrationObjects$inboundSchema.parse(
+      BatchUpsertIntegrationsIntegrationsObjects$inboundSchema.parse(
         JSON.parse(x),
       ),
-    `Failed to parse 'BatchUpsertIntegrationsIntegrationObjects' from JSON`,
+    `Failed to parse 'BatchUpsertIntegrationsIntegrationsObjects' from JSON`,
   );
 }
 
@@ -1501,14 +1499,14 @@ export const BatchUpsertIntegrationsWrite$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   objects: z.array(
-    z.lazy(() => BatchUpsertIntegrationsIntegrationObjects$inboundSchema),
+    z.lazy(() => BatchUpsertIntegrationsIntegrationsObjects$inboundSchema),
   ).optional(),
 });
 
 /** @internal */
 export type BatchUpsertIntegrationsWrite$Outbound = {
   objects?:
-    | Array<BatchUpsertIntegrationsIntegrationObjects$Outbound>
+    | Array<BatchUpsertIntegrationsIntegrationsObjects$Outbound>
     | undefined;
 };
 
@@ -1519,7 +1517,7 @@ export const BatchUpsertIntegrationsWrite$outboundSchema: z.ZodType<
   BatchUpsertIntegrationsWrite
 > = z.object({
   objects: z.array(
-    z.lazy(() => BatchUpsertIntegrationsIntegrationObjects$outboundSchema),
+    z.lazy(() => BatchUpsertIntegrationsIntegrationsObjects$outboundSchema),
   ).optional(),
 });
 
@@ -1752,9 +1750,9 @@ export function batchUpsertIntegrationsLatestRevisionFromJSON(
 }
 
 /** @internal */
-export const BatchUpsertIntegrationsIntegrationResponseBody$inboundSchema:
+export const BatchUpsertIntegrationsIntegrationsResponseBody$inboundSchema:
   z.ZodType<
-    BatchUpsertIntegrationsIntegrationResponseBody,
+    BatchUpsertIntegrationsIntegrationsResponseBody,
     z.ZodTypeDef,
     unknown
   > = z.object({
@@ -1774,7 +1772,7 @@ export const BatchUpsertIntegrationsIntegrationResponseBody$inboundSchema:
   });
 
 /** @internal */
-export type BatchUpsertIntegrationsIntegrationResponseBody$Outbound = {
+export type BatchUpsertIntegrationsIntegrationsResponseBody$Outbound = {
   id: string;
   projectId: string;
   name: string;
@@ -1785,11 +1783,11 @@ export type BatchUpsertIntegrationsIntegrationResponseBody$Outbound = {
 };
 
 /** @internal */
-export const BatchUpsertIntegrationsIntegrationResponseBody$outboundSchema:
+export const BatchUpsertIntegrationsIntegrationsResponseBody$outboundSchema:
   z.ZodType<
-    BatchUpsertIntegrationsIntegrationResponseBody$Outbound,
+    BatchUpsertIntegrationsIntegrationsResponseBody$Outbound,
     z.ZodTypeDef,
-    BatchUpsertIntegrationsIntegrationResponseBody
+    BatchUpsertIntegrationsIntegrationsResponseBody
   > = z.object({
     id: z.string(),
     projectId: z.string(),
@@ -1806,42 +1804,42 @@ export const BatchUpsertIntegrationsIntegrationResponseBody$outboundSchema:
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace BatchUpsertIntegrationsIntegrationResponseBody$ {
-  /** @deprecated use `BatchUpsertIntegrationsIntegrationResponseBody$inboundSchema` instead. */
+export namespace BatchUpsertIntegrationsIntegrationsResponseBody$ {
+  /** @deprecated use `BatchUpsertIntegrationsIntegrationsResponseBody$inboundSchema` instead. */
   export const inboundSchema =
-    BatchUpsertIntegrationsIntegrationResponseBody$inboundSchema;
-  /** @deprecated use `BatchUpsertIntegrationsIntegrationResponseBody$outboundSchema` instead. */
+    BatchUpsertIntegrationsIntegrationsResponseBody$inboundSchema;
+  /** @deprecated use `BatchUpsertIntegrationsIntegrationsResponseBody$outboundSchema` instead. */
   export const outboundSchema =
-    BatchUpsertIntegrationsIntegrationResponseBody$outboundSchema;
-  /** @deprecated use `BatchUpsertIntegrationsIntegrationResponseBody$Outbound` instead. */
+    BatchUpsertIntegrationsIntegrationsResponseBody$outboundSchema;
+  /** @deprecated use `BatchUpsertIntegrationsIntegrationsResponseBody$Outbound` instead. */
   export type Outbound =
-    BatchUpsertIntegrationsIntegrationResponseBody$Outbound;
+    BatchUpsertIntegrationsIntegrationsResponseBody$Outbound;
 }
 
-export function batchUpsertIntegrationsIntegrationResponseBodyToJSON(
-  batchUpsertIntegrationsIntegrationResponseBody:
-    BatchUpsertIntegrationsIntegrationResponseBody,
+export function batchUpsertIntegrationsIntegrationsResponseBodyToJSON(
+  batchUpsertIntegrationsIntegrationsResponseBody:
+    BatchUpsertIntegrationsIntegrationsResponseBody,
 ): string {
   return JSON.stringify(
-    BatchUpsertIntegrationsIntegrationResponseBody$outboundSchema.parse(
-      batchUpsertIntegrationsIntegrationResponseBody,
+    BatchUpsertIntegrationsIntegrationsResponseBody$outboundSchema.parse(
+      batchUpsertIntegrationsIntegrationsResponseBody,
     ),
   );
 }
 
-export function batchUpsertIntegrationsIntegrationResponseBodyFromJSON(
+export function batchUpsertIntegrationsIntegrationsResponseBodyFromJSON(
   jsonString: string,
 ): SafeParseResult<
-  BatchUpsertIntegrationsIntegrationResponseBody,
+  BatchUpsertIntegrationsIntegrationsResponseBody,
   SDKValidationError
 > {
   return safeParse(
     jsonString,
     (x) =>
-      BatchUpsertIntegrationsIntegrationResponseBody$inboundSchema.parse(
+      BatchUpsertIntegrationsIntegrationsResponseBody$inboundSchema.parse(
         JSON.parse(x),
       ),
-    `Failed to parse 'BatchUpsertIntegrationsIntegrationResponseBody' from JSON`,
+    `Failed to parse 'BatchUpsertIntegrationsIntegrationsResponseBody' from JSON`,
   );
 }
 
@@ -1853,14 +1851,14 @@ export const BatchUpsertIntegrationsResponse$inboundSchema: z.ZodType<
 > = z.union([
   z.lazy(() => BatchUpsertIntegrationsResponseBody$inboundSchema),
   z.array(
-    z.lazy(() => BatchUpsertIntegrationsIntegrationResponseBody$inboundSchema),
+    z.lazy(() => BatchUpsertIntegrationsIntegrationsResponseBody$inboundSchema),
   ),
 ]);
 
 /** @internal */
 export type BatchUpsertIntegrationsResponse$Outbound =
   | BatchUpsertIntegrationsResponseBody$Outbound
-  | Array<BatchUpsertIntegrationsIntegrationResponseBody$Outbound>;
+  | Array<BatchUpsertIntegrationsIntegrationsResponseBody$Outbound>;
 
 /** @internal */
 export const BatchUpsertIntegrationsResponse$outboundSchema: z.ZodType<
@@ -1869,9 +1867,9 @@ export const BatchUpsertIntegrationsResponse$outboundSchema: z.ZodType<
   BatchUpsertIntegrationsResponse
 > = z.union([
   z.lazy(() => BatchUpsertIntegrationsResponseBody$outboundSchema),
-  z.array(
-    z.lazy(() => BatchUpsertIntegrationsIntegrationResponseBody$outboundSchema),
-  ),
+  z.array(z.lazy(() =>
+    BatchUpsertIntegrationsIntegrationsResponseBody$outboundSchema
+  )),
 ]);
 
 /**

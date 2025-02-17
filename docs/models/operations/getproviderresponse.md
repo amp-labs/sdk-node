@@ -8,8 +8,8 @@
 ```typescript
 const value: operations.GetProviderResponseBody = {
   name: "<value>",
-  authType: "basic",
-  baseURL: "https://hoarse-challenge.net",
+  authType: "oauth2",
+  baseURL: "https://serpentine-address.net/",
   oauth2Opts: {
     grantType: "authorizationCode",
     authURL: "https://login.salesforce.com/services/oauth2/authorize",
@@ -31,7 +31,7 @@ const value: operations.GetProviderResponseBody = {
     },
   },
   apiKeyOpts: {
-    attachmentType: "header",
+    attachmentType: "query",
     query: {
       name: "api_key",
     },
@@ -79,10 +79,10 @@ const value: operations.GetProviderResponseBody = {
 };
 ```
 
-### `operations.GetProviderProviderResponseBody`
+### `operations.GetProviderProvidersResponseBody`
 
 ```typescript
-const value: operations.GetProviderProviderResponseBody = {
+const value: operations.GetProviderProvidersResponseBody = {
   href:
     "https://www.belgif.be/specification/rest/api-guide/#standardized-problem-types",
   title: "Description of the type of problem that occurred",

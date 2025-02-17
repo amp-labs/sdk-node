@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { OauthConnectRequestBody } from "openapi/models/operations";
+import { OauthConnectRequestBody } from "sdk-node/models/operations";
 
 let value: OauthConnectRequestBody = {
   providerWorkspaceRef: "salesforce-instance-domain",

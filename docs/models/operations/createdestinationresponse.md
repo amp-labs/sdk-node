@@ -16,14 +16,14 @@ const value: operations.CreateDestinationResponseBody = {
       "Authorization": "Bearer 1234",
     },
   },
-  createTime: new Date("2023-12-26T04:21:26.793Z"),
+  createTime: new Date("2025-11-17T05:55:05.975Z"),
 };
 ```
 
-### `operations.CreateDestinationDestinationResponseBody`
+### `operations.CreateDestinationDestinationsResponseBody`
 
 ```typescript
-const value: operations.CreateDestinationDestinationResponseBody = {
+const value: operations.CreateDestinationDestinationsResponseBody = {
   href:
     "https://www.belgif.be/specification/rest/api-guide/#standardized-problem-types",
   title: "Description of the type of problem that occurred",

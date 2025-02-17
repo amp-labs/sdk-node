@@ -5,7 +5,7 @@ Media to be used in dark mode.
 ## Example Usage
 
 ```typescript
-import { DarkMode } from "openapi/models/operations";
+import { DarkMode } from "sdk-node/models/operations";
 
 let value: DarkMode = {
   iconURL: "https://example.com/icon.png",

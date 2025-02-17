@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { CreateIntegrationRequestBody } from "openapi/models/operations";
+import { CreateIntegrationRequestBody } from "sdk-node/models/operations";
 
 let value: CreateIntegrationRequestBody = {
   name: "<value>",

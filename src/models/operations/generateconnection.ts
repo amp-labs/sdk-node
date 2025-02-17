@@ -142,7 +142,7 @@ export type GenerateConnectionRequest = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export type GenerateConnectionConnectionResponseBody = {
+export type GenerateConnectionConnectionsResponseBody = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -406,11 +406,15 @@ export type GenerateConnectionResponseBody = {
   oauth2AuthorizationCode?:
     | GenerateConnectionOauth2AuthorizationCode
     | undefined;
+  /**
+   * The API key used while making the connection.
+   */
+  apiKey?: string | undefined;
 };
 
 export type GenerateConnectionResponse =
   | GenerateConnectionResponseBody
-  | GenerateConnectionConnectionResponseBody;
+  | GenerateConnectionConnectionsResponseBody;
 
 /** @internal */
 export const BasicAuth$inboundSchema: z.ZodType<
@@ -921,8 +925,8 @@ export function generateConnectionRequestFromJSON(
 }
 
 /** @internal */
-export const GenerateConnectionConnectionResponseBody$inboundSchema: z.ZodType<
-  GenerateConnectionConnectionResponseBody,
+export const GenerateConnectionConnectionsResponseBody$inboundSchema: z.ZodType<
+  GenerateConnectionConnectionsResponseBody,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -948,7 +952,7 @@ export const GenerateConnectionConnectionResponseBody$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type GenerateConnectionConnectionResponseBody$Outbound = {
+export type GenerateConnectionConnectionsResponseBody$Outbound = {
   type: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -969,69 +973,70 @@ export type GenerateConnectionConnectionResponseBody$Outbound = {
 };
 
 /** @internal */
-export const GenerateConnectionConnectionResponseBody$outboundSchema: z.ZodType<
-  GenerateConnectionConnectionResponseBody$Outbound,
-  z.ZodTypeDef,
-  GenerateConnectionConnectionResponseBody
-> = z.object({
-  type: z.string().default("about:blank"),
-  href: z.string().optional(),
-  title: z.string().optional(),
-  status: z.number().int().optional(),
-  detail: z.string().optional(),
-  instance: z.string().optional(),
-  subsystem: z.string().optional(),
-  time: z.date().transform(v => v.toISOString()).optional(),
-  requestId: z.string().optional(),
-  causes: z.array(z.string()).optional(),
-  remedy: z.string().optional(),
-  supportEmail: z.string().optional(),
-  supportPhone: z.string().optional(),
-  supportUrl: z.string().optional(),
-  retryable: z.boolean().optional(),
-  retryAfter: z.date().transform(v => v.toISOString()).optional(),
-  context: z.record(z.any()).optional(),
-});
+export const GenerateConnectionConnectionsResponseBody$outboundSchema:
+  z.ZodType<
+    GenerateConnectionConnectionsResponseBody$Outbound,
+    z.ZodTypeDef,
+    GenerateConnectionConnectionsResponseBody
+  > = z.object({
+    type: z.string().default("about:blank"),
+    href: z.string().optional(),
+    title: z.string().optional(),
+    status: z.number().int().optional(),
+    detail: z.string().optional(),
+    instance: z.string().optional(),
+    subsystem: z.string().optional(),
+    time: z.date().transform(v => v.toISOString()).optional(),
+    requestId: z.string().optional(),
+    causes: z.array(z.string()).optional(),
+    remedy: z.string().optional(),
+    supportEmail: z.string().optional(),
+    supportPhone: z.string().optional(),
+    supportUrl: z.string().optional(),
+    retryable: z.boolean().optional(),
+    retryAfter: z.date().transform(v => v.toISOString()).optional(),
+    context: z.record(z.any()).optional(),
+  });
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace GenerateConnectionConnectionResponseBody$ {
-  /** @deprecated use `GenerateConnectionConnectionResponseBody$inboundSchema` instead. */
+export namespace GenerateConnectionConnectionsResponseBody$ {
+  /** @deprecated use `GenerateConnectionConnectionsResponseBody$inboundSchema` instead. */
   export const inboundSchema =
-    GenerateConnectionConnectionResponseBody$inboundSchema;
-  /** @deprecated use `GenerateConnectionConnectionResponseBody$outboundSchema` instead. */
+    GenerateConnectionConnectionsResponseBody$inboundSchema;
+  /** @deprecated use `GenerateConnectionConnectionsResponseBody$outboundSchema` instead. */
   export const outboundSchema =
-    GenerateConnectionConnectionResponseBody$outboundSchema;
-  /** @deprecated use `GenerateConnectionConnectionResponseBody$Outbound` instead. */
-  export type Outbound = GenerateConnectionConnectionResponseBody$Outbound;
+    GenerateConnectionConnectionsResponseBody$outboundSchema;
+  /** @deprecated use `GenerateConnectionConnectionsResponseBody$Outbound` instead. */
+  export type Outbound = GenerateConnectionConnectionsResponseBody$Outbound;
 }
 
-export function generateConnectionConnectionResponseBodyToJSON(
-  generateConnectionConnectionResponseBody:
-    GenerateConnectionConnectionResponseBody,
+export function generateConnectionConnectionsResponseBodyToJSON(
+  generateConnectionConnectionsResponseBody:
+    GenerateConnectionConnectionsResponseBody,
 ): string {
   return JSON.stringify(
-    GenerateConnectionConnectionResponseBody$outboundSchema.parse(
-      generateConnectionConnectionResponseBody,
+    GenerateConnectionConnectionsResponseBody$outboundSchema.parse(
+      generateConnectionConnectionsResponseBody,
     ),
   );
 }
 
-export function generateConnectionConnectionResponseBodyFromJSON(
+export function generateConnectionConnectionsResponseBodyFromJSON(
   jsonString: string,
 ): SafeParseResult<
-  GenerateConnectionConnectionResponseBody,
+  GenerateConnectionConnectionsResponseBody,
   SDKValidationError
 > {
   return safeParse(
     jsonString,
     (x) =>
-      GenerateConnectionConnectionResponseBody$inboundSchema.parse(
+      GenerateConnectionConnectionsResponseBody$inboundSchema.parse(
         JSON.parse(x),
       ),
-    `Failed to parse 'GenerateConnectionConnectionResponseBody' from JSON`,
+    `Failed to parse 'GenerateConnectionConnectionsResponseBody' from JSON`,
   );
 }
 
@@ -1500,6 +1505,7 @@ export const GenerateConnectionResponseBody$inboundSchema: z.ZodType<
   oauth2AuthorizationCode: z.lazy(() =>
     GenerateConnectionOauth2AuthorizationCode$inboundSchema
   ).optional(),
+  apiKey: z.string().optional(),
 });
 
 /** @internal */
@@ -1519,6 +1525,7 @@ export type GenerateConnectionResponseBody$Outbound = {
   oauth2AuthorizationCode?:
     | GenerateConnectionOauth2AuthorizationCode$Outbound
     | undefined;
+  apiKey?: string | undefined;
 };
 
 /** @internal */
@@ -1543,6 +1550,7 @@ export const GenerateConnectionResponseBody$outboundSchema: z.ZodType<
   oauth2AuthorizationCode: z.lazy(() =>
     GenerateConnectionOauth2AuthorizationCode$outboundSchema
   ).optional(),
+  apiKey: z.string().optional(),
 });
 
 /**
@@ -1585,13 +1593,13 @@ export const GenerateConnectionResponse$inboundSchema: z.ZodType<
   unknown
 > = z.union([
   z.lazy(() => GenerateConnectionResponseBody$inboundSchema),
-  z.lazy(() => GenerateConnectionConnectionResponseBody$inboundSchema),
+  z.lazy(() => GenerateConnectionConnectionsResponseBody$inboundSchema),
 ]);
 
 /** @internal */
 export type GenerateConnectionResponse$Outbound =
   | GenerateConnectionResponseBody$Outbound
-  | GenerateConnectionConnectionResponseBody$Outbound;
+  | GenerateConnectionConnectionsResponseBody$Outbound;
 
 /** @internal */
 export const GenerateConnectionResponse$outboundSchema: z.ZodType<
@@ -1600,7 +1608,7 @@ export const GenerateConnectionResponse$outboundSchema: z.ZodType<
   GenerateConnectionResponse
 > = z.union([
   z.lazy(() => GenerateConnectionResponseBody$outboundSchema),
-  z.lazy(() => GenerateConnectionConnectionResponseBody$outboundSchema),
+  z.lazy(() => GenerateConnectionConnectionsResponseBody$outboundSchema),
 ]);
 
 /**

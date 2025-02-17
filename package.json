@@ -1,6 +1,6 @@
 {
-  "name": "openapi",
-  "version": "0.2.0",
+  "name": "sdk-node",
+  "version": "0.3.1",
   "author": "Speakeasy",
   "main": "./index.js",
   "sideEffects": false,

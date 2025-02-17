@@ -11,7 +11,7 @@ import { SDKValidationError } from "./sdkvalidationerror.js";
 /**
  * The location of the invalid input
  */
-export const CreateIntegrationIntegrationIn = {
+export const CreateIntegrationIntegrationsIn = {
   Body: "body",
   Header: "header",
   Path: "path",
@@ -20,8 +20,8 @@ export const CreateIntegrationIntegrationIn = {
 /**
  * The location of the invalid input
  */
-export type CreateIntegrationIntegrationIn = ClosedEnum<
-  typeof CreateIntegrationIntegrationIn
+export type CreateIntegrationIntegrationsIn = ClosedEnum<
+  typeof CreateIntegrationIntegrationsIn
 >;
 
 /**
@@ -29,7 +29,7 @@ export type CreateIntegrationIntegrationIn = ClosedEnum<
  *
  * @remarks
  */
-export type CreateIntegrationIntegrationIssues = {
+export type CreateIntegrationIntegrationsIssues = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -104,7 +104,7 @@ export type CreateIntegrationIntegrationIssues = {
   /**
    * The location of the invalid input
    */
-  in?: CreateIntegrationIntegrationIn | undefined;
+  in?: CreateIntegrationIntegrationsIn | undefined;
   /**
    * The name of the invalid input
    */
@@ -122,7 +122,7 @@ export type CreateIntegrationIntegrationIssues = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export type CreateIntegrationIntegrationResponseBodyData = {
+export type CreateIntegrationIntegrationsResponseBodyData = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -194,7 +194,7 @@ export type CreateIntegrationIntegrationResponseBodyData = {
    * Additional context for the problem
    */
   context?: { [k: string]: any } | undefined;
-  issues?: Array<CreateIntegrationIntegrationIssues> | undefined;
+  issues?: Array<CreateIntegrationIntegrationsIssues> | undefined;
 };
 
 /**
@@ -204,7 +204,7 @@ export type CreateIntegrationIntegrationResponseBodyData = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export class CreateIntegrationIntegrationResponseBody extends Error {
+export class CreateIntegrationIntegrationsResponseBody extends Error {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -276,12 +276,12 @@ export class CreateIntegrationIntegrationResponseBody extends Error {
    * Additional context for the problem
    */
   context?: { [k: string]: any } | undefined;
-  issues?: Array<CreateIntegrationIntegrationIssues> | undefined;
+  issues?: Array<CreateIntegrationIntegrationsIssues> | undefined;
 
   /** The original data that was passed to this error instance. */
-  data$: CreateIntegrationIntegrationResponseBodyData;
+  data$: CreateIntegrationIntegrationsResponseBodyData;
 
-  constructor(err: CreateIntegrationIntegrationResponseBodyData) {
+  constructor(err: CreateIntegrationIntegrationsResponseBodyData) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
@@ -307,7 +307,7 @@ export class CreateIntegrationIntegrationResponseBody extends Error {
     if (err.context != null) this.context = err.context;
     if (err.issues != null) this.issues = err.issues;
 
-    this.name = "CreateIntegrationIntegrationResponseBody";
+    this.name = "CreateIntegrationIntegrationsResponseBody";
   }
 }
 
@@ -613,29 +613,29 @@ export class CreateIntegrationResponseBody extends Error {
 }
 
 /** @internal */
-export const CreateIntegrationIntegrationIn$inboundSchema: z.ZodNativeEnum<
-  typeof CreateIntegrationIntegrationIn
-> = z.nativeEnum(CreateIntegrationIntegrationIn);
+export const CreateIntegrationIntegrationsIn$inboundSchema: z.ZodNativeEnum<
+  typeof CreateIntegrationIntegrationsIn
+> = z.nativeEnum(CreateIntegrationIntegrationsIn);
 
 /** @internal */
-export const CreateIntegrationIntegrationIn$outboundSchema: z.ZodNativeEnum<
-  typeof CreateIntegrationIntegrationIn
-> = CreateIntegrationIntegrationIn$inboundSchema;
+export const CreateIntegrationIntegrationsIn$outboundSchema: z.ZodNativeEnum<
+  typeof CreateIntegrationIntegrationsIn
+> = CreateIntegrationIntegrationsIn$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace CreateIntegrationIntegrationIn$ {
-  /** @deprecated use `CreateIntegrationIntegrationIn$inboundSchema` instead. */
-  export const inboundSchema = CreateIntegrationIntegrationIn$inboundSchema;
-  /** @deprecated use `CreateIntegrationIntegrationIn$outboundSchema` instead. */
-  export const outboundSchema = CreateIntegrationIntegrationIn$outboundSchema;
+export namespace CreateIntegrationIntegrationsIn$ {
+  /** @deprecated use `CreateIntegrationIntegrationsIn$inboundSchema` instead. */
+  export const inboundSchema = CreateIntegrationIntegrationsIn$inboundSchema;
+  /** @deprecated use `CreateIntegrationIntegrationsIn$outboundSchema` instead. */
+  export const outboundSchema = CreateIntegrationIntegrationsIn$outboundSchema;
 }
 
 /** @internal */
-export const CreateIntegrationIntegrationIssues$inboundSchema: z.ZodType<
-  CreateIntegrationIntegrationIssues,
+export const CreateIntegrationIntegrationsIssues$inboundSchema: z.ZodType<
+  CreateIntegrationIntegrationsIssues,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -658,13 +658,13 @@ export const CreateIntegrationIntegrationIssues$inboundSchema: z.ZodType<
   retryAfter: z.string().datetime({ offset: true }).transform(v => new Date(v))
     .optional(),
   context: z.record(z.any()).optional(),
-  in: CreateIntegrationIntegrationIn$inboundSchema.optional(),
+  in: CreateIntegrationIntegrationsIn$inboundSchema.optional(),
   name: z.string().optional(),
   value: z.any().optional(),
 });
 
 /** @internal */
-export type CreateIntegrationIntegrationIssues$Outbound = {
+export type CreateIntegrationIntegrationsIssues$Outbound = {
   type: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -688,10 +688,10 @@ export type CreateIntegrationIntegrationIssues$Outbound = {
 };
 
 /** @internal */
-export const CreateIntegrationIntegrationIssues$outboundSchema: z.ZodType<
-  CreateIntegrationIntegrationIssues$Outbound,
+export const CreateIntegrationIntegrationsIssues$outboundSchema: z.ZodType<
+  CreateIntegrationIntegrationsIssues$Outbound,
   z.ZodTypeDef,
-  CreateIntegrationIntegrationIssues
+  CreateIntegrationIntegrationsIssues
 > = z.object({
   type: z.string().default("about:blank"),
   href: z.string().optional(),
@@ -710,7 +710,7 @@ export const CreateIntegrationIntegrationIssues$outboundSchema: z.ZodType<
   retryable: z.boolean().optional(),
   retryAfter: z.date().transform(v => v.toISOString()).optional(),
   context: z.record(z.any()).optional(),
-  in: CreateIntegrationIntegrationIn$outboundSchema.optional(),
+  in: CreateIntegrationIntegrationsIn$outboundSchema.optional(),
   name: z.string().optional(),
   value: z.any().optional(),
 });
@@ -719,40 +719,41 @@ export const CreateIntegrationIntegrationIssues$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace CreateIntegrationIntegrationIssues$ {
-  /** @deprecated use `CreateIntegrationIntegrationIssues$inboundSchema` instead. */
-  export const inboundSchema = CreateIntegrationIntegrationIssues$inboundSchema;
-  /** @deprecated use `CreateIntegrationIntegrationIssues$outboundSchema` instead. */
+export namespace CreateIntegrationIntegrationsIssues$ {
+  /** @deprecated use `CreateIntegrationIntegrationsIssues$inboundSchema` instead. */
+  export const inboundSchema =
+    CreateIntegrationIntegrationsIssues$inboundSchema;
+  /** @deprecated use `CreateIntegrationIntegrationsIssues$outboundSchema` instead. */
   export const outboundSchema =
-    CreateIntegrationIntegrationIssues$outboundSchema;
-  /** @deprecated use `CreateIntegrationIntegrationIssues$Outbound` instead. */
-  export type Outbound = CreateIntegrationIntegrationIssues$Outbound;
+    CreateIntegrationIntegrationsIssues$outboundSchema;
+  /** @deprecated use `CreateIntegrationIntegrationsIssues$Outbound` instead. */
+  export type Outbound = CreateIntegrationIntegrationsIssues$Outbound;
 }
 
-export function createIntegrationIntegrationIssuesToJSON(
-  createIntegrationIntegrationIssues: CreateIntegrationIntegrationIssues,
+export function createIntegrationIntegrationsIssuesToJSON(
+  createIntegrationIntegrationsIssues: CreateIntegrationIntegrationsIssues,
 ): string {
   return JSON.stringify(
-    CreateIntegrationIntegrationIssues$outboundSchema.parse(
-      createIntegrationIntegrationIssues,
+    CreateIntegrationIntegrationsIssues$outboundSchema.parse(
+      createIntegrationIntegrationsIssues,
     ),
   );
 }
 
-export function createIntegrationIntegrationIssuesFromJSON(
+export function createIntegrationIntegrationsIssuesFromJSON(
   jsonString: string,
-): SafeParseResult<CreateIntegrationIntegrationIssues, SDKValidationError> {
+): SafeParseResult<CreateIntegrationIntegrationsIssues, SDKValidationError> {
   return safeParse(
     jsonString,
     (x) =>
-      CreateIntegrationIntegrationIssues$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreateIntegrationIntegrationIssues' from JSON`,
+      CreateIntegrationIntegrationsIssues$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreateIntegrationIntegrationsIssues' from JSON`,
   );
 }
 
 /** @internal */
-export const CreateIntegrationIntegrationResponseBody$inboundSchema: z.ZodType<
-  CreateIntegrationIntegrationResponseBody,
+export const CreateIntegrationIntegrationsResponseBody$inboundSchema: z.ZodType<
+  CreateIntegrationIntegrationsResponseBody,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -776,15 +777,15 @@ export const CreateIntegrationIntegrationResponseBody$inboundSchema: z.ZodType<
     .optional(),
   context: z.record(z.any()).optional(),
   issues: z.array(
-    z.lazy(() => CreateIntegrationIntegrationIssues$inboundSchema),
+    z.lazy(() => CreateIntegrationIntegrationsIssues$inboundSchema),
   ).optional(),
 })
   .transform((v) => {
-    return new CreateIntegrationIntegrationResponseBody(v);
+    return new CreateIntegrationIntegrationsResponseBody(v);
   });
 
 /** @internal */
-export type CreateIntegrationIntegrationResponseBody$Outbound = {
+export type CreateIntegrationIntegrationsResponseBody$Outbound = {
   type?: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -802,52 +803,53 @@ export type CreateIntegrationIntegrationResponseBody$Outbound = {
   retryable?: boolean | undefined;
   retryAfter?: string | undefined;
   context?: { [k: string]: any } | undefined;
-  issues?: Array<CreateIntegrationIntegrationIssues$Outbound> | undefined;
+  issues?: Array<CreateIntegrationIntegrationsIssues$Outbound> | undefined;
 };
 
 /** @internal */
-export const CreateIntegrationIntegrationResponseBody$outboundSchema: z.ZodType<
-  CreateIntegrationIntegrationResponseBody$Outbound,
-  z.ZodTypeDef,
-  CreateIntegrationIntegrationResponseBody
-> = z.instanceof(CreateIntegrationIntegrationResponseBody)
-  .transform(v => v.data$)
-  .pipe(z.object({
-    type: z.string().default("about:blank"),
-    href: z.string().optional(),
-    title: z.string().optional(),
-    status: z.number().int().optional(),
-    detail: z.string().optional(),
-    instance: z.string().optional(),
-    subsystem: z.string().optional(),
-    time: z.date().transform(v => v.toISOString()).optional(),
-    requestId: z.string().optional(),
-    causes: z.array(z.string()).optional(),
-    remedy: z.string().optional(),
-    supportEmail: z.string().optional(),
-    supportPhone: z.string().optional(),
-    supportUrl: z.string().optional(),
-    retryable: z.boolean().optional(),
-    retryAfter: z.date().transform(v => v.toISOString()).optional(),
-    context: z.record(z.any()).optional(),
-    issues: z.array(
-      z.lazy(() => CreateIntegrationIntegrationIssues$outboundSchema),
-    ).optional(),
-  }));
+export const CreateIntegrationIntegrationsResponseBody$outboundSchema:
+  z.ZodType<
+    CreateIntegrationIntegrationsResponseBody$Outbound,
+    z.ZodTypeDef,
+    CreateIntegrationIntegrationsResponseBody
+  > = z.instanceof(CreateIntegrationIntegrationsResponseBody)
+    .transform(v => v.data$)
+    .pipe(z.object({
+      type: z.string().default("about:blank"),
+      href: z.string().optional(),
+      title: z.string().optional(),
+      status: z.number().int().optional(),
+      detail: z.string().optional(),
+      instance: z.string().optional(),
+      subsystem: z.string().optional(),
+      time: z.date().transform(v => v.toISOString()).optional(),
+      requestId: z.string().optional(),
+      causes: z.array(z.string()).optional(),
+      remedy: z.string().optional(),
+      supportEmail: z.string().optional(),
+      supportPhone: z.string().optional(),
+      supportUrl: z.string().optional(),
+      retryable: z.boolean().optional(),
+      retryAfter: z.date().transform(v => v.toISOString()).optional(),
+      context: z.record(z.any()).optional(),
+      issues: z.array(
+        z.lazy(() => CreateIntegrationIntegrationsIssues$outboundSchema),
+      ).optional(),
+    }));
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace CreateIntegrationIntegrationResponseBody$ {
-  /** @deprecated use `CreateIntegrationIntegrationResponseBody$inboundSchema` instead. */
+export namespace CreateIntegrationIntegrationsResponseBody$ {
+  /** @deprecated use `CreateIntegrationIntegrationsResponseBody$inboundSchema` instead. */
   export const inboundSchema =
-    CreateIntegrationIntegrationResponseBody$inboundSchema;
-  /** @deprecated use `CreateIntegrationIntegrationResponseBody$outboundSchema` instead. */
+    CreateIntegrationIntegrationsResponseBody$inboundSchema;
+  /** @deprecated use `CreateIntegrationIntegrationsResponseBody$outboundSchema` instead. */
   export const outboundSchema =
-    CreateIntegrationIntegrationResponseBody$outboundSchema;
-  /** @deprecated use `CreateIntegrationIntegrationResponseBody$Outbound` instead. */
-  export type Outbound = CreateIntegrationIntegrationResponseBody$Outbound;
+    CreateIntegrationIntegrationsResponseBody$outboundSchema;
+  /** @deprecated use `CreateIntegrationIntegrationsResponseBody$Outbound` instead. */
+  export type Outbound = CreateIntegrationIntegrationsResponseBody$Outbound;
 }
 
 /** @internal */

@@ -11,7 +11,7 @@ import { SDKValidationError } from "./sdkvalidationerror.js";
 /**
  * The location of the invalid input
  */
-export const UpdateProjectProjectIn = {
+export const UpdateProjectProjectsIn = {
   Body: "body",
   Header: "header",
   Path: "path",
@@ -20,14 +20,16 @@ export const UpdateProjectProjectIn = {
 /**
  * The location of the invalid input
  */
-export type UpdateProjectProjectIn = ClosedEnum<typeof UpdateProjectProjectIn>;
+export type UpdateProjectProjectsIn = ClosedEnum<
+  typeof UpdateProjectProjectsIn
+>;
 
 /**
  * An issue detected during input validation.
  *
  * @remarks
  */
-export type UpdateProjectProjectIssues = {
+export type UpdateProjectProjectsIssues = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -102,7 +104,7 @@ export type UpdateProjectProjectIssues = {
   /**
    * The location of the invalid input
    */
-  in?: UpdateProjectProjectIn | undefined;
+  in?: UpdateProjectProjectsIn | undefined;
   /**
    * The name of the invalid input
    */
@@ -120,7 +122,7 @@ export type UpdateProjectProjectIssues = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export type UpdateProjectProjectResponseBodyData = {
+export type UpdateProjectProjectsResponseBodyData = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -192,7 +194,7 @@ export type UpdateProjectProjectResponseBodyData = {
    * Additional context for the problem
    */
   context?: { [k: string]: any } | undefined;
-  issues?: Array<UpdateProjectProjectIssues> | undefined;
+  issues?: Array<UpdateProjectProjectsIssues> | undefined;
 };
 
 /**
@@ -202,7 +204,7 @@ export type UpdateProjectProjectResponseBodyData = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export class UpdateProjectProjectResponseBody extends Error {
+export class UpdateProjectProjectsResponseBody extends Error {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -274,12 +276,12 @@ export class UpdateProjectProjectResponseBody extends Error {
    * Additional context for the problem
    */
   context?: { [k: string]: any } | undefined;
-  issues?: Array<UpdateProjectProjectIssues> | undefined;
+  issues?: Array<UpdateProjectProjectsIssues> | undefined;
 
   /** The original data that was passed to this error instance. */
-  data$: UpdateProjectProjectResponseBodyData;
+  data$: UpdateProjectProjectsResponseBodyData;
 
-  constructor(err: UpdateProjectProjectResponseBodyData) {
+  constructor(err: UpdateProjectProjectsResponseBodyData) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
@@ -305,7 +307,7 @@ export class UpdateProjectProjectResponseBody extends Error {
     if (err.context != null) this.context = err.context;
     if (err.issues != null) this.issues = err.issues;
 
-    this.name = "UpdateProjectProjectResponseBody";
+    this.name = "UpdateProjectProjectsResponseBody";
   }
 }
 
@@ -611,29 +613,29 @@ export class UpdateProjectResponseBody extends Error {
 }
 
 /** @internal */
-export const UpdateProjectProjectIn$inboundSchema: z.ZodNativeEnum<
-  typeof UpdateProjectProjectIn
-> = z.nativeEnum(UpdateProjectProjectIn);
+export const UpdateProjectProjectsIn$inboundSchema: z.ZodNativeEnum<
+  typeof UpdateProjectProjectsIn
+> = z.nativeEnum(UpdateProjectProjectsIn);
 
 /** @internal */
-export const UpdateProjectProjectIn$outboundSchema: z.ZodNativeEnum<
-  typeof UpdateProjectProjectIn
-> = UpdateProjectProjectIn$inboundSchema;
+export const UpdateProjectProjectsIn$outboundSchema: z.ZodNativeEnum<
+  typeof UpdateProjectProjectsIn
+> = UpdateProjectProjectsIn$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace UpdateProjectProjectIn$ {
-  /** @deprecated use `UpdateProjectProjectIn$inboundSchema` instead. */
-  export const inboundSchema = UpdateProjectProjectIn$inboundSchema;
-  /** @deprecated use `UpdateProjectProjectIn$outboundSchema` instead. */
-  export const outboundSchema = UpdateProjectProjectIn$outboundSchema;
+export namespace UpdateProjectProjectsIn$ {
+  /** @deprecated use `UpdateProjectProjectsIn$inboundSchema` instead. */
+  export const inboundSchema = UpdateProjectProjectsIn$inboundSchema;
+  /** @deprecated use `UpdateProjectProjectsIn$outboundSchema` instead. */
+  export const outboundSchema = UpdateProjectProjectsIn$outboundSchema;
 }
 
 /** @internal */
-export const UpdateProjectProjectIssues$inboundSchema: z.ZodType<
-  UpdateProjectProjectIssues,
+export const UpdateProjectProjectsIssues$inboundSchema: z.ZodType<
+  UpdateProjectProjectsIssues,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -656,13 +658,13 @@ export const UpdateProjectProjectIssues$inboundSchema: z.ZodType<
   retryAfter: z.string().datetime({ offset: true }).transform(v => new Date(v))
     .optional(),
   context: z.record(z.any()).optional(),
-  in: UpdateProjectProjectIn$inboundSchema.optional(),
+  in: UpdateProjectProjectsIn$inboundSchema.optional(),
   name: z.string().optional(),
   value: z.any().optional(),
 });
 
 /** @internal */
-export type UpdateProjectProjectIssues$Outbound = {
+export type UpdateProjectProjectsIssues$Outbound = {
   type: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -686,10 +688,10 @@ export type UpdateProjectProjectIssues$Outbound = {
 };
 
 /** @internal */
-export const UpdateProjectProjectIssues$outboundSchema: z.ZodType<
-  UpdateProjectProjectIssues$Outbound,
+export const UpdateProjectProjectsIssues$outboundSchema: z.ZodType<
+  UpdateProjectProjectsIssues$Outbound,
   z.ZodTypeDef,
-  UpdateProjectProjectIssues
+  UpdateProjectProjectsIssues
 > = z.object({
   type: z.string().default("about:blank"),
   href: z.string().optional(),
@@ -708,7 +710,7 @@ export const UpdateProjectProjectIssues$outboundSchema: z.ZodType<
   retryable: z.boolean().optional(),
   retryAfter: z.date().transform(v => v.toISOString()).optional(),
   context: z.record(z.any()).optional(),
-  in: UpdateProjectProjectIn$outboundSchema.optional(),
+  in: UpdateProjectProjectsIn$outboundSchema.optional(),
   name: z.string().optional(),
   value: z.any().optional(),
 });
@@ -717,36 +719,38 @@ export const UpdateProjectProjectIssues$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace UpdateProjectProjectIssues$ {
-  /** @deprecated use `UpdateProjectProjectIssues$inboundSchema` instead. */
-  export const inboundSchema = UpdateProjectProjectIssues$inboundSchema;
-  /** @deprecated use `UpdateProjectProjectIssues$outboundSchema` instead. */
-  export const outboundSchema = UpdateProjectProjectIssues$outboundSchema;
-  /** @deprecated use `UpdateProjectProjectIssues$Outbound` instead. */
-  export type Outbound = UpdateProjectProjectIssues$Outbound;
+export namespace UpdateProjectProjectsIssues$ {
+  /** @deprecated use `UpdateProjectProjectsIssues$inboundSchema` instead. */
+  export const inboundSchema = UpdateProjectProjectsIssues$inboundSchema;
+  /** @deprecated use `UpdateProjectProjectsIssues$outboundSchema` instead. */
+  export const outboundSchema = UpdateProjectProjectsIssues$outboundSchema;
+  /** @deprecated use `UpdateProjectProjectsIssues$Outbound` instead. */
+  export type Outbound = UpdateProjectProjectsIssues$Outbound;
 }
 
-export function updateProjectProjectIssuesToJSON(
-  updateProjectProjectIssues: UpdateProjectProjectIssues,
+export function updateProjectProjectsIssuesToJSON(
+  updateProjectProjectsIssues: UpdateProjectProjectsIssues,
 ): string {
   return JSON.stringify(
-    UpdateProjectProjectIssues$outboundSchema.parse(updateProjectProjectIssues),
+    UpdateProjectProjectsIssues$outboundSchema.parse(
+      updateProjectProjectsIssues,
+    ),
   );
 }
 
-export function updateProjectProjectIssuesFromJSON(
+export function updateProjectProjectsIssuesFromJSON(
   jsonString: string,
-): SafeParseResult<UpdateProjectProjectIssues, SDKValidationError> {
+): SafeParseResult<UpdateProjectProjectsIssues, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => UpdateProjectProjectIssues$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'UpdateProjectProjectIssues' from JSON`,
+    (x) => UpdateProjectProjectsIssues$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'UpdateProjectProjectsIssues' from JSON`,
   );
 }
 
 /** @internal */
-export const UpdateProjectProjectResponseBody$inboundSchema: z.ZodType<
-  UpdateProjectProjectResponseBody,
+export const UpdateProjectProjectsResponseBody$inboundSchema: z.ZodType<
+  UpdateProjectProjectsResponseBody,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -769,15 +773,15 @@ export const UpdateProjectProjectResponseBody$inboundSchema: z.ZodType<
   retryAfter: z.string().datetime({ offset: true }).transform(v => new Date(v))
     .optional(),
   context: z.record(z.any()).optional(),
-  issues: z.array(z.lazy(() => UpdateProjectProjectIssues$inboundSchema))
+  issues: z.array(z.lazy(() => UpdateProjectProjectsIssues$inboundSchema))
     .optional(),
 })
   .transform((v) => {
-    return new UpdateProjectProjectResponseBody(v);
+    return new UpdateProjectProjectsResponseBody(v);
   });
 
 /** @internal */
-export type UpdateProjectProjectResponseBody$Outbound = {
+export type UpdateProjectProjectsResponseBody$Outbound = {
   type?: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -795,15 +799,15 @@ export type UpdateProjectProjectResponseBody$Outbound = {
   retryable?: boolean | undefined;
   retryAfter?: string | undefined;
   context?: { [k: string]: any } | undefined;
-  issues?: Array<UpdateProjectProjectIssues$Outbound> | undefined;
+  issues?: Array<UpdateProjectProjectsIssues$Outbound> | undefined;
 };
 
 /** @internal */
-export const UpdateProjectProjectResponseBody$outboundSchema: z.ZodType<
-  UpdateProjectProjectResponseBody$Outbound,
+export const UpdateProjectProjectsResponseBody$outboundSchema: z.ZodType<
+  UpdateProjectProjectsResponseBody$Outbound,
   z.ZodTypeDef,
-  UpdateProjectProjectResponseBody
-> = z.instanceof(UpdateProjectProjectResponseBody)
+  UpdateProjectProjectsResponseBody
+> = z.instanceof(UpdateProjectProjectsResponseBody)
   .transform(v => v.data$)
   .pipe(z.object({
     type: z.string().default("about:blank"),
@@ -823,7 +827,7 @@ export const UpdateProjectProjectResponseBody$outboundSchema: z.ZodType<
     retryable: z.boolean().optional(),
     retryAfter: z.date().transform(v => v.toISOString()).optional(),
     context: z.record(z.any()).optional(),
-    issues: z.array(z.lazy(() => UpdateProjectProjectIssues$outboundSchema))
+    issues: z.array(z.lazy(() => UpdateProjectProjectsIssues$outboundSchema))
       .optional(),
   }));
 
@@ -831,13 +835,14 @@ export const UpdateProjectProjectResponseBody$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace UpdateProjectProjectResponseBody$ {
-  /** @deprecated use `UpdateProjectProjectResponseBody$inboundSchema` instead. */
-  export const inboundSchema = UpdateProjectProjectResponseBody$inboundSchema;
-  /** @deprecated use `UpdateProjectProjectResponseBody$outboundSchema` instead. */
-  export const outboundSchema = UpdateProjectProjectResponseBody$outboundSchema;
-  /** @deprecated use `UpdateProjectProjectResponseBody$Outbound` instead. */
-  export type Outbound = UpdateProjectProjectResponseBody$Outbound;
+export namespace UpdateProjectProjectsResponseBody$ {
+  /** @deprecated use `UpdateProjectProjectsResponseBody$inboundSchema` instead. */
+  export const inboundSchema = UpdateProjectProjectsResponseBody$inboundSchema;
+  /** @deprecated use `UpdateProjectProjectsResponseBody$outboundSchema` instead. */
+  export const outboundSchema =
+    UpdateProjectProjectsResponseBody$outboundSchema;
+  /** @deprecated use `UpdateProjectProjectsResponseBody$Outbound` instead. */
+  export type Outbound = UpdateProjectProjectsResponseBody$Outbound;
 }
 
 /** @internal */

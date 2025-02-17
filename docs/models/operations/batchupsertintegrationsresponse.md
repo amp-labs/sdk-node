@@ -3,10 +3,10 @@
 
 ## Supported Types
 
-### `operations.BatchUpsertIntegrationsIntegrationResponseBody[]`
+### `operations.BatchUpsertIntegrationsIntegrationsResponseBody[]`
 
 ```typescript
-const value: operations.BatchUpsertIntegrationsIntegrationResponseBody[] = [
+const value: operations.BatchUpsertIntegrationsIntegrationsResponseBody[] = [
   {
     id: "integration-123",
     projectId: "project-456",

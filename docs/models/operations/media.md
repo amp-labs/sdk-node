@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { Media } from "openapi/models/operations";
+import { Media } from "sdk-node/models/operations";
 
 let value: Media = {
   regular: {

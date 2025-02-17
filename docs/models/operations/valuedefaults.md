@@ -5,7 +5,7 @@ Configuration to set default write values for object fields.
 ## Example Usage
 
 ```typescript
-import { ValueDefaults } from "openapi/models/operations";
+import { ValueDefaults } from "sdk-node/models/operations";
 
 let value: ValueDefaults = {
   allowAnyFields: true,

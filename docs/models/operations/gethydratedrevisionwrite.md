@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { GetHydratedRevisionWrite } from "openapi/models/operations";
+import { GetHydratedRevisionWrite } from "sdk-node/models/operations";
 
 let value: GetHydratedRevisionWrite = {
   objects: [
@@ -20,6 +20,6 @@ let value: GetHydratedRevisionWrite = {
 
 ## Fields
 
-| Field                                                                                                            | Type                                                                                                             | Required                                                                                                         | Description                                                                                                      |
-| ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| `objects`                                                                                                        | [operations.GetHydratedRevisionRevisionObjects](../../models/operations/gethydratedrevisionrevisionobjects.md)[] | :heavy_minus_sign:                                                                                               | N/A                                                                                                              |
+| Field                                                                                                              | Type                                                                                                               | Required                                                                                                           | Description                                                                                                        |
+| ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ |
+| `objects`                                                                                                          | [operations.GetHydratedRevisionRevisionsObjects](../../models/operations/gethydratedrevisionrevisionsobjects.md)[] | :heavy_minus_sign:                                                                                                 | N/A                                                                                                                |

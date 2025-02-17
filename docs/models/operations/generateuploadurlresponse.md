@@ -7,16 +7,16 @@
 
 ```typescript
 const value: operations.GenerateUploadUrlResponseBody = {
-  url: "https://sugary-thongs.net",
+  url: "https://beneficial-hippodrome.biz/",
   bucket: "<value>",
-  path: "/etc/periodic",
+  path: "/usr/ports",
 };
 ```
 
-### `operations.GenerateUploadURLUploadURLResponseBody`
+### `operations.GenerateUploadUrlUploadUrlsResponseBody`
 
 ```typescript
-const value: operations.GenerateUploadURLUploadURLResponseBody = {
+const value: operations.GenerateUploadUrlUploadUrlsResponseBody = {
   href:
     "https://www.belgif.be/specification/rest/api-guide/#standardized-problem-types",
   title: "Description of the type of problem that occurred",

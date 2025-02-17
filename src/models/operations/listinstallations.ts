@@ -309,6 +309,10 @@ export type Connection = {
   oauth2AuthorizationCode?:
     | ListInstallationsOauth2AuthorizationCode
     | undefined;
+  /**
+   * The API key used while making the connection.
+   */
+  apiKey?: string | undefined;
 };
 
 export type ListInstallationsProxy = {
@@ -345,7 +349,7 @@ export type ListInstallationsConfig = {
   content: ListInstallationsContent;
 };
 
-export type ListInstallationsInstallationResponseBody = {
+export type ListInstallationsInstallationsResponseBody = {
   /**
    * The installation ID.
    */
@@ -381,7 +385,7 @@ export type ListInstallationsInstallationResponseBody = {
 
 export type ListInstallationsResponse =
   | ListInstallationsResponseBody
-  | Array<ListInstallationsInstallationResponseBody>;
+  | Array<ListInstallationsInstallationsResponseBody>;
 
 /** @internal */
 export const ListInstallationsRequest$inboundSchema: z.ZodType<
@@ -1076,6 +1080,7 @@ export const Connection$inboundSchema: z.ZodType<
   oauth2AuthorizationCode: z.lazy(() =>
     ListInstallationsOauth2AuthorizationCode$inboundSchema
   ).optional(),
+  apiKey: z.string().optional(),
 });
 
 /** @internal */
@@ -1095,6 +1100,7 @@ export type Connection$Outbound = {
   oauth2AuthorizationCode?:
     | ListInstallationsOauth2AuthorizationCode$Outbound
     | undefined;
+  apiKey?: string | undefined;
 };
 
 /** @internal */
@@ -1119,6 +1125,7 @@ export const Connection$outboundSchema: z.ZodType<
   oauth2AuthorizationCode: z.lazy(() =>
     ListInstallationsOauth2AuthorizationCode$outboundSchema
   ).optional(),
+  apiKey: z.string().optional(),
 });
 
 /**
@@ -1332,26 +1339,27 @@ export function listInstallationsConfigFromJSON(
 }
 
 /** @internal */
-export const ListInstallationsInstallationResponseBody$inboundSchema: z.ZodType<
-  ListInstallationsInstallationResponseBody,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-  projectId: z.string(),
-  integrationId: z.string(),
-  group: z.lazy(() => Group$inboundSchema).optional(),
-  healthStatus: z.string(),
-  connection: z.lazy(() => Connection$inboundSchema),
-  createTime: z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  createdBy: z.string(),
-  updateTime: z.string().datetime({ offset: true }).transform(v => new Date(v))
-    .optional(),
-  config: z.lazy(() => ListInstallationsConfig$inboundSchema),
-});
+export const ListInstallationsInstallationsResponseBody$inboundSchema:
+  z.ZodType<ListInstallationsInstallationsResponseBody, z.ZodTypeDef, unknown> =
+    z.object({
+      id: z.string(),
+      projectId: z.string(),
+      integrationId: z.string(),
+      group: z.lazy(() => Group$inboundSchema).optional(),
+      healthStatus: z.string(),
+      connection: z.lazy(() => Connection$inboundSchema),
+      createTime: z.string().datetime({ offset: true }).transform(v =>
+        new Date(v)
+      ),
+      createdBy: z.string(),
+      updateTime: z.string().datetime({ offset: true }).transform(v =>
+        new Date(v)
+      ).optional(),
+      config: z.lazy(() => ListInstallationsConfig$inboundSchema),
+    });
 
 /** @internal */
-export type ListInstallationsInstallationResponseBody$Outbound = {
+export type ListInstallationsInstallationsResponseBody$Outbound = {
   id: string;
   projectId: string;
   integrationId: string;
@@ -1365,11 +1373,11 @@ export type ListInstallationsInstallationResponseBody$Outbound = {
 };
 
 /** @internal */
-export const ListInstallationsInstallationResponseBody$outboundSchema:
+export const ListInstallationsInstallationsResponseBody$outboundSchema:
   z.ZodType<
-    ListInstallationsInstallationResponseBody$Outbound,
+    ListInstallationsInstallationsResponseBody$Outbound,
     z.ZodTypeDef,
-    ListInstallationsInstallationResponseBody
+    ListInstallationsInstallationsResponseBody
   > = z.object({
     id: z.string(),
     projectId: z.string(),
@@ -1387,41 +1395,41 @@ export const ListInstallationsInstallationResponseBody$outboundSchema:
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace ListInstallationsInstallationResponseBody$ {
-  /** @deprecated use `ListInstallationsInstallationResponseBody$inboundSchema` instead. */
+export namespace ListInstallationsInstallationsResponseBody$ {
+  /** @deprecated use `ListInstallationsInstallationsResponseBody$inboundSchema` instead. */
   export const inboundSchema =
-    ListInstallationsInstallationResponseBody$inboundSchema;
-  /** @deprecated use `ListInstallationsInstallationResponseBody$outboundSchema` instead. */
+    ListInstallationsInstallationsResponseBody$inboundSchema;
+  /** @deprecated use `ListInstallationsInstallationsResponseBody$outboundSchema` instead. */
   export const outboundSchema =
-    ListInstallationsInstallationResponseBody$outboundSchema;
-  /** @deprecated use `ListInstallationsInstallationResponseBody$Outbound` instead. */
-  export type Outbound = ListInstallationsInstallationResponseBody$Outbound;
+    ListInstallationsInstallationsResponseBody$outboundSchema;
+  /** @deprecated use `ListInstallationsInstallationsResponseBody$Outbound` instead. */
+  export type Outbound = ListInstallationsInstallationsResponseBody$Outbound;
 }
 
-export function listInstallationsInstallationResponseBodyToJSON(
-  listInstallationsInstallationResponseBody:
-    ListInstallationsInstallationResponseBody,
+export function listInstallationsInstallationsResponseBodyToJSON(
+  listInstallationsInstallationsResponseBody:
+    ListInstallationsInstallationsResponseBody,
 ): string {
   return JSON.stringify(
-    ListInstallationsInstallationResponseBody$outboundSchema.parse(
-      listInstallationsInstallationResponseBody,
+    ListInstallationsInstallationsResponseBody$outboundSchema.parse(
+      listInstallationsInstallationsResponseBody,
     ),
   );
 }
 
-export function listInstallationsInstallationResponseBodyFromJSON(
+export function listInstallationsInstallationsResponseBodyFromJSON(
   jsonString: string,
 ): SafeParseResult<
-  ListInstallationsInstallationResponseBody,
+  ListInstallationsInstallationsResponseBody,
   SDKValidationError
 > {
   return safeParse(
     jsonString,
     (x) =>
-      ListInstallationsInstallationResponseBody$inboundSchema.parse(
+      ListInstallationsInstallationsResponseBody$inboundSchema.parse(
         JSON.parse(x),
       ),
-    `Failed to parse 'ListInstallationsInstallationResponseBody' from JSON`,
+    `Failed to parse 'ListInstallationsInstallationsResponseBody' from JSON`,
   );
 }
 
@@ -1433,14 +1441,14 @@ export const ListInstallationsResponse$inboundSchema: z.ZodType<
 > = z.union([
   z.lazy(() => ListInstallationsResponseBody$inboundSchema),
   z.array(
-    z.lazy(() => ListInstallationsInstallationResponseBody$inboundSchema),
+    z.lazy(() => ListInstallationsInstallationsResponseBody$inboundSchema),
   ),
 ]);
 
 /** @internal */
 export type ListInstallationsResponse$Outbound =
   | ListInstallationsResponseBody$Outbound
-  | Array<ListInstallationsInstallationResponseBody$Outbound>;
+  | Array<ListInstallationsInstallationsResponseBody$Outbound>;
 
 /** @internal */
 export const ListInstallationsResponse$outboundSchema: z.ZodType<
@@ -1450,7 +1458,7 @@ export const ListInstallationsResponse$outboundSchema: z.ZodType<
 > = z.union([
   z.lazy(() => ListInstallationsResponseBody$outboundSchema),
   z.array(
-    z.lazy(() => ListInstallationsInstallationResponseBody$outboundSchema),
+    z.lazy(() => ListInstallationsInstallationsResponseBody$outboundSchema),
   ),
 ]);
 

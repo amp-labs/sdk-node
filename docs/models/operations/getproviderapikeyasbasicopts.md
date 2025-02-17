@@ -5,7 +5,7 @@ when this object is present, it means that this provider uses Basic Auth to actu
 ## Example Usage
 
 ```typescript
-import { GetProviderApiKeyAsBasicOpts } from "openapi/models/operations";
+import { GetProviderApiKeyAsBasicOpts } from "sdk-node/models/operations";
 
 let value: GetProviderApiKeyAsBasicOpts = {
   fieldUsed: "username",

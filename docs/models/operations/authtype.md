@@ -5,9 +5,9 @@ The type of authentication required by the provider.
 ## Example Usage
 
 ```typescript
-import { AuthType } from "openapi/models/operations";
+import { AuthType } from "sdk-node/models/operations";
 
-let value: AuthType = "basic";
+let value: AuthType = "none";
 ```
 
 ## Values

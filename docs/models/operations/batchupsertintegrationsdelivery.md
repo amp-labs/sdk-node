@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { BatchUpsertIntegrationsDelivery } from "openapi/models/operations";
+import { BatchUpsertIntegrationsDelivery } from "sdk-node/models/operations";
 
 let value: BatchUpsertIntegrationsDelivery = {};
 ```

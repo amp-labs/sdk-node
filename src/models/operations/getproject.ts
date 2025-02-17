@@ -22,7 +22,7 @@ export type GetProjectRequest = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export type GetProjectProjectResponseBody = {
+export type GetProjectProjectsResponseBody = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -128,7 +128,7 @@ export type GetProjectResponseBody = {
 
 export type GetProjectResponse =
   | GetProjectResponseBody
-  | GetProjectProjectResponseBody;
+  | GetProjectProjectsResponseBody;
 
 /** @internal */
 export const GetProjectRequest$inboundSchema: z.ZodType<
@@ -185,8 +185,8 @@ export function getProjectRequestFromJSON(
 }
 
 /** @internal */
-export const GetProjectProjectResponseBody$inboundSchema: z.ZodType<
-  GetProjectProjectResponseBody,
+export const GetProjectProjectsResponseBody$inboundSchema: z.ZodType<
+  GetProjectProjectsResponseBody,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -212,7 +212,7 @@ export const GetProjectProjectResponseBody$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type GetProjectProjectResponseBody$Outbound = {
+export type GetProjectProjectsResponseBody$Outbound = {
   type: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -233,10 +233,10 @@ export type GetProjectProjectResponseBody$Outbound = {
 };
 
 /** @internal */
-export const GetProjectProjectResponseBody$outboundSchema: z.ZodType<
-  GetProjectProjectResponseBody$Outbound,
+export const GetProjectProjectsResponseBody$outboundSchema: z.ZodType<
+  GetProjectProjectsResponseBody$Outbound,
   z.ZodTypeDef,
-  GetProjectProjectResponseBody
+  GetProjectProjectsResponseBody
 > = z.object({
   type: z.string().default("about:blank"),
   href: z.string().optional(),
@@ -261,32 +261,32 @@ export const GetProjectProjectResponseBody$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace GetProjectProjectResponseBody$ {
-  /** @deprecated use `GetProjectProjectResponseBody$inboundSchema` instead. */
-  export const inboundSchema = GetProjectProjectResponseBody$inboundSchema;
-  /** @deprecated use `GetProjectProjectResponseBody$outboundSchema` instead. */
-  export const outboundSchema = GetProjectProjectResponseBody$outboundSchema;
-  /** @deprecated use `GetProjectProjectResponseBody$Outbound` instead. */
-  export type Outbound = GetProjectProjectResponseBody$Outbound;
+export namespace GetProjectProjectsResponseBody$ {
+  /** @deprecated use `GetProjectProjectsResponseBody$inboundSchema` instead. */
+  export const inboundSchema = GetProjectProjectsResponseBody$inboundSchema;
+  /** @deprecated use `GetProjectProjectsResponseBody$outboundSchema` instead. */
+  export const outboundSchema = GetProjectProjectsResponseBody$outboundSchema;
+  /** @deprecated use `GetProjectProjectsResponseBody$Outbound` instead. */
+  export type Outbound = GetProjectProjectsResponseBody$Outbound;
 }
 
-export function getProjectProjectResponseBodyToJSON(
-  getProjectProjectResponseBody: GetProjectProjectResponseBody,
+export function getProjectProjectsResponseBodyToJSON(
+  getProjectProjectsResponseBody: GetProjectProjectsResponseBody,
 ): string {
   return JSON.stringify(
-    GetProjectProjectResponseBody$outboundSchema.parse(
-      getProjectProjectResponseBody,
+    GetProjectProjectsResponseBody$outboundSchema.parse(
+      getProjectProjectsResponseBody,
     ),
   );
 }
 
-export function getProjectProjectResponseBodyFromJSON(
+export function getProjectProjectsResponseBodyFromJSON(
   jsonString: string,
-): SafeParseResult<GetProjectProjectResponseBody, SDKValidationError> {
+): SafeParseResult<GetProjectProjectsResponseBody, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => GetProjectProjectResponseBody$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetProjectProjectResponseBody' from JSON`,
+    (x) => GetProjectProjectsResponseBody$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetProjectProjectsResponseBody' from JSON`,
   );
 }
 
@@ -367,13 +367,13 @@ export const GetProjectResponse$inboundSchema: z.ZodType<
   unknown
 > = z.union([
   z.lazy(() => GetProjectResponseBody$inboundSchema),
-  z.lazy(() => GetProjectProjectResponseBody$inboundSchema),
+  z.lazy(() => GetProjectProjectsResponseBody$inboundSchema),
 ]);
 
 /** @internal */
 export type GetProjectResponse$Outbound =
   | GetProjectResponseBody$Outbound
-  | GetProjectProjectResponseBody$Outbound;
+  | GetProjectProjectsResponseBody$Outbound;
 
 /** @internal */
 export const GetProjectResponse$outboundSchema: z.ZodType<
@@ -382,7 +382,7 @@ export const GetProjectResponse$outboundSchema: z.ZodType<
   GetProjectResponse
 > = z.union([
   z.lazy(() => GetProjectResponseBody$outboundSchema),
-  z.lazy(() => GetProjectProjectResponseBody$outboundSchema),
+  z.lazy(() => GetProjectProjectsResponseBody$outboundSchema),
 ]);
 
 /**

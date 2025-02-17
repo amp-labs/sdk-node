@@ -53,6 +53,7 @@ const value: operations.GetInstallationResponseBody = {
     updateTime: new Date("2023-07-13T21:34:44.816Z"),
     authScheme: "oauth2/authorizationCode",
     status: "working",
+    apiKey: "api-key-123",
   },
   createTime: new Date("2024-03-10T01:57:15.921Z"),
   createdBy: "consumer:consumer-123",
@@ -68,10 +69,10 @@ const value: operations.GetInstallationResponseBody = {
 };
 ```
 
-### `operations.GetInstallationInstallationResponseBody`
+### `operations.GetInstallationInstallationsResponseBody`
 
 ```typescript
-const value: operations.GetInstallationInstallationResponseBody = {
+const value: operations.GetInstallationInstallationsResponseBody = {
   href:
     "https://www.belgif.be/specification/rest/api-guide/#standardized-problem-types",
   title: "Description of the type of problem that occurred",

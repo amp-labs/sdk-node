@@ -5,9 +5,9 @@ The location of the invalid input
 ## Example Usage
 
 ```typescript
-import { CreateConsumerIn } from "openapi/models/errors";
+import { CreateConsumerIn } from "sdk-node/models/errors";
 
-let value: CreateConsumerIn = "path";
+let value: CreateConsumerIn = "body";
 ```
 
 ## Values

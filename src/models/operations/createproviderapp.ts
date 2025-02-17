@@ -47,7 +47,7 @@ export type CreateProviderAppRequest = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export type CreateProviderAppProviderAppResponseBody = {
+export type CreateProviderAppProviderAppsResponseBody = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -161,7 +161,7 @@ export type CreateProviderAppResponseBody = {
 
 export type CreateProviderAppResponse =
   | CreateProviderAppResponseBody
-  | CreateProviderAppProviderAppResponseBody;
+  | CreateProviderAppProviderAppsResponseBody;
 
 /** @internal */
 export const CreateProviderAppRequestBody$inboundSchema: z.ZodType<
@@ -297,8 +297,8 @@ export function createProviderAppRequestFromJSON(
 }
 
 /** @internal */
-export const CreateProviderAppProviderAppResponseBody$inboundSchema: z.ZodType<
-  CreateProviderAppProviderAppResponseBody,
+export const CreateProviderAppProviderAppsResponseBody$inboundSchema: z.ZodType<
+  CreateProviderAppProviderAppsResponseBody,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -324,7 +324,7 @@ export const CreateProviderAppProviderAppResponseBody$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type CreateProviderAppProviderAppResponseBody$Outbound = {
+export type CreateProviderAppProviderAppsResponseBody$Outbound = {
   type: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -345,69 +345,70 @@ export type CreateProviderAppProviderAppResponseBody$Outbound = {
 };
 
 /** @internal */
-export const CreateProviderAppProviderAppResponseBody$outboundSchema: z.ZodType<
-  CreateProviderAppProviderAppResponseBody$Outbound,
-  z.ZodTypeDef,
-  CreateProviderAppProviderAppResponseBody
-> = z.object({
-  type: z.string().default("about:blank"),
-  href: z.string().optional(),
-  title: z.string().optional(),
-  status: z.number().int().optional(),
-  detail: z.string().optional(),
-  instance: z.string().optional(),
-  subsystem: z.string().optional(),
-  time: z.date().transform(v => v.toISOString()).optional(),
-  requestId: z.string().optional(),
-  causes: z.array(z.string()).optional(),
-  remedy: z.string().optional(),
-  supportEmail: z.string().optional(),
-  supportPhone: z.string().optional(),
-  supportUrl: z.string().optional(),
-  retryable: z.boolean().optional(),
-  retryAfter: z.date().transform(v => v.toISOString()).optional(),
-  context: z.record(z.any()).optional(),
-});
+export const CreateProviderAppProviderAppsResponseBody$outboundSchema:
+  z.ZodType<
+    CreateProviderAppProviderAppsResponseBody$Outbound,
+    z.ZodTypeDef,
+    CreateProviderAppProviderAppsResponseBody
+  > = z.object({
+    type: z.string().default("about:blank"),
+    href: z.string().optional(),
+    title: z.string().optional(),
+    status: z.number().int().optional(),
+    detail: z.string().optional(),
+    instance: z.string().optional(),
+    subsystem: z.string().optional(),
+    time: z.date().transform(v => v.toISOString()).optional(),
+    requestId: z.string().optional(),
+    causes: z.array(z.string()).optional(),
+    remedy: z.string().optional(),
+    supportEmail: z.string().optional(),
+    supportPhone: z.string().optional(),
+    supportUrl: z.string().optional(),
+    retryable: z.boolean().optional(),
+    retryAfter: z.date().transform(v => v.toISOString()).optional(),
+    context: z.record(z.any()).optional(),
+  });
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace CreateProviderAppProviderAppResponseBody$ {
-  /** @deprecated use `CreateProviderAppProviderAppResponseBody$inboundSchema` instead. */
+export namespace CreateProviderAppProviderAppsResponseBody$ {
+  /** @deprecated use `CreateProviderAppProviderAppsResponseBody$inboundSchema` instead. */
   export const inboundSchema =
-    CreateProviderAppProviderAppResponseBody$inboundSchema;
-  /** @deprecated use `CreateProviderAppProviderAppResponseBody$outboundSchema` instead. */
+    CreateProviderAppProviderAppsResponseBody$inboundSchema;
+  /** @deprecated use `CreateProviderAppProviderAppsResponseBody$outboundSchema` instead. */
   export const outboundSchema =
-    CreateProviderAppProviderAppResponseBody$outboundSchema;
-  /** @deprecated use `CreateProviderAppProviderAppResponseBody$Outbound` instead. */
-  export type Outbound = CreateProviderAppProviderAppResponseBody$Outbound;
+    CreateProviderAppProviderAppsResponseBody$outboundSchema;
+  /** @deprecated use `CreateProviderAppProviderAppsResponseBody$Outbound` instead. */
+  export type Outbound = CreateProviderAppProviderAppsResponseBody$Outbound;
 }
 
-export function createProviderAppProviderAppResponseBodyToJSON(
-  createProviderAppProviderAppResponseBody:
-    CreateProviderAppProviderAppResponseBody,
+export function createProviderAppProviderAppsResponseBodyToJSON(
+  createProviderAppProviderAppsResponseBody:
+    CreateProviderAppProviderAppsResponseBody,
 ): string {
   return JSON.stringify(
-    CreateProviderAppProviderAppResponseBody$outboundSchema.parse(
-      createProviderAppProviderAppResponseBody,
+    CreateProviderAppProviderAppsResponseBody$outboundSchema.parse(
+      createProviderAppProviderAppsResponseBody,
     ),
   );
 }
 
-export function createProviderAppProviderAppResponseBodyFromJSON(
+export function createProviderAppProviderAppsResponseBodyFromJSON(
   jsonString: string,
 ): SafeParseResult<
-  CreateProviderAppProviderAppResponseBody,
+  CreateProviderAppProviderAppsResponseBody,
   SDKValidationError
 > {
   return safeParse(
     jsonString,
     (x) =>
-      CreateProviderAppProviderAppResponseBody$inboundSchema.parse(
+      CreateProviderAppProviderAppsResponseBody$inboundSchema.parse(
         JSON.parse(x),
       ),
-    `Failed to parse 'CreateProviderAppProviderAppResponseBody' from JSON`,
+    `Failed to parse 'CreateProviderAppProviderAppsResponseBody' from JSON`,
   );
 }
 
@@ -496,13 +497,13 @@ export const CreateProviderAppResponse$inboundSchema: z.ZodType<
   unknown
 > = z.union([
   z.lazy(() => CreateProviderAppResponseBody$inboundSchema),
-  z.lazy(() => CreateProviderAppProviderAppResponseBody$inboundSchema),
+  z.lazy(() => CreateProviderAppProviderAppsResponseBody$inboundSchema),
 ]);
 
 /** @internal */
 export type CreateProviderAppResponse$Outbound =
   | CreateProviderAppResponseBody$Outbound
-  | CreateProviderAppProviderAppResponseBody$Outbound;
+  | CreateProviderAppProviderAppsResponseBody$Outbound;
 
 /** @internal */
 export const CreateProviderAppResponse$outboundSchema: z.ZodType<
@@ -511,7 +512,7 @@ export const CreateProviderAppResponse$outboundSchema: z.ZodType<
   CreateProviderAppResponse
 > = z.union([
   z.lazy(() => CreateProviderAppResponseBody$outboundSchema),
-  z.lazy(() => CreateProviderAppProviderAppResponseBody$outboundSchema),
+  z.lazy(() => CreateProviderAppProviderAppsResponseBody$outboundSchema),
 ]);
 
 /**

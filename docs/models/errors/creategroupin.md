@@ -5,9 +5,9 @@ The location of the invalid input
 ## Example Usage
 
 ```typescript
-import { CreateGroupIn } from "openapi/models/errors";
+import { CreateGroupIn } from "sdk-node/models/errors";
 
-let value: CreateGroupIn = "header";
+let value: CreateGroupIn = "path";
 ```
 
 ## Values

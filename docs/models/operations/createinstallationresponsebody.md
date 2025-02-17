@@ -5,7 +5,7 @@ Created
 ## Example Usage
 
 ```typescript
-import { CreateInstallationResponseBody } from "openapi/models/operations";
+import { CreateInstallationResponseBody } from "sdk-node/models/operations";
 
 let value: CreateInstallationResponseBody = {
   id: "installation-123",
@@ -54,6 +54,7 @@ let value: CreateInstallationResponseBody = {
     updateTime: new Date("2023-07-13T21:34:44.816Z"),
     authScheme: "oauth2/authorizationCode",
     status: "working",
+    apiKey: "api-key-123",
   },
   createTime: new Date("2023-01-29T03:01:55.688Z"),
   createdBy: "consumer:consumer-123",

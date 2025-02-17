@@ -5,7 +5,7 @@ The location of the invalid input
 ## Example Usage
 
 ```typescript
-import { DeleteIntegrationIn } from "openapi/models/errors";
+import { DeleteIntegrationIn } from "sdk-node/models/errors";
 
 let value: DeleteIntegrationIn = "body";
 ```

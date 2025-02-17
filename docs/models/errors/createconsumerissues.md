@@ -6,7 +6,7 @@ An issue detected during input validation.
 ## Example Usage
 
 ```typescript
-import { CreateConsumerIssues } from "openapi/models/errors";
+import { CreateConsumerIssues } from "sdk-node/models/errors";
 
 let value: CreateConsumerIssues = {
   href:

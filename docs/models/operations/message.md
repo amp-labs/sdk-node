@@ -5,7 +5,7 @@ The log message object.
 ## Example Usage
 
 ```typescript
-import { Message } from "openapi/models/operations";
+import { Message } from "sdk-node/models/operations";
 
 let value: Message = {
   msg: "This is a log message",

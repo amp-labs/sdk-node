@@ -1,25 +1,25 @@
-# OAuth
-(*oAuth*)
+# Oauth
+(*oauth*)
 
 ## Overview
 
 ### Available Operations
 
-* [oauthConnect](#oauthconnect) - Get URL for OAuth flow
+* [connect](#connect) - Get URL for OAuth flow
 
-## oauthConnect
+## connect
 
 Generate a URL for the browser to render to kick off OAuth flow.
 
 ### Example Usage
 
 ```typescript
-import { SDK } from "openapi";
+import { SDK } from "sdk-node";
 
 const sdk = new SDK();
 
 async function run() {
-  const result = await sdk.oAuth.oauthConnect({
+  const result = await sdk.oauth.connect({
     providerWorkspaceRef: "salesforce-instance-domain",
     projectId: "<id>",
     groupRef: "<value>",
@@ -39,15 +39,15 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { SDKCore } from "openapi/core.js";
-import { oAuthOauthConnect } from "openapi/funcs/oAuthOauthConnect.js";
+import { SDKCore } from "sdk-node/core.js";
+import { oauthConnect } from "sdk-node/funcs/oauthConnect.js";
 
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore();
 
 async function run() {
-  const res = await oAuthOauthConnect(sdk, {
+  const res = await oauthConnect(sdk, {
     providerWorkspaceRef: "salesforce-instance-domain",
     projectId: "<id>",
     groupRef: "<value>",
