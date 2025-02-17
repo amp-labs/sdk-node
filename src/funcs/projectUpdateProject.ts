@@ -84,6 +84,7 @@ export async function projectUpdateProject(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: baseURL ?? "",
     operationID: "updateProject",
     oAuth2Scopes: [],
 

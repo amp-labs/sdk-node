@@ -86,6 +86,7 @@ export async function providerAppListProviderApps(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: baseURL ?? "",
     operationID: "listProviderApps",
     oAuth2Scopes: [],
 

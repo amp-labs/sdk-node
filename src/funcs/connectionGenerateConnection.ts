@@ -93,6 +93,7 @@ export async function connectionGenerateConnection(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: baseURL ?? "",
     operationID: "generateConnection",
     oAuth2Scopes: [],
 

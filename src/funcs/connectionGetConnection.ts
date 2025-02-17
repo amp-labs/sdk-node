@@ -94,6 +94,7 @@ export async function connectionGetConnection(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: baseURL ?? "",
     operationID: "getConnection",
     oAuth2Scopes: [],
 

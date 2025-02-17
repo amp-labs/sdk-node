@@ -7,7 +7,7 @@ The location of the invalid input
 ```typescript
 import { GetHydratedRevisionRevisionIn } from "openapi/models/errors";
 
-let value: GetHydratedRevisionRevisionIn = "query";
+let value: GetHydratedRevisionRevisionIn = "header";
 ```
 
 ## Values

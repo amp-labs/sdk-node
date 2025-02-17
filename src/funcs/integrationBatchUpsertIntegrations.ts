@@ -90,6 +90,7 @@ export async function integrationBatchUpsertIntegrations(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: baseURL ?? "",
     operationID: "batchUpsertIntegrations",
     oAuth2Scopes: [],
 

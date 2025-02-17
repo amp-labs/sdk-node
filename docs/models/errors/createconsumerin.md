@@ -7,7 +7,7 @@ The location of the invalid input
 ```typescript
 import { CreateConsumerIn } from "openapi/models/errors";
 
-let value: CreateConsumerIn = "path";
+let value: CreateConsumerIn = "body";
 ```
 
 ## Values

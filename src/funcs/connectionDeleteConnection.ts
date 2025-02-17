@@ -80,6 +80,7 @@ export async function connectionDeleteConnection(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: baseURL ?? "",
     operationID: "deleteConnection",
     oAuth2Scopes: [],
 

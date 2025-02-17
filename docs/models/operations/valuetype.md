@@ -7,7 +7,7 @@ A normalized field type
 ```typescript
 import { ValueType } from "openapi/models/operations";
 
-let value: ValueType = "date";
+let value: ValueType = "string";
 ```
 
 ## Values

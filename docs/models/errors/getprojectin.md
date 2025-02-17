@@ -7,7 +7,7 @@ The location of the invalid input
 ```typescript
 import { GetProjectIn } from "openapi/models/errors";
 
-let value: GetProjectIn = "query";
+let value: GetProjectIn = "header";
 ```
 
 ## Values

@@ -86,6 +86,7 @@ export async function integrationListIntegrations(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: baseURL ?? "",
     operationID: "listIntegrations",
     oAuth2Scopes: [],
 

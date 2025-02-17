@@ -3,7 +3,7 @@
  */
 
 import { SDKCore } from "../core.js";
-import { encodeSimple } from "../lib/encodings.js";
+import { encodeFormQuery, encodeSimple } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
@@ -85,6 +85,11 @@ export async function operationListOperations(
     "/projects/{projectIdOrName}/integrations/{integrationId}/installations/{installationId}/operations",
   )(pathParams);
 
+  const query = encodeFormQuery({
+    "pageSize": payload.pageSize,
+    "pageToken": payload.pageToken,
+  });
+
   const headers = new Headers(compactMap({
     Accept: options?.acceptHeaderOverride
       || "application/json;q=1, application/problem+json;q=0",
@@ -95,6 +100,7 @@ export async function operationListOperations(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: baseURL ?? "",
     operationID: "listOperations",
     oAuth2Scopes: [],
 
@@ -123,6 +129,7 @@ export async function operationListOperations(
     baseURL: baseURL,
     path: path,
     headers: headers,
+    query: query,
     body: body,
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);

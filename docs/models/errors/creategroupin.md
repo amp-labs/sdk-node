@@ -7,7 +7,7 @@ The location of the invalid input
 ```typescript
 import { CreateGroupIn } from "openapi/models/errors";
 
-let value: CreateGroupIn = "header";
+let value: CreateGroupIn = "path";
 ```
 
 ## Values

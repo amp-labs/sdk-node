@@ -7,10 +7,10 @@ import { ListProvidersProviderResponseBody } from "openapi/models/operations";
 
 let value: ListProvidersProviderResponseBody = {
   name: "<value>",
-  authType: "oauth2",
-  baseURL: "https://reasonable-schnitzel.biz",
+  authType: "apiKey",
+  baseURL: "https://waterlogged-sediment.name",
   oauth2Opts: {
-    grantType: "clientCredentials",
+    grantType: "password",
     authURL: "https://login.salesforce.com/services/oauth2/authorize",
     tokenURL: "https://login.salesforce.com/services/oauth2/token",
     explicitScopesRequired: true,
@@ -94,3 +94,4 @@ let value: ListProvidersProviderResponseBody = {
 | `postAuthInfoNeeded`                                                            | *boolean*                                                                       | :heavy_minus_sign:                                                              | If true, we require additional information after auth to start making requests. | true                                                                            |
 | `media`                                                                         | [operations.Media](../../models/operations/media.md)                            | :heavy_minus_sign:                                                              | N/A                                                                             |                                                                                 |
 | `labels`                                                                        | Record<string, *string*>                                                        | :heavy_minus_sign:                                                              | N/A                                                                             |                                                                                 |
+| `subscribeOpts`                                                                 | [operations.SubscribeOpts](../../models/operations/subscribeopts.md)            | :heavy_minus_sign:                                                              | N/A                                                                             |                                                                                 |

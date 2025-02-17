@@ -74,6 +74,7 @@ export async function oAuthOauthConnect(
   }));
 
   const context = {
+    baseURL: baseURL ?? "",
     operationID: "oauthConnect",
     oAuth2Scopes: [],
 

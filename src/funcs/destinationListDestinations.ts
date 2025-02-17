@@ -84,6 +84,7 @@ export async function destinationListDestinations(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: baseURL ?? "",
     operationID: "listDestinations",
     oAuth2Scopes: [],
 

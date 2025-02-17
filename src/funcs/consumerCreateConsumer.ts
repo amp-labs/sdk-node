@@ -77,6 +77,7 @@ export async function consumerCreateConsumer(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: baseURL ?? "",
     operationID: "createConsumer",
     oAuth2Scopes: [],
 

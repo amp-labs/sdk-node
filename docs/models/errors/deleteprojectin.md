@@ -7,7 +7,7 @@ The location of the invalid input
 ```typescript
 import { DeleteProjectIn } from "openapi/models/errors";
 
-let value: DeleteProjectIn = "body";
+let value: DeleteProjectIn = "header";
 ```
 
 ## Values

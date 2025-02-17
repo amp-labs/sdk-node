@@ -96,6 +96,7 @@ export async function installationListInstallations(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: baseURL ?? "",
     operationID: "listInstallations",
     oAuth2Scopes: [],
 

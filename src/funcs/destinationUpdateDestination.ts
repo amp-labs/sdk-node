@@ -95,6 +95,7 @@ export async function destinationUpdateDestination(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: baseURL ?? "",
     operationID: "updateDestination",
     oAuth2Scopes: [],
 

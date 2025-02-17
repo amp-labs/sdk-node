@@ -82,6 +82,7 @@ export async function integrationCreateIntegration(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: baseURL ?? "",
     operationID: "createIntegration",
     oAuth2Scopes: [],
 

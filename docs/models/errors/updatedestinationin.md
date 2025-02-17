@@ -7,7 +7,7 @@ The location of the invalid input
 ```typescript
 import { UpdateDestinationIn } from "openapi/models/errors";
 
-let value: UpdateDestinationIn = "header";
+let value: UpdateDestinationIn = "path";
 ```
 
 ## Values

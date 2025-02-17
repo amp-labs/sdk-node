@@ -8,7 +8,7 @@ import { UpdateInstallationInstallationConfig } from "openapi/models/operations"
 let value: UpdateInstallationInstallationConfig = {
   id: "config-123",
   revisionId: "revision-123",
-  createTime: new Date("2024-06-18T21:49:56.662Z"),
+  createTime: new Date("2025-09-17T11:26:38.524Z"),
   createdBy: "builder:builder-123",
   content: {
     provider: "salesforce",

@@ -7,7 +7,7 @@ The location of the invalid input
 ```typescript
 import { DeleteProviderAppIn } from "openapi/models/errors";
 
-let value: DeleteProviderAppIn = "path";
+let value: DeleteProviderAppIn = "query";
 ```
 
 ## Values

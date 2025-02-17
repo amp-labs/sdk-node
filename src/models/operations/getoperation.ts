@@ -139,10 +139,6 @@ export type GetOperationResponseBody = {
    */
   result?: string | undefined;
   /**
-   * The latest operation event ID.
-   */
-  latestOperationEventId?: string | undefined;
-  /**
    * Metadata associated with the operation.
    */
   metadata?: GetOperationMetadata | undefined;
@@ -382,7 +378,6 @@ export const GetOperationResponseBody$inboundSchema: z.ZodType<
   installationId: z.string(),
   status: z.string(),
   result: z.string().optional(),
-  latestOperationEventId: z.string().optional(),
   metadata: z.lazy(() => GetOperationMetadata$inboundSchema).optional(),
   createTime: z.string().datetime({ offset: true }).transform(v => new Date(v))
     .optional(),
@@ -398,7 +393,6 @@ export type GetOperationResponseBody$Outbound = {
   installationId: string;
   status: string;
   result?: string | undefined;
-  latestOperationEventId?: string | undefined;
   metadata?: GetOperationMetadata$Outbound | undefined;
   createTime?: string | undefined;
 };
@@ -417,7 +411,6 @@ export const GetOperationResponseBody$outboundSchema: z.ZodType<
   installationId: z.string(),
   status: z.string(),
   result: z.string().optional(),
-  latestOperationEventId: z.string().optional(),
   metadata: z.lazy(() => GetOperationMetadata$outboundSchema).optional(),
   createTime: z.date().transform(v => v.toISOString()).optional(),
 });

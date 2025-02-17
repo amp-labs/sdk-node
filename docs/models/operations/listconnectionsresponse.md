@@ -20,7 +20,7 @@ const value: operations.ListConnectionsConnectionResponseBody[] = [
       scopes: [
         "[\"oauth\",\"offline\",\"crm.read\"]",
       ],
-      createTime: new Date("2025-08-02T23:05:08.428Z"),
+      createTime: new Date("2023-09-26T22:08:20.716Z"),
     },
     group: {
       groupRef: "group-123",
@@ -42,6 +42,7 @@ const value: operations.ListConnectionsConnectionResponseBody[] = [
     updateTime: new Date("2023-07-13T21:34:44.816Z"),
     authScheme: "oauth2/authorizationCode",
     status: "working",
+    apiKey: "api-key-123",
   },
 ];
 ```

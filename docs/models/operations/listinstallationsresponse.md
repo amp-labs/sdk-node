@@ -54,6 +54,7 @@ const value: operations.ListInstallationsInstallationResponseBody[] = [
       updateTime: new Date("2023-07-13T21:34:44.816Z"),
       authScheme: "oauth2/authorizationCode",
       status: "working",
+      apiKey: "api-key-123",
     },
     createTime: new Date("2023-08-25T04:42:50.179Z"),
     createdBy: "consumer:consumer-123",

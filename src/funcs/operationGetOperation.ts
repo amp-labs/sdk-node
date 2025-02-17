@@ -89,6 +89,7 @@ export async function operationGetOperation(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: baseURL ?? "",
     operationID: "getOperation",
     oAuth2Scopes: [],
 

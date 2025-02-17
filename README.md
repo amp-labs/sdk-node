@@ -30,9 +30,16 @@ This repo hosts a developer-friendly & type-safe Typescript SDK specifically cat
     </a>
 </div>
 
+<!-- Start Summary [summary] -->
+## Summary
+
+
+<!-- End Summary [summary] -->
+
 <!-- Start Table of Contents [toc] -->
 ## Table of Contents
 <!-- $toc-max-depth=2 -->
+* [Overview](#overview)
   * [SDK Installation](#sdk-installation)
   * [Requirements](#requirements)
   * [SDK Example Usage](#sdk-example-usage)
@@ -58,25 +65,25 @@ The SDK can be installed with either [npm](https://www.npmjs.com/), [pnpm](https
 ### NPM
 
 ```bash
-npm add https://github.com/amp-labs/sdk-node
+npm add openapi
 ```
 
 ### PNPM
 
 ```bash
-pnpm add https://github.com/amp-labs/sdk-node
+pnpm add openapi
 ```
 
 ### Bun
 
 ```bash
-bun add https://github.com/amp-labs/sdk-node
+bun add openapi
 ```
 
 ### Yarn
 
 ```bash
-yarn add https://github.com/amp-labs/sdk-node zod
+yarn add openapi zod
 
 # Note that Yarn does not install peer dependencies automatically. You will need
 # to install zod as shown above.
@@ -168,19 +175,6 @@ run();
 <details open>
 <summary>Available methods</summary>
 
-### [apiKey](docs/sdks/apikey/README.md)
-
-* [listApiKeys](docs/sdks/apikey/README.md#listapikeys) - List API keys
-* [createApiKey](docs/sdks/apikey/README.md#createapikey) - Create a new API key
-* [getApiKey](docs/sdks/apikey/README.md#getapikey) - Get an API key
-* [deleteApiKey](docs/sdks/apikey/README.md#deleteapikey) - Delete an API key
-* [updateApiKey](docs/sdks/apikey/README.md#updateapikey) - Update an API key
-
-### [billingAccount](docs/sdks/billingaccount/README.md)
-
-* [getOrgBillingAccount](docs/sdks/billingaccount/README.md#getorgbillingaccount) - Get the billing account for an organization
-* [createBillingAccountSession](docs/sdks/billingaccount/README.md#createbillingaccountsession) - Create a portal session for a billing account
-
 ### [connection](docs/sdks/connection/README.md)
 
 * [listConnections](docs/sdks/connection/README.md#listconnections) - List connections
@@ -225,24 +219,14 @@ run();
 
 ### [objectsAndFields](docs/sdks/objectsandfields/README.md)
 
-* [getObjectMetadata](docs/sdks/objectsandfields/README.md#getobjectmetadata) - Get object and field data
+* [getObjectMetadataForInstallation](docs/sdks/objectsandfields/README.md#getobjectmetadataforinstallation) - Get object metadata for installation
+* [getObjectMetadataForConnection](docs/sdks/objectsandfields/README.md#getobjectmetadataforconnection) - Get object metadata for connection
 
 ### [operation](docs/sdks/operation/README.md)
 
 * [listOperations](docs/sdks/operation/README.md#listoperations) - List operations
 * [getOperation](docs/sdks/operation/README.md#getoperation) - Get an operation
 * [listOperationLogs](docs/sdks/operation/README.md#listoperationlogs) - List logs for an operation
-
-### [org](docs/sdks/org/README.md)
-
-* [createOrg](docs/sdks/org/README.md#createorg) - Create a new organization
-* [getOrg](docs/sdks/org/README.md#getorg) - Get an organization
-* [updateOrg](docs/sdks/org/README.md#updateorg) - Update an organization
-* [listOrgBuilders](docs/sdks/org/README.md#listorgbuilders) - List builders for an organization
-* [createOrgInvite](docs/sdks/org/README.md#createorginvite) - Invite a user to an organization
-* [listOrgInvites](docs/sdks/org/README.md#listorginvites) - List invites for an organization
-* [getOrgInvite](docs/sdks/org/README.md#getorginvite) - Get an invite
-* [deleteOrgInvite](docs/sdks/org/README.md#deleteorginvite) - Revoke an invite
 
 ### [project](docs/sdks/project/README.md)
 
@@ -279,11 +263,6 @@ run();
 
 * [generateUploadUrl](docs/sdks/uploadurl/README.md#generateuploadurl) - Generate a signed URL to upload a zip file to.
 
-### [user](docs/sdks/user/README.md)
-
-* [getMyInfo](docs/sdks/user/README.md#getmyinfo) - Get information about the current user
-* [acceptInvite](docs/sdks/user/README.md#acceptinvite) - Accept an invite
-
 </details>
 <!-- End Available Resources and Operations [operations] -->
 
@@ -302,13 +281,6 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 
 <summary>Available standalone functions</summary>
 
-- [`apiKeyCreateAPIKey`](docs/sdks/apikey/README.md#createapikey) - Create a new API key
-- [`apiKeyDeleteAPIKey`](docs/sdks/apikey/README.md#deleteapikey) - Delete an API key
-- [`apiKeyGetAPIKey`](docs/sdks/apikey/README.md#getapikey) - Get an API key
-- [`apiKeyListAPIKeys`](docs/sdks/apikey/README.md#listapikeys) - List API keys
-- [`apiKeyUpdateAPIKey`](docs/sdks/apikey/README.md#updateapikey) - Update an API key
-- [`billingAccountCreateBillingAccountSession`](docs/sdks/billingaccount/README.md#createbillingaccountsession) - Create a portal session for a billing account
-- [`billingAccountGetOrgBillingAccount`](docs/sdks/billingaccount/README.md#getorgbillingaccount) - Get the billing account for an organization
 - [`connectionDeleteConnection`](docs/sdks/connection/README.md#deleteconnection) - Delete a connection
 - [`connectionGenerateConnection`](docs/sdks/connection/README.md#generateconnection) - Generate a new connection
 - [`connectionGetConnection`](docs/sdks/connection/README.md#getconnection) - Get a connection
@@ -330,18 +302,11 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`integrationDeleteIntegration`](docs/sdks/integration/README.md#deleteintegration) - Delete an integration
 - [`integrationListIntegrations`](docs/sdks/integration/README.md#listintegrations) - List integrations
 - [`oAuthOauthConnect`](docs/sdks/oauth/README.md#oauthconnect) - Get URL for OAuth flow
-- [`objectsAndFieldsGetObjectMetadata`](docs/sdks/objectsandfields/README.md#getobjectmetadata) - Get object and field data
+- [`objectsAndFieldsGetObjectMetadataForConnection`](docs/sdks/objectsandfields/README.md#getobjectmetadataforconnection) - Get object metadata for connection
+- [`objectsAndFieldsGetObjectMetadataForInstallation`](docs/sdks/objectsandfields/README.md#getobjectmetadataforinstallation) - Get object metadata for installation
 - [`operationGetOperation`](docs/sdks/operation/README.md#getoperation) - Get an operation
 - [`operationListOperationLogs`](docs/sdks/operation/README.md#listoperationlogs) - List logs for an operation
 - [`operationListOperations`](docs/sdks/operation/README.md#listoperations) - List operations
-- [`orgCreateOrg`](docs/sdks/org/README.md#createorg) - Create a new organization
-- [`orgCreateOrgInvite`](docs/sdks/org/README.md#createorginvite) - Invite a user to an organization
-- [`orgDeleteOrgInvite`](docs/sdks/org/README.md#deleteorginvite) - Revoke an invite
-- [`orgGetOrg`](docs/sdks/org/README.md#getorg) - Get an organization
-- [`orgGetOrgInvite`](docs/sdks/org/README.md#getorginvite) - Get an invite
-- [`orgListOrgBuilders`](docs/sdks/org/README.md#listorgbuilders) - List builders for an organization
-- [`orgListOrgInvites`](docs/sdks/org/README.md#listorginvites) - List invites for an organization
-- [`orgUpdateOrg`](docs/sdks/org/README.md#updateorg) - Update an organization
 - [`projectCreateProject`](docs/sdks/project/README.md#createproject) - Create a new project
 - [`projectDeleteProject`](docs/sdks/project/README.md#deleteproject) - Delete a project
 - [`projectGetProject`](docs/sdks/project/README.md#getproject) - Get a project
@@ -358,8 +323,6 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`revisionCreateRevision`](docs/sdks/revision/README.md#createrevision) - Create a new revision
 - [`revisionGetHydratedRevision`](docs/sdks/revision/README.md#gethydratedrevision) - Hydrate a revision
 - [`uploadURLGenerateUploadURL`](docs/sdks/uploadurl/README.md#generateuploadurl) - Generate a signed URL to upload a zip file to.
-- [`userAcceptInvite`](docs/sdks/user/README.md#acceptinvite) - Accept an invite
-- [`userGetMyInfo`](docs/sdks/user/README.md#getmyinfo) - Get information about the current user
 
 </details>
 <!-- End Standalone functions [standalone-funcs] -->

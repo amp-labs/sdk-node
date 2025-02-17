@@ -80,6 +80,7 @@ export async function providerGetProvider(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: baseURL ?? "",
     operationID: "getProvider",
     oAuth2Scopes: [],
 

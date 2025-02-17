@@ -90,6 +90,7 @@ export async function providerAppCreateProviderApp(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: baseURL ?? "",
     operationID: "createProviderApp",
     oAuth2Scopes: [],
 

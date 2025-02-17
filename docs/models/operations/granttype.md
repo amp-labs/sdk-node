@@ -5,7 +5,7 @@
 ```typescript
 import { GrantType } from "openapi/models/operations";
 
-let value: GrantType = "password";
+let value: GrantType = "clientCredentials";
 ```
 
 ## Values

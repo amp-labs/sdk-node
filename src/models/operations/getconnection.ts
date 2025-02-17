@@ -308,6 +308,10 @@ export type GetConnectionResponseBody = {
    */
   status: GetConnectionStatus;
   oauth2AuthorizationCode?: GetConnectionOauth2AuthorizationCode | undefined;
+  /**
+   * The API key used while making the connection.
+   */
+  apiKey?: string | undefined;
 };
 
 export type GetConnectionResponse =
@@ -957,6 +961,7 @@ export const GetConnectionResponseBody$inboundSchema: z.ZodType<
   oauth2AuthorizationCode: z.lazy(() =>
     GetConnectionOauth2AuthorizationCode$inboundSchema
   ).optional(),
+  apiKey: z.string().optional(),
 });
 
 /** @internal */
@@ -976,6 +981,7 @@ export type GetConnectionResponseBody$Outbound = {
   oauth2AuthorizationCode?:
     | GetConnectionOauth2AuthorizationCode$Outbound
     | undefined;
+  apiKey?: string | undefined;
 };
 
 /** @internal */
@@ -999,6 +1005,7 @@ export const GetConnectionResponseBody$outboundSchema: z.ZodType<
   oauth2AuthorizationCode: z.lazy(() =>
     GetConnectionOauth2AuthorizationCode$outboundSchema
   ).optional(),
+  apiKey: z.string().optional(),
 });
 
 /**

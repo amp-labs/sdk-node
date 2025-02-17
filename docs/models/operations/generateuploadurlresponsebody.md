@@ -8,9 +8,9 @@ Signed URL
 import { GenerateUploadUrlResponseBody } from "openapi/models/operations";
 
 let value: GenerateUploadUrlResponseBody = {
-  url: "https://overdue-story.info/",
+  url: "https://untrue-singing.com",
   bucket: "<value>",
-  path: "/var/spool",
+  path: "/System",
 };
 ```
 

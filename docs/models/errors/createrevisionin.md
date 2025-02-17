@@ -7,7 +7,7 @@ The location of the invalid input
 ```typescript
 import { CreateRevisionIn } from "openapi/models/errors";
 
-let value: CreateRevisionIn = "header";
+let value: CreateRevisionIn = "body";
 ```
 
 ## Values

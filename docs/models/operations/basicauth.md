@@ -6,8 +6,8 @@
 import { BasicAuth } from "openapi/models/operations";
 
 let value: BasicAuth = {
-  username: "Watson.Ullrich-Ryan",
-  password: "7ej8HUrf9LacE2k",
+  username: "Helen_Stoltenberg27",
+  password: "9LacE2kcjj9DXD3",
 };
 ```
 

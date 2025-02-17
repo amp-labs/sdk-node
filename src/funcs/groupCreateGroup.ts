@@ -77,6 +77,7 @@ export async function groupCreateGroup(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: baseURL ?? "",
     operationID: "createGroup",
     oAuth2Scopes: [],
 

@@ -7,7 +7,7 @@ The location of the invalid input
 ```typescript
 import { GenerateConnectionIn } from "openapi/models/errors";
 
-let value: GenerateConnectionIn = "path";
+let value: GenerateConnectionIn = "header";
 ```
 
 ## Values

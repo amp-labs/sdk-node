@@ -7,7 +7,7 @@ The location of the invalid input
 ```typescript
 import { CreateProviderAppProviderAppIn } from "openapi/models/errors";
 
-let value: CreateProviderAppProviderAppIn = "path";
+let value: CreateProviderAppProviderAppIn = "query";
 ```
 
 ## Values

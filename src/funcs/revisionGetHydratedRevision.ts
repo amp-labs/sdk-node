@@ -105,6 +105,7 @@ export async function revisionGetHydratedRevision(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: baseURL ?? "",
     operationID: "getHydratedRevision",
     oAuth2Scopes: [],
 

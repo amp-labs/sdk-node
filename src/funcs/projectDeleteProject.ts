@@ -76,6 +76,7 @@ export async function projectDeleteProject(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: baseURL ?? "",
     operationID: "deleteProject",
     oAuth2Scopes: [],
 

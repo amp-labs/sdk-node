@@ -290,6 +290,10 @@ export type ListConnectionsConnectionResponseBody = {
    */
   status: Status;
   oauth2AuthorizationCode?: ListConnectionsOauth2AuthorizationCode | undefined;
+  /**
+   * The API key used while making the connection.
+   */
+  apiKey?: string | undefined;
 };
 
 export type ListConnectionsResponse =
@@ -912,6 +916,7 @@ export const ListConnectionsConnectionResponseBody$inboundSchema: z.ZodType<
   oauth2AuthorizationCode: z.lazy(() =>
     ListConnectionsOauth2AuthorizationCode$inboundSchema
   ).optional(),
+  apiKey: z.string().optional(),
 });
 
 /** @internal */
@@ -931,6 +936,7 @@ export type ListConnectionsConnectionResponseBody$Outbound = {
   oauth2AuthorizationCode?:
     | ListConnectionsOauth2AuthorizationCode$Outbound
     | undefined;
+  apiKey?: string | undefined;
 };
 
 /** @internal */
@@ -955,6 +961,7 @@ export const ListConnectionsConnectionResponseBody$outboundSchema: z.ZodType<
   oauth2AuthorizationCode: z.lazy(() =>
     ListConnectionsOauth2AuthorizationCode$outboundSchema
   ).optional(),
+  apiKey: z.string().optional(),
 });
 
 /**

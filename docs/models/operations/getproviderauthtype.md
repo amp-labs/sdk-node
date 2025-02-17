@@ -7,7 +7,7 @@ The type of authentication required by the provider.
 ```typescript
 import { GetProviderAuthType } from "openapi/models/operations";
 
-let value: GetProviderAuthType = "none";
+let value: GetProviderAuthType = "basic";
 ```
 
 ## Values

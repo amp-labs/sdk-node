@@ -85,6 +85,7 @@ export async function integrationDeleteIntegration(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: baseURL ?? "",
     operationID: "deleteIntegration",
     oAuth2Scopes: [],
 

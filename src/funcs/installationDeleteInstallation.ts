@@ -86,6 +86,7 @@ export async function installationDeleteInstallation(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: baseURL ?? "",
     operationID: "deleteInstallation",
     oAuth2Scopes: [],
 

@@ -20,7 +20,7 @@ let value: GetConnectionResponseBody = {
     scopes: [
       "[\"oauth\",\"offline\",\"crm.read\"]",
     ],
-    createTime: new Date("2025-09-17T19:59:01.360Z"),
+    createTime: new Date("2023-09-21T01:29:35.775Z"),
   },
   group: {
     groupRef: "group-123",
@@ -42,6 +42,7 @@ let value: GetConnectionResponseBody = {
   updateTime: new Date("2023-07-13T21:34:44.816Z"),
   authScheme: "oauth2/authorizationCode",
   status: "working",
+  apiKey: "api-key-123",
 };
 ```
 
@@ -62,3 +63,4 @@ let value: GetConnectionResponseBody = {
 | `authScheme`                                                                                                                                                                          | [operations.GetConnectionAuthScheme](../../models/operations/getconnectionauthscheme.md)                                                                                              | :heavy_check_mark:                                                                                                                                                                    | The authentication scheme used for this connection.                                                                                                                                   | oauth2/authorizationCode                                                                                                                                                              |
 | `status`                                                                                                                                                                              | [operations.GetConnectionStatus](../../models/operations/getconnectionstatus.md)                                                                                                      | :heavy_check_mark:                                                                                                                                                                    | The status of the connection.                                                                                                                                                         | working                                                                                                                                                                               |
 | `oauth2AuthorizationCode`                                                                                                                                                             | [operations.GetConnectionOauth2AuthorizationCode](../../models/operations/getconnectionoauth2authorizationcode.md)                                                                    | :heavy_minus_sign:                                                                                                                                                                    | N/A                                                                                                                                                                                   |                                                                                                                                                                                       |
+| `apiKey`                                                                                                                                                                              | *string*                                                                                                                                                                              | :heavy_minus_sign:                                                                                                                                                                    | The API key used while making the connection.                                                                                                                                         | api-key-123                                                                                                                                                                           |

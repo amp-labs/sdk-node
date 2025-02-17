@@ -3,29 +3,58 @@
  */
 
 import {
-  GetObjectMetadataAcceptEnum,
-  objectsAndFieldsGetObjectMetadata,
-} from "../funcs/objectsAndFieldsGetObjectMetadata.js";
+  GetObjectMetadataForConnectionAcceptEnum,
+  objectsAndFieldsGetObjectMetadataForConnection,
+} from "../funcs/objectsAndFieldsGetObjectMetadataForConnection.js";
+import {
+  GetObjectMetadataForInstallationAcceptEnum,
+  objectsAndFieldsGetObjectMetadataForInstallation,
+} from "../funcs/objectsAndFieldsGetObjectMetadataForInstallation.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
 
-export { GetObjectMetadataAcceptEnum } from "../funcs/objectsAndFieldsGetObjectMetadata.js";
+export { GetObjectMetadataForInstallationAcceptEnum } from "../funcs/objectsAndFieldsGetObjectMetadataForInstallation.js";
+
+export { GetObjectMetadataForConnectionAcceptEnum } from "../funcs/objectsAndFieldsGetObjectMetadataForConnection.js";
 
 export class ObjectsAndFields extends ClientSDK {
   /**
-   * Get object and field data
+   * Get object metadata for installation
    *
    * @remarks
-   * Retrieves metadata about an object in a customer's SaaS instance, including its fields
+   * Retrieves metadata about an object in a customer's SaaS instance, including its fields.
+   * This endpoint requires that an Installation exists for the given groupRef.
+   * It applies object mappings.
    */
-  async getObjectMetadata(
-    request: operations.GetObjectMetadataRequest,
+  async getObjectMetadataForInstallation(
+    request: operations.GetObjectMetadataForInstallationRequest,
     options?: RequestOptions & {
-      acceptHeaderOverride?: GetObjectMetadataAcceptEnum;
+      acceptHeaderOverride?: GetObjectMetadataForInstallationAcceptEnum;
     },
-  ): Promise<operations.GetObjectMetadataResponse> {
-    return unwrapAsync(objectsAndFieldsGetObjectMetadata(
+  ): Promise<operations.GetObjectMetadataForInstallationResponse> {
+    return unwrapAsync(objectsAndFieldsGetObjectMetadataForInstallation(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Get object metadata for connection
+   *
+   * @remarks
+   * Retrieves metadata about an object in a customer's SaaS instance, including its fields.
+   * This endpoint only requires that a Connection exists for the given groupRef.
+   * It does not apply any object mappings.
+   */
+  async getObjectMetadataForConnection(
+    request: operations.GetObjectMetadataForConnectionRequest,
+    options?: RequestOptions & {
+      acceptHeaderOverride?: GetObjectMetadataForConnectionAcceptEnum;
+    },
+  ): Promise<operations.GetObjectMetadataForConnectionResponse> {
+    return unwrapAsync(objectsAndFieldsGetObjectMetadataForConnection(
       this,
       request,
       options,

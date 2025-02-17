@@ -90,6 +90,7 @@ export async function destinationGetDestination(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: baseURL ?? "",
     operationID: "getDestination",
     oAuth2Scopes: [],
 

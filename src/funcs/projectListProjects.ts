@@ -59,6 +59,7 @@ export async function projectListProjects(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: baseURL ?? "",
     operationID: "listProjects",
     oAuth2Scopes: [],
 

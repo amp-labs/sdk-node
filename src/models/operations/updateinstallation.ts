@@ -78,6 +78,140 @@ export type UpdateInstallationRead = {
   objects?: { [k: string]: UpdateInstallationObjects } | undefined;
 };
 
+/**
+ * Whether the default value should be applied when updating a record.
+ *
+ * @remarks
+ * If set to `always`, the default value will be applied when updating a record.
+ * If set to `never`, the default value will not be applied when updating a record,
+ * only when creating a record.
+ * If unspecified, then `always` is assumed.
+ */
+export const UpdateInstallationSelectedValueDefaultsApplyOnUpdate = {
+  Always: "always",
+  Never: "never",
+} as const;
+/**
+ * Whether the default value should be applied when updating a record.
+ *
+ * @remarks
+ * If set to `always`, the default value will be applied when updating a record.
+ * If set to `never`, the default value will not be applied when updating a record,
+ * only when creating a record.
+ * If unspecified, then `always` is assumed.
+ */
+export type UpdateInstallationSelectedValueDefaultsApplyOnUpdate = ClosedEnum<
+  typeof UpdateInstallationSelectedValueDefaultsApplyOnUpdate
+>;
+
+export type Three = {
+  /**
+   * The value to be used as a default.
+   */
+  value: boolean;
+  /**
+   * Whether the default value should be applied when updating a record.
+   *
+   * @remarks
+   * If set to `always`, the default value will be applied when updating a record.
+   * If set to `never`, the default value will not be applied when updating a record,
+   * only when creating a record.
+   * If unspecified, then `always` is assumed.
+   */
+  applyOnUpdate?:
+    | UpdateInstallationSelectedValueDefaultsApplyOnUpdate
+    | undefined;
+};
+
+/**
+ * Whether the default value should be applied when updating a record.
+ *
+ * @remarks
+ * If set to `always`, the default value will be applied when updating a record.
+ * If set to `never`, the default value will not be applied when updating a record,
+ * only when creating a record.
+ * If unspecified, then `always` is assumed.
+ */
+export const SelectedValueDefaultsApplyOnUpdate = {
+  Always: "always",
+  Never: "never",
+} as const;
+/**
+ * Whether the default value should be applied when updating a record.
+ *
+ * @remarks
+ * If set to `always`, the default value will be applied when updating a record.
+ * If set to `never`, the default value will not be applied when updating a record,
+ * only when creating a record.
+ * If unspecified, then `always` is assumed.
+ */
+export type SelectedValueDefaultsApplyOnUpdate = ClosedEnum<
+  typeof SelectedValueDefaultsApplyOnUpdate
+>;
+
+export type SelectedValueDefaults2 = {
+  /**
+   * The value to be used as a default.
+   */
+  value: number;
+  /**
+   * Whether the default value should be applied when updating a record.
+   *
+   * @remarks
+   * If set to `always`, the default value will be applied when updating a record.
+   * If set to `never`, the default value will not be applied when updating a record,
+   * only when creating a record.
+   * If unspecified, then `always` is assumed.
+   */
+  applyOnUpdate?: SelectedValueDefaultsApplyOnUpdate | undefined;
+};
+
+/**
+ * Whether the default value should be applied when updating a record.
+ *
+ * @remarks
+ * If set to `always`, the default value will be applied when updating a record.
+ * If set to `never`, the default value will not be applied when updating a record,
+ * only when creating a record.
+ * If unspecified, then `always` is assumed.
+ */
+export const ApplyOnUpdate = {
+  Always: "always",
+  Never: "never",
+} as const;
+/**
+ * Whether the default value should be applied when updating a record.
+ *
+ * @remarks
+ * If set to `always`, the default value will be applied when updating a record.
+ * If set to `never`, the default value will not be applied when updating a record,
+ * only when creating a record.
+ * If unspecified, then `always` is assumed.
+ */
+export type ApplyOnUpdate = ClosedEnum<typeof ApplyOnUpdate>;
+
+export type SelectedValueDefaults1 = {
+  /**
+   * The value to be used as a default.
+   */
+  value: string;
+  /**
+   * Whether the default value should be applied when updating a record.
+   *
+   * @remarks
+   * If set to `always`, the default value will be applied when updating a record.
+   * If set to `never`, the default value will not be applied when updating a record,
+   * only when creating a record.
+   * If unspecified, then `always` is assumed.
+   */
+  applyOnUpdate?: ApplyOnUpdate | undefined;
+};
+
+export type SelectedValueDefaults =
+  | SelectedValueDefaults1
+  | SelectedValueDefaults2
+  | Three;
+
 export type UpdateInstallationInstallationObjects = {
   /**
    * The name of the object to write to.
@@ -86,7 +220,9 @@ export type UpdateInstallationInstallationObjects = {
   /**
    * This is a map of field names to default values. These values will be used when writing to the object.
    */
-  selectedValueDefaults?: { [k: string]: string } | undefined;
+  selectedValueDefaults?: {
+    [k: string]: SelectedValueDefaults1 | SelectedValueDefaults2 | Three;
+  } | undefined;
 };
 
 export type UpdateInstallationWrite = {
@@ -448,6 +584,10 @@ export type UpdateInstallationConnection = {
   oauth2AuthorizationCode?:
     | UpdateInstallationOauth2AuthorizationCode
     | undefined;
+  /**
+   * The API key used while making the connection.
+   */
+  apiKey?: string | undefined;
 };
 
 export type UpdateInstallationInstallationProxy = {
@@ -791,19 +931,323 @@ export function updateInstallationReadFromJSON(
 }
 
 /** @internal */
+export const UpdateInstallationSelectedValueDefaultsApplyOnUpdate$inboundSchema:
+  z.ZodNativeEnum<typeof UpdateInstallationSelectedValueDefaultsApplyOnUpdate> =
+    z.nativeEnum(UpdateInstallationSelectedValueDefaultsApplyOnUpdate);
+
+/** @internal */
+export const UpdateInstallationSelectedValueDefaultsApplyOnUpdate$outboundSchema:
+  z.ZodNativeEnum<typeof UpdateInstallationSelectedValueDefaultsApplyOnUpdate> =
+    UpdateInstallationSelectedValueDefaultsApplyOnUpdate$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace UpdateInstallationSelectedValueDefaultsApplyOnUpdate$ {
+  /** @deprecated use `UpdateInstallationSelectedValueDefaultsApplyOnUpdate$inboundSchema` instead. */
+  export const inboundSchema =
+    UpdateInstallationSelectedValueDefaultsApplyOnUpdate$inboundSchema;
+  /** @deprecated use `UpdateInstallationSelectedValueDefaultsApplyOnUpdate$outboundSchema` instead. */
+  export const outboundSchema =
+    UpdateInstallationSelectedValueDefaultsApplyOnUpdate$outboundSchema;
+}
+
+/** @internal */
+export const Three$inboundSchema: z.ZodType<Three, z.ZodTypeDef, unknown> = z
+  .object({
+    value: z.boolean(),
+    applyOnUpdate:
+      UpdateInstallationSelectedValueDefaultsApplyOnUpdate$inboundSchema
+        .optional(),
+  });
+
+/** @internal */
+export type Three$Outbound = {
+  value: boolean;
+  applyOnUpdate?: string | undefined;
+};
+
+/** @internal */
+export const Three$outboundSchema: z.ZodType<
+  Three$Outbound,
+  z.ZodTypeDef,
+  Three
+> = z.object({
+  value: z.boolean(),
+  applyOnUpdate:
+    UpdateInstallationSelectedValueDefaultsApplyOnUpdate$outboundSchema
+      .optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace Three$ {
+  /** @deprecated use `Three$inboundSchema` instead. */
+  export const inboundSchema = Three$inboundSchema;
+  /** @deprecated use `Three$outboundSchema` instead. */
+  export const outboundSchema = Three$outboundSchema;
+  /** @deprecated use `Three$Outbound` instead. */
+  export type Outbound = Three$Outbound;
+}
+
+export function threeToJSON(three: Three): string {
+  return JSON.stringify(Three$outboundSchema.parse(three));
+}
+
+export function threeFromJSON(
+  jsonString: string,
+): SafeParseResult<Three, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Three$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Three' from JSON`,
+  );
+}
+
+/** @internal */
+export const SelectedValueDefaultsApplyOnUpdate$inboundSchema: z.ZodNativeEnum<
+  typeof SelectedValueDefaultsApplyOnUpdate
+> = z.nativeEnum(SelectedValueDefaultsApplyOnUpdate);
+
+/** @internal */
+export const SelectedValueDefaultsApplyOnUpdate$outboundSchema: z.ZodNativeEnum<
+  typeof SelectedValueDefaultsApplyOnUpdate
+> = SelectedValueDefaultsApplyOnUpdate$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace SelectedValueDefaultsApplyOnUpdate$ {
+  /** @deprecated use `SelectedValueDefaultsApplyOnUpdate$inboundSchema` instead. */
+  export const inboundSchema = SelectedValueDefaultsApplyOnUpdate$inboundSchema;
+  /** @deprecated use `SelectedValueDefaultsApplyOnUpdate$outboundSchema` instead. */
+  export const outboundSchema =
+    SelectedValueDefaultsApplyOnUpdate$outboundSchema;
+}
+
+/** @internal */
+export const SelectedValueDefaults2$inboundSchema: z.ZodType<
+  SelectedValueDefaults2,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  value: z.number().int(),
+  applyOnUpdate: SelectedValueDefaultsApplyOnUpdate$inboundSchema.optional(),
+});
+
+/** @internal */
+export type SelectedValueDefaults2$Outbound = {
+  value: number;
+  applyOnUpdate?: string | undefined;
+};
+
+/** @internal */
+export const SelectedValueDefaults2$outboundSchema: z.ZodType<
+  SelectedValueDefaults2$Outbound,
+  z.ZodTypeDef,
+  SelectedValueDefaults2
+> = z.object({
+  value: z.number().int(),
+  applyOnUpdate: SelectedValueDefaultsApplyOnUpdate$outboundSchema.optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace SelectedValueDefaults2$ {
+  /** @deprecated use `SelectedValueDefaults2$inboundSchema` instead. */
+  export const inboundSchema = SelectedValueDefaults2$inboundSchema;
+  /** @deprecated use `SelectedValueDefaults2$outboundSchema` instead. */
+  export const outboundSchema = SelectedValueDefaults2$outboundSchema;
+  /** @deprecated use `SelectedValueDefaults2$Outbound` instead. */
+  export type Outbound = SelectedValueDefaults2$Outbound;
+}
+
+export function selectedValueDefaults2ToJSON(
+  selectedValueDefaults2: SelectedValueDefaults2,
+): string {
+  return JSON.stringify(
+    SelectedValueDefaults2$outboundSchema.parse(selectedValueDefaults2),
+  );
+}
+
+export function selectedValueDefaults2FromJSON(
+  jsonString: string,
+): SafeParseResult<SelectedValueDefaults2, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => SelectedValueDefaults2$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'SelectedValueDefaults2' from JSON`,
+  );
+}
+
+/** @internal */
+export const ApplyOnUpdate$inboundSchema: z.ZodNativeEnum<
+  typeof ApplyOnUpdate
+> = z.nativeEnum(ApplyOnUpdate);
+
+/** @internal */
+export const ApplyOnUpdate$outboundSchema: z.ZodNativeEnum<
+  typeof ApplyOnUpdate
+> = ApplyOnUpdate$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace ApplyOnUpdate$ {
+  /** @deprecated use `ApplyOnUpdate$inboundSchema` instead. */
+  export const inboundSchema = ApplyOnUpdate$inboundSchema;
+  /** @deprecated use `ApplyOnUpdate$outboundSchema` instead. */
+  export const outboundSchema = ApplyOnUpdate$outboundSchema;
+}
+
+/** @internal */
+export const SelectedValueDefaults1$inboundSchema: z.ZodType<
+  SelectedValueDefaults1,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  value: z.string(),
+  applyOnUpdate: ApplyOnUpdate$inboundSchema.optional(),
+});
+
+/** @internal */
+export type SelectedValueDefaults1$Outbound = {
+  value: string;
+  applyOnUpdate?: string | undefined;
+};
+
+/** @internal */
+export const SelectedValueDefaults1$outboundSchema: z.ZodType<
+  SelectedValueDefaults1$Outbound,
+  z.ZodTypeDef,
+  SelectedValueDefaults1
+> = z.object({
+  value: z.string(),
+  applyOnUpdate: ApplyOnUpdate$outboundSchema.optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace SelectedValueDefaults1$ {
+  /** @deprecated use `SelectedValueDefaults1$inboundSchema` instead. */
+  export const inboundSchema = SelectedValueDefaults1$inboundSchema;
+  /** @deprecated use `SelectedValueDefaults1$outboundSchema` instead. */
+  export const outboundSchema = SelectedValueDefaults1$outboundSchema;
+  /** @deprecated use `SelectedValueDefaults1$Outbound` instead. */
+  export type Outbound = SelectedValueDefaults1$Outbound;
+}
+
+export function selectedValueDefaults1ToJSON(
+  selectedValueDefaults1: SelectedValueDefaults1,
+): string {
+  return JSON.stringify(
+    SelectedValueDefaults1$outboundSchema.parse(selectedValueDefaults1),
+  );
+}
+
+export function selectedValueDefaults1FromJSON(
+  jsonString: string,
+): SafeParseResult<SelectedValueDefaults1, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => SelectedValueDefaults1$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'SelectedValueDefaults1' from JSON`,
+  );
+}
+
+/** @internal */
+export const SelectedValueDefaults$inboundSchema: z.ZodType<
+  SelectedValueDefaults,
+  z.ZodTypeDef,
+  unknown
+> = z.union([
+  z.lazy(() => SelectedValueDefaults1$inboundSchema),
+  z.lazy(() => SelectedValueDefaults2$inboundSchema),
+  z.lazy(() => Three$inboundSchema),
+]);
+
+/** @internal */
+export type SelectedValueDefaults$Outbound =
+  | SelectedValueDefaults1$Outbound
+  | SelectedValueDefaults2$Outbound
+  | Three$Outbound;
+
+/** @internal */
+export const SelectedValueDefaults$outboundSchema: z.ZodType<
+  SelectedValueDefaults$Outbound,
+  z.ZodTypeDef,
+  SelectedValueDefaults
+> = z.union([
+  z.lazy(() => SelectedValueDefaults1$outboundSchema),
+  z.lazy(() => SelectedValueDefaults2$outboundSchema),
+  z.lazy(() => Three$outboundSchema),
+]);
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace SelectedValueDefaults$ {
+  /** @deprecated use `SelectedValueDefaults$inboundSchema` instead. */
+  export const inboundSchema = SelectedValueDefaults$inboundSchema;
+  /** @deprecated use `SelectedValueDefaults$outboundSchema` instead. */
+  export const outboundSchema = SelectedValueDefaults$outboundSchema;
+  /** @deprecated use `SelectedValueDefaults$Outbound` instead. */
+  export type Outbound = SelectedValueDefaults$Outbound;
+}
+
+export function selectedValueDefaultsToJSON(
+  selectedValueDefaults: SelectedValueDefaults,
+): string {
+  return JSON.stringify(
+    SelectedValueDefaults$outboundSchema.parse(selectedValueDefaults),
+  );
+}
+
+export function selectedValueDefaultsFromJSON(
+  jsonString: string,
+): SafeParseResult<SelectedValueDefaults, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => SelectedValueDefaults$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'SelectedValueDefaults' from JSON`,
+  );
+}
+
+/** @internal */
 export const UpdateInstallationInstallationObjects$inboundSchema: z.ZodType<
   UpdateInstallationInstallationObjects,
   z.ZodTypeDef,
   unknown
 > = z.object({
   objectName: z.string().optional(),
-  selectedValueDefaults: z.record(z.string()).optional(),
+  selectedValueDefaults: z.record(
+    z.union([
+      z.lazy(() => SelectedValueDefaults1$inboundSchema),
+      z.lazy(() => SelectedValueDefaults2$inboundSchema),
+      z.lazy(() => Three$inboundSchema),
+    ]),
+  ).optional(),
 });
 
 /** @internal */
 export type UpdateInstallationInstallationObjects$Outbound = {
   objectName?: string | undefined;
-  selectedValueDefaults?: { [k: string]: string } | undefined;
+  selectedValueDefaults?: {
+    [k: string]:
+      | SelectedValueDefaults1$Outbound
+      | SelectedValueDefaults2$Outbound
+      | Three$Outbound;
+  } | undefined;
 };
 
 /** @internal */
@@ -813,7 +1257,13 @@ export const UpdateInstallationInstallationObjects$outboundSchema: z.ZodType<
   UpdateInstallationInstallationObjects
 > = z.object({
   objectName: z.string().optional(),
-  selectedValueDefaults: z.record(z.string()).optional(),
+  selectedValueDefaults: z.record(
+    z.union([
+      z.lazy(() => SelectedValueDefaults1$outboundSchema),
+      z.lazy(() => SelectedValueDefaults2$outboundSchema),
+      z.lazy(() => Three$outboundSchema),
+    ]),
+  ).optional(),
 });
 
 /**
@@ -1924,6 +2374,7 @@ export const UpdateInstallationConnection$inboundSchema: z.ZodType<
   oauth2AuthorizationCode: z.lazy(() =>
     UpdateInstallationOauth2AuthorizationCode$inboundSchema
   ).optional(),
+  apiKey: z.string().optional(),
 });
 
 /** @internal */
@@ -1943,6 +2394,7 @@ export type UpdateInstallationConnection$Outbound = {
   oauth2AuthorizationCode?:
     | UpdateInstallationOauth2AuthorizationCode$Outbound
     | undefined;
+  apiKey?: string | undefined;
 };
 
 /** @internal */
@@ -1967,6 +2419,7 @@ export const UpdateInstallationConnection$outboundSchema: z.ZodType<
   oauth2AuthorizationCode: z.lazy(() =>
     UpdateInstallationOauth2AuthorizationCode$outboundSchema
   ).optional(),
+  apiKey: z.string().optional(),
 });
 
 /**

@@ -8,8 +8,8 @@
 ```typescript
 const value: operations.GetProviderResponseBody = {
   name: "<value>",
-  authType: "basic",
-  baseURL: "https://hoarse-challenge.net",
+  authType: "oauth2",
+  baseURL: "https://serpentine-address.net/",
   oauth2Opts: {
     grantType: "authorizationCode",
     authURL: "https://login.salesforce.com/services/oauth2/authorize",
@@ -31,7 +31,7 @@ const value: operations.GetProviderResponseBody = {
     },
   },
   apiKeyOpts: {
-    attachmentType: "header",
+    attachmentType: "query",
     query: {
       name: "api_key",
     },

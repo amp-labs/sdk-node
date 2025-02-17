@@ -406,6 +406,10 @@ export type GenerateConnectionResponseBody = {
   oauth2AuthorizationCode?:
     | GenerateConnectionOauth2AuthorizationCode
     | undefined;
+  /**
+   * The API key used while making the connection.
+   */
+  apiKey?: string | undefined;
 };
 
 export type GenerateConnectionResponse =
@@ -1500,6 +1504,7 @@ export const GenerateConnectionResponseBody$inboundSchema: z.ZodType<
   oauth2AuthorizationCode: z.lazy(() =>
     GenerateConnectionOauth2AuthorizationCode$inboundSchema
   ).optional(),
+  apiKey: z.string().optional(),
 });
 
 /** @internal */
@@ -1519,6 +1524,7 @@ export type GenerateConnectionResponseBody$Outbound = {
   oauth2AuthorizationCode?:
     | GenerateConnectionOauth2AuthorizationCode$Outbound
     | undefined;
+  apiKey?: string | undefined;
 };
 
 /** @internal */
@@ -1543,6 +1549,7 @@ export const GenerateConnectionResponseBody$outboundSchema: z.ZodType<
   oauth2AuthorizationCode: z.lazy(() =>
     GenerateConnectionOauth2AuthorizationCode$outboundSchema
   ).optional(),
+  apiKey: z.string().optional(),
 });
 
 /**

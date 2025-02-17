@@ -54,6 +54,7 @@ let value: GetInstallationResponseBody = {
     updateTime: new Date("2023-07-13T21:34:44.816Z"),
     authScheme: "oauth2/authorizationCode",
     status: "working",
+    apiKey: "api-key-123",
   },
   createTime: new Date("2024-07-21T01:08:24.125Z"),
   createdBy: "consumer:consumer-123",

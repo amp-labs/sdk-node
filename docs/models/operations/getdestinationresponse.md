@@ -16,7 +16,7 @@ const value: operations.GetDestinationResponseBody = {
       "Authorization": "Bearer 1234",
     },
   },
-  createTime: new Date("2023-06-25T22:48:47.472Z"),
+  createTime: new Date("2024-05-16T02:48:20.581Z"),
 };
 ```
 

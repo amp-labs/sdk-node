@@ -94,6 +94,7 @@ export async function installationGetInstallation(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: baseURL ?? "",
     operationID: "getInstallation",
     oAuth2Scopes: [],
 

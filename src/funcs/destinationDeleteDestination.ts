@@ -82,6 +82,7 @@ export async function destinationDeleteDestination(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: baseURL ?? "",
     operationID: "deleteDestination",
     oAuth2Scopes: [],
 

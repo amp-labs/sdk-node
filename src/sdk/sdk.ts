@@ -3,8 +3,6 @@
  */
 
 import { ClientSDK } from "../lib/sdks.js";
-import { APIKey } from "./apikey.js";
-import { BillingAccount } from "./billingaccount.js";
 import { Connection } from "./connection.js";
 import { Consumer } from "./consumer.js";
 import { Destination } from "./destination.js";
@@ -14,14 +12,12 @@ import { Integration } from "./integration.js";
 import { OAuth } from "./oauth.js";
 import { ObjectsAndFields } from "./objectsandfields.js";
 import { Operation } from "./operation.js";
-import { Org } from "./org.js";
 import { Project } from "./project.js";
 import { Provider } from "./provider.js";
 import { ProviderApp } from "./providerapp.js";
 import { Read } from "./read.js";
 import { Revision } from "./revision.js";
 import { UploadURL } from "./uploadurl.js";
-import { User } from "./user.js";
 
 export class SDK extends ClientSDK {
   private _read?: Read;
@@ -74,11 +70,6 @@ export class SDK extends ClientSDK {
     return (this._provider ??= new Provider(this._options));
   }
 
-  private _apiKey?: APIKey;
-  get apiKey(): APIKey {
-    return (this._apiKey ??= new APIKey(this._options));
-  }
-
   private _connection?: Connection;
   get connection(): Connection {
     return (this._connection ??= new Connection(this._options));
@@ -102,20 +93,5 @@ export class SDK extends ClientSDK {
   private _uploadURL?: UploadURL;
   get uploadURL(): UploadURL {
     return (this._uploadURL ??= new UploadURL(this._options));
-  }
-
-  private _org?: Org;
-  get org(): Org {
-    return (this._org ??= new Org(this._options));
-  }
-
-  private _user?: User;
-  get user(): User {
-    return (this._user ??= new User(this._options));
-  }
-
-  private _billingAccount?: BillingAccount;
-  get billingAccount(): BillingAccount {
-    return (this._billingAccount ??= new BillingAccount(this._options));
   }
 }

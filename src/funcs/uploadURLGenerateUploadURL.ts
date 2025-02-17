@@ -65,6 +65,7 @@ export async function uploadURLGenerateUploadURL(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: baseURL ?? "",
     operationID: "generateUploadUrl",
     oAuth2Scopes: [],
 

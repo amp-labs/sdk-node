@@ -92,6 +92,7 @@ export async function connectionListConnections(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: baseURL ?? "",
     operationID: "listConnections",
     oAuth2Scopes: [],
 

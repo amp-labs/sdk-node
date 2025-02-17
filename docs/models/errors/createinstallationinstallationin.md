@@ -7,7 +7,7 @@ The location of the invalid input
 ```typescript
 import { CreateInstallationInstallationIn } from "openapi/models/errors";
 
-let value: CreateInstallationInstallationIn = "query";
+let value: CreateInstallationInstallationIn = "body";
 ```
 
 ## Values

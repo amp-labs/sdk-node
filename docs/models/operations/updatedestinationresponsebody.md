@@ -17,7 +17,7 @@ let value: UpdateDestinationResponseBody = {
       "Authorization": "Bearer 1234",
     },
   },
-  createTime: new Date("2025-05-22T20:16:52.845Z"),
+  createTime: new Date("2025-11-09T06:06:22.459Z"),
 };
 ```
 

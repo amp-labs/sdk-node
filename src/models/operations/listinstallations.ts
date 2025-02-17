@@ -309,6 +309,10 @@ export type Connection = {
   oauth2AuthorizationCode?:
     | ListInstallationsOauth2AuthorizationCode
     | undefined;
+  /**
+   * The API key used while making the connection.
+   */
+  apiKey?: string | undefined;
 };
 
 export type ListInstallationsProxy = {
@@ -1076,6 +1080,7 @@ export const Connection$inboundSchema: z.ZodType<
   oauth2AuthorizationCode: z.lazy(() =>
     ListInstallationsOauth2AuthorizationCode$inboundSchema
   ).optional(),
+  apiKey: z.string().optional(),
 });
 
 /** @internal */
@@ -1095,6 +1100,7 @@ export type Connection$Outbound = {
   oauth2AuthorizationCode?:
     | ListInstallationsOauth2AuthorizationCode$Outbound
     | undefined;
+  apiKey?: string | undefined;
 };
 
 /** @internal */
@@ -1119,6 +1125,7 @@ export const Connection$outboundSchema: z.ZodType<
   oauth2AuthorizationCode: z.lazy(() =>
     ListInstallationsOauth2AuthorizationCode$outboundSchema
   ).optional(),
+  apiKey: z.string().optional(),
 });
 
 /**

@@ -305,6 +305,10 @@ export type GetInstallationConnection = {
    */
   status: GetInstallationStatus;
   oauth2AuthorizationCode?: GetInstallationOauth2AuthorizationCode | undefined;
+  /**
+   * The API key used while making the connection.
+   */
+  apiKey?: string | undefined;
 };
 
 export type GetInstallationProxy = {
@@ -1081,6 +1085,7 @@ export const GetInstallationConnection$inboundSchema: z.ZodType<
   oauth2AuthorizationCode: z.lazy(() =>
     GetInstallationOauth2AuthorizationCode$inboundSchema
   ).optional(),
+  apiKey: z.string().optional(),
 });
 
 /** @internal */
@@ -1100,6 +1105,7 @@ export type GetInstallationConnection$Outbound = {
   oauth2AuthorizationCode?:
     | GetInstallationOauth2AuthorizationCode$Outbound
     | undefined;
+  apiKey?: string | undefined;
 };
 
 /** @internal */
@@ -1124,6 +1130,7 @@ export const GetInstallationConnection$outboundSchema: z.ZodType<
   oauth2AuthorizationCode: z.lazy(() =>
     GetInstallationOauth2AuthorizationCode$outboundSchema
   ).optional(),
+  apiKey: z.string().optional(),
 });
 
 /**

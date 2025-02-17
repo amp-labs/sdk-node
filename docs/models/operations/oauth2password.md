@@ -6,8 +6,8 @@
 import { Oauth2Password } from "openapi/models/operations";
 
 let value: Oauth2Password = {
-  username: "Anahi_Satterfield",
-  password: "XD3LlRWIQSaF2vT",
+  username: "Jaida.Schmidt51",
+  password: "WIQSaF2vTLtLeFv",
   clientId: "<id>",
   clientSecret: "<value>",
 };
