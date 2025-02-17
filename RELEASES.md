@@ -15,3 +15,13 @@ Based on:
 - Speakeasy CLI 1.480.1 (2.499.1) https://github.com/speakeasy-api/speakeasy
 ### Generated
 - [typescript v0.2.0] .
+
+## 2025-02-17 15:32:10
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.493.0 (2.512.4) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [typescript v0.3.4] .
+### Releases
+- [NPM v0.3.4] https://www.npmjs.com/package/sdk-node/v/0.3.4 - .

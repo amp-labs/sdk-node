@@ -1,6 +1,6 @@
 {
   "name": "sdk-node",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "author": "Ampersand",
   "main": "./index.js",
   "sideEffects": false,
