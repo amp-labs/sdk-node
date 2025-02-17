@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { BulkWrite } from "openapi/models/operations";
+import { BulkWrite } from "sdk-node/models/operations";
 
 let value: BulkWrite = {
   insert: false,

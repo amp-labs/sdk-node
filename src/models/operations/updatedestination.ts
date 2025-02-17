@@ -52,7 +52,7 @@ export type UpdateDestinationRequest = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export type UpdateDestinationDestinationResponseBody = {
+export type UpdateDestinationDestinationsResponseBody = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -126,7 +126,7 @@ export type UpdateDestinationDestinationResponseBody = {
   context?: { [k: string]: any } | undefined;
 };
 
-export type UpdateDestinationDestinationMetadata = {
+export type UpdateDestinationDestinationsMetadata = {
   /**
    * Webhook URL
    */
@@ -153,7 +153,7 @@ export type UpdateDestinationResponseBody = {
    * The type of the destination
    */
   type: string;
-  metadata: UpdateDestinationDestinationMetadata;
+  metadata: UpdateDestinationDestinationsMetadata;
   /**
    * The time the destination was created.
    */
@@ -166,7 +166,7 @@ export type UpdateDestinationResponseBody = {
 
 export type UpdateDestinationResponse =
   | UpdateDestinationResponseBody
-  | UpdateDestinationDestinationResponseBody;
+  | UpdateDestinationDestinationsResponseBody;
 
 /** @internal */
 export const UpdateDestinationMetadata$inboundSchema: z.ZodType<
@@ -406,8 +406,8 @@ export function updateDestinationRequestFromJSON(
 }
 
 /** @internal */
-export const UpdateDestinationDestinationResponseBody$inboundSchema: z.ZodType<
-  UpdateDestinationDestinationResponseBody,
+export const UpdateDestinationDestinationsResponseBody$inboundSchema: z.ZodType<
+  UpdateDestinationDestinationsResponseBody,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -433,7 +433,7 @@ export const UpdateDestinationDestinationResponseBody$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type UpdateDestinationDestinationResponseBody$Outbound = {
+export type UpdateDestinationDestinationsResponseBody$Outbound = {
   type: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -454,75 +454,76 @@ export type UpdateDestinationDestinationResponseBody$Outbound = {
 };
 
 /** @internal */
-export const UpdateDestinationDestinationResponseBody$outboundSchema: z.ZodType<
-  UpdateDestinationDestinationResponseBody$Outbound,
-  z.ZodTypeDef,
-  UpdateDestinationDestinationResponseBody
-> = z.object({
-  type: z.string().default("about:blank"),
-  href: z.string().optional(),
-  title: z.string().optional(),
-  status: z.number().int().optional(),
-  detail: z.string().optional(),
-  instance: z.string().optional(),
-  subsystem: z.string().optional(),
-  time: z.date().transform(v => v.toISOString()).optional(),
-  requestId: z.string().optional(),
-  causes: z.array(z.string()).optional(),
-  remedy: z.string().optional(),
-  supportEmail: z.string().optional(),
-  supportPhone: z.string().optional(),
-  supportUrl: z.string().optional(),
-  retryable: z.boolean().optional(),
-  retryAfter: z.date().transform(v => v.toISOString()).optional(),
-  context: z.record(z.any()).optional(),
-});
+export const UpdateDestinationDestinationsResponseBody$outboundSchema:
+  z.ZodType<
+    UpdateDestinationDestinationsResponseBody$Outbound,
+    z.ZodTypeDef,
+    UpdateDestinationDestinationsResponseBody
+  > = z.object({
+    type: z.string().default("about:blank"),
+    href: z.string().optional(),
+    title: z.string().optional(),
+    status: z.number().int().optional(),
+    detail: z.string().optional(),
+    instance: z.string().optional(),
+    subsystem: z.string().optional(),
+    time: z.date().transform(v => v.toISOString()).optional(),
+    requestId: z.string().optional(),
+    causes: z.array(z.string()).optional(),
+    remedy: z.string().optional(),
+    supportEmail: z.string().optional(),
+    supportPhone: z.string().optional(),
+    supportUrl: z.string().optional(),
+    retryable: z.boolean().optional(),
+    retryAfter: z.date().transform(v => v.toISOString()).optional(),
+    context: z.record(z.any()).optional(),
+  });
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace UpdateDestinationDestinationResponseBody$ {
-  /** @deprecated use `UpdateDestinationDestinationResponseBody$inboundSchema` instead. */
+export namespace UpdateDestinationDestinationsResponseBody$ {
+  /** @deprecated use `UpdateDestinationDestinationsResponseBody$inboundSchema` instead. */
   export const inboundSchema =
-    UpdateDestinationDestinationResponseBody$inboundSchema;
-  /** @deprecated use `UpdateDestinationDestinationResponseBody$outboundSchema` instead. */
+    UpdateDestinationDestinationsResponseBody$inboundSchema;
+  /** @deprecated use `UpdateDestinationDestinationsResponseBody$outboundSchema` instead. */
   export const outboundSchema =
-    UpdateDestinationDestinationResponseBody$outboundSchema;
-  /** @deprecated use `UpdateDestinationDestinationResponseBody$Outbound` instead. */
-  export type Outbound = UpdateDestinationDestinationResponseBody$Outbound;
+    UpdateDestinationDestinationsResponseBody$outboundSchema;
+  /** @deprecated use `UpdateDestinationDestinationsResponseBody$Outbound` instead. */
+  export type Outbound = UpdateDestinationDestinationsResponseBody$Outbound;
 }
 
-export function updateDestinationDestinationResponseBodyToJSON(
-  updateDestinationDestinationResponseBody:
-    UpdateDestinationDestinationResponseBody,
+export function updateDestinationDestinationsResponseBodyToJSON(
+  updateDestinationDestinationsResponseBody:
+    UpdateDestinationDestinationsResponseBody,
 ): string {
   return JSON.stringify(
-    UpdateDestinationDestinationResponseBody$outboundSchema.parse(
-      updateDestinationDestinationResponseBody,
+    UpdateDestinationDestinationsResponseBody$outboundSchema.parse(
+      updateDestinationDestinationsResponseBody,
     ),
   );
 }
 
-export function updateDestinationDestinationResponseBodyFromJSON(
+export function updateDestinationDestinationsResponseBodyFromJSON(
   jsonString: string,
 ): SafeParseResult<
-  UpdateDestinationDestinationResponseBody,
+  UpdateDestinationDestinationsResponseBody,
   SDKValidationError
 > {
   return safeParse(
     jsonString,
     (x) =>
-      UpdateDestinationDestinationResponseBody$inboundSchema.parse(
+      UpdateDestinationDestinationsResponseBody$inboundSchema.parse(
         JSON.parse(x),
       ),
-    `Failed to parse 'UpdateDestinationDestinationResponseBody' from JSON`,
+    `Failed to parse 'UpdateDestinationDestinationsResponseBody' from JSON`,
   );
 }
 
 /** @internal */
-export const UpdateDestinationDestinationMetadata$inboundSchema: z.ZodType<
-  UpdateDestinationDestinationMetadata,
+export const UpdateDestinationDestinationsMetadata$inboundSchema: z.ZodType<
+  UpdateDestinationDestinationsMetadata,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -531,16 +532,16 @@ export const UpdateDestinationDestinationMetadata$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type UpdateDestinationDestinationMetadata$Outbound = {
+export type UpdateDestinationDestinationsMetadata$Outbound = {
   url?: string | undefined;
   headers?: { [k: string]: string } | null | undefined;
 };
 
 /** @internal */
-export const UpdateDestinationDestinationMetadata$outboundSchema: z.ZodType<
-  UpdateDestinationDestinationMetadata$Outbound,
+export const UpdateDestinationDestinationsMetadata$outboundSchema: z.ZodType<
+  UpdateDestinationDestinationsMetadata$Outbound,
   z.ZodTypeDef,
-  UpdateDestinationDestinationMetadata
+  UpdateDestinationDestinationsMetadata
 > = z.object({
   url: z.string().optional(),
   headers: z.nullable(z.record(z.string())).optional(),
@@ -550,35 +551,35 @@ export const UpdateDestinationDestinationMetadata$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace UpdateDestinationDestinationMetadata$ {
-  /** @deprecated use `UpdateDestinationDestinationMetadata$inboundSchema` instead. */
+export namespace UpdateDestinationDestinationsMetadata$ {
+  /** @deprecated use `UpdateDestinationDestinationsMetadata$inboundSchema` instead. */
   export const inboundSchema =
-    UpdateDestinationDestinationMetadata$inboundSchema;
-  /** @deprecated use `UpdateDestinationDestinationMetadata$outboundSchema` instead. */
+    UpdateDestinationDestinationsMetadata$inboundSchema;
+  /** @deprecated use `UpdateDestinationDestinationsMetadata$outboundSchema` instead. */
   export const outboundSchema =
-    UpdateDestinationDestinationMetadata$outboundSchema;
-  /** @deprecated use `UpdateDestinationDestinationMetadata$Outbound` instead. */
-  export type Outbound = UpdateDestinationDestinationMetadata$Outbound;
+    UpdateDestinationDestinationsMetadata$outboundSchema;
+  /** @deprecated use `UpdateDestinationDestinationsMetadata$Outbound` instead. */
+  export type Outbound = UpdateDestinationDestinationsMetadata$Outbound;
 }
 
-export function updateDestinationDestinationMetadataToJSON(
-  updateDestinationDestinationMetadata: UpdateDestinationDestinationMetadata,
+export function updateDestinationDestinationsMetadataToJSON(
+  updateDestinationDestinationsMetadata: UpdateDestinationDestinationsMetadata,
 ): string {
   return JSON.stringify(
-    UpdateDestinationDestinationMetadata$outboundSchema.parse(
-      updateDestinationDestinationMetadata,
+    UpdateDestinationDestinationsMetadata$outboundSchema.parse(
+      updateDestinationDestinationsMetadata,
     ),
   );
 }
 
-export function updateDestinationDestinationMetadataFromJSON(
+export function updateDestinationDestinationsMetadataFromJSON(
   jsonString: string,
-): SafeParseResult<UpdateDestinationDestinationMetadata, SDKValidationError> {
+): SafeParseResult<UpdateDestinationDestinationsMetadata, SDKValidationError> {
   return safeParse(
     jsonString,
     (x) =>
-      UpdateDestinationDestinationMetadata$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'UpdateDestinationDestinationMetadata' from JSON`,
+      UpdateDestinationDestinationsMetadata$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'UpdateDestinationDestinationsMetadata' from JSON`,
   );
 }
 
@@ -591,7 +592,7 @@ export const UpdateDestinationResponseBody$inboundSchema: z.ZodType<
   id: z.string(),
   name: z.string(),
   type: z.string(),
-  metadata: z.lazy(() => UpdateDestinationDestinationMetadata$inboundSchema),
+  metadata: z.lazy(() => UpdateDestinationDestinationsMetadata$inboundSchema),
   createTime: z.string().datetime({ offset: true }).transform(v => new Date(v)),
   updateTime: z.string().datetime({ offset: true }).transform(v => new Date(v))
     .optional(),
@@ -602,7 +603,7 @@ export type UpdateDestinationResponseBody$Outbound = {
   id: string;
   name: string;
   type: string;
-  metadata: UpdateDestinationDestinationMetadata$Outbound;
+  metadata: UpdateDestinationDestinationsMetadata$Outbound;
   createTime: string;
   updateTime?: string | undefined;
 };
@@ -616,7 +617,7 @@ export const UpdateDestinationResponseBody$outboundSchema: z.ZodType<
   id: z.string(),
   name: z.string(),
   type: z.string(),
-  metadata: z.lazy(() => UpdateDestinationDestinationMetadata$outboundSchema),
+  metadata: z.lazy(() => UpdateDestinationDestinationsMetadata$outboundSchema),
   createTime: z.date().transform(v => v.toISOString()),
   updateTime: z.date().transform(v => v.toISOString()).optional(),
 });
@@ -661,13 +662,13 @@ export const UpdateDestinationResponse$inboundSchema: z.ZodType<
   unknown
 > = z.union([
   z.lazy(() => UpdateDestinationResponseBody$inboundSchema),
-  z.lazy(() => UpdateDestinationDestinationResponseBody$inboundSchema),
+  z.lazy(() => UpdateDestinationDestinationsResponseBody$inboundSchema),
 ]);
 
 /** @internal */
 export type UpdateDestinationResponse$Outbound =
   | UpdateDestinationResponseBody$Outbound
-  | UpdateDestinationDestinationResponseBody$Outbound;
+  | UpdateDestinationDestinationsResponseBody$Outbound;
 
 /** @internal */
 export const UpdateDestinationResponse$outboundSchema: z.ZodType<
@@ -676,7 +677,7 @@ export const UpdateDestinationResponse$outboundSchema: z.ZodType<
   UpdateDestinationResponse
 > = z.union([
   z.lazy(() => UpdateDestinationResponseBody$outboundSchema),
-  z.lazy(() => UpdateDestinationDestinationResponseBody$outboundSchema),
+  z.lazy(() => UpdateDestinationDestinationsResponseBody$outboundSchema),
 ]);
 
 /**

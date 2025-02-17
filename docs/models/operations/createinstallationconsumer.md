@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { CreateInstallationConsumer } from "openapi/models/operations";
+import { CreateInstallationConsumer } from "sdk-node/models/operations";
 
 let value: CreateInstallationConsumer = {
   consumerRef: "consumer-123",

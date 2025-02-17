@@ -5,7 +5,7 @@ The newly created provider app
 ## Example Usage
 
 ```typescript
-import { CreateProviderAppResponseBody } from "openapi/models/operations";
+import { CreateProviderAppResponseBody } from "sdk-node/models/operations";
 
 let value: CreateProviderAppResponseBody = {
   id: "provider-app-123",

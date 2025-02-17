@@ -249,7 +249,7 @@ export type ListConnectionsOauth2AuthorizationCode = {
   scopes?: Array<string> | undefined;
 };
 
-export type ListConnectionsConnectionResponseBody = {
+export type ListConnectionsConnectionsResponseBody = {
   /**
    * The connection ID.
    */
@@ -290,11 +290,15 @@ export type ListConnectionsConnectionResponseBody = {
    */
   status: Status;
   oauth2AuthorizationCode?: ListConnectionsOauth2AuthorizationCode | undefined;
+  /**
+   * The API key used while making the connection.
+   */
+  apiKey?: string | undefined;
 };
 
 export type ListConnectionsResponse =
   | ListConnectionsResponseBody
-  | Array<ListConnectionsConnectionResponseBody>;
+  | Array<ListConnectionsConnectionsResponseBody>;
 
 /** @internal */
 export const ListConnectionsRequest$inboundSchema: z.ZodType<
@@ -890,8 +894,8 @@ export function listConnectionsOauth2AuthorizationCodeFromJSON(
 }
 
 /** @internal */
-export const ListConnectionsConnectionResponseBody$inboundSchema: z.ZodType<
-  ListConnectionsConnectionResponseBody,
+export const ListConnectionsConnectionsResponseBody$inboundSchema: z.ZodType<
+  ListConnectionsConnectionsResponseBody,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -912,10 +916,11 @@ export const ListConnectionsConnectionResponseBody$inboundSchema: z.ZodType<
   oauth2AuthorizationCode: z.lazy(() =>
     ListConnectionsOauth2AuthorizationCode$inboundSchema
   ).optional(),
+  apiKey: z.string().optional(),
 });
 
 /** @internal */
-export type ListConnectionsConnectionResponseBody$Outbound = {
+export type ListConnectionsConnectionsResponseBody$Outbound = {
   id: string;
   projectId: string;
   provider: string;
@@ -931,13 +936,14 @@ export type ListConnectionsConnectionResponseBody$Outbound = {
   oauth2AuthorizationCode?:
     | ListConnectionsOauth2AuthorizationCode$Outbound
     | undefined;
+  apiKey?: string | undefined;
 };
 
 /** @internal */
-export const ListConnectionsConnectionResponseBody$outboundSchema: z.ZodType<
-  ListConnectionsConnectionResponseBody$Outbound,
+export const ListConnectionsConnectionsResponseBody$outboundSchema: z.ZodType<
+  ListConnectionsConnectionsResponseBody$Outbound,
   z.ZodTypeDef,
-  ListConnectionsConnectionResponseBody
+  ListConnectionsConnectionsResponseBody
 > = z.object({
   id: z.string(),
   projectId: z.string(),
@@ -955,41 +961,43 @@ export const ListConnectionsConnectionResponseBody$outboundSchema: z.ZodType<
   oauth2AuthorizationCode: z.lazy(() =>
     ListConnectionsOauth2AuthorizationCode$outboundSchema
   ).optional(),
+  apiKey: z.string().optional(),
 });
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace ListConnectionsConnectionResponseBody$ {
-  /** @deprecated use `ListConnectionsConnectionResponseBody$inboundSchema` instead. */
+export namespace ListConnectionsConnectionsResponseBody$ {
+  /** @deprecated use `ListConnectionsConnectionsResponseBody$inboundSchema` instead. */
   export const inboundSchema =
-    ListConnectionsConnectionResponseBody$inboundSchema;
-  /** @deprecated use `ListConnectionsConnectionResponseBody$outboundSchema` instead. */
+    ListConnectionsConnectionsResponseBody$inboundSchema;
+  /** @deprecated use `ListConnectionsConnectionsResponseBody$outboundSchema` instead. */
   export const outboundSchema =
-    ListConnectionsConnectionResponseBody$outboundSchema;
-  /** @deprecated use `ListConnectionsConnectionResponseBody$Outbound` instead. */
-  export type Outbound = ListConnectionsConnectionResponseBody$Outbound;
+    ListConnectionsConnectionsResponseBody$outboundSchema;
+  /** @deprecated use `ListConnectionsConnectionsResponseBody$Outbound` instead. */
+  export type Outbound = ListConnectionsConnectionsResponseBody$Outbound;
 }
 
-export function listConnectionsConnectionResponseBodyToJSON(
-  listConnectionsConnectionResponseBody: ListConnectionsConnectionResponseBody,
+export function listConnectionsConnectionsResponseBodyToJSON(
+  listConnectionsConnectionsResponseBody:
+    ListConnectionsConnectionsResponseBody,
 ): string {
   return JSON.stringify(
-    ListConnectionsConnectionResponseBody$outboundSchema.parse(
-      listConnectionsConnectionResponseBody,
+    ListConnectionsConnectionsResponseBody$outboundSchema.parse(
+      listConnectionsConnectionsResponseBody,
     ),
   );
 }
 
-export function listConnectionsConnectionResponseBodyFromJSON(
+export function listConnectionsConnectionsResponseBodyFromJSON(
   jsonString: string,
-): SafeParseResult<ListConnectionsConnectionResponseBody, SDKValidationError> {
+): SafeParseResult<ListConnectionsConnectionsResponseBody, SDKValidationError> {
   return safeParse(
     jsonString,
     (x) =>
-      ListConnectionsConnectionResponseBody$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ListConnectionsConnectionResponseBody' from JSON`,
+      ListConnectionsConnectionsResponseBody$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListConnectionsConnectionsResponseBody' from JSON`,
   );
 }
 
@@ -1000,13 +1008,13 @@ export const ListConnectionsResponse$inboundSchema: z.ZodType<
   unknown
 > = z.union([
   z.lazy(() => ListConnectionsResponseBody$inboundSchema),
-  z.array(z.lazy(() => ListConnectionsConnectionResponseBody$inboundSchema)),
+  z.array(z.lazy(() => ListConnectionsConnectionsResponseBody$inboundSchema)),
 ]);
 
 /** @internal */
 export type ListConnectionsResponse$Outbound =
   | ListConnectionsResponseBody$Outbound
-  | Array<ListConnectionsConnectionResponseBody$Outbound>;
+  | Array<ListConnectionsConnectionsResponseBody$Outbound>;
 
 /** @internal */
 export const ListConnectionsResponse$outboundSchema: z.ZodType<
@@ -1015,7 +1023,7 @@ export const ListConnectionsResponse$outboundSchema: z.ZodType<
   ListConnectionsResponse
 > = z.union([
   z.lazy(() => ListConnectionsResponseBody$outboundSchema),
-  z.array(z.lazy(() => ListConnectionsConnectionResponseBody$outboundSchema)),
+  z.array(z.lazy(() => ListConnectionsConnectionsResponseBody$outboundSchema)),
 ]);
 
 /**

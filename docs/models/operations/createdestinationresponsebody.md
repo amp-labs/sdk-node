@@ -5,7 +5,7 @@ Created
 ## Example Usage
 
 ```typescript
-import { CreateDestinationResponseBody } from "openapi/models/operations";
+import { CreateDestinationResponseBody } from "sdk-node/models/operations";
 
 let value: CreateDestinationResponseBody = {
   id: "<id>",
@@ -17,7 +17,7 @@ let value: CreateDestinationResponseBody = {
       "Authorization": "Bearer 1234",
     },
   },
-  createTime: new Date("2025-02-05T18:51:30.654Z"),
+  createTime: new Date("2025-05-22T20:16:52.845Z"),
 };
 ```
 

@@ -3,9 +3,9 @@
 ## Example Usage
 
 ```typescript
-import { GetProviderGrantType } from "openapi/models/operations";
+import { GetProviderGrantType } from "sdk-node/models/operations";
 
-let value: GetProviderGrantType = "password";
+let value: GetProviderGrantType = "clientCredentials";
 ```
 
 ## Values

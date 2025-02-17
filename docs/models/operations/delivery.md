@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { Delivery } from "openapi/models/operations";
+import { Delivery } from "sdk-node/models/operations";
 
 let value: Delivery = {};
 ```

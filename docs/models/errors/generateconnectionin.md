@@ -5,9 +5,9 @@ The location of the invalid input
 ## Example Usage
 
 ```typescript
-import { GenerateConnectionIn } from "openapi/models/errors";
+import { GenerateConnectionIn } from "sdk-node/models/errors";
 
-let value: GenerateConnectionIn = "path";
+let value: GenerateConnectionIn = "header";
 ```
 
 ## Values

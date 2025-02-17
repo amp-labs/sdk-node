@@ -270,6 +270,13 @@ export type BulkWrite = {
   delete: boolean;
 };
 
+export type SubscribeSupport = {
+  create?: boolean | undefined;
+  update?: boolean | undefined;
+  delete?: boolean | undefined;
+  passThrough?: boolean | undefined;
+};
+
 /**
  * The supported features for the provider.
  */
@@ -279,6 +286,7 @@ export type Support = {
   read: boolean;
   subscribe: boolean;
   write: boolean;
+  subscribeSupport?: SubscribeSupport | undefined;
 };
 
 /**
@@ -320,7 +328,59 @@ export type Media = {
   darkMode?: DarkMode | undefined;
 };
 
-export type ListProvidersProviderResponseBody = {
+/**
+ * The scope of the subscription.
+ */
+export const SubscriptionScope = {
+  Integration: "integration",
+  Installation: "installation",
+} as const;
+/**
+ * The scope of the subscription.
+ */
+export type SubscriptionScope = ClosedEnum<typeof SubscriptionScope>;
+
+/**
+ * The scope of the target URL.
+ */
+export const TargetURLScope = {
+  Integration: "integration",
+  Installation: "installation",
+} as const;
+/**
+ * The scope of the target URL.
+ */
+export type TargetURLScope = ClosedEnum<typeof TargetURLScope>;
+
+/**
+ * The timing of the registration.
+ */
+export const RegistrationTiming = {
+  ProviderApp: "providerApp",
+  Integration: "integration",
+  Installation: "installation",
+} as const;
+/**
+ * The timing of the registration.
+ */
+export type RegistrationTiming = ClosedEnum<typeof RegistrationTiming>;
+
+export type SubscribeOpts = {
+  /**
+   * The scope of the subscription.
+   */
+  subscriptionScope: SubscriptionScope;
+  /**
+   * The scope of the target URL.
+   */
+  targetURLScope: TargetURLScope;
+  /**
+   * The timing of the registration.
+   */
+  registrationTiming: RegistrationTiming;
+};
+
+export type ListProvidersProvidersResponseBody = {
   name: string;
   /**
    * The type of authentication required by the provider.
@@ -360,10 +420,11 @@ export type ListProvidersProviderResponseBody = {
   postAuthInfoNeeded?: boolean | undefined;
   media?: Media | undefined;
   labels?: { [k: string]: string } | undefined;
+  subscribeOpts?: SubscribeOpts | undefined;
 };
 
 export type ListProvidersResponse = ListProvidersResponseBody | {
-  [k: string]: ListProvidersProviderResponseBody;
+  [k: string]: ListProvidersProvidersResponseBody;
 };
 
 /** @internal */
@@ -1011,6 +1072,69 @@ export function bulkWriteFromJSON(
 }
 
 /** @internal */
+export const SubscribeSupport$inboundSchema: z.ZodType<
+  SubscribeSupport,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  create: z.boolean().optional(),
+  update: z.boolean().optional(),
+  delete: z.boolean().optional(),
+  passThrough: z.boolean().optional(),
+});
+
+/** @internal */
+export type SubscribeSupport$Outbound = {
+  create?: boolean | undefined;
+  update?: boolean | undefined;
+  delete?: boolean | undefined;
+  passThrough?: boolean | undefined;
+};
+
+/** @internal */
+export const SubscribeSupport$outboundSchema: z.ZodType<
+  SubscribeSupport$Outbound,
+  z.ZodTypeDef,
+  SubscribeSupport
+> = z.object({
+  create: z.boolean().optional(),
+  update: z.boolean().optional(),
+  delete: z.boolean().optional(),
+  passThrough: z.boolean().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace SubscribeSupport$ {
+  /** @deprecated use `SubscribeSupport$inboundSchema` instead. */
+  export const inboundSchema = SubscribeSupport$inboundSchema;
+  /** @deprecated use `SubscribeSupport$outboundSchema` instead. */
+  export const outboundSchema = SubscribeSupport$outboundSchema;
+  /** @deprecated use `SubscribeSupport$Outbound` instead. */
+  export type Outbound = SubscribeSupport$Outbound;
+}
+
+export function subscribeSupportToJSON(
+  subscribeSupport: SubscribeSupport,
+): string {
+  return JSON.stringify(
+    SubscribeSupport$outboundSchema.parse(subscribeSupport),
+  );
+}
+
+export function subscribeSupportFromJSON(
+  jsonString: string,
+): SafeParseResult<SubscribeSupport, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => SubscribeSupport$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'SubscribeSupport' from JSON`,
+  );
+}
+
+/** @internal */
 export const Support$inboundSchema: z.ZodType<Support, z.ZodTypeDef, unknown> =
   z.object({
     bulkWrite: z.lazy(() => BulkWrite$inboundSchema),
@@ -1018,6 +1142,7 @@ export const Support$inboundSchema: z.ZodType<Support, z.ZodTypeDef, unknown> =
     read: z.boolean(),
     subscribe: z.boolean(),
     write: z.boolean(),
+    subscribeSupport: z.lazy(() => SubscribeSupport$inboundSchema).optional(),
   });
 
 /** @internal */
@@ -1027,6 +1152,7 @@ export type Support$Outbound = {
   read: boolean;
   subscribe: boolean;
   write: boolean;
+  subscribeSupport?: SubscribeSupport$Outbound | undefined;
 };
 
 /** @internal */
@@ -1040,6 +1166,7 @@ export const Support$outboundSchema: z.ZodType<
   read: z.boolean(),
   subscribe: z.boolean(),
   write: z.boolean(),
+  subscribeSupport: z.lazy(() => SubscribeSupport$outboundSchema).optional(),
 });
 
 /**
@@ -1223,8 +1350,127 @@ export function mediaFromJSON(
 }
 
 /** @internal */
-export const ListProvidersProviderResponseBody$inboundSchema: z.ZodType<
-  ListProvidersProviderResponseBody,
+export const SubscriptionScope$inboundSchema: z.ZodNativeEnum<
+  typeof SubscriptionScope
+> = z.nativeEnum(SubscriptionScope);
+
+/** @internal */
+export const SubscriptionScope$outboundSchema: z.ZodNativeEnum<
+  typeof SubscriptionScope
+> = SubscriptionScope$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace SubscriptionScope$ {
+  /** @deprecated use `SubscriptionScope$inboundSchema` instead. */
+  export const inboundSchema = SubscriptionScope$inboundSchema;
+  /** @deprecated use `SubscriptionScope$outboundSchema` instead. */
+  export const outboundSchema = SubscriptionScope$outboundSchema;
+}
+
+/** @internal */
+export const TargetURLScope$inboundSchema: z.ZodNativeEnum<
+  typeof TargetURLScope
+> = z.nativeEnum(TargetURLScope);
+
+/** @internal */
+export const TargetURLScope$outboundSchema: z.ZodNativeEnum<
+  typeof TargetURLScope
+> = TargetURLScope$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace TargetURLScope$ {
+  /** @deprecated use `TargetURLScope$inboundSchema` instead. */
+  export const inboundSchema = TargetURLScope$inboundSchema;
+  /** @deprecated use `TargetURLScope$outboundSchema` instead. */
+  export const outboundSchema = TargetURLScope$outboundSchema;
+}
+
+/** @internal */
+export const RegistrationTiming$inboundSchema: z.ZodNativeEnum<
+  typeof RegistrationTiming
+> = z.nativeEnum(RegistrationTiming);
+
+/** @internal */
+export const RegistrationTiming$outboundSchema: z.ZodNativeEnum<
+  typeof RegistrationTiming
+> = RegistrationTiming$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace RegistrationTiming$ {
+  /** @deprecated use `RegistrationTiming$inboundSchema` instead. */
+  export const inboundSchema = RegistrationTiming$inboundSchema;
+  /** @deprecated use `RegistrationTiming$outboundSchema` instead. */
+  export const outboundSchema = RegistrationTiming$outboundSchema;
+}
+
+/** @internal */
+export const SubscribeOpts$inboundSchema: z.ZodType<
+  SubscribeOpts,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  subscriptionScope: SubscriptionScope$inboundSchema,
+  targetURLScope: TargetURLScope$inboundSchema,
+  registrationTiming: RegistrationTiming$inboundSchema,
+});
+
+/** @internal */
+export type SubscribeOpts$Outbound = {
+  subscriptionScope: string;
+  targetURLScope: string;
+  registrationTiming: string;
+};
+
+/** @internal */
+export const SubscribeOpts$outboundSchema: z.ZodType<
+  SubscribeOpts$Outbound,
+  z.ZodTypeDef,
+  SubscribeOpts
+> = z.object({
+  subscriptionScope: SubscriptionScope$outboundSchema,
+  targetURLScope: TargetURLScope$outboundSchema,
+  registrationTiming: RegistrationTiming$outboundSchema,
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace SubscribeOpts$ {
+  /** @deprecated use `SubscribeOpts$inboundSchema` instead. */
+  export const inboundSchema = SubscribeOpts$inboundSchema;
+  /** @deprecated use `SubscribeOpts$outboundSchema` instead. */
+  export const outboundSchema = SubscribeOpts$outboundSchema;
+  /** @deprecated use `SubscribeOpts$Outbound` instead. */
+  export type Outbound = SubscribeOpts$Outbound;
+}
+
+export function subscribeOptsToJSON(subscribeOpts: SubscribeOpts): string {
+  return JSON.stringify(SubscribeOpts$outboundSchema.parse(subscribeOpts));
+}
+
+export function subscribeOptsFromJSON(
+  jsonString: string,
+): SafeParseResult<SubscribeOpts, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => SubscribeOpts$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'SubscribeOpts' from JSON`,
+  );
+}
+
+/** @internal */
+export const ListProvidersProvidersResponseBody$inboundSchema: z.ZodType<
+  ListProvidersProvidersResponseBody,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -1240,10 +1486,11 @@ export const ListProvidersProviderResponseBody$inboundSchema: z.ZodType<
   postAuthInfoNeeded: z.boolean().optional(),
   media: z.lazy(() => Media$inboundSchema).optional(),
   labels: z.record(z.string()).optional(),
+  subscribeOpts: z.lazy(() => SubscribeOpts$inboundSchema).optional(),
 });
 
 /** @internal */
-export type ListProvidersProviderResponseBody$Outbound = {
+export type ListProvidersProvidersResponseBody$Outbound = {
   name: string;
   authType: string;
   baseURL: string;
@@ -1256,13 +1503,14 @@ export type ListProvidersProviderResponseBody$Outbound = {
   postAuthInfoNeeded?: boolean | undefined;
   media?: Media$Outbound | undefined;
   labels?: { [k: string]: string } | undefined;
+  subscribeOpts?: SubscribeOpts$Outbound | undefined;
 };
 
 /** @internal */
-export const ListProvidersProviderResponseBody$outboundSchema: z.ZodType<
-  ListProvidersProviderResponseBody$Outbound,
+export const ListProvidersProvidersResponseBody$outboundSchema: z.ZodType<
+  ListProvidersProvidersResponseBody$Outbound,
   z.ZodTypeDef,
-  ListProvidersProviderResponseBody
+  ListProvidersProvidersResponseBody
 > = z.object({
   name: z.string(),
   authType: AuthType$outboundSchema,
@@ -1276,39 +1524,41 @@ export const ListProvidersProviderResponseBody$outboundSchema: z.ZodType<
   postAuthInfoNeeded: z.boolean().optional(),
   media: z.lazy(() => Media$outboundSchema).optional(),
   labels: z.record(z.string()).optional(),
+  subscribeOpts: z.lazy(() => SubscribeOpts$outboundSchema).optional(),
 });
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace ListProvidersProviderResponseBody$ {
-  /** @deprecated use `ListProvidersProviderResponseBody$inboundSchema` instead. */
-  export const inboundSchema = ListProvidersProviderResponseBody$inboundSchema;
-  /** @deprecated use `ListProvidersProviderResponseBody$outboundSchema` instead. */
+export namespace ListProvidersProvidersResponseBody$ {
+  /** @deprecated use `ListProvidersProvidersResponseBody$inboundSchema` instead. */
+  export const inboundSchema = ListProvidersProvidersResponseBody$inboundSchema;
+  /** @deprecated use `ListProvidersProvidersResponseBody$outboundSchema` instead. */
   export const outboundSchema =
-    ListProvidersProviderResponseBody$outboundSchema;
-  /** @deprecated use `ListProvidersProviderResponseBody$Outbound` instead. */
-  export type Outbound = ListProvidersProviderResponseBody$Outbound;
+    ListProvidersProvidersResponseBody$outboundSchema;
+  /** @deprecated use `ListProvidersProvidersResponseBody$Outbound` instead. */
+  export type Outbound = ListProvidersProvidersResponseBody$Outbound;
 }
 
-export function listProvidersProviderResponseBodyToJSON(
-  listProvidersProviderResponseBody: ListProvidersProviderResponseBody,
+export function listProvidersProvidersResponseBodyToJSON(
+  listProvidersProvidersResponseBody: ListProvidersProvidersResponseBody,
 ): string {
   return JSON.stringify(
-    ListProvidersProviderResponseBody$outboundSchema.parse(
-      listProvidersProviderResponseBody,
+    ListProvidersProvidersResponseBody$outboundSchema.parse(
+      listProvidersProvidersResponseBody,
     ),
   );
 }
 
-export function listProvidersProviderResponseBodyFromJSON(
+export function listProvidersProvidersResponseBodyFromJSON(
   jsonString: string,
-): SafeParseResult<ListProvidersProviderResponseBody, SDKValidationError> {
+): SafeParseResult<ListProvidersProvidersResponseBody, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => ListProvidersProviderResponseBody$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ListProvidersProviderResponseBody' from JSON`,
+    (x) =>
+      ListProvidersProvidersResponseBody$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListProvidersProvidersResponseBody' from JSON`,
   );
 }
 
@@ -1319,13 +1569,13 @@ export const ListProvidersResponse$inboundSchema: z.ZodType<
   unknown
 > = z.union([
   z.lazy(() => ListProvidersResponseBody$inboundSchema),
-  z.record(z.lazy(() => ListProvidersProviderResponseBody$inboundSchema)),
+  z.record(z.lazy(() => ListProvidersProvidersResponseBody$inboundSchema)),
 ]);
 
 /** @internal */
 export type ListProvidersResponse$Outbound =
   | ListProvidersResponseBody$Outbound
-  | { [k: string]: ListProvidersProviderResponseBody$Outbound };
+  | { [k: string]: ListProvidersProvidersResponseBody$Outbound };
 
 /** @internal */
 export const ListProvidersResponse$outboundSchema: z.ZodType<
@@ -1334,7 +1584,7 @@ export const ListProvidersResponse$outboundSchema: z.ZodType<
   ListProvidersResponse
 > = z.union([
   z.lazy(() => ListProvidersResponseBody$outboundSchema),
-  z.record(z.lazy(() => ListProvidersProviderResponseBody$outboundSchema)),
+  z.record(z.lazy(() => ListProvidersProvidersResponseBody$outboundSchema)),
 ]);
 
 /**

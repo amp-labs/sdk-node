@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { GetHydratedRevisionProxy } from "openapi/models/operations";
+import { GetHydratedRevisionProxy } from "sdk-node/models/operations";
 
 let value: GetHydratedRevisionProxy = {};
 ```

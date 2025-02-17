@@ -11,7 +11,7 @@ import { SDKValidationError } from "./sdkvalidationerror.js";
 /**
  * The location of the invalid input
  */
-export const GenerateConnectionConnectionIn = {
+export const GenerateConnectionConnectionsIn = {
   Body: "body",
   Header: "header",
   Path: "path",
@@ -20,8 +20,8 @@ export const GenerateConnectionConnectionIn = {
 /**
  * The location of the invalid input
  */
-export type GenerateConnectionConnectionIn = ClosedEnum<
-  typeof GenerateConnectionConnectionIn
+export type GenerateConnectionConnectionsIn = ClosedEnum<
+  typeof GenerateConnectionConnectionsIn
 >;
 
 /**
@@ -29,7 +29,7 @@ export type GenerateConnectionConnectionIn = ClosedEnum<
  *
  * @remarks
  */
-export type GenerateConnectionConnectionIssues = {
+export type GenerateConnectionConnectionsIssues = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -104,7 +104,7 @@ export type GenerateConnectionConnectionIssues = {
   /**
    * The location of the invalid input
    */
-  in?: GenerateConnectionConnectionIn | undefined;
+  in?: GenerateConnectionConnectionsIn | undefined;
   /**
    * The name of the invalid input
    */
@@ -122,7 +122,7 @@ export type GenerateConnectionConnectionIssues = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export type GenerateConnectionConnectionResponseBodyData = {
+export type GenerateConnectionConnectionsResponseBodyData = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -194,7 +194,7 @@ export type GenerateConnectionConnectionResponseBodyData = {
    * Additional context for the problem
    */
   context?: { [k: string]: any } | undefined;
-  issues?: Array<GenerateConnectionConnectionIssues> | undefined;
+  issues?: Array<GenerateConnectionConnectionsIssues> | undefined;
 };
 
 /**
@@ -204,7 +204,7 @@ export type GenerateConnectionConnectionResponseBodyData = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export class GenerateConnectionConnectionResponseBody extends Error {
+export class GenerateConnectionConnectionsResponseBody extends Error {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -276,12 +276,12 @@ export class GenerateConnectionConnectionResponseBody extends Error {
    * Additional context for the problem
    */
   context?: { [k: string]: any } | undefined;
-  issues?: Array<GenerateConnectionConnectionIssues> | undefined;
+  issues?: Array<GenerateConnectionConnectionsIssues> | undefined;
 
   /** The original data that was passed to this error instance. */
-  data$: GenerateConnectionConnectionResponseBodyData;
+  data$: GenerateConnectionConnectionsResponseBodyData;
 
-  constructor(err: GenerateConnectionConnectionResponseBodyData) {
+  constructor(err: GenerateConnectionConnectionsResponseBodyData) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
@@ -307,7 +307,7 @@ export class GenerateConnectionConnectionResponseBody extends Error {
     if (err.context != null) this.context = err.context;
     if (err.issues != null) this.issues = err.issues;
 
-    this.name = "GenerateConnectionConnectionResponseBody";
+    this.name = "GenerateConnectionConnectionsResponseBody";
   }
 }
 
@@ -613,29 +613,29 @@ export class GenerateConnectionResponseBody extends Error {
 }
 
 /** @internal */
-export const GenerateConnectionConnectionIn$inboundSchema: z.ZodNativeEnum<
-  typeof GenerateConnectionConnectionIn
-> = z.nativeEnum(GenerateConnectionConnectionIn);
+export const GenerateConnectionConnectionsIn$inboundSchema: z.ZodNativeEnum<
+  typeof GenerateConnectionConnectionsIn
+> = z.nativeEnum(GenerateConnectionConnectionsIn);
 
 /** @internal */
-export const GenerateConnectionConnectionIn$outboundSchema: z.ZodNativeEnum<
-  typeof GenerateConnectionConnectionIn
-> = GenerateConnectionConnectionIn$inboundSchema;
+export const GenerateConnectionConnectionsIn$outboundSchema: z.ZodNativeEnum<
+  typeof GenerateConnectionConnectionsIn
+> = GenerateConnectionConnectionsIn$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace GenerateConnectionConnectionIn$ {
-  /** @deprecated use `GenerateConnectionConnectionIn$inboundSchema` instead. */
-  export const inboundSchema = GenerateConnectionConnectionIn$inboundSchema;
-  /** @deprecated use `GenerateConnectionConnectionIn$outboundSchema` instead. */
-  export const outboundSchema = GenerateConnectionConnectionIn$outboundSchema;
+export namespace GenerateConnectionConnectionsIn$ {
+  /** @deprecated use `GenerateConnectionConnectionsIn$inboundSchema` instead. */
+  export const inboundSchema = GenerateConnectionConnectionsIn$inboundSchema;
+  /** @deprecated use `GenerateConnectionConnectionsIn$outboundSchema` instead. */
+  export const outboundSchema = GenerateConnectionConnectionsIn$outboundSchema;
 }
 
 /** @internal */
-export const GenerateConnectionConnectionIssues$inboundSchema: z.ZodType<
-  GenerateConnectionConnectionIssues,
+export const GenerateConnectionConnectionsIssues$inboundSchema: z.ZodType<
+  GenerateConnectionConnectionsIssues,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -658,13 +658,13 @@ export const GenerateConnectionConnectionIssues$inboundSchema: z.ZodType<
   retryAfter: z.string().datetime({ offset: true }).transform(v => new Date(v))
     .optional(),
   context: z.record(z.any()).optional(),
-  in: GenerateConnectionConnectionIn$inboundSchema.optional(),
+  in: GenerateConnectionConnectionsIn$inboundSchema.optional(),
   name: z.string().optional(),
   value: z.any().optional(),
 });
 
 /** @internal */
-export type GenerateConnectionConnectionIssues$Outbound = {
+export type GenerateConnectionConnectionsIssues$Outbound = {
   type: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -688,10 +688,10 @@ export type GenerateConnectionConnectionIssues$Outbound = {
 };
 
 /** @internal */
-export const GenerateConnectionConnectionIssues$outboundSchema: z.ZodType<
-  GenerateConnectionConnectionIssues$Outbound,
+export const GenerateConnectionConnectionsIssues$outboundSchema: z.ZodType<
+  GenerateConnectionConnectionsIssues$Outbound,
   z.ZodTypeDef,
-  GenerateConnectionConnectionIssues
+  GenerateConnectionConnectionsIssues
 > = z.object({
   type: z.string().default("about:blank"),
   href: z.string().optional(),
@@ -710,7 +710,7 @@ export const GenerateConnectionConnectionIssues$outboundSchema: z.ZodType<
   retryable: z.boolean().optional(),
   retryAfter: z.date().transform(v => v.toISOString()).optional(),
   context: z.record(z.any()).optional(),
-  in: GenerateConnectionConnectionIn$outboundSchema.optional(),
+  in: GenerateConnectionConnectionsIn$outboundSchema.optional(),
   name: z.string().optional(),
   value: z.any().optional(),
 });
@@ -719,40 +719,41 @@ export const GenerateConnectionConnectionIssues$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace GenerateConnectionConnectionIssues$ {
-  /** @deprecated use `GenerateConnectionConnectionIssues$inboundSchema` instead. */
-  export const inboundSchema = GenerateConnectionConnectionIssues$inboundSchema;
-  /** @deprecated use `GenerateConnectionConnectionIssues$outboundSchema` instead. */
+export namespace GenerateConnectionConnectionsIssues$ {
+  /** @deprecated use `GenerateConnectionConnectionsIssues$inboundSchema` instead. */
+  export const inboundSchema =
+    GenerateConnectionConnectionsIssues$inboundSchema;
+  /** @deprecated use `GenerateConnectionConnectionsIssues$outboundSchema` instead. */
   export const outboundSchema =
-    GenerateConnectionConnectionIssues$outboundSchema;
-  /** @deprecated use `GenerateConnectionConnectionIssues$Outbound` instead. */
-  export type Outbound = GenerateConnectionConnectionIssues$Outbound;
+    GenerateConnectionConnectionsIssues$outboundSchema;
+  /** @deprecated use `GenerateConnectionConnectionsIssues$Outbound` instead. */
+  export type Outbound = GenerateConnectionConnectionsIssues$Outbound;
 }
 
-export function generateConnectionConnectionIssuesToJSON(
-  generateConnectionConnectionIssues: GenerateConnectionConnectionIssues,
+export function generateConnectionConnectionsIssuesToJSON(
+  generateConnectionConnectionsIssues: GenerateConnectionConnectionsIssues,
 ): string {
   return JSON.stringify(
-    GenerateConnectionConnectionIssues$outboundSchema.parse(
-      generateConnectionConnectionIssues,
+    GenerateConnectionConnectionsIssues$outboundSchema.parse(
+      generateConnectionConnectionsIssues,
     ),
   );
 }
 
-export function generateConnectionConnectionIssuesFromJSON(
+export function generateConnectionConnectionsIssuesFromJSON(
   jsonString: string,
-): SafeParseResult<GenerateConnectionConnectionIssues, SDKValidationError> {
+): SafeParseResult<GenerateConnectionConnectionsIssues, SDKValidationError> {
   return safeParse(
     jsonString,
     (x) =>
-      GenerateConnectionConnectionIssues$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GenerateConnectionConnectionIssues' from JSON`,
+      GenerateConnectionConnectionsIssues$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GenerateConnectionConnectionsIssues' from JSON`,
   );
 }
 
 /** @internal */
-export const GenerateConnectionConnectionResponseBody$inboundSchema: z.ZodType<
-  GenerateConnectionConnectionResponseBody,
+export const GenerateConnectionConnectionsResponseBody$inboundSchema: z.ZodType<
+  GenerateConnectionConnectionsResponseBody,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -776,15 +777,15 @@ export const GenerateConnectionConnectionResponseBody$inboundSchema: z.ZodType<
     .optional(),
   context: z.record(z.any()).optional(),
   issues: z.array(
-    z.lazy(() => GenerateConnectionConnectionIssues$inboundSchema),
+    z.lazy(() => GenerateConnectionConnectionsIssues$inboundSchema),
   ).optional(),
 })
   .transform((v) => {
-    return new GenerateConnectionConnectionResponseBody(v);
+    return new GenerateConnectionConnectionsResponseBody(v);
   });
 
 /** @internal */
-export type GenerateConnectionConnectionResponseBody$Outbound = {
+export type GenerateConnectionConnectionsResponseBody$Outbound = {
   type?: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -802,52 +803,53 @@ export type GenerateConnectionConnectionResponseBody$Outbound = {
   retryable?: boolean | undefined;
   retryAfter?: string | undefined;
   context?: { [k: string]: any } | undefined;
-  issues?: Array<GenerateConnectionConnectionIssues$Outbound> | undefined;
+  issues?: Array<GenerateConnectionConnectionsIssues$Outbound> | undefined;
 };
 
 /** @internal */
-export const GenerateConnectionConnectionResponseBody$outboundSchema: z.ZodType<
-  GenerateConnectionConnectionResponseBody$Outbound,
-  z.ZodTypeDef,
-  GenerateConnectionConnectionResponseBody
-> = z.instanceof(GenerateConnectionConnectionResponseBody)
-  .transform(v => v.data$)
-  .pipe(z.object({
-    type: z.string().default("about:blank"),
-    href: z.string().optional(),
-    title: z.string().optional(),
-    status: z.number().int().optional(),
-    detail: z.string().optional(),
-    instance: z.string().optional(),
-    subsystem: z.string().optional(),
-    time: z.date().transform(v => v.toISOString()).optional(),
-    requestId: z.string().optional(),
-    causes: z.array(z.string()).optional(),
-    remedy: z.string().optional(),
-    supportEmail: z.string().optional(),
-    supportPhone: z.string().optional(),
-    supportUrl: z.string().optional(),
-    retryable: z.boolean().optional(),
-    retryAfter: z.date().transform(v => v.toISOString()).optional(),
-    context: z.record(z.any()).optional(),
-    issues: z.array(
-      z.lazy(() => GenerateConnectionConnectionIssues$outboundSchema),
-    ).optional(),
-  }));
+export const GenerateConnectionConnectionsResponseBody$outboundSchema:
+  z.ZodType<
+    GenerateConnectionConnectionsResponseBody$Outbound,
+    z.ZodTypeDef,
+    GenerateConnectionConnectionsResponseBody
+  > = z.instanceof(GenerateConnectionConnectionsResponseBody)
+    .transform(v => v.data$)
+    .pipe(z.object({
+      type: z.string().default("about:blank"),
+      href: z.string().optional(),
+      title: z.string().optional(),
+      status: z.number().int().optional(),
+      detail: z.string().optional(),
+      instance: z.string().optional(),
+      subsystem: z.string().optional(),
+      time: z.date().transform(v => v.toISOString()).optional(),
+      requestId: z.string().optional(),
+      causes: z.array(z.string()).optional(),
+      remedy: z.string().optional(),
+      supportEmail: z.string().optional(),
+      supportPhone: z.string().optional(),
+      supportUrl: z.string().optional(),
+      retryable: z.boolean().optional(),
+      retryAfter: z.date().transform(v => v.toISOString()).optional(),
+      context: z.record(z.any()).optional(),
+      issues: z.array(
+        z.lazy(() => GenerateConnectionConnectionsIssues$outboundSchema),
+      ).optional(),
+    }));
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace GenerateConnectionConnectionResponseBody$ {
-  /** @deprecated use `GenerateConnectionConnectionResponseBody$inboundSchema` instead. */
+export namespace GenerateConnectionConnectionsResponseBody$ {
+  /** @deprecated use `GenerateConnectionConnectionsResponseBody$inboundSchema` instead. */
   export const inboundSchema =
-    GenerateConnectionConnectionResponseBody$inboundSchema;
-  /** @deprecated use `GenerateConnectionConnectionResponseBody$outboundSchema` instead. */
+    GenerateConnectionConnectionsResponseBody$inboundSchema;
+  /** @deprecated use `GenerateConnectionConnectionsResponseBody$outboundSchema` instead. */
   export const outboundSchema =
-    GenerateConnectionConnectionResponseBody$outboundSchema;
-  /** @deprecated use `GenerateConnectionConnectionResponseBody$Outbound` instead. */
-  export type Outbound = GenerateConnectionConnectionResponseBody$Outbound;
+    GenerateConnectionConnectionsResponseBody$outboundSchema;
+  /** @deprecated use `GenerateConnectionConnectionsResponseBody$Outbound` instead. */
+  export type Outbound = GenerateConnectionConnectionsResponseBody$Outbound;
 }
 
 /** @internal */

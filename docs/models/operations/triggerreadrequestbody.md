@@ -5,7 +5,7 @@ Read Request
 ## Example Usage
 
 ```typescript
-import { TriggerReadRequestBody } from "openapi/models/operations";
+import { TriggerReadRequestBody } from "sdk-node/models/operations";
 
 let value: TriggerReadRequestBody = {
   groupRef: "<value>",

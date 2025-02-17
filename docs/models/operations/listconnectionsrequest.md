@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { ListConnectionsRequest } from "openapi/models/operations";
+import { ListConnectionsRequest } from "sdk-node/models/operations";
 
 let value: ListConnectionsRequest = {
   projectIdOrName: "<value>",

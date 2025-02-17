@@ -8,7 +8,7 @@ Additional properties specific to the problem type may be present.
 ## Example Usage
 
 ```typescript
-import { DeleteProjectResponseBody } from "openapi/models/operations";
+import { DeleteProjectResponseBody } from "sdk-node/models/operations";
 
 let value: DeleteProjectResponseBody = {
   href:

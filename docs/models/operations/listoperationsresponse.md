@@ -3,30 +3,35 @@
 
 ## Supported Types
 
-### `operations.ListOperationsOperationResponseBody[]`
-
-```typescript
-const value: operations.ListOperationsOperationResponseBody[] = [
-  {
-    projectId: "project-456",
-    integrationId: "integration-123",
-    configId: "config-123",
-    actionType: "read",
-    id: "operation-123",
-    installationId: "installation-123",
-    status: "success",
-    result: "[object] No changes",
-    latestOperationEventId: "operation-event-123",
-    metadata: {},
-    createTime: new Date("2023-07-13T21:34:44.816Z"),
-  },
-];
-```
-
 ### `operations.ListOperationsResponseBody`
 
 ```typescript
 const value: operations.ListOperationsResponseBody = {
+  results: [
+    {
+      projectId: "project-456",
+      integrationId: "integration-123",
+      configId: "config-123",
+      actionType: "read",
+      id: "operation-123",
+      installationId: "installation-123",
+      status: "success",
+      result: "[object] No changes",
+      metadata: {},
+      createTime: new Date("2023-07-13T21:34:44.816Z"),
+    },
+  ],
+  pagination: {
+    done: false,
+    nextPageToken: "Q9JT+2qfys28V4ODN+UayA==",
+  },
+};
+```
+
+### `operations.ListOperationsOperationsResponseBody`
+
+```typescript
+const value: operations.ListOperationsOperationsResponseBody = {
   href:
     "https://www.belgif.be/specification/rest/api-guide/#standardized-problem-types",
   title: "Description of the type of problem that occurred",

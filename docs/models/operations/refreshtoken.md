@@ -5,7 +5,7 @@ The refresh token to use for the connection.
 ## Example Usage
 
 ```typescript
-import { RefreshToken } from "openapi/models/operations";
+import { RefreshToken } from "sdk-node/models/operations";
 
 let value: RefreshToken = {
   token: "<value>",

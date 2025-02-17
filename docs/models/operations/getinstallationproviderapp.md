@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { GetInstallationProviderApp } from "openapi/models/operations";
+import { GetInstallationProviderApp } from "sdk-node/models/operations";
 
 let value: GetInstallationProviderApp = {
   id: "provider-app-123",

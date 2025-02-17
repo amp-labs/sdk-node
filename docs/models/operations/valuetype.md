@@ -5,9 +5,9 @@ A normalized field type
 ## Example Usage
 
 ```typescript
-import { ValueType } from "openapi/models/operations";
+import { ValueType } from "sdk-node/models/operations";
 
-let value: ValueType = "date";
+let value: ValueType = "string";
 ```
 
 ## Values

@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { BatchUpsertIntegrationsContent } from "openapi/models/operations";
+import { BatchUpsertIntegrationsContent } from "sdk-node/models/operations";
 
 let value: BatchUpsertIntegrationsContent = {
   name: "<value>",

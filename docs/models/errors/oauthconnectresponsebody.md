@@ -8,7 +8,7 @@ Additional properties specific to the problem type may be present.
 ## Example Usage
 
 ```typescript
-import { OauthConnectResponseBody } from "openapi/models/errors";
+import { OauthConnectResponseBody } from "sdk-node/models/errors";
 
 // No examples available for this model
 ```

@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { CreateProjectRequestBody } from "openapi/models/operations";
+import { CreateProjectRequestBody } from "sdk-node/models/operations";
 
 let value: CreateProjectRequestBody = {
   appName: "MailMonkey",

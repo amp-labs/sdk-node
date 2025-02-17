@@ -5,7 +5,7 @@ Configuration for Basic Auth. Optional.
 ## Example Usage
 
 ```typescript
-import { BasicOpts } from "openapi/models/operations";
+import { BasicOpts } from "sdk-node/models/operations";
 
 let value: BasicOpts = {
   apiKeyAsBasic: true,

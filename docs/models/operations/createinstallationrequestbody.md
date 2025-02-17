@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { CreateInstallationRequestBody } from "openapi/models/operations";
+import { CreateInstallationRequestBody } from "sdk-node/models/operations";
 
 let value: CreateInstallationRequestBody = {
   groupRef: "<value>",

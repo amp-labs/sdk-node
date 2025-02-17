@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { DeleteDestinationRequest } from "openapi/models/operations";
+import { DeleteDestinationRequest } from "sdk-node/models/operations";
 
 let value: DeleteDestinationRequest = {
   projectIdOrName: "<value>",

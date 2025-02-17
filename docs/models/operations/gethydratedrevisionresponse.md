@@ -81,10 +81,10 @@ const value: operations.GetHydratedRevisionResponseBody = {
 };
 ```
 
-### `operations.GetHydratedRevisionRevisionResponseBody`
+### `operations.GetHydratedRevisionRevisionsResponseBody`
 
 ```typescript
-const value: operations.GetHydratedRevisionRevisionResponseBody = {
+const value: operations.GetHydratedRevisionRevisionsResponseBody = {
   href:
     "https://www.belgif.be/specification/rest/api-guide/#standardized-problem-types",
   title: "Description of the type of problem that occurred",

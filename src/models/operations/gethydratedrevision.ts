@@ -26,7 +26,7 @@ export type GetHydratedRevisionRequest = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export type GetHydratedRevisionRevisionResponseBody = {
+export type GetHydratedRevisionRevisionsResponseBody = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -299,7 +299,7 @@ export type GetHydratedRevisionValueDefaults = {
   allowAnyFields?: boolean | undefined;
 };
 
-export type GetHydratedRevisionRevisionObjects = {
+export type GetHydratedRevisionRevisionsObjects = {
   objectName: string;
   displayName: string;
   /**
@@ -309,7 +309,7 @@ export type GetHydratedRevisionRevisionObjects = {
 };
 
 export type GetHydratedRevisionWrite = {
-  objects?: Array<GetHydratedRevisionRevisionObjects> | undefined;
+  objects?: Array<GetHydratedRevisionRevisionsObjects> | undefined;
 };
 
 export type GetHydratedRevisionProxy = {
@@ -346,7 +346,7 @@ export type GetHydratedRevisionResponseBody = {
 
 export type GetHydratedRevisionResponse =
   | GetHydratedRevisionResponseBody
-  | GetHydratedRevisionRevisionResponseBody;
+  | GetHydratedRevisionRevisionsResponseBody;
 
 /** @internal */
 export const GetHydratedRevisionRequest$inboundSchema: z.ZodType<
@@ -412,8 +412,8 @@ export function getHydratedRevisionRequestFromJSON(
 }
 
 /** @internal */
-export const GetHydratedRevisionRevisionResponseBody$inboundSchema: z.ZodType<
-  GetHydratedRevisionRevisionResponseBody,
+export const GetHydratedRevisionRevisionsResponseBody$inboundSchema: z.ZodType<
+  GetHydratedRevisionRevisionsResponseBody,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -439,7 +439,7 @@ export const GetHydratedRevisionRevisionResponseBody$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type GetHydratedRevisionRevisionResponseBody$Outbound = {
+export type GetHydratedRevisionRevisionsResponseBody$Outbound = {
   type: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -460,10 +460,10 @@ export type GetHydratedRevisionRevisionResponseBody$Outbound = {
 };
 
 /** @internal */
-export const GetHydratedRevisionRevisionResponseBody$outboundSchema: z.ZodType<
-  GetHydratedRevisionRevisionResponseBody$Outbound,
+export const GetHydratedRevisionRevisionsResponseBody$outboundSchema: z.ZodType<
+  GetHydratedRevisionRevisionsResponseBody$Outbound,
   z.ZodTypeDef,
-  GetHydratedRevisionRevisionResponseBody
+  GetHydratedRevisionRevisionsResponseBody
 > = z.object({
   type: z.string().default("about:blank"),
   href: z.string().optional(),
@@ -488,41 +488,41 @@ export const GetHydratedRevisionRevisionResponseBody$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace GetHydratedRevisionRevisionResponseBody$ {
-  /** @deprecated use `GetHydratedRevisionRevisionResponseBody$inboundSchema` instead. */
+export namespace GetHydratedRevisionRevisionsResponseBody$ {
+  /** @deprecated use `GetHydratedRevisionRevisionsResponseBody$inboundSchema` instead. */
   export const inboundSchema =
-    GetHydratedRevisionRevisionResponseBody$inboundSchema;
-  /** @deprecated use `GetHydratedRevisionRevisionResponseBody$outboundSchema` instead. */
+    GetHydratedRevisionRevisionsResponseBody$inboundSchema;
+  /** @deprecated use `GetHydratedRevisionRevisionsResponseBody$outboundSchema` instead. */
   export const outboundSchema =
-    GetHydratedRevisionRevisionResponseBody$outboundSchema;
-  /** @deprecated use `GetHydratedRevisionRevisionResponseBody$Outbound` instead. */
-  export type Outbound = GetHydratedRevisionRevisionResponseBody$Outbound;
+    GetHydratedRevisionRevisionsResponseBody$outboundSchema;
+  /** @deprecated use `GetHydratedRevisionRevisionsResponseBody$Outbound` instead. */
+  export type Outbound = GetHydratedRevisionRevisionsResponseBody$Outbound;
 }
 
-export function getHydratedRevisionRevisionResponseBodyToJSON(
-  getHydratedRevisionRevisionResponseBody:
-    GetHydratedRevisionRevisionResponseBody,
+export function getHydratedRevisionRevisionsResponseBodyToJSON(
+  getHydratedRevisionRevisionsResponseBody:
+    GetHydratedRevisionRevisionsResponseBody,
 ): string {
   return JSON.stringify(
-    GetHydratedRevisionRevisionResponseBody$outboundSchema.parse(
-      getHydratedRevisionRevisionResponseBody,
+    GetHydratedRevisionRevisionsResponseBody$outboundSchema.parse(
+      getHydratedRevisionRevisionsResponseBody,
     ),
   );
 }
 
-export function getHydratedRevisionRevisionResponseBodyFromJSON(
+export function getHydratedRevisionRevisionsResponseBodyFromJSON(
   jsonString: string,
 ): SafeParseResult<
-  GetHydratedRevisionRevisionResponseBody,
+  GetHydratedRevisionRevisionsResponseBody,
   SDKValidationError
 > {
   return safeParse(
     jsonString,
     (x) =>
-      GetHydratedRevisionRevisionResponseBody$inboundSchema.parse(
+      GetHydratedRevisionRevisionsResponseBody$inboundSchema.parse(
         JSON.parse(x),
       ),
-    `Failed to parse 'GetHydratedRevisionRevisionResponseBody' from JSON`,
+    `Failed to parse 'GetHydratedRevisionRevisionsResponseBody' from JSON`,
   );
 }
 
@@ -1597,8 +1597,8 @@ export function getHydratedRevisionValueDefaultsFromJSON(
 }
 
 /** @internal */
-export const GetHydratedRevisionRevisionObjects$inboundSchema: z.ZodType<
-  GetHydratedRevisionRevisionObjects,
+export const GetHydratedRevisionRevisionsObjects$inboundSchema: z.ZodType<
+  GetHydratedRevisionRevisionsObjects,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -1609,17 +1609,17 @@ export const GetHydratedRevisionRevisionObjects$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type GetHydratedRevisionRevisionObjects$Outbound = {
+export type GetHydratedRevisionRevisionsObjects$Outbound = {
   objectName: string;
   displayName: string;
   valueDefaults?: GetHydratedRevisionValueDefaults$Outbound | undefined;
 };
 
 /** @internal */
-export const GetHydratedRevisionRevisionObjects$outboundSchema: z.ZodType<
-  GetHydratedRevisionRevisionObjects$Outbound,
+export const GetHydratedRevisionRevisionsObjects$outboundSchema: z.ZodType<
+  GetHydratedRevisionRevisionsObjects$Outbound,
   z.ZodTypeDef,
-  GetHydratedRevisionRevisionObjects
+  GetHydratedRevisionRevisionsObjects
 > = z.object({
   objectName: z.string(),
   displayName: z.string(),
@@ -1631,34 +1631,35 @@ export const GetHydratedRevisionRevisionObjects$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace GetHydratedRevisionRevisionObjects$ {
-  /** @deprecated use `GetHydratedRevisionRevisionObjects$inboundSchema` instead. */
-  export const inboundSchema = GetHydratedRevisionRevisionObjects$inboundSchema;
-  /** @deprecated use `GetHydratedRevisionRevisionObjects$outboundSchema` instead. */
+export namespace GetHydratedRevisionRevisionsObjects$ {
+  /** @deprecated use `GetHydratedRevisionRevisionsObjects$inboundSchema` instead. */
+  export const inboundSchema =
+    GetHydratedRevisionRevisionsObjects$inboundSchema;
+  /** @deprecated use `GetHydratedRevisionRevisionsObjects$outboundSchema` instead. */
   export const outboundSchema =
-    GetHydratedRevisionRevisionObjects$outboundSchema;
-  /** @deprecated use `GetHydratedRevisionRevisionObjects$Outbound` instead. */
-  export type Outbound = GetHydratedRevisionRevisionObjects$Outbound;
+    GetHydratedRevisionRevisionsObjects$outboundSchema;
+  /** @deprecated use `GetHydratedRevisionRevisionsObjects$Outbound` instead. */
+  export type Outbound = GetHydratedRevisionRevisionsObjects$Outbound;
 }
 
-export function getHydratedRevisionRevisionObjectsToJSON(
-  getHydratedRevisionRevisionObjects: GetHydratedRevisionRevisionObjects,
+export function getHydratedRevisionRevisionsObjectsToJSON(
+  getHydratedRevisionRevisionsObjects: GetHydratedRevisionRevisionsObjects,
 ): string {
   return JSON.stringify(
-    GetHydratedRevisionRevisionObjects$outboundSchema.parse(
-      getHydratedRevisionRevisionObjects,
+    GetHydratedRevisionRevisionsObjects$outboundSchema.parse(
+      getHydratedRevisionRevisionsObjects,
     ),
   );
 }
 
-export function getHydratedRevisionRevisionObjectsFromJSON(
+export function getHydratedRevisionRevisionsObjectsFromJSON(
   jsonString: string,
-): SafeParseResult<GetHydratedRevisionRevisionObjects, SDKValidationError> {
+): SafeParseResult<GetHydratedRevisionRevisionsObjects, SDKValidationError> {
   return safeParse(
     jsonString,
     (x) =>
-      GetHydratedRevisionRevisionObjects$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetHydratedRevisionRevisionObjects' from JSON`,
+      GetHydratedRevisionRevisionsObjects$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetHydratedRevisionRevisionsObjects' from JSON`,
   );
 }
 
@@ -1669,13 +1670,13 @@ export const GetHydratedRevisionWrite$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   objects: z.array(
-    z.lazy(() => GetHydratedRevisionRevisionObjects$inboundSchema),
+    z.lazy(() => GetHydratedRevisionRevisionsObjects$inboundSchema),
   ).optional(),
 });
 
 /** @internal */
 export type GetHydratedRevisionWrite$Outbound = {
-  objects?: Array<GetHydratedRevisionRevisionObjects$Outbound> | undefined;
+  objects?: Array<GetHydratedRevisionRevisionsObjects$Outbound> | undefined;
 };
 
 /** @internal */
@@ -1685,7 +1686,7 @@ export const GetHydratedRevisionWrite$outboundSchema: z.ZodType<
   GetHydratedRevisionWrite
 > = z.object({
   objects: z.array(
-    z.lazy(() => GetHydratedRevisionRevisionObjects$outboundSchema),
+    z.lazy(() => GetHydratedRevisionRevisionsObjects$outboundSchema),
   ).optional(),
 });
 
@@ -1915,13 +1916,13 @@ export const GetHydratedRevisionResponse$inboundSchema: z.ZodType<
   unknown
 > = z.union([
   z.lazy(() => GetHydratedRevisionResponseBody$inboundSchema),
-  z.lazy(() => GetHydratedRevisionRevisionResponseBody$inboundSchema),
+  z.lazy(() => GetHydratedRevisionRevisionsResponseBody$inboundSchema),
 ]);
 
 /** @internal */
 export type GetHydratedRevisionResponse$Outbound =
   | GetHydratedRevisionResponseBody$Outbound
-  | GetHydratedRevisionRevisionResponseBody$Outbound;
+  | GetHydratedRevisionRevisionsResponseBody$Outbound;
 
 /** @internal */
 export const GetHydratedRevisionResponse$outboundSchema: z.ZodType<
@@ -1930,7 +1931,7 @@ export const GetHydratedRevisionResponse$outboundSchema: z.ZodType<
   GetHydratedRevisionResponse
 > = z.union([
   z.lazy(() => GetHydratedRevisionResponseBody$outboundSchema),
-  z.lazy(() => GetHydratedRevisionRevisionResponseBody$outboundSchema),
+  z.lazy(() => GetHydratedRevisionRevisionsResponseBody$outboundSchema),
 ]);
 
 /**

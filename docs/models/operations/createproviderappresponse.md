@@ -19,10 +19,10 @@ const value: operations.CreateProviderAppResponseBody = {
 };
 ```
 
-### `operations.CreateProviderAppProviderAppResponseBody`
+### `operations.CreateProviderAppProviderAppsResponseBody`
 
 ```typescript
-const value: operations.CreateProviderAppProviderAppResponseBody = {
+const value: operations.CreateProviderAppProviderAppsResponseBody = {
   href:
     "https://www.belgif.be/specification/rest/api-guide/#standardized-problem-types",
   title: "Description of the type of problem that occurred",

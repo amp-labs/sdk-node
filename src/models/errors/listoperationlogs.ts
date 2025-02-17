@@ -11,7 +11,7 @@ import { SDKValidationError } from "./sdkvalidationerror.js";
 /**
  * The location of the invalid input
  */
-export const ListOperationLogsOperationIn = {
+export const ListOperationLogsOperationsIn = {
   Body: "body",
   Header: "header",
   Path: "path",
@@ -20,8 +20,8 @@ export const ListOperationLogsOperationIn = {
 /**
  * The location of the invalid input
  */
-export type ListOperationLogsOperationIn = ClosedEnum<
-  typeof ListOperationLogsOperationIn
+export type ListOperationLogsOperationsIn = ClosedEnum<
+  typeof ListOperationLogsOperationsIn
 >;
 
 /**
@@ -29,7 +29,7 @@ export type ListOperationLogsOperationIn = ClosedEnum<
  *
  * @remarks
  */
-export type ListOperationLogsOperationIssues = {
+export type ListOperationLogsOperationsIssues = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -104,7 +104,7 @@ export type ListOperationLogsOperationIssues = {
   /**
    * The location of the invalid input
    */
-  in?: ListOperationLogsOperationIn | undefined;
+  in?: ListOperationLogsOperationsIn | undefined;
   /**
    * The name of the invalid input
    */
@@ -122,7 +122,7 @@ export type ListOperationLogsOperationIssues = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export type ListOperationLogsOperationResponseBodyData = {
+export type ListOperationLogsOperationsResponseBodyData = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -194,7 +194,7 @@ export type ListOperationLogsOperationResponseBodyData = {
    * Additional context for the problem
    */
   context?: { [k: string]: any } | undefined;
-  issues?: Array<ListOperationLogsOperationIssues> | undefined;
+  issues?: Array<ListOperationLogsOperationsIssues> | undefined;
 };
 
 /**
@@ -204,7 +204,7 @@ export type ListOperationLogsOperationResponseBodyData = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export class ListOperationLogsOperationResponseBody extends Error {
+export class ListOperationLogsOperationsResponseBody extends Error {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -276,12 +276,12 @@ export class ListOperationLogsOperationResponseBody extends Error {
    * Additional context for the problem
    */
   context?: { [k: string]: any } | undefined;
-  issues?: Array<ListOperationLogsOperationIssues> | undefined;
+  issues?: Array<ListOperationLogsOperationsIssues> | undefined;
 
   /** The original data that was passed to this error instance. */
-  data$: ListOperationLogsOperationResponseBodyData;
+  data$: ListOperationLogsOperationsResponseBodyData;
 
-  constructor(err: ListOperationLogsOperationResponseBodyData) {
+  constructor(err: ListOperationLogsOperationsResponseBodyData) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
@@ -307,7 +307,7 @@ export class ListOperationLogsOperationResponseBody extends Error {
     if (err.context != null) this.context = err.context;
     if (err.issues != null) this.issues = err.issues;
 
-    this.name = "ListOperationLogsOperationResponseBody";
+    this.name = "ListOperationLogsOperationsResponseBody";
   }
 }
 
@@ -613,29 +613,29 @@ export class ListOperationLogsResponseBody extends Error {
 }
 
 /** @internal */
-export const ListOperationLogsOperationIn$inboundSchema: z.ZodNativeEnum<
-  typeof ListOperationLogsOperationIn
-> = z.nativeEnum(ListOperationLogsOperationIn);
+export const ListOperationLogsOperationsIn$inboundSchema: z.ZodNativeEnum<
+  typeof ListOperationLogsOperationsIn
+> = z.nativeEnum(ListOperationLogsOperationsIn);
 
 /** @internal */
-export const ListOperationLogsOperationIn$outboundSchema: z.ZodNativeEnum<
-  typeof ListOperationLogsOperationIn
-> = ListOperationLogsOperationIn$inboundSchema;
+export const ListOperationLogsOperationsIn$outboundSchema: z.ZodNativeEnum<
+  typeof ListOperationLogsOperationsIn
+> = ListOperationLogsOperationsIn$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace ListOperationLogsOperationIn$ {
-  /** @deprecated use `ListOperationLogsOperationIn$inboundSchema` instead. */
-  export const inboundSchema = ListOperationLogsOperationIn$inboundSchema;
-  /** @deprecated use `ListOperationLogsOperationIn$outboundSchema` instead. */
-  export const outboundSchema = ListOperationLogsOperationIn$outboundSchema;
+export namespace ListOperationLogsOperationsIn$ {
+  /** @deprecated use `ListOperationLogsOperationsIn$inboundSchema` instead. */
+  export const inboundSchema = ListOperationLogsOperationsIn$inboundSchema;
+  /** @deprecated use `ListOperationLogsOperationsIn$outboundSchema` instead. */
+  export const outboundSchema = ListOperationLogsOperationsIn$outboundSchema;
 }
 
 /** @internal */
-export const ListOperationLogsOperationIssues$inboundSchema: z.ZodType<
-  ListOperationLogsOperationIssues,
+export const ListOperationLogsOperationsIssues$inboundSchema: z.ZodType<
+  ListOperationLogsOperationsIssues,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -658,13 +658,13 @@ export const ListOperationLogsOperationIssues$inboundSchema: z.ZodType<
   retryAfter: z.string().datetime({ offset: true }).transform(v => new Date(v))
     .optional(),
   context: z.record(z.any()).optional(),
-  in: ListOperationLogsOperationIn$inboundSchema.optional(),
+  in: ListOperationLogsOperationsIn$inboundSchema.optional(),
   name: z.string().optional(),
   value: z.any().optional(),
 });
 
 /** @internal */
-export type ListOperationLogsOperationIssues$Outbound = {
+export type ListOperationLogsOperationsIssues$Outbound = {
   type: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -688,10 +688,10 @@ export type ListOperationLogsOperationIssues$Outbound = {
 };
 
 /** @internal */
-export const ListOperationLogsOperationIssues$outboundSchema: z.ZodType<
-  ListOperationLogsOperationIssues$Outbound,
+export const ListOperationLogsOperationsIssues$outboundSchema: z.ZodType<
+  ListOperationLogsOperationsIssues$Outbound,
   z.ZodTypeDef,
-  ListOperationLogsOperationIssues
+  ListOperationLogsOperationsIssues
 > = z.object({
   type: z.string().default("about:blank"),
   href: z.string().optional(),
@@ -710,7 +710,7 @@ export const ListOperationLogsOperationIssues$outboundSchema: z.ZodType<
   retryable: z.boolean().optional(),
   retryAfter: z.date().transform(v => v.toISOString()).optional(),
   context: z.record(z.any()).optional(),
-  in: ListOperationLogsOperationIn$outboundSchema.optional(),
+  in: ListOperationLogsOperationsIn$outboundSchema.optional(),
   name: z.string().optional(),
   value: z.any().optional(),
 });
@@ -719,38 +719,39 @@ export const ListOperationLogsOperationIssues$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace ListOperationLogsOperationIssues$ {
-  /** @deprecated use `ListOperationLogsOperationIssues$inboundSchema` instead. */
-  export const inboundSchema = ListOperationLogsOperationIssues$inboundSchema;
-  /** @deprecated use `ListOperationLogsOperationIssues$outboundSchema` instead. */
-  export const outboundSchema = ListOperationLogsOperationIssues$outboundSchema;
-  /** @deprecated use `ListOperationLogsOperationIssues$Outbound` instead. */
-  export type Outbound = ListOperationLogsOperationIssues$Outbound;
+export namespace ListOperationLogsOperationsIssues$ {
+  /** @deprecated use `ListOperationLogsOperationsIssues$inboundSchema` instead. */
+  export const inboundSchema = ListOperationLogsOperationsIssues$inboundSchema;
+  /** @deprecated use `ListOperationLogsOperationsIssues$outboundSchema` instead. */
+  export const outboundSchema =
+    ListOperationLogsOperationsIssues$outboundSchema;
+  /** @deprecated use `ListOperationLogsOperationsIssues$Outbound` instead. */
+  export type Outbound = ListOperationLogsOperationsIssues$Outbound;
 }
 
-export function listOperationLogsOperationIssuesToJSON(
-  listOperationLogsOperationIssues: ListOperationLogsOperationIssues,
+export function listOperationLogsOperationsIssuesToJSON(
+  listOperationLogsOperationsIssues: ListOperationLogsOperationsIssues,
 ): string {
   return JSON.stringify(
-    ListOperationLogsOperationIssues$outboundSchema.parse(
-      listOperationLogsOperationIssues,
+    ListOperationLogsOperationsIssues$outboundSchema.parse(
+      listOperationLogsOperationsIssues,
     ),
   );
 }
 
-export function listOperationLogsOperationIssuesFromJSON(
+export function listOperationLogsOperationsIssuesFromJSON(
   jsonString: string,
-): SafeParseResult<ListOperationLogsOperationIssues, SDKValidationError> {
+): SafeParseResult<ListOperationLogsOperationsIssues, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => ListOperationLogsOperationIssues$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ListOperationLogsOperationIssues' from JSON`,
+    (x) => ListOperationLogsOperationsIssues$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListOperationLogsOperationsIssues' from JSON`,
   );
 }
 
 /** @internal */
-export const ListOperationLogsOperationResponseBody$inboundSchema: z.ZodType<
-  ListOperationLogsOperationResponseBody,
+export const ListOperationLogsOperationsResponseBody$inboundSchema: z.ZodType<
+  ListOperationLogsOperationsResponseBody,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -773,15 +774,15 @@ export const ListOperationLogsOperationResponseBody$inboundSchema: z.ZodType<
   retryAfter: z.string().datetime({ offset: true }).transform(v => new Date(v))
     .optional(),
   context: z.record(z.any()).optional(),
-  issues: z.array(z.lazy(() => ListOperationLogsOperationIssues$inboundSchema))
+  issues: z.array(z.lazy(() => ListOperationLogsOperationsIssues$inboundSchema))
     .optional(),
 })
   .transform((v) => {
-    return new ListOperationLogsOperationResponseBody(v);
+    return new ListOperationLogsOperationsResponseBody(v);
   });
 
 /** @internal */
-export type ListOperationLogsOperationResponseBody$Outbound = {
+export type ListOperationLogsOperationsResponseBody$Outbound = {
   type?: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -799,15 +800,15 @@ export type ListOperationLogsOperationResponseBody$Outbound = {
   retryable?: boolean | undefined;
   retryAfter?: string | undefined;
   context?: { [k: string]: any } | undefined;
-  issues?: Array<ListOperationLogsOperationIssues$Outbound> | undefined;
+  issues?: Array<ListOperationLogsOperationsIssues$Outbound> | undefined;
 };
 
 /** @internal */
-export const ListOperationLogsOperationResponseBody$outboundSchema: z.ZodType<
-  ListOperationLogsOperationResponseBody$Outbound,
+export const ListOperationLogsOperationsResponseBody$outboundSchema: z.ZodType<
+  ListOperationLogsOperationsResponseBody$Outbound,
   z.ZodTypeDef,
-  ListOperationLogsOperationResponseBody
-> = z.instanceof(ListOperationLogsOperationResponseBody)
+  ListOperationLogsOperationsResponseBody
+> = z.instanceof(ListOperationLogsOperationsResponseBody)
   .transform(v => v.data$)
   .pipe(z.object({
     type: z.string().default("about:blank"),
@@ -828,7 +829,7 @@ export const ListOperationLogsOperationResponseBody$outboundSchema: z.ZodType<
     retryAfter: z.date().transform(v => v.toISOString()).optional(),
     context: z.record(z.any()).optional(),
     issues: z.array(
-      z.lazy(() => ListOperationLogsOperationIssues$outboundSchema),
+      z.lazy(() => ListOperationLogsOperationsIssues$outboundSchema),
     ).optional(),
   }));
 
@@ -836,15 +837,15 @@ export const ListOperationLogsOperationResponseBody$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace ListOperationLogsOperationResponseBody$ {
-  /** @deprecated use `ListOperationLogsOperationResponseBody$inboundSchema` instead. */
+export namespace ListOperationLogsOperationsResponseBody$ {
+  /** @deprecated use `ListOperationLogsOperationsResponseBody$inboundSchema` instead. */
   export const inboundSchema =
-    ListOperationLogsOperationResponseBody$inboundSchema;
-  /** @deprecated use `ListOperationLogsOperationResponseBody$outboundSchema` instead. */
+    ListOperationLogsOperationsResponseBody$inboundSchema;
+  /** @deprecated use `ListOperationLogsOperationsResponseBody$outboundSchema` instead. */
   export const outboundSchema =
-    ListOperationLogsOperationResponseBody$outboundSchema;
-  /** @deprecated use `ListOperationLogsOperationResponseBody$Outbound` instead. */
-  export type Outbound = ListOperationLogsOperationResponseBody$Outbound;
+    ListOperationLogsOperationsResponseBody$outboundSchema;
+  /** @deprecated use `ListOperationLogsOperationsResponseBody$Outbound` instead. */
+  export type Outbound = ListOperationLogsOperationsResponseBody$Outbound;
 }
 
 /** @internal */

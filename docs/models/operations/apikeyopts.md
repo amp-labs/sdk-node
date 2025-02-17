@@ -5,10 +5,10 @@ Configuration for API key. Must be provided if authType is apiKey.
 ## Example Usage
 
 ```typescript
-import { ApiKeyOpts } from "openapi/models/operations";
+import { ApiKeyOpts } from "sdk-node/models/operations";
 
 let value: ApiKeyOpts = {
-  attachmentType: "query",
+  attachmentType: "header",
   query: {
     name: "api_key",
   },

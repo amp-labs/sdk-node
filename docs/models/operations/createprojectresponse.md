@@ -14,10 +14,10 @@ const value: operations.CreateProjectResponseBody = {
 };
 ```
 
-### `operations.CreateProjectProjectResponseBody`
+### `operations.CreateProjectProjectsResponseBody`
 
 ```typescript
-const value: operations.CreateProjectProjectResponseBody = {
+const value: operations.CreateProjectProjectsResponseBody = {
   href:
     "https://www.belgif.be/specification/rest/api-guide/#standardized-problem-types",
   title: "Description of the type of problem that occurred",

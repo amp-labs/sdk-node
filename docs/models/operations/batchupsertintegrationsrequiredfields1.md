@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { BatchUpsertIntegrationsRequiredFields1 } from "openapi/models/operations";
+import { BatchUpsertIntegrationsRequiredFields1 } from "sdk-node/models/operations";
 
 let value: BatchUpsertIntegrationsRequiredFields1 = {
   fieldName: "<value>",

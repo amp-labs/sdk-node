@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { DeleteProviderAppRequest } from "openapi/models/operations";
+import { DeleteProviderAppRequest } from "sdk-node/models/operations";
 
 let value: DeleteProviderAppRequest = {
   projectIdOrName: "<value>",

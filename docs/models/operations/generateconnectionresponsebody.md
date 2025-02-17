@@ -5,7 +5,7 @@ Created
 ## Example Usage
 
 ```typescript
-import { GenerateConnectionResponseBody } from "openapi/models/operations";
+import { GenerateConnectionResponseBody } from "sdk-node/models/operations";
 
 let value: GenerateConnectionResponseBody = {
   id: "connection-123",
@@ -20,7 +20,7 @@ let value: GenerateConnectionResponseBody = {
     scopes: [
       "[\"oauth\",\"offline\",\"crm.read\"]",
     ],
-    createTime: new Date("2025-08-24T17:13:02.117Z"),
+    createTime: new Date("2025-02-05T18:51:30.654Z"),
   },
   group: {
     groupRef: "group-123",
@@ -42,6 +42,7 @@ let value: GenerateConnectionResponseBody = {
   updateTime: new Date("2023-07-13T21:34:44.816Z"),
   authScheme: "oauth2/authorizationCode",
   status: "working",
+  apiKey: "api-key-123",
 };
 ```
 
@@ -62,3 +63,4 @@ let value: GenerateConnectionResponseBody = {
 | `authScheme`                                                                                                                                                                          | [operations.GenerateConnectionAuthScheme](../../models/operations/generateconnectionauthscheme.md)                                                                                    | :heavy_check_mark:                                                                                                                                                                    | The authentication scheme used for this connection.                                                                                                                                   | oauth2/authorizationCode                                                                                                                                                              |
 | `status`                                                                                                                                                                              | [operations.GenerateConnectionStatus](../../models/operations/generateconnectionstatus.md)                                                                                            | :heavy_check_mark:                                                                                                                                                                    | The status of the connection.                                                                                                                                                         | working                                                                                                                                                                               |
 | `oauth2AuthorizationCode`                                                                                                                                                             | [operations.GenerateConnectionOauth2AuthorizationCode](../../models/operations/generateconnectionoauth2authorizationcode.md)                                                          | :heavy_minus_sign:                                                                                                                                                                    | N/A                                                                                                                                                                                   |                                                                                                                                                                                       |
+| `apiKey`                                                                                                                                                                              | *string*                                                                                                                                                                              | :heavy_minus_sign:                                                                                                                                                                    | The API key used while making the connection.                                                                                                                                         | api-key-123                                                                                                                                                                           |

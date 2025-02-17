@@ -11,7 +11,7 @@ import { SDKValidationError } from "./sdkvalidationerror.js";
 /**
  * The location of the invalid input
  */
-export const CreateInstallationInstallationIn = {
+export const CreateInstallationInstallationsIn = {
   Body: "body",
   Header: "header",
   Path: "path",
@@ -20,8 +20,8 @@ export const CreateInstallationInstallationIn = {
 /**
  * The location of the invalid input
  */
-export type CreateInstallationInstallationIn = ClosedEnum<
-  typeof CreateInstallationInstallationIn
+export type CreateInstallationInstallationsIn = ClosedEnum<
+  typeof CreateInstallationInstallationsIn
 >;
 
 /**
@@ -29,7 +29,7 @@ export type CreateInstallationInstallationIn = ClosedEnum<
  *
  * @remarks
  */
-export type CreateInstallationInstallationIssues = {
+export type CreateInstallationInstallationsIssues = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -104,7 +104,7 @@ export type CreateInstallationInstallationIssues = {
   /**
    * The location of the invalid input
    */
-  in?: CreateInstallationInstallationIn | undefined;
+  in?: CreateInstallationInstallationsIn | undefined;
   /**
    * The name of the invalid input
    */
@@ -122,7 +122,7 @@ export type CreateInstallationInstallationIssues = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export type CreateInstallationInstallationResponseBodyData = {
+export type CreateInstallationInstallationsResponseBodyData = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -194,7 +194,7 @@ export type CreateInstallationInstallationResponseBodyData = {
    * Additional context for the problem
    */
   context?: { [k: string]: any } | undefined;
-  issues?: Array<CreateInstallationInstallationIssues> | undefined;
+  issues?: Array<CreateInstallationInstallationsIssues> | undefined;
 };
 
 /**
@@ -204,7 +204,7 @@ export type CreateInstallationInstallationResponseBodyData = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export class CreateInstallationInstallationResponseBody extends Error {
+export class CreateInstallationInstallationsResponseBody extends Error {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -276,12 +276,12 @@ export class CreateInstallationInstallationResponseBody extends Error {
    * Additional context for the problem
    */
   context?: { [k: string]: any } | undefined;
-  issues?: Array<CreateInstallationInstallationIssues> | undefined;
+  issues?: Array<CreateInstallationInstallationsIssues> | undefined;
 
   /** The original data that was passed to this error instance. */
-  data$: CreateInstallationInstallationResponseBodyData;
+  data$: CreateInstallationInstallationsResponseBodyData;
 
-  constructor(err: CreateInstallationInstallationResponseBodyData) {
+  constructor(err: CreateInstallationInstallationsResponseBodyData) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
@@ -307,7 +307,7 @@ export class CreateInstallationInstallationResponseBody extends Error {
     if (err.context != null) this.context = err.context;
     if (err.issues != null) this.issues = err.issues;
 
-    this.name = "CreateInstallationInstallationResponseBody";
+    this.name = "CreateInstallationInstallationsResponseBody";
   }
 }
 
@@ -613,29 +613,30 @@ export class CreateInstallationResponseBody extends Error {
 }
 
 /** @internal */
-export const CreateInstallationInstallationIn$inboundSchema: z.ZodNativeEnum<
-  typeof CreateInstallationInstallationIn
-> = z.nativeEnum(CreateInstallationInstallationIn);
+export const CreateInstallationInstallationsIn$inboundSchema: z.ZodNativeEnum<
+  typeof CreateInstallationInstallationsIn
+> = z.nativeEnum(CreateInstallationInstallationsIn);
 
 /** @internal */
-export const CreateInstallationInstallationIn$outboundSchema: z.ZodNativeEnum<
-  typeof CreateInstallationInstallationIn
-> = CreateInstallationInstallationIn$inboundSchema;
+export const CreateInstallationInstallationsIn$outboundSchema: z.ZodNativeEnum<
+  typeof CreateInstallationInstallationsIn
+> = CreateInstallationInstallationsIn$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace CreateInstallationInstallationIn$ {
-  /** @deprecated use `CreateInstallationInstallationIn$inboundSchema` instead. */
-  export const inboundSchema = CreateInstallationInstallationIn$inboundSchema;
-  /** @deprecated use `CreateInstallationInstallationIn$outboundSchema` instead. */
-  export const outboundSchema = CreateInstallationInstallationIn$outboundSchema;
+export namespace CreateInstallationInstallationsIn$ {
+  /** @deprecated use `CreateInstallationInstallationsIn$inboundSchema` instead. */
+  export const inboundSchema = CreateInstallationInstallationsIn$inboundSchema;
+  /** @deprecated use `CreateInstallationInstallationsIn$outboundSchema` instead. */
+  export const outboundSchema =
+    CreateInstallationInstallationsIn$outboundSchema;
 }
 
 /** @internal */
-export const CreateInstallationInstallationIssues$inboundSchema: z.ZodType<
-  CreateInstallationInstallationIssues,
+export const CreateInstallationInstallationsIssues$inboundSchema: z.ZodType<
+  CreateInstallationInstallationsIssues,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -658,13 +659,13 @@ export const CreateInstallationInstallationIssues$inboundSchema: z.ZodType<
   retryAfter: z.string().datetime({ offset: true }).transform(v => new Date(v))
     .optional(),
   context: z.record(z.any()).optional(),
-  in: CreateInstallationInstallationIn$inboundSchema.optional(),
+  in: CreateInstallationInstallationsIn$inboundSchema.optional(),
   name: z.string().optional(),
   value: z.any().optional(),
 });
 
 /** @internal */
-export type CreateInstallationInstallationIssues$Outbound = {
+export type CreateInstallationInstallationsIssues$Outbound = {
   type: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -688,10 +689,10 @@ export type CreateInstallationInstallationIssues$Outbound = {
 };
 
 /** @internal */
-export const CreateInstallationInstallationIssues$outboundSchema: z.ZodType<
-  CreateInstallationInstallationIssues$Outbound,
+export const CreateInstallationInstallationsIssues$outboundSchema: z.ZodType<
+  CreateInstallationInstallationsIssues$Outbound,
   z.ZodTypeDef,
-  CreateInstallationInstallationIssues
+  CreateInstallationInstallationsIssues
 > = z.object({
   type: z.string().default("about:blank"),
   href: z.string().optional(),
@@ -710,7 +711,7 @@ export const CreateInstallationInstallationIssues$outboundSchema: z.ZodType<
   retryable: z.boolean().optional(),
   retryAfter: z.date().transform(v => v.toISOString()).optional(),
   context: z.record(z.any()).optional(),
-  in: CreateInstallationInstallationIn$outboundSchema.optional(),
+  in: CreateInstallationInstallationsIn$outboundSchema.optional(),
   name: z.string().optional(),
   value: z.any().optional(),
 });
@@ -719,72 +720,75 @@ export const CreateInstallationInstallationIssues$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace CreateInstallationInstallationIssues$ {
-  /** @deprecated use `CreateInstallationInstallationIssues$inboundSchema` instead. */
+export namespace CreateInstallationInstallationsIssues$ {
+  /** @deprecated use `CreateInstallationInstallationsIssues$inboundSchema` instead. */
   export const inboundSchema =
-    CreateInstallationInstallationIssues$inboundSchema;
-  /** @deprecated use `CreateInstallationInstallationIssues$outboundSchema` instead. */
+    CreateInstallationInstallationsIssues$inboundSchema;
+  /** @deprecated use `CreateInstallationInstallationsIssues$outboundSchema` instead. */
   export const outboundSchema =
-    CreateInstallationInstallationIssues$outboundSchema;
-  /** @deprecated use `CreateInstallationInstallationIssues$Outbound` instead. */
-  export type Outbound = CreateInstallationInstallationIssues$Outbound;
+    CreateInstallationInstallationsIssues$outboundSchema;
+  /** @deprecated use `CreateInstallationInstallationsIssues$Outbound` instead. */
+  export type Outbound = CreateInstallationInstallationsIssues$Outbound;
 }
 
-export function createInstallationInstallationIssuesToJSON(
-  createInstallationInstallationIssues: CreateInstallationInstallationIssues,
+export function createInstallationInstallationsIssuesToJSON(
+  createInstallationInstallationsIssues: CreateInstallationInstallationsIssues,
 ): string {
   return JSON.stringify(
-    CreateInstallationInstallationIssues$outboundSchema.parse(
-      createInstallationInstallationIssues,
+    CreateInstallationInstallationsIssues$outboundSchema.parse(
+      createInstallationInstallationsIssues,
     ),
   );
 }
 
-export function createInstallationInstallationIssuesFromJSON(
+export function createInstallationInstallationsIssuesFromJSON(
   jsonString: string,
-): SafeParseResult<CreateInstallationInstallationIssues, SDKValidationError> {
+): SafeParseResult<CreateInstallationInstallationsIssues, SDKValidationError> {
   return safeParse(
     jsonString,
     (x) =>
-      CreateInstallationInstallationIssues$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreateInstallationInstallationIssues' from JSON`,
+      CreateInstallationInstallationsIssues$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreateInstallationInstallationsIssues' from JSON`,
   );
 }
 
 /** @internal */
-export const CreateInstallationInstallationResponseBody$inboundSchema:
-  z.ZodType<CreateInstallationInstallationResponseBody, z.ZodTypeDef, unknown> =
-    z.object({
-      type: z.string().default("about:blank"),
-      href: z.string().optional(),
-      title: z.string().optional(),
-      status: z.number().int().optional(),
-      detail: z.string().optional(),
-      instance: z.string().optional(),
-      subsystem: z.string().optional(),
-      time: z.string().datetime({ offset: true }).transform(v => new Date(v))
-        .optional(),
-      requestId: z.string().optional(),
-      causes: z.array(z.string()).optional(),
-      remedy: z.string().optional(),
-      supportEmail: z.string().optional(),
-      supportPhone: z.string().optional(),
-      supportUrl: z.string().optional(),
-      retryable: z.boolean().optional(),
-      retryAfter: z.string().datetime({ offset: true }).transform(v =>
-        new Date(v)
-      ).optional(),
-      context: z.record(z.any()).optional(),
-      issues: z.array(
-        z.lazy(() => CreateInstallationInstallationIssues$inboundSchema),
-      ).optional(),
-    })
-      .transform((v) => {
-        return new CreateInstallationInstallationResponseBody(v);
-      });
+export const CreateInstallationInstallationsResponseBody$inboundSchema:
+  z.ZodType<
+    CreateInstallationInstallationsResponseBody,
+    z.ZodTypeDef,
+    unknown
+  > = z.object({
+    type: z.string().default("about:blank"),
+    href: z.string().optional(),
+    title: z.string().optional(),
+    status: z.number().int().optional(),
+    detail: z.string().optional(),
+    instance: z.string().optional(),
+    subsystem: z.string().optional(),
+    time: z.string().datetime({ offset: true }).transform(v => new Date(v))
+      .optional(),
+    requestId: z.string().optional(),
+    causes: z.array(z.string()).optional(),
+    remedy: z.string().optional(),
+    supportEmail: z.string().optional(),
+    supportPhone: z.string().optional(),
+    supportUrl: z.string().optional(),
+    retryable: z.boolean().optional(),
+    retryAfter: z.string().datetime({ offset: true }).transform(v =>
+      new Date(v)
+    ).optional(),
+    context: z.record(z.any()).optional(),
+    issues: z.array(
+      z.lazy(() => CreateInstallationInstallationsIssues$inboundSchema),
+    ).optional(),
+  })
+    .transform((v) => {
+      return new CreateInstallationInstallationsResponseBody(v);
+    });
 
 /** @internal */
-export type CreateInstallationInstallationResponseBody$Outbound = {
+export type CreateInstallationInstallationsResponseBody$Outbound = {
   type?: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -802,16 +806,16 @@ export type CreateInstallationInstallationResponseBody$Outbound = {
   retryable?: boolean | undefined;
   retryAfter?: string | undefined;
   context?: { [k: string]: any } | undefined;
-  issues?: Array<CreateInstallationInstallationIssues$Outbound> | undefined;
+  issues?: Array<CreateInstallationInstallationsIssues$Outbound> | undefined;
 };
 
 /** @internal */
-export const CreateInstallationInstallationResponseBody$outboundSchema:
+export const CreateInstallationInstallationsResponseBody$outboundSchema:
   z.ZodType<
-    CreateInstallationInstallationResponseBody$Outbound,
+    CreateInstallationInstallationsResponseBody$Outbound,
     z.ZodTypeDef,
-    CreateInstallationInstallationResponseBody
-  > = z.instanceof(CreateInstallationInstallationResponseBody)
+    CreateInstallationInstallationsResponseBody
+  > = z.instanceof(CreateInstallationInstallationsResponseBody)
     .transform(v => v.data$)
     .pipe(z.object({
       type: z.string().default("about:blank"),
@@ -832,7 +836,7 @@ export const CreateInstallationInstallationResponseBody$outboundSchema:
       retryAfter: z.date().transform(v => v.toISOString()).optional(),
       context: z.record(z.any()).optional(),
       issues: z.array(
-        z.lazy(() => CreateInstallationInstallationIssues$outboundSchema),
+        z.lazy(() => CreateInstallationInstallationsIssues$outboundSchema),
       ).optional(),
     }));
 
@@ -840,15 +844,15 @@ export const CreateInstallationInstallationResponseBody$outboundSchema:
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace CreateInstallationInstallationResponseBody$ {
-  /** @deprecated use `CreateInstallationInstallationResponseBody$inboundSchema` instead. */
+export namespace CreateInstallationInstallationsResponseBody$ {
+  /** @deprecated use `CreateInstallationInstallationsResponseBody$inboundSchema` instead. */
   export const inboundSchema =
-    CreateInstallationInstallationResponseBody$inboundSchema;
-  /** @deprecated use `CreateInstallationInstallationResponseBody$outboundSchema` instead. */
+    CreateInstallationInstallationsResponseBody$inboundSchema;
+  /** @deprecated use `CreateInstallationInstallationsResponseBody$outboundSchema` instead. */
   export const outboundSchema =
-    CreateInstallationInstallationResponseBody$outboundSchema;
-  /** @deprecated use `CreateInstallationInstallationResponseBody$Outbound` instead. */
-  export type Outbound = CreateInstallationInstallationResponseBody$Outbound;
+    CreateInstallationInstallationsResponseBody$outboundSchema;
+  /** @deprecated use `CreateInstallationInstallationsResponseBody$Outbound` instead. */
+  export type Outbound = CreateInstallationInstallationsResponseBody$Outbound;
 }
 
 /** @internal */

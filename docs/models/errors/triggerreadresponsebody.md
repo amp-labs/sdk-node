@@ -8,7 +8,7 @@ Additional properties specific to the problem type may be present.
 ## Example Usage
 
 ```typescript
-import { TriggerReadResponseBody } from "openapi/models/errors";
+import { TriggerReadResponseBody } from "sdk-node/models/errors";
 
 // No examples available for this model
 ```

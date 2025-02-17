@@ -5,7 +5,7 @@ The supported features for the provider.
 ## Example Usage
 
 ```typescript
-import { Support } from "openapi/models/operations";
+import { Support } from "sdk-node/models/operations";
 
 let value: Support = {
   bulkWrite: {
@@ -23,10 +23,11 @@ let value: Support = {
 
 ## Fields
 
-| Field                                                        | Type                                                         | Required                                                     | Description                                                  |
-| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| `bulkWrite`                                                  | [operations.BulkWrite](../../models/operations/bulkwrite.md) | :heavy_check_mark:                                           | N/A                                                          |
-| `proxy`                                                      | *boolean*                                                    | :heavy_check_mark:                                           | N/A                                                          |
-| `read`                                                       | *boolean*                                                    | :heavy_check_mark:                                           | N/A                                                          |
-| `subscribe`                                                  | *boolean*                                                    | :heavy_check_mark:                                           | N/A                                                          |
-| `write`                                                      | *boolean*                                                    | :heavy_check_mark:                                           | N/A                                                          |
+| Field                                                                      | Type                                                                       | Required                                                                   | Description                                                                |
+| -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| `bulkWrite`                                                                | [operations.BulkWrite](../../models/operations/bulkwrite.md)               | :heavy_check_mark:                                                         | N/A                                                                        |
+| `proxy`                                                                    | *boolean*                                                                  | :heavy_check_mark:                                                         | N/A                                                                        |
+| `read`                                                                     | *boolean*                                                                  | :heavy_check_mark:                                                         | N/A                                                                        |
+| `subscribe`                                                                | *boolean*                                                                  | :heavy_check_mark:                                                         | N/A                                                                        |
+| `write`                                                                    | *boolean*                                                                  | :heavy_check_mark:                                                         | N/A                                                                        |
+| `subscribeSupport`                                                         | [operations.SubscribeSupport](../../models/operations/subscribesupport.md) | :heavy_minus_sign:                                                         | N/A                                                                        |

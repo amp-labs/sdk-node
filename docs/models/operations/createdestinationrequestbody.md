@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { CreateDestinationRequestBody } from "openapi/models/operations";
+import { CreateDestinationRequestBody } from "sdk-node/models/operations";
 
 let value: CreateDestinationRequestBody = {
   name: "leadConvertedWebhook",

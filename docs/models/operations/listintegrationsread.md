@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { ListIntegrationsRead } from "openapi/models/operations";
+import { ListIntegrationsRead } from "sdk-node/models/operations";
 
 let value: ListIntegrationsRead = {
   objects: [
@@ -36,6 +36,6 @@ let value: ListIntegrationsRead = {
 
 ## Fields
 
-| Field                                                                                                            | Type                                                                                                             | Required                                                                                                         | Description                                                                                                      |
-| ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| `objects`                                                                                                        | [operations.ListIntegrationsIntegrationObjects](../../models/operations/listintegrationsintegrationobjects.md)[] | :heavy_minus_sign:                                                                                               | N/A                                                                                                              |
+| Field                                                                                                              | Type                                                                                                               | Required                                                                                                           | Description                                                                                                        |
+| ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ |
+| `objects`                                                                                                          | [operations.ListIntegrationsIntegrationsObjects](../../models/operations/listintegrationsintegrationsobjects.md)[] | :heavy_minus_sign:                                                                                                 | N/A                                                                                                                |

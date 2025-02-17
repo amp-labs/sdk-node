@@ -8,7 +8,7 @@ Additional properties specific to the problem type may be present.
 ## Example Usage
 
 ```typescript
-import { DeleteIntegrationResponseBody } from "openapi/models/errors";
+import { DeleteIntegrationResponseBody } from "sdk-node/models/errors";
 
 // No examples available for this model
 ```

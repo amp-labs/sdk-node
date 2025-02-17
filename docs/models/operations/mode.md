@@ -5,7 +5,7 @@ The mode of read operation. Currently only asynchronus operation is supported.
 ## Example Usage
 
 ```typescript
-import { Mode } from "openapi/models/operations";
+import { Mode } from "sdk-node/models/operations";
 
 let value: Mode = "async";
 ```

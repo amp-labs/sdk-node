@@ -5,9 +5,9 @@ How the API key should be attached to requests.
 ## Example Usage
 
 ```typescript
-import { GetProviderAttachmentType } from "openapi/models/operations";
+import { GetProviderAttachmentType } from "sdk-node/models/operations";
 
-let value: GetProviderAttachmentType = "header";
+let value: GetProviderAttachmentType = "query";
 ```
 
 ## Values

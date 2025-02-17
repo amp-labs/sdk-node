@@ -116,7 +116,7 @@ export type Message = {
   operationId?: string | undefined;
 };
 
-export type ListOperationLogsOperationResponseBody = {
+export type ListOperationLogsOperationsResponseBody = {
   /**
    * The time the log was created.
    */
@@ -133,7 +133,7 @@ export type ListOperationLogsOperationResponseBody = {
 
 export type ListOperationLogsResponse =
   | ListOperationLogsResponseBody
-  | Array<ListOperationLogsOperationResponseBody>;
+  | Array<ListOperationLogsOperationsResponseBody>;
 
 /** @internal */
 export const ListOperationLogsRequest$inboundSchema: z.ZodType<
@@ -360,8 +360,8 @@ export function messageFromJSON(
 }
 
 /** @internal */
-export const ListOperationLogsOperationResponseBody$inboundSchema: z.ZodType<
-  ListOperationLogsOperationResponseBody,
+export const ListOperationLogsOperationsResponseBody$inboundSchema: z.ZodType<
+  ListOperationLogsOperationsResponseBody,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -371,17 +371,17 @@ export const ListOperationLogsOperationResponseBody$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type ListOperationLogsOperationResponseBody$Outbound = {
+export type ListOperationLogsOperationsResponseBody$Outbound = {
   timestamp: string;
   message: Message$Outbound;
   severity: string;
 };
 
 /** @internal */
-export const ListOperationLogsOperationResponseBody$outboundSchema: z.ZodType<
-  ListOperationLogsOperationResponseBody$Outbound,
+export const ListOperationLogsOperationsResponseBody$outboundSchema: z.ZodType<
+  ListOperationLogsOperationsResponseBody$Outbound,
   z.ZodTypeDef,
-  ListOperationLogsOperationResponseBody
+  ListOperationLogsOperationsResponseBody
 > = z.object({
   timestamp: z.string(),
   message: z.lazy(() => Message$outboundSchema),
@@ -392,36 +392,41 @@ export const ListOperationLogsOperationResponseBody$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace ListOperationLogsOperationResponseBody$ {
-  /** @deprecated use `ListOperationLogsOperationResponseBody$inboundSchema` instead. */
+export namespace ListOperationLogsOperationsResponseBody$ {
+  /** @deprecated use `ListOperationLogsOperationsResponseBody$inboundSchema` instead. */
   export const inboundSchema =
-    ListOperationLogsOperationResponseBody$inboundSchema;
-  /** @deprecated use `ListOperationLogsOperationResponseBody$outboundSchema` instead. */
+    ListOperationLogsOperationsResponseBody$inboundSchema;
+  /** @deprecated use `ListOperationLogsOperationsResponseBody$outboundSchema` instead. */
   export const outboundSchema =
-    ListOperationLogsOperationResponseBody$outboundSchema;
-  /** @deprecated use `ListOperationLogsOperationResponseBody$Outbound` instead. */
-  export type Outbound = ListOperationLogsOperationResponseBody$Outbound;
+    ListOperationLogsOperationsResponseBody$outboundSchema;
+  /** @deprecated use `ListOperationLogsOperationsResponseBody$Outbound` instead. */
+  export type Outbound = ListOperationLogsOperationsResponseBody$Outbound;
 }
 
-export function listOperationLogsOperationResponseBodyToJSON(
-  listOperationLogsOperationResponseBody:
-    ListOperationLogsOperationResponseBody,
+export function listOperationLogsOperationsResponseBodyToJSON(
+  listOperationLogsOperationsResponseBody:
+    ListOperationLogsOperationsResponseBody,
 ): string {
   return JSON.stringify(
-    ListOperationLogsOperationResponseBody$outboundSchema.parse(
-      listOperationLogsOperationResponseBody,
+    ListOperationLogsOperationsResponseBody$outboundSchema.parse(
+      listOperationLogsOperationsResponseBody,
     ),
   );
 }
 
-export function listOperationLogsOperationResponseBodyFromJSON(
+export function listOperationLogsOperationsResponseBodyFromJSON(
   jsonString: string,
-): SafeParseResult<ListOperationLogsOperationResponseBody, SDKValidationError> {
+): SafeParseResult<
+  ListOperationLogsOperationsResponseBody,
+  SDKValidationError
+> {
   return safeParse(
     jsonString,
     (x) =>
-      ListOperationLogsOperationResponseBody$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ListOperationLogsOperationResponseBody' from JSON`,
+      ListOperationLogsOperationsResponseBody$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'ListOperationLogsOperationsResponseBody' from JSON`,
   );
 }
 
@@ -432,13 +437,13 @@ export const ListOperationLogsResponse$inboundSchema: z.ZodType<
   unknown
 > = z.union([
   z.lazy(() => ListOperationLogsResponseBody$inboundSchema),
-  z.array(z.lazy(() => ListOperationLogsOperationResponseBody$inboundSchema)),
+  z.array(z.lazy(() => ListOperationLogsOperationsResponseBody$inboundSchema)),
 ]);
 
 /** @internal */
 export type ListOperationLogsResponse$Outbound =
   | ListOperationLogsResponseBody$Outbound
-  | Array<ListOperationLogsOperationResponseBody$Outbound>;
+  | Array<ListOperationLogsOperationsResponseBody$Outbound>;
 
 /** @internal */
 export const ListOperationLogsResponse$outboundSchema: z.ZodType<
@@ -447,7 +452,7 @@ export const ListOperationLogsResponse$outboundSchema: z.ZodType<
   ListOperationLogsResponse
 > = z.union([
   z.lazy(() => ListOperationLogsResponseBody$outboundSchema),
-  z.array(z.lazy(() => ListOperationLogsOperationResponseBody$outboundSchema)),
+  z.array(z.lazy(() => ListOperationLogsOperationsResponseBody$outboundSchema)),
 ]);
 
 /**

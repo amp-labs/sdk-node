@@ -18,7 +18,7 @@ export const GenerateUploadUrlServerList = [
  *
  * Additional properties specific to the problem type may be present.
  */
-export type GenerateUploadURLUploadURLResponseBody = {
+export type GenerateUploadUrlUploadUrlsResponseBody = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -112,11 +112,11 @@ export type GenerateUploadUrlResponseBody = {
 
 export type GenerateUploadUrlResponse =
   | GenerateUploadUrlResponseBody
-  | GenerateUploadURLUploadURLResponseBody;
+  | GenerateUploadUrlUploadUrlsResponseBody;
 
 /** @internal */
-export const GenerateUploadURLUploadURLResponseBody$inboundSchema: z.ZodType<
-  GenerateUploadURLUploadURLResponseBody,
+export const GenerateUploadUrlUploadUrlsResponseBody$inboundSchema: z.ZodType<
+  GenerateUploadUrlUploadUrlsResponseBody,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -142,7 +142,7 @@ export const GenerateUploadURLUploadURLResponseBody$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type GenerateUploadURLUploadURLResponseBody$Outbound = {
+export type GenerateUploadUrlUploadUrlsResponseBody$Outbound = {
   type: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -163,10 +163,10 @@ export type GenerateUploadURLUploadURLResponseBody$Outbound = {
 };
 
 /** @internal */
-export const GenerateUploadURLUploadURLResponseBody$outboundSchema: z.ZodType<
-  GenerateUploadURLUploadURLResponseBody$Outbound,
+export const GenerateUploadUrlUploadUrlsResponseBody$outboundSchema: z.ZodType<
+  GenerateUploadUrlUploadUrlsResponseBody$Outbound,
   z.ZodTypeDef,
-  GenerateUploadURLUploadURLResponseBody
+  GenerateUploadUrlUploadUrlsResponseBody
 > = z.object({
   type: z.string().default("about:blank"),
   href: z.string().optional(),
@@ -191,36 +191,41 @@ export const GenerateUploadURLUploadURLResponseBody$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace GenerateUploadURLUploadURLResponseBody$ {
-  /** @deprecated use `GenerateUploadURLUploadURLResponseBody$inboundSchema` instead. */
+export namespace GenerateUploadUrlUploadUrlsResponseBody$ {
+  /** @deprecated use `GenerateUploadUrlUploadUrlsResponseBody$inboundSchema` instead. */
   export const inboundSchema =
-    GenerateUploadURLUploadURLResponseBody$inboundSchema;
-  /** @deprecated use `GenerateUploadURLUploadURLResponseBody$outboundSchema` instead. */
+    GenerateUploadUrlUploadUrlsResponseBody$inboundSchema;
+  /** @deprecated use `GenerateUploadUrlUploadUrlsResponseBody$outboundSchema` instead. */
   export const outboundSchema =
-    GenerateUploadURLUploadURLResponseBody$outboundSchema;
-  /** @deprecated use `GenerateUploadURLUploadURLResponseBody$Outbound` instead. */
-  export type Outbound = GenerateUploadURLUploadURLResponseBody$Outbound;
+    GenerateUploadUrlUploadUrlsResponseBody$outboundSchema;
+  /** @deprecated use `GenerateUploadUrlUploadUrlsResponseBody$Outbound` instead. */
+  export type Outbound = GenerateUploadUrlUploadUrlsResponseBody$Outbound;
 }
 
-export function generateUploadURLUploadURLResponseBodyToJSON(
-  generateUploadURLUploadURLResponseBody:
-    GenerateUploadURLUploadURLResponseBody,
+export function generateUploadUrlUploadUrlsResponseBodyToJSON(
+  generateUploadUrlUploadUrlsResponseBody:
+    GenerateUploadUrlUploadUrlsResponseBody,
 ): string {
   return JSON.stringify(
-    GenerateUploadURLUploadURLResponseBody$outboundSchema.parse(
-      generateUploadURLUploadURLResponseBody,
+    GenerateUploadUrlUploadUrlsResponseBody$outboundSchema.parse(
+      generateUploadUrlUploadUrlsResponseBody,
     ),
   );
 }
 
-export function generateUploadURLUploadURLResponseBodyFromJSON(
+export function generateUploadUrlUploadUrlsResponseBodyFromJSON(
   jsonString: string,
-): SafeParseResult<GenerateUploadURLUploadURLResponseBody, SDKValidationError> {
+): SafeParseResult<
+  GenerateUploadUrlUploadUrlsResponseBody,
+  SDKValidationError
+> {
   return safeParse(
     jsonString,
     (x) =>
-      GenerateUploadURLUploadURLResponseBody$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GenerateUploadURLUploadURLResponseBody' from JSON`,
+      GenerateUploadUrlUploadUrlsResponseBody$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'GenerateUploadUrlUploadUrlsResponseBody' from JSON`,
   );
 }
 
@@ -293,13 +298,13 @@ export const GenerateUploadUrlResponse$inboundSchema: z.ZodType<
   unknown
 > = z.union([
   z.lazy(() => GenerateUploadUrlResponseBody$inboundSchema),
-  z.lazy(() => GenerateUploadURLUploadURLResponseBody$inboundSchema),
+  z.lazy(() => GenerateUploadUrlUploadUrlsResponseBody$inboundSchema),
 ]);
 
 /** @internal */
 export type GenerateUploadUrlResponse$Outbound =
   | GenerateUploadUrlResponseBody$Outbound
-  | GenerateUploadURLUploadURLResponseBody$Outbound;
+  | GenerateUploadUrlUploadUrlsResponseBody$Outbound;
 
 /** @internal */
 export const GenerateUploadUrlResponse$outboundSchema: z.ZodType<
@@ -308,7 +313,7 @@ export const GenerateUploadUrlResponse$outboundSchema: z.ZodType<
   GenerateUploadUrlResponse
 > = z.union([
   z.lazy(() => GenerateUploadUrlResponseBody$outboundSchema),
-  z.lazy(() => GenerateUploadURLUploadURLResponseBody$outboundSchema),
+  z.lazy(() => GenerateUploadUrlUploadUrlsResponseBody$outboundSchema),
 ]);
 
 /**

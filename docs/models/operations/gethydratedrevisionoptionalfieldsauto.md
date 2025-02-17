@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { GetHydratedRevisionOptionalFieldsAuto } from "openapi/models/operations";
+import { GetHydratedRevisionOptionalFieldsAuto } from "sdk-node/models/operations";
 
 let value: GetHydratedRevisionOptionalFieldsAuto = "all";
 ```

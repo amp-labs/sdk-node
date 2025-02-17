@@ -87,6 +87,7 @@ export async function readDeliverResults(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "deliverResults",
     oAuth2Scopes: [],
 

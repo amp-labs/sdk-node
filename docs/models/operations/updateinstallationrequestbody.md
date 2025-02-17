@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { UpdateInstallationRequestBody } from "openapi/models/operations";
+import { UpdateInstallationRequestBody } from "sdk-node/models/operations";
 
 let value: UpdateInstallationRequestBody = {
   updateMask: [
@@ -109,34 +109,6 @@ let value: UpdateInstallationRequestBody = {
           objects: {
             "key": {
               objectName: "account",
-              selectedValueDefaults: {
-                "0": "{",
-                "1": " ",
-                "2": "p",
-                "3": "h",
-                "4": "o",
-                "5": "n",
-                "6": "e",
-                "7": ":",
-                "8": " ",
-                "9": "\"",
-                "10": "5",
-                "11": "5",
-                "12": "5",
-                "13": "-",
-                "14": "5",
-                "15": "5",
-                "16": "5",
-                "17": "-",
-                "18": "5",
-                "19": "5",
-                "20": "5",
-                "21": "5",
-                "22": "\"",
-                "23": " ",
-                "24": " ",
-                "25": "}",
-              },
             },
           },
         },

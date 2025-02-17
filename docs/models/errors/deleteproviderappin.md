@@ -5,9 +5,9 @@ The location of the invalid input
 ## Example Usage
 
 ```typescript
-import { DeleteProviderAppIn } from "openapi/models/errors";
+import { DeleteProviderAppIn } from "sdk-node/models/errors";
 
-let value: DeleteProviderAppIn = "path";
+let value: DeleteProviderAppIn = "query";
 ```
 
 ## Values

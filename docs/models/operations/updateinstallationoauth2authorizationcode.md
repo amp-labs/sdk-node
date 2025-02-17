@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { UpdateInstallationOauth2AuthorizationCode } from "openapi/models/operations";
+import { UpdateInstallationOauth2AuthorizationCode } from "sdk-node/models/operations";
 
 let value: UpdateInstallationOauth2AuthorizationCode = {};
 ```

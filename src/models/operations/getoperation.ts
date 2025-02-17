@@ -23,7 +23,7 @@ export type GetOperationRequest = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export type GetOperationOperationResponseBody = {
+export type GetOperationOperationsResponseBody = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -139,10 +139,6 @@ export type GetOperationResponseBody = {
    */
   result?: string | undefined;
   /**
-   * The latest operation event ID.
-   */
-  latestOperationEventId?: string | undefined;
-  /**
    * Metadata associated with the operation.
    */
   metadata?: GetOperationMetadata | undefined;
@@ -154,7 +150,7 @@ export type GetOperationResponseBody = {
 
 export type GetOperationResponse =
   | GetOperationResponseBody
-  | GetOperationOperationResponseBody;
+  | GetOperationOperationsResponseBody;
 
 /** @internal */
 export const GetOperationRequest$inboundSchema: z.ZodType<
@@ -214,8 +210,8 @@ export function getOperationRequestFromJSON(
 }
 
 /** @internal */
-export const GetOperationOperationResponseBody$inboundSchema: z.ZodType<
-  GetOperationOperationResponseBody,
+export const GetOperationOperationsResponseBody$inboundSchema: z.ZodType<
+  GetOperationOperationsResponseBody,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -241,7 +237,7 @@ export const GetOperationOperationResponseBody$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type GetOperationOperationResponseBody$Outbound = {
+export type GetOperationOperationsResponseBody$Outbound = {
   type: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -262,10 +258,10 @@ export type GetOperationOperationResponseBody$Outbound = {
 };
 
 /** @internal */
-export const GetOperationOperationResponseBody$outboundSchema: z.ZodType<
-  GetOperationOperationResponseBody$Outbound,
+export const GetOperationOperationsResponseBody$outboundSchema: z.ZodType<
+  GetOperationOperationsResponseBody$Outbound,
   z.ZodTypeDef,
-  GetOperationOperationResponseBody
+  GetOperationOperationsResponseBody
 > = z.object({
   type: z.string().default("about:blank"),
   href: z.string().optional(),
@@ -290,33 +286,34 @@ export const GetOperationOperationResponseBody$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace GetOperationOperationResponseBody$ {
-  /** @deprecated use `GetOperationOperationResponseBody$inboundSchema` instead. */
-  export const inboundSchema = GetOperationOperationResponseBody$inboundSchema;
-  /** @deprecated use `GetOperationOperationResponseBody$outboundSchema` instead. */
+export namespace GetOperationOperationsResponseBody$ {
+  /** @deprecated use `GetOperationOperationsResponseBody$inboundSchema` instead. */
+  export const inboundSchema = GetOperationOperationsResponseBody$inboundSchema;
+  /** @deprecated use `GetOperationOperationsResponseBody$outboundSchema` instead. */
   export const outboundSchema =
-    GetOperationOperationResponseBody$outboundSchema;
-  /** @deprecated use `GetOperationOperationResponseBody$Outbound` instead. */
-  export type Outbound = GetOperationOperationResponseBody$Outbound;
+    GetOperationOperationsResponseBody$outboundSchema;
+  /** @deprecated use `GetOperationOperationsResponseBody$Outbound` instead. */
+  export type Outbound = GetOperationOperationsResponseBody$Outbound;
 }
 
-export function getOperationOperationResponseBodyToJSON(
-  getOperationOperationResponseBody: GetOperationOperationResponseBody,
+export function getOperationOperationsResponseBodyToJSON(
+  getOperationOperationsResponseBody: GetOperationOperationsResponseBody,
 ): string {
   return JSON.stringify(
-    GetOperationOperationResponseBody$outboundSchema.parse(
-      getOperationOperationResponseBody,
+    GetOperationOperationsResponseBody$outboundSchema.parse(
+      getOperationOperationsResponseBody,
     ),
   );
 }
 
-export function getOperationOperationResponseBodyFromJSON(
+export function getOperationOperationsResponseBodyFromJSON(
   jsonString: string,
-): SafeParseResult<GetOperationOperationResponseBody, SDKValidationError> {
+): SafeParseResult<GetOperationOperationsResponseBody, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => GetOperationOperationResponseBody$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetOperationOperationResponseBody' from JSON`,
+    (x) =>
+      GetOperationOperationsResponseBody$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetOperationOperationsResponseBody' from JSON`,
   );
 }
 
@@ -382,7 +379,6 @@ export const GetOperationResponseBody$inboundSchema: z.ZodType<
   installationId: z.string(),
   status: z.string(),
   result: z.string().optional(),
-  latestOperationEventId: z.string().optional(),
   metadata: z.lazy(() => GetOperationMetadata$inboundSchema).optional(),
   createTime: z.string().datetime({ offset: true }).transform(v => new Date(v))
     .optional(),
@@ -398,7 +394,6 @@ export type GetOperationResponseBody$Outbound = {
   installationId: string;
   status: string;
   result?: string | undefined;
-  latestOperationEventId?: string | undefined;
   metadata?: GetOperationMetadata$Outbound | undefined;
   createTime?: string | undefined;
 };
@@ -417,7 +412,6 @@ export const GetOperationResponseBody$outboundSchema: z.ZodType<
   installationId: z.string(),
   status: z.string(),
   result: z.string().optional(),
-  latestOperationEventId: z.string().optional(),
   metadata: z.lazy(() => GetOperationMetadata$outboundSchema).optional(),
   createTime: z.date().transform(v => v.toISOString()).optional(),
 });
@@ -460,13 +454,13 @@ export const GetOperationResponse$inboundSchema: z.ZodType<
   unknown
 > = z.union([
   z.lazy(() => GetOperationResponseBody$inboundSchema),
-  z.lazy(() => GetOperationOperationResponseBody$inboundSchema),
+  z.lazy(() => GetOperationOperationsResponseBody$inboundSchema),
 ]);
 
 /** @internal */
 export type GetOperationResponse$Outbound =
   | GetOperationResponseBody$Outbound
-  | GetOperationOperationResponseBody$Outbound;
+  | GetOperationOperationsResponseBody$Outbound;
 
 /** @internal */
 export const GetOperationResponse$outboundSchema: z.ZodType<
@@ -475,7 +469,7 @@ export const GetOperationResponse$outboundSchema: z.ZodType<
   GetOperationResponse
 > = z.union([
   z.lazy(() => GetOperationResponseBody$outboundSchema),
-  z.lazy(() => GetOperationOperationResponseBody$outboundSchema),
+  z.lazy(() => GetOperationOperationsResponseBody$outboundSchema),
 ]);
 
 /**

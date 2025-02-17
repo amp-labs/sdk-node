@@ -15,6 +15,14 @@ export type ListOperationsRequest = {
   projectIdOrName: string;
   integrationId: string;
   installationId: string;
+  /**
+   * The number of operations to return.
+   */
+  pageSize?: number | undefined;
+  /**
+   * A cursor that can be passed to paginate through multiple pages of operations.
+   */
+  pageToken?: string | undefined;
 };
 
 /**
@@ -24,7 +32,7 @@ export type ListOperationsRequest = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export type ListOperationsResponseBody = {
+export type ListOperationsOperationsResponseBody = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -103,7 +111,7 @@ export type ListOperationsResponseBody = {
  */
 export type ListOperationsMetadata = {};
 
-export type ListOperationsOperationResponseBody = {
+export type Results = {
   /**
    * The Ampersand project ID.
    */
@@ -137,10 +145,6 @@ export type ListOperationsOperationResponseBody = {
    */
   result?: string | undefined;
   /**
-   * The latest operation event ID.
-   */
-  latestOperationEventId?: string | undefined;
-  /**
    * Metadata associated with the operation.
    */
   metadata?: ListOperationsMetadata | undefined;
@@ -150,9 +154,28 @@ export type ListOperationsOperationResponseBody = {
   createTime?: Date | undefined;
 };
 
+export type Pagination = {
+  /**
+   * If set to true, this is the last page of results for the given operation. There are no more results & there will be no nextPageToken sent when done is true.
+   */
+  done: boolean;
+  /**
+   * If present, set this value against your 'pageToken' query parameter in the next API call, which will retrieve the next set of results.
+   */
+  nextPageToken?: string | undefined;
+};
+
+/**
+ * List of operations
+ */
+export type ListOperationsResponseBody = {
+  results: Array<Results>;
+  pagination: Pagination;
+};
+
 export type ListOperationsResponse =
   | ListOperationsResponseBody
-  | Array<ListOperationsOperationResponseBody>;
+  | ListOperationsOperationsResponseBody;
 
 /** @internal */
 export const ListOperationsRequest$inboundSchema: z.ZodType<
@@ -163,6 +186,8 @@ export const ListOperationsRequest$inboundSchema: z.ZodType<
   projectIdOrName: z.string(),
   integrationId: z.string(),
   installationId: z.string(),
+  pageSize: z.number().int().default(200),
+  pageToken: z.string().optional(),
 });
 
 /** @internal */
@@ -170,6 +195,8 @@ export type ListOperationsRequest$Outbound = {
   projectIdOrName: string;
   integrationId: string;
   installationId: string;
+  pageSize: number;
+  pageToken?: string | undefined;
 };
 
 /** @internal */
@@ -181,6 +208,8 @@ export const ListOperationsRequest$outboundSchema: z.ZodType<
   projectIdOrName: z.string(),
   integrationId: z.string(),
   installationId: z.string(),
+  pageSize: z.number().int().default(200),
+  pageToken: z.string().optional(),
 });
 
 /**
@@ -215,8 +244,8 @@ export function listOperationsRequestFromJSON(
 }
 
 /** @internal */
-export const ListOperationsResponseBody$inboundSchema: z.ZodType<
-  ListOperationsResponseBody,
+export const ListOperationsOperationsResponseBody$inboundSchema: z.ZodType<
+  ListOperationsOperationsResponseBody,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -242,7 +271,7 @@ export const ListOperationsResponseBody$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type ListOperationsResponseBody$Outbound = {
+export type ListOperationsOperationsResponseBody$Outbound = {
   type: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -263,10 +292,10 @@ export type ListOperationsResponseBody$Outbound = {
 };
 
 /** @internal */
-export const ListOperationsResponseBody$outboundSchema: z.ZodType<
-  ListOperationsResponseBody$Outbound,
+export const ListOperationsOperationsResponseBody$outboundSchema: z.ZodType<
+  ListOperationsOperationsResponseBody$Outbound,
   z.ZodTypeDef,
-  ListOperationsResponseBody
+  ListOperationsOperationsResponseBody
 > = z.object({
   type: z.string().default("about:blank"),
   href: z.string().optional(),
@@ -291,30 +320,35 @@ export const ListOperationsResponseBody$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace ListOperationsResponseBody$ {
-  /** @deprecated use `ListOperationsResponseBody$inboundSchema` instead. */
-  export const inboundSchema = ListOperationsResponseBody$inboundSchema;
-  /** @deprecated use `ListOperationsResponseBody$outboundSchema` instead. */
-  export const outboundSchema = ListOperationsResponseBody$outboundSchema;
-  /** @deprecated use `ListOperationsResponseBody$Outbound` instead. */
-  export type Outbound = ListOperationsResponseBody$Outbound;
+export namespace ListOperationsOperationsResponseBody$ {
+  /** @deprecated use `ListOperationsOperationsResponseBody$inboundSchema` instead. */
+  export const inboundSchema =
+    ListOperationsOperationsResponseBody$inboundSchema;
+  /** @deprecated use `ListOperationsOperationsResponseBody$outboundSchema` instead. */
+  export const outboundSchema =
+    ListOperationsOperationsResponseBody$outboundSchema;
+  /** @deprecated use `ListOperationsOperationsResponseBody$Outbound` instead. */
+  export type Outbound = ListOperationsOperationsResponseBody$Outbound;
 }
 
-export function listOperationsResponseBodyToJSON(
-  listOperationsResponseBody: ListOperationsResponseBody,
+export function listOperationsOperationsResponseBodyToJSON(
+  listOperationsOperationsResponseBody: ListOperationsOperationsResponseBody,
 ): string {
   return JSON.stringify(
-    ListOperationsResponseBody$outboundSchema.parse(listOperationsResponseBody),
+    ListOperationsOperationsResponseBody$outboundSchema.parse(
+      listOperationsOperationsResponseBody,
+    ),
   );
 }
 
-export function listOperationsResponseBodyFromJSON(
+export function listOperationsOperationsResponseBodyFromJSON(
   jsonString: string,
-): SafeParseResult<ListOperationsResponseBody, SDKValidationError> {
+): SafeParseResult<ListOperationsOperationsResponseBody, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => ListOperationsResponseBody$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ListOperationsResponseBody' from JSON`,
+    (x) =>
+      ListOperationsOperationsResponseBody$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListOperationsOperationsResponseBody' from JSON`,
   );
 }
 
@@ -367,27 +401,24 @@ export function listOperationsMetadataFromJSON(
 }
 
 /** @internal */
-export const ListOperationsOperationResponseBody$inboundSchema: z.ZodType<
-  ListOperationsOperationResponseBody,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  projectId: z.string(),
-  integrationId: z.string(),
-  configId: z.string(),
-  actionType: z.string(),
-  id: z.string(),
-  installationId: z.string(),
-  status: z.string(),
-  result: z.string().optional(),
-  latestOperationEventId: z.string().optional(),
-  metadata: z.lazy(() => ListOperationsMetadata$inboundSchema).optional(),
-  createTime: z.string().datetime({ offset: true }).transform(v => new Date(v))
-    .optional(),
-});
+export const Results$inboundSchema: z.ZodType<Results, z.ZodTypeDef, unknown> =
+  z.object({
+    projectId: z.string(),
+    integrationId: z.string(),
+    configId: z.string(),
+    actionType: z.string(),
+    id: z.string(),
+    installationId: z.string(),
+    status: z.string(),
+    result: z.string().optional(),
+    metadata: z.lazy(() => ListOperationsMetadata$inboundSchema).optional(),
+    createTime: z.string().datetime({ offset: true }).transform(v =>
+      new Date(v)
+    ).optional(),
+  });
 
 /** @internal */
-export type ListOperationsOperationResponseBody$Outbound = {
+export type Results$Outbound = {
   projectId: string;
   integrationId: string;
   configId: string;
@@ -396,16 +427,15 @@ export type ListOperationsOperationResponseBody$Outbound = {
   installationId: string;
   status: string;
   result?: string | undefined;
-  latestOperationEventId?: string | undefined;
   metadata?: ListOperationsMetadata$Outbound | undefined;
   createTime?: string | undefined;
 };
 
 /** @internal */
-export const ListOperationsOperationResponseBody$outboundSchema: z.ZodType<
-  ListOperationsOperationResponseBody$Outbound,
+export const Results$outboundSchema: z.ZodType<
+  Results$Outbound,
   z.ZodTypeDef,
-  ListOperationsOperationResponseBody
+  Results
 > = z.object({
   projectId: z.string(),
   integrationId: z.string(),
@@ -415,7 +445,6 @@ export const ListOperationsOperationResponseBody$outboundSchema: z.ZodType<
   installationId: z.string(),
   status: z.string(),
   result: z.string().optional(),
-  latestOperationEventId: z.string().optional(),
   metadata: z.lazy(() => ListOperationsMetadata$outboundSchema).optional(),
   createTime: z.date().transform(v => v.toISOString()).optional(),
 });
@@ -424,35 +453,136 @@ export const ListOperationsOperationResponseBody$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace ListOperationsOperationResponseBody$ {
-  /** @deprecated use `ListOperationsOperationResponseBody$inboundSchema` instead. */
-  export const inboundSchema =
-    ListOperationsOperationResponseBody$inboundSchema;
-  /** @deprecated use `ListOperationsOperationResponseBody$outboundSchema` instead. */
-  export const outboundSchema =
-    ListOperationsOperationResponseBody$outboundSchema;
-  /** @deprecated use `ListOperationsOperationResponseBody$Outbound` instead. */
-  export type Outbound = ListOperationsOperationResponseBody$Outbound;
+export namespace Results$ {
+  /** @deprecated use `Results$inboundSchema` instead. */
+  export const inboundSchema = Results$inboundSchema;
+  /** @deprecated use `Results$outboundSchema` instead. */
+  export const outboundSchema = Results$outboundSchema;
+  /** @deprecated use `Results$Outbound` instead. */
+  export type Outbound = Results$Outbound;
 }
 
-export function listOperationsOperationResponseBodyToJSON(
-  listOperationsOperationResponseBody: ListOperationsOperationResponseBody,
-): string {
-  return JSON.stringify(
-    ListOperationsOperationResponseBody$outboundSchema.parse(
-      listOperationsOperationResponseBody,
-    ),
+export function resultsToJSON(results: Results): string {
+  return JSON.stringify(Results$outboundSchema.parse(results));
+}
+
+export function resultsFromJSON(
+  jsonString: string,
+): SafeParseResult<Results, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Results$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Results' from JSON`,
   );
 }
 
-export function listOperationsOperationResponseBodyFromJSON(
+/** @internal */
+export const Pagination$inboundSchema: z.ZodType<
+  Pagination,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  done: z.boolean(),
+  nextPageToken: z.string().optional(),
+});
+
+/** @internal */
+export type Pagination$Outbound = {
+  done: boolean;
+  nextPageToken?: string | undefined;
+};
+
+/** @internal */
+export const Pagination$outboundSchema: z.ZodType<
+  Pagination$Outbound,
+  z.ZodTypeDef,
+  Pagination
+> = z.object({
+  done: z.boolean(),
+  nextPageToken: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace Pagination$ {
+  /** @deprecated use `Pagination$inboundSchema` instead. */
+  export const inboundSchema = Pagination$inboundSchema;
+  /** @deprecated use `Pagination$outboundSchema` instead. */
+  export const outboundSchema = Pagination$outboundSchema;
+  /** @deprecated use `Pagination$Outbound` instead. */
+  export type Outbound = Pagination$Outbound;
+}
+
+export function paginationToJSON(pagination: Pagination): string {
+  return JSON.stringify(Pagination$outboundSchema.parse(pagination));
+}
+
+export function paginationFromJSON(
   jsonString: string,
-): SafeParseResult<ListOperationsOperationResponseBody, SDKValidationError> {
+): SafeParseResult<Pagination, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) =>
-      ListOperationsOperationResponseBody$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ListOperationsOperationResponseBody' from JSON`,
+    (x) => Pagination$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Pagination' from JSON`,
+  );
+}
+
+/** @internal */
+export const ListOperationsResponseBody$inboundSchema: z.ZodType<
+  ListOperationsResponseBody,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  results: z.array(z.lazy(() => Results$inboundSchema)),
+  pagination: z.lazy(() => Pagination$inboundSchema),
+});
+
+/** @internal */
+export type ListOperationsResponseBody$Outbound = {
+  results: Array<Results$Outbound>;
+  pagination: Pagination$Outbound;
+};
+
+/** @internal */
+export const ListOperationsResponseBody$outboundSchema: z.ZodType<
+  ListOperationsResponseBody$Outbound,
+  z.ZodTypeDef,
+  ListOperationsResponseBody
+> = z.object({
+  results: z.array(z.lazy(() => Results$outboundSchema)),
+  pagination: z.lazy(() => Pagination$outboundSchema),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace ListOperationsResponseBody$ {
+  /** @deprecated use `ListOperationsResponseBody$inboundSchema` instead. */
+  export const inboundSchema = ListOperationsResponseBody$inboundSchema;
+  /** @deprecated use `ListOperationsResponseBody$outboundSchema` instead. */
+  export const outboundSchema = ListOperationsResponseBody$outboundSchema;
+  /** @deprecated use `ListOperationsResponseBody$Outbound` instead. */
+  export type Outbound = ListOperationsResponseBody$Outbound;
+}
+
+export function listOperationsResponseBodyToJSON(
+  listOperationsResponseBody: ListOperationsResponseBody,
+): string {
+  return JSON.stringify(
+    ListOperationsResponseBody$outboundSchema.parse(listOperationsResponseBody),
+  );
+}
+
+export function listOperationsResponseBodyFromJSON(
+  jsonString: string,
+): SafeParseResult<ListOperationsResponseBody, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ListOperationsResponseBody$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListOperationsResponseBody' from JSON`,
   );
 }
 
@@ -463,13 +593,13 @@ export const ListOperationsResponse$inboundSchema: z.ZodType<
   unknown
 > = z.union([
   z.lazy(() => ListOperationsResponseBody$inboundSchema),
-  z.array(z.lazy(() => ListOperationsOperationResponseBody$inboundSchema)),
+  z.lazy(() => ListOperationsOperationsResponseBody$inboundSchema),
 ]);
 
 /** @internal */
 export type ListOperationsResponse$Outbound =
   | ListOperationsResponseBody$Outbound
-  | Array<ListOperationsOperationResponseBody$Outbound>;
+  | ListOperationsOperationsResponseBody$Outbound;
 
 /** @internal */
 export const ListOperationsResponse$outboundSchema: z.ZodType<
@@ -478,7 +608,7 @@ export const ListOperationsResponse$outboundSchema: z.ZodType<
   ListOperationsResponse
 > = z.union([
   z.lazy(() => ListOperationsResponseBody$outboundSchema),
-  z.array(z.lazy(() => ListOperationsOperationResponseBody$outboundSchema)),
+  z.lazy(() => ListOperationsOperationsResponseBody$outboundSchema),
 ]);
 
 /**

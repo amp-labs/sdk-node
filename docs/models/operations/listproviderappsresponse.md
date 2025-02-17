@@ -3,10 +3,10 @@
 
 ## Supported Types
 
-### `operations.ListProviderAppsProviderAppResponseBody[]`
+### `operations.ListProviderAppsProviderAppsResponseBody[]`
 
 ```typescript
-const value: operations.ListProviderAppsProviderAppResponseBody[] = [
+const value: operations.ListProviderAppsProviderAppsResponseBody[] = [
   {
     id: "provider-app-123",
     projectId: "project-456",

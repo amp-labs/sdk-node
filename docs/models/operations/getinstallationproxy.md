@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { GetInstallationProxy } from "openapi/models/operations";
+import { GetInstallationProxy } from "sdk-node/models/operations";
 
 let value: GetInstallationProxy = {};
 ```

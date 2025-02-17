@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { ListIntegrationsLatestRevision } from "openapi/models/operations";
+import { ListIntegrationsLatestRevision } from "sdk-node/models/operations";
 
 let value: ListIntegrationsLatestRevision = {
   id: "revision-id-1",

@@ -3,10 +3,10 @@
 
 ## Supported Types
 
-### `operations.ListOperationLogsOperationResponseBody[]`
+### `operations.ListOperationLogsOperationsResponseBody[]`
 
 ```typescript
-const value: operations.ListOperationLogsOperationResponseBody[] = [
+const value: operations.ListOperationLogsOperationsResponseBody[] = [
   {
     timestamp: "2023-07-13T21:34:44.816Z",
     message: {

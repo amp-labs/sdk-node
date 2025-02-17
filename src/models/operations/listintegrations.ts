@@ -188,7 +188,7 @@ export type ListIntegrationsDelivery = {
   pageSize?: number | undefined;
 };
 
-export type ListIntegrationsIntegrationObjects = {
+export type ListIntegrationsIntegrationsObjects = {
   objectName: string;
   destination: string;
   schedule: string;
@@ -212,7 +212,7 @@ export type ListIntegrationsIntegrationObjects = {
 };
 
 export type ListIntegrationsRead = {
-  objects?: Array<ListIntegrationsIntegrationObjects> | undefined;
+  objects?: Array<ListIntegrationsIntegrationsObjects> | undefined;
 };
 
 /**
@@ -270,7 +270,7 @@ export type ListIntegrationsLatestRevision = {
   content: ListIntegrationsContent;
 };
 
-export type ListIntegrationsIntegrationResponseBody = {
+export type ListIntegrationsIntegrationsResponseBody = {
   /**
    * The integration ID.
    */
@@ -300,7 +300,7 @@ export type ListIntegrationsIntegrationResponseBody = {
 
 export type ListIntegrationsResponse =
   | ListIntegrationsResponseBody
-  | Array<ListIntegrationsIntegrationResponseBody>;
+  | Array<ListIntegrationsIntegrationsResponseBody>;
 
 /** @internal */
 export const ListIntegrationsRequest$inboundSchema: z.ZodType<
@@ -1046,8 +1046,8 @@ export function listIntegrationsDeliveryFromJSON(
 }
 
 /** @internal */
-export const ListIntegrationsIntegrationObjects$inboundSchema: z.ZodType<
-  ListIntegrationsIntegrationObjects,
+export const ListIntegrationsIntegrationsObjects$inboundSchema: z.ZodType<
+  ListIntegrationsIntegrationsObjects,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -1075,7 +1075,7 @@ export const ListIntegrationsIntegrationObjects$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type ListIntegrationsIntegrationObjects$Outbound = {
+export type ListIntegrationsIntegrationsObjects$Outbound = {
   objectName: string;
   destination: string;
   schedule: string;
@@ -1099,10 +1099,10 @@ export type ListIntegrationsIntegrationObjects$Outbound = {
 };
 
 /** @internal */
-export const ListIntegrationsIntegrationObjects$outboundSchema: z.ZodType<
-  ListIntegrationsIntegrationObjects$Outbound,
+export const ListIntegrationsIntegrationsObjects$outboundSchema: z.ZodType<
+  ListIntegrationsIntegrationsObjects$Outbound,
   z.ZodTypeDef,
-  ListIntegrationsIntegrationObjects
+  ListIntegrationsIntegrationsObjects
 > = z.object({
   objectName: z.string(),
   destination: z.string(),
@@ -1131,34 +1131,35 @@ export const ListIntegrationsIntegrationObjects$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace ListIntegrationsIntegrationObjects$ {
-  /** @deprecated use `ListIntegrationsIntegrationObjects$inboundSchema` instead. */
-  export const inboundSchema = ListIntegrationsIntegrationObjects$inboundSchema;
-  /** @deprecated use `ListIntegrationsIntegrationObjects$outboundSchema` instead. */
+export namespace ListIntegrationsIntegrationsObjects$ {
+  /** @deprecated use `ListIntegrationsIntegrationsObjects$inboundSchema` instead. */
+  export const inboundSchema =
+    ListIntegrationsIntegrationsObjects$inboundSchema;
+  /** @deprecated use `ListIntegrationsIntegrationsObjects$outboundSchema` instead. */
   export const outboundSchema =
-    ListIntegrationsIntegrationObjects$outboundSchema;
-  /** @deprecated use `ListIntegrationsIntegrationObjects$Outbound` instead. */
-  export type Outbound = ListIntegrationsIntegrationObjects$Outbound;
+    ListIntegrationsIntegrationsObjects$outboundSchema;
+  /** @deprecated use `ListIntegrationsIntegrationsObjects$Outbound` instead. */
+  export type Outbound = ListIntegrationsIntegrationsObjects$Outbound;
 }
 
-export function listIntegrationsIntegrationObjectsToJSON(
-  listIntegrationsIntegrationObjects: ListIntegrationsIntegrationObjects,
+export function listIntegrationsIntegrationsObjectsToJSON(
+  listIntegrationsIntegrationsObjects: ListIntegrationsIntegrationsObjects,
 ): string {
   return JSON.stringify(
-    ListIntegrationsIntegrationObjects$outboundSchema.parse(
-      listIntegrationsIntegrationObjects,
+    ListIntegrationsIntegrationsObjects$outboundSchema.parse(
+      listIntegrationsIntegrationsObjects,
     ),
   );
 }
 
-export function listIntegrationsIntegrationObjectsFromJSON(
+export function listIntegrationsIntegrationsObjectsFromJSON(
   jsonString: string,
-): SafeParseResult<ListIntegrationsIntegrationObjects, SDKValidationError> {
+): SafeParseResult<ListIntegrationsIntegrationsObjects, SDKValidationError> {
   return safeParse(
     jsonString,
     (x) =>
-      ListIntegrationsIntegrationObjects$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ListIntegrationsIntegrationObjects' from JSON`,
+      ListIntegrationsIntegrationsObjects$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListIntegrationsIntegrationsObjects' from JSON`,
   );
 }
 
@@ -1169,13 +1170,13 @@ export const ListIntegrationsRead$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   objects: z.array(
-    z.lazy(() => ListIntegrationsIntegrationObjects$inboundSchema),
+    z.lazy(() => ListIntegrationsIntegrationsObjects$inboundSchema),
   ).optional(),
 });
 
 /** @internal */
 export type ListIntegrationsRead$Outbound = {
-  objects?: Array<ListIntegrationsIntegrationObjects$Outbound> | undefined;
+  objects?: Array<ListIntegrationsIntegrationsObjects$Outbound> | undefined;
 };
 
 /** @internal */
@@ -1185,7 +1186,7 @@ export const ListIntegrationsRead$outboundSchema: z.ZodType<
   ListIntegrationsRead
 > = z.object({
   objects: z.array(
-    z.lazy(() => ListIntegrationsIntegrationObjects$outboundSchema),
+    z.lazy(() => ListIntegrationsIntegrationsObjects$outboundSchema),
   ).optional(),
 });
 
@@ -1583,8 +1584,8 @@ export function listIntegrationsLatestRevisionFromJSON(
 }
 
 /** @internal */
-export const ListIntegrationsIntegrationResponseBody$inboundSchema: z.ZodType<
-  ListIntegrationsIntegrationResponseBody,
+export const ListIntegrationsIntegrationsResponseBody$inboundSchema: z.ZodType<
+  ListIntegrationsIntegrationsResponseBody,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -1599,7 +1600,7 @@ export const ListIntegrationsIntegrationResponseBody$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type ListIntegrationsIntegrationResponseBody$Outbound = {
+export type ListIntegrationsIntegrationsResponseBody$Outbound = {
   id: string;
   projectId: string;
   name: string;
@@ -1610,10 +1611,10 @@ export type ListIntegrationsIntegrationResponseBody$Outbound = {
 };
 
 /** @internal */
-export const ListIntegrationsIntegrationResponseBody$outboundSchema: z.ZodType<
-  ListIntegrationsIntegrationResponseBody$Outbound,
+export const ListIntegrationsIntegrationsResponseBody$outboundSchema: z.ZodType<
+  ListIntegrationsIntegrationsResponseBody$Outbound,
   z.ZodTypeDef,
-  ListIntegrationsIntegrationResponseBody
+  ListIntegrationsIntegrationsResponseBody
 > = z.object({
   id: z.string(),
   projectId: z.string(),
@@ -1628,41 +1629,41 @@ export const ListIntegrationsIntegrationResponseBody$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace ListIntegrationsIntegrationResponseBody$ {
-  /** @deprecated use `ListIntegrationsIntegrationResponseBody$inboundSchema` instead. */
+export namespace ListIntegrationsIntegrationsResponseBody$ {
+  /** @deprecated use `ListIntegrationsIntegrationsResponseBody$inboundSchema` instead. */
   export const inboundSchema =
-    ListIntegrationsIntegrationResponseBody$inboundSchema;
-  /** @deprecated use `ListIntegrationsIntegrationResponseBody$outboundSchema` instead. */
+    ListIntegrationsIntegrationsResponseBody$inboundSchema;
+  /** @deprecated use `ListIntegrationsIntegrationsResponseBody$outboundSchema` instead. */
   export const outboundSchema =
-    ListIntegrationsIntegrationResponseBody$outboundSchema;
-  /** @deprecated use `ListIntegrationsIntegrationResponseBody$Outbound` instead. */
-  export type Outbound = ListIntegrationsIntegrationResponseBody$Outbound;
+    ListIntegrationsIntegrationsResponseBody$outboundSchema;
+  /** @deprecated use `ListIntegrationsIntegrationsResponseBody$Outbound` instead. */
+  export type Outbound = ListIntegrationsIntegrationsResponseBody$Outbound;
 }
 
-export function listIntegrationsIntegrationResponseBodyToJSON(
-  listIntegrationsIntegrationResponseBody:
-    ListIntegrationsIntegrationResponseBody,
+export function listIntegrationsIntegrationsResponseBodyToJSON(
+  listIntegrationsIntegrationsResponseBody:
+    ListIntegrationsIntegrationsResponseBody,
 ): string {
   return JSON.stringify(
-    ListIntegrationsIntegrationResponseBody$outboundSchema.parse(
-      listIntegrationsIntegrationResponseBody,
+    ListIntegrationsIntegrationsResponseBody$outboundSchema.parse(
+      listIntegrationsIntegrationsResponseBody,
     ),
   );
 }
 
-export function listIntegrationsIntegrationResponseBodyFromJSON(
+export function listIntegrationsIntegrationsResponseBodyFromJSON(
   jsonString: string,
 ): SafeParseResult<
-  ListIntegrationsIntegrationResponseBody,
+  ListIntegrationsIntegrationsResponseBody,
   SDKValidationError
 > {
   return safeParse(
     jsonString,
     (x) =>
-      ListIntegrationsIntegrationResponseBody$inboundSchema.parse(
+      ListIntegrationsIntegrationsResponseBody$inboundSchema.parse(
         JSON.parse(x),
       ),
-    `Failed to parse 'ListIntegrationsIntegrationResponseBody' from JSON`,
+    `Failed to parse 'ListIntegrationsIntegrationsResponseBody' from JSON`,
   );
 }
 
@@ -1673,13 +1674,13 @@ export const ListIntegrationsResponse$inboundSchema: z.ZodType<
   unknown
 > = z.union([
   z.lazy(() => ListIntegrationsResponseBody$inboundSchema),
-  z.array(z.lazy(() => ListIntegrationsIntegrationResponseBody$inboundSchema)),
+  z.array(z.lazy(() => ListIntegrationsIntegrationsResponseBody$inboundSchema)),
 ]);
 
 /** @internal */
 export type ListIntegrationsResponse$Outbound =
   | ListIntegrationsResponseBody$Outbound
-  | Array<ListIntegrationsIntegrationResponseBody$Outbound>;
+  | Array<ListIntegrationsIntegrationsResponseBody$Outbound>;
 
 /** @internal */
 export const ListIntegrationsResponse$outboundSchema: z.ZodType<
@@ -1688,7 +1689,9 @@ export const ListIntegrationsResponse$outboundSchema: z.ZodType<
   ListIntegrationsResponse
 > = z.union([
   z.lazy(() => ListIntegrationsResponseBody$outboundSchema),
-  z.array(z.lazy(() => ListIntegrationsIntegrationResponseBody$outboundSchema)),
+  z.array(
+    z.lazy(() => ListIntegrationsIntegrationsResponseBody$outboundSchema),
+  ),
 ]);
 
 /**

@@ -8,7 +8,7 @@ Additional properties specific to the problem type may be present.
 ## Example Usage
 
 ```typescript
-import { CreateGroupResponseBody } from "openapi/models/operations";
+import { CreateGroupResponseBody } from "sdk-node/models/operations";
 
 let value: CreateGroupResponseBody = {
   href:

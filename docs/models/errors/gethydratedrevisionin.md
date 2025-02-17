@@ -5,7 +5,7 @@ The location of the invalid input
 ## Example Usage
 
 ```typescript
-import { GetHydratedRevisionIn } from "openapi/models/errors";
+import { GetHydratedRevisionIn } from "sdk-node/models/errors";
 
 let value: GetHydratedRevisionIn = "body";
 ```

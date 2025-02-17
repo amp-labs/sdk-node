@@ -5,7 +5,7 @@ The status of the connection.
 ## Example Usage
 
 ```typescript
-import { GenerateConnectionStatus } from "openapi/models/operations";
+import { GenerateConnectionStatus } from "sdk-node/models/operations";
 
 let value: GenerateConnectionStatus = "working";
 ```

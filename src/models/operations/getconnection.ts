@@ -48,7 +48,7 @@ export type GetConnectionRequest = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export type GetConnectionConnectionResponseBody = {
+export type GetConnectionConnectionsResponseBody = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -308,11 +308,15 @@ export type GetConnectionResponseBody = {
    */
   status: GetConnectionStatus;
   oauth2AuthorizationCode?: GetConnectionOauth2AuthorizationCode | undefined;
+  /**
+   * The API key used while making the connection.
+   */
+  apiKey?: string | undefined;
 };
 
 export type GetConnectionResponse =
   | GetConnectionResponseBody
-  | GetConnectionConnectionResponseBody;
+  | GetConnectionConnectionsResponseBody;
 
 /** @internal */
 export const Refresh$inboundSchema: z.ZodNativeEnum<typeof Refresh> = z
@@ -400,8 +404,8 @@ export function getConnectionRequestFromJSON(
 }
 
 /** @internal */
-export const GetConnectionConnectionResponseBody$inboundSchema: z.ZodType<
-  GetConnectionConnectionResponseBody,
+export const GetConnectionConnectionsResponseBody$inboundSchema: z.ZodType<
+  GetConnectionConnectionsResponseBody,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -427,7 +431,7 @@ export const GetConnectionConnectionResponseBody$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type GetConnectionConnectionResponseBody$Outbound = {
+export type GetConnectionConnectionsResponseBody$Outbound = {
   type: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -448,10 +452,10 @@ export type GetConnectionConnectionResponseBody$Outbound = {
 };
 
 /** @internal */
-export const GetConnectionConnectionResponseBody$outboundSchema: z.ZodType<
-  GetConnectionConnectionResponseBody$Outbound,
+export const GetConnectionConnectionsResponseBody$outboundSchema: z.ZodType<
+  GetConnectionConnectionsResponseBody$Outbound,
   z.ZodTypeDef,
-  GetConnectionConnectionResponseBody
+  GetConnectionConnectionsResponseBody
 > = z.object({
   type: z.string().default("about:blank"),
   href: z.string().optional(),
@@ -476,35 +480,35 @@ export const GetConnectionConnectionResponseBody$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace GetConnectionConnectionResponseBody$ {
-  /** @deprecated use `GetConnectionConnectionResponseBody$inboundSchema` instead. */
+export namespace GetConnectionConnectionsResponseBody$ {
+  /** @deprecated use `GetConnectionConnectionsResponseBody$inboundSchema` instead. */
   export const inboundSchema =
-    GetConnectionConnectionResponseBody$inboundSchema;
-  /** @deprecated use `GetConnectionConnectionResponseBody$outboundSchema` instead. */
+    GetConnectionConnectionsResponseBody$inboundSchema;
+  /** @deprecated use `GetConnectionConnectionsResponseBody$outboundSchema` instead. */
   export const outboundSchema =
-    GetConnectionConnectionResponseBody$outboundSchema;
-  /** @deprecated use `GetConnectionConnectionResponseBody$Outbound` instead. */
-  export type Outbound = GetConnectionConnectionResponseBody$Outbound;
+    GetConnectionConnectionsResponseBody$outboundSchema;
+  /** @deprecated use `GetConnectionConnectionsResponseBody$Outbound` instead. */
+  export type Outbound = GetConnectionConnectionsResponseBody$Outbound;
 }
 
-export function getConnectionConnectionResponseBodyToJSON(
-  getConnectionConnectionResponseBody: GetConnectionConnectionResponseBody,
+export function getConnectionConnectionsResponseBodyToJSON(
+  getConnectionConnectionsResponseBody: GetConnectionConnectionsResponseBody,
 ): string {
   return JSON.stringify(
-    GetConnectionConnectionResponseBody$outboundSchema.parse(
-      getConnectionConnectionResponseBody,
+    GetConnectionConnectionsResponseBody$outboundSchema.parse(
+      getConnectionConnectionsResponseBody,
     ),
   );
 }
 
-export function getConnectionConnectionResponseBodyFromJSON(
+export function getConnectionConnectionsResponseBodyFromJSON(
   jsonString: string,
-): SafeParseResult<GetConnectionConnectionResponseBody, SDKValidationError> {
+): SafeParseResult<GetConnectionConnectionsResponseBody, SDKValidationError> {
   return safeParse(
     jsonString,
     (x) =>
-      GetConnectionConnectionResponseBody$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetConnectionConnectionResponseBody' from JSON`,
+      GetConnectionConnectionsResponseBody$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetConnectionConnectionsResponseBody' from JSON`,
   );
 }
 
@@ -957,6 +961,7 @@ export const GetConnectionResponseBody$inboundSchema: z.ZodType<
   oauth2AuthorizationCode: z.lazy(() =>
     GetConnectionOauth2AuthorizationCode$inboundSchema
   ).optional(),
+  apiKey: z.string().optional(),
 });
 
 /** @internal */
@@ -976,6 +981,7 @@ export type GetConnectionResponseBody$Outbound = {
   oauth2AuthorizationCode?:
     | GetConnectionOauth2AuthorizationCode$Outbound
     | undefined;
+  apiKey?: string | undefined;
 };
 
 /** @internal */
@@ -999,6 +1005,7 @@ export const GetConnectionResponseBody$outboundSchema: z.ZodType<
   oauth2AuthorizationCode: z.lazy(() =>
     GetConnectionOauth2AuthorizationCode$outboundSchema
   ).optional(),
+  apiKey: z.string().optional(),
 });
 
 /**
@@ -1039,13 +1046,13 @@ export const GetConnectionResponse$inboundSchema: z.ZodType<
   unknown
 > = z.union([
   z.lazy(() => GetConnectionResponseBody$inboundSchema),
-  z.lazy(() => GetConnectionConnectionResponseBody$inboundSchema),
+  z.lazy(() => GetConnectionConnectionsResponseBody$inboundSchema),
 ]);
 
 /** @internal */
 export type GetConnectionResponse$Outbound =
   | GetConnectionResponseBody$Outbound
-  | GetConnectionConnectionResponseBody$Outbound;
+  | GetConnectionConnectionsResponseBody$Outbound;
 
 /** @internal */
 export const GetConnectionResponse$outboundSchema: z.ZodType<
@@ -1054,7 +1061,7 @@ export const GetConnectionResponse$outboundSchema: z.ZodType<
   GetConnectionResponse
 > = z.union([
   z.lazy(() => GetConnectionResponseBody$outboundSchema),
-  z.lazy(() => GetConnectionConnectionResponseBody$outboundSchema),
+  z.lazy(() => GetConnectionConnectionsResponseBody$outboundSchema),
 ]);
 
 /**

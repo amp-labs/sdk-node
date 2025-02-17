@@ -5,7 +5,7 @@ The refresh token to use for the connection.
 ## Example Usage
 
 ```typescript
-import { CreateInstallationRefreshToken } from "openapi/models/operations";
+import { CreateInstallationRefreshToken } from "sdk-node/models/operations";
 
 let value: CreateInstallationRefreshToken = {
   token: "<value>",

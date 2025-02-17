@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { DefaultPeriod } from "openapi/models/operations";
+import { DefaultPeriod } from "sdk-node/models/operations";
 
 let value: DefaultPeriod = {
   days: 30,

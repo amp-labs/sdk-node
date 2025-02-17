@@ -8,7 +8,7 @@ Additional properties specific to the problem type may be present.
 ## Example Usage
 
 ```typescript
-import { CreateRevisionResponseBody } from "openapi/models/errors";
+import { CreateRevisionResponseBody } from "sdk-node/models/errors";
 
 // No examples available for this model
 ```

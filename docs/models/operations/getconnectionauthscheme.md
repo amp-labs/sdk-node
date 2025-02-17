@@ -5,7 +5,7 @@ The authentication scheme used for this connection.
 ## Example Usage
 
 ```typescript
-import { GetConnectionAuthScheme } from "openapi/models/operations";
+import { GetConnectionAuthScheme } from "sdk-node/models/operations";
 
 let value: GetConnectionAuthScheme = "oauth2/authorizationCode";
 ```

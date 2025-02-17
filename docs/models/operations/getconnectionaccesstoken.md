@@ -5,7 +5,7 @@ The access token for the connection.
 ## Example Usage
 
 ```typescript
-import { GetConnectionAccessToken } from "openapi/models/operations";
+import { GetConnectionAccessToken } from "sdk-node/models/operations";
 
 let value: GetConnectionAccessToken = {
   token: "<value>",
