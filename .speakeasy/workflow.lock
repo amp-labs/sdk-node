@@ -2,7 +2,7 @@ speakeasyVersion: 1.493.0
 sources:
     amp-sdk-source:
         sourceNamespace: amp-sdk-source
-        sourceRevisionDigest: sha256:7af969d21a711eeb9a9610eda10615f13a82e4aeab4fc47d654ecffab2e265d9
+        sourceRevisionDigest: sha256:e46e440dc296ea7baf274dc1c661d60302b9d1b61296aa12a78edbdf96880aed
         sourceBlobDigest: sha256:a130f7851dfffca167d97cc957d8757a77e71e38915b8f597b4d9e39860d33aa
         tags:
             - latest
@@ -11,10 +11,10 @@ targets:
     amp-sdk-ts:
         source: amp-sdk-source
         sourceNamespace: amp-sdk-source
-        sourceRevisionDigest: sha256:7af969d21a711eeb9a9610eda10615f13a82e4aeab4fc47d654ecffab2e265d9
+        sourceRevisionDigest: sha256:e46e440dc296ea7baf274dc1c661d60302b9d1b61296aa12a78edbdf96880aed
         sourceBlobDigest: sha256:a130f7851dfffca167d97cc957d8757a77e71e38915b8f597b4d9e39860d33aa
         codeSamplesNamespace: amp-sdk-source-typescript-code-samples
-        codeSamplesRevisionDigest: sha256:5b93571386459198d0e0d0f02dbb94ecc3ef2e819441bcd7b21e28e0c1308a27
+        codeSamplesRevisionDigest: sha256:59f5566446c554e5c691b952b56df39942dc3b5a7bdfcdaae39641ebc2fad9a2
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
