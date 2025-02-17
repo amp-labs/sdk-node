@@ -5,7 +5,7 @@ Hydrated revision
 ## Example Usage
 
 ```typescript
-import { GetHydratedRevisionResponseBody } from "sdk-node/models/operations";
+import { GetHydratedRevisionResponseBody } from "@amp-labs/sdk-node/models/operations";
 
 let value: GetHydratedRevisionResponseBody = {
   id: "revision-id-1",

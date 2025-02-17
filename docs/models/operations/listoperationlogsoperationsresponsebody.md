@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { ListOperationLogsOperationsResponseBody } from "sdk-node/models/operations";
+import { ListOperationLogsOperationsResponseBody } from "@amp-labs/sdk-node/models/operations";
 
 let value: ListOperationLogsOperationsResponseBody = {
   timestamp: "2023-07-13T21:34:44.816Z",

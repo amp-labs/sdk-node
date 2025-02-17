@@ -1,6 +1,6 @@
 <!-- Start SDK Example Usage [usage] -->
 ```typescript
-import { SDK } from "sdk-node";
+import { SDK } from "@amp-labs/sdk-node";
 
 const sdk = new SDK({
   apiKeyHeader: "<YOUR_API_KEY_HERE>",

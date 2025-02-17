@@ -5,7 +5,7 @@ A normalized field type
 ## Example Usage
 
 ```typescript
-import { GetObjectMetadataForConnectionValueType } from "sdk-node/models/operations";
+import { GetObjectMetadataForConnectionValueType } from "@amp-labs/sdk-node/models/operations";
 
 let value: GetObjectMetadataForConnectionValueType = "string";
 ```

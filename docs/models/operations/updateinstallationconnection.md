@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { UpdateInstallationConnection } from "sdk-node/models/operations";
+import { UpdateInstallationConnection } from "@amp-labs/sdk-node/models/operations";
 
 let value: UpdateInstallationConnection = {
   id: "connection-123",

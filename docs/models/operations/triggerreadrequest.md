@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { TriggerReadRequest } from "sdk-node/models/operations";
+import { TriggerReadRequest } from "@amp-labs/sdk-node/models/operations";
 
 let value: TriggerReadRequest = {
   projectIdOrName: "<value>",

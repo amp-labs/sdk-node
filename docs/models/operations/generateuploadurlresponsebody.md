@@ -5,7 +5,7 @@ Signed URL
 ## Example Usage
 
 ```typescript
-import { GenerateUploadUrlResponseBody } from "sdk-node/models/operations";
+import { GenerateUploadUrlResponseBody } from "@amp-labs/sdk-node/models/operations";
 
 let value: GenerateUploadUrlResponseBody = {
   url: "https://untrue-singing.com",

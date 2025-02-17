@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { CreateInstallationConfig } from "sdk-node/models/operations";
+import { CreateInstallationConfig } from "@amp-labs/sdk-node/models/operations";
 
 let value: CreateInstallationConfig = {
   id: "config-123",

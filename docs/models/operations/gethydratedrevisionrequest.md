@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { GetHydratedRevisionRequest } from "sdk-node/models/operations";
+import { GetHydratedRevisionRequest } from "@amp-labs/sdk-node/models/operations";
 
 let value: GetHydratedRevisionRequest = {
   projectIdOrName: "<value>",

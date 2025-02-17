@@ -1,6 +1,6 @@
 {
-  "name": "sdk-node",
-  "version": "0.3.4",
+  "name": "@amp-labs/sdk-node",
+  "version": "0.3.5",
   "author": "Ampersand",
   "main": "./index.js",
   "sideEffects": false,

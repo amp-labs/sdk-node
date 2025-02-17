@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { BasicAuth } from "sdk-node/models/operations";
+import { BasicAuth } from "@amp-labs/sdk-node/models/operations";
 
 let value: BasicAuth = {
   username: "Helen_Stoltenberg27",

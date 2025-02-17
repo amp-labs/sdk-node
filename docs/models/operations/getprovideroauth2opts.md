@@ -5,7 +5,7 @@ Configuration for OAuth2.0. Must be provided if authType is oauth2.
 ## Example Usage
 
 ```typescript
-import { GetProviderOauth2Opts } from "sdk-node/models/operations";
+import { GetProviderOauth2Opts } from "@amp-labs/sdk-node/models/operations";
 
 let value: GetProviderOauth2Opts = {
   grantType: "authorizationCodePKCE",

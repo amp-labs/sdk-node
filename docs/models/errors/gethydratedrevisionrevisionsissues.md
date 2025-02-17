@@ -6,7 +6,7 @@ An issue detected during input validation.
 ## Example Usage
 
 ```typescript
-import { GetHydratedRevisionRevisionsIssues } from "sdk-node/models/errors";
+import { GetHydratedRevisionRevisionsIssues } from "@amp-labs/sdk-node/models/errors";
 
 let value: GetHydratedRevisionRevisionsIssues = {
   href:

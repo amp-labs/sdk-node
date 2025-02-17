@@ -17,7 +17,7 @@ List provider apps
 ### Example Usage
 
 ```typescript
-import { SDK } from "sdk-node";
+import { SDK } from "@amp-labs/sdk-node";
 
 const sdk = new SDK({
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
@@ -40,8 +40,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { SDKCore } from "sdk-node/core.js";
-import { providerAppsList } from "sdk-node/funcs/providerAppsList.js";
+import { SDKCore } from "@amp-labs/sdk-node/core.js";
+import { providerAppsList } from "@amp-labs/sdk-node/funcs/providerAppsList.js";
 
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -95,7 +95,7 @@ Create a new provider app
 ### Example Usage
 
 ```typescript
-import { SDK } from "sdk-node";
+import { SDK } from "@amp-labs/sdk-node";
 
 const sdk = new SDK({
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
@@ -127,8 +127,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { SDKCore } from "sdk-node/core.js";
-import { providerAppsCreate } from "sdk-node/funcs/providerAppsCreate.js";
+import { SDKCore } from "@amp-labs/sdk-node/core.js";
+import { providerAppsCreate } from "@amp-labs/sdk-node/funcs/providerAppsCreate.js";
 
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -192,7 +192,7 @@ Delete a provider app
 ### Example Usage
 
 ```typescript
-import { SDK } from "sdk-node";
+import { SDK } from "@amp-labs/sdk-node";
 
 const sdk = new SDK({
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
@@ -216,8 +216,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { SDKCore } from "sdk-node/core.js";
-import { providerAppsDelete } from "sdk-node/funcs/providerAppsDelete.js";
+import { SDKCore } from "@amp-labs/sdk-node/core.js";
+import { providerAppsDelete } from "@amp-labs/sdk-node/funcs/providerAppsDelete.js";
 
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -272,7 +272,7 @@ Update a provider app
 ### Example Usage
 
 ```typescript
-import { SDK } from "sdk-node";
+import { SDK } from "@amp-labs/sdk-node";
 
 const sdk = new SDK({
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
@@ -313,8 +313,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { SDKCore } from "sdk-node/core.js";
-import { providerAppsUpdate } from "sdk-node/funcs/providerAppsUpdate.js";
+import { SDKCore } from "@amp-labs/sdk-node/core.js";
+import { providerAppsUpdate } from "@amp-labs/sdk-node/funcs/providerAppsUpdate.js";
 
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

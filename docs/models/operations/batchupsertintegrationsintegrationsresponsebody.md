@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { BatchUpsertIntegrationsIntegrationsResponseBody } from "sdk-node/models/operations";
+import { BatchUpsertIntegrationsIntegrationsResponseBody } from "@amp-labs/sdk-node/models/operations";
 
 let value: BatchUpsertIntegrationsIntegrationsResponseBody = {
   id: "integration-123",

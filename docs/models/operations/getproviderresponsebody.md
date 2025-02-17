@@ -5,7 +5,7 @@ ProviderInfo
 ## Example Usage
 
 ```typescript
-import { GetProviderResponseBody } from "sdk-node/models/operations";
+import { GetProviderResponseBody } from "@amp-labs/sdk-node/models/operations";
 
 let value: GetProviderResponseBody = {
   name: "<value>",

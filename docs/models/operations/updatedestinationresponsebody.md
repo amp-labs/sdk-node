@@ -5,7 +5,7 @@ Updated
 ## Example Usage
 
 ```typescript
-import { UpdateDestinationResponseBody } from "sdk-node/models/operations";
+import { UpdateDestinationResponseBody } from "@amp-labs/sdk-node/models/operations";
 
 let value: UpdateDestinationResponseBody = {
   id: "<id>",

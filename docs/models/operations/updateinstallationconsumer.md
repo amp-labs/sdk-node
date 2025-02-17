@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { UpdateInstallationConsumer } from "sdk-node/models/operations";
+import { UpdateInstallationConsumer } from "@amp-labs/sdk-node/models/operations";
 
 let value: UpdateInstallationConsumer = {
   consumerRef: "consumer-123",

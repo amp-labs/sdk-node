@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { GenerateConnectionProviderApp } from "sdk-node/models/operations";
+import { GenerateConnectionProviderApp } from "@amp-labs/sdk-node/models/operations";
 
 let value: GenerateConnectionProviderApp = {
   id: "provider-app-123",

@@ -15,7 +15,7 @@ Create a new revision
 ### Example Usage
 
 ```typescript
-import { SDK } from "sdk-node";
+import { SDK } from "@amp-labs/sdk-node";
 
 const sdk = new SDK({
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
@@ -39,8 +39,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { SDKCore } from "sdk-node/core.js";
-import { revisionsCreate } from "sdk-node/funcs/revisionsCreate.js";
+import { SDKCore } from "@amp-labs/sdk-node/core.js";
+import { revisionsCreate } from "@amp-labs/sdk-node/funcs/revisionsCreate.js";
 
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -96,7 +96,7 @@ Hydrate a revision with information from the consumer's SaaS instance.
 ### Example Usage
 
 ```typescript
-import { SDK } from "sdk-node";
+import { SDK } from "@amp-labs/sdk-node";
 
 const sdk = new SDK({
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
@@ -122,8 +122,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { SDKCore } from "sdk-node/core.js";
-import { revisionsHydrate } from "sdk-node/funcs/revisionsHydrate.js";
+import { SDKCore } from "@amp-labs/sdk-node/core.js";
+import { revisionsHydrate } from "@amp-labs/sdk-node/funcs/revisionsHydrate.js";
 
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

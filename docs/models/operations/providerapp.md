@@ -5,7 +5,7 @@ The provider app fields to update. (Only include the fields you'd like to update
 ## Example Usage
 
 ```typescript
-import { ProviderApp } from "sdk-node/models/operations";
+import { ProviderApp } from "@amp-labs/sdk-node/models/operations";
 
 let value: ProviderApp = {
   externalRef: "external-id-123",

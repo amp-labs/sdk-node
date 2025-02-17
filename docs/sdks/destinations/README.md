@@ -18,7 +18,7 @@ Create a new destination
 ### Example Usage
 
 ```typescript
-import { SDK } from "sdk-node";
+import { SDK } from "@amp-labs/sdk-node";
 
 const sdk = new SDK({
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
@@ -51,8 +51,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { SDKCore } from "sdk-node/core.js";
-import { destinationsCreate } from "sdk-node/funcs/destinationsCreate.js";
+import { SDKCore } from "@amp-labs/sdk-node/core.js";
+import { destinationsCreate } from "@amp-labs/sdk-node/funcs/destinationsCreate.js";
 
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -117,7 +117,7 @@ List destinations
 ### Example Usage
 
 ```typescript
-import { SDK } from "sdk-node";
+import { SDK } from "@amp-labs/sdk-node";
 
 const sdk = new SDK({
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
@@ -140,8 +140,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { SDKCore } from "sdk-node/core.js";
-import { destinationsList } from "sdk-node/funcs/destinationsList.js";
+import { SDKCore } from "@amp-labs/sdk-node/core.js";
+import { destinationsList } from "@amp-labs/sdk-node/funcs/destinationsList.js";
 
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -194,7 +194,7 @@ Get a destination
 ### Example Usage
 
 ```typescript
-import { SDK } from "sdk-node";
+import { SDK } from "@amp-labs/sdk-node";
 
 const sdk = new SDK({
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
@@ -218,8 +218,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { SDKCore } from "sdk-node/core.js";
-import { destinationsGet } from "sdk-node/funcs/destinationsGet.js";
+import { SDKCore } from "@amp-labs/sdk-node/core.js";
+import { destinationsGet } from "@amp-labs/sdk-node/funcs/destinationsGet.js";
 
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -274,7 +274,7 @@ Update a destination
 ### Example Usage
 
 ```typescript
-import { SDK } from "sdk-node";
+import { SDK } from "@amp-labs/sdk-node";
 
 const sdk = new SDK({
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
@@ -314,8 +314,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { SDKCore } from "sdk-node/core.js";
-import { destinationsUpdate } from "sdk-node/funcs/destinationsUpdate.js";
+import { SDKCore } from "@amp-labs/sdk-node/core.js";
+import { destinationsUpdate } from "@amp-labs/sdk-node/funcs/destinationsUpdate.js";
 
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -388,7 +388,7 @@ Delete a destination
 ### Example Usage
 
 ```typescript
-import { SDK } from "sdk-node";
+import { SDK } from "@amp-labs/sdk-node";
 
 const sdk = new SDK({
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
@@ -412,8 +412,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { SDKCore } from "sdk-node/core.js";
-import { destinationsDelete } from "sdk-node/funcs/destinationsDelete.js";
+import { SDKCore } from "@amp-labs/sdk-node/core.js";
+import { destinationsDelete } from "@amp-labs/sdk-node/funcs/destinationsDelete.js";
 
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

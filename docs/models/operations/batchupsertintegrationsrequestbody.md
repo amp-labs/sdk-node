@@ -5,7 +5,7 @@ The source of the integrations to upsert. One of sourceZipUrl or sourceYaml is r
 ## Example Usage
 
 ```typescript
-import { BatchUpsertIntegrationsRequestBody } from "sdk-node/models/operations";
+import { BatchUpsertIntegrationsRequestBody } from "@amp-labs/sdk-node/models/operations";
 
 let value: BatchUpsertIntegrationsRequestBody = {};
 ```

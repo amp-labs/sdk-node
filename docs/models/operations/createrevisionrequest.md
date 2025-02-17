@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { CreateRevisionRequest } from "sdk-node/models/operations";
+import { CreateRevisionRequest } from "@amp-labs/sdk-node/models/operations";
 
 let value: CreateRevisionRequest = {
   projectIdOrName: "<value>",

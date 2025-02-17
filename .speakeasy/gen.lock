@@ -5,8 +5,8 @@ management:
   docVersion: 1.0.0
   speakeasyVersion: 1.493.0
   generationVersion: 2.512.4
-  releaseVersion: 0.3.4
-  configChecksum: 1076a985cfc7f4e55cdb8ad99b6077e2
+  releaseVersion: 0.3.5
+  configChecksum: afc5cf34c14fc75c4c0a3288cb0aa79e
   repoURL: https://github.com/amp-labs/sdk-node.git
   installationURL: https://github.com/amp-labs/sdk-node
   published: true

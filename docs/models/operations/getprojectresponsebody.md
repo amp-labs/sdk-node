@@ -5,7 +5,7 @@ Project
 ## Example Usage
 
 ```typescript
-import { GetProjectResponseBody } from "sdk-node/models/operations";
+import { GetProjectResponseBody } from "@amp-labs/sdk-node/models/operations";
 
 let value: GetProjectResponseBody = {
   id: "project-id-123",

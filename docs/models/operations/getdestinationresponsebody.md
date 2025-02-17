@@ -5,7 +5,7 @@ OK
 ## Example Usage
 
 ```typescript
-import { GetDestinationResponseBody } from "sdk-node/models/operations";
+import { GetDestinationResponseBody } from "@amp-labs/sdk-node/models/operations";
 
 let value: GetDestinationResponseBody = {
   id: "<id>",

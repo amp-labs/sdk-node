@@ -5,7 +5,7 @@ ResultDeliveryRequestBody
 ## Example Usage
 
 ```typescript
-import { DeliverResultsRequestBody } from "sdk-node/models/operations";
+import { DeliverResultsRequestBody } from "@amp-labs/sdk-node/models/operations";
 
 let value: DeliverResultsRequestBody = {
   groupRef: "<value>",

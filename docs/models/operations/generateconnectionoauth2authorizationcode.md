@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { GenerateConnectionOauth2AuthorizationCode } from "sdk-node/models/operations";
+import { GenerateConnectionOauth2AuthorizationCode } from "@amp-labs/sdk-node/models/operations";
 
 let value: GenerateConnectionOauth2AuthorizationCode = {};
 ```

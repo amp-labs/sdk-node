@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { GetProviderSubscribeOpts } from "sdk-node/models/operations";
+import { GetProviderSubscribeOpts } from "@amp-labs/sdk-node/models/operations";
 
 let value: GetProviderSubscribeOpts = {
   subscriptionScope: "integration",

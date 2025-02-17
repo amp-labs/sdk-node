@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { SubscribeOpts } from "sdk-node/models/operations";
+import { SubscribeOpts } from "@amp-labs/sdk-node/models/operations";
 
 let value: SubscribeOpts = {
   subscriptionScope: "installation",

@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { GetObjectMetadataForInstallationRequest } from "sdk-node/models/operations";
+import { GetObjectMetadataForInstallationRequest } from "@amp-labs/sdk-node/models/operations";
 
 let value: GetObjectMetadataForInstallationRequest = {
   projectIdOrName: "<value>",

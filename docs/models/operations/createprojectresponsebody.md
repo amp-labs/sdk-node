@@ -5,7 +5,7 @@ The newly created project
 ## Example Usage
 
 ```typescript
-import { CreateProjectResponseBody } from "sdk-node/models/operations";
+import { CreateProjectResponseBody } from "@amp-labs/sdk-node/models/operations";
 
 let value: CreateProjectResponseBody = {
   id: "project-id-123",

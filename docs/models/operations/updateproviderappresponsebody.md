@@ -5,7 +5,7 @@ The updated provider app
 ## Example Usage
 
 ```typescript
-import { UpdateProviderAppResponseBody } from "sdk-node/models/operations";
+import { UpdateProviderAppResponseBody } from "@amp-labs/sdk-node/models/operations";
 
 let value: UpdateProviderAppResponseBody = {
   id: "provider-app-123",

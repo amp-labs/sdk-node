@@ -5,7 +5,7 @@ Created
 ## Example Usage
 
 ```typescript
-import { GenerateConnectionResponseBody } from "sdk-node/models/operations";
+import { GenerateConnectionResponseBody } from "@amp-labs/sdk-node/models/operations";
 
 let value: GenerateConnectionResponseBody = {
   id: "connection-123",

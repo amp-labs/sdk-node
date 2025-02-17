@@ -5,7 +5,7 @@ The updated project
 ## Example Usage
 
 ```typescript
-import { UpdateProjectResponseBody } from "sdk-node/models/operations";
+import { UpdateProjectResponseBody } from "@amp-labs/sdk-node/models/operations";
 
 let value: UpdateProjectResponseBody = {
   id: "project-id-123",

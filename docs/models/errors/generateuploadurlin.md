@@ -5,7 +5,7 @@ The location of the invalid input
 ## Example Usage
 
 ```typescript
-import { GenerateUploadUrlIn } from "sdk-node/models/errors";
+import { GenerateUploadUrlIn } from "@amp-labs/sdk-node/models/errors";
 
 let value: GenerateUploadUrlIn = "header";
 ```

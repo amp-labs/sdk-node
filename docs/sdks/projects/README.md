@@ -18,7 +18,7 @@ List all projects that the API key or user credential has access to
 ### Example Usage
 
 ```typescript
-import { SDK } from "sdk-node";
+import { SDK } from "@amp-labs/sdk-node";
 
 const sdk = new SDK({
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
@@ -39,8 +39,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { SDKCore } from "sdk-node/core.js";
-import { projectsList } from "sdk-node/funcs/projectsList.js";
+import { SDKCore } from "@amp-labs/sdk-node/core.js";
+import { projectsList } from "@amp-labs/sdk-node/funcs/projectsList.js";
 
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -90,7 +90,7 @@ Create a new project
 ### Example Usage
 
 ```typescript
-import { SDK } from "sdk-node";
+import { SDK } from "@amp-labs/sdk-node";
 
 const sdk = new SDK({
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
@@ -115,8 +115,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { SDKCore } from "sdk-node/core.js";
-import { projectsCreate } from "sdk-node/funcs/projectsCreate.js";
+import { SDKCore } from "@amp-labs/sdk-node/core.js";
+import { projectsCreate } from "@amp-labs/sdk-node/funcs/projectsCreate.js";
 
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -172,7 +172,7 @@ Get a project
 ### Example Usage
 
 ```typescript
-import { SDK } from "sdk-node";
+import { SDK } from "@amp-labs/sdk-node";
 
 const sdk = new SDK({
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
@@ -195,8 +195,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { SDKCore } from "sdk-node/core.js";
-import { projectsGet } from "sdk-node/funcs/projectsGet.js";
+import { SDKCore } from "@amp-labs/sdk-node/core.js";
+import { projectsGet } from "@amp-labs/sdk-node/funcs/projectsGet.js";
 
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -250,7 +250,7 @@ Delete a project
 ### Example Usage
 
 ```typescript
-import { SDK } from "sdk-node";
+import { SDK } from "@amp-labs/sdk-node";
 
 const sdk = new SDK({
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
@@ -273,8 +273,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { SDKCore } from "sdk-node/core.js";
-import { projectsDelete } from "sdk-node/funcs/projectsDelete.js";
+import { SDKCore } from "@amp-labs/sdk-node/core.js";
+import { projectsDelete } from "@amp-labs/sdk-node/funcs/projectsDelete.js";
 
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -328,7 +328,7 @@ Update a project
 ### Example Usage
 
 ```typescript
-import { SDK } from "sdk-node";
+import { SDK } from "@amp-labs/sdk-node";
 
 const sdk = new SDK({
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
@@ -360,8 +360,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { SDKCore } from "sdk-node/core.js";
-import { projectsUpdate } from "sdk-node/funcs/projectsUpdate.js";
+import { SDKCore } from "@amp-labs/sdk-node/core.js";
+import { projectsUpdate } from "@amp-labs/sdk-node/funcs/projectsUpdate.js";
 
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

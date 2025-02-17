@@ -6,7 +6,7 @@ An issue detected during input validation.
 ## Example Usage
 
 ```typescript
-import { BatchUpsertIntegrationsIssues } from "sdk-node/models/errors";
+import { BatchUpsertIntegrationsIssues } from "@amp-labs/sdk-node/models/errors";
 
 let value: BatchUpsertIntegrationsIssues = {
   href:

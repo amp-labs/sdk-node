@@ -5,7 +5,7 @@ The supported features for the provider.
 ## Example Usage
 
 ```typescript
-import { Support } from "sdk-node/models/operations";
+import { Support } from "@amp-labs/sdk-node/models/operations";
 
 let value: Support = {
   bulkWrite: {

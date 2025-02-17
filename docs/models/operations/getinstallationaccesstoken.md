@@ -5,7 +5,7 @@ The access token for the connection.
 ## Example Usage
 
 ```typescript
-import { GetInstallationAccessToken } from "sdk-node/models/operations";
+import { GetInstallationAccessToken } from "@amp-labs/sdk-node/models/operations";
 
 let value: GetInstallationAccessToken = {
   token: "<value>",

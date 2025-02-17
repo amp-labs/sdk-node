@@ -5,7 +5,7 @@ Read Request
 ## Example Usage
 
 ```typescript
-import { TriggerReadRequestBody } from "sdk-node/models/operations";
+import { TriggerReadRequestBody } from "@amp-labs/sdk-node/models/operations";
 
 let value: TriggerReadRequestBody = {
   groupRef: "<value>",

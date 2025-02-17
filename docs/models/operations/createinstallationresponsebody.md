@@ -5,7 +5,7 @@ Created
 ## Example Usage
 
 ```typescript
-import { CreateInstallationResponseBody } from "sdk-node/models/operations";
+import { CreateInstallationResponseBody } from "@amp-labs/sdk-node/models/operations";
 
 let value: CreateInstallationResponseBody = {
   id: "installation-123",

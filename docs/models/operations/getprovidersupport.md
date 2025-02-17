@@ -5,7 +5,7 @@ The supported features for the provider.
 ## Example Usage
 
 ```typescript
-import { GetProviderSupport } from "sdk-node/models/operations";
+import { GetProviderSupport } from "@amp-labs/sdk-node/models/operations";
 
 let value: GetProviderSupport = {
   bulkWrite: {

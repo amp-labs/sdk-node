@@ -5,7 +5,7 @@ The retrieved object metadata
 ## Example Usage
 
 ```typescript
-import { GetObjectMetadataForConnectionResponseBody } from "sdk-node/models/operations";
+import { GetObjectMetadataForConnectionResponseBody } from "@amp-labs/sdk-node/models/operations";
 
 let value: GetObjectMetadataForConnectionResponseBody = {
   name: "contact",

@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { OptionalFields2 } from "sdk-node/models/operations";
+import { OptionalFields2 } from "@amp-labs/sdk-node/models/operations";
 
 let value: OptionalFields2 = {
   mapToName: "<value>",

@@ -8,7 +8,7 @@ Additional properties specific to the problem type may be present.
 ## Example Usage
 
 ```typescript
-import { TriggerReadReadResponseBody } from "sdk-node/models/errors";
+import { TriggerReadReadResponseBody } from "@amp-labs/sdk-node/models/errors";
 
 // No examples available for this model
 ```

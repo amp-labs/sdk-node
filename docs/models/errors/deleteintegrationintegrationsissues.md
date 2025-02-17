@@ -6,7 +6,7 @@ An issue detected during input validation.
 ## Example Usage
 
 ```typescript
-import { DeleteIntegrationIntegrationsIssues } from "sdk-node/models/errors";
+import { DeleteIntegrationIntegrationsIssues } from "@amp-labs/sdk-node/models/errors";
 
 let value: DeleteIntegrationIntegrationsIssues = {
   href:

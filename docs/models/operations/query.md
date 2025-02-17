@@ -5,7 +5,7 @@ Configuration for API key in query parameter. Must be provided if type is in-que
 ## Example Usage
 
 ```typescript
-import { Query } from "sdk-node/models/operations";
+import { Query } from "@amp-labs/sdk-node/models/operations";
 
 let value: Query = {
   name: "api_key",

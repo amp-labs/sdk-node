@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { CreateGroupRequest } from "sdk-node/models/operations";
+import { CreateGroupRequest } from "@amp-labs/sdk-node/models/operations";
 
 let value: CreateGroupRequest = {
   projectIdOrName: "<value>",

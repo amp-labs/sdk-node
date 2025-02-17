@@ -8,7 +8,7 @@ Additional properties specific to the problem type may be present.
 ## Example Usage
 
 ```typescript
-import { CreateDestinationDestinationsResponseBody } from "sdk-node/models/operations";
+import { CreateDestinationDestinationsResponseBody } from "@amp-labs/sdk-node/models/operations";
 
 let value: CreateDestinationDestinationsResponseBody = {
   href:

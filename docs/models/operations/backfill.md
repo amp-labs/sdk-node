@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { Backfill } from "sdk-node/models/operations";
+import { Backfill } from "@amp-labs/sdk-node/models/operations";
 
 let value: Backfill = {
   defaultPeriod: {

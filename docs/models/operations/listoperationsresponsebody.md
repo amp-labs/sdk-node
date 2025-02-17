@@ -5,7 +5,7 @@ List of operations
 ## Example Usage
 
 ```typescript
-import { ListOperationsResponseBody } from "sdk-node/models/operations";
+import { ListOperationsResponseBody } from "@amp-labs/sdk-node/models/operations";
 
 let value: ListOperationsResponseBody = {
   results: [

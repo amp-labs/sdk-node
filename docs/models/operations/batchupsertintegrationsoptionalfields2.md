@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { BatchUpsertIntegrationsOptionalFields2 } from "sdk-node/models/operations";
+import { BatchUpsertIntegrationsOptionalFields2 } from "@amp-labs/sdk-node/models/operations";
 
 let value: BatchUpsertIntegrationsOptionalFields2 = {
   mapToName: "<value>",

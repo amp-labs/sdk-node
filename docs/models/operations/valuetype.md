@@ -5,7 +5,7 @@ A normalized field type
 ## Example Usage
 
 ```typescript
-import { ValueType } from "sdk-node/models/operations";
+import { ValueType } from "@amp-labs/sdk-node/models/operations";
 
 let value: ValueType = "string";
 ```

@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { BatchUpsertIntegrationsOptionalFieldsAuto } from "sdk-node/models/operations";
+import { BatchUpsertIntegrationsOptionalFieldsAuto } from "@amp-labs/sdk-node/models/operations";
 
 let value: BatchUpsertIntegrationsOptionalFieldsAuto = "all";
 ```

@@ -5,7 +5,7 @@ Configuration to set default write values for object fields.
 ## Example Usage
 
 ```typescript
-import { GetHydratedRevisionValueDefaults } from "sdk-node/models/operations";
+import { GetHydratedRevisionValueDefaults } from "@amp-labs/sdk-node/models/operations";
 
 let value: GetHydratedRevisionValueDefaults = {
   allowAnyFields: true,

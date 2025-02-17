@@ -5,7 +5,7 @@ The location of the invalid input
 ## Example Usage
 
 ```typescript
-import { CreateRevisionRevisionsIn } from "sdk-node/models/errors";
+import { CreateRevisionRevisionsIn } from "@amp-labs/sdk-node/models/errors";
 
 let value: CreateRevisionRevisionsIn = "header";
 ```

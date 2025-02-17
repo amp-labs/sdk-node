@@ -5,7 +5,7 @@ Connection
 ## Example Usage
 
 ```typescript
-import { GetConnectionResponseBody } from "sdk-node/models/operations";
+import { GetConnectionResponseBody } from "@amp-labs/sdk-node/models/operations";
 
 let value: GetConnectionResponseBody = {
   id: "connection-123",

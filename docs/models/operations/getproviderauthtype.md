@@ -5,7 +5,7 @@ The type of authentication required by the provider.
 ## Example Usage
 
 ```typescript
-import { GetProviderAuthType } from "sdk-node/models/operations";
+import { GetProviderAuthType } from "@amp-labs/sdk-node/models/operations";
 
 let value: GetProviderAuthType = "basic";
 ```

@@ -5,7 +5,7 @@ Configuration for Basic Auth. Optional.
 ## Example Usage
 
 ```typescript
-import { GetProviderBasicOpts } from "sdk-node/models/operations";
+import { GetProviderBasicOpts } from "@amp-labs/sdk-node/models/operations";
 
 let value: GetProviderBasicOpts = {
   apiKeyAsBasic: true,

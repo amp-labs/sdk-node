@@ -17,7 +17,7 @@ List connections
 ### Example Usage
 
 ```typescript
-import { SDK } from "sdk-node";
+import { SDK } from "@amp-labs/sdk-node";
 
 const sdk = new SDK({
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
@@ -40,8 +40,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { SDKCore } from "sdk-node/core.js";
-import { connectionsList } from "sdk-node/funcs/connectionsList.js";
+import { SDKCore } from "@amp-labs/sdk-node/core.js";
+import { connectionsList } from "@amp-labs/sdk-node/funcs/connectionsList.js";
 
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -95,7 +95,7 @@ For providers which support OAuth2 Authorization Code, it is recommended that yo
 ### Example Usage
 
 ```typescript
-import { SDK } from "sdk-node";
+import { SDK } from "@amp-labs/sdk-node";
 
 const sdk = new SDK({
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
@@ -118,8 +118,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { SDKCore } from "sdk-node/core.js";
-import { connectionsGenerate } from "sdk-node/funcs/connectionsGenerate.js";
+import { SDKCore } from "@amp-labs/sdk-node/core.js";
+import { connectionsGenerate } from "@amp-labs/sdk-node/funcs/connectionsGenerate.js";
 
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -174,7 +174,7 @@ Get a connection
 ### Example Usage
 
 ```typescript
-import { SDK } from "sdk-node";
+import { SDK } from "@amp-labs/sdk-node";
 
 const sdk = new SDK({
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
@@ -198,8 +198,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { SDKCore } from "sdk-node/core.js";
-import { connectionsGet } from "sdk-node/funcs/connectionsGet.js";
+import { SDKCore } from "@amp-labs/sdk-node/core.js";
+import { connectionsGet } from "@amp-labs/sdk-node/funcs/connectionsGet.js";
 
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -254,7 +254,7 @@ Delete a connection
 ### Example Usage
 
 ```typescript
-import { SDK } from "sdk-node";
+import { SDK } from "@amp-labs/sdk-node";
 
 const sdk = new SDK({
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
@@ -278,8 +278,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { SDKCore } from "sdk-node/core.js";
-import { connectionsDelete } from "sdk-node/funcs/connectionsDelete.js";
+import { SDKCore } from "@amp-labs/sdk-node/core.js";
+import { connectionsDelete } from "@amp-labs/sdk-node/funcs/connectionsDelete.js";
 
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

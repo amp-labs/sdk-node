@@ -5,7 +5,7 @@ The installation
 ## Example Usage
 
 ```typescript
-import { GetInstallationResponseBody } from "sdk-node/models/operations";
+import { GetInstallationResponseBody } from "@amp-labs/sdk-node/models/operations";
 
 let value: GetInstallationResponseBody = {
   id: "installation-123",

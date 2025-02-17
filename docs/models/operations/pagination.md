@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { Pagination } from "sdk-node/models/operations";
+import { Pagination } from "@amp-labs/sdk-node/models/operations";
 
 let value: Pagination = {
   done: false,

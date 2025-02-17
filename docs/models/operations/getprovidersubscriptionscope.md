@@ -5,7 +5,7 @@ The scope of the subscription.
 ## Example Usage
 
 ```typescript
-import { GetProviderSubscriptionScope } from "sdk-node/models/operations";
+import { GetProviderSubscriptionScope } from "@amp-labs/sdk-node/models/operations";
 
 let value: GetProviderSubscriptionScope = "integration";
 ```

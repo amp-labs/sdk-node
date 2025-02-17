@@ -14,7 +14,7 @@ Generate a URL for the browser to render to kick off OAuth flow.
 ### Example Usage
 
 ```typescript
-import { SDK } from "sdk-node";
+import { SDK } from "@amp-labs/sdk-node";
 
 const sdk = new SDK();
 
@@ -39,8 +39,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { SDKCore } from "sdk-node/core.js";
-import { oauthConnect } from "sdk-node/funcs/oauthConnect.js";
+import { SDKCore } from "@amp-labs/sdk-node/core.js";
+import { oauthConnect } from "@amp-labs/sdk-node/funcs/oauthConnect.js";
 
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

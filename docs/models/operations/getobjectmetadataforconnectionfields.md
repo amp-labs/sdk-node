@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { GetObjectMetadataForConnectionFields } from "sdk-node/models/operations";
+import { GetObjectMetadataForConnectionFields } from "@amp-labs/sdk-node/models/operations";
 
 let value: GetObjectMetadataForConnectionFields = {
   fieldName: "Account ID",

@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { ListIntegrationsRequiredFields1 } from "sdk-node/models/operations";
+import { ListIntegrationsRequiredFields1 } from "@amp-labs/sdk-node/models/operations";
 
 let value: ListIntegrationsRequiredFields1 = {
   fieldName: "<value>",

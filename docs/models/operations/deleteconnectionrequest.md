@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { DeleteConnectionRequest } from "sdk-node/models/operations";
+import { DeleteConnectionRequest } from "@amp-labs/sdk-node/models/operations";
 
 let value: DeleteConnectionRequest = {
   projectIdOrName: "<value>",

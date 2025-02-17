@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { Three } from "sdk-node/models/operations";
+import { Three } from "@amp-labs/sdk-node/models/operations";
 
 let value: Three = {
   value: false,

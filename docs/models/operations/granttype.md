@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { GrantType } from "sdk-node/models/operations";
+import { GrantType } from "@amp-labs/sdk-node/models/operations";
 
 let value: GrantType = "clientCredentials";
 ```

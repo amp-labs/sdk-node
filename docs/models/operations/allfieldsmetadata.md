@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { AllFieldsMetadata } from "sdk-node/models/operations";
+import { AllFieldsMetadata } from "@amp-labs/sdk-node/models/operations";
 
 let value: AllFieldsMetadata = {
   fieldName: "Account ID",

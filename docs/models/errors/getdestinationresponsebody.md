@@ -8,7 +8,7 @@ Additional properties specific to the problem type may be present.
 ## Example Usage
 
 ```typescript
-import { GetDestinationResponseBody } from "sdk-node/models/errors";
+import { GetDestinationResponseBody } from "@amp-labs/sdk-node/models/errors";
 
 // No examples available for this model
 ```

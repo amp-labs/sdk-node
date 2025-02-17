@@ -5,7 +5,7 @@ Created
 ## Example Usage
 
 ```typescript
-import { CreateDestinationResponseBody } from "sdk-node/models/operations";
+import { CreateDestinationResponseBody } from "@amp-labs/sdk-node/models/operations";
 
 let value: CreateDestinationResponseBody = {
   id: "<id>",

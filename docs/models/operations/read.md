@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { Read } from "sdk-node/models/operations";
+import { Read } from "@amp-labs/sdk-node/models/operations";
 
 let value: Read = {
   objects: [

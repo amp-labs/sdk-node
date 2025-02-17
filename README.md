@@ -65,25 +65,25 @@ The SDK can be installed with either [npm](https://www.npmjs.com/), [pnpm](https
 ### NPM
 
 ```bash
-npm add sdk-node
+npm add @amp-labs/sdk-node
 ```
 
 ### PNPM
 
 ```bash
-pnpm add sdk-node
+pnpm add @amp-labs/sdk-node
 ```
 
 ### Bun
 
 ```bash
-bun add sdk-node
+bun add @amp-labs/sdk-node
 ```
 
 ### Yarn
 
 ```bash
-yarn add sdk-node zod
+yarn add @amp-labs/sdk-node zod
 
 # Note that Yarn does not install peer dependencies automatically. You will need
 # to install zod as shown above.
@@ -102,7 +102,7 @@ For supported JavaScript runtimes, please consult [RUNTIMES.md](RUNTIMES.md).
 ### Example
 
 ```typescript
-import { SDK } from "sdk-node";
+import { SDK } from "@amp-labs/sdk-node";
 
 const sdk = new SDK({
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
@@ -142,7 +142,7 @@ This SDK supports the following security scheme globally:
 
 To authenticate with the API the `apiKeyHeader` parameter must be set when initializing the SDK client instance. For example:
 ```typescript
-import { SDK } from "sdk-node";
+import { SDK } from "@amp-labs/sdk-node";
 
 const sdk = new SDK({
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
@@ -334,7 +334,7 @@ Some of the endpoints in this SDK support retries.  If you use the SDK without a
 
 To change the default retry strategy for a single API call, simply provide a retryConfig object to the call:
 ```typescript
-import { SDK } from "sdk-node";
+import { SDK } from "@amp-labs/sdk-node";
 
 const sdk = new SDK({
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
@@ -373,7 +373,7 @@ run();
 
 If you'd like to override the default retry strategy for all operations that support retries, you can provide a retryConfig at SDK initialization:
 ```typescript
-import { SDK } from "sdk-node";
+import { SDK } from "@amp-labs/sdk-node";
 
 const sdk = new SDK({
   retryConfig: {
@@ -424,12 +424,12 @@ Some methods specify known errors which can be thrown. All the known errors are 
 If the method throws an error and it is not captured by the known errors, it will default to throwing a `APIError`.
 
 ```typescript
-import { SDK } from "sdk-node";
+import { SDK } from "@amp-labs/sdk-node";
 import {
   SDKValidationError,
   TriggerReadReadResponseBody,
   TriggerReadResponseBody,
-} from "sdk-node/models/errors";
+} from "@amp-labs/sdk-node/models/errors";
 
 const sdk = new SDK({
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
@@ -503,7 +503,7 @@ In some rare cases, the SDK can fail to get a response from the server or even m
 
 The default server can also be overridden globally by passing a URL to the `serverURL: string` optional parameter when initializing the SDK client instance. For example:
 ```typescript
-import { SDK } from "sdk-node";
+import { SDK } from "@amp-labs/sdk-node";
 
 const sdk = new SDK({
   serverURL: "https://read.withampersand.com/v1",
@@ -534,7 +534,7 @@ run();
 
 The server URL can also be overridden on a per-operation basis, provided a server list was specified for the operation. For example:
 ```typescript
-import { SDK } from "sdk-node";
+import { SDK } from "@amp-labs/sdk-node";
 
 const sdk = new SDK();
 
@@ -576,8 +576,8 @@ custom header and a timeout to requests and how to use the `"requestError"` hook
 to log errors:
 
 ```typescript
-import { SDK } from "sdk-node";
-import { HTTPClient } from "sdk-node/lib/http";
+import { SDK } from "@amp-labs/sdk-node";
+import { HTTPClient } from "@amp-labs/sdk-node/lib/http";
 
 const httpClient = new HTTPClient({
   // fetcher takes a function that has the same signature as native `fetch`.
@@ -618,7 +618,7 @@ You can pass a logger that matches `console`'s interface as an SDK option.
 > Beware that debug logging will reveal secrets, like API tokens in headers, in log messages printed to a console or files. It's recommended to use this feature only during local development and not in production.
 
 ```typescript
-import { SDK } from "sdk-node";
+import { SDK } from "@amp-labs/sdk-node";
 
 const sdk = new SDK({ debugLogger: console });
 ```

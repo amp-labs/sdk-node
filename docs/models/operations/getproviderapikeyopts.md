@@ -5,7 +5,7 @@ Configuration for API key. Must be provided if authType is apiKey.
 ## Example Usage
 
 ```typescript
-import { GetProviderApiKeyOpts } from "sdk-node/models/operations";
+import { GetProviderApiKeyOpts } from "@amp-labs/sdk-node/models/operations";
 
 let value: GetProviderApiKeyOpts = {
   attachmentType: "header",

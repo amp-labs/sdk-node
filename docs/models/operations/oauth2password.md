@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { Oauth2Password } from "sdk-node/models/operations";
+import { Oauth2Password } from "@amp-labs/sdk-node/models/operations";
 
 let value: Oauth2Password = {
   username: "Jaida.Schmidt51",

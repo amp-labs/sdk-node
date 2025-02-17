@@ -17,7 +17,7 @@ List integrations
 ### Example Usage
 
 ```typescript
-import { SDK } from "sdk-node";
+import { SDK } from "@amp-labs/sdk-node";
 
 const sdk = new SDK({
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
@@ -40,8 +40,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { SDKCore } from "sdk-node/core.js";
-import { integrationsList } from "sdk-node/funcs/integrationsList.js";
+import { SDKCore } from "@amp-labs/sdk-node/core.js";
+import { integrationsList } from "@amp-labs/sdk-node/funcs/integrationsList.js";
 
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -95,7 +95,7 @@ Create a new integration
 ### Example Usage
 
 ```typescript
-import { SDK } from "sdk-node";
+import { SDK } from "@amp-labs/sdk-node";
 
 const sdk = new SDK({
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
@@ -203,8 +203,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { SDKCore } from "sdk-node/core.js";
-import { integrationsCreate } from "sdk-node/funcs/integrationsCreate.js";
+import { SDKCore } from "@amp-labs/sdk-node/core.js";
+import { integrationsCreate } from "@amp-labs/sdk-node/funcs/integrationsCreate.js";
 
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -344,7 +344,7 @@ Delete an integration
 ### Example Usage
 
 ```typescript
-import { SDK } from "sdk-node";
+import { SDK } from "@amp-labs/sdk-node";
 
 const sdk = new SDK({
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
@@ -368,8 +368,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { SDKCore } from "sdk-node/core.js";
-import { integrationsDelete } from "sdk-node/funcs/integrationsDelete.js";
+import { SDKCore } from "@amp-labs/sdk-node/core.js";
+import { integrationsDelete } from "@amp-labs/sdk-node/funcs/integrationsDelete.js";
 
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -425,7 +425,7 @@ Batch upsert a group of integrations
 ### Example Usage
 
 ```typescript
-import { SDK } from "sdk-node";
+import { SDK } from "@amp-labs/sdk-node";
 
 const sdk = new SDK({
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
@@ -448,8 +448,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { SDKCore } from "sdk-node/core.js";
-import { integrationsBatchUpsert } from "sdk-node/funcs/integrationsBatchUpsert.js";
+import { SDKCore } from "@amp-labs/sdk-node/core.js";
+import { integrationsBatchUpsert } from "@amp-labs/sdk-node/funcs/integrationsBatchUpsert.js";
 
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

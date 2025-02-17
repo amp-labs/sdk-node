@@ -16,7 +16,7 @@ List operations
 ### Example Usage
 
 ```typescript
-import { SDK } from "sdk-node";
+import { SDK } from "@amp-labs/sdk-node";
 
 const sdk = new SDK({
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
@@ -41,8 +41,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { SDKCore } from "sdk-node/core.js";
-import { operationsList } from "sdk-node/funcs/operationsList.js";
+import { SDKCore } from "@amp-labs/sdk-node/core.js";
+import { operationsList } from "@amp-labs/sdk-node/funcs/operationsList.js";
 
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -99,7 +99,7 @@ Get an operation
 ### Example Usage
 
 ```typescript
-import { SDK } from "sdk-node";
+import { SDK } from "@amp-labs/sdk-node";
 
 const sdk = new SDK({
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
@@ -123,8 +123,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { SDKCore } from "sdk-node/core.js";
-import { operationsGet } from "sdk-node/funcs/operationsGet.js";
+import { SDKCore } from "@amp-labs/sdk-node/core.js";
+import { operationsGet } from "@amp-labs/sdk-node/funcs/operationsGet.js";
 
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -180,7 +180,7 @@ List logs for an operation
 ### Example Usage
 
 ```typescript
-import { SDK } from "sdk-node";
+import { SDK } from "@amp-labs/sdk-node";
 
 const sdk = new SDK({
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
@@ -204,8 +204,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { SDKCore } from "sdk-node/core.js";
-import { operationsListLogs } from "sdk-node/funcs/operationsListLogs.js";
+import { SDKCore } from "@amp-labs/sdk-node/core.js";
+import { operationsListLogs } from "@amp-labs/sdk-node/funcs/operationsListLogs.js";
 
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

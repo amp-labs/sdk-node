@@ -18,7 +18,7 @@ It applies object mappings.
 ### Example Usage
 
 ```typescript
-import { SDK } from "sdk-node";
+import { SDK } from "@amp-labs/sdk-node";
 
 const sdk = new SDK({
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
@@ -43,8 +43,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { SDKCore } from "sdk-node/core.js";
-import { objectsAndFieldsGetMetadataForInstallation } from "sdk-node/funcs/objectsAndFieldsGetMetadataForInstallation.js";
+import { SDKCore } from "@amp-labs/sdk-node/core.js";
+import { objectsAndFieldsGetMetadataForInstallation } from "@amp-labs/sdk-node/funcs/objectsAndFieldsGetMetadataForInstallation.js";
 
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -102,7 +102,7 @@ It does not apply any object mappings.
 ### Example Usage
 
 ```typescript
-import { SDK } from "sdk-node";
+import { SDK } from "@amp-labs/sdk-node";
 
 const sdk = new SDK({
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
@@ -127,8 +127,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { SDKCore } from "sdk-node/core.js";
-import { objectsAndFieldsGetMetadataForConnection } from "sdk-node/funcs/objectsAndFieldsGetMetadataForConnection.js";
+import { SDKCore } from "@amp-labs/sdk-node/core.js";
+import { objectsAndFieldsGetMetadataForConnection } from "@amp-labs/sdk-node/funcs/objectsAndFieldsGetMetadataForConnection.js";
 
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

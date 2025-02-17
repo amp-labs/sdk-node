@@ -6,7 +6,7 @@ An issue detected during input validation.
 ## Example Usage
 
 ```typescript
-import { CreateProjectIssues } from "sdk-node/models/errors";
+import { CreateProjectIssues } from "@amp-labs/sdk-node/models/errors";
 
 let value: CreateProjectIssues = {
   href:

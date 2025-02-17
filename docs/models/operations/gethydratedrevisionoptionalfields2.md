@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { GetHydratedRevisionOptionalFields2 } from "sdk-node/models/operations";
+import { GetHydratedRevisionOptionalFields2 } from "@amp-labs/sdk-node/models/operations";
 
 let value: GetHydratedRevisionOptionalFields2 = {
   mapToName: "<value>",

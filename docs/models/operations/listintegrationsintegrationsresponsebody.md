@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { ListIntegrationsIntegrationsResponseBody } from "sdk-node/models/operations";
+import { ListIntegrationsIntegrationsResponseBody } from "@amp-labs/sdk-node/models/operations";
 
 let value: ListIntegrationsIntegrationsResponseBody = {
   id: "integration-123",

@@ -5,7 +5,7 @@ The updated installation
 ## Example Usage
 
 ```typescript
-import { UpdateInstallationResponseBody } from "sdk-node/models/operations";
+import { UpdateInstallationResponseBody } from "@amp-labs/sdk-node/models/operations";
 
 let value: UpdateInstallationResponseBody = {
   id: "installation-123",

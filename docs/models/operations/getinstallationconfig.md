@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { GetInstallationConfig } from "sdk-node/models/operations";
+import { GetInstallationConfig } from "@amp-labs/sdk-node/models/operations";
 
 let value: GetInstallationConfig = {
   id: "config-123",

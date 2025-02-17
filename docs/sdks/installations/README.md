@@ -18,7 +18,7 @@ List installations
 ### Example Usage
 
 ```typescript
-import { SDK } from "sdk-node";
+import { SDK } from "@amp-labs/sdk-node";
 
 const sdk = new SDK({
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
@@ -42,8 +42,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { SDKCore } from "sdk-node/core.js";
-import { installationsList } from "sdk-node/funcs/installationsList.js";
+import { SDKCore } from "@amp-labs/sdk-node/core.js";
+import { installationsList } from "@amp-labs/sdk-node/funcs/installationsList.js";
 
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -98,7 +98,7 @@ Create a new installation
 ### Example Usage
 
 ```typescript
-import { SDK } from "sdk-node";
+import { SDK } from "@amp-labs/sdk-node";
 
 const sdk = new SDK({
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
@@ -130,8 +130,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { SDKCore } from "sdk-node/core.js";
-import { installationsCreate } from "sdk-node/funcs/installationsCreate.js";
+import { SDKCore } from "@amp-labs/sdk-node/core.js";
+import { installationsCreate } from "@amp-labs/sdk-node/funcs/installationsCreate.js";
 
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -195,7 +195,7 @@ Get an installation
 ### Example Usage
 
 ```typescript
-import { SDK } from "sdk-node";
+import { SDK } from "@amp-labs/sdk-node";
 
 const sdk = new SDK({
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
@@ -220,8 +220,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { SDKCore } from "sdk-node/core.js";
-import { installationsGet } from "sdk-node/funcs/installationsGet.js";
+import { SDKCore } from "@amp-labs/sdk-node/core.js";
+import { installationsGet } from "@amp-labs/sdk-node/funcs/installationsGet.js";
 
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -277,7 +277,7 @@ Delete an installation
 ### Example Usage
 
 ```typescript
-import { SDK } from "sdk-node";
+import { SDK } from "@amp-labs/sdk-node";
 
 const sdk = new SDK({
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
@@ -302,8 +302,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { SDKCore } from "sdk-node/core.js";
-import { installationsDelete } from "sdk-node/funcs/installationsDelete.js";
+import { SDKCore } from "@amp-labs/sdk-node/core.js";
+import { installationsDelete } from "@amp-labs/sdk-node/funcs/installationsDelete.js";
 
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -358,7 +358,7 @@ Update an installation
 ### Example Usage
 
 ```typescript
-import { SDK } from "sdk-node";
+import { SDK } from "@amp-labs/sdk-node";
 
 const sdk = new SDK({
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
@@ -826,8 +826,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { SDKCore } from "sdk-node/core.js";
-import { installationsUpdate } from "sdk-node/funcs/installationsUpdate.js";
+import { SDKCore } from "@amp-labs/sdk-node/core.js";
+import { installationsUpdate } from "@amp-labs/sdk-node/funcs/installationsUpdate.js";
 
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

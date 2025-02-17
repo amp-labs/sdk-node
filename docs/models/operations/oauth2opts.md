@@ -5,7 +5,7 @@ Configuration for OAuth2.0. Must be provided if authType is oauth2.
 ## Example Usage
 
 ```typescript
-import { Oauth2Opts } from "sdk-node/models/operations";
+import { Oauth2Opts } from "@amp-labs/sdk-node/models/operations";
 
 let value: Oauth2Opts = {
   grantType: "password",

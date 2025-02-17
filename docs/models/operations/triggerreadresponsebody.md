@@ -5,7 +5,7 @@ The success response
 ## Example Usage
 
 ```typescript
-import { TriggerReadResponseBody } from "sdk-node/models/operations";
+import { TriggerReadResponseBody } from "@amp-labs/sdk-node/models/operations";
 
 let value: TriggerReadResponseBody = {
   operationId: "60deaf48-3856-4a2b-bfd4-3de85125eca8",
