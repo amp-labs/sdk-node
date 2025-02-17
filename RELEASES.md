@@ -25,3 +25,13 @@ Based on:
 - [typescript v0.3.4] .
 ### Releases
 - [NPM v0.3.4] https://www.npmjs.com/package/sdk-node/v/0.3.4 - .
+
+## 2025-02-17 16:08:54
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.493.1 (2.512.4) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [typescript v0.3.6] .
+### Releases
+- [NPM v0.3.6] https://www.npmjs.com/package/@amp-labs/sdk-node/v/0.3.6 - .
