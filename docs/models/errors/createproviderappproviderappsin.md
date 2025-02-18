@@ -7,7 +7,7 @@ The location of the invalid input
 ```typescript
 import { CreateProviderAppProviderAppsIn } from "@amp-labs/sdk-node/models/errors";
 
-let value: CreateProviderAppProviderAppsIn = "query";
+let value: CreateProviderAppProviderAppsIn = "header";
 ```
 
 ## Values

@@ -19,7 +19,7 @@ const value: operations.GenerateConnectionResponseBody = {
     scopes: [
       "[\"oauth\",\"offline\",\"crm.read\"]",
     ],
-    createTime: new Date("2023-12-26T04:21:26.793Z"),
+    createTime: new Date("2025-02-05T18:51:30.654Z"),
   },
   group: {
     groupRef: "group-123",

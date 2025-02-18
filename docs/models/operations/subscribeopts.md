@@ -8,7 +8,7 @@ import { SubscribeOpts } from "@amp-labs/sdk-node/models/operations";
 let value: SubscribeOpts = {
   subscriptionScope: "installation",
   targetURLScope: "integration",
-  registrationTiming: "installation",
+  registrationTiming: "integration",
 };
 ```
 

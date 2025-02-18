@@ -7,8 +7,8 @@ import { ListProvidersProvidersResponseBody } from "@amp-labs/sdk-node/models/op
 
 let value: ListProvidersProvidersResponseBody = {
   name: "<value>",
-  authType: "apiKey",
-  baseURL: "https://waterlogged-sediment.name",
+  authType: "none",
+  baseURL: "https://grimy-verve.biz",
   oauth2Opts: {
     grantType: "password",
     authURL: "https://login.salesforce.com/services/oauth2/authorize",
@@ -30,7 +30,7 @@ let value: ListProvidersProvidersResponseBody = {
     },
   },
   apiKeyOpts: {
-    attachmentType: "query",
+    attachmentType: "header",
     query: {
       name: "api_key",
     },

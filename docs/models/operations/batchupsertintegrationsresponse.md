@@ -12,11 +12,11 @@ const value: operations.BatchUpsertIntegrationsIntegrationsResponseBody[] = [
     projectId: "project-456",
     name: "read-accounts",
     provider: "salesforce",
-    createTime: new Date("2023-06-24T05:32:09.341Z"),
+    createTime: new Date("2023-05-01T23:18:27.767Z"),
     latestRevision: {
       id: "revision-id-1",
       specVersion: "1.0.0",
-      createTime: new Date("2023-05-01T23:18:27.767Z"),
+      createTime: new Date("2024-12-20T08:05:36.677Z"),
       content: {
         name: "<value>",
         provider: "<value>",
@@ -30,7 +30,9 @@ const value: operations.BatchUpsertIntegrationsIntegrationsResponseBody[] = [
               mapToDisplayName: "People",
               requiredFields: [
                 {
-                  mapToName: "<value>",
+                  fieldName: "<value>",
+                  mapToName: "account_id",
+                  mapToDisplayName: "Account ID",
                 },
               ],
               optionalFields: [

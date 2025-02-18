@@ -22,16 +22,17 @@ import * as errors from "../models/errors/index.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
 import { CreateConsumerServerList } from "../models/operations/createconsumer.js";
 import * as operations from "../models/operations/index.js";
+import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
  * Create a new consumer
  */
-export async function consumersCreate(
+export function consumersCreate(
   client: SDKCore,
   request: operations.CreateConsumerRequest,
   options?: RequestOptions,
-): Promise<
+): APIPromise<
   Result<
     operations.CreateConsumerResponseBody | undefined,
     | errors.CreateConsumerResponseBody
@@ -44,13 +45,40 @@ export async function consumersCreate(
     | ConnectionError
   >
 > {
+  return new APIPromise($do(
+    client,
+    request,
+    options,
+  ));
+}
+
+async function $do(
+  client: SDKCore,
+  request: operations.CreateConsumerRequest,
+  options?: RequestOptions,
+): Promise<
+  [
+    Result<
+      operations.CreateConsumerResponseBody | undefined,
+      | errors.CreateConsumerResponseBody
+      | APIError
+      | SDKValidationError
+      | UnexpectedClientError
+      | InvalidRequestError
+      | RequestAbortedError
+      | RequestTimeoutError
+      | ConnectionError
+    >,
+    APICall,
+  ]
+> {
   const parsed = safeParse(
     request,
     (value) => operations.CreateConsumerRequest$outboundSchema.parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {
-    return parsed;
+    return [parsed, { status: "invalid" }];
   }
   const payload = parsed.value;
   const body = encodeJSON("body", payload.RequestBody, { explode: true });
@@ -110,7 +138,7 @@ export async function consumersCreate(
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
-    return requestRes;
+    return [requestRes, { status: "invalid" }];
   }
   const req = requestRes.value;
 
@@ -121,7 +149,7 @@ export async function consumersCreate(
     retryCodes: context.retryCodes,
   });
   if (!doResult.ok) {
-    return doResult;
+    return [doResult, { status: "request-error", request: req }];
   }
   const response = doResult.value;
 
@@ -153,8 +181,8 @@ export async function consumersCreate(
     ),
   )(response, { extraFields: responseFields });
   if (!result.ok) {
-    return result;
+    return [result, { status: "complete", request: req, response }];
   }
 
-  return result;
+  return [result, { status: "complete", request: req, response }];
 }

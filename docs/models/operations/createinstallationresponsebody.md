@@ -32,7 +32,7 @@ let value: CreateInstallationResponseBody = {
       scopes: [
         "[\"oauth\",\"offline\",\"crm.read\"]",
       ],
-      createTime: new Date("2024-07-21T22:45:05.685Z"),
+      createTime: new Date("2025-11-04T07:38:09.644Z"),
     },
     group: {
       groupRef: "group-123",
@@ -56,12 +56,12 @@ let value: CreateInstallationResponseBody = {
     status: "working",
     apiKey: "api-key-123",
   },
-  createTime: new Date("2023-01-29T03:01:55.688Z"),
+  createTime: new Date("2025-03-12T00:25:52.109Z"),
   createdBy: "consumer:consumer-123",
   config: {
     id: "config-123",
     revisionId: "revision-123",
-    createTime: new Date("2023-08-16T09:17:34.312Z"),
+    createTime: new Date("2023-10-06T07:40:51.480Z"),
     createdBy: "builder:builder-123",
     content: {
       provider: "salesforce",

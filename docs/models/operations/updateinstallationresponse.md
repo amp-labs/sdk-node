@@ -31,7 +31,7 @@ const value: operations.UpdateInstallationResponseBody = {
       scopes: [
         "[\"oauth\",\"offline\",\"crm.read\"]",
       ],
-      createTime: new Date("2025-11-20T06:46:28.205Z"),
+      createTime: new Date("2025-09-17T11:26:38.524Z"),
     },
     group: {
       groupRef: "group-123",
@@ -55,12 +55,12 @@ const value: operations.UpdateInstallationResponseBody = {
     status: "working",
     apiKey: "api-key-123",
   },
-  createTime: new Date("2023-11-17T04:38:54.761Z"),
+  createTime: new Date("2023-04-02T10:20:37.470Z"),
   createdBy: "consumer:consumer-123",
   config: {
     id: "config-123",
     revisionId: "revision-123",
-    createTime: new Date("2023-09-21T22:45:36.817Z"),
+    createTime: new Date("2024-08-28T04:52:14.624Z"),
     createdBy: "builder:builder-123",
     content: {
       provider: "salesforce",

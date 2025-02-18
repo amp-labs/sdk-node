@@ -434,6 +434,7 @@ const sdk = new SDK({
 async function run() {
   const result = await sdk.integrations.batchUpsert({
     projectIdOrName: "<value>",
+    requestBody: {},
   });
 
   // Handle the result
@@ -460,6 +461,7 @@ const sdk = new SDKCore({
 async function run() {
   const res = await integrationsBatchUpsert(sdk, {
     projectIdOrName: "<value>",
+    requestBody: {},
   });
 
   if (!res.ok) {

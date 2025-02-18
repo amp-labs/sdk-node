@@ -18,7 +18,7 @@ let value: Connection = {
     scopes: [
       "[\"oauth\",\"offline\",\"crm.read\"]",
     ],
-    createTime: new Date("2025-08-14T10:12:10.228Z"),
+    createTime: new Date("2024-02-25T06:38:03.380Z"),
   },
   group: {
     groupRef: "group-123",

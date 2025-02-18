@@ -7,7 +7,7 @@ The location of the invalid input
 ```typescript
 import { UpdateDestinationDestinationsResponseIn } from "@amp-labs/sdk-node/models/errors";
 
-let value: UpdateDestinationDestinationsResponseIn = "path";
+let value: UpdateDestinationDestinationsResponseIn = "header";
 ```
 
 ## Values

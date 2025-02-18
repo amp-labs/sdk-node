@@ -14,7 +14,7 @@ let value: ListInstallationsProviderApp = {
   scopes: [
     "[\"oauth\",\"offline\",\"crm.read\"]",
   ],
-  createTime: new Date("2024-11-20T08:44:18.290Z"),
+  createTime: new Date("2023-12-17T17:43:52.087Z"),
 };
 ```
 

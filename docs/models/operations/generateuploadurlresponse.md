@@ -7,9 +7,9 @@
 
 ```typescript
 const value: operations.GenerateUploadUrlResponseBody = {
-  url: "https://beneficial-hippodrome.biz/",
+  url: "https://impeccable-barge.info",
   bucket: "<value>",
-  path: "/usr/ports",
+  path: "/Library",
 };
 ```
 

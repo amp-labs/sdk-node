@@ -7,7 +7,7 @@ The location of the invalid input
 ```typescript
 import { DeleteIntegrationIntegrationsIn } from "@amp-labs/sdk-node/models/errors";
 
-let value: DeleteIntegrationIntegrationsIn = "path";
+let value: DeleteIntegrationIntegrationsIn = "body";
 ```
 
 ## Values

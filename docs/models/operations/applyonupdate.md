@@ -12,7 +12,7 @@ If unspecified, then `always` is assumed.
 ```typescript
 import { ApplyOnUpdate } from "@amp-labs/sdk-node/models/operations";
 
-let value: ApplyOnUpdate = "always";
+let value: ApplyOnUpdate = "never";
 ```
 
 ## Values

@@ -10,11 +10,11 @@ let value: BatchUpsertIntegrationsIntegrationsResponseBody = {
   projectId: "project-456",
   name: "read-accounts",
   provider: "salesforce",
-  createTime: new Date("2024-12-16T19:21:41.015Z"),
+  createTime: new Date("2023-10-05T14:34:56.327Z"),
   latestRevision: {
     id: "revision-id-1",
     specVersion: "1.0.0",
-    createTime: new Date("2023-10-05T14:34:56.327Z"),
+    createTime: new Date("2024-05-26T01:50:18.849Z"),
     content: {
       name: "<value>",
       provider: "<value>",

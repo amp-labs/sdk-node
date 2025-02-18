@@ -7,7 +7,7 @@ import { GetHydratedRevisionObjects } from "@amp-labs/sdk-node/models/operations
 
 let value: GetHydratedRevisionObjects = {
   objectName: "<value>",
-  displayName: "Dominique.Windler",
+  displayName: "Vilma_Mayer57",
   mapToName: "people",
   mapToDisplayName: "People",
   destination: "<value>",
@@ -20,17 +20,14 @@ let value: GetHydratedRevisionObjects = {
   optionalFields: [
     {
       fieldName: "<value>",
-      displayName: "Veda29",
+      displayName: "Rose39",
       mapToName: "account_id",
       mapToDisplayName: "Account ID",
     },
   ],
   allFields: [
     {
-      fieldName: "<value>",
-      displayName: "Shaniya_Tillman",
-      mapToName: "account_id",
-      mapToDisplayName: "Account ID",
+      mapToName: "<value>",
     },
   ],
   allFieldsMetadata: {

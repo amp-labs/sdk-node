@@ -9,6 +9,10 @@ let value: DeliverResultsRequest = {
   projectIdOrName: "<value>",
   integrationId: "<id>",
   objectName: "<value>",
+  requestBody: {
+    groupRef: "<value>",
+    pages: 715190,
+  },
 };
 ```
 
@@ -19,4 +23,4 @@ let value: DeliverResultsRequest = {
 | `projectIdOrName`                                                                            | *string*                                                                                     | :heavy_check_mark:                                                                           | N/A                                                                                          |
 | `integrationId`                                                                              | *string*                                                                                     | :heavy_check_mark:                                                                           | N/A                                                                                          |
 | `objectName`                                                                                 | *string*                                                                                     | :heavy_check_mark:                                                                           | N/A                                                                                          |
-| `requestBody`                                                                                | [operations.DeliverResultsRequestBody](../../models/operations/deliverresultsrequestbody.md) | :heavy_minus_sign:                                                                           | ResultDeliveryRequestBody                                                                    |
+| `requestBody`                                                                                | [operations.DeliverResultsRequestBody](../../models/operations/deliverresultsrequestbody.md) | :heavy_check_mark:                                                                           | ResultDeliveryRequestBody                                                                    |

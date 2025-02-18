@@ -7,7 +7,7 @@ The location of the invalid input
 ```typescript
 import { CreateConsumerIn } from "@amp-labs/sdk-node/models/errors";
 
-let value: CreateConsumerIn = "body";
+let value: CreateConsumerIn = "path";
 ```
 
 ## Values

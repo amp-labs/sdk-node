@@ -7,7 +7,7 @@ The scope of the target URL.
 ```typescript
 import { GetProviderTargetURLScope } from "@amp-labs/sdk-node/models/operations";
 
-let value: GetProviderTargetURLScope = "installation";
+let value: GetProviderTargetURLScope = "integration";
 ```
 
 ## Values

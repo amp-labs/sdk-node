@@ -21,6 +21,7 @@ import {
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
 import { GetObjectMetadataForConnectionServerList } from "../models/operations/getobjectmetadataforconnection.js";
 import * as operations from "../models/operations/index.js";
+import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 export enum GetMetadataForConnectionAcceptEnum {
@@ -36,13 +37,13 @@ export enum GetMetadataForConnectionAcceptEnum {
  * This endpoint only requires that a Connection exists for the given groupRef.
  * It does not apply any object mappings.
  */
-export async function objectsAndFieldsGetMetadataForConnection(
+export function objectsAndFieldsGetMetadataForConnection(
   client: SDKCore,
   request: operations.GetObjectMetadataForConnectionRequest,
   options?: RequestOptions & {
     acceptHeaderOverride?: GetMetadataForConnectionAcceptEnum;
   },
-): Promise<
+): APIPromise<
   Result<
     operations.GetObjectMetadataForConnectionResponse,
     | APIError
@@ -54,6 +55,34 @@ export async function objectsAndFieldsGetMetadataForConnection(
     | ConnectionError
   >
 > {
+  return new APIPromise($do(
+    client,
+    request,
+    options,
+  ));
+}
+
+async function $do(
+  client: SDKCore,
+  request: operations.GetObjectMetadataForConnectionRequest,
+  options?: RequestOptions & {
+    acceptHeaderOverride?: GetMetadataForConnectionAcceptEnum;
+  },
+): Promise<
+  [
+    Result<
+      operations.GetObjectMetadataForConnectionResponse,
+      | APIError
+      | SDKValidationError
+      | UnexpectedClientError
+      | InvalidRequestError
+      | RequestAbortedError
+      | RequestTimeoutError
+      | ConnectionError
+    >,
+    APICall,
+  ]
+> {
   const parsed = safeParse(
     request,
     (value) =>
@@ -63,7 +92,7 @@ export async function objectsAndFieldsGetMetadataForConnection(
     "Input validation failed",
   );
   if (!parsed.ok) {
-    return parsed;
+    return [parsed, { status: "invalid" }];
   }
   const payload = parsed.value;
   const body = null;
@@ -140,7 +169,7 @@ export async function objectsAndFieldsGetMetadataForConnection(
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
-    return requestRes;
+    return [requestRes, { status: "invalid" }];
   }
   const req = requestRes.value;
 
@@ -151,7 +180,7 @@ export async function objectsAndFieldsGetMetadataForConnection(
     retryCodes: context.retryCodes,
   });
   if (!doResult.ok) {
-    return doResult;
+    return [doResult, { status: "request-error", request: req }];
   }
   const response = doResult.value;
 
@@ -178,8 +207,8 @@ export async function objectsAndFieldsGetMetadataForConnection(
     ),
   )(response);
   if (!result.ok) {
-    return result;
+    return [result, { status: "complete", request: req, response }];
   }
 
-  return result;
+  return [result, { status: "complete", request: req, response }];
 }

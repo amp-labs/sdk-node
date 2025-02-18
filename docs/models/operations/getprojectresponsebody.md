@@ -11,7 +11,7 @@ let value: GetProjectResponseBody = {
   id: "project-id-123",
   name: "mailmonkey-staging",
   appName: "MailMonkey",
-  createTime: new Date("2024-12-08T21:35:55.501Z"),
+  createTime: new Date("2024-04-24T14:17:38.418Z"),
 };
 ```
 

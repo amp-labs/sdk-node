@@ -7,7 +7,7 @@ The location of the invalid input
 ```typescript
 import { GetHydratedRevisionIn } from "@amp-labs/sdk-node/models/errors";
 
-let value: GetHydratedRevisionIn = "body";
+let value: GetHydratedRevisionIn = "header";
 ```
 
 ## Values

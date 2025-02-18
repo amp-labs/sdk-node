@@ -18,7 +18,7 @@ let value: ListConnectionsConnectionsResponseBody = {
     scopes: [
       "[\"oauth\",\"offline\",\"crm.read\"]",
     ],
-    createTime: new Date("2025-01-06T13:32:43.889Z"),
+    createTime: new Date("2025-04-24T13:21:21.631Z"),
   },
   group: {
     groupRef: "group-123",

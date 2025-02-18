@@ -7,7 +7,7 @@ import { AllFields1 } from "@amp-labs/sdk-node/models/operations";
 
 let value: AllFields1 = {
   fieldName: "<value>",
-  displayName: "Kira13",
+  displayName: "Emily_Cole28",
   mapToName: "account_id",
   mapToDisplayName: "Account ID",
 };

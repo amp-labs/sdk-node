@@ -10,11 +10,11 @@ let value: ListIntegrationsIntegrationsResponseBody = {
   projectId: "project-456",
   name: "read-accounts",
   provider: "salesforce",
-  createTime: new Date("2024-12-02T08:28:57.162Z"),
+  createTime: new Date("2023-06-07T02:45:53.539Z"),
   latestRevision: {
     id: "revision-id-1",
     specVersion: "1.0.0",
-    createTime: new Date("2023-06-07T02:45:53.539Z"),
+    createTime: new Date("2025-11-01T08:34:16.299Z"),
     content: {
       name: "<value>",
       provider: "<value>",
@@ -33,7 +33,9 @@ let value: ListIntegrationsIntegrationsResponseBody = {
             ],
             optionalFields: [
               {
-                mapToName: "<value>",
+                fieldName: "<value>",
+                mapToName: "account_id",
+                mapToDisplayName: "Account ID",
               },
             ],
             backfill: {

@@ -8,7 +8,7 @@ import { ListIntegrationsLatestRevision } from "@amp-labs/sdk-node/models/operat
 let value: ListIntegrationsLatestRevision = {
   id: "revision-id-1",
   specVersion: "1.0.0",
-  createTime: new Date("2024-05-20T18:45:11.321Z"),
+  createTime: new Date("2025-05-05T11:02:22.031Z"),
   content: {
     name: "<value>",
     provider: "<value>",
@@ -22,14 +22,14 @@ let value: ListIntegrationsLatestRevision = {
           mapToDisplayName: "People",
           requiredFields: [
             {
-              mapToName: "<value>",
+              fieldName: "<value>",
+              mapToName: "account_id",
+              mapToDisplayName: "Account ID",
             },
           ],
           optionalFields: [
             {
-              fieldName: "<value>",
-              mapToName: "account_id",
-              mapToDisplayName: "Account ID",
+              mapToName: "<value>",
             },
           ],
           backfill: {

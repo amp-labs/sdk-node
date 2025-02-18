@@ -5,7 +5,7 @@
 ```typescript
 import { GetProviderGrantType } from "@amp-labs/sdk-node/models/operations";
 
-let value: GetProviderGrantType = "clientCredentials";
+let value: GetProviderGrantType = "authorizationCode";
 ```
 
 ## Values

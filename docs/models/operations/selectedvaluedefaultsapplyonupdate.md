@@ -12,7 +12,7 @@ If unspecified, then `always` is assumed.
 ```typescript
 import { SelectedValueDefaultsApplyOnUpdate } from "@amp-labs/sdk-node/models/operations";
 
-let value: SelectedValueDefaultsApplyOnUpdate = "always";
+let value: SelectedValueDefaultsApplyOnUpdate = "never";
 ```
 
 ## Values

@@ -9,10 +9,10 @@
 const value: { [k: string]: operations.ListProvidersProvidersResponseBody } = {
   "key": {
     name: "<value>",
-    authType: "none",
-    baseURL: "https://afraid-folklore.com",
+    authType: "jwt",
+    baseURL: "https://turbulent-embossing.org",
     oauth2Opts: {
-      grantType: "password",
+      grantType: "clientCredentials",
       authURL: "https://login.salesforce.com/services/oauth2/authorize",
       tokenURL: "https://login.salesforce.com/services/oauth2/token",
       explicitScopesRequired: true,

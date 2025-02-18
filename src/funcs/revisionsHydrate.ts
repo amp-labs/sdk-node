@@ -22,6 +22,7 @@ import * as errors from "../models/errors/index.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
 import { GetHydratedRevisionServerList } from "../models/operations/gethydratedrevision.js";
 import * as operations from "../models/operations/index.js";
+import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 export enum HydrateAcceptEnum {
@@ -35,11 +36,11 @@ export enum HydrateAcceptEnum {
  * @remarks
  * Hydrate a revision with information from the consumer's SaaS instance.
  */
-export async function revisionsHydrate(
+export function revisionsHydrate(
   client: SDKCore,
   request: operations.GetHydratedRevisionRequest,
   options?: RequestOptions & { acceptHeaderOverride?: HydrateAcceptEnum },
-): Promise<
+): APIPromise<
   Result<
     operations.GetHydratedRevisionResponse,
     | errors.GetHydratedRevisionResponseBody
@@ -53,6 +54,34 @@ export async function revisionsHydrate(
     | ConnectionError
   >
 > {
+  return new APIPromise($do(
+    client,
+    request,
+    options,
+  ));
+}
+
+async function $do(
+  client: SDKCore,
+  request: operations.GetHydratedRevisionRequest,
+  options?: RequestOptions & { acceptHeaderOverride?: HydrateAcceptEnum },
+): Promise<
+  [
+    Result<
+      operations.GetHydratedRevisionResponse,
+      | errors.GetHydratedRevisionResponseBody
+      | errors.GetHydratedRevisionRevisionsResponseBody
+      | APIError
+      | SDKValidationError
+      | UnexpectedClientError
+      | InvalidRequestError
+      | RequestAbortedError
+      | RequestTimeoutError
+      | ConnectionError
+    >,
+    APICall,
+  ]
+> {
   const parsed = safeParse(
     request,
     (value) =>
@@ -60,7 +89,7 @@ export async function revisionsHydrate(
     "Input validation failed",
   );
   if (!parsed.ok) {
-    return parsed;
+    return [parsed, { status: "invalid" }];
   }
   const payload = parsed.value;
   const body = null;
@@ -137,7 +166,7 @@ export async function revisionsHydrate(
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
-    return requestRes;
+    return [requestRes, { status: "invalid" }];
   }
   const req = requestRes.value;
 
@@ -148,7 +177,7 @@ export async function revisionsHydrate(
     retryCodes: context.retryCodes,
   });
   if (!doResult.ok) {
-    return doResult;
+    return [doResult, { status: "request-error", request: req }];
   }
   const response = doResult.value;
 
@@ -184,8 +213,8 @@ export async function revisionsHydrate(
     }),
   )(response, { extraFields: responseFields });
   if (!result.ok) {
-    return result;
+    return [result, { status: "complete", request: req, response }];
   }
 
-  return result;
+  return [result, { status: "complete", request: req, response }];
 }

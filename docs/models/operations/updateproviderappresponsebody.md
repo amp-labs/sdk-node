@@ -16,7 +16,7 @@ let value: UpdateProviderAppResponseBody = {
   scopes: [
     "[\"oauth\",\"offline\",\"crm.read\"]",
   ],
-  createTime: new Date("2025-10-11T10:53:38.306Z"),
+  createTime: new Date("2023-03-19T20:31:56.909Z"),
 };
 ```
 

@@ -7,7 +7,7 @@ The scope of the subscription.
 ```typescript
 import { SubscriptionScope } from "@amp-labs/sdk-node/models/operations";
 
-let value: SubscriptionScope = "integration";
+let value: SubscriptionScope = "installation";
 ```
 
 ## Values

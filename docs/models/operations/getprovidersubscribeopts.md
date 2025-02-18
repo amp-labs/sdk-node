@@ -6,9 +6,9 @@
 import { GetProviderSubscribeOpts } from "@amp-labs/sdk-node/models/operations";
 
 let value: GetProviderSubscribeOpts = {
-  subscriptionScope: "integration",
-  targetURLScope: "installation",
-  registrationTiming: "installation",
+  subscriptionScope: "installation",
+  targetURLScope: "integration",
+  registrationTiming: "integration",
 };
 ```
 

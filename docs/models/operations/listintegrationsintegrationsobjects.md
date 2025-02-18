@@ -13,9 +13,7 @@ let value: ListIntegrationsIntegrationsObjects = {
   mapToDisplayName: "People",
   requiredFields: [
     {
-      fieldName: "<value>",
-      mapToName: "account_id",
-      mapToDisplayName: "Account ID",
+      mapToName: "<value>",
     },
   ],
   optionalFields: [

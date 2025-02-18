@@ -7,7 +7,7 @@ The location of the invalid input
 ```typescript
 import { CreateRevisionRevisionsIn } from "@amp-labs/sdk-node/models/errors";
 
-let value: CreateRevisionRevisionsIn = "header";
+let value: CreateRevisionRevisionsIn = "body";
 ```
 
 ## Values

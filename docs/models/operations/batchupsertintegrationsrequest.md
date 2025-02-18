@@ -7,6 +7,7 @@ import { BatchUpsertIntegrationsRequest } from "@amp-labs/sdk-node/models/operat
 
 let value: BatchUpsertIntegrationsRequest = {
   projectIdOrName: "<value>",
+  requestBody: {},
 };
 ```
 
@@ -15,4 +16,4 @@ let value: BatchUpsertIntegrationsRequest = {
 | Field                                                                                                          | Type                                                                                                           | Required                                                                                                       | Description                                                                                                    |
 | -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
 | `projectIdOrName`                                                                                              | *string*                                                                                                       | :heavy_check_mark:                                                                                             | N/A                                                                                                            |
-| `requestBody`                                                                                                  | [operations.BatchUpsertIntegrationsRequestBody](../../models/operations/batchupsertintegrationsrequestbody.md) | :heavy_minus_sign:                                                                                             | N/A                                                                                                            |
+| `requestBody`                                                                                                  | [operations.BatchUpsertIntegrationsRequestBody](../../models/operations/batchupsertintegrationsrequestbody.md) | :heavy_check_mark:                                                                                             | N/A                                                                                                            |
