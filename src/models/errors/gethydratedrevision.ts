@@ -29,7 +29,7 @@ export type GetHydratedRevisionRevisionsIn = ClosedEnum<
  *
  * @remarks
  */
-export type GetHydratedRevisionRevisionsIssues = {
+export type GetHydratedRevisionRevisionsInputValidationIssue = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -122,7 +122,7 @@ export type GetHydratedRevisionRevisionsIssues = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export type GetHydratedRevisionRevisionsResponseBodyData = {
+export type GetHydratedRevisionRevisionsInputValidationProblemData = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -194,7 +194,7 @@ export type GetHydratedRevisionRevisionsResponseBodyData = {
    * Additional context for the problem
    */
   context?: { [k: string]: any } | undefined;
-  issues?: Array<GetHydratedRevisionRevisionsIssues> | undefined;
+  issues?: Array<GetHydratedRevisionRevisionsInputValidationIssue> | undefined;
 };
 
 /**
@@ -204,7 +204,7 @@ export type GetHydratedRevisionRevisionsResponseBodyData = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export class GetHydratedRevisionRevisionsResponseBody extends Error {
+export class GetHydratedRevisionRevisionsInputValidationProblem extends Error {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -276,12 +276,12 @@ export class GetHydratedRevisionRevisionsResponseBody extends Error {
    * Additional context for the problem
    */
   context?: { [k: string]: any } | undefined;
-  issues?: Array<GetHydratedRevisionRevisionsIssues> | undefined;
+  issues?: Array<GetHydratedRevisionRevisionsInputValidationIssue> | undefined;
 
   /** The original data that was passed to this error instance. */
-  data$: GetHydratedRevisionRevisionsResponseBodyData;
+  data$: GetHydratedRevisionRevisionsInputValidationProblemData;
 
-  constructor(err: GetHydratedRevisionRevisionsResponseBodyData) {
+  constructor(err: GetHydratedRevisionRevisionsInputValidationProblemData) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
@@ -307,7 +307,7 @@ export class GetHydratedRevisionRevisionsResponseBody extends Error {
     if (err.context != null) this.context = err.context;
     if (err.issues != null) this.issues = err.issues;
 
-    this.name = "GetHydratedRevisionRevisionsResponseBody";
+    this.name = "GetHydratedRevisionRevisionsInputValidationProblem";
   }
 }
 
@@ -330,7 +330,7 @@ export type GetHydratedRevisionIn = ClosedEnum<typeof GetHydratedRevisionIn>;
  *
  * @remarks
  */
-export type GetHydratedRevisionIssues = {
+export type GetHydratedRevisionInputValidationIssue = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -423,7 +423,7 @@ export type GetHydratedRevisionIssues = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export type GetHydratedRevisionResponseBodyData = {
+export type GetHydratedRevisionInputValidationProblemData = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -495,7 +495,7 @@ export type GetHydratedRevisionResponseBodyData = {
    * Additional context for the problem
    */
   context?: { [k: string]: any } | undefined;
-  issues?: Array<GetHydratedRevisionIssues> | undefined;
+  issues?: Array<GetHydratedRevisionInputValidationIssue> | undefined;
 };
 
 /**
@@ -505,7 +505,7 @@ export type GetHydratedRevisionResponseBodyData = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export class GetHydratedRevisionResponseBody extends Error {
+export class GetHydratedRevisionInputValidationProblem extends Error {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -577,12 +577,12 @@ export class GetHydratedRevisionResponseBody extends Error {
    * Additional context for the problem
    */
   context?: { [k: string]: any } | undefined;
-  issues?: Array<GetHydratedRevisionIssues> | undefined;
+  issues?: Array<GetHydratedRevisionInputValidationIssue> | undefined;
 
   /** The original data that was passed to this error instance. */
-  data$: GetHydratedRevisionResponseBodyData;
+  data$: GetHydratedRevisionInputValidationProblemData;
 
-  constructor(err: GetHydratedRevisionResponseBodyData) {
+  constructor(err: GetHydratedRevisionInputValidationProblemData) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
@@ -608,7 +608,7 @@ export class GetHydratedRevisionResponseBody extends Error {
     if (err.context != null) this.context = err.context;
     if (err.issues != null) this.issues = err.issues;
 
-    this.name = "GetHydratedRevisionResponseBody";
+    this.name = "GetHydratedRevisionInputValidationProblem";
   }
 }
 
@@ -634,37 +634,39 @@ export namespace GetHydratedRevisionRevisionsIn$ {
 }
 
 /** @internal */
-export const GetHydratedRevisionRevisionsIssues$inboundSchema: z.ZodType<
-  GetHydratedRevisionRevisionsIssues,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  type: z.string().default("about:blank"),
-  href: z.string().optional(),
-  title: z.string().optional(),
-  status: z.number().int().optional(),
-  detail: z.string().optional(),
-  instance: z.string().optional(),
-  subsystem: z.string().optional(),
-  time: z.string().datetime({ offset: true }).transform(v => new Date(v))
-    .optional(),
-  requestId: z.string().optional(),
-  causes: z.array(z.string()).optional(),
-  remedy: z.string().optional(),
-  supportEmail: z.string().optional(),
-  supportPhone: z.string().optional(),
-  supportUrl: z.string().optional(),
-  retryable: z.boolean().optional(),
-  retryAfter: z.string().datetime({ offset: true }).transform(v => new Date(v))
-    .optional(),
-  context: z.record(z.any()).optional(),
-  in: GetHydratedRevisionRevisionsIn$inboundSchema.optional(),
-  name: z.string().optional(),
-  value: z.any().optional(),
-});
+export const GetHydratedRevisionRevisionsInputValidationIssue$inboundSchema:
+  z.ZodType<
+    GetHydratedRevisionRevisionsInputValidationIssue,
+    z.ZodTypeDef,
+    unknown
+  > = z.object({
+    type: z.string().default("about:blank"),
+    href: z.string().optional(),
+    title: z.string().optional(),
+    status: z.number().int().optional(),
+    detail: z.string().optional(),
+    instance: z.string().optional(),
+    subsystem: z.string().optional(),
+    time: z.string().datetime({ offset: true }).transform(v => new Date(v))
+      .optional(),
+    requestId: z.string().optional(),
+    causes: z.array(z.string()).optional(),
+    remedy: z.string().optional(),
+    supportEmail: z.string().optional(),
+    supportPhone: z.string().optional(),
+    supportUrl: z.string().optional(),
+    retryable: z.boolean().optional(),
+    retryAfter: z.string().datetime({ offset: true }).transform(v =>
+      new Date(v)
+    ).optional(),
+    context: z.record(z.any()).optional(),
+    in: GetHydratedRevisionRevisionsIn$inboundSchema.optional(),
+    name: z.string().optional(),
+    value: z.any().optional(),
+  });
 
 /** @internal */
-export type GetHydratedRevisionRevisionsIssues$Outbound = {
+export type GetHydratedRevisionRevisionsInputValidationIssue$Outbound = {
   type: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -688,131 +690,12 @@ export type GetHydratedRevisionRevisionsIssues$Outbound = {
 };
 
 /** @internal */
-export const GetHydratedRevisionRevisionsIssues$outboundSchema: z.ZodType<
-  GetHydratedRevisionRevisionsIssues$Outbound,
-  z.ZodTypeDef,
-  GetHydratedRevisionRevisionsIssues
-> = z.object({
-  type: z.string().default("about:blank"),
-  href: z.string().optional(),
-  title: z.string().optional(),
-  status: z.number().int().optional(),
-  detail: z.string().optional(),
-  instance: z.string().optional(),
-  subsystem: z.string().optional(),
-  time: z.date().transform(v => v.toISOString()).optional(),
-  requestId: z.string().optional(),
-  causes: z.array(z.string()).optional(),
-  remedy: z.string().optional(),
-  supportEmail: z.string().optional(),
-  supportPhone: z.string().optional(),
-  supportUrl: z.string().optional(),
-  retryable: z.boolean().optional(),
-  retryAfter: z.date().transform(v => v.toISOString()).optional(),
-  context: z.record(z.any()).optional(),
-  in: GetHydratedRevisionRevisionsIn$outboundSchema.optional(),
-  name: z.string().optional(),
-  value: z.any().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetHydratedRevisionRevisionsIssues$ {
-  /** @deprecated use `GetHydratedRevisionRevisionsIssues$inboundSchema` instead. */
-  export const inboundSchema = GetHydratedRevisionRevisionsIssues$inboundSchema;
-  /** @deprecated use `GetHydratedRevisionRevisionsIssues$outboundSchema` instead. */
-  export const outboundSchema =
-    GetHydratedRevisionRevisionsIssues$outboundSchema;
-  /** @deprecated use `GetHydratedRevisionRevisionsIssues$Outbound` instead. */
-  export type Outbound = GetHydratedRevisionRevisionsIssues$Outbound;
-}
-
-export function getHydratedRevisionRevisionsIssuesToJSON(
-  getHydratedRevisionRevisionsIssues: GetHydratedRevisionRevisionsIssues,
-): string {
-  return JSON.stringify(
-    GetHydratedRevisionRevisionsIssues$outboundSchema.parse(
-      getHydratedRevisionRevisionsIssues,
-    ),
-  );
-}
-
-export function getHydratedRevisionRevisionsIssuesFromJSON(
-  jsonString: string,
-): SafeParseResult<GetHydratedRevisionRevisionsIssues, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      GetHydratedRevisionRevisionsIssues$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetHydratedRevisionRevisionsIssues' from JSON`,
-  );
-}
-
-/** @internal */
-export const GetHydratedRevisionRevisionsResponseBody$inboundSchema: z.ZodType<
-  GetHydratedRevisionRevisionsResponseBody,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  type: z.string().default("about:blank"),
-  href: z.string().optional(),
-  title: z.string().optional(),
-  status: z.number().int().optional(),
-  detail: z.string().optional(),
-  instance: z.string().optional(),
-  subsystem: z.string().optional(),
-  time: z.string().datetime({ offset: true }).transform(v => new Date(v))
-    .optional(),
-  requestId: z.string().optional(),
-  causes: z.array(z.string()).optional(),
-  remedy: z.string().optional(),
-  supportEmail: z.string().optional(),
-  supportPhone: z.string().optional(),
-  supportUrl: z.string().optional(),
-  retryable: z.boolean().optional(),
-  retryAfter: z.string().datetime({ offset: true }).transform(v => new Date(v))
-    .optional(),
-  context: z.record(z.any()).optional(),
-  issues: z.array(
-    z.lazy(() => GetHydratedRevisionRevisionsIssues$inboundSchema),
-  ).optional(),
-})
-  .transform((v) => {
-    return new GetHydratedRevisionRevisionsResponseBody(v);
-  });
-
-/** @internal */
-export type GetHydratedRevisionRevisionsResponseBody$Outbound = {
-  type?: string;
-  href?: string | undefined;
-  title?: string | undefined;
-  status?: number | undefined;
-  detail?: string | undefined;
-  instance?: string | undefined;
-  subsystem?: string | undefined;
-  time?: string | undefined;
-  requestId?: string | undefined;
-  causes?: Array<string> | undefined;
-  remedy?: string | undefined;
-  supportEmail?: string | undefined;
-  supportPhone?: string | undefined;
-  supportUrl?: string | undefined;
-  retryable?: boolean | undefined;
-  retryAfter?: string | undefined;
-  context?: { [k: string]: any } | undefined;
-  issues?: Array<GetHydratedRevisionRevisionsIssues$Outbound> | undefined;
-};
-
-/** @internal */
-export const GetHydratedRevisionRevisionsResponseBody$outboundSchema: z.ZodType<
-  GetHydratedRevisionRevisionsResponseBody$Outbound,
-  z.ZodTypeDef,
-  GetHydratedRevisionRevisionsResponseBody
-> = z.instanceof(GetHydratedRevisionRevisionsResponseBody)
-  .transform(v => v.data$)
-  .pipe(z.object({
+export const GetHydratedRevisionRevisionsInputValidationIssue$outboundSchema:
+  z.ZodType<
+    GetHydratedRevisionRevisionsInputValidationIssue$Outbound,
+    z.ZodTypeDef,
+    GetHydratedRevisionRevisionsInputValidationIssue
+  > = z.object({
     type: z.string().default("about:blank"),
     href: z.string().optional(),
     title: z.string().optional(),
@@ -830,24 +713,162 @@ export const GetHydratedRevisionRevisionsResponseBody$outboundSchema: z.ZodType<
     retryable: z.boolean().optional(),
     retryAfter: z.date().transform(v => v.toISOString()).optional(),
     context: z.record(z.any()).optional(),
-    issues: z.array(
-      z.lazy(() => GetHydratedRevisionRevisionsIssues$outboundSchema),
-    ).optional(),
-  }));
+    in: GetHydratedRevisionRevisionsIn$outboundSchema.optional(),
+    name: z.string().optional(),
+    value: z.any().optional(),
+  });
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace GetHydratedRevisionRevisionsResponseBody$ {
-  /** @deprecated use `GetHydratedRevisionRevisionsResponseBody$inboundSchema` instead. */
+export namespace GetHydratedRevisionRevisionsInputValidationIssue$ {
+  /** @deprecated use `GetHydratedRevisionRevisionsInputValidationIssue$inboundSchema` instead. */
   export const inboundSchema =
-    GetHydratedRevisionRevisionsResponseBody$inboundSchema;
-  /** @deprecated use `GetHydratedRevisionRevisionsResponseBody$outboundSchema` instead. */
+    GetHydratedRevisionRevisionsInputValidationIssue$inboundSchema;
+  /** @deprecated use `GetHydratedRevisionRevisionsInputValidationIssue$outboundSchema` instead. */
   export const outboundSchema =
-    GetHydratedRevisionRevisionsResponseBody$outboundSchema;
-  /** @deprecated use `GetHydratedRevisionRevisionsResponseBody$Outbound` instead. */
-  export type Outbound = GetHydratedRevisionRevisionsResponseBody$Outbound;
+    GetHydratedRevisionRevisionsInputValidationIssue$outboundSchema;
+  /** @deprecated use `GetHydratedRevisionRevisionsInputValidationIssue$Outbound` instead. */
+  export type Outbound =
+    GetHydratedRevisionRevisionsInputValidationIssue$Outbound;
+}
+
+export function getHydratedRevisionRevisionsInputValidationIssueToJSON(
+  getHydratedRevisionRevisionsInputValidationIssue:
+    GetHydratedRevisionRevisionsInputValidationIssue,
+): string {
+  return JSON.stringify(
+    GetHydratedRevisionRevisionsInputValidationIssue$outboundSchema.parse(
+      getHydratedRevisionRevisionsInputValidationIssue,
+    ),
+  );
+}
+
+export function getHydratedRevisionRevisionsInputValidationIssueFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  GetHydratedRevisionRevisionsInputValidationIssue,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      GetHydratedRevisionRevisionsInputValidationIssue$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'GetHydratedRevisionRevisionsInputValidationIssue' from JSON`,
+  );
+}
+
+/** @internal */
+export const GetHydratedRevisionRevisionsInputValidationProblem$inboundSchema:
+  z.ZodType<
+    GetHydratedRevisionRevisionsInputValidationProblem,
+    z.ZodTypeDef,
+    unknown
+  > = z.object({
+    type: z.string().default("about:blank"),
+    href: z.string().optional(),
+    title: z.string().optional(),
+    status: z.number().int().optional(),
+    detail: z.string().optional(),
+    instance: z.string().optional(),
+    subsystem: z.string().optional(),
+    time: z.string().datetime({ offset: true }).transform(v => new Date(v))
+      .optional(),
+    requestId: z.string().optional(),
+    causes: z.array(z.string()).optional(),
+    remedy: z.string().optional(),
+    supportEmail: z.string().optional(),
+    supportPhone: z.string().optional(),
+    supportUrl: z.string().optional(),
+    retryable: z.boolean().optional(),
+    retryAfter: z.string().datetime({ offset: true }).transform(v =>
+      new Date(v)
+    ).optional(),
+    context: z.record(z.any()).optional(),
+    issues: z.array(
+      z.lazy(() =>
+        GetHydratedRevisionRevisionsInputValidationIssue$inboundSchema
+      ),
+    ).optional(),
+  })
+    .transform((v) => {
+      return new GetHydratedRevisionRevisionsInputValidationProblem(v);
+    });
+
+/** @internal */
+export type GetHydratedRevisionRevisionsInputValidationProblem$Outbound = {
+  type?: string;
+  href?: string | undefined;
+  title?: string | undefined;
+  status?: number | undefined;
+  detail?: string | undefined;
+  instance?: string | undefined;
+  subsystem?: string | undefined;
+  time?: string | undefined;
+  requestId?: string | undefined;
+  causes?: Array<string> | undefined;
+  remedy?: string | undefined;
+  supportEmail?: string | undefined;
+  supportPhone?: string | undefined;
+  supportUrl?: string | undefined;
+  retryable?: boolean | undefined;
+  retryAfter?: string | undefined;
+  context?: { [k: string]: any } | undefined;
+  issues?:
+    | Array<GetHydratedRevisionRevisionsInputValidationIssue$Outbound>
+    | undefined;
+};
+
+/** @internal */
+export const GetHydratedRevisionRevisionsInputValidationProblem$outboundSchema:
+  z.ZodType<
+    GetHydratedRevisionRevisionsInputValidationProblem$Outbound,
+    z.ZodTypeDef,
+    GetHydratedRevisionRevisionsInputValidationProblem
+  > = z.instanceof(GetHydratedRevisionRevisionsInputValidationProblem)
+    .transform(v => v.data$)
+    .pipe(z.object({
+      type: z.string().default("about:blank"),
+      href: z.string().optional(),
+      title: z.string().optional(),
+      status: z.number().int().optional(),
+      detail: z.string().optional(),
+      instance: z.string().optional(),
+      subsystem: z.string().optional(),
+      time: z.date().transform(v => v.toISOString()).optional(),
+      requestId: z.string().optional(),
+      causes: z.array(z.string()).optional(),
+      remedy: z.string().optional(),
+      supportEmail: z.string().optional(),
+      supportPhone: z.string().optional(),
+      supportUrl: z.string().optional(),
+      retryable: z.boolean().optional(),
+      retryAfter: z.date().transform(v => v.toISOString()).optional(),
+      context: z.record(z.any()).optional(),
+      issues: z.array(
+        z.lazy(() =>
+          GetHydratedRevisionRevisionsInputValidationIssue$outboundSchema
+        ),
+      ).optional(),
+    }));
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetHydratedRevisionRevisionsInputValidationProblem$ {
+  /** @deprecated use `GetHydratedRevisionRevisionsInputValidationProblem$inboundSchema` instead. */
+  export const inboundSchema =
+    GetHydratedRevisionRevisionsInputValidationProblem$inboundSchema;
+  /** @deprecated use `GetHydratedRevisionRevisionsInputValidationProblem$outboundSchema` instead. */
+  export const outboundSchema =
+    GetHydratedRevisionRevisionsInputValidationProblem$outboundSchema;
+  /** @deprecated use `GetHydratedRevisionRevisionsInputValidationProblem$Outbound` instead. */
+  export type Outbound =
+    GetHydratedRevisionRevisionsInputValidationProblem$Outbound;
 }
 
 /** @internal */
@@ -872,8 +893,8 @@ export namespace GetHydratedRevisionIn$ {
 }
 
 /** @internal */
-export const GetHydratedRevisionIssues$inboundSchema: z.ZodType<
-  GetHydratedRevisionIssues,
+export const GetHydratedRevisionInputValidationIssue$inboundSchema: z.ZodType<
+  GetHydratedRevisionInputValidationIssue,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -902,7 +923,7 @@ export const GetHydratedRevisionIssues$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type GetHydratedRevisionIssues$Outbound = {
+export type GetHydratedRevisionInputValidationIssue$Outbound = {
   type: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -926,10 +947,10 @@ export type GetHydratedRevisionIssues$Outbound = {
 };
 
 /** @internal */
-export const GetHydratedRevisionIssues$outboundSchema: z.ZodType<
-  GetHydratedRevisionIssues$Outbound,
+export const GetHydratedRevisionInputValidationIssue$outboundSchema: z.ZodType<
+  GetHydratedRevisionInputValidationIssue$Outbound,
   z.ZodTypeDef,
-  GetHydratedRevisionIssues
+  GetHydratedRevisionInputValidationIssue
 > = z.object({
   type: z.string().default("about:blank"),
   href: z.string().optional(),
@@ -957,36 +978,47 @@ export const GetHydratedRevisionIssues$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace GetHydratedRevisionIssues$ {
-  /** @deprecated use `GetHydratedRevisionIssues$inboundSchema` instead. */
-  export const inboundSchema = GetHydratedRevisionIssues$inboundSchema;
-  /** @deprecated use `GetHydratedRevisionIssues$outboundSchema` instead. */
-  export const outboundSchema = GetHydratedRevisionIssues$outboundSchema;
-  /** @deprecated use `GetHydratedRevisionIssues$Outbound` instead. */
-  export type Outbound = GetHydratedRevisionIssues$Outbound;
+export namespace GetHydratedRevisionInputValidationIssue$ {
+  /** @deprecated use `GetHydratedRevisionInputValidationIssue$inboundSchema` instead. */
+  export const inboundSchema =
+    GetHydratedRevisionInputValidationIssue$inboundSchema;
+  /** @deprecated use `GetHydratedRevisionInputValidationIssue$outboundSchema` instead. */
+  export const outboundSchema =
+    GetHydratedRevisionInputValidationIssue$outboundSchema;
+  /** @deprecated use `GetHydratedRevisionInputValidationIssue$Outbound` instead. */
+  export type Outbound = GetHydratedRevisionInputValidationIssue$Outbound;
 }
 
-export function getHydratedRevisionIssuesToJSON(
-  getHydratedRevisionIssues: GetHydratedRevisionIssues,
+export function getHydratedRevisionInputValidationIssueToJSON(
+  getHydratedRevisionInputValidationIssue:
+    GetHydratedRevisionInputValidationIssue,
 ): string {
   return JSON.stringify(
-    GetHydratedRevisionIssues$outboundSchema.parse(getHydratedRevisionIssues),
+    GetHydratedRevisionInputValidationIssue$outboundSchema.parse(
+      getHydratedRevisionInputValidationIssue,
+    ),
   );
 }
 
-export function getHydratedRevisionIssuesFromJSON(
+export function getHydratedRevisionInputValidationIssueFromJSON(
   jsonString: string,
-): SafeParseResult<GetHydratedRevisionIssues, SDKValidationError> {
+): SafeParseResult<
+  GetHydratedRevisionInputValidationIssue,
+  SDKValidationError
+> {
   return safeParse(
     jsonString,
-    (x) => GetHydratedRevisionIssues$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetHydratedRevisionIssues' from JSON`,
+    (x) =>
+      GetHydratedRevisionInputValidationIssue$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'GetHydratedRevisionInputValidationIssue' from JSON`,
   );
 }
 
 /** @internal */
-export const GetHydratedRevisionResponseBody$inboundSchema: z.ZodType<
-  GetHydratedRevisionResponseBody,
+export const GetHydratedRevisionInputValidationProblem$inboundSchema: z.ZodType<
+  GetHydratedRevisionInputValidationProblem,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -1009,15 +1041,16 @@ export const GetHydratedRevisionResponseBody$inboundSchema: z.ZodType<
   retryAfter: z.string().datetime({ offset: true }).transform(v => new Date(v))
     .optional(),
   context: z.record(z.any()).optional(),
-  issues: z.array(z.lazy(() => GetHydratedRevisionIssues$inboundSchema))
-    .optional(),
+  issues: z.array(
+    z.lazy(() => GetHydratedRevisionInputValidationIssue$inboundSchema),
+  ).optional(),
 })
   .transform((v) => {
-    return new GetHydratedRevisionResponseBody(v);
+    return new GetHydratedRevisionInputValidationProblem(v);
   });
 
 /** @internal */
-export type GetHydratedRevisionResponseBody$Outbound = {
+export type GetHydratedRevisionInputValidationProblem$Outbound = {
   type?: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -1035,47 +1068,51 @@ export type GetHydratedRevisionResponseBody$Outbound = {
   retryable?: boolean | undefined;
   retryAfter?: string | undefined;
   context?: { [k: string]: any } | undefined;
-  issues?: Array<GetHydratedRevisionIssues$Outbound> | undefined;
+  issues?: Array<GetHydratedRevisionInputValidationIssue$Outbound> | undefined;
 };
 
 /** @internal */
-export const GetHydratedRevisionResponseBody$outboundSchema: z.ZodType<
-  GetHydratedRevisionResponseBody$Outbound,
-  z.ZodTypeDef,
-  GetHydratedRevisionResponseBody
-> = z.instanceof(GetHydratedRevisionResponseBody)
-  .transform(v => v.data$)
-  .pipe(z.object({
-    type: z.string().default("about:blank"),
-    href: z.string().optional(),
-    title: z.string().optional(),
-    status: z.number().int().optional(),
-    detail: z.string().optional(),
-    instance: z.string().optional(),
-    subsystem: z.string().optional(),
-    time: z.date().transform(v => v.toISOString()).optional(),
-    requestId: z.string().optional(),
-    causes: z.array(z.string()).optional(),
-    remedy: z.string().optional(),
-    supportEmail: z.string().optional(),
-    supportPhone: z.string().optional(),
-    supportUrl: z.string().optional(),
-    retryable: z.boolean().optional(),
-    retryAfter: z.date().transform(v => v.toISOString()).optional(),
-    context: z.record(z.any()).optional(),
-    issues: z.array(z.lazy(() => GetHydratedRevisionIssues$outboundSchema))
-      .optional(),
-  }));
+export const GetHydratedRevisionInputValidationProblem$outboundSchema:
+  z.ZodType<
+    GetHydratedRevisionInputValidationProblem$Outbound,
+    z.ZodTypeDef,
+    GetHydratedRevisionInputValidationProblem
+  > = z.instanceof(GetHydratedRevisionInputValidationProblem)
+    .transform(v => v.data$)
+    .pipe(z.object({
+      type: z.string().default("about:blank"),
+      href: z.string().optional(),
+      title: z.string().optional(),
+      status: z.number().int().optional(),
+      detail: z.string().optional(),
+      instance: z.string().optional(),
+      subsystem: z.string().optional(),
+      time: z.date().transform(v => v.toISOString()).optional(),
+      requestId: z.string().optional(),
+      causes: z.array(z.string()).optional(),
+      remedy: z.string().optional(),
+      supportEmail: z.string().optional(),
+      supportPhone: z.string().optional(),
+      supportUrl: z.string().optional(),
+      retryable: z.boolean().optional(),
+      retryAfter: z.date().transform(v => v.toISOString()).optional(),
+      context: z.record(z.any()).optional(),
+      issues: z.array(
+        z.lazy(() => GetHydratedRevisionInputValidationIssue$outboundSchema),
+      ).optional(),
+    }));
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace GetHydratedRevisionResponseBody$ {
-  /** @deprecated use `GetHydratedRevisionResponseBody$inboundSchema` instead. */
-  export const inboundSchema = GetHydratedRevisionResponseBody$inboundSchema;
-  /** @deprecated use `GetHydratedRevisionResponseBody$outboundSchema` instead. */
-  export const outboundSchema = GetHydratedRevisionResponseBody$outboundSchema;
-  /** @deprecated use `GetHydratedRevisionResponseBody$Outbound` instead. */
-  export type Outbound = GetHydratedRevisionResponseBody$Outbound;
+export namespace GetHydratedRevisionInputValidationProblem$ {
+  /** @deprecated use `GetHydratedRevisionInputValidationProblem$inboundSchema` instead. */
+  export const inboundSchema =
+    GetHydratedRevisionInputValidationProblem$inboundSchema;
+  /** @deprecated use `GetHydratedRevisionInputValidationProblem$outboundSchema` instead. */
+  export const outboundSchema =
+    GetHydratedRevisionInputValidationProblem$outboundSchema;
+  /** @deprecated use `GetHydratedRevisionInputValidationProblem$Outbound` instead. */
+  export type Outbound = GetHydratedRevisionInputValidationProblem$Outbound;
 }

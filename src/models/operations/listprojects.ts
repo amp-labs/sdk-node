@@ -18,7 +18,7 @@ export const ListProjectsServerList = [
  *
  * Additional properties specific to the problem type may be present.
  */
-export type ListProjectsResponseBody = {
+export type ListProjectsAPIProblem = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -92,7 +92,7 @@ export type ListProjectsResponseBody = {
   context?: { [k: string]: any } | undefined;
 };
 
-export type ResponseBody = {
+export type ListProjectsProject = {
   /**
    * The project ID.
    */
@@ -120,12 +120,12 @@ export type ResponseBody = {
 };
 
 export type ListProjectsResponse =
-  | ListProjectsResponseBody
-  | Array<ResponseBody>;
+  | ListProjectsAPIProblem
+  | Array<ListProjectsProject>;
 
 /** @internal */
-export const ListProjectsResponseBody$inboundSchema: z.ZodType<
-  ListProjectsResponseBody,
+export const ListProjectsAPIProblem$inboundSchema: z.ZodType<
+  ListProjectsAPIProblem,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -151,7 +151,7 @@ export const ListProjectsResponseBody$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type ListProjectsResponseBody$Outbound = {
+export type ListProjectsAPIProblem$Outbound = {
   type: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -172,10 +172,10 @@ export type ListProjectsResponseBody$Outbound = {
 };
 
 /** @internal */
-export const ListProjectsResponseBody$outboundSchema: z.ZodType<
-  ListProjectsResponseBody$Outbound,
+export const ListProjectsAPIProblem$outboundSchema: z.ZodType<
+  ListProjectsAPIProblem$Outbound,
   z.ZodTypeDef,
-  ListProjectsResponseBody
+  ListProjectsAPIProblem
 > = z.object({
   type: z.string().default("about:blank"),
   href: z.string().optional(),
@@ -200,36 +200,36 @@ export const ListProjectsResponseBody$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace ListProjectsResponseBody$ {
-  /** @deprecated use `ListProjectsResponseBody$inboundSchema` instead. */
-  export const inboundSchema = ListProjectsResponseBody$inboundSchema;
-  /** @deprecated use `ListProjectsResponseBody$outboundSchema` instead. */
-  export const outboundSchema = ListProjectsResponseBody$outboundSchema;
-  /** @deprecated use `ListProjectsResponseBody$Outbound` instead. */
-  export type Outbound = ListProjectsResponseBody$Outbound;
+export namespace ListProjectsAPIProblem$ {
+  /** @deprecated use `ListProjectsAPIProblem$inboundSchema` instead. */
+  export const inboundSchema = ListProjectsAPIProblem$inboundSchema;
+  /** @deprecated use `ListProjectsAPIProblem$outboundSchema` instead. */
+  export const outboundSchema = ListProjectsAPIProblem$outboundSchema;
+  /** @deprecated use `ListProjectsAPIProblem$Outbound` instead. */
+  export type Outbound = ListProjectsAPIProblem$Outbound;
 }
 
-export function listProjectsResponseBodyToJSON(
-  listProjectsResponseBody: ListProjectsResponseBody,
+export function listProjectsAPIProblemToJSON(
+  listProjectsAPIProblem: ListProjectsAPIProblem,
 ): string {
   return JSON.stringify(
-    ListProjectsResponseBody$outboundSchema.parse(listProjectsResponseBody),
+    ListProjectsAPIProblem$outboundSchema.parse(listProjectsAPIProblem),
   );
 }
 
-export function listProjectsResponseBodyFromJSON(
+export function listProjectsAPIProblemFromJSON(
   jsonString: string,
-): SafeParseResult<ListProjectsResponseBody, SDKValidationError> {
+): SafeParseResult<ListProjectsAPIProblem, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => ListProjectsResponseBody$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ListProjectsResponseBody' from JSON`,
+    (x) => ListProjectsAPIProblem$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListProjectsAPIProblem' from JSON`,
   );
 }
 
 /** @internal */
-export const ResponseBody$inboundSchema: z.ZodType<
-  ResponseBody,
+export const ListProjectsProject$inboundSchema: z.ZodType<
+  ListProjectsProject,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -243,7 +243,7 @@ export const ResponseBody$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type ResponseBody$Outbound = {
+export type ListProjectsProject$Outbound = {
   id: string;
   name: string;
   appName: string;
@@ -253,10 +253,10 @@ export type ResponseBody$Outbound = {
 };
 
 /** @internal */
-export const ResponseBody$outboundSchema: z.ZodType<
-  ResponseBody$Outbound,
+export const ListProjectsProject$outboundSchema: z.ZodType<
+  ListProjectsProject$Outbound,
   z.ZodTypeDef,
-  ResponseBody
+  ListProjectsProject
 > = z.object({
   id: z.string(),
   name: z.string(),
@@ -270,26 +270,30 @@ export const ResponseBody$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace ResponseBody$ {
-  /** @deprecated use `ResponseBody$inboundSchema` instead. */
-  export const inboundSchema = ResponseBody$inboundSchema;
-  /** @deprecated use `ResponseBody$outboundSchema` instead. */
-  export const outboundSchema = ResponseBody$outboundSchema;
-  /** @deprecated use `ResponseBody$Outbound` instead. */
-  export type Outbound = ResponseBody$Outbound;
+export namespace ListProjectsProject$ {
+  /** @deprecated use `ListProjectsProject$inboundSchema` instead. */
+  export const inboundSchema = ListProjectsProject$inboundSchema;
+  /** @deprecated use `ListProjectsProject$outboundSchema` instead. */
+  export const outboundSchema = ListProjectsProject$outboundSchema;
+  /** @deprecated use `ListProjectsProject$Outbound` instead. */
+  export type Outbound = ListProjectsProject$Outbound;
 }
 
-export function responseBodyToJSON(responseBody: ResponseBody): string {
-  return JSON.stringify(ResponseBody$outboundSchema.parse(responseBody));
+export function listProjectsProjectToJSON(
+  listProjectsProject: ListProjectsProject,
+): string {
+  return JSON.stringify(
+    ListProjectsProject$outboundSchema.parse(listProjectsProject),
+  );
 }
 
-export function responseBodyFromJSON(
+export function listProjectsProjectFromJSON(
   jsonString: string,
-): SafeParseResult<ResponseBody, SDKValidationError> {
+): SafeParseResult<ListProjectsProject, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => ResponseBody$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ResponseBody' from JSON`,
+    (x) => ListProjectsProject$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListProjectsProject' from JSON`,
   );
 }
 
@@ -299,14 +303,14 @@ export const ListProjectsResponse$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.union([
-  z.lazy(() => ListProjectsResponseBody$inboundSchema),
-  z.array(z.lazy(() => ResponseBody$inboundSchema)),
+  z.lazy(() => ListProjectsAPIProblem$inboundSchema),
+  z.array(z.lazy(() => ListProjectsProject$inboundSchema)),
 ]);
 
 /** @internal */
 export type ListProjectsResponse$Outbound =
-  | ListProjectsResponseBody$Outbound
-  | Array<ResponseBody$Outbound>;
+  | ListProjectsAPIProblem$Outbound
+  | Array<ListProjectsProject$Outbound>;
 
 /** @internal */
 export const ListProjectsResponse$outboundSchema: z.ZodType<
@@ -314,8 +318,8 @@ export const ListProjectsResponse$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   ListProjectsResponse
 > = z.union([
-  z.lazy(() => ListProjectsResponseBody$outboundSchema),
-  z.array(z.lazy(() => ResponseBody$outboundSchema)),
+  z.lazy(() => ListProjectsAPIProblem$outboundSchema),
+  z.array(z.lazy(() => ListProjectsProject$outboundSchema)),
 ]);
 
 /**

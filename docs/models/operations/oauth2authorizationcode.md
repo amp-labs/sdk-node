@@ -1,11 +1,11 @@
-# Oauth2AuthorizationCode
+# OAuth2AuthorizationCode
 
 ## Example Usage
 
 ```typescript
-import { Oauth2AuthorizationCode } from "@amp-labs/sdk-node/models/operations";
+import { OAuth2AuthorizationCode } from "@amp-labs/sdk-node/models/operations";
 
-let value: Oauth2AuthorizationCode = {};
+let value: OAuth2AuthorizationCode = {};
 ```
 
 ## Fields

@@ -9,7 +9,7 @@ let value: Write = {
   objects: [
     {
       objectName: "<value>",
-      inheritMapping: true,
+      displayName: "Mckenna_VonRueden99",
       valueDefaults: {
         allowAnyFields: true,
       },
@@ -20,6 +20,6 @@ let value: Write = {
 
 ## Fields
 
-| Field                                                                                        | Type                                                                                         | Required                                                                                     | Description                                                                                  |
-| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| `objects`                                                                                    | [operations.CreateIntegrationObjects](../../models/operations/createintegrationobjects.md)[] | :heavy_minus_sign:                                                                           | N/A                                                                                          |
+| Field                                                      | Type                                                       | Required                                                   | Description                                                |
+| ---------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- |
+| `objects`                                                  | [operations.Objects](../../models/operations/objects.md)[] | :heavy_minus_sign:                                         | N/A                                                        |

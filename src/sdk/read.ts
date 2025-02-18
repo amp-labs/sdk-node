@@ -37,7 +37,7 @@ export class Read extends ClientSDK {
   async deliverResults(
     request: operations.DeliverResultsRequest,
     options?: RequestOptions,
-  ): Promise<operations.DeliverResultsResponseBody | undefined> {
+  ): Promise<operations.DeliverResultsAPIProblem | undefined> {
     return unwrapAsync(readDeliverResults(
       this,
       request,

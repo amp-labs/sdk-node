@@ -29,7 +29,7 @@ export type GenerateConnectionConnectionsIn = ClosedEnum<
  *
  * @remarks
  */
-export type GenerateConnectionConnectionsIssues = {
+export type GenerateConnectionConnectionsInputValidationIssue = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -122,7 +122,7 @@ export type GenerateConnectionConnectionsIssues = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export type GenerateConnectionConnectionsResponseBodyData = {
+export type GenerateConnectionConnectionsInputValidationProblemData = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -194,7 +194,7 @@ export type GenerateConnectionConnectionsResponseBodyData = {
    * Additional context for the problem
    */
   context?: { [k: string]: any } | undefined;
-  issues?: Array<GenerateConnectionConnectionsIssues> | undefined;
+  issues?: Array<GenerateConnectionConnectionsInputValidationIssue> | undefined;
 };
 
 /**
@@ -204,7 +204,7 @@ export type GenerateConnectionConnectionsResponseBodyData = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export class GenerateConnectionConnectionsResponseBody extends Error {
+export class GenerateConnectionConnectionsInputValidationProblem extends Error {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -276,12 +276,12 @@ export class GenerateConnectionConnectionsResponseBody extends Error {
    * Additional context for the problem
    */
   context?: { [k: string]: any } | undefined;
-  issues?: Array<GenerateConnectionConnectionsIssues> | undefined;
+  issues?: Array<GenerateConnectionConnectionsInputValidationIssue> | undefined;
 
   /** The original data that was passed to this error instance. */
-  data$: GenerateConnectionConnectionsResponseBodyData;
+  data$: GenerateConnectionConnectionsInputValidationProblemData;
 
-  constructor(err: GenerateConnectionConnectionsResponseBodyData) {
+  constructor(err: GenerateConnectionConnectionsInputValidationProblemData) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
@@ -307,7 +307,7 @@ export class GenerateConnectionConnectionsResponseBody extends Error {
     if (err.context != null) this.context = err.context;
     if (err.issues != null) this.issues = err.issues;
 
-    this.name = "GenerateConnectionConnectionsResponseBody";
+    this.name = "GenerateConnectionConnectionsInputValidationProblem";
   }
 }
 
@@ -330,7 +330,7 @@ export type GenerateConnectionIn = ClosedEnum<typeof GenerateConnectionIn>;
  *
  * @remarks
  */
-export type GenerateConnectionIssues = {
+export type GenerateConnectionInputValidationIssue = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -423,7 +423,7 @@ export type GenerateConnectionIssues = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export type GenerateConnectionResponseBodyData = {
+export type GenerateConnectionInputValidationProblemData = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -495,7 +495,7 @@ export type GenerateConnectionResponseBodyData = {
    * Additional context for the problem
    */
   context?: { [k: string]: any } | undefined;
-  issues?: Array<GenerateConnectionIssues> | undefined;
+  issues?: Array<GenerateConnectionInputValidationIssue> | undefined;
 };
 
 /**
@@ -505,7 +505,7 @@ export type GenerateConnectionResponseBodyData = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export class GenerateConnectionResponseBody extends Error {
+export class GenerateConnectionInputValidationProblem extends Error {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -577,12 +577,12 @@ export class GenerateConnectionResponseBody extends Error {
    * Additional context for the problem
    */
   context?: { [k: string]: any } | undefined;
-  issues?: Array<GenerateConnectionIssues> | undefined;
+  issues?: Array<GenerateConnectionInputValidationIssue> | undefined;
 
   /** The original data that was passed to this error instance. */
-  data$: GenerateConnectionResponseBodyData;
+  data$: GenerateConnectionInputValidationProblemData;
 
-  constructor(err: GenerateConnectionResponseBodyData) {
+  constructor(err: GenerateConnectionInputValidationProblemData) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
@@ -608,7 +608,7 @@ export class GenerateConnectionResponseBody extends Error {
     if (err.context != null) this.context = err.context;
     if (err.issues != null) this.issues = err.issues;
 
-    this.name = "GenerateConnectionResponseBody";
+    this.name = "GenerateConnectionInputValidationProblem";
   }
 }
 
@@ -634,37 +634,39 @@ export namespace GenerateConnectionConnectionsIn$ {
 }
 
 /** @internal */
-export const GenerateConnectionConnectionsIssues$inboundSchema: z.ZodType<
-  GenerateConnectionConnectionsIssues,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  type: z.string().default("about:blank"),
-  href: z.string().optional(),
-  title: z.string().optional(),
-  status: z.number().int().optional(),
-  detail: z.string().optional(),
-  instance: z.string().optional(),
-  subsystem: z.string().optional(),
-  time: z.string().datetime({ offset: true }).transform(v => new Date(v))
-    .optional(),
-  requestId: z.string().optional(),
-  causes: z.array(z.string()).optional(),
-  remedy: z.string().optional(),
-  supportEmail: z.string().optional(),
-  supportPhone: z.string().optional(),
-  supportUrl: z.string().optional(),
-  retryable: z.boolean().optional(),
-  retryAfter: z.string().datetime({ offset: true }).transform(v => new Date(v))
-    .optional(),
-  context: z.record(z.any()).optional(),
-  in: GenerateConnectionConnectionsIn$inboundSchema.optional(),
-  name: z.string().optional(),
-  value: z.any().optional(),
-});
+export const GenerateConnectionConnectionsInputValidationIssue$inboundSchema:
+  z.ZodType<
+    GenerateConnectionConnectionsInputValidationIssue,
+    z.ZodTypeDef,
+    unknown
+  > = z.object({
+    type: z.string().default("about:blank"),
+    href: z.string().optional(),
+    title: z.string().optional(),
+    status: z.number().int().optional(),
+    detail: z.string().optional(),
+    instance: z.string().optional(),
+    subsystem: z.string().optional(),
+    time: z.string().datetime({ offset: true }).transform(v => new Date(v))
+      .optional(),
+    requestId: z.string().optional(),
+    causes: z.array(z.string()).optional(),
+    remedy: z.string().optional(),
+    supportEmail: z.string().optional(),
+    supportPhone: z.string().optional(),
+    supportUrl: z.string().optional(),
+    retryable: z.boolean().optional(),
+    retryAfter: z.string().datetime({ offset: true }).transform(v =>
+      new Date(v)
+    ).optional(),
+    context: z.record(z.any()).optional(),
+    in: GenerateConnectionConnectionsIn$inboundSchema.optional(),
+    name: z.string().optional(),
+    value: z.any().optional(),
+  });
 
 /** @internal */
-export type GenerateConnectionConnectionsIssues$Outbound = {
+export type GenerateConnectionConnectionsInputValidationIssue$Outbound = {
   type: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -688,104 +690,116 @@ export type GenerateConnectionConnectionsIssues$Outbound = {
 };
 
 /** @internal */
-export const GenerateConnectionConnectionsIssues$outboundSchema: z.ZodType<
-  GenerateConnectionConnectionsIssues$Outbound,
-  z.ZodTypeDef,
-  GenerateConnectionConnectionsIssues
-> = z.object({
-  type: z.string().default("about:blank"),
-  href: z.string().optional(),
-  title: z.string().optional(),
-  status: z.number().int().optional(),
-  detail: z.string().optional(),
-  instance: z.string().optional(),
-  subsystem: z.string().optional(),
-  time: z.date().transform(v => v.toISOString()).optional(),
-  requestId: z.string().optional(),
-  causes: z.array(z.string()).optional(),
-  remedy: z.string().optional(),
-  supportEmail: z.string().optional(),
-  supportPhone: z.string().optional(),
-  supportUrl: z.string().optional(),
-  retryable: z.boolean().optional(),
-  retryAfter: z.date().transform(v => v.toISOString()).optional(),
-  context: z.record(z.any()).optional(),
-  in: GenerateConnectionConnectionsIn$outboundSchema.optional(),
-  name: z.string().optional(),
-  value: z.any().optional(),
-});
+export const GenerateConnectionConnectionsInputValidationIssue$outboundSchema:
+  z.ZodType<
+    GenerateConnectionConnectionsInputValidationIssue$Outbound,
+    z.ZodTypeDef,
+    GenerateConnectionConnectionsInputValidationIssue
+  > = z.object({
+    type: z.string().default("about:blank"),
+    href: z.string().optional(),
+    title: z.string().optional(),
+    status: z.number().int().optional(),
+    detail: z.string().optional(),
+    instance: z.string().optional(),
+    subsystem: z.string().optional(),
+    time: z.date().transform(v => v.toISOString()).optional(),
+    requestId: z.string().optional(),
+    causes: z.array(z.string()).optional(),
+    remedy: z.string().optional(),
+    supportEmail: z.string().optional(),
+    supportPhone: z.string().optional(),
+    supportUrl: z.string().optional(),
+    retryable: z.boolean().optional(),
+    retryAfter: z.date().transform(v => v.toISOString()).optional(),
+    context: z.record(z.any()).optional(),
+    in: GenerateConnectionConnectionsIn$outboundSchema.optional(),
+    name: z.string().optional(),
+    value: z.any().optional(),
+  });
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace GenerateConnectionConnectionsIssues$ {
-  /** @deprecated use `GenerateConnectionConnectionsIssues$inboundSchema` instead. */
+export namespace GenerateConnectionConnectionsInputValidationIssue$ {
+  /** @deprecated use `GenerateConnectionConnectionsInputValidationIssue$inboundSchema` instead. */
   export const inboundSchema =
-    GenerateConnectionConnectionsIssues$inboundSchema;
-  /** @deprecated use `GenerateConnectionConnectionsIssues$outboundSchema` instead. */
+    GenerateConnectionConnectionsInputValidationIssue$inboundSchema;
+  /** @deprecated use `GenerateConnectionConnectionsInputValidationIssue$outboundSchema` instead. */
   export const outboundSchema =
-    GenerateConnectionConnectionsIssues$outboundSchema;
-  /** @deprecated use `GenerateConnectionConnectionsIssues$Outbound` instead. */
-  export type Outbound = GenerateConnectionConnectionsIssues$Outbound;
+    GenerateConnectionConnectionsInputValidationIssue$outboundSchema;
+  /** @deprecated use `GenerateConnectionConnectionsInputValidationIssue$Outbound` instead. */
+  export type Outbound =
+    GenerateConnectionConnectionsInputValidationIssue$Outbound;
 }
 
-export function generateConnectionConnectionsIssuesToJSON(
-  generateConnectionConnectionsIssues: GenerateConnectionConnectionsIssues,
+export function generateConnectionConnectionsInputValidationIssueToJSON(
+  generateConnectionConnectionsInputValidationIssue:
+    GenerateConnectionConnectionsInputValidationIssue,
 ): string {
   return JSON.stringify(
-    GenerateConnectionConnectionsIssues$outboundSchema.parse(
-      generateConnectionConnectionsIssues,
+    GenerateConnectionConnectionsInputValidationIssue$outboundSchema.parse(
+      generateConnectionConnectionsInputValidationIssue,
     ),
   );
 }
 
-export function generateConnectionConnectionsIssuesFromJSON(
+export function generateConnectionConnectionsInputValidationIssueFromJSON(
   jsonString: string,
-): SafeParseResult<GenerateConnectionConnectionsIssues, SDKValidationError> {
+): SafeParseResult<
+  GenerateConnectionConnectionsInputValidationIssue,
+  SDKValidationError
+> {
   return safeParse(
     jsonString,
     (x) =>
-      GenerateConnectionConnectionsIssues$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GenerateConnectionConnectionsIssues' from JSON`,
+      GenerateConnectionConnectionsInputValidationIssue$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'GenerateConnectionConnectionsInputValidationIssue' from JSON`,
   );
 }
 
 /** @internal */
-export const GenerateConnectionConnectionsResponseBody$inboundSchema: z.ZodType<
-  GenerateConnectionConnectionsResponseBody,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  type: z.string().default("about:blank"),
-  href: z.string().optional(),
-  title: z.string().optional(),
-  status: z.number().int().optional(),
-  detail: z.string().optional(),
-  instance: z.string().optional(),
-  subsystem: z.string().optional(),
-  time: z.string().datetime({ offset: true }).transform(v => new Date(v))
-    .optional(),
-  requestId: z.string().optional(),
-  causes: z.array(z.string()).optional(),
-  remedy: z.string().optional(),
-  supportEmail: z.string().optional(),
-  supportPhone: z.string().optional(),
-  supportUrl: z.string().optional(),
-  retryable: z.boolean().optional(),
-  retryAfter: z.string().datetime({ offset: true }).transform(v => new Date(v))
-    .optional(),
-  context: z.record(z.any()).optional(),
-  issues: z.array(
-    z.lazy(() => GenerateConnectionConnectionsIssues$inboundSchema),
-  ).optional(),
-})
-  .transform((v) => {
-    return new GenerateConnectionConnectionsResponseBody(v);
-  });
+export const GenerateConnectionConnectionsInputValidationProblem$inboundSchema:
+  z.ZodType<
+    GenerateConnectionConnectionsInputValidationProblem,
+    z.ZodTypeDef,
+    unknown
+  > = z.object({
+    type: z.string().default("about:blank"),
+    href: z.string().optional(),
+    title: z.string().optional(),
+    status: z.number().int().optional(),
+    detail: z.string().optional(),
+    instance: z.string().optional(),
+    subsystem: z.string().optional(),
+    time: z.string().datetime({ offset: true }).transform(v => new Date(v))
+      .optional(),
+    requestId: z.string().optional(),
+    causes: z.array(z.string()).optional(),
+    remedy: z.string().optional(),
+    supportEmail: z.string().optional(),
+    supportPhone: z.string().optional(),
+    supportUrl: z.string().optional(),
+    retryable: z.boolean().optional(),
+    retryAfter: z.string().datetime({ offset: true }).transform(v =>
+      new Date(v)
+    ).optional(),
+    context: z.record(z.any()).optional(),
+    issues: z.array(
+      z.lazy(() =>
+        GenerateConnectionConnectionsInputValidationIssue$inboundSchema
+      ),
+    ).optional(),
+  })
+    .transform((v) => {
+      return new GenerateConnectionConnectionsInputValidationProblem(v);
+    });
 
 /** @internal */
-export type GenerateConnectionConnectionsResponseBody$Outbound = {
+export type GenerateConnectionConnectionsInputValidationProblem$Outbound = {
   type?: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -803,16 +817,18 @@ export type GenerateConnectionConnectionsResponseBody$Outbound = {
   retryable?: boolean | undefined;
   retryAfter?: string | undefined;
   context?: { [k: string]: any } | undefined;
-  issues?: Array<GenerateConnectionConnectionsIssues$Outbound> | undefined;
+  issues?:
+    | Array<GenerateConnectionConnectionsInputValidationIssue$Outbound>
+    | undefined;
 };
 
 /** @internal */
-export const GenerateConnectionConnectionsResponseBody$outboundSchema:
+export const GenerateConnectionConnectionsInputValidationProblem$outboundSchema:
   z.ZodType<
-    GenerateConnectionConnectionsResponseBody$Outbound,
+    GenerateConnectionConnectionsInputValidationProblem$Outbound,
     z.ZodTypeDef,
-    GenerateConnectionConnectionsResponseBody
-  > = z.instanceof(GenerateConnectionConnectionsResponseBody)
+    GenerateConnectionConnectionsInputValidationProblem
+  > = z.instanceof(GenerateConnectionConnectionsInputValidationProblem)
     .transform(v => v.data$)
     .pipe(z.object({
       type: z.string().default("about:blank"),
@@ -833,7 +849,9 @@ export const GenerateConnectionConnectionsResponseBody$outboundSchema:
       retryAfter: z.date().transform(v => v.toISOString()).optional(),
       context: z.record(z.any()).optional(),
       issues: z.array(
-        z.lazy(() => GenerateConnectionConnectionsIssues$outboundSchema),
+        z.lazy(() =>
+          GenerateConnectionConnectionsInputValidationIssue$outboundSchema
+        ),
       ).optional(),
     }));
 
@@ -841,15 +859,16 @@ export const GenerateConnectionConnectionsResponseBody$outboundSchema:
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace GenerateConnectionConnectionsResponseBody$ {
-  /** @deprecated use `GenerateConnectionConnectionsResponseBody$inboundSchema` instead. */
+export namespace GenerateConnectionConnectionsInputValidationProblem$ {
+  /** @deprecated use `GenerateConnectionConnectionsInputValidationProblem$inboundSchema` instead. */
   export const inboundSchema =
-    GenerateConnectionConnectionsResponseBody$inboundSchema;
-  /** @deprecated use `GenerateConnectionConnectionsResponseBody$outboundSchema` instead. */
+    GenerateConnectionConnectionsInputValidationProblem$inboundSchema;
+  /** @deprecated use `GenerateConnectionConnectionsInputValidationProblem$outboundSchema` instead. */
   export const outboundSchema =
-    GenerateConnectionConnectionsResponseBody$outboundSchema;
-  /** @deprecated use `GenerateConnectionConnectionsResponseBody$Outbound` instead. */
-  export type Outbound = GenerateConnectionConnectionsResponseBody$Outbound;
+    GenerateConnectionConnectionsInputValidationProblem$outboundSchema;
+  /** @deprecated use `GenerateConnectionConnectionsInputValidationProblem$Outbound` instead. */
+  export type Outbound =
+    GenerateConnectionConnectionsInputValidationProblem$Outbound;
 }
 
 /** @internal */
@@ -874,8 +893,8 @@ export namespace GenerateConnectionIn$ {
 }
 
 /** @internal */
-export const GenerateConnectionIssues$inboundSchema: z.ZodType<
-  GenerateConnectionIssues,
+export const GenerateConnectionInputValidationIssue$inboundSchema: z.ZodType<
+  GenerateConnectionInputValidationIssue,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -904,7 +923,7 @@ export const GenerateConnectionIssues$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type GenerateConnectionIssues$Outbound = {
+export type GenerateConnectionInputValidationIssue$Outbound = {
   type: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -928,10 +947,10 @@ export type GenerateConnectionIssues$Outbound = {
 };
 
 /** @internal */
-export const GenerateConnectionIssues$outboundSchema: z.ZodType<
-  GenerateConnectionIssues$Outbound,
+export const GenerateConnectionInputValidationIssue$outboundSchema: z.ZodType<
+  GenerateConnectionInputValidationIssue$Outbound,
   z.ZodTypeDef,
-  GenerateConnectionIssues
+  GenerateConnectionInputValidationIssue
 > = z.object({
   type: z.string().default("about:blank"),
   href: z.string().optional(),
@@ -959,36 +978,42 @@ export const GenerateConnectionIssues$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace GenerateConnectionIssues$ {
-  /** @deprecated use `GenerateConnectionIssues$inboundSchema` instead. */
-  export const inboundSchema = GenerateConnectionIssues$inboundSchema;
-  /** @deprecated use `GenerateConnectionIssues$outboundSchema` instead. */
-  export const outboundSchema = GenerateConnectionIssues$outboundSchema;
-  /** @deprecated use `GenerateConnectionIssues$Outbound` instead. */
-  export type Outbound = GenerateConnectionIssues$Outbound;
+export namespace GenerateConnectionInputValidationIssue$ {
+  /** @deprecated use `GenerateConnectionInputValidationIssue$inboundSchema` instead. */
+  export const inboundSchema =
+    GenerateConnectionInputValidationIssue$inboundSchema;
+  /** @deprecated use `GenerateConnectionInputValidationIssue$outboundSchema` instead. */
+  export const outboundSchema =
+    GenerateConnectionInputValidationIssue$outboundSchema;
+  /** @deprecated use `GenerateConnectionInputValidationIssue$Outbound` instead. */
+  export type Outbound = GenerateConnectionInputValidationIssue$Outbound;
 }
 
-export function generateConnectionIssuesToJSON(
-  generateConnectionIssues: GenerateConnectionIssues,
+export function generateConnectionInputValidationIssueToJSON(
+  generateConnectionInputValidationIssue:
+    GenerateConnectionInputValidationIssue,
 ): string {
   return JSON.stringify(
-    GenerateConnectionIssues$outboundSchema.parse(generateConnectionIssues),
+    GenerateConnectionInputValidationIssue$outboundSchema.parse(
+      generateConnectionInputValidationIssue,
+    ),
   );
 }
 
-export function generateConnectionIssuesFromJSON(
+export function generateConnectionInputValidationIssueFromJSON(
   jsonString: string,
-): SafeParseResult<GenerateConnectionIssues, SDKValidationError> {
+): SafeParseResult<GenerateConnectionInputValidationIssue, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => GenerateConnectionIssues$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GenerateConnectionIssues' from JSON`,
+    (x) =>
+      GenerateConnectionInputValidationIssue$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GenerateConnectionInputValidationIssue' from JSON`,
   );
 }
 
 /** @internal */
-export const GenerateConnectionResponseBody$inboundSchema: z.ZodType<
-  GenerateConnectionResponseBody,
+export const GenerateConnectionInputValidationProblem$inboundSchema: z.ZodType<
+  GenerateConnectionInputValidationProblem,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -1011,15 +1036,16 @@ export const GenerateConnectionResponseBody$inboundSchema: z.ZodType<
   retryAfter: z.string().datetime({ offset: true }).transform(v => new Date(v))
     .optional(),
   context: z.record(z.any()).optional(),
-  issues: z.array(z.lazy(() => GenerateConnectionIssues$inboundSchema))
-    .optional(),
+  issues: z.array(
+    z.lazy(() => GenerateConnectionInputValidationIssue$inboundSchema),
+  ).optional(),
 })
   .transform((v) => {
-    return new GenerateConnectionResponseBody(v);
+    return new GenerateConnectionInputValidationProblem(v);
   });
 
 /** @internal */
-export type GenerateConnectionResponseBody$Outbound = {
+export type GenerateConnectionInputValidationProblem$Outbound = {
   type?: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -1037,15 +1063,15 @@ export type GenerateConnectionResponseBody$Outbound = {
   retryable?: boolean | undefined;
   retryAfter?: string | undefined;
   context?: { [k: string]: any } | undefined;
-  issues?: Array<GenerateConnectionIssues$Outbound> | undefined;
+  issues?: Array<GenerateConnectionInputValidationIssue$Outbound> | undefined;
 };
 
 /** @internal */
-export const GenerateConnectionResponseBody$outboundSchema: z.ZodType<
-  GenerateConnectionResponseBody$Outbound,
+export const GenerateConnectionInputValidationProblem$outboundSchema: z.ZodType<
+  GenerateConnectionInputValidationProblem$Outbound,
   z.ZodTypeDef,
-  GenerateConnectionResponseBody
-> = z.instanceof(GenerateConnectionResponseBody)
+  GenerateConnectionInputValidationProblem
+> = z.instanceof(GenerateConnectionInputValidationProblem)
   .transform(v => v.data$)
   .pipe(z.object({
     type: z.string().default("about:blank"),
@@ -1065,19 +1091,22 @@ export const GenerateConnectionResponseBody$outboundSchema: z.ZodType<
     retryable: z.boolean().optional(),
     retryAfter: z.date().transform(v => v.toISOString()).optional(),
     context: z.record(z.any()).optional(),
-    issues: z.array(z.lazy(() => GenerateConnectionIssues$outboundSchema))
-      .optional(),
+    issues: z.array(
+      z.lazy(() => GenerateConnectionInputValidationIssue$outboundSchema),
+    ).optional(),
   }));
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace GenerateConnectionResponseBody$ {
-  /** @deprecated use `GenerateConnectionResponseBody$inboundSchema` instead. */
-  export const inboundSchema = GenerateConnectionResponseBody$inboundSchema;
-  /** @deprecated use `GenerateConnectionResponseBody$outboundSchema` instead. */
-  export const outboundSchema = GenerateConnectionResponseBody$outboundSchema;
-  /** @deprecated use `GenerateConnectionResponseBody$Outbound` instead. */
-  export type Outbound = GenerateConnectionResponseBody$Outbound;
+export namespace GenerateConnectionInputValidationProblem$ {
+  /** @deprecated use `GenerateConnectionInputValidationProblem$inboundSchema` instead. */
+  export const inboundSchema =
+    GenerateConnectionInputValidationProblem$inboundSchema;
+  /** @deprecated use `GenerateConnectionInputValidationProblem$outboundSchema` instead. */
+  export const outboundSchema =
+    GenerateConnectionInputValidationProblem$outboundSchema;
+  /** @deprecated use `GenerateConnectionInputValidationProblem$Outbound` instead. */
+  export type Outbound = GenerateConnectionInputValidationProblem$Outbound;
 }

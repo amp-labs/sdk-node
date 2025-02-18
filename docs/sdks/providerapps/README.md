@@ -83,10 +83,10 @@ run();
 
 ### Errors
 
-| Error Type                          | Status Code                         | Content Type                        |
-| ----------------------------------- | ----------------------------------- | ----------------------------------- |
-| errors.ListProviderAppsResponseBody | 422                                 | application/problem+json            |
-| errors.APIError                     | 4XX, 5XX                            | \*/\*                               |
+| Error Type                                    | Status Code                                   | Content Type                                  |
+| --------------------------------------------- | --------------------------------------------- | --------------------------------------------- |
+| errors.ListProviderAppsInputValidationProblem | 422                                           | application/problem+json                      |
+| errors.APIError                               | 4XX, 5XX                                      | \*/\*                                         |
 
 ## create
 
@@ -179,11 +179,11 @@ run();
 
 ### Errors
 
-| Error Type                                       | Status Code                                      | Content Type                                     |
-| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
-| errors.CreateProviderAppResponseBody             | 400                                              | application/problem+json                         |
-| errors.CreateProviderAppProviderAppsResponseBody | 422                                              | application/problem+json                         |
-| errors.APIError                                  | 4XX, 5XX                                         | \*/\*                                            |
+| Error Type                                                 | Status Code                                                | Content Type                                               |
+| ---------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- |
+| errors.CreateProviderAppInputValidationProblem             | 400                                                        | application/problem+json                                   |
+| errors.CreateProviderAppProviderAppsInputValidationProblem | 422                                                        | application/problem+json                                   |
+| errors.APIError                                            | 4XX, 5XX                                                   | \*/\*                                                      |
 
 ## delete
 
@@ -256,14 +256,14 @@ run();
 
 ### Response
 
-**Promise\<[operations.DeleteProviderAppResponseBody](../../models/operations/deleteproviderappresponsebody.md)\>**
+**Promise\<[operations.DeleteProviderAppAPIProblem](../../models/operations/deleteproviderappapiproblem.md)\>**
 
 ### Errors
 
-| Error Type                           | Status Code                          | Content Type                         |
-| ------------------------------------ | ------------------------------------ | ------------------------------------ |
-| errors.DeleteProviderAppResponseBody | 422                                  | application/problem+json             |
-| errors.APIError                      | 4XX, 5XX                             | \*/\*                                |
+| Error Type                                     | Status Code                                    | Content Type                                   |
+| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| errors.DeleteProviderAppInputValidationProblem | 422                                            | application/problem+json                       |
+| errors.APIError                                | 4XX, 5XX                                       | \*/\*                                          |
 
 ## update
 
@@ -374,7 +374,7 @@ run();
 
 ### Errors
 
-| Error Type                           | Status Code                          | Content Type                         |
-| ------------------------------------ | ------------------------------------ | ------------------------------------ |
-| errors.UpdateProviderAppResponseBody | 400                                  | application/problem+json             |
-| errors.APIError                      | 4XX, 5XX                             | \*/\*                                |
+| Error Type                                     | Status Code                                    | Content Type                                   |
+| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| errors.UpdateProviderAppInputValidationProblem | 400                                            | application/problem+json                       |
+| errors.APIError                                | 4XX, 5XX                                       | \*/\*                                          |

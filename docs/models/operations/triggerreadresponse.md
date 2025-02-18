@@ -3,18 +3,18 @@
 
 ## Supported Types
 
-### `operations.TriggerReadResponseBody`
+### `operations.TriggerReadReadResultAsync`
 
 ```typescript
-const value: operations.TriggerReadResponseBody = {
+const value: operations.TriggerReadReadResultAsync = {
   operationId: "60deaf48-3856-4a2b-bfd4-3de85125eca8",
 };
 ```
 
-### `operations.TriggerReadReadResponseBody`
+### `operations.TriggerReadAPIProblem`
 
 ```typescript
-const value: operations.TriggerReadReadResponseBody = {
+const value: operations.TriggerReadAPIProblem = {
   href:
     "https://www.belgif.be/specification/rest/api-guide/#standardized-problem-types",
   title: "Description of the type of problem that occurred",

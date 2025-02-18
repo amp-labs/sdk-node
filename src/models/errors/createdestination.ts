@@ -29,7 +29,7 @@ export type CreateDestinationDestinationsIn = ClosedEnum<
  *
  * @remarks
  */
-export type CreateDestinationDestinationsIssues = {
+export type CreateDestinationDestinationsInputValidationIssue = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -122,7 +122,7 @@ export type CreateDestinationDestinationsIssues = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export type CreateDestinationDestinationsResponseBodyData = {
+export type CreateDestinationDestinationsInputValidationProblemData = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -194,7 +194,7 @@ export type CreateDestinationDestinationsResponseBodyData = {
    * Additional context for the problem
    */
   context?: { [k: string]: any } | undefined;
-  issues?: Array<CreateDestinationDestinationsIssues> | undefined;
+  issues?: Array<CreateDestinationDestinationsInputValidationIssue> | undefined;
 };
 
 /**
@@ -204,7 +204,7 @@ export type CreateDestinationDestinationsResponseBodyData = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export class CreateDestinationDestinationsResponseBody extends Error {
+export class CreateDestinationDestinationsInputValidationProblem extends Error {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -276,12 +276,12 @@ export class CreateDestinationDestinationsResponseBody extends Error {
    * Additional context for the problem
    */
   context?: { [k: string]: any } | undefined;
-  issues?: Array<CreateDestinationDestinationsIssues> | undefined;
+  issues?: Array<CreateDestinationDestinationsInputValidationIssue> | undefined;
 
   /** The original data that was passed to this error instance. */
-  data$: CreateDestinationDestinationsResponseBodyData;
+  data$: CreateDestinationDestinationsInputValidationProblemData;
 
-  constructor(err: CreateDestinationDestinationsResponseBodyData) {
+  constructor(err: CreateDestinationDestinationsInputValidationProblemData) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
@@ -307,7 +307,7 @@ export class CreateDestinationDestinationsResponseBody extends Error {
     if (err.context != null) this.context = err.context;
     if (err.issues != null) this.issues = err.issues;
 
-    this.name = "CreateDestinationDestinationsResponseBody";
+    this.name = "CreateDestinationDestinationsInputValidationProblem";
   }
 }
 
@@ -330,7 +330,7 @@ export type CreateDestinationIn = ClosedEnum<typeof CreateDestinationIn>;
  *
  * @remarks
  */
-export type CreateDestinationIssues = {
+export type CreateDestinationInputValidationIssue = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -423,7 +423,7 @@ export type CreateDestinationIssues = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export type CreateDestinationResponseBodyData = {
+export type CreateDestinationInputValidationProblemData = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -495,7 +495,7 @@ export type CreateDestinationResponseBodyData = {
    * Additional context for the problem
    */
   context?: { [k: string]: any } | undefined;
-  issues?: Array<CreateDestinationIssues> | undefined;
+  issues?: Array<CreateDestinationInputValidationIssue> | undefined;
 };
 
 /**
@@ -505,7 +505,7 @@ export type CreateDestinationResponseBodyData = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export class CreateDestinationResponseBody extends Error {
+export class CreateDestinationInputValidationProblem extends Error {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -577,12 +577,12 @@ export class CreateDestinationResponseBody extends Error {
    * Additional context for the problem
    */
   context?: { [k: string]: any } | undefined;
-  issues?: Array<CreateDestinationIssues> | undefined;
+  issues?: Array<CreateDestinationInputValidationIssue> | undefined;
 
   /** The original data that was passed to this error instance. */
-  data$: CreateDestinationResponseBodyData;
+  data$: CreateDestinationInputValidationProblemData;
 
-  constructor(err: CreateDestinationResponseBodyData) {
+  constructor(err: CreateDestinationInputValidationProblemData) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
@@ -608,7 +608,7 @@ export class CreateDestinationResponseBody extends Error {
     if (err.context != null) this.context = err.context;
     if (err.issues != null) this.issues = err.issues;
 
-    this.name = "CreateDestinationResponseBody";
+    this.name = "CreateDestinationInputValidationProblem";
   }
 }
 
@@ -634,37 +634,39 @@ export namespace CreateDestinationDestinationsIn$ {
 }
 
 /** @internal */
-export const CreateDestinationDestinationsIssues$inboundSchema: z.ZodType<
-  CreateDestinationDestinationsIssues,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  type: z.string().default("about:blank"),
-  href: z.string().optional(),
-  title: z.string().optional(),
-  status: z.number().int().optional(),
-  detail: z.string().optional(),
-  instance: z.string().optional(),
-  subsystem: z.string().optional(),
-  time: z.string().datetime({ offset: true }).transform(v => new Date(v))
-    .optional(),
-  requestId: z.string().optional(),
-  causes: z.array(z.string()).optional(),
-  remedy: z.string().optional(),
-  supportEmail: z.string().optional(),
-  supportPhone: z.string().optional(),
-  supportUrl: z.string().optional(),
-  retryable: z.boolean().optional(),
-  retryAfter: z.string().datetime({ offset: true }).transform(v => new Date(v))
-    .optional(),
-  context: z.record(z.any()).optional(),
-  in: CreateDestinationDestinationsIn$inboundSchema.optional(),
-  name: z.string().optional(),
-  value: z.any().optional(),
-});
+export const CreateDestinationDestinationsInputValidationIssue$inboundSchema:
+  z.ZodType<
+    CreateDestinationDestinationsInputValidationIssue,
+    z.ZodTypeDef,
+    unknown
+  > = z.object({
+    type: z.string().default("about:blank"),
+    href: z.string().optional(),
+    title: z.string().optional(),
+    status: z.number().int().optional(),
+    detail: z.string().optional(),
+    instance: z.string().optional(),
+    subsystem: z.string().optional(),
+    time: z.string().datetime({ offset: true }).transform(v => new Date(v))
+      .optional(),
+    requestId: z.string().optional(),
+    causes: z.array(z.string()).optional(),
+    remedy: z.string().optional(),
+    supportEmail: z.string().optional(),
+    supportPhone: z.string().optional(),
+    supportUrl: z.string().optional(),
+    retryable: z.boolean().optional(),
+    retryAfter: z.string().datetime({ offset: true }).transform(v =>
+      new Date(v)
+    ).optional(),
+    context: z.record(z.any()).optional(),
+    in: CreateDestinationDestinationsIn$inboundSchema.optional(),
+    name: z.string().optional(),
+    value: z.any().optional(),
+  });
 
 /** @internal */
-export type CreateDestinationDestinationsIssues$Outbound = {
+export type CreateDestinationDestinationsInputValidationIssue$Outbound = {
   type: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -688,104 +690,116 @@ export type CreateDestinationDestinationsIssues$Outbound = {
 };
 
 /** @internal */
-export const CreateDestinationDestinationsIssues$outboundSchema: z.ZodType<
-  CreateDestinationDestinationsIssues$Outbound,
-  z.ZodTypeDef,
-  CreateDestinationDestinationsIssues
-> = z.object({
-  type: z.string().default("about:blank"),
-  href: z.string().optional(),
-  title: z.string().optional(),
-  status: z.number().int().optional(),
-  detail: z.string().optional(),
-  instance: z.string().optional(),
-  subsystem: z.string().optional(),
-  time: z.date().transform(v => v.toISOString()).optional(),
-  requestId: z.string().optional(),
-  causes: z.array(z.string()).optional(),
-  remedy: z.string().optional(),
-  supportEmail: z.string().optional(),
-  supportPhone: z.string().optional(),
-  supportUrl: z.string().optional(),
-  retryable: z.boolean().optional(),
-  retryAfter: z.date().transform(v => v.toISOString()).optional(),
-  context: z.record(z.any()).optional(),
-  in: CreateDestinationDestinationsIn$outboundSchema.optional(),
-  name: z.string().optional(),
-  value: z.any().optional(),
-});
+export const CreateDestinationDestinationsInputValidationIssue$outboundSchema:
+  z.ZodType<
+    CreateDestinationDestinationsInputValidationIssue$Outbound,
+    z.ZodTypeDef,
+    CreateDestinationDestinationsInputValidationIssue
+  > = z.object({
+    type: z.string().default("about:blank"),
+    href: z.string().optional(),
+    title: z.string().optional(),
+    status: z.number().int().optional(),
+    detail: z.string().optional(),
+    instance: z.string().optional(),
+    subsystem: z.string().optional(),
+    time: z.date().transform(v => v.toISOString()).optional(),
+    requestId: z.string().optional(),
+    causes: z.array(z.string()).optional(),
+    remedy: z.string().optional(),
+    supportEmail: z.string().optional(),
+    supportPhone: z.string().optional(),
+    supportUrl: z.string().optional(),
+    retryable: z.boolean().optional(),
+    retryAfter: z.date().transform(v => v.toISOString()).optional(),
+    context: z.record(z.any()).optional(),
+    in: CreateDestinationDestinationsIn$outboundSchema.optional(),
+    name: z.string().optional(),
+    value: z.any().optional(),
+  });
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace CreateDestinationDestinationsIssues$ {
-  /** @deprecated use `CreateDestinationDestinationsIssues$inboundSchema` instead. */
+export namespace CreateDestinationDestinationsInputValidationIssue$ {
+  /** @deprecated use `CreateDestinationDestinationsInputValidationIssue$inboundSchema` instead. */
   export const inboundSchema =
-    CreateDestinationDestinationsIssues$inboundSchema;
-  /** @deprecated use `CreateDestinationDestinationsIssues$outboundSchema` instead. */
+    CreateDestinationDestinationsInputValidationIssue$inboundSchema;
+  /** @deprecated use `CreateDestinationDestinationsInputValidationIssue$outboundSchema` instead. */
   export const outboundSchema =
-    CreateDestinationDestinationsIssues$outboundSchema;
-  /** @deprecated use `CreateDestinationDestinationsIssues$Outbound` instead. */
-  export type Outbound = CreateDestinationDestinationsIssues$Outbound;
+    CreateDestinationDestinationsInputValidationIssue$outboundSchema;
+  /** @deprecated use `CreateDestinationDestinationsInputValidationIssue$Outbound` instead. */
+  export type Outbound =
+    CreateDestinationDestinationsInputValidationIssue$Outbound;
 }
 
-export function createDestinationDestinationsIssuesToJSON(
-  createDestinationDestinationsIssues: CreateDestinationDestinationsIssues,
+export function createDestinationDestinationsInputValidationIssueToJSON(
+  createDestinationDestinationsInputValidationIssue:
+    CreateDestinationDestinationsInputValidationIssue,
 ): string {
   return JSON.stringify(
-    CreateDestinationDestinationsIssues$outboundSchema.parse(
-      createDestinationDestinationsIssues,
+    CreateDestinationDestinationsInputValidationIssue$outboundSchema.parse(
+      createDestinationDestinationsInputValidationIssue,
     ),
   );
 }
 
-export function createDestinationDestinationsIssuesFromJSON(
+export function createDestinationDestinationsInputValidationIssueFromJSON(
   jsonString: string,
-): SafeParseResult<CreateDestinationDestinationsIssues, SDKValidationError> {
+): SafeParseResult<
+  CreateDestinationDestinationsInputValidationIssue,
+  SDKValidationError
+> {
   return safeParse(
     jsonString,
     (x) =>
-      CreateDestinationDestinationsIssues$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreateDestinationDestinationsIssues' from JSON`,
+      CreateDestinationDestinationsInputValidationIssue$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'CreateDestinationDestinationsInputValidationIssue' from JSON`,
   );
 }
 
 /** @internal */
-export const CreateDestinationDestinationsResponseBody$inboundSchema: z.ZodType<
-  CreateDestinationDestinationsResponseBody,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  type: z.string().default("about:blank"),
-  href: z.string().optional(),
-  title: z.string().optional(),
-  status: z.number().int().optional(),
-  detail: z.string().optional(),
-  instance: z.string().optional(),
-  subsystem: z.string().optional(),
-  time: z.string().datetime({ offset: true }).transform(v => new Date(v))
-    .optional(),
-  requestId: z.string().optional(),
-  causes: z.array(z.string()).optional(),
-  remedy: z.string().optional(),
-  supportEmail: z.string().optional(),
-  supportPhone: z.string().optional(),
-  supportUrl: z.string().optional(),
-  retryable: z.boolean().optional(),
-  retryAfter: z.string().datetime({ offset: true }).transform(v => new Date(v))
-    .optional(),
-  context: z.record(z.any()).optional(),
-  issues: z.array(
-    z.lazy(() => CreateDestinationDestinationsIssues$inboundSchema),
-  ).optional(),
-})
-  .transform((v) => {
-    return new CreateDestinationDestinationsResponseBody(v);
-  });
+export const CreateDestinationDestinationsInputValidationProblem$inboundSchema:
+  z.ZodType<
+    CreateDestinationDestinationsInputValidationProblem,
+    z.ZodTypeDef,
+    unknown
+  > = z.object({
+    type: z.string().default("about:blank"),
+    href: z.string().optional(),
+    title: z.string().optional(),
+    status: z.number().int().optional(),
+    detail: z.string().optional(),
+    instance: z.string().optional(),
+    subsystem: z.string().optional(),
+    time: z.string().datetime({ offset: true }).transform(v => new Date(v))
+      .optional(),
+    requestId: z.string().optional(),
+    causes: z.array(z.string()).optional(),
+    remedy: z.string().optional(),
+    supportEmail: z.string().optional(),
+    supportPhone: z.string().optional(),
+    supportUrl: z.string().optional(),
+    retryable: z.boolean().optional(),
+    retryAfter: z.string().datetime({ offset: true }).transform(v =>
+      new Date(v)
+    ).optional(),
+    context: z.record(z.any()).optional(),
+    issues: z.array(
+      z.lazy(() =>
+        CreateDestinationDestinationsInputValidationIssue$inboundSchema
+      ),
+    ).optional(),
+  })
+    .transform((v) => {
+      return new CreateDestinationDestinationsInputValidationProblem(v);
+    });
 
 /** @internal */
-export type CreateDestinationDestinationsResponseBody$Outbound = {
+export type CreateDestinationDestinationsInputValidationProblem$Outbound = {
   type?: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -803,16 +817,18 @@ export type CreateDestinationDestinationsResponseBody$Outbound = {
   retryable?: boolean | undefined;
   retryAfter?: string | undefined;
   context?: { [k: string]: any } | undefined;
-  issues?: Array<CreateDestinationDestinationsIssues$Outbound> | undefined;
+  issues?:
+    | Array<CreateDestinationDestinationsInputValidationIssue$Outbound>
+    | undefined;
 };
 
 /** @internal */
-export const CreateDestinationDestinationsResponseBody$outboundSchema:
+export const CreateDestinationDestinationsInputValidationProblem$outboundSchema:
   z.ZodType<
-    CreateDestinationDestinationsResponseBody$Outbound,
+    CreateDestinationDestinationsInputValidationProblem$Outbound,
     z.ZodTypeDef,
-    CreateDestinationDestinationsResponseBody
-  > = z.instanceof(CreateDestinationDestinationsResponseBody)
+    CreateDestinationDestinationsInputValidationProblem
+  > = z.instanceof(CreateDestinationDestinationsInputValidationProblem)
     .transform(v => v.data$)
     .pipe(z.object({
       type: z.string().default("about:blank"),
@@ -833,7 +849,9 @@ export const CreateDestinationDestinationsResponseBody$outboundSchema:
       retryAfter: z.date().transform(v => v.toISOString()).optional(),
       context: z.record(z.any()).optional(),
       issues: z.array(
-        z.lazy(() => CreateDestinationDestinationsIssues$outboundSchema),
+        z.lazy(() =>
+          CreateDestinationDestinationsInputValidationIssue$outboundSchema
+        ),
       ).optional(),
     }));
 
@@ -841,15 +859,16 @@ export const CreateDestinationDestinationsResponseBody$outboundSchema:
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace CreateDestinationDestinationsResponseBody$ {
-  /** @deprecated use `CreateDestinationDestinationsResponseBody$inboundSchema` instead. */
+export namespace CreateDestinationDestinationsInputValidationProblem$ {
+  /** @deprecated use `CreateDestinationDestinationsInputValidationProblem$inboundSchema` instead. */
   export const inboundSchema =
-    CreateDestinationDestinationsResponseBody$inboundSchema;
-  /** @deprecated use `CreateDestinationDestinationsResponseBody$outboundSchema` instead. */
+    CreateDestinationDestinationsInputValidationProblem$inboundSchema;
+  /** @deprecated use `CreateDestinationDestinationsInputValidationProblem$outboundSchema` instead. */
   export const outboundSchema =
-    CreateDestinationDestinationsResponseBody$outboundSchema;
-  /** @deprecated use `CreateDestinationDestinationsResponseBody$Outbound` instead. */
-  export type Outbound = CreateDestinationDestinationsResponseBody$Outbound;
+    CreateDestinationDestinationsInputValidationProblem$outboundSchema;
+  /** @deprecated use `CreateDestinationDestinationsInputValidationProblem$Outbound` instead. */
+  export type Outbound =
+    CreateDestinationDestinationsInputValidationProblem$Outbound;
 }
 
 /** @internal */
@@ -874,8 +893,8 @@ export namespace CreateDestinationIn$ {
 }
 
 /** @internal */
-export const CreateDestinationIssues$inboundSchema: z.ZodType<
-  CreateDestinationIssues,
+export const CreateDestinationInputValidationIssue$inboundSchema: z.ZodType<
+  CreateDestinationInputValidationIssue,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -904,7 +923,7 @@ export const CreateDestinationIssues$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type CreateDestinationIssues$Outbound = {
+export type CreateDestinationInputValidationIssue$Outbound = {
   type: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -928,10 +947,10 @@ export type CreateDestinationIssues$Outbound = {
 };
 
 /** @internal */
-export const CreateDestinationIssues$outboundSchema: z.ZodType<
-  CreateDestinationIssues$Outbound,
+export const CreateDestinationInputValidationIssue$outboundSchema: z.ZodType<
+  CreateDestinationInputValidationIssue$Outbound,
   z.ZodTypeDef,
-  CreateDestinationIssues
+  CreateDestinationInputValidationIssue
 > = z.object({
   type: z.string().default("about:blank"),
   href: z.string().optional(),
@@ -959,36 +978,41 @@ export const CreateDestinationIssues$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace CreateDestinationIssues$ {
-  /** @deprecated use `CreateDestinationIssues$inboundSchema` instead. */
-  export const inboundSchema = CreateDestinationIssues$inboundSchema;
-  /** @deprecated use `CreateDestinationIssues$outboundSchema` instead. */
-  export const outboundSchema = CreateDestinationIssues$outboundSchema;
-  /** @deprecated use `CreateDestinationIssues$Outbound` instead. */
-  export type Outbound = CreateDestinationIssues$Outbound;
+export namespace CreateDestinationInputValidationIssue$ {
+  /** @deprecated use `CreateDestinationInputValidationIssue$inboundSchema` instead. */
+  export const inboundSchema =
+    CreateDestinationInputValidationIssue$inboundSchema;
+  /** @deprecated use `CreateDestinationInputValidationIssue$outboundSchema` instead. */
+  export const outboundSchema =
+    CreateDestinationInputValidationIssue$outboundSchema;
+  /** @deprecated use `CreateDestinationInputValidationIssue$Outbound` instead. */
+  export type Outbound = CreateDestinationInputValidationIssue$Outbound;
 }
 
-export function createDestinationIssuesToJSON(
-  createDestinationIssues: CreateDestinationIssues,
+export function createDestinationInputValidationIssueToJSON(
+  createDestinationInputValidationIssue: CreateDestinationInputValidationIssue,
 ): string {
   return JSON.stringify(
-    CreateDestinationIssues$outboundSchema.parse(createDestinationIssues),
+    CreateDestinationInputValidationIssue$outboundSchema.parse(
+      createDestinationInputValidationIssue,
+    ),
   );
 }
 
-export function createDestinationIssuesFromJSON(
+export function createDestinationInputValidationIssueFromJSON(
   jsonString: string,
-): SafeParseResult<CreateDestinationIssues, SDKValidationError> {
+): SafeParseResult<CreateDestinationInputValidationIssue, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => CreateDestinationIssues$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreateDestinationIssues' from JSON`,
+    (x) =>
+      CreateDestinationInputValidationIssue$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreateDestinationInputValidationIssue' from JSON`,
   );
 }
 
 /** @internal */
-export const CreateDestinationResponseBody$inboundSchema: z.ZodType<
-  CreateDestinationResponseBody,
+export const CreateDestinationInputValidationProblem$inboundSchema: z.ZodType<
+  CreateDestinationInputValidationProblem,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -1011,15 +1035,16 @@ export const CreateDestinationResponseBody$inboundSchema: z.ZodType<
   retryAfter: z.string().datetime({ offset: true }).transform(v => new Date(v))
     .optional(),
   context: z.record(z.any()).optional(),
-  issues: z.array(z.lazy(() => CreateDestinationIssues$inboundSchema))
-    .optional(),
+  issues: z.array(
+    z.lazy(() => CreateDestinationInputValidationIssue$inboundSchema),
+  ).optional(),
 })
   .transform((v) => {
-    return new CreateDestinationResponseBody(v);
+    return new CreateDestinationInputValidationProblem(v);
   });
 
 /** @internal */
-export type CreateDestinationResponseBody$Outbound = {
+export type CreateDestinationInputValidationProblem$Outbound = {
   type?: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -1037,15 +1062,15 @@ export type CreateDestinationResponseBody$Outbound = {
   retryable?: boolean | undefined;
   retryAfter?: string | undefined;
   context?: { [k: string]: any } | undefined;
-  issues?: Array<CreateDestinationIssues$Outbound> | undefined;
+  issues?: Array<CreateDestinationInputValidationIssue$Outbound> | undefined;
 };
 
 /** @internal */
-export const CreateDestinationResponseBody$outboundSchema: z.ZodType<
-  CreateDestinationResponseBody$Outbound,
+export const CreateDestinationInputValidationProblem$outboundSchema: z.ZodType<
+  CreateDestinationInputValidationProblem$Outbound,
   z.ZodTypeDef,
-  CreateDestinationResponseBody
-> = z.instanceof(CreateDestinationResponseBody)
+  CreateDestinationInputValidationProblem
+> = z.instanceof(CreateDestinationInputValidationProblem)
   .transform(v => v.data$)
   .pipe(z.object({
     type: z.string().default("about:blank"),
@@ -1065,19 +1090,22 @@ export const CreateDestinationResponseBody$outboundSchema: z.ZodType<
     retryable: z.boolean().optional(),
     retryAfter: z.date().transform(v => v.toISOString()).optional(),
     context: z.record(z.any()).optional(),
-    issues: z.array(z.lazy(() => CreateDestinationIssues$outboundSchema))
-      .optional(),
+    issues: z.array(
+      z.lazy(() => CreateDestinationInputValidationIssue$outboundSchema),
+    ).optional(),
   }));
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace CreateDestinationResponseBody$ {
-  /** @deprecated use `CreateDestinationResponseBody$inboundSchema` instead. */
-  export const inboundSchema = CreateDestinationResponseBody$inboundSchema;
-  /** @deprecated use `CreateDestinationResponseBody$outboundSchema` instead. */
-  export const outboundSchema = CreateDestinationResponseBody$outboundSchema;
-  /** @deprecated use `CreateDestinationResponseBody$Outbound` instead. */
-  export type Outbound = CreateDestinationResponseBody$Outbound;
+export namespace CreateDestinationInputValidationProblem$ {
+  /** @deprecated use `CreateDestinationInputValidationProblem$inboundSchema` instead. */
+  export const inboundSchema =
+    CreateDestinationInputValidationProblem$inboundSchema;
+  /** @deprecated use `CreateDestinationInputValidationProblem$outboundSchema` instead. */
+  export const outboundSchema =
+    CreateDestinationInputValidationProblem$outboundSchema;
+  /** @deprecated use `CreateDestinationInputValidationProblem$Outbound` instead. */
+  export type Outbound = CreateDestinationInputValidationProblem$Outbound;
 }

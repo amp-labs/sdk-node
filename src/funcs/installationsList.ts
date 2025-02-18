@@ -40,7 +40,7 @@ export function installationsList(
 ): APIPromise<
   Result<
     operations.ListInstallationsResponse,
-    | errors.ListInstallationsResponseBody
+    | errors.ListInstallationsInputValidationProblem
     | APIError
     | SDKValidationError
     | UnexpectedClientError
@@ -65,7 +65,7 @@ async function $do(
   [
     Result<
       operations.ListInstallationsResponse,
-      | errors.ListInstallationsResponseBody
+      | errors.ListInstallationsInputValidationProblem
       | APIError
       | SDKValidationError
       | UnexpectedClientError
@@ -177,7 +177,7 @@ async function $do(
 
   const [result] = await M.match<
     operations.ListInstallationsResponse,
-    | errors.ListInstallationsResponseBody
+    | errors.ListInstallationsInputValidationProblem
     | APIError
     | SDKValidationError
     | UnexpectedClientError
@@ -187,9 +187,11 @@ async function $do(
     | ConnectionError
   >(
     M.json(200, operations.ListInstallationsResponse$inboundSchema),
-    M.jsonErr(400, errors.ListInstallationsResponseBody$inboundSchema, {
-      ctype: "application/problem+json",
-    }),
+    M.jsonErr(
+      400,
+      errors.ListInstallationsInputValidationProblem$inboundSchema,
+      { ctype: "application/problem+json" },
+    ),
     M.fail("4XX"),
     M.fail("5XX"),
     M.json("default", operations.ListInstallationsResponse$inboundSchema, {

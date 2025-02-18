@@ -86,11 +86,11 @@ run();
 
 ### Errors
 
-| Error Type                                  | Status Code                                 | Content Type                                |
-| ------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
-| errors.ListOperationsResponseBody           | 400                                         | application/problem+json                    |
-| errors.ListOperationsOperationsResponseBody | 422                                         | application/problem+json                    |
-| errors.APIError                             | 4XX, 5XX                                    | \*/\*                                       |
+| Error Type                                            | Status Code                                           | Content Type                                          |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| errors.ListOperationsInputValidationProblem           | 400                                                   | application/problem+json                              |
+| errors.ListOperationsOperationsInputValidationProblem | 422                                                   | application/problem+json                              |
+| errors.APIError                                       | 4XX, 5XX                                              | \*/\*                                                 |
 
 ## get
 
@@ -167,11 +167,11 @@ run();
 
 ### Errors
 
-| Error Type                                | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| errors.GetOperationResponseBody           | 400                                       | application/problem+json                  |
-| errors.GetOperationOperationsResponseBody | 422                                       | application/problem+json                  |
-| errors.APIError                           | 4XX, 5XX                                  | \*/\*                                     |
+| Error Type                                          | Status Code                                         | Content Type                                        |
+| --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- |
+| errors.GetOperationInputValidationProblem           | 400                                                 | application/problem+json                            |
+| errors.GetOperationOperationsInputValidationProblem | 422                                                 | application/problem+json                            |
+| errors.APIError                                     | 4XX, 5XX                                            | \*/\*                                               |
 
 ## listLogs
 
@@ -248,8 +248,8 @@ run();
 
 ### Errors
 
-| Error Type                                     | Status Code                                    | Content Type                                   |
-| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
-| errors.ListOperationLogsResponseBody           | 400                                            | application/problem+json                       |
-| errors.ListOperationLogsOperationsResponseBody | 422                                            | application/problem+json                       |
-| errors.APIError                                | 4XX, 5XX                                       | \*/\*                                          |
+| Error Type                                               | Status Code                                              | Content Type                                             |
+| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
+| errors.ListOperationLogsInputValidationProblem           | 400                                                      | application/problem+json                                 |
+| errors.ListOperationLogsOperationsInputValidationProblem | 422                                                      | application/problem+json                                 |
+| errors.APIError                                          | 4XX, 5XX                                                 | \*/\*                                                    |

@@ -3,10 +3,10 @@
 
 ## Supported Types
 
-### `operations.UpdateProviderAppResponseBody`
+### `operations.UpdateProviderAppProviderApp`
 
 ```typescript
-const value: operations.UpdateProviderAppResponseBody = {
+const value: operations.UpdateProviderAppProviderApp = {
   id: "provider-app-123",
   projectId: "project-456",
   externalRef: "external-id-123",
@@ -19,10 +19,10 @@ const value: operations.UpdateProviderAppResponseBody = {
 };
 ```
 
-### `operations.UpdateProviderAppProviderAppsResponseBody`
+### `operations.UpdateProviderAppAPIProblem`
 
 ```typescript
-const value: operations.UpdateProviderAppProviderAppsResponseBody = {
+const value: operations.UpdateProviderAppAPIProblem = {
   href:
     "https://www.belgif.be/specification/rest/api-guide/#standardized-problem-types",
   title: "Description of the type of problem that occurred",

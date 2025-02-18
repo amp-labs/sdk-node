@@ -34,8 +34,8 @@ export function groupsCreate(
   options?: RequestOptions,
 ): APIPromise<
   Result<
-    operations.CreateGroupResponseBody | undefined,
-    | errors.CreateGroupResponseBody
+    operations.CreateGroupAPIProblem | undefined,
+    | errors.CreateGroupInputValidationProblem
     | APIError
     | SDKValidationError
     | UnexpectedClientError
@@ -59,8 +59,8 @@ async function $do(
 ): Promise<
   [
     Result<
-      operations.CreateGroupResponseBody | undefined,
-      | errors.CreateGroupResponseBody
+      operations.CreateGroupAPIProblem | undefined,
+      | errors.CreateGroupInputValidationProblem
       | APIError
       | SDKValidationError
       | UnexpectedClientError
@@ -158,8 +158,8 @@ async function $do(
   };
 
   const [result] = await M.match<
-    operations.CreateGroupResponseBody | undefined,
-    | errors.CreateGroupResponseBody
+    operations.CreateGroupAPIProblem | undefined,
+    | errors.CreateGroupInputValidationProblem
     | APIError
     | SDKValidationError
     | UnexpectedClientError
@@ -168,15 +168,15 @@ async function $do(
     | RequestTimeoutError
     | ConnectionError
   >(
-    M.nil(201, operations.CreateGroupResponseBody$inboundSchema.optional()),
-    M.jsonErr(422, errors.CreateGroupResponseBody$inboundSchema, {
+    M.nil(201, operations.CreateGroupAPIProblem$inboundSchema.optional()),
+    M.jsonErr(422, errors.CreateGroupInputValidationProblem$inboundSchema, {
       ctype: "application/problem+json",
     }),
     M.fail("4XX"),
     M.fail("5XX"),
     M.json(
       "default",
-      operations.CreateGroupResponseBody$inboundSchema.optional(),
+      operations.CreateGroupAPIProblem$inboundSchema.optional(),
       { ctype: "application/problem+json" },
     ),
   )(response, { extraFields: responseFields });

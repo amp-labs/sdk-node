@@ -40,8 +40,8 @@ export function destinationsCreate(
 ): APIPromise<
   Result<
     operations.CreateDestinationResponse,
-    | errors.CreateDestinationResponseBody
-    | errors.CreateDestinationDestinationsResponseBody
+    | errors.CreateDestinationInputValidationProblem
+    | errors.CreateDestinationDestinationsInputValidationProblem
     | APIError
     | SDKValidationError
     | UnexpectedClientError
@@ -66,8 +66,8 @@ async function $do(
   [
     Result<
       operations.CreateDestinationResponse,
-      | errors.CreateDestinationResponseBody
-      | errors.CreateDestinationDestinationsResponseBody
+      | errors.CreateDestinationInputValidationProblem
+      | errors.CreateDestinationDestinationsInputValidationProblem
       | APIError
       | SDKValidationError
       | UnexpectedClientError
@@ -171,8 +171,8 @@ async function $do(
 
   const [result] = await M.match<
     operations.CreateDestinationResponse,
-    | errors.CreateDestinationResponseBody
-    | errors.CreateDestinationDestinationsResponseBody
+    | errors.CreateDestinationInputValidationProblem
+    | errors.CreateDestinationDestinationsInputValidationProblem
     | APIError
     | SDKValidationError
     | UnexpectedClientError
@@ -182,12 +182,14 @@ async function $do(
     | ConnectionError
   >(
     M.json(201, operations.CreateDestinationResponse$inboundSchema),
-    M.jsonErr(400, errors.CreateDestinationResponseBody$inboundSchema, {
-      ctype: "application/problem+json",
-    }),
+    M.jsonErr(
+      400,
+      errors.CreateDestinationInputValidationProblem$inboundSchema,
+      { ctype: "application/problem+json" },
+    ),
     M.jsonErr(
       422,
-      errors.CreateDestinationDestinationsResponseBody$inboundSchema,
+      errors.CreateDestinationDestinationsInputValidationProblem$inboundSchema,
       { ctype: "application/problem+json" },
     ),
     M.fail("4XX"),

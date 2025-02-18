@@ -29,7 +29,7 @@ export type GetOperationOperationsIn = ClosedEnum<
  *
  * @remarks
  */
-export type GetOperationOperationsIssues = {
+export type GetOperationOperationsInputValidationIssue = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -122,7 +122,7 @@ export type GetOperationOperationsIssues = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export type GetOperationOperationsResponseBodyData = {
+export type GetOperationOperationsInputValidationProblemData = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -194,7 +194,7 @@ export type GetOperationOperationsResponseBodyData = {
    * Additional context for the problem
    */
   context?: { [k: string]: any } | undefined;
-  issues?: Array<GetOperationOperationsIssues> | undefined;
+  issues?: Array<GetOperationOperationsInputValidationIssue> | undefined;
 };
 
 /**
@@ -204,7 +204,7 @@ export type GetOperationOperationsResponseBodyData = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export class GetOperationOperationsResponseBody extends Error {
+export class GetOperationOperationsInputValidationProblem extends Error {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -276,12 +276,12 @@ export class GetOperationOperationsResponseBody extends Error {
    * Additional context for the problem
    */
   context?: { [k: string]: any } | undefined;
-  issues?: Array<GetOperationOperationsIssues> | undefined;
+  issues?: Array<GetOperationOperationsInputValidationIssue> | undefined;
 
   /** The original data that was passed to this error instance. */
-  data$: GetOperationOperationsResponseBodyData;
+  data$: GetOperationOperationsInputValidationProblemData;
 
-  constructor(err: GetOperationOperationsResponseBodyData) {
+  constructor(err: GetOperationOperationsInputValidationProblemData) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
@@ -307,7 +307,7 @@ export class GetOperationOperationsResponseBody extends Error {
     if (err.context != null) this.context = err.context;
     if (err.issues != null) this.issues = err.issues;
 
-    this.name = "GetOperationOperationsResponseBody";
+    this.name = "GetOperationOperationsInputValidationProblem";
   }
 }
 
@@ -330,7 +330,7 @@ export type GetOperationIn = ClosedEnum<typeof GetOperationIn>;
  *
  * @remarks
  */
-export type GetOperationIssues = {
+export type GetOperationInputValidationIssue = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -423,7 +423,7 @@ export type GetOperationIssues = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export type GetOperationResponseBodyData = {
+export type GetOperationInputValidationProblemData = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -495,7 +495,7 @@ export type GetOperationResponseBodyData = {
    * Additional context for the problem
    */
   context?: { [k: string]: any } | undefined;
-  issues?: Array<GetOperationIssues> | undefined;
+  issues?: Array<GetOperationInputValidationIssue> | undefined;
 };
 
 /**
@@ -505,7 +505,7 @@ export type GetOperationResponseBodyData = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export class GetOperationResponseBody extends Error {
+export class GetOperationInputValidationProblem extends Error {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -577,12 +577,12 @@ export class GetOperationResponseBody extends Error {
    * Additional context for the problem
    */
   context?: { [k: string]: any } | undefined;
-  issues?: Array<GetOperationIssues> | undefined;
+  issues?: Array<GetOperationInputValidationIssue> | undefined;
 
   /** The original data that was passed to this error instance. */
-  data$: GetOperationResponseBodyData;
+  data$: GetOperationInputValidationProblemData;
 
-  constructor(err: GetOperationResponseBodyData) {
+  constructor(err: GetOperationInputValidationProblemData) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
@@ -608,7 +608,7 @@ export class GetOperationResponseBody extends Error {
     if (err.context != null) this.context = err.context;
     if (err.issues != null) this.issues = err.issues;
 
-    this.name = "GetOperationResponseBody";
+    this.name = "GetOperationInputValidationProblem";
   }
 }
 
@@ -634,37 +634,36 @@ export namespace GetOperationOperationsIn$ {
 }
 
 /** @internal */
-export const GetOperationOperationsIssues$inboundSchema: z.ZodType<
-  GetOperationOperationsIssues,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  type: z.string().default("about:blank"),
-  href: z.string().optional(),
-  title: z.string().optional(),
-  status: z.number().int().optional(),
-  detail: z.string().optional(),
-  instance: z.string().optional(),
-  subsystem: z.string().optional(),
-  time: z.string().datetime({ offset: true }).transform(v => new Date(v))
-    .optional(),
-  requestId: z.string().optional(),
-  causes: z.array(z.string()).optional(),
-  remedy: z.string().optional(),
-  supportEmail: z.string().optional(),
-  supportPhone: z.string().optional(),
-  supportUrl: z.string().optional(),
-  retryable: z.boolean().optional(),
-  retryAfter: z.string().datetime({ offset: true }).transform(v => new Date(v))
-    .optional(),
-  context: z.record(z.any()).optional(),
-  in: GetOperationOperationsIn$inboundSchema.optional(),
-  name: z.string().optional(),
-  value: z.any().optional(),
-});
+export const GetOperationOperationsInputValidationIssue$inboundSchema:
+  z.ZodType<GetOperationOperationsInputValidationIssue, z.ZodTypeDef, unknown> =
+    z.object({
+      type: z.string().default("about:blank"),
+      href: z.string().optional(),
+      title: z.string().optional(),
+      status: z.number().int().optional(),
+      detail: z.string().optional(),
+      instance: z.string().optional(),
+      subsystem: z.string().optional(),
+      time: z.string().datetime({ offset: true }).transform(v => new Date(v))
+        .optional(),
+      requestId: z.string().optional(),
+      causes: z.array(z.string()).optional(),
+      remedy: z.string().optional(),
+      supportEmail: z.string().optional(),
+      supportPhone: z.string().optional(),
+      supportUrl: z.string().optional(),
+      retryable: z.boolean().optional(),
+      retryAfter: z.string().datetime({ offset: true }).transform(v =>
+        new Date(v)
+      ).optional(),
+      context: z.record(z.any()).optional(),
+      in: GetOperationOperationsIn$inboundSchema.optional(),
+      name: z.string().optional(),
+      value: z.any().optional(),
+    });
 
 /** @internal */
-export type GetOperationOperationsIssues$Outbound = {
+export type GetOperationOperationsInputValidationIssue$Outbound = {
   type: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -688,128 +687,12 @@ export type GetOperationOperationsIssues$Outbound = {
 };
 
 /** @internal */
-export const GetOperationOperationsIssues$outboundSchema: z.ZodType<
-  GetOperationOperationsIssues$Outbound,
-  z.ZodTypeDef,
-  GetOperationOperationsIssues
-> = z.object({
-  type: z.string().default("about:blank"),
-  href: z.string().optional(),
-  title: z.string().optional(),
-  status: z.number().int().optional(),
-  detail: z.string().optional(),
-  instance: z.string().optional(),
-  subsystem: z.string().optional(),
-  time: z.date().transform(v => v.toISOString()).optional(),
-  requestId: z.string().optional(),
-  causes: z.array(z.string()).optional(),
-  remedy: z.string().optional(),
-  supportEmail: z.string().optional(),
-  supportPhone: z.string().optional(),
-  supportUrl: z.string().optional(),
-  retryable: z.boolean().optional(),
-  retryAfter: z.date().transform(v => v.toISOString()).optional(),
-  context: z.record(z.any()).optional(),
-  in: GetOperationOperationsIn$outboundSchema.optional(),
-  name: z.string().optional(),
-  value: z.any().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetOperationOperationsIssues$ {
-  /** @deprecated use `GetOperationOperationsIssues$inboundSchema` instead. */
-  export const inboundSchema = GetOperationOperationsIssues$inboundSchema;
-  /** @deprecated use `GetOperationOperationsIssues$outboundSchema` instead. */
-  export const outboundSchema = GetOperationOperationsIssues$outboundSchema;
-  /** @deprecated use `GetOperationOperationsIssues$Outbound` instead. */
-  export type Outbound = GetOperationOperationsIssues$Outbound;
-}
-
-export function getOperationOperationsIssuesToJSON(
-  getOperationOperationsIssues: GetOperationOperationsIssues,
-): string {
-  return JSON.stringify(
-    GetOperationOperationsIssues$outboundSchema.parse(
-      getOperationOperationsIssues,
-    ),
-  );
-}
-
-export function getOperationOperationsIssuesFromJSON(
-  jsonString: string,
-): SafeParseResult<GetOperationOperationsIssues, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GetOperationOperationsIssues$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetOperationOperationsIssues' from JSON`,
-  );
-}
-
-/** @internal */
-export const GetOperationOperationsResponseBody$inboundSchema: z.ZodType<
-  GetOperationOperationsResponseBody,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  type: z.string().default("about:blank"),
-  href: z.string().optional(),
-  title: z.string().optional(),
-  status: z.number().int().optional(),
-  detail: z.string().optional(),
-  instance: z.string().optional(),
-  subsystem: z.string().optional(),
-  time: z.string().datetime({ offset: true }).transform(v => new Date(v))
-    .optional(),
-  requestId: z.string().optional(),
-  causes: z.array(z.string()).optional(),
-  remedy: z.string().optional(),
-  supportEmail: z.string().optional(),
-  supportPhone: z.string().optional(),
-  supportUrl: z.string().optional(),
-  retryable: z.boolean().optional(),
-  retryAfter: z.string().datetime({ offset: true }).transform(v => new Date(v))
-    .optional(),
-  context: z.record(z.any()).optional(),
-  issues: z.array(z.lazy(() => GetOperationOperationsIssues$inboundSchema))
-    .optional(),
-})
-  .transform((v) => {
-    return new GetOperationOperationsResponseBody(v);
-  });
-
-/** @internal */
-export type GetOperationOperationsResponseBody$Outbound = {
-  type?: string;
-  href?: string | undefined;
-  title?: string | undefined;
-  status?: number | undefined;
-  detail?: string | undefined;
-  instance?: string | undefined;
-  subsystem?: string | undefined;
-  time?: string | undefined;
-  requestId?: string | undefined;
-  causes?: Array<string> | undefined;
-  remedy?: string | undefined;
-  supportEmail?: string | undefined;
-  supportPhone?: string | undefined;
-  supportUrl?: string | undefined;
-  retryable?: boolean | undefined;
-  retryAfter?: string | undefined;
-  context?: { [k: string]: any } | undefined;
-  issues?: Array<GetOperationOperationsIssues$Outbound> | undefined;
-};
-
-/** @internal */
-export const GetOperationOperationsResponseBody$outboundSchema: z.ZodType<
-  GetOperationOperationsResponseBody$Outbound,
-  z.ZodTypeDef,
-  GetOperationOperationsResponseBody
-> = z.instanceof(GetOperationOperationsResponseBody)
-  .transform(v => v.data$)
-  .pipe(z.object({
+export const GetOperationOperationsInputValidationIssue$outboundSchema:
+  z.ZodType<
+    GetOperationOperationsInputValidationIssue$Outbound,
+    z.ZodTypeDef,
+    GetOperationOperationsInputValidationIssue
+  > = z.object({
     type: z.string().default("about:blank"),
     href: z.string().optional(),
     title: z.string().optional(),
@@ -827,22 +710,156 @@ export const GetOperationOperationsResponseBody$outboundSchema: z.ZodType<
     retryable: z.boolean().optional(),
     retryAfter: z.date().transform(v => v.toISOString()).optional(),
     context: z.record(z.any()).optional(),
-    issues: z.array(z.lazy(() => GetOperationOperationsIssues$outboundSchema))
-      .optional(),
-  }));
+    in: GetOperationOperationsIn$outboundSchema.optional(),
+    name: z.string().optional(),
+    value: z.any().optional(),
+  });
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace GetOperationOperationsResponseBody$ {
-  /** @deprecated use `GetOperationOperationsResponseBody$inboundSchema` instead. */
-  export const inboundSchema = GetOperationOperationsResponseBody$inboundSchema;
-  /** @deprecated use `GetOperationOperationsResponseBody$outboundSchema` instead. */
+export namespace GetOperationOperationsInputValidationIssue$ {
+  /** @deprecated use `GetOperationOperationsInputValidationIssue$inboundSchema` instead. */
+  export const inboundSchema =
+    GetOperationOperationsInputValidationIssue$inboundSchema;
+  /** @deprecated use `GetOperationOperationsInputValidationIssue$outboundSchema` instead. */
   export const outboundSchema =
-    GetOperationOperationsResponseBody$outboundSchema;
-  /** @deprecated use `GetOperationOperationsResponseBody$Outbound` instead. */
-  export type Outbound = GetOperationOperationsResponseBody$Outbound;
+    GetOperationOperationsInputValidationIssue$outboundSchema;
+  /** @deprecated use `GetOperationOperationsInputValidationIssue$Outbound` instead. */
+  export type Outbound = GetOperationOperationsInputValidationIssue$Outbound;
+}
+
+export function getOperationOperationsInputValidationIssueToJSON(
+  getOperationOperationsInputValidationIssue:
+    GetOperationOperationsInputValidationIssue,
+): string {
+  return JSON.stringify(
+    GetOperationOperationsInputValidationIssue$outboundSchema.parse(
+      getOperationOperationsInputValidationIssue,
+    ),
+  );
+}
+
+export function getOperationOperationsInputValidationIssueFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  GetOperationOperationsInputValidationIssue,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      GetOperationOperationsInputValidationIssue$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'GetOperationOperationsInputValidationIssue' from JSON`,
+  );
+}
+
+/** @internal */
+export const GetOperationOperationsInputValidationProblem$inboundSchema:
+  z.ZodType<
+    GetOperationOperationsInputValidationProblem,
+    z.ZodTypeDef,
+    unknown
+  > = z.object({
+    type: z.string().default("about:blank"),
+    href: z.string().optional(),
+    title: z.string().optional(),
+    status: z.number().int().optional(),
+    detail: z.string().optional(),
+    instance: z.string().optional(),
+    subsystem: z.string().optional(),
+    time: z.string().datetime({ offset: true }).transform(v => new Date(v))
+      .optional(),
+    requestId: z.string().optional(),
+    causes: z.array(z.string()).optional(),
+    remedy: z.string().optional(),
+    supportEmail: z.string().optional(),
+    supportPhone: z.string().optional(),
+    supportUrl: z.string().optional(),
+    retryable: z.boolean().optional(),
+    retryAfter: z.string().datetime({ offset: true }).transform(v =>
+      new Date(v)
+    ).optional(),
+    context: z.record(z.any()).optional(),
+    issues: z.array(
+      z.lazy(() => GetOperationOperationsInputValidationIssue$inboundSchema),
+    ).optional(),
+  })
+    .transform((v) => {
+      return new GetOperationOperationsInputValidationProblem(v);
+    });
+
+/** @internal */
+export type GetOperationOperationsInputValidationProblem$Outbound = {
+  type?: string;
+  href?: string | undefined;
+  title?: string | undefined;
+  status?: number | undefined;
+  detail?: string | undefined;
+  instance?: string | undefined;
+  subsystem?: string | undefined;
+  time?: string | undefined;
+  requestId?: string | undefined;
+  causes?: Array<string> | undefined;
+  remedy?: string | undefined;
+  supportEmail?: string | undefined;
+  supportPhone?: string | undefined;
+  supportUrl?: string | undefined;
+  retryable?: boolean | undefined;
+  retryAfter?: string | undefined;
+  context?: { [k: string]: any } | undefined;
+  issues?:
+    | Array<GetOperationOperationsInputValidationIssue$Outbound>
+    | undefined;
+};
+
+/** @internal */
+export const GetOperationOperationsInputValidationProblem$outboundSchema:
+  z.ZodType<
+    GetOperationOperationsInputValidationProblem$Outbound,
+    z.ZodTypeDef,
+    GetOperationOperationsInputValidationProblem
+  > = z.instanceof(GetOperationOperationsInputValidationProblem)
+    .transform(v => v.data$)
+    .pipe(z.object({
+      type: z.string().default("about:blank"),
+      href: z.string().optional(),
+      title: z.string().optional(),
+      status: z.number().int().optional(),
+      detail: z.string().optional(),
+      instance: z.string().optional(),
+      subsystem: z.string().optional(),
+      time: z.date().transform(v => v.toISOString()).optional(),
+      requestId: z.string().optional(),
+      causes: z.array(z.string()).optional(),
+      remedy: z.string().optional(),
+      supportEmail: z.string().optional(),
+      supportPhone: z.string().optional(),
+      supportUrl: z.string().optional(),
+      retryable: z.boolean().optional(),
+      retryAfter: z.date().transform(v => v.toISOString()).optional(),
+      context: z.record(z.any()).optional(),
+      issues: z.array(
+        z.lazy(() => GetOperationOperationsInputValidationIssue$outboundSchema),
+      ).optional(),
+    }));
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetOperationOperationsInputValidationProblem$ {
+  /** @deprecated use `GetOperationOperationsInputValidationProblem$inboundSchema` instead. */
+  export const inboundSchema =
+    GetOperationOperationsInputValidationProblem$inboundSchema;
+  /** @deprecated use `GetOperationOperationsInputValidationProblem$outboundSchema` instead. */
+  export const outboundSchema =
+    GetOperationOperationsInputValidationProblem$outboundSchema;
+  /** @deprecated use `GetOperationOperationsInputValidationProblem$Outbound` instead. */
+  export type Outbound = GetOperationOperationsInputValidationProblem$Outbound;
 }
 
 /** @internal */
@@ -867,8 +884,8 @@ export namespace GetOperationIn$ {
 }
 
 /** @internal */
-export const GetOperationIssues$inboundSchema: z.ZodType<
-  GetOperationIssues,
+export const GetOperationInputValidationIssue$inboundSchema: z.ZodType<
+  GetOperationInputValidationIssue,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -897,7 +914,7 @@ export const GetOperationIssues$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type GetOperationIssues$Outbound = {
+export type GetOperationInputValidationIssue$Outbound = {
   type: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -921,10 +938,10 @@ export type GetOperationIssues$Outbound = {
 };
 
 /** @internal */
-export const GetOperationIssues$outboundSchema: z.ZodType<
-  GetOperationIssues$Outbound,
+export const GetOperationInputValidationIssue$outboundSchema: z.ZodType<
+  GetOperationInputValidationIssue$Outbound,
   z.ZodTypeDef,
-  GetOperationIssues
+  GetOperationInputValidationIssue
 > = z.object({
   type: z.string().default("about:blank"),
   href: z.string().optional(),
@@ -952,36 +969,38 @@ export const GetOperationIssues$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace GetOperationIssues$ {
-  /** @deprecated use `GetOperationIssues$inboundSchema` instead. */
-  export const inboundSchema = GetOperationIssues$inboundSchema;
-  /** @deprecated use `GetOperationIssues$outboundSchema` instead. */
-  export const outboundSchema = GetOperationIssues$outboundSchema;
-  /** @deprecated use `GetOperationIssues$Outbound` instead. */
-  export type Outbound = GetOperationIssues$Outbound;
+export namespace GetOperationInputValidationIssue$ {
+  /** @deprecated use `GetOperationInputValidationIssue$inboundSchema` instead. */
+  export const inboundSchema = GetOperationInputValidationIssue$inboundSchema;
+  /** @deprecated use `GetOperationInputValidationIssue$outboundSchema` instead. */
+  export const outboundSchema = GetOperationInputValidationIssue$outboundSchema;
+  /** @deprecated use `GetOperationInputValidationIssue$Outbound` instead. */
+  export type Outbound = GetOperationInputValidationIssue$Outbound;
 }
 
-export function getOperationIssuesToJSON(
-  getOperationIssues: GetOperationIssues,
+export function getOperationInputValidationIssueToJSON(
+  getOperationInputValidationIssue: GetOperationInputValidationIssue,
 ): string {
   return JSON.stringify(
-    GetOperationIssues$outboundSchema.parse(getOperationIssues),
+    GetOperationInputValidationIssue$outboundSchema.parse(
+      getOperationInputValidationIssue,
+    ),
   );
 }
 
-export function getOperationIssuesFromJSON(
+export function getOperationInputValidationIssueFromJSON(
   jsonString: string,
-): SafeParseResult<GetOperationIssues, SDKValidationError> {
+): SafeParseResult<GetOperationInputValidationIssue, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => GetOperationIssues$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetOperationIssues' from JSON`,
+    (x) => GetOperationInputValidationIssue$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetOperationInputValidationIssue' from JSON`,
   );
 }
 
 /** @internal */
-export const GetOperationResponseBody$inboundSchema: z.ZodType<
-  GetOperationResponseBody,
+export const GetOperationInputValidationProblem$inboundSchema: z.ZodType<
+  GetOperationInputValidationProblem,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -1004,14 +1023,15 @@ export const GetOperationResponseBody$inboundSchema: z.ZodType<
   retryAfter: z.string().datetime({ offset: true }).transform(v => new Date(v))
     .optional(),
   context: z.record(z.any()).optional(),
-  issues: z.array(z.lazy(() => GetOperationIssues$inboundSchema)).optional(),
+  issues: z.array(z.lazy(() => GetOperationInputValidationIssue$inboundSchema))
+    .optional(),
 })
   .transform((v) => {
-    return new GetOperationResponseBody(v);
+    return new GetOperationInputValidationProblem(v);
   });
 
 /** @internal */
-export type GetOperationResponseBody$Outbound = {
+export type GetOperationInputValidationProblem$Outbound = {
   type?: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -1029,15 +1049,15 @@ export type GetOperationResponseBody$Outbound = {
   retryable?: boolean | undefined;
   retryAfter?: string | undefined;
   context?: { [k: string]: any } | undefined;
-  issues?: Array<GetOperationIssues$Outbound> | undefined;
+  issues?: Array<GetOperationInputValidationIssue$Outbound> | undefined;
 };
 
 /** @internal */
-export const GetOperationResponseBody$outboundSchema: z.ZodType<
-  GetOperationResponseBody$Outbound,
+export const GetOperationInputValidationProblem$outboundSchema: z.ZodType<
+  GetOperationInputValidationProblem$Outbound,
   z.ZodTypeDef,
-  GetOperationResponseBody
-> = z.instanceof(GetOperationResponseBody)
+  GetOperationInputValidationProblem
+> = z.instanceof(GetOperationInputValidationProblem)
   .transform(v => v.data$)
   .pipe(z.object({
     type: z.string().default("about:blank"),
@@ -1057,18 +1077,21 @@ export const GetOperationResponseBody$outboundSchema: z.ZodType<
     retryable: z.boolean().optional(),
     retryAfter: z.date().transform(v => v.toISOString()).optional(),
     context: z.record(z.any()).optional(),
-    issues: z.array(z.lazy(() => GetOperationIssues$outboundSchema)).optional(),
+    issues: z.array(
+      z.lazy(() => GetOperationInputValidationIssue$outboundSchema),
+    ).optional(),
   }));
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace GetOperationResponseBody$ {
-  /** @deprecated use `GetOperationResponseBody$inboundSchema` instead. */
-  export const inboundSchema = GetOperationResponseBody$inboundSchema;
-  /** @deprecated use `GetOperationResponseBody$outboundSchema` instead. */
-  export const outboundSchema = GetOperationResponseBody$outboundSchema;
-  /** @deprecated use `GetOperationResponseBody$Outbound` instead. */
-  export type Outbound = GetOperationResponseBody$Outbound;
+export namespace GetOperationInputValidationProblem$ {
+  /** @deprecated use `GetOperationInputValidationProblem$inboundSchema` instead. */
+  export const inboundSchema = GetOperationInputValidationProblem$inboundSchema;
+  /** @deprecated use `GetOperationInputValidationProblem$outboundSchema` instead. */
+  export const outboundSchema =
+    GetOperationInputValidationProblem$outboundSchema;
+  /** @deprecated use `GetOperationInputValidationProblem$Outbound` instead. */
+  export type Outbound = GetOperationInputValidationProblem$Outbound;
 }

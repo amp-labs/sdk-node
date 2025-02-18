@@ -26,7 +26,7 @@ export type DeleteDestinationRequest = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export type DeleteDestinationResponseBody = {
+export type DeleteDestinationAPIProblem = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -158,8 +158,8 @@ export function deleteDestinationRequestFromJSON(
 }
 
 /** @internal */
-export const DeleteDestinationResponseBody$inboundSchema: z.ZodType<
-  DeleteDestinationResponseBody,
+export const DeleteDestinationAPIProblem$inboundSchema: z.ZodType<
+  DeleteDestinationAPIProblem,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -185,7 +185,7 @@ export const DeleteDestinationResponseBody$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type DeleteDestinationResponseBody$Outbound = {
+export type DeleteDestinationAPIProblem$Outbound = {
   type: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -206,10 +206,10 @@ export type DeleteDestinationResponseBody$Outbound = {
 };
 
 /** @internal */
-export const DeleteDestinationResponseBody$outboundSchema: z.ZodType<
-  DeleteDestinationResponseBody$Outbound,
+export const DeleteDestinationAPIProblem$outboundSchema: z.ZodType<
+  DeleteDestinationAPIProblem$Outbound,
   z.ZodTypeDef,
-  DeleteDestinationResponseBody
+  DeleteDestinationAPIProblem
 > = z.object({
   type: z.string().default("about:blank"),
   href: z.string().optional(),
@@ -234,31 +234,31 @@ export const DeleteDestinationResponseBody$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace DeleteDestinationResponseBody$ {
-  /** @deprecated use `DeleteDestinationResponseBody$inboundSchema` instead. */
-  export const inboundSchema = DeleteDestinationResponseBody$inboundSchema;
-  /** @deprecated use `DeleteDestinationResponseBody$outboundSchema` instead. */
-  export const outboundSchema = DeleteDestinationResponseBody$outboundSchema;
-  /** @deprecated use `DeleteDestinationResponseBody$Outbound` instead. */
-  export type Outbound = DeleteDestinationResponseBody$Outbound;
+export namespace DeleteDestinationAPIProblem$ {
+  /** @deprecated use `DeleteDestinationAPIProblem$inboundSchema` instead. */
+  export const inboundSchema = DeleteDestinationAPIProblem$inboundSchema;
+  /** @deprecated use `DeleteDestinationAPIProblem$outboundSchema` instead. */
+  export const outboundSchema = DeleteDestinationAPIProblem$outboundSchema;
+  /** @deprecated use `DeleteDestinationAPIProblem$Outbound` instead. */
+  export type Outbound = DeleteDestinationAPIProblem$Outbound;
 }
 
-export function deleteDestinationResponseBodyToJSON(
-  deleteDestinationResponseBody: DeleteDestinationResponseBody,
+export function deleteDestinationAPIProblemToJSON(
+  deleteDestinationAPIProblem: DeleteDestinationAPIProblem,
 ): string {
   return JSON.stringify(
-    DeleteDestinationResponseBody$outboundSchema.parse(
-      deleteDestinationResponseBody,
+    DeleteDestinationAPIProblem$outboundSchema.parse(
+      deleteDestinationAPIProblem,
     ),
   );
 }
 
-export function deleteDestinationResponseBodyFromJSON(
+export function deleteDestinationAPIProblemFromJSON(
   jsonString: string,
-): SafeParseResult<DeleteDestinationResponseBody, SDKValidationError> {
+): SafeParseResult<DeleteDestinationAPIProblem, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => DeleteDestinationResponseBody$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'DeleteDestinationResponseBody' from JSON`,
+    (x) => DeleteDestinationAPIProblem$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'DeleteDestinationAPIProblem' from JSON`,
   );
 }

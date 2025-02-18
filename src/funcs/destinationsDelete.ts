@@ -33,7 +33,7 @@ export function destinationsDelete(
   options?: RequestOptions,
 ): APIPromise<
   Result<
-    operations.DeleteDestinationResponseBody | undefined,
+    operations.DeleteDestinationAPIProblem | undefined,
     | APIError
     | SDKValidationError
     | UnexpectedClientError
@@ -57,7 +57,7 @@ async function $do(
 ): Promise<
   [
     Result<
-      operations.DeleteDestinationResponseBody | undefined,
+      operations.DeleteDestinationAPIProblem | undefined,
       | APIError
       | SDKValidationError
       | UnexpectedClientError
@@ -158,7 +158,7 @@ async function $do(
   const response = doResult.value;
 
   const [result] = await M.match<
-    operations.DeleteDestinationResponseBody | undefined,
+    operations.DeleteDestinationAPIProblem | undefined,
     | APIError
     | SDKValidationError
     | UnexpectedClientError
@@ -167,15 +167,12 @@ async function $do(
     | RequestTimeoutError
     | ConnectionError
   >(
-    M.nil(
-      204,
-      operations.DeleteDestinationResponseBody$inboundSchema.optional(),
-    ),
+    M.nil(204, operations.DeleteDestinationAPIProblem$inboundSchema.optional()),
     M.fail("4XX"),
     M.fail("5XX"),
     M.json(
       "default",
-      operations.DeleteDestinationResponseBody$inboundSchema.optional(),
+      operations.DeleteDestinationAPIProblem$inboundSchema.optional(),
       { ctype: "application/problem+json" },
     ),
   )(response);

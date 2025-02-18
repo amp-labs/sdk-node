@@ -27,7 +27,7 @@ export type In = ClosedEnum<typeof In>;
  *
  * @remarks
  */
-export type Issues = {
+export type InputValidationIssue = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -120,7 +120,7 @@ export type Issues = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export type OauthConnectResponseBodyData = {
+export type OauthConnectInputValidationProblemData = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -192,7 +192,7 @@ export type OauthConnectResponseBodyData = {
    * Additional context for the problem
    */
   context?: { [k: string]: any } | undefined;
-  issues?: Array<Issues> | undefined;
+  issues?: Array<InputValidationIssue> | undefined;
 };
 
 /**
@@ -202,7 +202,7 @@ export type OauthConnectResponseBodyData = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export class OauthConnectResponseBody extends Error {
+export class OauthConnectInputValidationProblem extends Error {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -274,12 +274,12 @@ export class OauthConnectResponseBody extends Error {
    * Additional context for the problem
    */
   context?: { [k: string]: any } | undefined;
-  issues?: Array<Issues> | undefined;
+  issues?: Array<InputValidationIssue> | undefined;
 
   /** The original data that was passed to this error instance. */
-  data$: OauthConnectResponseBodyData;
+  data$: OauthConnectInputValidationProblemData;
 
-  constructor(err: OauthConnectResponseBodyData) {
+  constructor(err: OauthConnectInputValidationProblemData) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
@@ -305,7 +305,7 @@ export class OauthConnectResponseBody extends Error {
     if (err.context != null) this.context = err.context;
     if (err.issues != null) this.issues = err.issues;
 
-    this.name = "OauthConnectResponseBody";
+    this.name = "OauthConnectInputValidationProblem";
   }
 }
 
@@ -327,35 +327,37 @@ export namespace In$ {
 }
 
 /** @internal */
-export const Issues$inboundSchema: z.ZodType<Issues, z.ZodTypeDef, unknown> = z
-  .object({
-    type: z.string().default("about:blank"),
-    href: z.string().optional(),
-    title: z.string().optional(),
-    status: z.number().int().optional(),
-    detail: z.string().optional(),
-    instance: z.string().optional(),
-    subsystem: z.string().optional(),
-    time: z.string().datetime({ offset: true }).transform(v => new Date(v))
-      .optional(),
-    requestId: z.string().optional(),
-    causes: z.array(z.string()).optional(),
-    remedy: z.string().optional(),
-    supportEmail: z.string().optional(),
-    supportPhone: z.string().optional(),
-    supportUrl: z.string().optional(),
-    retryable: z.boolean().optional(),
-    retryAfter: z.string().datetime({ offset: true }).transform(v =>
-      new Date(v)
-    ).optional(),
-    context: z.record(z.any()).optional(),
-    in: In$inboundSchema.optional(),
-    name: z.string().optional(),
-    value: z.any().optional(),
-  });
+export const InputValidationIssue$inboundSchema: z.ZodType<
+  InputValidationIssue,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  type: z.string().default("about:blank"),
+  href: z.string().optional(),
+  title: z.string().optional(),
+  status: z.number().int().optional(),
+  detail: z.string().optional(),
+  instance: z.string().optional(),
+  subsystem: z.string().optional(),
+  time: z.string().datetime({ offset: true }).transform(v => new Date(v))
+    .optional(),
+  requestId: z.string().optional(),
+  causes: z.array(z.string()).optional(),
+  remedy: z.string().optional(),
+  supportEmail: z.string().optional(),
+  supportPhone: z.string().optional(),
+  supportUrl: z.string().optional(),
+  retryable: z.boolean().optional(),
+  retryAfter: z.string().datetime({ offset: true }).transform(v => new Date(v))
+    .optional(),
+  context: z.record(z.any()).optional(),
+  in: In$inboundSchema.optional(),
+  name: z.string().optional(),
+  value: z.any().optional(),
+});
 
 /** @internal */
-export type Issues$Outbound = {
+export type InputValidationIssue$Outbound = {
   type: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -379,10 +381,10 @@ export type Issues$Outbound = {
 };
 
 /** @internal */
-export const Issues$outboundSchema: z.ZodType<
-  Issues$Outbound,
+export const InputValidationIssue$outboundSchema: z.ZodType<
+  InputValidationIssue$Outbound,
   z.ZodTypeDef,
-  Issues
+  InputValidationIssue
 > = z.object({
   type: z.string().default("about:blank"),
   href: z.string().optional(),
@@ -410,32 +412,36 @@ export const Issues$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace Issues$ {
-  /** @deprecated use `Issues$inboundSchema` instead. */
-  export const inboundSchema = Issues$inboundSchema;
-  /** @deprecated use `Issues$outboundSchema` instead. */
-  export const outboundSchema = Issues$outboundSchema;
-  /** @deprecated use `Issues$Outbound` instead. */
-  export type Outbound = Issues$Outbound;
+export namespace InputValidationIssue$ {
+  /** @deprecated use `InputValidationIssue$inboundSchema` instead. */
+  export const inboundSchema = InputValidationIssue$inboundSchema;
+  /** @deprecated use `InputValidationIssue$outboundSchema` instead. */
+  export const outboundSchema = InputValidationIssue$outboundSchema;
+  /** @deprecated use `InputValidationIssue$Outbound` instead. */
+  export type Outbound = InputValidationIssue$Outbound;
 }
 
-export function issuesToJSON(issues: Issues): string {
-  return JSON.stringify(Issues$outboundSchema.parse(issues));
+export function inputValidationIssueToJSON(
+  inputValidationIssue: InputValidationIssue,
+): string {
+  return JSON.stringify(
+    InputValidationIssue$outboundSchema.parse(inputValidationIssue),
+  );
 }
 
-export function issuesFromJSON(
+export function inputValidationIssueFromJSON(
   jsonString: string,
-): SafeParseResult<Issues, SDKValidationError> {
+): SafeParseResult<InputValidationIssue, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => Issues$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Issues' from JSON`,
+    (x) => InputValidationIssue$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'InputValidationIssue' from JSON`,
   );
 }
 
 /** @internal */
-export const OauthConnectResponseBody$inboundSchema: z.ZodType<
-  OauthConnectResponseBody,
+export const OauthConnectInputValidationProblem$inboundSchema: z.ZodType<
+  OauthConnectInputValidationProblem,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -458,14 +464,14 @@ export const OauthConnectResponseBody$inboundSchema: z.ZodType<
   retryAfter: z.string().datetime({ offset: true }).transform(v => new Date(v))
     .optional(),
   context: z.record(z.any()).optional(),
-  issues: z.array(z.lazy(() => Issues$inboundSchema)).optional(),
+  issues: z.array(z.lazy(() => InputValidationIssue$inboundSchema)).optional(),
 })
   .transform((v) => {
-    return new OauthConnectResponseBody(v);
+    return new OauthConnectInputValidationProblem(v);
   });
 
 /** @internal */
-export type OauthConnectResponseBody$Outbound = {
+export type OauthConnectInputValidationProblem$Outbound = {
   type?: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -483,15 +489,15 @@ export type OauthConnectResponseBody$Outbound = {
   retryable?: boolean | undefined;
   retryAfter?: string | undefined;
   context?: { [k: string]: any } | undefined;
-  issues?: Array<Issues$Outbound> | undefined;
+  issues?: Array<InputValidationIssue$Outbound> | undefined;
 };
 
 /** @internal */
-export const OauthConnectResponseBody$outboundSchema: z.ZodType<
-  OauthConnectResponseBody$Outbound,
+export const OauthConnectInputValidationProblem$outboundSchema: z.ZodType<
+  OauthConnectInputValidationProblem$Outbound,
   z.ZodTypeDef,
-  OauthConnectResponseBody
-> = z.instanceof(OauthConnectResponseBody)
+  OauthConnectInputValidationProblem
+> = z.instanceof(OauthConnectInputValidationProblem)
   .transform(v => v.data$)
   .pipe(z.object({
     type: z.string().default("about:blank"),
@@ -511,18 +517,20 @@ export const OauthConnectResponseBody$outboundSchema: z.ZodType<
     retryable: z.boolean().optional(),
     retryAfter: z.date().transform(v => v.toISOString()).optional(),
     context: z.record(z.any()).optional(),
-    issues: z.array(z.lazy(() => Issues$outboundSchema)).optional(),
+    issues: z.array(z.lazy(() => InputValidationIssue$outboundSchema))
+      .optional(),
   }));
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace OauthConnectResponseBody$ {
-  /** @deprecated use `OauthConnectResponseBody$inboundSchema` instead. */
-  export const inboundSchema = OauthConnectResponseBody$inboundSchema;
-  /** @deprecated use `OauthConnectResponseBody$outboundSchema` instead. */
-  export const outboundSchema = OauthConnectResponseBody$outboundSchema;
-  /** @deprecated use `OauthConnectResponseBody$Outbound` instead. */
-  export type Outbound = OauthConnectResponseBody$Outbound;
+export namespace OauthConnectInputValidationProblem$ {
+  /** @deprecated use `OauthConnectInputValidationProblem$inboundSchema` instead. */
+  export const inboundSchema = OauthConnectInputValidationProblem$inboundSchema;
+  /** @deprecated use `OauthConnectInputValidationProblem$outboundSchema` instead. */
+  export const outboundSchema =
+    OauthConnectInputValidationProblem$outboundSchema;
+  /** @deprecated use `OauthConnectInputValidationProblem$Outbound` instead. */
+  export type Outbound = OauthConnectInputValidationProblem$Outbound;
 }

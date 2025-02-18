@@ -29,7 +29,7 @@ export type UpdateInstallationInstallationsIn = ClosedEnum<
  *
  * @remarks
  */
-export type UpdateInstallationInstallationsIssues = {
+export type UpdateInstallationInstallationsInputValidationIssue = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -122,7 +122,7 @@ export type UpdateInstallationInstallationsIssues = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export type UpdateInstallationInstallationsResponseBodyData = {
+export type UpdateInstallationInstallationsInputValidationProblemData = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -194,7 +194,9 @@ export type UpdateInstallationInstallationsResponseBodyData = {
    * Additional context for the problem
    */
   context?: { [k: string]: any } | undefined;
-  issues?: Array<UpdateInstallationInstallationsIssues> | undefined;
+  issues?:
+    | Array<UpdateInstallationInstallationsInputValidationIssue>
+    | undefined;
 };
 
 /**
@@ -204,7 +206,9 @@ export type UpdateInstallationInstallationsResponseBodyData = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export class UpdateInstallationInstallationsResponseBody extends Error {
+export class UpdateInstallationInstallationsInputValidationProblem
+  extends Error
+{
   /**
    * An absolute URI that identifies the problem type
    */
@@ -276,12 +280,14 @@ export class UpdateInstallationInstallationsResponseBody extends Error {
    * Additional context for the problem
    */
   context?: { [k: string]: any } | undefined;
-  issues?: Array<UpdateInstallationInstallationsIssues> | undefined;
+  issues?:
+    | Array<UpdateInstallationInstallationsInputValidationIssue>
+    | undefined;
 
   /** The original data that was passed to this error instance. */
-  data$: UpdateInstallationInstallationsResponseBodyData;
+  data$: UpdateInstallationInstallationsInputValidationProblemData;
 
-  constructor(err: UpdateInstallationInstallationsResponseBodyData) {
+  constructor(err: UpdateInstallationInstallationsInputValidationProblemData) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
@@ -307,7 +313,7 @@ export class UpdateInstallationInstallationsResponseBody extends Error {
     if (err.context != null) this.context = err.context;
     if (err.issues != null) this.issues = err.issues;
 
-    this.name = "UpdateInstallationInstallationsResponseBody";
+    this.name = "UpdateInstallationInstallationsInputValidationProblem";
   }
 }
 
@@ -330,7 +336,7 @@ export type UpdateInstallationIn = ClosedEnum<typeof UpdateInstallationIn>;
  *
  * @remarks
  */
-export type UpdateInstallationIssues = {
+export type UpdateInstallationInputValidationIssue = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -423,7 +429,7 @@ export type UpdateInstallationIssues = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export type UpdateInstallationResponseBodyData = {
+export type UpdateInstallationInputValidationProblemData = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -495,7 +501,7 @@ export type UpdateInstallationResponseBodyData = {
    * Additional context for the problem
    */
   context?: { [k: string]: any } | undefined;
-  issues?: Array<UpdateInstallationIssues> | undefined;
+  issues?: Array<UpdateInstallationInputValidationIssue> | undefined;
 };
 
 /**
@@ -505,7 +511,7 @@ export type UpdateInstallationResponseBodyData = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export class UpdateInstallationResponseBody extends Error {
+export class UpdateInstallationInputValidationProblem extends Error {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -577,12 +583,12 @@ export class UpdateInstallationResponseBody extends Error {
    * Additional context for the problem
    */
   context?: { [k: string]: any } | undefined;
-  issues?: Array<UpdateInstallationIssues> | undefined;
+  issues?: Array<UpdateInstallationInputValidationIssue> | undefined;
 
   /** The original data that was passed to this error instance. */
-  data$: UpdateInstallationResponseBodyData;
+  data$: UpdateInstallationInputValidationProblemData;
 
-  constructor(err: UpdateInstallationResponseBodyData) {
+  constructor(err: UpdateInstallationInputValidationProblemData) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
@@ -608,7 +614,7 @@ export class UpdateInstallationResponseBody extends Error {
     if (err.context != null) this.context = err.context;
     if (err.issues != null) this.issues = err.issues;
 
-    this.name = "UpdateInstallationResponseBody";
+    this.name = "UpdateInstallationInputValidationProblem";
   }
 }
 
@@ -635,37 +641,39 @@ export namespace UpdateInstallationInstallationsIn$ {
 }
 
 /** @internal */
-export const UpdateInstallationInstallationsIssues$inboundSchema: z.ZodType<
-  UpdateInstallationInstallationsIssues,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  type: z.string().default("about:blank"),
-  href: z.string().optional(),
-  title: z.string().optional(),
-  status: z.number().int().optional(),
-  detail: z.string().optional(),
-  instance: z.string().optional(),
-  subsystem: z.string().optional(),
-  time: z.string().datetime({ offset: true }).transform(v => new Date(v))
-    .optional(),
-  requestId: z.string().optional(),
-  causes: z.array(z.string()).optional(),
-  remedy: z.string().optional(),
-  supportEmail: z.string().optional(),
-  supportPhone: z.string().optional(),
-  supportUrl: z.string().optional(),
-  retryable: z.boolean().optional(),
-  retryAfter: z.string().datetime({ offset: true }).transform(v => new Date(v))
-    .optional(),
-  context: z.record(z.any()).optional(),
-  in: UpdateInstallationInstallationsIn$inboundSchema.optional(),
-  name: z.string().optional(),
-  value: z.any().optional(),
-});
+export const UpdateInstallationInstallationsInputValidationIssue$inboundSchema:
+  z.ZodType<
+    UpdateInstallationInstallationsInputValidationIssue,
+    z.ZodTypeDef,
+    unknown
+  > = z.object({
+    type: z.string().default("about:blank"),
+    href: z.string().optional(),
+    title: z.string().optional(),
+    status: z.number().int().optional(),
+    detail: z.string().optional(),
+    instance: z.string().optional(),
+    subsystem: z.string().optional(),
+    time: z.string().datetime({ offset: true }).transform(v => new Date(v))
+      .optional(),
+    requestId: z.string().optional(),
+    causes: z.array(z.string()).optional(),
+    remedy: z.string().optional(),
+    supportEmail: z.string().optional(),
+    supportPhone: z.string().optional(),
+    supportUrl: z.string().optional(),
+    retryable: z.boolean().optional(),
+    retryAfter: z.string().datetime({ offset: true }).transform(v =>
+      new Date(v)
+    ).optional(),
+    context: z.record(z.any()).optional(),
+    in: UpdateInstallationInstallationsIn$inboundSchema.optional(),
+    name: z.string().optional(),
+    value: z.any().optional(),
+  });
 
 /** @internal */
-export type UpdateInstallationInstallationsIssues$Outbound = {
+export type UpdateInstallationInstallationsInputValidationIssue$Outbound = {
   type: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -689,73 +697,81 @@ export type UpdateInstallationInstallationsIssues$Outbound = {
 };
 
 /** @internal */
-export const UpdateInstallationInstallationsIssues$outboundSchema: z.ZodType<
-  UpdateInstallationInstallationsIssues$Outbound,
-  z.ZodTypeDef,
-  UpdateInstallationInstallationsIssues
-> = z.object({
-  type: z.string().default("about:blank"),
-  href: z.string().optional(),
-  title: z.string().optional(),
-  status: z.number().int().optional(),
-  detail: z.string().optional(),
-  instance: z.string().optional(),
-  subsystem: z.string().optional(),
-  time: z.date().transform(v => v.toISOString()).optional(),
-  requestId: z.string().optional(),
-  causes: z.array(z.string()).optional(),
-  remedy: z.string().optional(),
-  supportEmail: z.string().optional(),
-  supportPhone: z.string().optional(),
-  supportUrl: z.string().optional(),
-  retryable: z.boolean().optional(),
-  retryAfter: z.date().transform(v => v.toISOString()).optional(),
-  context: z.record(z.any()).optional(),
-  in: UpdateInstallationInstallationsIn$outboundSchema.optional(),
-  name: z.string().optional(),
-  value: z.any().optional(),
-});
+export const UpdateInstallationInstallationsInputValidationIssue$outboundSchema:
+  z.ZodType<
+    UpdateInstallationInstallationsInputValidationIssue$Outbound,
+    z.ZodTypeDef,
+    UpdateInstallationInstallationsInputValidationIssue
+  > = z.object({
+    type: z.string().default("about:blank"),
+    href: z.string().optional(),
+    title: z.string().optional(),
+    status: z.number().int().optional(),
+    detail: z.string().optional(),
+    instance: z.string().optional(),
+    subsystem: z.string().optional(),
+    time: z.date().transform(v => v.toISOString()).optional(),
+    requestId: z.string().optional(),
+    causes: z.array(z.string()).optional(),
+    remedy: z.string().optional(),
+    supportEmail: z.string().optional(),
+    supportPhone: z.string().optional(),
+    supportUrl: z.string().optional(),
+    retryable: z.boolean().optional(),
+    retryAfter: z.date().transform(v => v.toISOString()).optional(),
+    context: z.record(z.any()).optional(),
+    in: UpdateInstallationInstallationsIn$outboundSchema.optional(),
+    name: z.string().optional(),
+    value: z.any().optional(),
+  });
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace UpdateInstallationInstallationsIssues$ {
-  /** @deprecated use `UpdateInstallationInstallationsIssues$inboundSchema` instead. */
+export namespace UpdateInstallationInstallationsInputValidationIssue$ {
+  /** @deprecated use `UpdateInstallationInstallationsInputValidationIssue$inboundSchema` instead. */
   export const inboundSchema =
-    UpdateInstallationInstallationsIssues$inboundSchema;
-  /** @deprecated use `UpdateInstallationInstallationsIssues$outboundSchema` instead. */
+    UpdateInstallationInstallationsInputValidationIssue$inboundSchema;
+  /** @deprecated use `UpdateInstallationInstallationsInputValidationIssue$outboundSchema` instead. */
   export const outboundSchema =
-    UpdateInstallationInstallationsIssues$outboundSchema;
-  /** @deprecated use `UpdateInstallationInstallationsIssues$Outbound` instead. */
-  export type Outbound = UpdateInstallationInstallationsIssues$Outbound;
+    UpdateInstallationInstallationsInputValidationIssue$outboundSchema;
+  /** @deprecated use `UpdateInstallationInstallationsInputValidationIssue$Outbound` instead. */
+  export type Outbound =
+    UpdateInstallationInstallationsInputValidationIssue$Outbound;
 }
 
-export function updateInstallationInstallationsIssuesToJSON(
-  updateInstallationInstallationsIssues: UpdateInstallationInstallationsIssues,
+export function updateInstallationInstallationsInputValidationIssueToJSON(
+  updateInstallationInstallationsInputValidationIssue:
+    UpdateInstallationInstallationsInputValidationIssue,
 ): string {
   return JSON.stringify(
-    UpdateInstallationInstallationsIssues$outboundSchema.parse(
-      updateInstallationInstallationsIssues,
+    UpdateInstallationInstallationsInputValidationIssue$outboundSchema.parse(
+      updateInstallationInstallationsInputValidationIssue,
     ),
   );
 }
 
-export function updateInstallationInstallationsIssuesFromJSON(
+export function updateInstallationInstallationsInputValidationIssueFromJSON(
   jsonString: string,
-): SafeParseResult<UpdateInstallationInstallationsIssues, SDKValidationError> {
+): SafeParseResult<
+  UpdateInstallationInstallationsInputValidationIssue,
+  SDKValidationError
+> {
   return safeParse(
     jsonString,
     (x) =>
-      UpdateInstallationInstallationsIssues$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'UpdateInstallationInstallationsIssues' from JSON`,
+      UpdateInstallationInstallationsInputValidationIssue$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'UpdateInstallationInstallationsInputValidationIssue' from JSON`,
   );
 }
 
 /** @internal */
-export const UpdateInstallationInstallationsResponseBody$inboundSchema:
+export const UpdateInstallationInstallationsInputValidationProblem$inboundSchema:
   z.ZodType<
-    UpdateInstallationInstallationsResponseBody,
+    UpdateInstallationInstallationsInputValidationProblem,
     z.ZodTypeDef,
     unknown
   > = z.object({
@@ -780,15 +796,17 @@ export const UpdateInstallationInstallationsResponseBody$inboundSchema:
     ).optional(),
     context: z.record(z.any()).optional(),
     issues: z.array(
-      z.lazy(() => UpdateInstallationInstallationsIssues$inboundSchema),
+      z.lazy(() =>
+        UpdateInstallationInstallationsInputValidationIssue$inboundSchema
+      ),
     ).optional(),
   })
     .transform((v) => {
-      return new UpdateInstallationInstallationsResponseBody(v);
+      return new UpdateInstallationInstallationsInputValidationProblem(v);
     });
 
 /** @internal */
-export type UpdateInstallationInstallationsResponseBody$Outbound = {
+export type UpdateInstallationInstallationsInputValidationProblem$Outbound = {
   type?: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -806,16 +824,18 @@ export type UpdateInstallationInstallationsResponseBody$Outbound = {
   retryable?: boolean | undefined;
   retryAfter?: string | undefined;
   context?: { [k: string]: any } | undefined;
-  issues?: Array<UpdateInstallationInstallationsIssues$Outbound> | undefined;
+  issues?:
+    | Array<UpdateInstallationInstallationsInputValidationIssue$Outbound>
+    | undefined;
 };
 
 /** @internal */
-export const UpdateInstallationInstallationsResponseBody$outboundSchema:
+export const UpdateInstallationInstallationsInputValidationProblem$outboundSchema:
   z.ZodType<
-    UpdateInstallationInstallationsResponseBody$Outbound,
+    UpdateInstallationInstallationsInputValidationProblem$Outbound,
     z.ZodTypeDef,
-    UpdateInstallationInstallationsResponseBody
-  > = z.instanceof(UpdateInstallationInstallationsResponseBody)
+    UpdateInstallationInstallationsInputValidationProblem
+  > = z.instanceof(UpdateInstallationInstallationsInputValidationProblem)
     .transform(v => v.data$)
     .pipe(z.object({
       type: z.string().default("about:blank"),
@@ -836,7 +856,9 @@ export const UpdateInstallationInstallationsResponseBody$outboundSchema:
       retryAfter: z.date().transform(v => v.toISOString()).optional(),
       context: z.record(z.any()).optional(),
       issues: z.array(
-        z.lazy(() => UpdateInstallationInstallationsIssues$outboundSchema),
+        z.lazy(() =>
+          UpdateInstallationInstallationsInputValidationIssue$outboundSchema
+        ),
       ).optional(),
     }));
 
@@ -844,15 +866,16 @@ export const UpdateInstallationInstallationsResponseBody$outboundSchema:
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace UpdateInstallationInstallationsResponseBody$ {
-  /** @deprecated use `UpdateInstallationInstallationsResponseBody$inboundSchema` instead. */
+export namespace UpdateInstallationInstallationsInputValidationProblem$ {
+  /** @deprecated use `UpdateInstallationInstallationsInputValidationProblem$inboundSchema` instead. */
   export const inboundSchema =
-    UpdateInstallationInstallationsResponseBody$inboundSchema;
-  /** @deprecated use `UpdateInstallationInstallationsResponseBody$outboundSchema` instead. */
+    UpdateInstallationInstallationsInputValidationProblem$inboundSchema;
+  /** @deprecated use `UpdateInstallationInstallationsInputValidationProblem$outboundSchema` instead. */
   export const outboundSchema =
-    UpdateInstallationInstallationsResponseBody$outboundSchema;
-  /** @deprecated use `UpdateInstallationInstallationsResponseBody$Outbound` instead. */
-  export type Outbound = UpdateInstallationInstallationsResponseBody$Outbound;
+    UpdateInstallationInstallationsInputValidationProblem$outboundSchema;
+  /** @deprecated use `UpdateInstallationInstallationsInputValidationProblem$Outbound` instead. */
+  export type Outbound =
+    UpdateInstallationInstallationsInputValidationProblem$Outbound;
 }
 
 /** @internal */
@@ -877,8 +900,8 @@ export namespace UpdateInstallationIn$ {
 }
 
 /** @internal */
-export const UpdateInstallationIssues$inboundSchema: z.ZodType<
-  UpdateInstallationIssues,
+export const UpdateInstallationInputValidationIssue$inboundSchema: z.ZodType<
+  UpdateInstallationInputValidationIssue,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -907,7 +930,7 @@ export const UpdateInstallationIssues$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type UpdateInstallationIssues$Outbound = {
+export type UpdateInstallationInputValidationIssue$Outbound = {
   type: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -931,10 +954,10 @@ export type UpdateInstallationIssues$Outbound = {
 };
 
 /** @internal */
-export const UpdateInstallationIssues$outboundSchema: z.ZodType<
-  UpdateInstallationIssues$Outbound,
+export const UpdateInstallationInputValidationIssue$outboundSchema: z.ZodType<
+  UpdateInstallationInputValidationIssue$Outbound,
   z.ZodTypeDef,
-  UpdateInstallationIssues
+  UpdateInstallationInputValidationIssue
 > = z.object({
   type: z.string().default("about:blank"),
   href: z.string().optional(),
@@ -962,36 +985,42 @@ export const UpdateInstallationIssues$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace UpdateInstallationIssues$ {
-  /** @deprecated use `UpdateInstallationIssues$inboundSchema` instead. */
-  export const inboundSchema = UpdateInstallationIssues$inboundSchema;
-  /** @deprecated use `UpdateInstallationIssues$outboundSchema` instead. */
-  export const outboundSchema = UpdateInstallationIssues$outboundSchema;
-  /** @deprecated use `UpdateInstallationIssues$Outbound` instead. */
-  export type Outbound = UpdateInstallationIssues$Outbound;
+export namespace UpdateInstallationInputValidationIssue$ {
+  /** @deprecated use `UpdateInstallationInputValidationIssue$inboundSchema` instead. */
+  export const inboundSchema =
+    UpdateInstallationInputValidationIssue$inboundSchema;
+  /** @deprecated use `UpdateInstallationInputValidationIssue$outboundSchema` instead. */
+  export const outboundSchema =
+    UpdateInstallationInputValidationIssue$outboundSchema;
+  /** @deprecated use `UpdateInstallationInputValidationIssue$Outbound` instead. */
+  export type Outbound = UpdateInstallationInputValidationIssue$Outbound;
 }
 
-export function updateInstallationIssuesToJSON(
-  updateInstallationIssues: UpdateInstallationIssues,
+export function updateInstallationInputValidationIssueToJSON(
+  updateInstallationInputValidationIssue:
+    UpdateInstallationInputValidationIssue,
 ): string {
   return JSON.stringify(
-    UpdateInstallationIssues$outboundSchema.parse(updateInstallationIssues),
+    UpdateInstallationInputValidationIssue$outboundSchema.parse(
+      updateInstallationInputValidationIssue,
+    ),
   );
 }
 
-export function updateInstallationIssuesFromJSON(
+export function updateInstallationInputValidationIssueFromJSON(
   jsonString: string,
-): SafeParseResult<UpdateInstallationIssues, SDKValidationError> {
+): SafeParseResult<UpdateInstallationInputValidationIssue, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => UpdateInstallationIssues$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'UpdateInstallationIssues' from JSON`,
+    (x) =>
+      UpdateInstallationInputValidationIssue$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'UpdateInstallationInputValidationIssue' from JSON`,
   );
 }
 
 /** @internal */
-export const UpdateInstallationResponseBody$inboundSchema: z.ZodType<
-  UpdateInstallationResponseBody,
+export const UpdateInstallationInputValidationProblem$inboundSchema: z.ZodType<
+  UpdateInstallationInputValidationProblem,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -1014,15 +1043,16 @@ export const UpdateInstallationResponseBody$inboundSchema: z.ZodType<
   retryAfter: z.string().datetime({ offset: true }).transform(v => new Date(v))
     .optional(),
   context: z.record(z.any()).optional(),
-  issues: z.array(z.lazy(() => UpdateInstallationIssues$inboundSchema))
-    .optional(),
+  issues: z.array(
+    z.lazy(() => UpdateInstallationInputValidationIssue$inboundSchema),
+  ).optional(),
 })
   .transform((v) => {
-    return new UpdateInstallationResponseBody(v);
+    return new UpdateInstallationInputValidationProblem(v);
   });
 
 /** @internal */
-export type UpdateInstallationResponseBody$Outbound = {
+export type UpdateInstallationInputValidationProblem$Outbound = {
   type?: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -1040,15 +1070,15 @@ export type UpdateInstallationResponseBody$Outbound = {
   retryable?: boolean | undefined;
   retryAfter?: string | undefined;
   context?: { [k: string]: any } | undefined;
-  issues?: Array<UpdateInstallationIssues$Outbound> | undefined;
+  issues?: Array<UpdateInstallationInputValidationIssue$Outbound> | undefined;
 };
 
 /** @internal */
-export const UpdateInstallationResponseBody$outboundSchema: z.ZodType<
-  UpdateInstallationResponseBody$Outbound,
+export const UpdateInstallationInputValidationProblem$outboundSchema: z.ZodType<
+  UpdateInstallationInputValidationProblem$Outbound,
   z.ZodTypeDef,
-  UpdateInstallationResponseBody
-> = z.instanceof(UpdateInstallationResponseBody)
+  UpdateInstallationInputValidationProblem
+> = z.instanceof(UpdateInstallationInputValidationProblem)
   .transform(v => v.data$)
   .pipe(z.object({
     type: z.string().default("about:blank"),
@@ -1068,19 +1098,22 @@ export const UpdateInstallationResponseBody$outboundSchema: z.ZodType<
     retryable: z.boolean().optional(),
     retryAfter: z.date().transform(v => v.toISOString()).optional(),
     context: z.record(z.any()).optional(),
-    issues: z.array(z.lazy(() => UpdateInstallationIssues$outboundSchema))
-      .optional(),
+    issues: z.array(
+      z.lazy(() => UpdateInstallationInputValidationIssue$outboundSchema),
+    ).optional(),
   }));
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace UpdateInstallationResponseBody$ {
-  /** @deprecated use `UpdateInstallationResponseBody$inboundSchema` instead. */
-  export const inboundSchema = UpdateInstallationResponseBody$inboundSchema;
-  /** @deprecated use `UpdateInstallationResponseBody$outboundSchema` instead. */
-  export const outboundSchema = UpdateInstallationResponseBody$outboundSchema;
-  /** @deprecated use `UpdateInstallationResponseBody$Outbound` instead. */
-  export type Outbound = UpdateInstallationResponseBody$Outbound;
+export namespace UpdateInstallationInputValidationProblem$ {
+  /** @deprecated use `UpdateInstallationInputValidationProblem$inboundSchema` instead. */
+  export const inboundSchema =
+    UpdateInstallationInputValidationProblem$inboundSchema;
+  /** @deprecated use `UpdateInstallationInputValidationProblem$outboundSchema` instead. */
+  export const outboundSchema =
+    UpdateInstallationInputValidationProblem$outboundSchema;
+  /** @deprecated use `UpdateInstallationInputValidationProblem$Outbound` instead. */
+  export type Outbound = UpdateInstallationInputValidationProblem$Outbound;
 }

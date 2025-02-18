@@ -38,7 +38,7 @@ export type GetObjectMetadataForConnectionRequest = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export type GetObjectMetadataForConnectionObjectsAndFieldsResponseBody = {
+export type GetObjectMetadataForConnectionAPIProblem = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -136,7 +136,7 @@ export type GetObjectMetadataForConnectionValueType = ClosedEnum<
 /**
  * Represents a field value
  */
-export type GetObjectMetadataForConnectionValues = {
+export type GetObjectMetadataForConnectionFieldValue = {
   /**
    * The internal value used by the system
    */
@@ -147,7 +147,7 @@ export type GetObjectMetadataForConnectionValues = {
   displayValue: string;
 };
 
-export type GetObjectMetadataForConnectionFields = {
+export type GetObjectMetadataForConnectionFieldMetadata = {
   /**
    * The name of the field from the provider API.
    */
@@ -171,13 +171,13 @@ export type GetObjectMetadataForConnectionFields = {
   /**
    * If the valueType is singleSelect or multiSelect, this is a list of possible values
    */
-  values?: Array<GetObjectMetadataForConnectionValues> | undefined;
+  values?: Array<GetObjectMetadataForConnectionFieldValue> | undefined;
 };
 
 /**
  * The retrieved object metadata
  */
-export type GetObjectMetadataForConnectionResponseBody = {
+export type GetObjectMetadataForConnectionObjectMetadata = {
   /**
    * The provider name of the object
    */
@@ -190,12 +190,12 @@ export type GetObjectMetadataForConnectionResponseBody = {
   /**
    * Map of field metadata keyed by field name
    */
-  fields: { [k: string]: GetObjectMetadataForConnectionFields };
+  fields: { [k: string]: GetObjectMetadataForConnectionFieldMetadata };
 };
 
 export type GetObjectMetadataForConnectionResponse =
-  | GetObjectMetadataForConnectionResponseBody
-  | GetObjectMetadataForConnectionObjectsAndFieldsResponseBody;
+  | GetObjectMetadataForConnectionObjectMetadata
+  | GetObjectMetadataForConnectionAPIProblem;
 
 /** @internal */
 export const GetObjectMetadataForConnectionRequest$inboundSchema: z.ZodType<
@@ -266,120 +266,117 @@ export function getObjectMetadataForConnectionRequestFromJSON(
 }
 
 /** @internal */
-export const GetObjectMetadataForConnectionObjectsAndFieldsResponseBody$inboundSchema:
-  z.ZodType<
-    GetObjectMetadataForConnectionObjectsAndFieldsResponseBody,
-    z.ZodTypeDef,
-    unknown
-  > = z.object({
-    type: z.string().default("about:blank"),
-    href: z.string().optional(),
-    title: z.string().optional(),
-    status: z.number().int().optional(),
-    detail: z.string().optional(),
-    instance: z.string().optional(),
-    subsystem: z.string().optional(),
-    time: z.string().datetime({ offset: true }).transform(v => new Date(v))
-      .optional(),
-    requestId: z.string().optional(),
-    causes: z.array(z.string()).optional(),
-    remedy: z.string().optional(),
-    supportEmail: z.string().optional(),
-    supportPhone: z.string().optional(),
-    supportUrl: z.string().optional(),
-    retryable: z.boolean().optional(),
-    retryAfter: z.string().datetime({ offset: true }).transform(v =>
-      new Date(v)
-    ).optional(),
-    context: z.record(z.any()).optional(),
-  });
+export const GetObjectMetadataForConnectionAPIProblem$inboundSchema: z.ZodType<
+  GetObjectMetadataForConnectionAPIProblem,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  type: z.string().default("about:blank"),
+  href: z.string().optional(),
+  title: z.string().optional(),
+  status: z.number().int().optional(),
+  detail: z.string().optional(),
+  instance: z.string().optional(),
+  subsystem: z.string().optional(),
+  time: z.string().datetime({ offset: true }).transform(v => new Date(v))
+    .optional(),
+  requestId: z.string().optional(),
+  causes: z.array(z.string()).optional(),
+  remedy: z.string().optional(),
+  supportEmail: z.string().optional(),
+  supportPhone: z.string().optional(),
+  supportUrl: z.string().optional(),
+  retryable: z.boolean().optional(),
+  retryAfter: z.string().datetime({ offset: true }).transform(v => new Date(v))
+    .optional(),
+  context: z.record(z.any()).optional(),
+});
 
 /** @internal */
-export type GetObjectMetadataForConnectionObjectsAndFieldsResponseBody$Outbound =
-  {
-    type: string;
-    href?: string | undefined;
-    title?: string | undefined;
-    status?: number | undefined;
-    detail?: string | undefined;
-    instance?: string | undefined;
-    subsystem?: string | undefined;
-    time?: string | undefined;
-    requestId?: string | undefined;
-    causes?: Array<string> | undefined;
-    remedy?: string | undefined;
-    supportEmail?: string | undefined;
-    supportPhone?: string | undefined;
-    supportUrl?: string | undefined;
-    retryable?: boolean | undefined;
-    retryAfter?: string | undefined;
-    context?: { [k: string]: any } | undefined;
-  };
+export type GetObjectMetadataForConnectionAPIProblem$Outbound = {
+  type: string;
+  href?: string | undefined;
+  title?: string | undefined;
+  status?: number | undefined;
+  detail?: string | undefined;
+  instance?: string | undefined;
+  subsystem?: string | undefined;
+  time?: string | undefined;
+  requestId?: string | undefined;
+  causes?: Array<string> | undefined;
+  remedy?: string | undefined;
+  supportEmail?: string | undefined;
+  supportPhone?: string | undefined;
+  supportUrl?: string | undefined;
+  retryable?: boolean | undefined;
+  retryAfter?: string | undefined;
+  context?: { [k: string]: any } | undefined;
+};
 
 /** @internal */
-export const GetObjectMetadataForConnectionObjectsAndFieldsResponseBody$outboundSchema:
-  z.ZodType<
-    GetObjectMetadataForConnectionObjectsAndFieldsResponseBody$Outbound,
-    z.ZodTypeDef,
-    GetObjectMetadataForConnectionObjectsAndFieldsResponseBody
-  > = z.object({
-    type: z.string().default("about:blank"),
-    href: z.string().optional(),
-    title: z.string().optional(),
-    status: z.number().int().optional(),
-    detail: z.string().optional(),
-    instance: z.string().optional(),
-    subsystem: z.string().optional(),
-    time: z.date().transform(v => v.toISOString()).optional(),
-    requestId: z.string().optional(),
-    causes: z.array(z.string()).optional(),
-    remedy: z.string().optional(),
-    supportEmail: z.string().optional(),
-    supportPhone: z.string().optional(),
-    supportUrl: z.string().optional(),
-    retryable: z.boolean().optional(),
-    retryAfter: z.date().transform(v => v.toISOString()).optional(),
-    context: z.record(z.any()).optional(),
-  });
+export const GetObjectMetadataForConnectionAPIProblem$outboundSchema: z.ZodType<
+  GetObjectMetadataForConnectionAPIProblem$Outbound,
+  z.ZodTypeDef,
+  GetObjectMetadataForConnectionAPIProblem
+> = z.object({
+  type: z.string().default("about:blank"),
+  href: z.string().optional(),
+  title: z.string().optional(),
+  status: z.number().int().optional(),
+  detail: z.string().optional(),
+  instance: z.string().optional(),
+  subsystem: z.string().optional(),
+  time: z.date().transform(v => v.toISOString()).optional(),
+  requestId: z.string().optional(),
+  causes: z.array(z.string()).optional(),
+  remedy: z.string().optional(),
+  supportEmail: z.string().optional(),
+  supportPhone: z.string().optional(),
+  supportUrl: z.string().optional(),
+  retryable: z.boolean().optional(),
+  retryAfter: z.date().transform(v => v.toISOString()).optional(),
+  context: z.record(z.any()).optional(),
+});
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace GetObjectMetadataForConnectionObjectsAndFieldsResponseBody$ {
-  /** @deprecated use `GetObjectMetadataForConnectionObjectsAndFieldsResponseBody$inboundSchema` instead. */
+export namespace GetObjectMetadataForConnectionAPIProblem$ {
+  /** @deprecated use `GetObjectMetadataForConnectionAPIProblem$inboundSchema` instead. */
   export const inboundSchema =
-    GetObjectMetadataForConnectionObjectsAndFieldsResponseBody$inboundSchema;
-  /** @deprecated use `GetObjectMetadataForConnectionObjectsAndFieldsResponseBody$outboundSchema` instead. */
+    GetObjectMetadataForConnectionAPIProblem$inboundSchema;
+  /** @deprecated use `GetObjectMetadataForConnectionAPIProblem$outboundSchema` instead. */
   export const outboundSchema =
-    GetObjectMetadataForConnectionObjectsAndFieldsResponseBody$outboundSchema;
-  /** @deprecated use `GetObjectMetadataForConnectionObjectsAndFieldsResponseBody$Outbound` instead. */
-  export type Outbound =
-    GetObjectMetadataForConnectionObjectsAndFieldsResponseBody$Outbound;
+    GetObjectMetadataForConnectionAPIProblem$outboundSchema;
+  /** @deprecated use `GetObjectMetadataForConnectionAPIProblem$Outbound` instead. */
+  export type Outbound = GetObjectMetadataForConnectionAPIProblem$Outbound;
 }
 
-export function getObjectMetadataForConnectionObjectsAndFieldsResponseBodyToJSON(
-  getObjectMetadataForConnectionObjectsAndFieldsResponseBody:
-    GetObjectMetadataForConnectionObjectsAndFieldsResponseBody,
+export function getObjectMetadataForConnectionAPIProblemToJSON(
+  getObjectMetadataForConnectionAPIProblem:
+    GetObjectMetadataForConnectionAPIProblem,
 ): string {
   return JSON.stringify(
-    GetObjectMetadataForConnectionObjectsAndFieldsResponseBody$outboundSchema
-      .parse(getObjectMetadataForConnectionObjectsAndFieldsResponseBody),
+    GetObjectMetadataForConnectionAPIProblem$outboundSchema.parse(
+      getObjectMetadataForConnectionAPIProblem,
+    ),
   );
 }
 
-export function getObjectMetadataForConnectionObjectsAndFieldsResponseBodyFromJSON(
+export function getObjectMetadataForConnectionAPIProblemFromJSON(
   jsonString: string,
 ): SafeParseResult<
-  GetObjectMetadataForConnectionObjectsAndFieldsResponseBody,
+  GetObjectMetadataForConnectionAPIProblem,
   SDKValidationError
 > {
   return safeParse(
     jsonString,
     (x) =>
-      GetObjectMetadataForConnectionObjectsAndFieldsResponseBody$inboundSchema
-        .parse(JSON.parse(x)),
-    `Failed to parse 'GetObjectMetadataForConnectionObjectsAndFieldsResponseBody' from JSON`,
+      GetObjectMetadataForConnectionAPIProblem$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'GetObjectMetadataForConnectionAPIProblem' from JSON`,
   );
 }
 
@@ -407,8 +404,8 @@ export namespace GetObjectMetadataForConnectionValueType$ {
 }
 
 /** @internal */
-export const GetObjectMetadataForConnectionValues$inboundSchema: z.ZodType<
-  GetObjectMetadataForConnectionValues,
+export const GetObjectMetadataForConnectionFieldValue$inboundSchema: z.ZodType<
+  GetObjectMetadataForConnectionFieldValue,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -417,16 +414,16 @@ export const GetObjectMetadataForConnectionValues$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type GetObjectMetadataForConnectionValues$Outbound = {
+export type GetObjectMetadataForConnectionFieldValue$Outbound = {
   value: string;
   displayValue: string;
 };
 
 /** @internal */
-export const GetObjectMetadataForConnectionValues$outboundSchema: z.ZodType<
-  GetObjectMetadataForConnectionValues$Outbound,
+export const GetObjectMetadataForConnectionFieldValue$outboundSchema: z.ZodType<
+  GetObjectMetadataForConnectionFieldValue$Outbound,
   z.ZodTypeDef,
-  GetObjectMetadataForConnectionValues
+  GetObjectMetadataForConnectionFieldValue
 > = z.object({
   value: z.string(),
   displayValue: z.string(),
@@ -436,148 +433,166 @@ export const GetObjectMetadataForConnectionValues$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace GetObjectMetadataForConnectionValues$ {
-  /** @deprecated use `GetObjectMetadataForConnectionValues$inboundSchema` instead. */
+export namespace GetObjectMetadataForConnectionFieldValue$ {
+  /** @deprecated use `GetObjectMetadataForConnectionFieldValue$inboundSchema` instead. */
   export const inboundSchema =
-    GetObjectMetadataForConnectionValues$inboundSchema;
-  /** @deprecated use `GetObjectMetadataForConnectionValues$outboundSchema` instead. */
+    GetObjectMetadataForConnectionFieldValue$inboundSchema;
+  /** @deprecated use `GetObjectMetadataForConnectionFieldValue$outboundSchema` instead. */
   export const outboundSchema =
-    GetObjectMetadataForConnectionValues$outboundSchema;
-  /** @deprecated use `GetObjectMetadataForConnectionValues$Outbound` instead. */
-  export type Outbound = GetObjectMetadataForConnectionValues$Outbound;
+    GetObjectMetadataForConnectionFieldValue$outboundSchema;
+  /** @deprecated use `GetObjectMetadataForConnectionFieldValue$Outbound` instead. */
+  export type Outbound = GetObjectMetadataForConnectionFieldValue$Outbound;
 }
 
-export function getObjectMetadataForConnectionValuesToJSON(
-  getObjectMetadataForConnectionValues: GetObjectMetadataForConnectionValues,
+export function getObjectMetadataForConnectionFieldValueToJSON(
+  getObjectMetadataForConnectionFieldValue:
+    GetObjectMetadataForConnectionFieldValue,
 ): string {
   return JSON.stringify(
-    GetObjectMetadataForConnectionValues$outboundSchema.parse(
-      getObjectMetadataForConnectionValues,
+    GetObjectMetadataForConnectionFieldValue$outboundSchema.parse(
+      getObjectMetadataForConnectionFieldValue,
     ),
   );
 }
 
-export function getObjectMetadataForConnectionValuesFromJSON(
+export function getObjectMetadataForConnectionFieldValueFromJSON(
   jsonString: string,
-): SafeParseResult<GetObjectMetadataForConnectionValues, SDKValidationError> {
+): SafeParseResult<
+  GetObjectMetadataForConnectionFieldValue,
+  SDKValidationError
+> {
   return safeParse(
     jsonString,
     (x) =>
-      GetObjectMetadataForConnectionValues$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetObjectMetadataForConnectionValues' from JSON`,
+      GetObjectMetadataForConnectionFieldValue$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'GetObjectMetadataForConnectionFieldValue' from JSON`,
   );
 }
 
 /** @internal */
-export const GetObjectMetadataForConnectionFields$inboundSchema: z.ZodType<
-  GetObjectMetadataForConnectionFields,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  fieldName: z.string(),
-  displayName: z.string(),
-  valueType: GetObjectMetadataForConnectionValueType$inboundSchema.optional(),
-  providerType: z.string().optional(),
-  readOnly: z.boolean().optional(),
-  values: z.array(
-    z.lazy(() => GetObjectMetadataForConnectionValues$inboundSchema),
-  ).optional(),
-});
+export const GetObjectMetadataForConnectionFieldMetadata$inboundSchema:
+  z.ZodType<
+    GetObjectMetadataForConnectionFieldMetadata,
+    z.ZodTypeDef,
+    unknown
+  > = z.object({
+    fieldName: z.string(),
+    displayName: z.string(),
+    valueType: GetObjectMetadataForConnectionValueType$inboundSchema.optional(),
+    providerType: z.string().optional(),
+    readOnly: z.boolean().optional(),
+    values: z.array(
+      z.lazy(() => GetObjectMetadataForConnectionFieldValue$inboundSchema),
+    ).optional(),
+  });
 
 /** @internal */
-export type GetObjectMetadataForConnectionFields$Outbound = {
+export type GetObjectMetadataForConnectionFieldMetadata$Outbound = {
   fieldName: string;
   displayName: string;
   valueType?: string | undefined;
   providerType?: string | undefined;
   readOnly?: boolean | undefined;
-  values?: Array<GetObjectMetadataForConnectionValues$Outbound> | undefined;
+  values?: Array<GetObjectMetadataForConnectionFieldValue$Outbound> | undefined;
 };
 
 /** @internal */
-export const GetObjectMetadataForConnectionFields$outboundSchema: z.ZodType<
-  GetObjectMetadataForConnectionFields$Outbound,
-  z.ZodTypeDef,
-  GetObjectMetadataForConnectionFields
-> = z.object({
-  fieldName: z.string(),
-  displayName: z.string(),
-  valueType: GetObjectMetadataForConnectionValueType$outboundSchema.optional(),
-  providerType: z.string().optional(),
-  readOnly: z.boolean().optional(),
-  values: z.array(
-    z.lazy(() => GetObjectMetadataForConnectionValues$outboundSchema),
-  ).optional(),
-});
+export const GetObjectMetadataForConnectionFieldMetadata$outboundSchema:
+  z.ZodType<
+    GetObjectMetadataForConnectionFieldMetadata$Outbound,
+    z.ZodTypeDef,
+    GetObjectMetadataForConnectionFieldMetadata
+  > = z.object({
+    fieldName: z.string(),
+    displayName: z.string(),
+    valueType: GetObjectMetadataForConnectionValueType$outboundSchema
+      .optional(),
+    providerType: z.string().optional(),
+    readOnly: z.boolean().optional(),
+    values: z.array(
+      z.lazy(() => GetObjectMetadataForConnectionFieldValue$outboundSchema),
+    ).optional(),
+  });
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace GetObjectMetadataForConnectionFields$ {
-  /** @deprecated use `GetObjectMetadataForConnectionFields$inboundSchema` instead. */
+export namespace GetObjectMetadataForConnectionFieldMetadata$ {
+  /** @deprecated use `GetObjectMetadataForConnectionFieldMetadata$inboundSchema` instead. */
   export const inboundSchema =
-    GetObjectMetadataForConnectionFields$inboundSchema;
-  /** @deprecated use `GetObjectMetadataForConnectionFields$outboundSchema` instead. */
+    GetObjectMetadataForConnectionFieldMetadata$inboundSchema;
+  /** @deprecated use `GetObjectMetadataForConnectionFieldMetadata$outboundSchema` instead. */
   export const outboundSchema =
-    GetObjectMetadataForConnectionFields$outboundSchema;
-  /** @deprecated use `GetObjectMetadataForConnectionFields$Outbound` instead. */
-  export type Outbound = GetObjectMetadataForConnectionFields$Outbound;
+    GetObjectMetadataForConnectionFieldMetadata$outboundSchema;
+  /** @deprecated use `GetObjectMetadataForConnectionFieldMetadata$Outbound` instead. */
+  export type Outbound = GetObjectMetadataForConnectionFieldMetadata$Outbound;
 }
 
-export function getObjectMetadataForConnectionFieldsToJSON(
-  getObjectMetadataForConnectionFields: GetObjectMetadataForConnectionFields,
+export function getObjectMetadataForConnectionFieldMetadataToJSON(
+  getObjectMetadataForConnectionFieldMetadata:
+    GetObjectMetadataForConnectionFieldMetadata,
 ): string {
   return JSON.stringify(
-    GetObjectMetadataForConnectionFields$outboundSchema.parse(
-      getObjectMetadataForConnectionFields,
+    GetObjectMetadataForConnectionFieldMetadata$outboundSchema.parse(
+      getObjectMetadataForConnectionFieldMetadata,
     ),
   );
 }
 
-export function getObjectMetadataForConnectionFieldsFromJSON(
+export function getObjectMetadataForConnectionFieldMetadataFromJSON(
   jsonString: string,
-): SafeParseResult<GetObjectMetadataForConnectionFields, SDKValidationError> {
+): SafeParseResult<
+  GetObjectMetadataForConnectionFieldMetadata,
+  SDKValidationError
+> {
   return safeParse(
     jsonString,
     (x) =>
-      GetObjectMetadataForConnectionFields$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetObjectMetadataForConnectionFields' from JSON`,
+      GetObjectMetadataForConnectionFieldMetadata$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'GetObjectMetadataForConnectionFieldMetadata' from JSON`,
   );
 }
 
 /** @internal */
-export const GetObjectMetadataForConnectionResponseBody$inboundSchema:
-  z.ZodType<GetObjectMetadataForConnectionResponseBody, z.ZodTypeDef, unknown> =
-    z.object({
-      name: z.string(),
-      displayName: z.string().optional(),
-      mappedObjectName: z.string().optional(),
-      fields: z.record(
-        z.lazy(() => GetObjectMetadataForConnectionFields$inboundSchema),
-      ),
-    });
-
-/** @internal */
-export type GetObjectMetadataForConnectionResponseBody$Outbound = {
-  name: string;
-  displayName?: string | undefined;
-  mappedObjectName?: string | undefined;
-  fields: { [k: string]: GetObjectMetadataForConnectionFields$Outbound };
-};
-
-/** @internal */
-export const GetObjectMetadataForConnectionResponseBody$outboundSchema:
+export const GetObjectMetadataForConnectionObjectMetadata$inboundSchema:
   z.ZodType<
-    GetObjectMetadataForConnectionResponseBody$Outbound,
+    GetObjectMetadataForConnectionObjectMetadata,
     z.ZodTypeDef,
-    GetObjectMetadataForConnectionResponseBody
+    unknown
   > = z.object({
     name: z.string(),
     displayName: z.string().optional(),
     mappedObjectName: z.string().optional(),
     fields: z.record(
-      z.lazy(() => GetObjectMetadataForConnectionFields$outboundSchema),
+      z.lazy(() => GetObjectMetadataForConnectionFieldMetadata$inboundSchema),
+    ),
+  });
+
+/** @internal */
+export type GetObjectMetadataForConnectionObjectMetadata$Outbound = {
+  name: string;
+  displayName?: string | undefined;
+  mappedObjectName?: string | undefined;
+  fields: { [k: string]: GetObjectMetadataForConnectionFieldMetadata$Outbound };
+};
+
+/** @internal */
+export const GetObjectMetadataForConnectionObjectMetadata$outboundSchema:
+  z.ZodType<
+    GetObjectMetadataForConnectionObjectMetadata$Outbound,
+    z.ZodTypeDef,
+    GetObjectMetadataForConnectionObjectMetadata
+  > = z.object({
+    name: z.string(),
+    displayName: z.string().optional(),
+    mappedObjectName: z.string().optional(),
+    fields: z.record(
+      z.lazy(() => GetObjectMetadataForConnectionFieldMetadata$outboundSchema),
     ),
   });
 
@@ -585,41 +600,41 @@ export const GetObjectMetadataForConnectionResponseBody$outboundSchema:
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace GetObjectMetadataForConnectionResponseBody$ {
-  /** @deprecated use `GetObjectMetadataForConnectionResponseBody$inboundSchema` instead. */
+export namespace GetObjectMetadataForConnectionObjectMetadata$ {
+  /** @deprecated use `GetObjectMetadataForConnectionObjectMetadata$inboundSchema` instead. */
   export const inboundSchema =
-    GetObjectMetadataForConnectionResponseBody$inboundSchema;
-  /** @deprecated use `GetObjectMetadataForConnectionResponseBody$outboundSchema` instead. */
+    GetObjectMetadataForConnectionObjectMetadata$inboundSchema;
+  /** @deprecated use `GetObjectMetadataForConnectionObjectMetadata$outboundSchema` instead. */
   export const outboundSchema =
-    GetObjectMetadataForConnectionResponseBody$outboundSchema;
-  /** @deprecated use `GetObjectMetadataForConnectionResponseBody$Outbound` instead. */
-  export type Outbound = GetObjectMetadataForConnectionResponseBody$Outbound;
+    GetObjectMetadataForConnectionObjectMetadata$outboundSchema;
+  /** @deprecated use `GetObjectMetadataForConnectionObjectMetadata$Outbound` instead. */
+  export type Outbound = GetObjectMetadataForConnectionObjectMetadata$Outbound;
 }
 
-export function getObjectMetadataForConnectionResponseBodyToJSON(
-  getObjectMetadataForConnectionResponseBody:
-    GetObjectMetadataForConnectionResponseBody,
+export function getObjectMetadataForConnectionObjectMetadataToJSON(
+  getObjectMetadataForConnectionObjectMetadata:
+    GetObjectMetadataForConnectionObjectMetadata,
 ): string {
   return JSON.stringify(
-    GetObjectMetadataForConnectionResponseBody$outboundSchema.parse(
-      getObjectMetadataForConnectionResponseBody,
+    GetObjectMetadataForConnectionObjectMetadata$outboundSchema.parse(
+      getObjectMetadataForConnectionObjectMetadata,
     ),
   );
 }
 
-export function getObjectMetadataForConnectionResponseBodyFromJSON(
+export function getObjectMetadataForConnectionObjectMetadataFromJSON(
   jsonString: string,
 ): SafeParseResult<
-  GetObjectMetadataForConnectionResponseBody,
+  GetObjectMetadataForConnectionObjectMetadata,
   SDKValidationError
 > {
   return safeParse(
     jsonString,
     (x) =>
-      GetObjectMetadataForConnectionResponseBody$inboundSchema.parse(
+      GetObjectMetadataForConnectionObjectMetadata$inboundSchema.parse(
         JSON.parse(x),
       ),
-    `Failed to parse 'GetObjectMetadataForConnectionResponseBody' from JSON`,
+    `Failed to parse 'GetObjectMetadataForConnectionObjectMetadata' from JSON`,
   );
 }
 
@@ -629,16 +644,14 @@ export const GetObjectMetadataForConnectionResponse$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.union([
-  z.lazy(() => GetObjectMetadataForConnectionResponseBody$inboundSchema),
-  z.lazy(() =>
-    GetObjectMetadataForConnectionObjectsAndFieldsResponseBody$inboundSchema
-  ),
+  z.lazy(() => GetObjectMetadataForConnectionObjectMetadata$inboundSchema),
+  z.lazy(() => GetObjectMetadataForConnectionAPIProblem$inboundSchema),
 ]);
 
 /** @internal */
 export type GetObjectMetadataForConnectionResponse$Outbound =
-  | GetObjectMetadataForConnectionResponseBody$Outbound
-  | GetObjectMetadataForConnectionObjectsAndFieldsResponseBody$Outbound;
+  | GetObjectMetadataForConnectionObjectMetadata$Outbound
+  | GetObjectMetadataForConnectionAPIProblem$Outbound;
 
 /** @internal */
 export const GetObjectMetadataForConnectionResponse$outboundSchema: z.ZodType<
@@ -646,10 +659,8 @@ export const GetObjectMetadataForConnectionResponse$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   GetObjectMetadataForConnectionResponse
 > = z.union([
-  z.lazy(() => GetObjectMetadataForConnectionResponseBody$outboundSchema),
-  z.lazy(() =>
-    GetObjectMetadataForConnectionObjectsAndFieldsResponseBody$outboundSchema
-  ),
+  z.lazy(() => GetObjectMetadataForConnectionObjectMetadata$outboundSchema),
+  z.lazy(() => GetObjectMetadataForConnectionAPIProblem$outboundSchema),
 ]);
 
 /**

@@ -27,7 +27,7 @@ export type DeleteProviderAppIn = ClosedEnum<typeof DeleteProviderAppIn>;
  *
  * @remarks
  */
-export type DeleteProviderAppIssues = {
+export type DeleteProviderAppInputValidationIssue = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -120,7 +120,7 @@ export type DeleteProviderAppIssues = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export type DeleteProviderAppResponseBodyData = {
+export type DeleteProviderAppInputValidationProblemData = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -192,7 +192,7 @@ export type DeleteProviderAppResponseBodyData = {
    * Additional context for the problem
    */
   context?: { [k: string]: any } | undefined;
-  issues?: Array<DeleteProviderAppIssues> | undefined;
+  issues?: Array<DeleteProviderAppInputValidationIssue> | undefined;
 };
 
 /**
@@ -202,7 +202,7 @@ export type DeleteProviderAppResponseBodyData = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export class DeleteProviderAppResponseBody extends Error {
+export class DeleteProviderAppInputValidationProblem extends Error {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -274,12 +274,12 @@ export class DeleteProviderAppResponseBody extends Error {
    * Additional context for the problem
    */
   context?: { [k: string]: any } | undefined;
-  issues?: Array<DeleteProviderAppIssues> | undefined;
+  issues?: Array<DeleteProviderAppInputValidationIssue> | undefined;
 
   /** The original data that was passed to this error instance. */
-  data$: DeleteProviderAppResponseBodyData;
+  data$: DeleteProviderAppInputValidationProblemData;
 
-  constructor(err: DeleteProviderAppResponseBodyData) {
+  constructor(err: DeleteProviderAppInputValidationProblemData) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
@@ -305,7 +305,7 @@ export class DeleteProviderAppResponseBody extends Error {
     if (err.context != null) this.context = err.context;
     if (err.issues != null) this.issues = err.issues;
 
-    this.name = "DeleteProviderAppResponseBody";
+    this.name = "DeleteProviderAppInputValidationProblem";
   }
 }
 
@@ -331,8 +331,8 @@ export namespace DeleteProviderAppIn$ {
 }
 
 /** @internal */
-export const DeleteProviderAppIssues$inboundSchema: z.ZodType<
-  DeleteProviderAppIssues,
+export const DeleteProviderAppInputValidationIssue$inboundSchema: z.ZodType<
+  DeleteProviderAppInputValidationIssue,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -361,7 +361,7 @@ export const DeleteProviderAppIssues$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type DeleteProviderAppIssues$Outbound = {
+export type DeleteProviderAppInputValidationIssue$Outbound = {
   type: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -385,10 +385,10 @@ export type DeleteProviderAppIssues$Outbound = {
 };
 
 /** @internal */
-export const DeleteProviderAppIssues$outboundSchema: z.ZodType<
-  DeleteProviderAppIssues$Outbound,
+export const DeleteProviderAppInputValidationIssue$outboundSchema: z.ZodType<
+  DeleteProviderAppInputValidationIssue$Outbound,
   z.ZodTypeDef,
-  DeleteProviderAppIssues
+  DeleteProviderAppInputValidationIssue
 > = z.object({
   type: z.string().default("about:blank"),
   href: z.string().optional(),
@@ -416,36 +416,41 @@ export const DeleteProviderAppIssues$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace DeleteProviderAppIssues$ {
-  /** @deprecated use `DeleteProviderAppIssues$inboundSchema` instead. */
-  export const inboundSchema = DeleteProviderAppIssues$inboundSchema;
-  /** @deprecated use `DeleteProviderAppIssues$outboundSchema` instead. */
-  export const outboundSchema = DeleteProviderAppIssues$outboundSchema;
-  /** @deprecated use `DeleteProviderAppIssues$Outbound` instead. */
-  export type Outbound = DeleteProviderAppIssues$Outbound;
+export namespace DeleteProviderAppInputValidationIssue$ {
+  /** @deprecated use `DeleteProviderAppInputValidationIssue$inboundSchema` instead. */
+  export const inboundSchema =
+    DeleteProviderAppInputValidationIssue$inboundSchema;
+  /** @deprecated use `DeleteProviderAppInputValidationIssue$outboundSchema` instead. */
+  export const outboundSchema =
+    DeleteProviderAppInputValidationIssue$outboundSchema;
+  /** @deprecated use `DeleteProviderAppInputValidationIssue$Outbound` instead. */
+  export type Outbound = DeleteProviderAppInputValidationIssue$Outbound;
 }
 
-export function deleteProviderAppIssuesToJSON(
-  deleteProviderAppIssues: DeleteProviderAppIssues,
+export function deleteProviderAppInputValidationIssueToJSON(
+  deleteProviderAppInputValidationIssue: DeleteProviderAppInputValidationIssue,
 ): string {
   return JSON.stringify(
-    DeleteProviderAppIssues$outboundSchema.parse(deleteProviderAppIssues),
+    DeleteProviderAppInputValidationIssue$outboundSchema.parse(
+      deleteProviderAppInputValidationIssue,
+    ),
   );
 }
 
-export function deleteProviderAppIssuesFromJSON(
+export function deleteProviderAppInputValidationIssueFromJSON(
   jsonString: string,
-): SafeParseResult<DeleteProviderAppIssues, SDKValidationError> {
+): SafeParseResult<DeleteProviderAppInputValidationIssue, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => DeleteProviderAppIssues$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'DeleteProviderAppIssues' from JSON`,
+    (x) =>
+      DeleteProviderAppInputValidationIssue$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'DeleteProviderAppInputValidationIssue' from JSON`,
   );
 }
 
 /** @internal */
-export const DeleteProviderAppResponseBody$inboundSchema: z.ZodType<
-  DeleteProviderAppResponseBody,
+export const DeleteProviderAppInputValidationProblem$inboundSchema: z.ZodType<
+  DeleteProviderAppInputValidationProblem,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -468,15 +473,16 @@ export const DeleteProviderAppResponseBody$inboundSchema: z.ZodType<
   retryAfter: z.string().datetime({ offset: true }).transform(v => new Date(v))
     .optional(),
   context: z.record(z.any()).optional(),
-  issues: z.array(z.lazy(() => DeleteProviderAppIssues$inboundSchema))
-    .optional(),
+  issues: z.array(
+    z.lazy(() => DeleteProviderAppInputValidationIssue$inboundSchema),
+  ).optional(),
 })
   .transform((v) => {
-    return new DeleteProviderAppResponseBody(v);
+    return new DeleteProviderAppInputValidationProblem(v);
   });
 
 /** @internal */
-export type DeleteProviderAppResponseBody$Outbound = {
+export type DeleteProviderAppInputValidationProblem$Outbound = {
   type?: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -494,15 +500,15 @@ export type DeleteProviderAppResponseBody$Outbound = {
   retryable?: boolean | undefined;
   retryAfter?: string | undefined;
   context?: { [k: string]: any } | undefined;
-  issues?: Array<DeleteProviderAppIssues$Outbound> | undefined;
+  issues?: Array<DeleteProviderAppInputValidationIssue$Outbound> | undefined;
 };
 
 /** @internal */
-export const DeleteProviderAppResponseBody$outboundSchema: z.ZodType<
-  DeleteProviderAppResponseBody$Outbound,
+export const DeleteProviderAppInputValidationProblem$outboundSchema: z.ZodType<
+  DeleteProviderAppInputValidationProblem$Outbound,
   z.ZodTypeDef,
-  DeleteProviderAppResponseBody
-> = z.instanceof(DeleteProviderAppResponseBody)
+  DeleteProviderAppInputValidationProblem
+> = z.instanceof(DeleteProviderAppInputValidationProblem)
   .transform(v => v.data$)
   .pipe(z.object({
     type: z.string().default("about:blank"),
@@ -522,19 +528,22 @@ export const DeleteProviderAppResponseBody$outboundSchema: z.ZodType<
     retryable: z.boolean().optional(),
     retryAfter: z.date().transform(v => v.toISOString()).optional(),
     context: z.record(z.any()).optional(),
-    issues: z.array(z.lazy(() => DeleteProviderAppIssues$outboundSchema))
-      .optional(),
+    issues: z.array(
+      z.lazy(() => DeleteProviderAppInputValidationIssue$outboundSchema),
+    ).optional(),
   }));
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace DeleteProviderAppResponseBody$ {
-  /** @deprecated use `DeleteProviderAppResponseBody$inboundSchema` instead. */
-  export const inboundSchema = DeleteProviderAppResponseBody$inboundSchema;
-  /** @deprecated use `DeleteProviderAppResponseBody$outboundSchema` instead. */
-  export const outboundSchema = DeleteProviderAppResponseBody$outboundSchema;
-  /** @deprecated use `DeleteProviderAppResponseBody$Outbound` instead. */
-  export type Outbound = DeleteProviderAppResponseBody$Outbound;
+export namespace DeleteProviderAppInputValidationProblem$ {
+  /** @deprecated use `DeleteProviderAppInputValidationProblem$inboundSchema` instead. */
+  export const inboundSchema =
+    DeleteProviderAppInputValidationProblem$inboundSchema;
+  /** @deprecated use `DeleteProviderAppInputValidationProblem$outboundSchema` instead. */
+  export const outboundSchema =
+    DeleteProviderAppInputValidationProblem$outboundSchema;
+  /** @deprecated use `DeleteProviderAppInputValidationProblem$Outbound` instead. */
+  export type Outbound = DeleteProviderAppInputValidationProblem$Outbound;
 }

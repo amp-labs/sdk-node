@@ -40,9 +40,9 @@ export function destinationsUpdate(
 ): APIPromise<
   Result<
     operations.UpdateDestinationResponse,
-    | errors.UpdateDestinationResponseBody
-    | errors.UpdateDestinationDestinationsResponseBody
-    | errors.UpdateDestinationDestinationsResponseResponseBody
+    | errors.UpdateDestinationInputValidationProblem
+    | errors.UpdateDestinationDestinationsInputValidationProblem
+    | errors.UpdateDestinationDestinationsResponseInputValidationProblem
     | APIError
     | SDKValidationError
     | UnexpectedClientError
@@ -67,9 +67,9 @@ async function $do(
   [
     Result<
       operations.UpdateDestinationResponse,
-      | errors.UpdateDestinationResponseBody
-      | errors.UpdateDestinationDestinationsResponseBody
-      | errors.UpdateDestinationDestinationsResponseResponseBody
+      | errors.UpdateDestinationInputValidationProblem
+      | errors.UpdateDestinationDestinationsInputValidationProblem
+      | errors.UpdateDestinationDestinationsResponseInputValidationProblem
       | APIError
       | SDKValidationError
       | UnexpectedClientError
@@ -177,9 +177,9 @@ async function $do(
 
   const [result] = await M.match<
     operations.UpdateDestinationResponse,
-    | errors.UpdateDestinationResponseBody
-    | errors.UpdateDestinationDestinationsResponseBody
-    | errors.UpdateDestinationDestinationsResponseResponseBody
+    | errors.UpdateDestinationInputValidationProblem
+    | errors.UpdateDestinationDestinationsInputValidationProblem
+    | errors.UpdateDestinationDestinationsResponseInputValidationProblem
     | APIError
     | SDKValidationError
     | UnexpectedClientError
@@ -189,17 +189,20 @@ async function $do(
     | ConnectionError
   >(
     M.json(200, operations.UpdateDestinationResponse$inboundSchema),
-    M.jsonErr(400, errors.UpdateDestinationResponseBody$inboundSchema, {
-      ctype: "application/problem+json",
-    }),
+    M.jsonErr(
+      400,
+      errors.UpdateDestinationInputValidationProblem$inboundSchema,
+      { ctype: "application/problem+json" },
+    ),
     M.jsonErr(
       404,
-      errors.UpdateDestinationDestinationsResponseBody$inboundSchema,
+      errors.UpdateDestinationDestinationsInputValidationProblem$inboundSchema,
       { ctype: "application/problem+json" },
     ),
     M.jsonErr(
       422,
-      errors.UpdateDestinationDestinationsResponseResponseBody$inboundSchema,
+      errors
+        .UpdateDestinationDestinationsResponseInputValidationProblem$inboundSchema,
       { ctype: "application/problem+json" },
     ),
     M.fail("4XX"),

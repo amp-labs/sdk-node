@@ -40,8 +40,8 @@ export function operationsListLogs(
 ): APIPromise<
   Result<
     operations.ListOperationLogsResponse,
-    | errors.ListOperationLogsResponseBody
-    | errors.ListOperationLogsOperationsResponseBody
+    | errors.ListOperationLogsInputValidationProblem
+    | errors.ListOperationLogsOperationsInputValidationProblem
     | APIError
     | SDKValidationError
     | UnexpectedClientError
@@ -66,8 +66,8 @@ async function $do(
   [
     Result<
       operations.ListOperationLogsResponse,
-      | errors.ListOperationLogsResponseBody
-      | errors.ListOperationLogsOperationsResponseBody
+      | errors.ListOperationLogsInputValidationProblem
+      | errors.ListOperationLogsOperationsInputValidationProblem
       | APIError
       | SDKValidationError
       | UnexpectedClientError
@@ -174,8 +174,8 @@ async function $do(
 
   const [result] = await M.match<
     operations.ListOperationLogsResponse,
-    | errors.ListOperationLogsResponseBody
-    | errors.ListOperationLogsOperationsResponseBody
+    | errors.ListOperationLogsInputValidationProblem
+    | errors.ListOperationLogsOperationsInputValidationProblem
     | APIError
     | SDKValidationError
     | UnexpectedClientError
@@ -185,12 +185,14 @@ async function $do(
     | ConnectionError
   >(
     M.json(200, operations.ListOperationLogsResponse$inboundSchema),
-    M.jsonErr(400, errors.ListOperationLogsResponseBody$inboundSchema, {
-      ctype: "application/problem+json",
-    }),
+    M.jsonErr(
+      400,
+      errors.ListOperationLogsInputValidationProblem$inboundSchema,
+      { ctype: "application/problem+json" },
+    ),
     M.jsonErr(
       422,
-      errors.ListOperationLogsOperationsResponseBody$inboundSchema,
+      errors.ListOperationLogsOperationsInputValidationProblem$inboundSchema,
       { ctype: "application/problem+json" },
     ),
     M.fail("4XX"),

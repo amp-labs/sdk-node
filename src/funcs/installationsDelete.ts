@@ -33,7 +33,7 @@ export function installationsDelete(
   options?: RequestOptions,
 ): APIPromise<
   Result<
-    operations.DeleteInstallationResponseBody | undefined,
+    operations.DeleteInstallationAPIProblem | undefined,
     | APIError
     | SDKValidationError
     | UnexpectedClientError
@@ -57,7 +57,7 @@ async function $do(
 ): Promise<
   [
     Result<
-      operations.DeleteInstallationResponseBody | undefined,
+      operations.DeleteInstallationAPIProblem | undefined,
       | APIError
       | SDKValidationError
       | UnexpectedClientError
@@ -162,7 +162,7 @@ async function $do(
   const response = doResult.value;
 
   const [result] = await M.match<
-    operations.DeleteInstallationResponseBody | undefined,
+    operations.DeleteInstallationAPIProblem | undefined,
     | APIError
     | SDKValidationError
     | UnexpectedClientError
@@ -173,13 +173,13 @@ async function $do(
   >(
     M.nil(
       204,
-      operations.DeleteInstallationResponseBody$inboundSchema.optional(),
+      operations.DeleteInstallationAPIProblem$inboundSchema.optional(),
     ),
     M.fail("4XX"),
     M.fail("5XX"),
     M.json(
       "default",
-      operations.DeleteInstallationResponseBody$inboundSchema.optional(),
+      operations.DeleteInstallationAPIProblem$inboundSchema.optional(),
       { ctype: "application/problem+json" },
     ),
   )(response);

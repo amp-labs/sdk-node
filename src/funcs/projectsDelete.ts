@@ -34,8 +34,8 @@ export function projectsDelete(
   options?: RequestOptions,
 ): APIPromise<
   Result<
-    operations.DeleteProjectResponseBody | undefined,
-    | errors.DeleteProjectResponseBody
+    operations.DeleteProjectAPIProblem | undefined,
+    | errors.DeleteProjectInputValidationProblem
     | APIError
     | SDKValidationError
     | UnexpectedClientError
@@ -59,8 +59,8 @@ async function $do(
 ): Promise<
   [
     Result<
-      operations.DeleteProjectResponseBody | undefined,
-      | errors.DeleteProjectResponseBody
+      operations.DeleteProjectAPIProblem | undefined,
+      | errors.DeleteProjectInputValidationProblem
       | APIError
       | SDKValidationError
       | UnexpectedClientError
@@ -157,8 +157,8 @@ async function $do(
   };
 
   const [result] = await M.match<
-    operations.DeleteProjectResponseBody | undefined,
-    | errors.DeleteProjectResponseBody
+    operations.DeleteProjectAPIProblem | undefined,
+    | errors.DeleteProjectInputValidationProblem
     | APIError
     | SDKValidationError
     | UnexpectedClientError
@@ -167,15 +167,15 @@ async function $do(
     | RequestTimeoutError
     | ConnectionError
   >(
-    M.nil(204, operations.DeleteProjectResponseBody$inboundSchema.optional()),
-    M.jsonErr(422, errors.DeleteProjectResponseBody$inboundSchema, {
+    M.nil(204, operations.DeleteProjectAPIProblem$inboundSchema.optional()),
+    M.jsonErr(422, errors.DeleteProjectInputValidationProblem$inboundSchema, {
       ctype: "application/problem+json",
     }),
     M.fail("4XX"),
     M.fail("5XX"),
     M.json(
       "default",
-      operations.DeleteProjectResponseBody$inboundSchema.optional(),
+      operations.DeleteProjectAPIProblem$inboundSchema.optional(),
       { ctype: "application/problem+json" },
     ),
   )(response, { extraFields: responseFields });

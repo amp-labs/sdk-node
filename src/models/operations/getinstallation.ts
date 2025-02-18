@@ -25,7 +25,7 @@ export type GetInstallationRequest = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export type GetInstallationInstallationsResponseBody = {
+export type GetInstallationAPIProblem = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -249,7 +249,7 @@ export type GetInstallationRefreshToken = {
   token: string;
 };
 
-export type GetInstallationOauth2AuthorizationCode = {
+export type GetInstallationOAuth2AuthorizationCodeToken = {
   /**
    * The access token for the connection.
    */
@@ -304,25 +304,27 @@ export type GetInstallationConnection = {
    * The status of the connection.
    */
   status: GetInstallationStatus;
-  oauth2AuthorizationCode?: GetInstallationOauth2AuthorizationCode | undefined;
+  oauth2AuthorizationCode?:
+    | GetInstallationOAuth2AuthorizationCodeToken
+    | undefined;
   /**
    * The API key used while making the connection.
    */
   apiKey?: string | undefined;
 };
 
-export type GetInstallationProxy = {
+export type GetInstallationBaseProxyConfig = {
   enabled?: boolean | undefined;
 };
 
-export type GetInstallationContent = {
+export type GetInstallationConfigContent = {
   /**
    * The SaaS API that we are integrating with.
    */
   provider: string;
   read?: any | undefined;
   write?: any | undefined;
-  proxy?: GetInstallationProxy | undefined;
+  proxy?: GetInstallationBaseProxyConfig | undefined;
 };
 
 export type GetInstallationConfig = {
@@ -342,13 +344,13 @@ export type GetInstallationConfig = {
    * The person who created the config, in the format of "consumer:{consumer-id}" or "builder:{builder-id}".
    */
   createdBy: string;
-  content: GetInstallationContent;
+  content: GetInstallationConfigContent;
 };
 
 /**
  * The installation
  */
-export type GetInstallationResponseBody = {
+export type GetInstallationInstallation = {
   /**
    * The installation ID.
    */
@@ -383,8 +385,8 @@ export type GetInstallationResponseBody = {
 };
 
 export type GetInstallationResponse =
-  | GetInstallationResponseBody
-  | GetInstallationInstallationsResponseBody;
+  | GetInstallationInstallation
+  | GetInstallationAPIProblem;
 
 /** @internal */
 export const GetInstallationRequest$inboundSchema: z.ZodType<
@@ -447,8 +449,8 @@ export function getInstallationRequestFromJSON(
 }
 
 /** @internal */
-export const GetInstallationInstallationsResponseBody$inboundSchema: z.ZodType<
-  GetInstallationInstallationsResponseBody,
+export const GetInstallationAPIProblem$inboundSchema: z.ZodType<
+  GetInstallationAPIProblem,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -474,7 +476,7 @@ export const GetInstallationInstallationsResponseBody$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type GetInstallationInstallationsResponseBody$Outbound = {
+export type GetInstallationAPIProblem$Outbound = {
   type: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -495,10 +497,10 @@ export type GetInstallationInstallationsResponseBody$Outbound = {
 };
 
 /** @internal */
-export const GetInstallationInstallationsResponseBody$outboundSchema: z.ZodType<
-  GetInstallationInstallationsResponseBody$Outbound,
+export const GetInstallationAPIProblem$outboundSchema: z.ZodType<
+  GetInstallationAPIProblem$Outbound,
   z.ZodTypeDef,
-  GetInstallationInstallationsResponseBody
+  GetInstallationAPIProblem
 > = z.object({
   type: z.string().default("about:blank"),
   href: z.string().optional(),
@@ -523,41 +525,30 @@ export const GetInstallationInstallationsResponseBody$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace GetInstallationInstallationsResponseBody$ {
-  /** @deprecated use `GetInstallationInstallationsResponseBody$inboundSchema` instead. */
-  export const inboundSchema =
-    GetInstallationInstallationsResponseBody$inboundSchema;
-  /** @deprecated use `GetInstallationInstallationsResponseBody$outboundSchema` instead. */
-  export const outboundSchema =
-    GetInstallationInstallationsResponseBody$outboundSchema;
-  /** @deprecated use `GetInstallationInstallationsResponseBody$Outbound` instead. */
-  export type Outbound = GetInstallationInstallationsResponseBody$Outbound;
+export namespace GetInstallationAPIProblem$ {
+  /** @deprecated use `GetInstallationAPIProblem$inboundSchema` instead. */
+  export const inboundSchema = GetInstallationAPIProblem$inboundSchema;
+  /** @deprecated use `GetInstallationAPIProblem$outboundSchema` instead. */
+  export const outboundSchema = GetInstallationAPIProblem$outboundSchema;
+  /** @deprecated use `GetInstallationAPIProblem$Outbound` instead. */
+  export type Outbound = GetInstallationAPIProblem$Outbound;
 }
 
-export function getInstallationInstallationsResponseBodyToJSON(
-  getInstallationInstallationsResponseBody:
-    GetInstallationInstallationsResponseBody,
+export function getInstallationAPIProblemToJSON(
+  getInstallationAPIProblem: GetInstallationAPIProblem,
 ): string {
   return JSON.stringify(
-    GetInstallationInstallationsResponseBody$outboundSchema.parse(
-      getInstallationInstallationsResponseBody,
-    ),
+    GetInstallationAPIProblem$outboundSchema.parse(getInstallationAPIProblem),
   );
 }
 
-export function getInstallationInstallationsResponseBodyFromJSON(
+export function getInstallationAPIProblemFromJSON(
   jsonString: string,
-): SafeParseResult<
-  GetInstallationInstallationsResponseBody,
-  SDKValidationError
-> {
+): SafeParseResult<GetInstallationAPIProblem, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) =>
-      GetInstallationInstallationsResponseBody$inboundSchema.parse(
-        JSON.parse(x),
-      ),
-    `Failed to parse 'GetInstallationInstallationsResponseBody' from JSON`,
+    (x) => GetInstallationAPIProblem$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetInstallationAPIProblem' from JSON`,
   );
 }
 
@@ -994,72 +985,79 @@ export function getInstallationRefreshTokenFromJSON(
 }
 
 /** @internal */
-export const GetInstallationOauth2AuthorizationCode$inboundSchema: z.ZodType<
-  GetInstallationOauth2AuthorizationCode,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  accessToken: z.lazy(() => GetInstallationAccessToken$inboundSchema)
-    .optional(),
-  refreshToken: z.lazy(() => GetInstallationRefreshToken$inboundSchema)
-    .optional(),
-  scopes: z.array(z.string()).optional(),
-});
+export const GetInstallationOAuth2AuthorizationCodeToken$inboundSchema:
+  z.ZodType<
+    GetInstallationOAuth2AuthorizationCodeToken,
+    z.ZodTypeDef,
+    unknown
+  > = z.object({
+    accessToken: z.lazy(() => GetInstallationAccessToken$inboundSchema)
+      .optional(),
+    refreshToken: z.lazy(() => GetInstallationRefreshToken$inboundSchema)
+      .optional(),
+    scopes: z.array(z.string()).optional(),
+  });
 
 /** @internal */
-export type GetInstallationOauth2AuthorizationCode$Outbound = {
+export type GetInstallationOAuth2AuthorizationCodeToken$Outbound = {
   accessToken?: GetInstallationAccessToken$Outbound | undefined;
   refreshToken?: GetInstallationRefreshToken$Outbound | undefined;
   scopes?: Array<string> | undefined;
 };
 
 /** @internal */
-export const GetInstallationOauth2AuthorizationCode$outboundSchema: z.ZodType<
-  GetInstallationOauth2AuthorizationCode$Outbound,
-  z.ZodTypeDef,
-  GetInstallationOauth2AuthorizationCode
-> = z.object({
-  accessToken: z.lazy(() => GetInstallationAccessToken$outboundSchema)
-    .optional(),
-  refreshToken: z.lazy(() => GetInstallationRefreshToken$outboundSchema)
-    .optional(),
-  scopes: z.array(z.string()).optional(),
-});
+export const GetInstallationOAuth2AuthorizationCodeToken$outboundSchema:
+  z.ZodType<
+    GetInstallationOAuth2AuthorizationCodeToken$Outbound,
+    z.ZodTypeDef,
+    GetInstallationOAuth2AuthorizationCodeToken
+  > = z.object({
+    accessToken: z.lazy(() => GetInstallationAccessToken$outboundSchema)
+      .optional(),
+    refreshToken: z.lazy(() => GetInstallationRefreshToken$outboundSchema)
+      .optional(),
+    scopes: z.array(z.string()).optional(),
+  });
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace GetInstallationOauth2AuthorizationCode$ {
-  /** @deprecated use `GetInstallationOauth2AuthorizationCode$inboundSchema` instead. */
+export namespace GetInstallationOAuth2AuthorizationCodeToken$ {
+  /** @deprecated use `GetInstallationOAuth2AuthorizationCodeToken$inboundSchema` instead. */
   export const inboundSchema =
-    GetInstallationOauth2AuthorizationCode$inboundSchema;
-  /** @deprecated use `GetInstallationOauth2AuthorizationCode$outboundSchema` instead. */
+    GetInstallationOAuth2AuthorizationCodeToken$inboundSchema;
+  /** @deprecated use `GetInstallationOAuth2AuthorizationCodeToken$outboundSchema` instead. */
   export const outboundSchema =
-    GetInstallationOauth2AuthorizationCode$outboundSchema;
-  /** @deprecated use `GetInstallationOauth2AuthorizationCode$Outbound` instead. */
-  export type Outbound = GetInstallationOauth2AuthorizationCode$Outbound;
+    GetInstallationOAuth2AuthorizationCodeToken$outboundSchema;
+  /** @deprecated use `GetInstallationOAuth2AuthorizationCodeToken$Outbound` instead. */
+  export type Outbound = GetInstallationOAuth2AuthorizationCodeToken$Outbound;
 }
 
-export function getInstallationOauth2AuthorizationCodeToJSON(
-  getInstallationOauth2AuthorizationCode:
-    GetInstallationOauth2AuthorizationCode,
+export function getInstallationOAuth2AuthorizationCodeTokenToJSON(
+  getInstallationOAuth2AuthorizationCodeToken:
+    GetInstallationOAuth2AuthorizationCodeToken,
 ): string {
   return JSON.stringify(
-    GetInstallationOauth2AuthorizationCode$outboundSchema.parse(
-      getInstallationOauth2AuthorizationCode,
+    GetInstallationOAuth2AuthorizationCodeToken$outboundSchema.parse(
+      getInstallationOAuth2AuthorizationCodeToken,
     ),
   );
 }
 
-export function getInstallationOauth2AuthorizationCodeFromJSON(
+export function getInstallationOAuth2AuthorizationCodeTokenFromJSON(
   jsonString: string,
-): SafeParseResult<GetInstallationOauth2AuthorizationCode, SDKValidationError> {
+): SafeParseResult<
+  GetInstallationOAuth2AuthorizationCodeToken,
+  SDKValidationError
+> {
   return safeParse(
     jsonString,
     (x) =>
-      GetInstallationOauth2AuthorizationCode$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetInstallationOauth2AuthorizationCode' from JSON`,
+      GetInstallationOAuth2AuthorizationCodeToken$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'GetInstallationOAuth2AuthorizationCodeToken' from JSON`,
   );
 }
 
@@ -1084,7 +1082,7 @@ export const GetInstallationConnection$inboundSchema: z.ZodType<
   authScheme: GetInstallationAuthScheme$inboundSchema,
   status: GetInstallationStatus$inboundSchema,
   oauth2AuthorizationCode: z.lazy(() =>
-    GetInstallationOauth2AuthorizationCode$inboundSchema
+    GetInstallationOAuth2AuthorizationCodeToken$inboundSchema
   ).optional(),
   apiKey: z.string().optional(),
 });
@@ -1104,7 +1102,7 @@ export type GetInstallationConnection$Outbound = {
   authScheme: string;
   status: string;
   oauth2AuthorizationCode?:
-    | GetInstallationOauth2AuthorizationCode$Outbound
+    | GetInstallationOAuth2AuthorizationCodeToken$Outbound
     | undefined;
   apiKey?: string | undefined;
 };
@@ -1129,7 +1127,7 @@ export const GetInstallationConnection$outboundSchema: z.ZodType<
   authScheme: GetInstallationAuthScheme$outboundSchema,
   status: GetInstallationStatus$outboundSchema,
   oauth2AuthorizationCode: z.lazy(() =>
-    GetInstallationOauth2AuthorizationCode$outboundSchema
+    GetInstallationOAuth2AuthorizationCodeToken$outboundSchema
   ).optional(),
   apiKey: z.string().optional(),
 });
@@ -1166,8 +1164,8 @@ export function getInstallationConnectionFromJSON(
 }
 
 /** @internal */
-export const GetInstallationProxy$inboundSchema: z.ZodType<
-  GetInstallationProxy,
+export const GetInstallationBaseProxyConfig$inboundSchema: z.ZodType<
+  GetInstallationBaseProxyConfig,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -1175,15 +1173,15 @@ export const GetInstallationProxy$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type GetInstallationProxy$Outbound = {
+export type GetInstallationBaseProxyConfig$Outbound = {
   enabled?: boolean | undefined;
 };
 
 /** @internal */
-export const GetInstallationProxy$outboundSchema: z.ZodType<
-  GetInstallationProxy$Outbound,
+export const GetInstallationBaseProxyConfig$outboundSchema: z.ZodType<
+  GetInstallationBaseProxyConfig$Outbound,
   z.ZodTypeDef,
-  GetInstallationProxy
+  GetInstallationBaseProxyConfig
 > = z.object({
   enabled: z.boolean().optional(),
 });
@@ -1192,93 +1190,97 @@ export const GetInstallationProxy$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace GetInstallationProxy$ {
-  /** @deprecated use `GetInstallationProxy$inboundSchema` instead. */
-  export const inboundSchema = GetInstallationProxy$inboundSchema;
-  /** @deprecated use `GetInstallationProxy$outboundSchema` instead. */
-  export const outboundSchema = GetInstallationProxy$outboundSchema;
-  /** @deprecated use `GetInstallationProxy$Outbound` instead. */
-  export type Outbound = GetInstallationProxy$Outbound;
+export namespace GetInstallationBaseProxyConfig$ {
+  /** @deprecated use `GetInstallationBaseProxyConfig$inboundSchema` instead. */
+  export const inboundSchema = GetInstallationBaseProxyConfig$inboundSchema;
+  /** @deprecated use `GetInstallationBaseProxyConfig$outboundSchema` instead. */
+  export const outboundSchema = GetInstallationBaseProxyConfig$outboundSchema;
+  /** @deprecated use `GetInstallationBaseProxyConfig$Outbound` instead. */
+  export type Outbound = GetInstallationBaseProxyConfig$Outbound;
 }
 
-export function getInstallationProxyToJSON(
-  getInstallationProxy: GetInstallationProxy,
+export function getInstallationBaseProxyConfigToJSON(
+  getInstallationBaseProxyConfig: GetInstallationBaseProxyConfig,
 ): string {
   return JSON.stringify(
-    GetInstallationProxy$outboundSchema.parse(getInstallationProxy),
+    GetInstallationBaseProxyConfig$outboundSchema.parse(
+      getInstallationBaseProxyConfig,
+    ),
   );
 }
 
-export function getInstallationProxyFromJSON(
+export function getInstallationBaseProxyConfigFromJSON(
   jsonString: string,
-): SafeParseResult<GetInstallationProxy, SDKValidationError> {
+): SafeParseResult<GetInstallationBaseProxyConfig, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => GetInstallationProxy$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetInstallationProxy' from JSON`,
+    (x) => GetInstallationBaseProxyConfig$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetInstallationBaseProxyConfig' from JSON`,
   );
 }
 
 /** @internal */
-export const GetInstallationContent$inboundSchema: z.ZodType<
-  GetInstallationContent,
+export const GetInstallationConfigContent$inboundSchema: z.ZodType<
+  GetInstallationConfigContent,
   z.ZodTypeDef,
   unknown
 > = z.object({
   provider: z.string(),
   read: z.any().optional(),
   write: z.any().optional(),
-  proxy: z.lazy(() => GetInstallationProxy$inboundSchema).optional(),
+  proxy: z.lazy(() => GetInstallationBaseProxyConfig$inboundSchema).optional(),
 });
 
 /** @internal */
-export type GetInstallationContent$Outbound = {
+export type GetInstallationConfigContent$Outbound = {
   provider: string;
   read?: any | undefined;
   write?: any | undefined;
-  proxy?: GetInstallationProxy$Outbound | undefined;
+  proxy?: GetInstallationBaseProxyConfig$Outbound | undefined;
 };
 
 /** @internal */
-export const GetInstallationContent$outboundSchema: z.ZodType<
-  GetInstallationContent$Outbound,
+export const GetInstallationConfigContent$outboundSchema: z.ZodType<
+  GetInstallationConfigContent$Outbound,
   z.ZodTypeDef,
-  GetInstallationContent
+  GetInstallationConfigContent
 > = z.object({
   provider: z.string(),
   read: z.any().optional(),
   write: z.any().optional(),
-  proxy: z.lazy(() => GetInstallationProxy$outboundSchema).optional(),
+  proxy: z.lazy(() => GetInstallationBaseProxyConfig$outboundSchema).optional(),
 });
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace GetInstallationContent$ {
-  /** @deprecated use `GetInstallationContent$inboundSchema` instead. */
-  export const inboundSchema = GetInstallationContent$inboundSchema;
-  /** @deprecated use `GetInstallationContent$outboundSchema` instead. */
-  export const outboundSchema = GetInstallationContent$outboundSchema;
-  /** @deprecated use `GetInstallationContent$Outbound` instead. */
-  export type Outbound = GetInstallationContent$Outbound;
+export namespace GetInstallationConfigContent$ {
+  /** @deprecated use `GetInstallationConfigContent$inboundSchema` instead. */
+  export const inboundSchema = GetInstallationConfigContent$inboundSchema;
+  /** @deprecated use `GetInstallationConfigContent$outboundSchema` instead. */
+  export const outboundSchema = GetInstallationConfigContent$outboundSchema;
+  /** @deprecated use `GetInstallationConfigContent$Outbound` instead. */
+  export type Outbound = GetInstallationConfigContent$Outbound;
 }
 
-export function getInstallationContentToJSON(
-  getInstallationContent: GetInstallationContent,
+export function getInstallationConfigContentToJSON(
+  getInstallationConfigContent: GetInstallationConfigContent,
 ): string {
   return JSON.stringify(
-    GetInstallationContent$outboundSchema.parse(getInstallationContent),
+    GetInstallationConfigContent$outboundSchema.parse(
+      getInstallationConfigContent,
+    ),
   );
 }
 
-export function getInstallationContentFromJSON(
+export function getInstallationConfigContentFromJSON(
   jsonString: string,
-): SafeParseResult<GetInstallationContent, SDKValidationError> {
+): SafeParseResult<GetInstallationConfigContent, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => GetInstallationContent$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetInstallationContent' from JSON`,
+    (x) => GetInstallationConfigContent$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetInstallationConfigContent' from JSON`,
   );
 }
 
@@ -1292,7 +1294,7 @@ export const GetInstallationConfig$inboundSchema: z.ZodType<
   revisionId: z.string(),
   createTime: z.string().datetime({ offset: true }).transform(v => new Date(v)),
   createdBy: z.string(),
-  content: z.lazy(() => GetInstallationContent$inboundSchema),
+  content: z.lazy(() => GetInstallationConfigContent$inboundSchema),
 });
 
 /** @internal */
@@ -1301,7 +1303,7 @@ export type GetInstallationConfig$Outbound = {
   revisionId: string;
   createTime: string;
   createdBy: string;
-  content: GetInstallationContent$Outbound;
+  content: GetInstallationConfigContent$Outbound;
 };
 
 /** @internal */
@@ -1314,7 +1316,7 @@ export const GetInstallationConfig$outboundSchema: z.ZodType<
   revisionId: z.string(),
   createTime: z.date().transform(v => v.toISOString()),
   createdBy: z.string(),
-  content: z.lazy(() => GetInstallationContent$outboundSchema),
+  content: z.lazy(() => GetInstallationConfigContent$outboundSchema),
 });
 
 /**
@@ -1349,8 +1351,8 @@ export function getInstallationConfigFromJSON(
 }
 
 /** @internal */
-export const GetInstallationResponseBody$inboundSchema: z.ZodType<
-  GetInstallationResponseBody,
+export const GetInstallationInstallation$inboundSchema: z.ZodType<
+  GetInstallationInstallation,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -1368,7 +1370,7 @@ export const GetInstallationResponseBody$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type GetInstallationResponseBody$Outbound = {
+export type GetInstallationInstallation$Outbound = {
   id: string;
   projectId: string;
   integrationId: string;
@@ -1382,10 +1384,10 @@ export type GetInstallationResponseBody$Outbound = {
 };
 
 /** @internal */
-export const GetInstallationResponseBody$outboundSchema: z.ZodType<
-  GetInstallationResponseBody$Outbound,
+export const GetInstallationInstallation$outboundSchema: z.ZodType<
+  GetInstallationInstallation$Outbound,
   z.ZodTypeDef,
-  GetInstallationResponseBody
+  GetInstallationInstallation
 > = z.object({
   id: z.string(),
   projectId: z.string(),
@@ -1403,32 +1405,32 @@ export const GetInstallationResponseBody$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace GetInstallationResponseBody$ {
-  /** @deprecated use `GetInstallationResponseBody$inboundSchema` instead. */
-  export const inboundSchema = GetInstallationResponseBody$inboundSchema;
-  /** @deprecated use `GetInstallationResponseBody$outboundSchema` instead. */
-  export const outboundSchema = GetInstallationResponseBody$outboundSchema;
-  /** @deprecated use `GetInstallationResponseBody$Outbound` instead. */
-  export type Outbound = GetInstallationResponseBody$Outbound;
+export namespace GetInstallationInstallation$ {
+  /** @deprecated use `GetInstallationInstallation$inboundSchema` instead. */
+  export const inboundSchema = GetInstallationInstallation$inboundSchema;
+  /** @deprecated use `GetInstallationInstallation$outboundSchema` instead. */
+  export const outboundSchema = GetInstallationInstallation$outboundSchema;
+  /** @deprecated use `GetInstallationInstallation$Outbound` instead. */
+  export type Outbound = GetInstallationInstallation$Outbound;
 }
 
-export function getInstallationResponseBodyToJSON(
-  getInstallationResponseBody: GetInstallationResponseBody,
+export function getInstallationInstallationToJSON(
+  getInstallationInstallation: GetInstallationInstallation,
 ): string {
   return JSON.stringify(
-    GetInstallationResponseBody$outboundSchema.parse(
-      getInstallationResponseBody,
+    GetInstallationInstallation$outboundSchema.parse(
+      getInstallationInstallation,
     ),
   );
 }
 
-export function getInstallationResponseBodyFromJSON(
+export function getInstallationInstallationFromJSON(
   jsonString: string,
-): SafeParseResult<GetInstallationResponseBody, SDKValidationError> {
+): SafeParseResult<GetInstallationInstallation, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => GetInstallationResponseBody$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetInstallationResponseBody' from JSON`,
+    (x) => GetInstallationInstallation$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetInstallationInstallation' from JSON`,
   );
 }
 
@@ -1438,14 +1440,14 @@ export const GetInstallationResponse$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.union([
-  z.lazy(() => GetInstallationResponseBody$inboundSchema),
-  z.lazy(() => GetInstallationInstallationsResponseBody$inboundSchema),
+  z.lazy(() => GetInstallationInstallation$inboundSchema),
+  z.lazy(() => GetInstallationAPIProblem$inboundSchema),
 ]);
 
 /** @internal */
 export type GetInstallationResponse$Outbound =
-  | GetInstallationResponseBody$Outbound
-  | GetInstallationInstallationsResponseBody$Outbound;
+  | GetInstallationInstallation$Outbound
+  | GetInstallationAPIProblem$Outbound;
 
 /** @internal */
 export const GetInstallationResponse$outboundSchema: z.ZodType<
@@ -1453,8 +1455,8 @@ export const GetInstallationResponse$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   GetInstallationResponse
 > = z.union([
-  z.lazy(() => GetInstallationResponseBody$outboundSchema),
-  z.lazy(() => GetInstallationInstallationsResponseBody$outboundSchema),
+  z.lazy(() => GetInstallationInstallation$outboundSchema),
+  z.lazy(() => GetInstallationAPIProblem$outboundSchema),
 ]);
 
 /**

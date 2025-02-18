@@ -40,7 +40,7 @@ export function destinationsGet(
 ): APIPromise<
   Result<
     operations.GetDestinationResponse,
-    | errors.GetDestinationResponseBody
+    | errors.GetDestinationInputValidationProblem
     | APIError
     | SDKValidationError
     | UnexpectedClientError
@@ -65,7 +65,7 @@ async function $do(
   [
     Result<
       operations.GetDestinationResponse,
-      | errors.GetDestinationResponseBody
+      | errors.GetDestinationInputValidationProblem
       | APIError
       | SDKValidationError
       | UnexpectedClientError
@@ -170,7 +170,7 @@ async function $do(
 
   const [result] = await M.match<
     operations.GetDestinationResponse,
-    | errors.GetDestinationResponseBody
+    | errors.GetDestinationInputValidationProblem
     | APIError
     | SDKValidationError
     | UnexpectedClientError
@@ -180,7 +180,7 @@ async function $do(
     | ConnectionError
   >(
     M.json(200, operations.GetDestinationResponse$inboundSchema),
-    M.jsonErr(404, errors.GetDestinationResponseBody$inboundSchema, {
+    M.jsonErr(404, errors.GetDestinationInputValidationProblem$inboundSchema, {
       ctype: "application/problem+json",
     }),
     M.fail("4XX"),

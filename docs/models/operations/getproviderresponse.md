@@ -3,10 +3,10 @@
 
 ## Supported Types
 
-### `operations.GetProviderResponseBody`
+### `operations.GetProviderProviderInfo`
 
 ```typescript
-const value: operations.GetProviderResponseBody = {
+const value: operations.GetProviderProviderInfo = {
   name: "<value>",
   authType: "apiKey",
   baseURL: "https://impure-department.com/",
@@ -79,10 +79,10 @@ const value: operations.GetProviderResponseBody = {
 };
 ```
 
-### `operations.GetProviderProvidersResponseBody`
+### `operations.GetProviderAPIProblem`
 
 ```typescript
-const value: operations.GetProviderProvidersResponseBody = {
+const value: operations.GetProviderAPIProblem = {
   href:
     "https://www.belgif.be/specification/rest/api-guide/#standardized-problem-types",
   title: "Description of the type of problem that occurred",

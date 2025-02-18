@@ -34,9 +34,9 @@ export function integrationsDelete(
   options?: RequestOptions,
 ): APIPromise<
   Result<
-    operations.DeleteIntegrationResponseBody | undefined,
-    | errors.DeleteIntegrationResponseBody
-    | errors.DeleteIntegrationIntegrationsResponseBody
+    operations.DeleteIntegrationAPIProblem | undefined,
+    | errors.DeleteIntegrationInputValidationProblem
+    | errors.DeleteIntegrationIntegrationsInputValidationProblem
     | APIError
     | SDKValidationError
     | UnexpectedClientError
@@ -60,9 +60,9 @@ async function $do(
 ): Promise<
   [
     Result<
-      operations.DeleteIntegrationResponseBody | undefined,
-      | errors.DeleteIntegrationResponseBody
-      | errors.DeleteIntegrationIntegrationsResponseBody
+      operations.DeleteIntegrationAPIProblem | undefined,
+      | errors.DeleteIntegrationInputValidationProblem
+      | errors.DeleteIntegrationIntegrationsInputValidationProblem
       | APIError
       | SDKValidationError
       | UnexpectedClientError
@@ -167,9 +167,9 @@ async function $do(
   };
 
   const [result] = await M.match<
-    operations.DeleteIntegrationResponseBody | undefined,
-    | errors.DeleteIntegrationResponseBody
-    | errors.DeleteIntegrationIntegrationsResponseBody
+    operations.DeleteIntegrationAPIProblem | undefined,
+    | errors.DeleteIntegrationInputValidationProblem
+    | errors.DeleteIntegrationIntegrationsInputValidationProblem
     | APIError
     | SDKValidationError
     | UnexpectedClientError
@@ -178,23 +178,22 @@ async function $do(
     | RequestTimeoutError
     | ConnectionError
   >(
-    M.nil(
-      204,
-      operations.DeleteIntegrationResponseBody$inboundSchema.optional(),
+    M.nil(204, operations.DeleteIntegrationAPIProblem$inboundSchema.optional()),
+    M.jsonErr(
+      404,
+      errors.DeleteIntegrationInputValidationProblem$inboundSchema,
+      { ctype: "application/problem+json" },
     ),
-    M.jsonErr(404, errors.DeleteIntegrationResponseBody$inboundSchema, {
-      ctype: "application/problem+json",
-    }),
     M.jsonErr(
       422,
-      errors.DeleteIntegrationIntegrationsResponseBody$inboundSchema,
+      errors.DeleteIntegrationIntegrationsInputValidationProblem$inboundSchema,
       { ctype: "application/problem+json" },
     ),
     M.fail("4XX"),
     M.fail("5XX"),
     M.json(
       "default",
-      operations.DeleteIntegrationResponseBody$inboundSchema.optional(),
+      operations.DeleteIntegrationAPIProblem$inboundSchema.optional(),
       { ctype: "application/problem+json" },
     ),
   )(response, { extraFields: responseFields });

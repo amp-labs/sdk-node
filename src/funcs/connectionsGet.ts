@@ -40,7 +40,7 @@ export function connectionsGet(
 ): APIPromise<
   Result<
     operations.GetConnectionResponse,
-    | errors.GetConnectionResponseBody
+    | errors.GetConnectionInputValidationProblem
     | APIError
     | SDKValidationError
     | UnexpectedClientError
@@ -65,7 +65,7 @@ async function $do(
   [
     Result<
       operations.GetConnectionResponse,
-      | errors.GetConnectionResponseBody
+      | errors.GetConnectionInputValidationProblem
       | APIError
       | SDKValidationError
       | UnexpectedClientError
@@ -177,7 +177,7 @@ async function $do(
 
   const [result] = await M.match<
     operations.GetConnectionResponse,
-    | errors.GetConnectionResponseBody
+    | errors.GetConnectionInputValidationProblem
     | APIError
     | SDKValidationError
     | UnexpectedClientError
@@ -187,7 +187,7 @@ async function $do(
     | ConnectionError
   >(
     M.json(200, operations.GetConnectionResponse$inboundSchema),
-    M.jsonErr(404, errors.GetConnectionResponseBody$inboundSchema, {
+    M.jsonErr(404, errors.GetConnectionInputValidationProblem$inboundSchema, {
       ctype: "application/problem+json",
     }),
     M.fail("4XX"),

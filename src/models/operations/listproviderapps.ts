@@ -22,7 +22,7 @@ export type ListProviderAppsRequest = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export type ListProviderAppsResponseBody = {
+export type ListProviderAppsAPIProblem = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -96,7 +96,7 @@ export type ListProviderAppsResponseBody = {
   context?: { [k: string]: any } | undefined;
 };
 
-export type ListProviderAppsProviderAppsResponseBody = {
+export type ListProviderAppsProviderApp = {
   /**
    * The provider app ID.
    */
@@ -132,8 +132,8 @@ export type ListProviderAppsProviderAppsResponseBody = {
 };
 
 export type ListProviderAppsResponse =
-  | ListProviderAppsResponseBody
-  | Array<ListProviderAppsProviderAppsResponseBody>;
+  | ListProviderAppsAPIProblem
+  | Array<ListProviderAppsProviderApp>;
 
 /** @internal */
 export const ListProviderAppsRequest$inboundSchema: z.ZodType<
@@ -190,8 +190,8 @@ export function listProviderAppsRequestFromJSON(
 }
 
 /** @internal */
-export const ListProviderAppsResponseBody$inboundSchema: z.ZodType<
-  ListProviderAppsResponseBody,
+export const ListProviderAppsAPIProblem$inboundSchema: z.ZodType<
+  ListProviderAppsAPIProblem,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -217,7 +217,7 @@ export const ListProviderAppsResponseBody$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type ListProviderAppsResponseBody$Outbound = {
+export type ListProviderAppsAPIProblem$Outbound = {
   type: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -238,10 +238,10 @@ export type ListProviderAppsResponseBody$Outbound = {
 };
 
 /** @internal */
-export const ListProviderAppsResponseBody$outboundSchema: z.ZodType<
-  ListProviderAppsResponseBody$Outbound,
+export const ListProviderAppsAPIProblem$outboundSchema: z.ZodType<
+  ListProviderAppsAPIProblem$Outbound,
   z.ZodTypeDef,
-  ListProviderAppsResponseBody
+  ListProviderAppsAPIProblem
 > = z.object({
   type: z.string().default("about:blank"),
   href: z.string().optional(),
@@ -266,38 +266,36 @@ export const ListProviderAppsResponseBody$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace ListProviderAppsResponseBody$ {
-  /** @deprecated use `ListProviderAppsResponseBody$inboundSchema` instead. */
-  export const inboundSchema = ListProviderAppsResponseBody$inboundSchema;
-  /** @deprecated use `ListProviderAppsResponseBody$outboundSchema` instead. */
-  export const outboundSchema = ListProviderAppsResponseBody$outboundSchema;
-  /** @deprecated use `ListProviderAppsResponseBody$Outbound` instead. */
-  export type Outbound = ListProviderAppsResponseBody$Outbound;
+export namespace ListProviderAppsAPIProblem$ {
+  /** @deprecated use `ListProviderAppsAPIProblem$inboundSchema` instead. */
+  export const inboundSchema = ListProviderAppsAPIProblem$inboundSchema;
+  /** @deprecated use `ListProviderAppsAPIProblem$outboundSchema` instead. */
+  export const outboundSchema = ListProviderAppsAPIProblem$outboundSchema;
+  /** @deprecated use `ListProviderAppsAPIProblem$Outbound` instead. */
+  export type Outbound = ListProviderAppsAPIProblem$Outbound;
 }
 
-export function listProviderAppsResponseBodyToJSON(
-  listProviderAppsResponseBody: ListProviderAppsResponseBody,
+export function listProviderAppsAPIProblemToJSON(
+  listProviderAppsAPIProblem: ListProviderAppsAPIProblem,
 ): string {
   return JSON.stringify(
-    ListProviderAppsResponseBody$outboundSchema.parse(
-      listProviderAppsResponseBody,
-    ),
+    ListProviderAppsAPIProblem$outboundSchema.parse(listProviderAppsAPIProblem),
   );
 }
 
-export function listProviderAppsResponseBodyFromJSON(
+export function listProviderAppsAPIProblemFromJSON(
   jsonString: string,
-): SafeParseResult<ListProviderAppsResponseBody, SDKValidationError> {
+): SafeParseResult<ListProviderAppsAPIProblem, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => ListProviderAppsResponseBody$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ListProviderAppsResponseBody' from JSON`,
+    (x) => ListProviderAppsAPIProblem$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListProviderAppsAPIProblem' from JSON`,
   );
 }
 
 /** @internal */
-export const ListProviderAppsProviderAppsResponseBody$inboundSchema: z.ZodType<
-  ListProviderAppsProviderAppsResponseBody,
+export const ListProviderAppsProviderApp$inboundSchema: z.ZodType<
+  ListProviderAppsProviderApp,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -313,7 +311,7 @@ export const ListProviderAppsProviderAppsResponseBody$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type ListProviderAppsProviderAppsResponseBody$Outbound = {
+export type ListProviderAppsProviderApp$Outbound = {
   id: string;
   projectId: string;
   externalRef?: string | undefined;
@@ -325,10 +323,10 @@ export type ListProviderAppsProviderAppsResponseBody$Outbound = {
 };
 
 /** @internal */
-export const ListProviderAppsProviderAppsResponseBody$outboundSchema: z.ZodType<
-  ListProviderAppsProviderAppsResponseBody$Outbound,
+export const ListProviderAppsProviderApp$outboundSchema: z.ZodType<
+  ListProviderAppsProviderApp$Outbound,
   z.ZodTypeDef,
-  ListProviderAppsProviderAppsResponseBody
+  ListProviderAppsProviderApp
 > = z.object({
   id: z.string(),
   projectId: z.string(),
@@ -344,41 +342,32 @@ export const ListProviderAppsProviderAppsResponseBody$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace ListProviderAppsProviderAppsResponseBody$ {
-  /** @deprecated use `ListProviderAppsProviderAppsResponseBody$inboundSchema` instead. */
-  export const inboundSchema =
-    ListProviderAppsProviderAppsResponseBody$inboundSchema;
-  /** @deprecated use `ListProviderAppsProviderAppsResponseBody$outboundSchema` instead. */
-  export const outboundSchema =
-    ListProviderAppsProviderAppsResponseBody$outboundSchema;
-  /** @deprecated use `ListProviderAppsProviderAppsResponseBody$Outbound` instead. */
-  export type Outbound = ListProviderAppsProviderAppsResponseBody$Outbound;
+export namespace ListProviderAppsProviderApp$ {
+  /** @deprecated use `ListProviderAppsProviderApp$inboundSchema` instead. */
+  export const inboundSchema = ListProviderAppsProviderApp$inboundSchema;
+  /** @deprecated use `ListProviderAppsProviderApp$outboundSchema` instead. */
+  export const outboundSchema = ListProviderAppsProviderApp$outboundSchema;
+  /** @deprecated use `ListProviderAppsProviderApp$Outbound` instead. */
+  export type Outbound = ListProviderAppsProviderApp$Outbound;
 }
 
-export function listProviderAppsProviderAppsResponseBodyToJSON(
-  listProviderAppsProviderAppsResponseBody:
-    ListProviderAppsProviderAppsResponseBody,
+export function listProviderAppsProviderAppToJSON(
+  listProviderAppsProviderApp: ListProviderAppsProviderApp,
 ): string {
   return JSON.stringify(
-    ListProviderAppsProviderAppsResponseBody$outboundSchema.parse(
-      listProviderAppsProviderAppsResponseBody,
+    ListProviderAppsProviderApp$outboundSchema.parse(
+      listProviderAppsProviderApp,
     ),
   );
 }
 
-export function listProviderAppsProviderAppsResponseBodyFromJSON(
+export function listProviderAppsProviderAppFromJSON(
   jsonString: string,
-): SafeParseResult<
-  ListProviderAppsProviderAppsResponseBody,
-  SDKValidationError
-> {
+): SafeParseResult<ListProviderAppsProviderApp, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) =>
-      ListProviderAppsProviderAppsResponseBody$inboundSchema.parse(
-        JSON.parse(x),
-      ),
-    `Failed to parse 'ListProviderAppsProviderAppsResponseBody' from JSON`,
+    (x) => ListProviderAppsProviderApp$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListProviderAppsProviderApp' from JSON`,
   );
 }
 
@@ -388,14 +377,14 @@ export const ListProviderAppsResponse$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.union([
-  z.lazy(() => ListProviderAppsResponseBody$inboundSchema),
-  z.array(z.lazy(() => ListProviderAppsProviderAppsResponseBody$inboundSchema)),
+  z.lazy(() => ListProviderAppsAPIProblem$inboundSchema),
+  z.array(z.lazy(() => ListProviderAppsProviderApp$inboundSchema)),
 ]);
 
 /** @internal */
 export type ListProviderAppsResponse$Outbound =
-  | ListProviderAppsResponseBody$Outbound
-  | Array<ListProviderAppsProviderAppsResponseBody$Outbound>;
+  | ListProviderAppsAPIProblem$Outbound
+  | Array<ListProviderAppsProviderApp$Outbound>;
 
 /** @internal */
 export const ListProviderAppsResponse$outboundSchema: z.ZodType<
@@ -403,10 +392,8 @@ export const ListProviderAppsResponse$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   ListProviderAppsResponse
 > = z.union([
-  z.lazy(() => ListProviderAppsResponseBody$outboundSchema),
-  z.array(
-    z.lazy(() => ListProviderAppsProviderAppsResponseBody$outboundSchema),
-  ),
+  z.lazy(() => ListProviderAppsAPIProblem$outboundSchema),
+  z.array(z.lazy(() => ListProviderAppsProviderApp$outboundSchema)),
 ]);
 
 /**

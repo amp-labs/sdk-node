@@ -40,7 +40,7 @@ export function connectionsList(
 ): APIPromise<
   Result<
     operations.ListConnectionsResponse,
-    | errors.ListConnectionsResponseBody
+    | errors.ListConnectionsInputValidationProblem
     | APIError
     | SDKValidationError
     | UnexpectedClientError
@@ -65,7 +65,7 @@ async function $do(
   [
     Result<
       operations.ListConnectionsResponse,
-      | errors.ListConnectionsResponseBody
+      | errors.ListConnectionsInputValidationProblem
       | APIError
       | SDKValidationError
       | UnexpectedClientError
@@ -173,7 +173,7 @@ async function $do(
 
   const [result] = await M.match<
     operations.ListConnectionsResponse,
-    | errors.ListConnectionsResponseBody
+    | errors.ListConnectionsInputValidationProblem
     | APIError
     | SDKValidationError
     | UnexpectedClientError
@@ -183,7 +183,7 @@ async function $do(
     | ConnectionError
   >(
     M.json(200, operations.ListConnectionsResponse$inboundSchema),
-    M.jsonErr(404, errors.ListConnectionsResponseBody$inboundSchema, {
+    M.jsonErr(404, errors.ListConnectionsInputValidationProblem$inboundSchema, {
       ctype: "application/problem+json",
     }),
     M.fail("4XX"),

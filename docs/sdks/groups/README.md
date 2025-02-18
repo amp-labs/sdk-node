@@ -84,11 +84,11 @@ run();
 
 ### Response
 
-**Promise\<[operations.CreateGroupResponseBody](../../models/operations/creategroupresponsebody.md)\>**
+**Promise\<[operations.CreateGroupAPIProblem](../../models/operations/creategroupapiproblem.md)\>**
 
 ### Errors
 
-| Error Type                     | Status Code                    | Content Type                   |
-| ------------------------------ | ------------------------------ | ------------------------------ |
-| errors.CreateGroupResponseBody | 422                            | application/problem+json       |
-| errors.APIError                | 4XX, 5XX                       | \*/\*                          |
+| Error Type                               | Status Code                              | Content Type                             |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| errors.CreateGroupInputValidationProblem | 422                                      | application/problem+json                 |
+| errors.APIError                          | 4XX, 5XX                                 | \*/\*                                    |

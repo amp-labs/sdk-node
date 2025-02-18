@@ -22,7 +22,7 @@ export type ListDestinationsRequest = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export type ListDestinationsResponseBody = {
+export type ListDestinationsAPIProblem = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -107,7 +107,7 @@ export type ListDestinationsMetadata = {
   headers?: { [k: string]: string } | null | undefined;
 };
 
-export type ListDestinationsDestinationsResponseBody = {
+export type ListDestinationsDestination = {
   /**
    * The destination ID.
    */
@@ -132,8 +132,8 @@ export type ListDestinationsDestinationsResponseBody = {
 };
 
 export type ListDestinationsResponse =
-  | ListDestinationsResponseBody
-  | Array<ListDestinationsDestinationsResponseBody>;
+  | ListDestinationsAPIProblem
+  | Array<ListDestinationsDestination>;
 
 /** @internal */
 export const ListDestinationsRequest$inboundSchema: z.ZodType<
@@ -190,8 +190,8 @@ export function listDestinationsRequestFromJSON(
 }
 
 /** @internal */
-export const ListDestinationsResponseBody$inboundSchema: z.ZodType<
-  ListDestinationsResponseBody,
+export const ListDestinationsAPIProblem$inboundSchema: z.ZodType<
+  ListDestinationsAPIProblem,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -217,7 +217,7 @@ export const ListDestinationsResponseBody$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type ListDestinationsResponseBody$Outbound = {
+export type ListDestinationsAPIProblem$Outbound = {
   type: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -238,10 +238,10 @@ export type ListDestinationsResponseBody$Outbound = {
 };
 
 /** @internal */
-export const ListDestinationsResponseBody$outboundSchema: z.ZodType<
-  ListDestinationsResponseBody$Outbound,
+export const ListDestinationsAPIProblem$outboundSchema: z.ZodType<
+  ListDestinationsAPIProblem$Outbound,
   z.ZodTypeDef,
-  ListDestinationsResponseBody
+  ListDestinationsAPIProblem
 > = z.object({
   type: z.string().default("about:blank"),
   href: z.string().optional(),
@@ -266,32 +266,30 @@ export const ListDestinationsResponseBody$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace ListDestinationsResponseBody$ {
-  /** @deprecated use `ListDestinationsResponseBody$inboundSchema` instead. */
-  export const inboundSchema = ListDestinationsResponseBody$inboundSchema;
-  /** @deprecated use `ListDestinationsResponseBody$outboundSchema` instead. */
-  export const outboundSchema = ListDestinationsResponseBody$outboundSchema;
-  /** @deprecated use `ListDestinationsResponseBody$Outbound` instead. */
-  export type Outbound = ListDestinationsResponseBody$Outbound;
+export namespace ListDestinationsAPIProblem$ {
+  /** @deprecated use `ListDestinationsAPIProblem$inboundSchema` instead. */
+  export const inboundSchema = ListDestinationsAPIProblem$inboundSchema;
+  /** @deprecated use `ListDestinationsAPIProblem$outboundSchema` instead. */
+  export const outboundSchema = ListDestinationsAPIProblem$outboundSchema;
+  /** @deprecated use `ListDestinationsAPIProblem$Outbound` instead. */
+  export type Outbound = ListDestinationsAPIProblem$Outbound;
 }
 
-export function listDestinationsResponseBodyToJSON(
-  listDestinationsResponseBody: ListDestinationsResponseBody,
+export function listDestinationsAPIProblemToJSON(
+  listDestinationsAPIProblem: ListDestinationsAPIProblem,
 ): string {
   return JSON.stringify(
-    ListDestinationsResponseBody$outboundSchema.parse(
-      listDestinationsResponseBody,
-    ),
+    ListDestinationsAPIProblem$outboundSchema.parse(listDestinationsAPIProblem),
   );
 }
 
-export function listDestinationsResponseBodyFromJSON(
+export function listDestinationsAPIProblemFromJSON(
   jsonString: string,
-): SafeParseResult<ListDestinationsResponseBody, SDKValidationError> {
+): SafeParseResult<ListDestinationsAPIProblem, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => ListDestinationsResponseBody$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ListDestinationsResponseBody' from JSON`,
+    (x) => ListDestinationsAPIProblem$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListDestinationsAPIProblem' from JSON`,
   );
 }
 
@@ -353,8 +351,8 @@ export function listDestinationsMetadataFromJSON(
 }
 
 /** @internal */
-export const ListDestinationsDestinationsResponseBody$inboundSchema: z.ZodType<
-  ListDestinationsDestinationsResponseBody,
+export const ListDestinationsDestination$inboundSchema: z.ZodType<
+  ListDestinationsDestination,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -368,7 +366,7 @@ export const ListDestinationsDestinationsResponseBody$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type ListDestinationsDestinationsResponseBody$Outbound = {
+export type ListDestinationsDestination$Outbound = {
   id: string;
   name: string;
   type: string;
@@ -378,10 +376,10 @@ export type ListDestinationsDestinationsResponseBody$Outbound = {
 };
 
 /** @internal */
-export const ListDestinationsDestinationsResponseBody$outboundSchema: z.ZodType<
-  ListDestinationsDestinationsResponseBody$Outbound,
+export const ListDestinationsDestination$outboundSchema: z.ZodType<
+  ListDestinationsDestination$Outbound,
   z.ZodTypeDef,
-  ListDestinationsDestinationsResponseBody
+  ListDestinationsDestination
 > = z.object({
   id: z.string(),
   name: z.string(),
@@ -395,41 +393,32 @@ export const ListDestinationsDestinationsResponseBody$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace ListDestinationsDestinationsResponseBody$ {
-  /** @deprecated use `ListDestinationsDestinationsResponseBody$inboundSchema` instead. */
-  export const inboundSchema =
-    ListDestinationsDestinationsResponseBody$inboundSchema;
-  /** @deprecated use `ListDestinationsDestinationsResponseBody$outboundSchema` instead. */
-  export const outboundSchema =
-    ListDestinationsDestinationsResponseBody$outboundSchema;
-  /** @deprecated use `ListDestinationsDestinationsResponseBody$Outbound` instead. */
-  export type Outbound = ListDestinationsDestinationsResponseBody$Outbound;
+export namespace ListDestinationsDestination$ {
+  /** @deprecated use `ListDestinationsDestination$inboundSchema` instead. */
+  export const inboundSchema = ListDestinationsDestination$inboundSchema;
+  /** @deprecated use `ListDestinationsDestination$outboundSchema` instead. */
+  export const outboundSchema = ListDestinationsDestination$outboundSchema;
+  /** @deprecated use `ListDestinationsDestination$Outbound` instead. */
+  export type Outbound = ListDestinationsDestination$Outbound;
 }
 
-export function listDestinationsDestinationsResponseBodyToJSON(
-  listDestinationsDestinationsResponseBody:
-    ListDestinationsDestinationsResponseBody,
+export function listDestinationsDestinationToJSON(
+  listDestinationsDestination: ListDestinationsDestination,
 ): string {
   return JSON.stringify(
-    ListDestinationsDestinationsResponseBody$outboundSchema.parse(
-      listDestinationsDestinationsResponseBody,
+    ListDestinationsDestination$outboundSchema.parse(
+      listDestinationsDestination,
     ),
   );
 }
 
-export function listDestinationsDestinationsResponseBodyFromJSON(
+export function listDestinationsDestinationFromJSON(
   jsonString: string,
-): SafeParseResult<
-  ListDestinationsDestinationsResponseBody,
-  SDKValidationError
-> {
+): SafeParseResult<ListDestinationsDestination, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) =>
-      ListDestinationsDestinationsResponseBody$inboundSchema.parse(
-        JSON.parse(x),
-      ),
-    `Failed to parse 'ListDestinationsDestinationsResponseBody' from JSON`,
+    (x) => ListDestinationsDestination$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListDestinationsDestination' from JSON`,
   );
 }
 
@@ -439,14 +428,14 @@ export const ListDestinationsResponse$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.union([
-  z.lazy(() => ListDestinationsResponseBody$inboundSchema),
-  z.array(z.lazy(() => ListDestinationsDestinationsResponseBody$inboundSchema)),
+  z.lazy(() => ListDestinationsAPIProblem$inboundSchema),
+  z.array(z.lazy(() => ListDestinationsDestination$inboundSchema)),
 ]);
 
 /** @internal */
 export type ListDestinationsResponse$Outbound =
-  | ListDestinationsResponseBody$Outbound
-  | Array<ListDestinationsDestinationsResponseBody$Outbound>;
+  | ListDestinationsAPIProblem$Outbound
+  | Array<ListDestinationsDestination$Outbound>;
 
 /** @internal */
 export const ListDestinationsResponse$outboundSchema: z.ZodType<
@@ -454,10 +443,8 @@ export const ListDestinationsResponse$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   ListDestinationsResponse
 > = z.union([
-  z.lazy(() => ListDestinationsResponseBody$outboundSchema),
-  z.array(
-    z.lazy(() => ListDestinationsDestinationsResponseBody$outboundSchema),
-  ),
+  z.lazy(() => ListDestinationsAPIProblem$outboundSchema),
+  z.array(z.lazy(() => ListDestinationsDestination$outboundSchema)),
 ]);
 
 /**

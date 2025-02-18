@@ -11,7 +11,7 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 /**
  * ResultDeliveryRequestBody
  */
-export type DeliverResultsRequestBody = {
+export type DeliverResultsResultDeliveryRequest = {
   /**
    * The ID of the user group whose SaaS instance you'd like to receive results from. This is the ID that was provided during installation creation.
    */
@@ -29,7 +29,7 @@ export type DeliverResultsRequest = {
   /**
    * ResultDeliveryRequestBody
    */
-  requestBody: DeliverResultsRequestBody;
+  requestBody: DeliverResultsResultDeliveryRequest;
 };
 
 /**
@@ -39,7 +39,7 @@ export type DeliverResultsRequest = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export type DeliverResultsResponseBody = {
+export type DeliverResultsAPIProblem = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -114,8 +114,8 @@ export type DeliverResultsResponseBody = {
 };
 
 /** @internal */
-export const DeliverResultsRequestBody$inboundSchema: z.ZodType<
-  DeliverResultsRequestBody,
+export const DeliverResultsResultDeliveryRequest$inboundSchema: z.ZodType<
+  DeliverResultsResultDeliveryRequest,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -124,16 +124,16 @@ export const DeliverResultsRequestBody$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type DeliverResultsRequestBody$Outbound = {
+export type DeliverResultsResultDeliveryRequest$Outbound = {
   groupRef: string;
   pages: number;
 };
 
 /** @internal */
-export const DeliverResultsRequestBody$outboundSchema: z.ZodType<
-  DeliverResultsRequestBody$Outbound,
+export const DeliverResultsResultDeliveryRequest$outboundSchema: z.ZodType<
+  DeliverResultsResultDeliveryRequest$Outbound,
   z.ZodTypeDef,
-  DeliverResultsRequestBody
+  DeliverResultsResultDeliveryRequest
 > = z.object({
   groupRef: z.string(),
   pages: z.number().int(),
@@ -143,30 +143,35 @@ export const DeliverResultsRequestBody$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace DeliverResultsRequestBody$ {
-  /** @deprecated use `DeliverResultsRequestBody$inboundSchema` instead. */
-  export const inboundSchema = DeliverResultsRequestBody$inboundSchema;
-  /** @deprecated use `DeliverResultsRequestBody$outboundSchema` instead. */
-  export const outboundSchema = DeliverResultsRequestBody$outboundSchema;
-  /** @deprecated use `DeliverResultsRequestBody$Outbound` instead. */
-  export type Outbound = DeliverResultsRequestBody$Outbound;
+export namespace DeliverResultsResultDeliveryRequest$ {
+  /** @deprecated use `DeliverResultsResultDeliveryRequest$inboundSchema` instead. */
+  export const inboundSchema =
+    DeliverResultsResultDeliveryRequest$inboundSchema;
+  /** @deprecated use `DeliverResultsResultDeliveryRequest$outboundSchema` instead. */
+  export const outboundSchema =
+    DeliverResultsResultDeliveryRequest$outboundSchema;
+  /** @deprecated use `DeliverResultsResultDeliveryRequest$Outbound` instead. */
+  export type Outbound = DeliverResultsResultDeliveryRequest$Outbound;
 }
 
-export function deliverResultsRequestBodyToJSON(
-  deliverResultsRequestBody: DeliverResultsRequestBody,
+export function deliverResultsResultDeliveryRequestToJSON(
+  deliverResultsResultDeliveryRequest: DeliverResultsResultDeliveryRequest,
 ): string {
   return JSON.stringify(
-    DeliverResultsRequestBody$outboundSchema.parse(deliverResultsRequestBody),
+    DeliverResultsResultDeliveryRequest$outboundSchema.parse(
+      deliverResultsResultDeliveryRequest,
+    ),
   );
 }
 
-export function deliverResultsRequestBodyFromJSON(
+export function deliverResultsResultDeliveryRequestFromJSON(
   jsonString: string,
-): SafeParseResult<DeliverResultsRequestBody, SDKValidationError> {
+): SafeParseResult<DeliverResultsResultDeliveryRequest, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => DeliverResultsRequestBody$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'DeliverResultsRequestBody' from JSON`,
+    (x) =>
+      DeliverResultsResultDeliveryRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'DeliverResultsResultDeliveryRequest' from JSON`,
   );
 }
 
@@ -179,7 +184,7 @@ export const DeliverResultsRequest$inboundSchema: z.ZodType<
   projectIdOrName: z.string(),
   integrationId: z.string(),
   objectName: z.string(),
-  RequestBody: z.lazy(() => DeliverResultsRequestBody$inboundSchema),
+  RequestBody: z.lazy(() => DeliverResultsResultDeliveryRequest$inboundSchema),
 }).transform((v) => {
   return remap$(v, {
     "RequestBody": "requestBody",
@@ -191,7 +196,7 @@ export type DeliverResultsRequest$Outbound = {
   projectIdOrName: string;
   integrationId: string;
   objectName: string;
-  RequestBody: DeliverResultsRequestBody$Outbound;
+  RequestBody: DeliverResultsResultDeliveryRequest$Outbound;
 };
 
 /** @internal */
@@ -203,7 +208,7 @@ export const DeliverResultsRequest$outboundSchema: z.ZodType<
   projectIdOrName: z.string(),
   integrationId: z.string(),
   objectName: z.string(),
-  requestBody: z.lazy(() => DeliverResultsRequestBody$outboundSchema),
+  requestBody: z.lazy(() => DeliverResultsResultDeliveryRequest$outboundSchema),
 }).transform((v) => {
   return remap$(v, {
     requestBody: "RequestBody",
@@ -242,8 +247,8 @@ export function deliverResultsRequestFromJSON(
 }
 
 /** @internal */
-export const DeliverResultsResponseBody$inboundSchema: z.ZodType<
-  DeliverResultsResponseBody,
+export const DeliverResultsAPIProblem$inboundSchema: z.ZodType<
+  DeliverResultsAPIProblem,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -269,7 +274,7 @@ export const DeliverResultsResponseBody$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type DeliverResultsResponseBody$Outbound = {
+export type DeliverResultsAPIProblem$Outbound = {
   type: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -290,10 +295,10 @@ export type DeliverResultsResponseBody$Outbound = {
 };
 
 /** @internal */
-export const DeliverResultsResponseBody$outboundSchema: z.ZodType<
-  DeliverResultsResponseBody$Outbound,
+export const DeliverResultsAPIProblem$outboundSchema: z.ZodType<
+  DeliverResultsAPIProblem$Outbound,
   z.ZodTypeDef,
-  DeliverResultsResponseBody
+  DeliverResultsAPIProblem
 > = z.object({
   type: z.string().default("about:blank"),
   href: z.string().optional(),
@@ -318,29 +323,29 @@ export const DeliverResultsResponseBody$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace DeliverResultsResponseBody$ {
-  /** @deprecated use `DeliverResultsResponseBody$inboundSchema` instead. */
-  export const inboundSchema = DeliverResultsResponseBody$inboundSchema;
-  /** @deprecated use `DeliverResultsResponseBody$outboundSchema` instead. */
-  export const outboundSchema = DeliverResultsResponseBody$outboundSchema;
-  /** @deprecated use `DeliverResultsResponseBody$Outbound` instead. */
-  export type Outbound = DeliverResultsResponseBody$Outbound;
+export namespace DeliverResultsAPIProblem$ {
+  /** @deprecated use `DeliverResultsAPIProblem$inboundSchema` instead. */
+  export const inboundSchema = DeliverResultsAPIProblem$inboundSchema;
+  /** @deprecated use `DeliverResultsAPIProblem$outboundSchema` instead. */
+  export const outboundSchema = DeliverResultsAPIProblem$outboundSchema;
+  /** @deprecated use `DeliverResultsAPIProblem$Outbound` instead. */
+  export type Outbound = DeliverResultsAPIProblem$Outbound;
 }
 
-export function deliverResultsResponseBodyToJSON(
-  deliverResultsResponseBody: DeliverResultsResponseBody,
+export function deliverResultsAPIProblemToJSON(
+  deliverResultsAPIProblem: DeliverResultsAPIProblem,
 ): string {
   return JSON.stringify(
-    DeliverResultsResponseBody$outboundSchema.parse(deliverResultsResponseBody),
+    DeliverResultsAPIProblem$outboundSchema.parse(deliverResultsAPIProblem),
   );
 }
 
-export function deliverResultsResponseBodyFromJSON(
+export function deliverResultsAPIProblemFromJSON(
   jsonString: string,
-): SafeParseResult<DeliverResultsResponseBody, SDKValidationError> {
+): SafeParseResult<DeliverResultsAPIProblem, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => DeliverResultsResponseBody$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'DeliverResultsResponseBody' from JSON`,
+    (x) => DeliverResultsAPIProblem$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'DeliverResultsAPIProblem' from JSON`,
   );
 }

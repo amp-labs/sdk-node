@@ -3,10 +3,10 @@
 
 ## Supported Types
 
-### `{ [k: string]: operations.ListProvidersProvidersResponseBody }`
+### `{ [k: string]: operations.ProviderInfo }`
 
 ```typescript
-const value: { [k: string]: operations.ListProvidersProvidersResponseBody } = {
+const value: { [k: string]: operations.ProviderInfo } = {
   "key": {
     name: "<value>",
     authType: "jwt",
@@ -81,10 +81,10 @@ const value: { [k: string]: operations.ListProvidersProvidersResponseBody } = {
 };
 ```
 
-### `operations.ListProvidersResponseBody`
+### `operations.ListProvidersAPIProblem`
 
 ```typescript
-const value: operations.ListProvidersResponseBody = {
+const value: operations.ListProvidersAPIProblem = {
   href:
     "https://www.belgif.be/specification/rest/api-guide/#standardized-problem-types",
   title: "Description of the type of problem that occurred",

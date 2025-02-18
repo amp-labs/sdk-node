@@ -22,7 +22,7 @@ export type DeleteProjectRequest = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export type DeleteProjectResponseBody = {
+export type DeleteProjectAPIProblem = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -151,8 +151,8 @@ export function deleteProjectRequestFromJSON(
 }
 
 /** @internal */
-export const DeleteProjectResponseBody$inboundSchema: z.ZodType<
-  DeleteProjectResponseBody,
+export const DeleteProjectAPIProblem$inboundSchema: z.ZodType<
+  DeleteProjectAPIProblem,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -178,7 +178,7 @@ export const DeleteProjectResponseBody$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type DeleteProjectResponseBody$Outbound = {
+export type DeleteProjectAPIProblem$Outbound = {
   type: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -199,10 +199,10 @@ export type DeleteProjectResponseBody$Outbound = {
 };
 
 /** @internal */
-export const DeleteProjectResponseBody$outboundSchema: z.ZodType<
-  DeleteProjectResponseBody$Outbound,
+export const DeleteProjectAPIProblem$outboundSchema: z.ZodType<
+  DeleteProjectAPIProblem$Outbound,
   z.ZodTypeDef,
-  DeleteProjectResponseBody
+  DeleteProjectAPIProblem
 > = z.object({
   type: z.string().default("about:blank"),
   href: z.string().optional(),
@@ -227,29 +227,29 @@ export const DeleteProjectResponseBody$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace DeleteProjectResponseBody$ {
-  /** @deprecated use `DeleteProjectResponseBody$inboundSchema` instead. */
-  export const inboundSchema = DeleteProjectResponseBody$inboundSchema;
-  /** @deprecated use `DeleteProjectResponseBody$outboundSchema` instead. */
-  export const outboundSchema = DeleteProjectResponseBody$outboundSchema;
-  /** @deprecated use `DeleteProjectResponseBody$Outbound` instead. */
-  export type Outbound = DeleteProjectResponseBody$Outbound;
+export namespace DeleteProjectAPIProblem$ {
+  /** @deprecated use `DeleteProjectAPIProblem$inboundSchema` instead. */
+  export const inboundSchema = DeleteProjectAPIProblem$inboundSchema;
+  /** @deprecated use `DeleteProjectAPIProblem$outboundSchema` instead. */
+  export const outboundSchema = DeleteProjectAPIProblem$outboundSchema;
+  /** @deprecated use `DeleteProjectAPIProblem$Outbound` instead. */
+  export type Outbound = DeleteProjectAPIProblem$Outbound;
 }
 
-export function deleteProjectResponseBodyToJSON(
-  deleteProjectResponseBody: DeleteProjectResponseBody,
+export function deleteProjectAPIProblemToJSON(
+  deleteProjectAPIProblem: DeleteProjectAPIProblem,
 ): string {
   return JSON.stringify(
-    DeleteProjectResponseBody$outboundSchema.parse(deleteProjectResponseBody),
+    DeleteProjectAPIProblem$outboundSchema.parse(deleteProjectAPIProblem),
   );
 }
 
-export function deleteProjectResponseBodyFromJSON(
+export function deleteProjectAPIProblemFromJSON(
   jsonString: string,
-): SafeParseResult<DeleteProjectResponseBody, SDKValidationError> {
+): SafeParseResult<DeleteProjectAPIProblem, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => DeleteProjectResponseBody$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'DeleteProjectResponseBody' from JSON`,
+    (x) => DeleteProjectAPIProblem$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'DeleteProjectAPIProblem' from JSON`,
   );
 }

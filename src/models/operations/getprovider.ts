@@ -23,7 +23,7 @@ export type GetProviderRequest = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export type GetProviderProvidersResponseBody = {
+export type GetProviderAPIProblem = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -132,7 +132,7 @@ export type GetProviderTokenMetadataFields = {
 /**
  * Configuration for OAuth2.0. Must be provided if authType is oauth2.
  */
-export type GetProviderOauth2Opts = {
+export type GetProviderOAuth2Options = {
   grantType: GetProviderGrantType;
   /**
    * The authorization URL.
@@ -182,7 +182,7 @@ export type GetProviderAttachmentType = ClosedEnum<
 /**
  * Configuration for API key in query parameter. Must be provided if type is in-query.
  */
-export type GetProviderQuery = {
+export type GetProviderAPIKeyQueryOptions = {
   /**
    * The name of the query parameter to be used for the API key.
    */
@@ -192,7 +192,7 @@ export type GetProviderQuery = {
 /**
  * Configuration for API key in header. Must be provided if type is in-header.
  */
-export type GetProviderHeader = {
+export type GetProviderAPIKeyHeaderOptions = {
   /**
    * The name of the header to be used for the API key.
    */
@@ -206,7 +206,7 @@ export type GetProviderHeader = {
 /**
  * Configuration for API key. Must be provided if authType is apiKey.
  */
-export type GetProviderApiKeyOpts = {
+export type GetProviderAPIKeyOptions = {
   /**
    * How the API key should be attached to requests.
    */
@@ -214,11 +214,11 @@ export type GetProviderApiKeyOpts = {
   /**
    * Configuration for API key in query parameter. Must be provided if type is in-query.
    */
-  query?: GetProviderQuery | undefined;
+  query?: GetProviderAPIKeyQueryOptions | undefined;
   /**
    * Configuration for API key in header. Must be provided if type is in-header.
    */
-  header?: GetProviderHeader | undefined;
+  header?: GetProviderAPIKeyHeaderOptions | undefined;
   /**
    * URL with more information about how to get or use an API key.
    */
@@ -240,7 +240,7 @@ export type GetProviderFieldUsed = ClosedEnum<typeof GetProviderFieldUsed>;
 /**
  * when this object is present, it means that this provider uses Basic Auth to actually collect an API key
  */
-export type GetProviderApiKeyAsBasicOpts = {
+export type GetProviderAPIKeyAsBasicOptions = {
   /**
    * whether the API key should be used as the username or password.
    */
@@ -254,7 +254,7 @@ export type GetProviderApiKeyAsBasicOpts = {
 /**
  * Configuration for Basic Auth. Optional.
  */
-export type GetProviderBasicOpts = {
+export type GetProviderBasicAuthOptions = {
   /**
    * If true, the provider uses an API key which then gets encoded as a basic auth user:pass string.
    */
@@ -262,14 +262,14 @@ export type GetProviderBasicOpts = {
   /**
    * when this object is present, it means that this provider uses Basic Auth to actually collect an API key
    */
-  apiKeyAsBasicOpts?: GetProviderApiKeyAsBasicOpts | undefined;
+  apiKeyAsBasicOpts?: GetProviderAPIKeyAsBasicOptions | undefined;
   /**
    * URL with more information about how to get or use an API key.
    */
   docsURL?: string | undefined;
 };
 
-export type GetProviderBulkWrite = {
+export type GetProviderBulkWriteSupport = {
   insert: boolean;
   update: boolean;
   upsert: boolean;
@@ -287,7 +287,7 @@ export type GetProviderSubscribeSupport = {
  * The supported features for the provider.
  */
 export type GetProviderSupport = {
-  bulkWrite: GetProviderBulkWrite;
+  bulkWrite: GetProviderBulkWriteSupport;
   proxy: boolean;
   read: boolean;
   subscribe: boolean;
@@ -298,7 +298,7 @@ export type GetProviderSupport = {
 /**
  * Media for light/regular mode.
  */
-export type GetProviderRegular = {
+export type GetProviderMediaTypeRegular = {
   /**
    * URL to the icon for the provider.
    */
@@ -312,7 +312,7 @@ export type GetProviderRegular = {
 /**
  * Media to be used in dark mode.
  */
-export type GetProviderDarkMode = {
+export type GetProviderMediaTypeDarkMode = {
   /**
    * URL to the icon for the provider that is to be used in dark mode.
    */
@@ -327,11 +327,11 @@ export type GetProviderMedia = {
   /**
    * Media for light/regular mode.
    */
-  regular?: GetProviderRegular | undefined;
+  regular?: GetProviderMediaTypeRegular | undefined;
   /**
    * Media to be used in dark mode.
    */
-  darkMode?: GetProviderDarkMode | undefined;
+  darkMode?: GetProviderMediaTypeDarkMode | undefined;
 };
 
 /**
@@ -377,7 +377,7 @@ export type GetProviderRegistrationTiming = ClosedEnum<
   typeof GetProviderRegistrationTiming
 >;
 
-export type GetProviderSubscribeOpts = {
+export type GetProviderSubscribeOptions = {
   /**
    * The scope of the subscription.
    */
@@ -395,7 +395,7 @@ export type GetProviderSubscribeOpts = {
 /**
  * ProviderInfo
  */
-export type GetProviderResponseBody = {
+export type GetProviderProviderInfo = {
   name: string;
   /**
    * The type of authentication required by the provider.
@@ -408,15 +408,15 @@ export type GetProviderResponseBody = {
   /**
    * Configuration for OAuth2.0. Must be provided if authType is oauth2.
    */
-  oauth2Opts?: GetProviderOauth2Opts | undefined;
+  oauth2Opts?: GetProviderOAuth2Options | undefined;
   /**
    * Configuration for API key. Must be provided if authType is apiKey.
    */
-  apiKeyOpts?: GetProviderApiKeyOpts | undefined;
+  apiKeyOpts?: GetProviderAPIKeyOptions | undefined;
   /**
    * Configuration for Basic Auth. Optional.
    */
-  basicOpts?: GetProviderBasicOpts | undefined;
+  basicOpts?: GetProviderBasicAuthOptions | undefined;
   /**
    * The supported features for the provider.
    */
@@ -435,12 +435,12 @@ export type GetProviderResponseBody = {
   postAuthInfoNeeded?: boolean | undefined;
   media?: GetProviderMedia | undefined;
   labels?: { [k: string]: string } | undefined;
-  subscribeOpts?: GetProviderSubscribeOpts | undefined;
+  subscribeOpts?: GetProviderSubscribeOptions | undefined;
 };
 
 export type GetProviderResponse =
-  | GetProviderResponseBody
-  | GetProviderProvidersResponseBody;
+  | GetProviderProviderInfo
+  | GetProviderAPIProblem;
 
 /** @internal */
 export const GetProviderRequest$inboundSchema: z.ZodType<
@@ -497,8 +497,8 @@ export function getProviderRequestFromJSON(
 }
 
 /** @internal */
-export const GetProviderProvidersResponseBody$inboundSchema: z.ZodType<
-  GetProviderProvidersResponseBody,
+export const GetProviderAPIProblem$inboundSchema: z.ZodType<
+  GetProviderAPIProblem,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -524,7 +524,7 @@ export const GetProviderProvidersResponseBody$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type GetProviderProvidersResponseBody$Outbound = {
+export type GetProviderAPIProblem$Outbound = {
   type: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -545,10 +545,10 @@ export type GetProviderProvidersResponseBody$Outbound = {
 };
 
 /** @internal */
-export const GetProviderProvidersResponseBody$outboundSchema: z.ZodType<
-  GetProviderProvidersResponseBody$Outbound,
+export const GetProviderAPIProblem$outboundSchema: z.ZodType<
+  GetProviderAPIProblem$Outbound,
   z.ZodTypeDef,
-  GetProviderProvidersResponseBody
+  GetProviderAPIProblem
 > = z.object({
   type: z.string().default("about:blank"),
   href: z.string().optional(),
@@ -573,32 +573,30 @@ export const GetProviderProvidersResponseBody$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace GetProviderProvidersResponseBody$ {
-  /** @deprecated use `GetProviderProvidersResponseBody$inboundSchema` instead. */
-  export const inboundSchema = GetProviderProvidersResponseBody$inboundSchema;
-  /** @deprecated use `GetProviderProvidersResponseBody$outboundSchema` instead. */
-  export const outboundSchema = GetProviderProvidersResponseBody$outboundSchema;
-  /** @deprecated use `GetProviderProvidersResponseBody$Outbound` instead. */
-  export type Outbound = GetProviderProvidersResponseBody$Outbound;
+export namespace GetProviderAPIProblem$ {
+  /** @deprecated use `GetProviderAPIProblem$inboundSchema` instead. */
+  export const inboundSchema = GetProviderAPIProblem$inboundSchema;
+  /** @deprecated use `GetProviderAPIProblem$outboundSchema` instead. */
+  export const outboundSchema = GetProviderAPIProblem$outboundSchema;
+  /** @deprecated use `GetProviderAPIProblem$Outbound` instead. */
+  export type Outbound = GetProviderAPIProblem$Outbound;
 }
 
-export function getProviderProvidersResponseBodyToJSON(
-  getProviderProvidersResponseBody: GetProviderProvidersResponseBody,
+export function getProviderAPIProblemToJSON(
+  getProviderAPIProblem: GetProviderAPIProblem,
 ): string {
   return JSON.stringify(
-    GetProviderProvidersResponseBody$outboundSchema.parse(
-      getProviderProvidersResponseBody,
-    ),
+    GetProviderAPIProblem$outboundSchema.parse(getProviderAPIProblem),
   );
 }
 
-export function getProviderProvidersResponseBodyFromJSON(
+export function getProviderAPIProblemFromJSON(
   jsonString: string,
-): SafeParseResult<GetProviderProvidersResponseBody, SDKValidationError> {
+): SafeParseResult<GetProviderAPIProblem, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => GetProviderProvidersResponseBody$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetProviderProvidersResponseBody' from JSON`,
+    (x) => GetProviderAPIProblem$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetProviderAPIProblem' from JSON`,
   );
 }
 
@@ -707,8 +705,8 @@ export function getProviderTokenMetadataFieldsFromJSON(
 }
 
 /** @internal */
-export const GetProviderOauth2Opts$inboundSchema: z.ZodType<
-  GetProviderOauth2Opts,
+export const GetProviderOAuth2Options$inboundSchema: z.ZodType<
+  GetProviderOAuth2Options,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -726,7 +724,7 @@ export const GetProviderOauth2Opts$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type GetProviderOauth2Opts$Outbound = {
+export type GetProviderOAuth2Options$Outbound = {
   grantType: string;
   authURL?: string | undefined;
   tokenURL: string;
@@ -739,10 +737,10 @@ export type GetProviderOauth2Opts$Outbound = {
 };
 
 /** @internal */
-export const GetProviderOauth2Opts$outboundSchema: z.ZodType<
-  GetProviderOauth2Opts$Outbound,
+export const GetProviderOAuth2Options$outboundSchema: z.ZodType<
+  GetProviderOAuth2Options$Outbound,
   z.ZodTypeDef,
-  GetProviderOauth2Opts
+  GetProviderOAuth2Options
 > = z.object({
   grantType: GetProviderGrantType$outboundSchema,
   authURL: z.string().optional(),
@@ -761,30 +759,30 @@ export const GetProviderOauth2Opts$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace GetProviderOauth2Opts$ {
-  /** @deprecated use `GetProviderOauth2Opts$inboundSchema` instead. */
-  export const inboundSchema = GetProviderOauth2Opts$inboundSchema;
-  /** @deprecated use `GetProviderOauth2Opts$outboundSchema` instead. */
-  export const outboundSchema = GetProviderOauth2Opts$outboundSchema;
-  /** @deprecated use `GetProviderOauth2Opts$Outbound` instead. */
-  export type Outbound = GetProviderOauth2Opts$Outbound;
+export namespace GetProviderOAuth2Options$ {
+  /** @deprecated use `GetProviderOAuth2Options$inboundSchema` instead. */
+  export const inboundSchema = GetProviderOAuth2Options$inboundSchema;
+  /** @deprecated use `GetProviderOAuth2Options$outboundSchema` instead. */
+  export const outboundSchema = GetProviderOAuth2Options$outboundSchema;
+  /** @deprecated use `GetProviderOAuth2Options$Outbound` instead. */
+  export type Outbound = GetProviderOAuth2Options$Outbound;
 }
 
-export function getProviderOauth2OptsToJSON(
-  getProviderOauth2Opts: GetProviderOauth2Opts,
+export function getProviderOAuth2OptionsToJSON(
+  getProviderOAuth2Options: GetProviderOAuth2Options,
 ): string {
   return JSON.stringify(
-    GetProviderOauth2Opts$outboundSchema.parse(getProviderOauth2Opts),
+    GetProviderOAuth2Options$outboundSchema.parse(getProviderOAuth2Options),
   );
 }
 
-export function getProviderOauth2OptsFromJSON(
+export function getProviderOAuth2OptionsFromJSON(
   jsonString: string,
-): SafeParseResult<GetProviderOauth2Opts, SDKValidationError> {
+): SafeParseResult<GetProviderOAuth2Options, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => GetProviderOauth2Opts$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetProviderOauth2Opts' from JSON`,
+    (x) => GetProviderOAuth2Options$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetProviderOAuth2Options' from JSON`,
   );
 }
 
@@ -810,8 +808,8 @@ export namespace GetProviderAttachmentType$ {
 }
 
 /** @internal */
-export const GetProviderQuery$inboundSchema: z.ZodType<
-  GetProviderQuery,
+export const GetProviderAPIKeyQueryOptions$inboundSchema: z.ZodType<
+  GetProviderAPIKeyQueryOptions,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -819,15 +817,15 @@ export const GetProviderQuery$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type GetProviderQuery$Outbound = {
+export type GetProviderAPIKeyQueryOptions$Outbound = {
   name: string;
 };
 
 /** @internal */
-export const GetProviderQuery$outboundSchema: z.ZodType<
-  GetProviderQuery$Outbound,
+export const GetProviderAPIKeyQueryOptions$outboundSchema: z.ZodType<
+  GetProviderAPIKeyQueryOptions$Outbound,
   z.ZodTypeDef,
-  GetProviderQuery
+  GetProviderAPIKeyQueryOptions
 > = z.object({
   name: z.string(),
 });
@@ -836,36 +834,38 @@ export const GetProviderQuery$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace GetProviderQuery$ {
-  /** @deprecated use `GetProviderQuery$inboundSchema` instead. */
-  export const inboundSchema = GetProviderQuery$inboundSchema;
-  /** @deprecated use `GetProviderQuery$outboundSchema` instead. */
-  export const outboundSchema = GetProviderQuery$outboundSchema;
-  /** @deprecated use `GetProviderQuery$Outbound` instead. */
-  export type Outbound = GetProviderQuery$Outbound;
+export namespace GetProviderAPIKeyQueryOptions$ {
+  /** @deprecated use `GetProviderAPIKeyQueryOptions$inboundSchema` instead. */
+  export const inboundSchema = GetProviderAPIKeyQueryOptions$inboundSchema;
+  /** @deprecated use `GetProviderAPIKeyQueryOptions$outboundSchema` instead. */
+  export const outboundSchema = GetProviderAPIKeyQueryOptions$outboundSchema;
+  /** @deprecated use `GetProviderAPIKeyQueryOptions$Outbound` instead. */
+  export type Outbound = GetProviderAPIKeyQueryOptions$Outbound;
 }
 
-export function getProviderQueryToJSON(
-  getProviderQuery: GetProviderQuery,
+export function getProviderAPIKeyQueryOptionsToJSON(
+  getProviderAPIKeyQueryOptions: GetProviderAPIKeyQueryOptions,
 ): string {
   return JSON.stringify(
-    GetProviderQuery$outboundSchema.parse(getProviderQuery),
+    GetProviderAPIKeyQueryOptions$outboundSchema.parse(
+      getProviderAPIKeyQueryOptions,
+    ),
   );
 }
 
-export function getProviderQueryFromJSON(
+export function getProviderAPIKeyQueryOptionsFromJSON(
   jsonString: string,
-): SafeParseResult<GetProviderQuery, SDKValidationError> {
+): SafeParseResult<GetProviderAPIKeyQueryOptions, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => GetProviderQuery$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetProviderQuery' from JSON`,
+    (x) => GetProviderAPIKeyQueryOptions$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetProviderAPIKeyQueryOptions' from JSON`,
   );
 }
 
 /** @internal */
-export const GetProviderHeader$inboundSchema: z.ZodType<
-  GetProviderHeader,
+export const GetProviderAPIKeyHeaderOptions$inboundSchema: z.ZodType<
+  GetProviderAPIKeyHeaderOptions,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -874,16 +874,16 @@ export const GetProviderHeader$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type GetProviderHeader$Outbound = {
+export type GetProviderAPIKeyHeaderOptions$Outbound = {
   name: string;
   valuePrefix?: string | undefined;
 };
 
 /** @internal */
-export const GetProviderHeader$outboundSchema: z.ZodType<
-  GetProviderHeader$Outbound,
+export const GetProviderAPIKeyHeaderOptions$outboundSchema: z.ZodType<
+  GetProviderAPIKeyHeaderOptions$Outbound,
   z.ZodTypeDef,
-  GetProviderHeader
+  GetProviderAPIKeyHeaderOptions
 > = z.object({
   name: z.string(),
   valuePrefix: z.string().optional(),
@@ -893,62 +893,65 @@ export const GetProviderHeader$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace GetProviderHeader$ {
-  /** @deprecated use `GetProviderHeader$inboundSchema` instead. */
-  export const inboundSchema = GetProviderHeader$inboundSchema;
-  /** @deprecated use `GetProviderHeader$outboundSchema` instead. */
-  export const outboundSchema = GetProviderHeader$outboundSchema;
-  /** @deprecated use `GetProviderHeader$Outbound` instead. */
-  export type Outbound = GetProviderHeader$Outbound;
+export namespace GetProviderAPIKeyHeaderOptions$ {
+  /** @deprecated use `GetProviderAPIKeyHeaderOptions$inboundSchema` instead. */
+  export const inboundSchema = GetProviderAPIKeyHeaderOptions$inboundSchema;
+  /** @deprecated use `GetProviderAPIKeyHeaderOptions$outboundSchema` instead. */
+  export const outboundSchema = GetProviderAPIKeyHeaderOptions$outboundSchema;
+  /** @deprecated use `GetProviderAPIKeyHeaderOptions$Outbound` instead. */
+  export type Outbound = GetProviderAPIKeyHeaderOptions$Outbound;
 }
 
-export function getProviderHeaderToJSON(
-  getProviderHeader: GetProviderHeader,
+export function getProviderAPIKeyHeaderOptionsToJSON(
+  getProviderAPIKeyHeaderOptions: GetProviderAPIKeyHeaderOptions,
 ): string {
   return JSON.stringify(
-    GetProviderHeader$outboundSchema.parse(getProviderHeader),
+    GetProviderAPIKeyHeaderOptions$outboundSchema.parse(
+      getProviderAPIKeyHeaderOptions,
+    ),
   );
 }
 
-export function getProviderHeaderFromJSON(
+export function getProviderAPIKeyHeaderOptionsFromJSON(
   jsonString: string,
-): SafeParseResult<GetProviderHeader, SDKValidationError> {
+): SafeParseResult<GetProviderAPIKeyHeaderOptions, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => GetProviderHeader$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetProviderHeader' from JSON`,
+    (x) => GetProviderAPIKeyHeaderOptions$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetProviderAPIKeyHeaderOptions' from JSON`,
   );
 }
 
 /** @internal */
-export const GetProviderApiKeyOpts$inboundSchema: z.ZodType<
-  GetProviderApiKeyOpts,
+export const GetProviderAPIKeyOptions$inboundSchema: z.ZodType<
+  GetProviderAPIKeyOptions,
   z.ZodTypeDef,
   unknown
 > = z.object({
   attachmentType: GetProviderAttachmentType$inboundSchema,
-  query: z.lazy(() => GetProviderQuery$inboundSchema).optional(),
-  header: z.lazy(() => GetProviderHeader$inboundSchema).optional(),
+  query: z.lazy(() => GetProviderAPIKeyQueryOptions$inboundSchema).optional(),
+  header: z.lazy(() => GetProviderAPIKeyHeaderOptions$inboundSchema).optional(),
   docsURL: z.string().optional(),
 });
 
 /** @internal */
-export type GetProviderApiKeyOpts$Outbound = {
+export type GetProviderAPIKeyOptions$Outbound = {
   attachmentType: string;
-  query?: GetProviderQuery$Outbound | undefined;
-  header?: GetProviderHeader$Outbound | undefined;
+  query?: GetProviderAPIKeyQueryOptions$Outbound | undefined;
+  header?: GetProviderAPIKeyHeaderOptions$Outbound | undefined;
   docsURL?: string | undefined;
 };
 
 /** @internal */
-export const GetProviderApiKeyOpts$outboundSchema: z.ZodType<
-  GetProviderApiKeyOpts$Outbound,
+export const GetProviderAPIKeyOptions$outboundSchema: z.ZodType<
+  GetProviderAPIKeyOptions$Outbound,
   z.ZodTypeDef,
-  GetProviderApiKeyOpts
+  GetProviderAPIKeyOptions
 > = z.object({
   attachmentType: GetProviderAttachmentType$outboundSchema,
-  query: z.lazy(() => GetProviderQuery$outboundSchema).optional(),
-  header: z.lazy(() => GetProviderHeader$outboundSchema).optional(),
+  query: z.lazy(() => GetProviderAPIKeyQueryOptions$outboundSchema).optional(),
+  header: z.lazy(() => GetProviderAPIKeyHeaderOptions$outboundSchema)
+    .optional(),
   docsURL: z.string().optional(),
 });
 
@@ -956,30 +959,30 @@ export const GetProviderApiKeyOpts$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace GetProviderApiKeyOpts$ {
-  /** @deprecated use `GetProviderApiKeyOpts$inboundSchema` instead. */
-  export const inboundSchema = GetProviderApiKeyOpts$inboundSchema;
-  /** @deprecated use `GetProviderApiKeyOpts$outboundSchema` instead. */
-  export const outboundSchema = GetProviderApiKeyOpts$outboundSchema;
-  /** @deprecated use `GetProviderApiKeyOpts$Outbound` instead. */
-  export type Outbound = GetProviderApiKeyOpts$Outbound;
+export namespace GetProviderAPIKeyOptions$ {
+  /** @deprecated use `GetProviderAPIKeyOptions$inboundSchema` instead. */
+  export const inboundSchema = GetProviderAPIKeyOptions$inboundSchema;
+  /** @deprecated use `GetProviderAPIKeyOptions$outboundSchema` instead. */
+  export const outboundSchema = GetProviderAPIKeyOptions$outboundSchema;
+  /** @deprecated use `GetProviderAPIKeyOptions$Outbound` instead. */
+  export type Outbound = GetProviderAPIKeyOptions$Outbound;
 }
 
-export function getProviderApiKeyOptsToJSON(
-  getProviderApiKeyOpts: GetProviderApiKeyOpts,
+export function getProviderAPIKeyOptionsToJSON(
+  getProviderAPIKeyOptions: GetProviderAPIKeyOptions,
 ): string {
   return JSON.stringify(
-    GetProviderApiKeyOpts$outboundSchema.parse(getProviderApiKeyOpts),
+    GetProviderAPIKeyOptions$outboundSchema.parse(getProviderAPIKeyOptions),
   );
 }
 
-export function getProviderApiKeyOptsFromJSON(
+export function getProviderAPIKeyOptionsFromJSON(
   jsonString: string,
-): SafeParseResult<GetProviderApiKeyOpts, SDKValidationError> {
+): SafeParseResult<GetProviderAPIKeyOptions, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => GetProviderApiKeyOpts$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetProviderApiKeyOpts' from JSON`,
+    (x) => GetProviderAPIKeyOptions$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetProviderAPIKeyOptions' from JSON`,
   );
 }
 
@@ -1005,8 +1008,8 @@ export namespace GetProviderFieldUsed$ {
 }
 
 /** @internal */
-export const GetProviderApiKeyAsBasicOpts$inboundSchema: z.ZodType<
-  GetProviderApiKeyAsBasicOpts,
+export const GetProviderAPIKeyAsBasicOptions$inboundSchema: z.ZodType<
+  GetProviderAPIKeyAsBasicOptions,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -1015,16 +1018,16 @@ export const GetProviderApiKeyAsBasicOpts$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type GetProviderApiKeyAsBasicOpts$Outbound = {
+export type GetProviderAPIKeyAsBasicOptions$Outbound = {
   fieldUsed?: string | undefined;
   keyFormat?: string | undefined;
 };
 
 /** @internal */
-export const GetProviderApiKeyAsBasicOpts$outboundSchema: z.ZodType<
-  GetProviderApiKeyAsBasicOpts$Outbound,
+export const GetProviderAPIKeyAsBasicOptions$outboundSchema: z.ZodType<
+  GetProviderAPIKeyAsBasicOptions$Outbound,
   z.ZodTypeDef,
-  GetProviderApiKeyAsBasicOpts
+  GetProviderAPIKeyAsBasicOptions
 > = z.object({
   fieldUsed: GetProviderFieldUsed$outboundSchema.optional(),
   keyFormat: z.string().optional(),
@@ -1034,63 +1037,64 @@ export const GetProviderApiKeyAsBasicOpts$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace GetProviderApiKeyAsBasicOpts$ {
-  /** @deprecated use `GetProviderApiKeyAsBasicOpts$inboundSchema` instead. */
-  export const inboundSchema = GetProviderApiKeyAsBasicOpts$inboundSchema;
-  /** @deprecated use `GetProviderApiKeyAsBasicOpts$outboundSchema` instead. */
-  export const outboundSchema = GetProviderApiKeyAsBasicOpts$outboundSchema;
-  /** @deprecated use `GetProviderApiKeyAsBasicOpts$Outbound` instead. */
-  export type Outbound = GetProviderApiKeyAsBasicOpts$Outbound;
+export namespace GetProviderAPIKeyAsBasicOptions$ {
+  /** @deprecated use `GetProviderAPIKeyAsBasicOptions$inboundSchema` instead. */
+  export const inboundSchema = GetProviderAPIKeyAsBasicOptions$inboundSchema;
+  /** @deprecated use `GetProviderAPIKeyAsBasicOptions$outboundSchema` instead. */
+  export const outboundSchema = GetProviderAPIKeyAsBasicOptions$outboundSchema;
+  /** @deprecated use `GetProviderAPIKeyAsBasicOptions$Outbound` instead. */
+  export type Outbound = GetProviderAPIKeyAsBasicOptions$Outbound;
 }
 
-export function getProviderApiKeyAsBasicOptsToJSON(
-  getProviderApiKeyAsBasicOpts: GetProviderApiKeyAsBasicOpts,
+export function getProviderAPIKeyAsBasicOptionsToJSON(
+  getProviderAPIKeyAsBasicOptions: GetProviderAPIKeyAsBasicOptions,
 ): string {
   return JSON.stringify(
-    GetProviderApiKeyAsBasicOpts$outboundSchema.parse(
-      getProviderApiKeyAsBasicOpts,
+    GetProviderAPIKeyAsBasicOptions$outboundSchema.parse(
+      getProviderAPIKeyAsBasicOptions,
     ),
   );
 }
 
-export function getProviderApiKeyAsBasicOptsFromJSON(
+export function getProviderAPIKeyAsBasicOptionsFromJSON(
   jsonString: string,
-): SafeParseResult<GetProviderApiKeyAsBasicOpts, SDKValidationError> {
+): SafeParseResult<GetProviderAPIKeyAsBasicOptions, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => GetProviderApiKeyAsBasicOpts$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetProviderApiKeyAsBasicOpts' from JSON`,
+    (x) => GetProviderAPIKeyAsBasicOptions$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetProviderAPIKeyAsBasicOptions' from JSON`,
   );
 }
 
 /** @internal */
-export const GetProviderBasicOpts$inboundSchema: z.ZodType<
-  GetProviderBasicOpts,
+export const GetProviderBasicAuthOptions$inboundSchema: z.ZodType<
+  GetProviderBasicAuthOptions,
   z.ZodTypeDef,
   unknown
 > = z.object({
   apiKeyAsBasic: z.boolean().optional(),
-  apiKeyAsBasicOpts: z.lazy(() => GetProviderApiKeyAsBasicOpts$inboundSchema)
+  apiKeyAsBasicOpts: z.lazy(() => GetProviderAPIKeyAsBasicOptions$inboundSchema)
     .optional(),
   docsURL: z.string().optional(),
 });
 
 /** @internal */
-export type GetProviderBasicOpts$Outbound = {
+export type GetProviderBasicAuthOptions$Outbound = {
   apiKeyAsBasic?: boolean | undefined;
-  apiKeyAsBasicOpts?: GetProviderApiKeyAsBasicOpts$Outbound | undefined;
+  apiKeyAsBasicOpts?: GetProviderAPIKeyAsBasicOptions$Outbound | undefined;
   docsURL?: string | undefined;
 };
 
 /** @internal */
-export const GetProviderBasicOpts$outboundSchema: z.ZodType<
-  GetProviderBasicOpts$Outbound,
+export const GetProviderBasicAuthOptions$outboundSchema: z.ZodType<
+  GetProviderBasicAuthOptions$Outbound,
   z.ZodTypeDef,
-  GetProviderBasicOpts
+  GetProviderBasicAuthOptions
 > = z.object({
   apiKeyAsBasic: z.boolean().optional(),
-  apiKeyAsBasicOpts: z.lazy(() => GetProviderApiKeyAsBasicOpts$outboundSchema)
-    .optional(),
+  apiKeyAsBasicOpts: z.lazy(() =>
+    GetProviderAPIKeyAsBasicOptions$outboundSchema
+  ).optional(),
   docsURL: z.string().optional(),
 });
 
@@ -1098,36 +1102,38 @@ export const GetProviderBasicOpts$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace GetProviderBasicOpts$ {
-  /** @deprecated use `GetProviderBasicOpts$inboundSchema` instead. */
-  export const inboundSchema = GetProviderBasicOpts$inboundSchema;
-  /** @deprecated use `GetProviderBasicOpts$outboundSchema` instead. */
-  export const outboundSchema = GetProviderBasicOpts$outboundSchema;
-  /** @deprecated use `GetProviderBasicOpts$Outbound` instead. */
-  export type Outbound = GetProviderBasicOpts$Outbound;
+export namespace GetProviderBasicAuthOptions$ {
+  /** @deprecated use `GetProviderBasicAuthOptions$inboundSchema` instead. */
+  export const inboundSchema = GetProviderBasicAuthOptions$inboundSchema;
+  /** @deprecated use `GetProviderBasicAuthOptions$outboundSchema` instead. */
+  export const outboundSchema = GetProviderBasicAuthOptions$outboundSchema;
+  /** @deprecated use `GetProviderBasicAuthOptions$Outbound` instead. */
+  export type Outbound = GetProviderBasicAuthOptions$Outbound;
 }
 
-export function getProviderBasicOptsToJSON(
-  getProviderBasicOpts: GetProviderBasicOpts,
+export function getProviderBasicAuthOptionsToJSON(
+  getProviderBasicAuthOptions: GetProviderBasicAuthOptions,
 ): string {
   return JSON.stringify(
-    GetProviderBasicOpts$outboundSchema.parse(getProviderBasicOpts),
+    GetProviderBasicAuthOptions$outboundSchema.parse(
+      getProviderBasicAuthOptions,
+    ),
   );
 }
 
-export function getProviderBasicOptsFromJSON(
+export function getProviderBasicAuthOptionsFromJSON(
   jsonString: string,
-): SafeParseResult<GetProviderBasicOpts, SDKValidationError> {
+): SafeParseResult<GetProviderBasicAuthOptions, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => GetProviderBasicOpts$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetProviderBasicOpts' from JSON`,
+    (x) => GetProviderBasicAuthOptions$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetProviderBasicAuthOptions' from JSON`,
   );
 }
 
 /** @internal */
-export const GetProviderBulkWrite$inboundSchema: z.ZodType<
-  GetProviderBulkWrite,
+export const GetProviderBulkWriteSupport$inboundSchema: z.ZodType<
+  GetProviderBulkWriteSupport,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -1138,7 +1144,7 @@ export const GetProviderBulkWrite$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type GetProviderBulkWrite$Outbound = {
+export type GetProviderBulkWriteSupport$Outbound = {
   insert: boolean;
   update: boolean;
   upsert: boolean;
@@ -1146,10 +1152,10 @@ export type GetProviderBulkWrite$Outbound = {
 };
 
 /** @internal */
-export const GetProviderBulkWrite$outboundSchema: z.ZodType<
-  GetProviderBulkWrite$Outbound,
+export const GetProviderBulkWriteSupport$outboundSchema: z.ZodType<
+  GetProviderBulkWriteSupport$Outbound,
   z.ZodTypeDef,
-  GetProviderBulkWrite
+  GetProviderBulkWriteSupport
 > = z.object({
   insert: z.boolean(),
   update: z.boolean(),
@@ -1161,30 +1167,32 @@ export const GetProviderBulkWrite$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace GetProviderBulkWrite$ {
-  /** @deprecated use `GetProviderBulkWrite$inboundSchema` instead. */
-  export const inboundSchema = GetProviderBulkWrite$inboundSchema;
-  /** @deprecated use `GetProviderBulkWrite$outboundSchema` instead. */
-  export const outboundSchema = GetProviderBulkWrite$outboundSchema;
-  /** @deprecated use `GetProviderBulkWrite$Outbound` instead. */
-  export type Outbound = GetProviderBulkWrite$Outbound;
+export namespace GetProviderBulkWriteSupport$ {
+  /** @deprecated use `GetProviderBulkWriteSupport$inboundSchema` instead. */
+  export const inboundSchema = GetProviderBulkWriteSupport$inboundSchema;
+  /** @deprecated use `GetProviderBulkWriteSupport$outboundSchema` instead. */
+  export const outboundSchema = GetProviderBulkWriteSupport$outboundSchema;
+  /** @deprecated use `GetProviderBulkWriteSupport$Outbound` instead. */
+  export type Outbound = GetProviderBulkWriteSupport$Outbound;
 }
 
-export function getProviderBulkWriteToJSON(
-  getProviderBulkWrite: GetProviderBulkWrite,
+export function getProviderBulkWriteSupportToJSON(
+  getProviderBulkWriteSupport: GetProviderBulkWriteSupport,
 ): string {
   return JSON.stringify(
-    GetProviderBulkWrite$outboundSchema.parse(getProviderBulkWrite),
+    GetProviderBulkWriteSupport$outboundSchema.parse(
+      getProviderBulkWriteSupport,
+    ),
   );
 }
 
-export function getProviderBulkWriteFromJSON(
+export function getProviderBulkWriteSupportFromJSON(
   jsonString: string,
-): SafeParseResult<GetProviderBulkWrite, SDKValidationError> {
+): SafeParseResult<GetProviderBulkWriteSupport, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => GetProviderBulkWrite$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetProviderBulkWrite' from JSON`,
+    (x) => GetProviderBulkWriteSupport$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetProviderBulkWriteSupport' from JSON`,
   );
 }
 
@@ -1259,7 +1267,7 @@ export const GetProviderSupport$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  bulkWrite: z.lazy(() => GetProviderBulkWrite$inboundSchema),
+  bulkWrite: z.lazy(() => GetProviderBulkWriteSupport$inboundSchema),
   proxy: z.boolean(),
   read: z.boolean(),
   subscribe: z.boolean(),
@@ -1270,7 +1278,7 @@ export const GetProviderSupport$inboundSchema: z.ZodType<
 
 /** @internal */
 export type GetProviderSupport$Outbound = {
-  bulkWrite: GetProviderBulkWrite$Outbound;
+  bulkWrite: GetProviderBulkWriteSupport$Outbound;
   proxy: boolean;
   read: boolean;
   subscribe: boolean;
@@ -1284,7 +1292,7 @@ export const GetProviderSupport$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   GetProviderSupport
 > = z.object({
-  bulkWrite: z.lazy(() => GetProviderBulkWrite$outboundSchema),
+  bulkWrite: z.lazy(() => GetProviderBulkWriteSupport$outboundSchema),
   proxy: z.boolean(),
   read: z.boolean(),
   subscribe: z.boolean(),
@@ -1325,8 +1333,8 @@ export function getProviderSupportFromJSON(
 }
 
 /** @internal */
-export const GetProviderRegular$inboundSchema: z.ZodType<
-  GetProviderRegular,
+export const GetProviderMediaTypeRegular$inboundSchema: z.ZodType<
+  GetProviderMediaTypeRegular,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -1335,16 +1343,16 @@ export const GetProviderRegular$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type GetProviderRegular$Outbound = {
+export type GetProviderMediaTypeRegular$Outbound = {
   iconURL?: string | undefined;
   logoURL?: string | undefined;
 };
 
 /** @internal */
-export const GetProviderRegular$outboundSchema: z.ZodType<
-  GetProviderRegular$Outbound,
+export const GetProviderMediaTypeRegular$outboundSchema: z.ZodType<
+  GetProviderMediaTypeRegular$Outbound,
   z.ZodTypeDef,
-  GetProviderRegular
+  GetProviderMediaTypeRegular
 > = z.object({
   iconURL: z.string().optional(),
   logoURL: z.string().optional(),
@@ -1354,36 +1362,38 @@ export const GetProviderRegular$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace GetProviderRegular$ {
-  /** @deprecated use `GetProviderRegular$inboundSchema` instead. */
-  export const inboundSchema = GetProviderRegular$inboundSchema;
-  /** @deprecated use `GetProviderRegular$outboundSchema` instead. */
-  export const outboundSchema = GetProviderRegular$outboundSchema;
-  /** @deprecated use `GetProviderRegular$Outbound` instead. */
-  export type Outbound = GetProviderRegular$Outbound;
+export namespace GetProviderMediaTypeRegular$ {
+  /** @deprecated use `GetProviderMediaTypeRegular$inboundSchema` instead. */
+  export const inboundSchema = GetProviderMediaTypeRegular$inboundSchema;
+  /** @deprecated use `GetProviderMediaTypeRegular$outboundSchema` instead. */
+  export const outboundSchema = GetProviderMediaTypeRegular$outboundSchema;
+  /** @deprecated use `GetProviderMediaTypeRegular$Outbound` instead. */
+  export type Outbound = GetProviderMediaTypeRegular$Outbound;
 }
 
-export function getProviderRegularToJSON(
-  getProviderRegular: GetProviderRegular,
+export function getProviderMediaTypeRegularToJSON(
+  getProviderMediaTypeRegular: GetProviderMediaTypeRegular,
 ): string {
   return JSON.stringify(
-    GetProviderRegular$outboundSchema.parse(getProviderRegular),
+    GetProviderMediaTypeRegular$outboundSchema.parse(
+      getProviderMediaTypeRegular,
+    ),
   );
 }
 
-export function getProviderRegularFromJSON(
+export function getProviderMediaTypeRegularFromJSON(
   jsonString: string,
-): SafeParseResult<GetProviderRegular, SDKValidationError> {
+): SafeParseResult<GetProviderMediaTypeRegular, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => GetProviderRegular$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetProviderRegular' from JSON`,
+    (x) => GetProviderMediaTypeRegular$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetProviderMediaTypeRegular' from JSON`,
   );
 }
 
 /** @internal */
-export const GetProviderDarkMode$inboundSchema: z.ZodType<
-  GetProviderDarkMode,
+export const GetProviderMediaTypeDarkMode$inboundSchema: z.ZodType<
+  GetProviderMediaTypeDarkMode,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -1392,16 +1402,16 @@ export const GetProviderDarkMode$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type GetProviderDarkMode$Outbound = {
+export type GetProviderMediaTypeDarkMode$Outbound = {
   iconURL?: string | undefined;
   logoURL?: string | undefined;
 };
 
 /** @internal */
-export const GetProviderDarkMode$outboundSchema: z.ZodType<
-  GetProviderDarkMode$Outbound,
+export const GetProviderMediaTypeDarkMode$outboundSchema: z.ZodType<
+  GetProviderMediaTypeDarkMode$Outbound,
   z.ZodTypeDef,
-  GetProviderDarkMode
+  GetProviderMediaTypeDarkMode
 > = z.object({
   iconURL: z.string().optional(),
   logoURL: z.string().optional(),
@@ -1411,30 +1421,32 @@ export const GetProviderDarkMode$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace GetProviderDarkMode$ {
-  /** @deprecated use `GetProviderDarkMode$inboundSchema` instead. */
-  export const inboundSchema = GetProviderDarkMode$inboundSchema;
-  /** @deprecated use `GetProviderDarkMode$outboundSchema` instead. */
-  export const outboundSchema = GetProviderDarkMode$outboundSchema;
-  /** @deprecated use `GetProviderDarkMode$Outbound` instead. */
-  export type Outbound = GetProviderDarkMode$Outbound;
+export namespace GetProviderMediaTypeDarkMode$ {
+  /** @deprecated use `GetProviderMediaTypeDarkMode$inboundSchema` instead. */
+  export const inboundSchema = GetProviderMediaTypeDarkMode$inboundSchema;
+  /** @deprecated use `GetProviderMediaTypeDarkMode$outboundSchema` instead. */
+  export const outboundSchema = GetProviderMediaTypeDarkMode$outboundSchema;
+  /** @deprecated use `GetProviderMediaTypeDarkMode$Outbound` instead. */
+  export type Outbound = GetProviderMediaTypeDarkMode$Outbound;
 }
 
-export function getProviderDarkModeToJSON(
-  getProviderDarkMode: GetProviderDarkMode,
+export function getProviderMediaTypeDarkModeToJSON(
+  getProviderMediaTypeDarkMode: GetProviderMediaTypeDarkMode,
 ): string {
   return JSON.stringify(
-    GetProviderDarkMode$outboundSchema.parse(getProviderDarkMode),
+    GetProviderMediaTypeDarkMode$outboundSchema.parse(
+      getProviderMediaTypeDarkMode,
+    ),
   );
 }
 
-export function getProviderDarkModeFromJSON(
+export function getProviderMediaTypeDarkModeFromJSON(
   jsonString: string,
-): SafeParseResult<GetProviderDarkMode, SDKValidationError> {
+): SafeParseResult<GetProviderMediaTypeDarkMode, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => GetProviderDarkMode$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetProviderDarkMode' from JSON`,
+    (x) => GetProviderMediaTypeDarkMode$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetProviderMediaTypeDarkMode' from JSON`,
   );
 }
 
@@ -1444,14 +1456,14 @@ export const GetProviderMedia$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  regular: z.lazy(() => GetProviderRegular$inboundSchema).optional(),
-  darkMode: z.lazy(() => GetProviderDarkMode$inboundSchema).optional(),
+  regular: z.lazy(() => GetProviderMediaTypeRegular$inboundSchema).optional(),
+  darkMode: z.lazy(() => GetProviderMediaTypeDarkMode$inboundSchema).optional(),
 });
 
 /** @internal */
 export type GetProviderMedia$Outbound = {
-  regular?: GetProviderRegular$Outbound | undefined;
-  darkMode?: GetProviderDarkMode$Outbound | undefined;
+  regular?: GetProviderMediaTypeRegular$Outbound | undefined;
+  darkMode?: GetProviderMediaTypeDarkMode$Outbound | undefined;
 };
 
 /** @internal */
@@ -1460,8 +1472,9 @@ export const GetProviderMedia$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   GetProviderMedia
 > = z.object({
-  regular: z.lazy(() => GetProviderRegular$outboundSchema).optional(),
-  darkMode: z.lazy(() => GetProviderDarkMode$outboundSchema).optional(),
+  regular: z.lazy(() => GetProviderMediaTypeRegular$outboundSchema).optional(),
+  darkMode: z.lazy(() => GetProviderMediaTypeDarkMode$outboundSchema)
+    .optional(),
 });
 
 /**
@@ -1559,8 +1572,8 @@ export namespace GetProviderRegistrationTiming$ {
 }
 
 /** @internal */
-export const GetProviderSubscribeOpts$inboundSchema: z.ZodType<
-  GetProviderSubscribeOpts,
+export const GetProviderSubscribeOptions$inboundSchema: z.ZodType<
+  GetProviderSubscribeOptions,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -1570,17 +1583,17 @@ export const GetProviderSubscribeOpts$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type GetProviderSubscribeOpts$Outbound = {
+export type GetProviderSubscribeOptions$Outbound = {
   subscriptionScope: string;
   targetURLScope: string;
   registrationTiming: string;
 };
 
 /** @internal */
-export const GetProviderSubscribeOpts$outboundSchema: z.ZodType<
-  GetProviderSubscribeOpts$Outbound,
+export const GetProviderSubscribeOptions$outboundSchema: z.ZodType<
+  GetProviderSubscribeOptions$Outbound,
   z.ZodTypeDef,
-  GetProviderSubscribeOpts
+  GetProviderSubscribeOptions
 > = z.object({
   subscriptionScope: GetProviderSubscriptionScope$outboundSchema,
   targetURLScope: GetProviderTargetURLScope$outboundSchema,
@@ -1591,91 +1604,94 @@ export const GetProviderSubscribeOpts$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace GetProviderSubscribeOpts$ {
-  /** @deprecated use `GetProviderSubscribeOpts$inboundSchema` instead. */
-  export const inboundSchema = GetProviderSubscribeOpts$inboundSchema;
-  /** @deprecated use `GetProviderSubscribeOpts$outboundSchema` instead. */
-  export const outboundSchema = GetProviderSubscribeOpts$outboundSchema;
-  /** @deprecated use `GetProviderSubscribeOpts$Outbound` instead. */
-  export type Outbound = GetProviderSubscribeOpts$Outbound;
+export namespace GetProviderSubscribeOptions$ {
+  /** @deprecated use `GetProviderSubscribeOptions$inboundSchema` instead. */
+  export const inboundSchema = GetProviderSubscribeOptions$inboundSchema;
+  /** @deprecated use `GetProviderSubscribeOptions$outboundSchema` instead. */
+  export const outboundSchema = GetProviderSubscribeOptions$outboundSchema;
+  /** @deprecated use `GetProviderSubscribeOptions$Outbound` instead. */
+  export type Outbound = GetProviderSubscribeOptions$Outbound;
 }
 
-export function getProviderSubscribeOptsToJSON(
-  getProviderSubscribeOpts: GetProviderSubscribeOpts,
+export function getProviderSubscribeOptionsToJSON(
+  getProviderSubscribeOptions: GetProviderSubscribeOptions,
 ): string {
   return JSON.stringify(
-    GetProviderSubscribeOpts$outboundSchema.parse(getProviderSubscribeOpts),
+    GetProviderSubscribeOptions$outboundSchema.parse(
+      getProviderSubscribeOptions,
+    ),
   );
 }
 
-export function getProviderSubscribeOptsFromJSON(
+export function getProviderSubscribeOptionsFromJSON(
   jsonString: string,
-): SafeParseResult<GetProviderSubscribeOpts, SDKValidationError> {
+): SafeParseResult<GetProviderSubscribeOptions, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => GetProviderSubscribeOpts$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetProviderSubscribeOpts' from JSON`,
+    (x) => GetProviderSubscribeOptions$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetProviderSubscribeOptions' from JSON`,
   );
 }
 
 /** @internal */
-export const GetProviderResponseBody$inboundSchema: z.ZodType<
-  GetProviderResponseBody,
+export const GetProviderProviderInfo$inboundSchema: z.ZodType<
+  GetProviderProviderInfo,
   z.ZodTypeDef,
   unknown
 > = z.object({
   name: z.string(),
   authType: GetProviderAuthType$inboundSchema,
   baseURL: z.string(),
-  oauth2Opts: z.lazy(() => GetProviderOauth2Opts$inboundSchema).optional(),
-  apiKeyOpts: z.lazy(() => GetProviderApiKeyOpts$inboundSchema).optional(),
-  basicOpts: z.lazy(() => GetProviderBasicOpts$inboundSchema).optional(),
+  oauth2Opts: z.lazy(() => GetProviderOAuth2Options$inboundSchema).optional(),
+  apiKeyOpts: z.lazy(() => GetProviderAPIKeyOptions$inboundSchema).optional(),
+  basicOpts: z.lazy(() => GetProviderBasicAuthOptions$inboundSchema).optional(),
   support: z.lazy(() => GetProviderSupport$inboundSchema),
   providerOpts: z.record(z.string()),
   displayName: z.string().optional(),
   postAuthInfoNeeded: z.boolean().optional(),
   media: z.lazy(() => GetProviderMedia$inboundSchema).optional(),
   labels: z.record(z.string()).optional(),
-  subscribeOpts: z.lazy(() => GetProviderSubscribeOpts$inboundSchema)
+  subscribeOpts: z.lazy(() => GetProviderSubscribeOptions$inboundSchema)
     .optional(),
 });
 
 /** @internal */
-export type GetProviderResponseBody$Outbound = {
+export type GetProviderProviderInfo$Outbound = {
   name: string;
   authType: string;
   baseURL: string;
-  oauth2Opts?: GetProviderOauth2Opts$Outbound | undefined;
-  apiKeyOpts?: GetProviderApiKeyOpts$Outbound | undefined;
-  basicOpts?: GetProviderBasicOpts$Outbound | undefined;
+  oauth2Opts?: GetProviderOAuth2Options$Outbound | undefined;
+  apiKeyOpts?: GetProviderAPIKeyOptions$Outbound | undefined;
+  basicOpts?: GetProviderBasicAuthOptions$Outbound | undefined;
   support: GetProviderSupport$Outbound;
   providerOpts: { [k: string]: string };
   displayName?: string | undefined;
   postAuthInfoNeeded?: boolean | undefined;
   media?: GetProviderMedia$Outbound | undefined;
   labels?: { [k: string]: string } | undefined;
-  subscribeOpts?: GetProviderSubscribeOpts$Outbound | undefined;
+  subscribeOpts?: GetProviderSubscribeOptions$Outbound | undefined;
 };
 
 /** @internal */
-export const GetProviderResponseBody$outboundSchema: z.ZodType<
-  GetProviderResponseBody$Outbound,
+export const GetProviderProviderInfo$outboundSchema: z.ZodType<
+  GetProviderProviderInfo$Outbound,
   z.ZodTypeDef,
-  GetProviderResponseBody
+  GetProviderProviderInfo
 > = z.object({
   name: z.string(),
   authType: GetProviderAuthType$outboundSchema,
   baseURL: z.string(),
-  oauth2Opts: z.lazy(() => GetProviderOauth2Opts$outboundSchema).optional(),
-  apiKeyOpts: z.lazy(() => GetProviderApiKeyOpts$outboundSchema).optional(),
-  basicOpts: z.lazy(() => GetProviderBasicOpts$outboundSchema).optional(),
+  oauth2Opts: z.lazy(() => GetProviderOAuth2Options$outboundSchema).optional(),
+  apiKeyOpts: z.lazy(() => GetProviderAPIKeyOptions$outboundSchema).optional(),
+  basicOpts: z.lazy(() => GetProviderBasicAuthOptions$outboundSchema)
+    .optional(),
   support: z.lazy(() => GetProviderSupport$outboundSchema),
   providerOpts: z.record(z.string()),
   displayName: z.string().optional(),
   postAuthInfoNeeded: z.boolean().optional(),
   media: z.lazy(() => GetProviderMedia$outboundSchema).optional(),
   labels: z.record(z.string()).optional(),
-  subscribeOpts: z.lazy(() => GetProviderSubscribeOpts$outboundSchema)
+  subscribeOpts: z.lazy(() => GetProviderSubscribeOptions$outboundSchema)
     .optional(),
 });
 
@@ -1683,30 +1699,30 @@ export const GetProviderResponseBody$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace GetProviderResponseBody$ {
-  /** @deprecated use `GetProviderResponseBody$inboundSchema` instead. */
-  export const inboundSchema = GetProviderResponseBody$inboundSchema;
-  /** @deprecated use `GetProviderResponseBody$outboundSchema` instead. */
-  export const outboundSchema = GetProviderResponseBody$outboundSchema;
-  /** @deprecated use `GetProviderResponseBody$Outbound` instead. */
-  export type Outbound = GetProviderResponseBody$Outbound;
+export namespace GetProviderProviderInfo$ {
+  /** @deprecated use `GetProviderProviderInfo$inboundSchema` instead. */
+  export const inboundSchema = GetProviderProviderInfo$inboundSchema;
+  /** @deprecated use `GetProviderProviderInfo$outboundSchema` instead. */
+  export const outboundSchema = GetProviderProviderInfo$outboundSchema;
+  /** @deprecated use `GetProviderProviderInfo$Outbound` instead. */
+  export type Outbound = GetProviderProviderInfo$Outbound;
 }
 
-export function getProviderResponseBodyToJSON(
-  getProviderResponseBody: GetProviderResponseBody,
+export function getProviderProviderInfoToJSON(
+  getProviderProviderInfo: GetProviderProviderInfo,
 ): string {
   return JSON.stringify(
-    GetProviderResponseBody$outboundSchema.parse(getProviderResponseBody),
+    GetProviderProviderInfo$outboundSchema.parse(getProviderProviderInfo),
   );
 }
 
-export function getProviderResponseBodyFromJSON(
+export function getProviderProviderInfoFromJSON(
   jsonString: string,
-): SafeParseResult<GetProviderResponseBody, SDKValidationError> {
+): SafeParseResult<GetProviderProviderInfo, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => GetProviderResponseBody$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetProviderResponseBody' from JSON`,
+    (x) => GetProviderProviderInfo$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetProviderProviderInfo' from JSON`,
   );
 }
 
@@ -1716,14 +1732,14 @@ export const GetProviderResponse$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.union([
-  z.lazy(() => GetProviderResponseBody$inboundSchema),
-  z.lazy(() => GetProviderProvidersResponseBody$inboundSchema),
+  z.lazy(() => GetProviderProviderInfo$inboundSchema),
+  z.lazy(() => GetProviderAPIProblem$inboundSchema),
 ]);
 
 /** @internal */
 export type GetProviderResponse$Outbound =
-  | GetProviderResponseBody$Outbound
-  | GetProviderProvidersResponseBody$Outbound;
+  | GetProviderProviderInfo$Outbound
+  | GetProviderAPIProblem$Outbound;
 
 /** @internal */
 export const GetProviderResponse$outboundSchema: z.ZodType<
@@ -1731,8 +1747,8 @@ export const GetProviderResponse$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   GetProviderResponse
 > = z.union([
-  z.lazy(() => GetProviderResponseBody$outboundSchema),
-  z.lazy(() => GetProviderProvidersResponseBody$outboundSchema),
+  z.lazy(() => GetProviderProviderInfo$outboundSchema),
+  z.lazy(() => GetProviderAPIProblem$outboundSchema),
 ]);
 
 /**

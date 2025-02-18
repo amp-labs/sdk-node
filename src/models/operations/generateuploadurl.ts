@@ -18,7 +18,7 @@ export const GenerateUploadUrlServerList = [
  *
  * Additional properties specific to the problem type may be present.
  */
-export type GenerateUploadUrlUploadUrlsResponseBody = {
+export type GenerateUploadUrlAPIProblem = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -95,7 +95,7 @@ export type GenerateUploadUrlUploadUrlsResponseBody = {
 /**
  * Signed URL
  */
-export type GenerateUploadUrlResponseBody = {
+export type GenerateUploadURLSignedURL = {
   /**
    * The signed URL to upload the zip file to.
    */
@@ -111,12 +111,12 @@ export type GenerateUploadUrlResponseBody = {
 };
 
 export type GenerateUploadUrlResponse =
-  | GenerateUploadUrlResponseBody
-  | GenerateUploadUrlUploadUrlsResponseBody;
+  | GenerateUploadURLSignedURL
+  | GenerateUploadUrlAPIProblem;
 
 /** @internal */
-export const GenerateUploadUrlUploadUrlsResponseBody$inboundSchema: z.ZodType<
-  GenerateUploadUrlUploadUrlsResponseBody,
+export const GenerateUploadUrlAPIProblem$inboundSchema: z.ZodType<
+  GenerateUploadUrlAPIProblem,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -142,7 +142,7 @@ export const GenerateUploadUrlUploadUrlsResponseBody$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type GenerateUploadUrlUploadUrlsResponseBody$Outbound = {
+export type GenerateUploadUrlAPIProblem$Outbound = {
   type: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -163,10 +163,10 @@ export type GenerateUploadUrlUploadUrlsResponseBody$Outbound = {
 };
 
 /** @internal */
-export const GenerateUploadUrlUploadUrlsResponseBody$outboundSchema: z.ZodType<
-  GenerateUploadUrlUploadUrlsResponseBody$Outbound,
+export const GenerateUploadUrlAPIProblem$outboundSchema: z.ZodType<
+  GenerateUploadUrlAPIProblem$Outbound,
   z.ZodTypeDef,
-  GenerateUploadUrlUploadUrlsResponseBody
+  GenerateUploadUrlAPIProblem
 > = z.object({
   type: z.string().default("about:blank"),
   href: z.string().optional(),
@@ -191,47 +191,38 @@ export const GenerateUploadUrlUploadUrlsResponseBody$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace GenerateUploadUrlUploadUrlsResponseBody$ {
-  /** @deprecated use `GenerateUploadUrlUploadUrlsResponseBody$inboundSchema` instead. */
-  export const inboundSchema =
-    GenerateUploadUrlUploadUrlsResponseBody$inboundSchema;
-  /** @deprecated use `GenerateUploadUrlUploadUrlsResponseBody$outboundSchema` instead. */
-  export const outboundSchema =
-    GenerateUploadUrlUploadUrlsResponseBody$outboundSchema;
-  /** @deprecated use `GenerateUploadUrlUploadUrlsResponseBody$Outbound` instead. */
-  export type Outbound = GenerateUploadUrlUploadUrlsResponseBody$Outbound;
+export namespace GenerateUploadUrlAPIProblem$ {
+  /** @deprecated use `GenerateUploadUrlAPIProblem$inboundSchema` instead. */
+  export const inboundSchema = GenerateUploadUrlAPIProblem$inboundSchema;
+  /** @deprecated use `GenerateUploadUrlAPIProblem$outboundSchema` instead. */
+  export const outboundSchema = GenerateUploadUrlAPIProblem$outboundSchema;
+  /** @deprecated use `GenerateUploadUrlAPIProblem$Outbound` instead. */
+  export type Outbound = GenerateUploadUrlAPIProblem$Outbound;
 }
 
-export function generateUploadUrlUploadUrlsResponseBodyToJSON(
-  generateUploadUrlUploadUrlsResponseBody:
-    GenerateUploadUrlUploadUrlsResponseBody,
+export function generateUploadUrlAPIProblemToJSON(
+  generateUploadUrlAPIProblem: GenerateUploadUrlAPIProblem,
 ): string {
   return JSON.stringify(
-    GenerateUploadUrlUploadUrlsResponseBody$outboundSchema.parse(
-      generateUploadUrlUploadUrlsResponseBody,
+    GenerateUploadUrlAPIProblem$outboundSchema.parse(
+      generateUploadUrlAPIProblem,
     ),
   );
 }
 
-export function generateUploadUrlUploadUrlsResponseBodyFromJSON(
+export function generateUploadUrlAPIProblemFromJSON(
   jsonString: string,
-): SafeParseResult<
-  GenerateUploadUrlUploadUrlsResponseBody,
-  SDKValidationError
-> {
+): SafeParseResult<GenerateUploadUrlAPIProblem, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) =>
-      GenerateUploadUrlUploadUrlsResponseBody$inboundSchema.parse(
-        JSON.parse(x),
-      ),
-    `Failed to parse 'GenerateUploadUrlUploadUrlsResponseBody' from JSON`,
+    (x) => GenerateUploadUrlAPIProblem$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GenerateUploadUrlAPIProblem' from JSON`,
   );
 }
 
 /** @internal */
-export const GenerateUploadUrlResponseBody$inboundSchema: z.ZodType<
-  GenerateUploadUrlResponseBody,
+export const GenerateUploadURLSignedURL$inboundSchema: z.ZodType<
+  GenerateUploadURLSignedURL,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -241,17 +232,17 @@ export const GenerateUploadUrlResponseBody$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type GenerateUploadUrlResponseBody$Outbound = {
+export type GenerateUploadURLSignedURL$Outbound = {
   url: string;
   bucket: string;
   path: string;
 };
 
 /** @internal */
-export const GenerateUploadUrlResponseBody$outboundSchema: z.ZodType<
-  GenerateUploadUrlResponseBody$Outbound,
+export const GenerateUploadURLSignedURL$outboundSchema: z.ZodType<
+  GenerateUploadURLSignedURL$Outbound,
   z.ZodTypeDef,
-  GenerateUploadUrlResponseBody
+  GenerateUploadURLSignedURL
 > = z.object({
   url: z.string(),
   bucket: z.string(),
@@ -262,32 +253,30 @@ export const GenerateUploadUrlResponseBody$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace GenerateUploadUrlResponseBody$ {
-  /** @deprecated use `GenerateUploadUrlResponseBody$inboundSchema` instead. */
-  export const inboundSchema = GenerateUploadUrlResponseBody$inboundSchema;
-  /** @deprecated use `GenerateUploadUrlResponseBody$outboundSchema` instead. */
-  export const outboundSchema = GenerateUploadUrlResponseBody$outboundSchema;
-  /** @deprecated use `GenerateUploadUrlResponseBody$Outbound` instead. */
-  export type Outbound = GenerateUploadUrlResponseBody$Outbound;
+export namespace GenerateUploadURLSignedURL$ {
+  /** @deprecated use `GenerateUploadURLSignedURL$inboundSchema` instead. */
+  export const inboundSchema = GenerateUploadURLSignedURL$inboundSchema;
+  /** @deprecated use `GenerateUploadURLSignedURL$outboundSchema` instead. */
+  export const outboundSchema = GenerateUploadURLSignedURL$outboundSchema;
+  /** @deprecated use `GenerateUploadURLSignedURL$Outbound` instead. */
+  export type Outbound = GenerateUploadURLSignedURL$Outbound;
 }
 
-export function generateUploadUrlResponseBodyToJSON(
-  generateUploadUrlResponseBody: GenerateUploadUrlResponseBody,
+export function generateUploadURLSignedURLToJSON(
+  generateUploadURLSignedURL: GenerateUploadURLSignedURL,
 ): string {
   return JSON.stringify(
-    GenerateUploadUrlResponseBody$outboundSchema.parse(
-      generateUploadUrlResponseBody,
-    ),
+    GenerateUploadURLSignedURL$outboundSchema.parse(generateUploadURLSignedURL),
   );
 }
 
-export function generateUploadUrlResponseBodyFromJSON(
+export function generateUploadURLSignedURLFromJSON(
   jsonString: string,
-): SafeParseResult<GenerateUploadUrlResponseBody, SDKValidationError> {
+): SafeParseResult<GenerateUploadURLSignedURL, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => GenerateUploadUrlResponseBody$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GenerateUploadUrlResponseBody' from JSON`,
+    (x) => GenerateUploadURLSignedURL$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GenerateUploadURLSignedURL' from JSON`,
   );
 }
 
@@ -297,14 +286,14 @@ export const GenerateUploadUrlResponse$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.union([
-  z.lazy(() => GenerateUploadUrlResponseBody$inboundSchema),
-  z.lazy(() => GenerateUploadUrlUploadUrlsResponseBody$inboundSchema),
+  z.lazy(() => GenerateUploadURLSignedURL$inboundSchema),
+  z.lazy(() => GenerateUploadUrlAPIProblem$inboundSchema),
 ]);
 
 /** @internal */
 export type GenerateUploadUrlResponse$Outbound =
-  | GenerateUploadUrlResponseBody$Outbound
-  | GenerateUploadUrlUploadUrlsResponseBody$Outbound;
+  | GenerateUploadURLSignedURL$Outbound
+  | GenerateUploadUrlAPIProblem$Outbound;
 
 /** @internal */
 export const GenerateUploadUrlResponse$outboundSchema: z.ZodType<
@@ -312,8 +301,8 @@ export const GenerateUploadUrlResponse$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   GenerateUploadUrlResponse
 > = z.union([
-  z.lazy(() => GenerateUploadUrlResponseBody$outboundSchema),
-  z.lazy(() => GenerateUploadUrlUploadUrlsResponseBody$outboundSchema),
+  z.lazy(() => GenerateUploadURLSignedURL$outboundSchema),
+  z.lazy(() => GenerateUploadUrlAPIProblem$outboundSchema),
 ]);
 
 /**

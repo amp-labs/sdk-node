@@ -9,10 +9,10 @@
 const value: string = "<value>";
 ```
 
-### `operations.OauthConnectResponseBody`
+### `operations.OauthConnectAPIProblem`
 
 ```typescript
-const value: operations.OauthConnectResponseBody = {
+const value: operations.OauthConnectAPIProblem = {
   href:
     "https://www.belgif.be/specification/rest/api-guide/#standardized-problem-types",
   title: "Description of the type of problem that occurred",

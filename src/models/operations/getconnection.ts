@@ -48,7 +48,7 @@ export type GetConnectionRequest = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export type GetConnectionConnectionsResponseBody = {
+export type GetConnectionAPIProblem = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -249,7 +249,7 @@ export type GetConnectionRefreshToken = {
   token: string;
 };
 
-export type GetConnectionOauth2AuthorizationCode = {
+export type GetConnectionOAuth2AuthorizationCodeToken = {
   /**
    * The access token for the connection.
    */
@@ -267,7 +267,7 @@ export type GetConnectionOauth2AuthorizationCode = {
 /**
  * Connection
  */
-export type GetConnectionResponseBody = {
+export type GetConnectionConnection = {
   /**
    * The connection ID.
    */
@@ -307,7 +307,9 @@ export type GetConnectionResponseBody = {
    * The status of the connection.
    */
   status: GetConnectionStatus;
-  oauth2AuthorizationCode?: GetConnectionOauth2AuthorizationCode | undefined;
+  oauth2AuthorizationCode?:
+    | GetConnectionOAuth2AuthorizationCodeToken
+    | undefined;
   /**
    * The API key used while making the connection.
    */
@@ -315,8 +317,8 @@ export type GetConnectionResponseBody = {
 };
 
 export type GetConnectionResponse =
-  | GetConnectionResponseBody
-  | GetConnectionConnectionsResponseBody;
+  | GetConnectionConnection
+  | GetConnectionAPIProblem;
 
 /** @internal */
 export const Refresh$inboundSchema: z.ZodNativeEnum<typeof Refresh> = z
@@ -404,8 +406,8 @@ export function getConnectionRequestFromJSON(
 }
 
 /** @internal */
-export const GetConnectionConnectionsResponseBody$inboundSchema: z.ZodType<
-  GetConnectionConnectionsResponseBody,
+export const GetConnectionAPIProblem$inboundSchema: z.ZodType<
+  GetConnectionAPIProblem,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -431,7 +433,7 @@ export const GetConnectionConnectionsResponseBody$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type GetConnectionConnectionsResponseBody$Outbound = {
+export type GetConnectionAPIProblem$Outbound = {
   type: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -452,10 +454,10 @@ export type GetConnectionConnectionsResponseBody$Outbound = {
 };
 
 /** @internal */
-export const GetConnectionConnectionsResponseBody$outboundSchema: z.ZodType<
-  GetConnectionConnectionsResponseBody$Outbound,
+export const GetConnectionAPIProblem$outboundSchema: z.ZodType<
+  GetConnectionAPIProblem$Outbound,
   z.ZodTypeDef,
-  GetConnectionConnectionsResponseBody
+  GetConnectionAPIProblem
 > = z.object({
   type: z.string().default("about:blank"),
   href: z.string().optional(),
@@ -480,35 +482,30 @@ export const GetConnectionConnectionsResponseBody$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace GetConnectionConnectionsResponseBody$ {
-  /** @deprecated use `GetConnectionConnectionsResponseBody$inboundSchema` instead. */
-  export const inboundSchema =
-    GetConnectionConnectionsResponseBody$inboundSchema;
-  /** @deprecated use `GetConnectionConnectionsResponseBody$outboundSchema` instead. */
-  export const outboundSchema =
-    GetConnectionConnectionsResponseBody$outboundSchema;
-  /** @deprecated use `GetConnectionConnectionsResponseBody$Outbound` instead. */
-  export type Outbound = GetConnectionConnectionsResponseBody$Outbound;
+export namespace GetConnectionAPIProblem$ {
+  /** @deprecated use `GetConnectionAPIProblem$inboundSchema` instead. */
+  export const inboundSchema = GetConnectionAPIProblem$inboundSchema;
+  /** @deprecated use `GetConnectionAPIProblem$outboundSchema` instead. */
+  export const outboundSchema = GetConnectionAPIProblem$outboundSchema;
+  /** @deprecated use `GetConnectionAPIProblem$Outbound` instead. */
+  export type Outbound = GetConnectionAPIProblem$Outbound;
 }
 
-export function getConnectionConnectionsResponseBodyToJSON(
-  getConnectionConnectionsResponseBody: GetConnectionConnectionsResponseBody,
+export function getConnectionAPIProblemToJSON(
+  getConnectionAPIProblem: GetConnectionAPIProblem,
 ): string {
   return JSON.stringify(
-    GetConnectionConnectionsResponseBody$outboundSchema.parse(
-      getConnectionConnectionsResponseBody,
-    ),
+    GetConnectionAPIProblem$outboundSchema.parse(getConnectionAPIProblem),
   );
 }
 
-export function getConnectionConnectionsResponseBodyFromJSON(
+export function getConnectionAPIProblemFromJSON(
   jsonString: string,
-): SafeParseResult<GetConnectionConnectionsResponseBody, SDKValidationError> {
+): SafeParseResult<GetConnectionAPIProblem, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) =>
-      GetConnectionConnectionsResponseBody$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetConnectionConnectionsResponseBody' from JSON`,
+    (x) => GetConnectionAPIProblem$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetConnectionAPIProblem' from JSON`,
   );
 }
 
@@ -873,8 +870,8 @@ export function getConnectionRefreshTokenFromJSON(
 }
 
 /** @internal */
-export const GetConnectionOauth2AuthorizationCode$inboundSchema: z.ZodType<
-  GetConnectionOauth2AuthorizationCode,
+export const GetConnectionOAuth2AuthorizationCodeToken$inboundSchema: z.ZodType<
+  GetConnectionOAuth2AuthorizationCodeToken,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -885,63 +882,71 @@ export const GetConnectionOauth2AuthorizationCode$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type GetConnectionOauth2AuthorizationCode$Outbound = {
+export type GetConnectionOAuth2AuthorizationCodeToken$Outbound = {
   accessToken?: GetConnectionAccessToken$Outbound | undefined;
   refreshToken?: GetConnectionRefreshToken$Outbound | undefined;
   scopes?: Array<string> | undefined;
 };
 
 /** @internal */
-export const GetConnectionOauth2AuthorizationCode$outboundSchema: z.ZodType<
-  GetConnectionOauth2AuthorizationCode$Outbound,
-  z.ZodTypeDef,
-  GetConnectionOauth2AuthorizationCode
-> = z.object({
-  accessToken: z.lazy(() => GetConnectionAccessToken$outboundSchema).optional(),
-  refreshToken: z.lazy(() => GetConnectionRefreshToken$outboundSchema)
-    .optional(),
-  scopes: z.array(z.string()).optional(),
-});
+export const GetConnectionOAuth2AuthorizationCodeToken$outboundSchema:
+  z.ZodType<
+    GetConnectionOAuth2AuthorizationCodeToken$Outbound,
+    z.ZodTypeDef,
+    GetConnectionOAuth2AuthorizationCodeToken
+  > = z.object({
+    accessToken: z.lazy(() => GetConnectionAccessToken$outboundSchema)
+      .optional(),
+    refreshToken: z.lazy(() => GetConnectionRefreshToken$outboundSchema)
+      .optional(),
+    scopes: z.array(z.string()).optional(),
+  });
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace GetConnectionOauth2AuthorizationCode$ {
-  /** @deprecated use `GetConnectionOauth2AuthorizationCode$inboundSchema` instead. */
+export namespace GetConnectionOAuth2AuthorizationCodeToken$ {
+  /** @deprecated use `GetConnectionOAuth2AuthorizationCodeToken$inboundSchema` instead. */
   export const inboundSchema =
-    GetConnectionOauth2AuthorizationCode$inboundSchema;
-  /** @deprecated use `GetConnectionOauth2AuthorizationCode$outboundSchema` instead. */
+    GetConnectionOAuth2AuthorizationCodeToken$inboundSchema;
+  /** @deprecated use `GetConnectionOAuth2AuthorizationCodeToken$outboundSchema` instead. */
   export const outboundSchema =
-    GetConnectionOauth2AuthorizationCode$outboundSchema;
-  /** @deprecated use `GetConnectionOauth2AuthorizationCode$Outbound` instead. */
-  export type Outbound = GetConnectionOauth2AuthorizationCode$Outbound;
+    GetConnectionOAuth2AuthorizationCodeToken$outboundSchema;
+  /** @deprecated use `GetConnectionOAuth2AuthorizationCodeToken$Outbound` instead. */
+  export type Outbound = GetConnectionOAuth2AuthorizationCodeToken$Outbound;
 }
 
-export function getConnectionOauth2AuthorizationCodeToJSON(
-  getConnectionOauth2AuthorizationCode: GetConnectionOauth2AuthorizationCode,
+export function getConnectionOAuth2AuthorizationCodeTokenToJSON(
+  getConnectionOAuth2AuthorizationCodeToken:
+    GetConnectionOAuth2AuthorizationCodeToken,
 ): string {
   return JSON.stringify(
-    GetConnectionOauth2AuthorizationCode$outboundSchema.parse(
-      getConnectionOauth2AuthorizationCode,
+    GetConnectionOAuth2AuthorizationCodeToken$outboundSchema.parse(
+      getConnectionOAuth2AuthorizationCodeToken,
     ),
   );
 }
 
-export function getConnectionOauth2AuthorizationCodeFromJSON(
+export function getConnectionOAuth2AuthorizationCodeTokenFromJSON(
   jsonString: string,
-): SafeParseResult<GetConnectionOauth2AuthorizationCode, SDKValidationError> {
+): SafeParseResult<
+  GetConnectionOAuth2AuthorizationCodeToken,
+  SDKValidationError
+> {
   return safeParse(
     jsonString,
     (x) =>
-      GetConnectionOauth2AuthorizationCode$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetConnectionOauth2AuthorizationCode' from JSON`,
+      GetConnectionOAuth2AuthorizationCodeToken$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'GetConnectionOAuth2AuthorizationCodeToken' from JSON`,
   );
 }
 
 /** @internal */
-export const GetConnectionResponseBody$inboundSchema: z.ZodType<
-  GetConnectionResponseBody,
+export const GetConnectionConnection$inboundSchema: z.ZodType<
+  GetConnectionConnection,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -959,13 +964,13 @@ export const GetConnectionResponseBody$inboundSchema: z.ZodType<
   authScheme: GetConnectionAuthScheme$inboundSchema,
   status: GetConnectionStatus$inboundSchema,
   oauth2AuthorizationCode: z.lazy(() =>
-    GetConnectionOauth2AuthorizationCode$inboundSchema
+    GetConnectionOAuth2AuthorizationCodeToken$inboundSchema
   ).optional(),
   apiKey: z.string().optional(),
 });
 
 /** @internal */
-export type GetConnectionResponseBody$Outbound = {
+export type GetConnectionConnection$Outbound = {
   id: string;
   projectId: string;
   provider: string;
@@ -979,16 +984,16 @@ export type GetConnectionResponseBody$Outbound = {
   authScheme: string;
   status: string;
   oauth2AuthorizationCode?:
-    | GetConnectionOauth2AuthorizationCode$Outbound
+    | GetConnectionOAuth2AuthorizationCodeToken$Outbound
     | undefined;
   apiKey?: string | undefined;
 };
 
 /** @internal */
-export const GetConnectionResponseBody$outboundSchema: z.ZodType<
-  GetConnectionResponseBody$Outbound,
+export const GetConnectionConnection$outboundSchema: z.ZodType<
+  GetConnectionConnection$Outbound,
   z.ZodTypeDef,
-  GetConnectionResponseBody
+  GetConnectionConnection
 > = z.object({
   id: z.string(),
   projectId: z.string(),
@@ -1003,7 +1008,7 @@ export const GetConnectionResponseBody$outboundSchema: z.ZodType<
   authScheme: GetConnectionAuthScheme$outboundSchema,
   status: GetConnectionStatus$outboundSchema,
   oauth2AuthorizationCode: z.lazy(() =>
-    GetConnectionOauth2AuthorizationCode$outboundSchema
+    GetConnectionOAuth2AuthorizationCodeToken$outboundSchema
   ).optional(),
   apiKey: z.string().optional(),
 });
@@ -1012,30 +1017,30 @@ export const GetConnectionResponseBody$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace GetConnectionResponseBody$ {
-  /** @deprecated use `GetConnectionResponseBody$inboundSchema` instead. */
-  export const inboundSchema = GetConnectionResponseBody$inboundSchema;
-  /** @deprecated use `GetConnectionResponseBody$outboundSchema` instead. */
-  export const outboundSchema = GetConnectionResponseBody$outboundSchema;
-  /** @deprecated use `GetConnectionResponseBody$Outbound` instead. */
-  export type Outbound = GetConnectionResponseBody$Outbound;
+export namespace GetConnectionConnection$ {
+  /** @deprecated use `GetConnectionConnection$inboundSchema` instead. */
+  export const inboundSchema = GetConnectionConnection$inboundSchema;
+  /** @deprecated use `GetConnectionConnection$outboundSchema` instead. */
+  export const outboundSchema = GetConnectionConnection$outboundSchema;
+  /** @deprecated use `GetConnectionConnection$Outbound` instead. */
+  export type Outbound = GetConnectionConnection$Outbound;
 }
 
-export function getConnectionResponseBodyToJSON(
-  getConnectionResponseBody: GetConnectionResponseBody,
+export function getConnectionConnectionToJSON(
+  getConnectionConnection: GetConnectionConnection,
 ): string {
   return JSON.stringify(
-    GetConnectionResponseBody$outboundSchema.parse(getConnectionResponseBody),
+    GetConnectionConnection$outboundSchema.parse(getConnectionConnection),
   );
 }
 
-export function getConnectionResponseBodyFromJSON(
+export function getConnectionConnectionFromJSON(
   jsonString: string,
-): SafeParseResult<GetConnectionResponseBody, SDKValidationError> {
+): SafeParseResult<GetConnectionConnection, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => GetConnectionResponseBody$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetConnectionResponseBody' from JSON`,
+    (x) => GetConnectionConnection$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetConnectionConnection' from JSON`,
   );
 }
 
@@ -1045,14 +1050,14 @@ export const GetConnectionResponse$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.union([
-  z.lazy(() => GetConnectionResponseBody$inboundSchema),
-  z.lazy(() => GetConnectionConnectionsResponseBody$inboundSchema),
+  z.lazy(() => GetConnectionConnection$inboundSchema),
+  z.lazy(() => GetConnectionAPIProblem$inboundSchema),
 ]);
 
 /** @internal */
 export type GetConnectionResponse$Outbound =
-  | GetConnectionResponseBody$Outbound
-  | GetConnectionConnectionsResponseBody$Outbound;
+  | GetConnectionConnection$Outbound
+  | GetConnectionAPIProblem$Outbound;
 
 /** @internal */
 export const GetConnectionResponse$outboundSchema: z.ZodType<
@@ -1060,8 +1065,8 @@ export const GetConnectionResponse$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   GetConnectionResponse
 > = z.union([
-  z.lazy(() => GetConnectionResponseBody$outboundSchema),
-  z.lazy(() => GetConnectionConnectionsResponseBody$outboundSchema),
+  z.lazy(() => GetConnectionConnection$outboundSchema),
+  z.lazy(() => GetConnectionAPIProblem$outboundSchema),
 ]);
 
 /**

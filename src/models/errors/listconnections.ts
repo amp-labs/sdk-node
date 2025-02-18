@@ -27,7 +27,7 @@ export type ListConnectionsIn = ClosedEnum<typeof ListConnectionsIn>;
  *
  * @remarks
  */
-export type ListConnectionsIssues = {
+export type ListConnectionsInputValidationIssue = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -120,7 +120,7 @@ export type ListConnectionsIssues = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export type ListConnectionsResponseBodyData = {
+export type ListConnectionsInputValidationProblemData = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -192,7 +192,7 @@ export type ListConnectionsResponseBodyData = {
    * Additional context for the problem
    */
   context?: { [k: string]: any } | undefined;
-  issues?: Array<ListConnectionsIssues> | undefined;
+  issues?: Array<ListConnectionsInputValidationIssue> | undefined;
 };
 
 /**
@@ -202,7 +202,7 @@ export type ListConnectionsResponseBodyData = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export class ListConnectionsResponseBody extends Error {
+export class ListConnectionsInputValidationProblem extends Error {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -274,12 +274,12 @@ export class ListConnectionsResponseBody extends Error {
    * Additional context for the problem
    */
   context?: { [k: string]: any } | undefined;
-  issues?: Array<ListConnectionsIssues> | undefined;
+  issues?: Array<ListConnectionsInputValidationIssue> | undefined;
 
   /** The original data that was passed to this error instance. */
-  data$: ListConnectionsResponseBodyData;
+  data$: ListConnectionsInputValidationProblemData;
 
-  constructor(err: ListConnectionsResponseBodyData) {
+  constructor(err: ListConnectionsInputValidationProblemData) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
@@ -305,7 +305,7 @@ export class ListConnectionsResponseBody extends Error {
     if (err.context != null) this.context = err.context;
     if (err.issues != null) this.issues = err.issues;
 
-    this.name = "ListConnectionsResponseBody";
+    this.name = "ListConnectionsInputValidationProblem";
   }
 }
 
@@ -331,8 +331,8 @@ export namespace ListConnectionsIn$ {
 }
 
 /** @internal */
-export const ListConnectionsIssues$inboundSchema: z.ZodType<
-  ListConnectionsIssues,
+export const ListConnectionsInputValidationIssue$inboundSchema: z.ZodType<
+  ListConnectionsInputValidationIssue,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -361,7 +361,7 @@ export const ListConnectionsIssues$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type ListConnectionsIssues$Outbound = {
+export type ListConnectionsInputValidationIssue$Outbound = {
   type: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -385,10 +385,10 @@ export type ListConnectionsIssues$Outbound = {
 };
 
 /** @internal */
-export const ListConnectionsIssues$outboundSchema: z.ZodType<
-  ListConnectionsIssues$Outbound,
+export const ListConnectionsInputValidationIssue$outboundSchema: z.ZodType<
+  ListConnectionsInputValidationIssue$Outbound,
   z.ZodTypeDef,
-  ListConnectionsIssues
+  ListConnectionsInputValidationIssue
 > = z.object({
   type: z.string().default("about:blank"),
   href: z.string().optional(),
@@ -416,36 +416,41 @@ export const ListConnectionsIssues$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace ListConnectionsIssues$ {
-  /** @deprecated use `ListConnectionsIssues$inboundSchema` instead. */
-  export const inboundSchema = ListConnectionsIssues$inboundSchema;
-  /** @deprecated use `ListConnectionsIssues$outboundSchema` instead. */
-  export const outboundSchema = ListConnectionsIssues$outboundSchema;
-  /** @deprecated use `ListConnectionsIssues$Outbound` instead. */
-  export type Outbound = ListConnectionsIssues$Outbound;
+export namespace ListConnectionsInputValidationIssue$ {
+  /** @deprecated use `ListConnectionsInputValidationIssue$inboundSchema` instead. */
+  export const inboundSchema =
+    ListConnectionsInputValidationIssue$inboundSchema;
+  /** @deprecated use `ListConnectionsInputValidationIssue$outboundSchema` instead. */
+  export const outboundSchema =
+    ListConnectionsInputValidationIssue$outboundSchema;
+  /** @deprecated use `ListConnectionsInputValidationIssue$Outbound` instead. */
+  export type Outbound = ListConnectionsInputValidationIssue$Outbound;
 }
 
-export function listConnectionsIssuesToJSON(
-  listConnectionsIssues: ListConnectionsIssues,
+export function listConnectionsInputValidationIssueToJSON(
+  listConnectionsInputValidationIssue: ListConnectionsInputValidationIssue,
 ): string {
   return JSON.stringify(
-    ListConnectionsIssues$outboundSchema.parse(listConnectionsIssues),
+    ListConnectionsInputValidationIssue$outboundSchema.parse(
+      listConnectionsInputValidationIssue,
+    ),
   );
 }
 
-export function listConnectionsIssuesFromJSON(
+export function listConnectionsInputValidationIssueFromJSON(
   jsonString: string,
-): SafeParseResult<ListConnectionsIssues, SDKValidationError> {
+): SafeParseResult<ListConnectionsInputValidationIssue, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => ListConnectionsIssues$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ListConnectionsIssues' from JSON`,
+    (x) =>
+      ListConnectionsInputValidationIssue$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListConnectionsInputValidationIssue' from JSON`,
   );
 }
 
 /** @internal */
-export const ListConnectionsResponseBody$inboundSchema: z.ZodType<
-  ListConnectionsResponseBody,
+export const ListConnectionsInputValidationProblem$inboundSchema: z.ZodType<
+  ListConnectionsInputValidationProblem,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -468,14 +473,16 @@ export const ListConnectionsResponseBody$inboundSchema: z.ZodType<
   retryAfter: z.string().datetime({ offset: true }).transform(v => new Date(v))
     .optional(),
   context: z.record(z.any()).optional(),
-  issues: z.array(z.lazy(() => ListConnectionsIssues$inboundSchema)).optional(),
+  issues: z.array(
+    z.lazy(() => ListConnectionsInputValidationIssue$inboundSchema),
+  ).optional(),
 })
   .transform((v) => {
-    return new ListConnectionsResponseBody(v);
+    return new ListConnectionsInputValidationProblem(v);
   });
 
 /** @internal */
-export type ListConnectionsResponseBody$Outbound = {
+export type ListConnectionsInputValidationProblem$Outbound = {
   type?: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -493,15 +500,15 @@ export type ListConnectionsResponseBody$Outbound = {
   retryable?: boolean | undefined;
   retryAfter?: string | undefined;
   context?: { [k: string]: any } | undefined;
-  issues?: Array<ListConnectionsIssues$Outbound> | undefined;
+  issues?: Array<ListConnectionsInputValidationIssue$Outbound> | undefined;
 };
 
 /** @internal */
-export const ListConnectionsResponseBody$outboundSchema: z.ZodType<
-  ListConnectionsResponseBody$Outbound,
+export const ListConnectionsInputValidationProblem$outboundSchema: z.ZodType<
+  ListConnectionsInputValidationProblem$Outbound,
   z.ZodTypeDef,
-  ListConnectionsResponseBody
-> = z.instanceof(ListConnectionsResponseBody)
+  ListConnectionsInputValidationProblem
+> = z.instanceof(ListConnectionsInputValidationProblem)
   .transform(v => v.data$)
   .pipe(z.object({
     type: z.string().default("about:blank"),
@@ -521,19 +528,22 @@ export const ListConnectionsResponseBody$outboundSchema: z.ZodType<
     retryable: z.boolean().optional(),
     retryAfter: z.date().transform(v => v.toISOString()).optional(),
     context: z.record(z.any()).optional(),
-    issues: z.array(z.lazy(() => ListConnectionsIssues$outboundSchema))
-      .optional(),
+    issues: z.array(
+      z.lazy(() => ListConnectionsInputValidationIssue$outboundSchema),
+    ).optional(),
   }));
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace ListConnectionsResponseBody$ {
-  /** @deprecated use `ListConnectionsResponseBody$inboundSchema` instead. */
-  export const inboundSchema = ListConnectionsResponseBody$inboundSchema;
-  /** @deprecated use `ListConnectionsResponseBody$outboundSchema` instead. */
-  export const outboundSchema = ListConnectionsResponseBody$outboundSchema;
-  /** @deprecated use `ListConnectionsResponseBody$Outbound` instead. */
-  export type Outbound = ListConnectionsResponseBody$Outbound;
+export namespace ListConnectionsInputValidationProblem$ {
+  /** @deprecated use `ListConnectionsInputValidationProblem$inboundSchema` instead. */
+  export const inboundSchema =
+    ListConnectionsInputValidationProblem$inboundSchema;
+  /** @deprecated use `ListConnectionsInputValidationProblem$outboundSchema` instead. */
+  export const outboundSchema =
+    ListConnectionsInputValidationProblem$outboundSchema;
+  /** @deprecated use `ListConnectionsInputValidationProblem$Outbound` instead. */
+  export type Outbound = ListConnectionsInputValidationProblem$Outbound;
 }

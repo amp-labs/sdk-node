@@ -24,7 +24,7 @@ export type ListOperationLogsRequest = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export type ListOperationLogsResponseBody = {
+export type ListOperationLogsAPIProblem = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -116,7 +116,7 @@ export type Message = {
   operationId?: string | undefined;
 };
 
-export type ListOperationLogsOperationsResponseBody = {
+export type Log = {
   /**
    * The time the log was created.
    */
@@ -132,8 +132,8 @@ export type ListOperationLogsOperationsResponseBody = {
 };
 
 export type ListOperationLogsResponse =
-  | ListOperationLogsResponseBody
-  | Array<ListOperationLogsOperationsResponseBody>;
+  | ListOperationLogsAPIProblem
+  | Array<Log>;
 
 /** @internal */
 export const ListOperationLogsRequest$inboundSchema: z.ZodType<
@@ -193,8 +193,8 @@ export function listOperationLogsRequestFromJSON(
 }
 
 /** @internal */
-export const ListOperationLogsResponseBody$inboundSchema: z.ZodType<
-  ListOperationLogsResponseBody,
+export const ListOperationLogsAPIProblem$inboundSchema: z.ZodType<
+  ListOperationLogsAPIProblem,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -220,7 +220,7 @@ export const ListOperationLogsResponseBody$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type ListOperationLogsResponseBody$Outbound = {
+export type ListOperationLogsAPIProblem$Outbound = {
   type: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -241,10 +241,10 @@ export type ListOperationLogsResponseBody$Outbound = {
 };
 
 /** @internal */
-export const ListOperationLogsResponseBody$outboundSchema: z.ZodType<
-  ListOperationLogsResponseBody$Outbound,
+export const ListOperationLogsAPIProblem$outboundSchema: z.ZodType<
+  ListOperationLogsAPIProblem$Outbound,
   z.ZodTypeDef,
-  ListOperationLogsResponseBody
+  ListOperationLogsAPIProblem
 > = z.object({
   type: z.string().default("about:blank"),
   href: z.string().optional(),
@@ -269,32 +269,32 @@ export const ListOperationLogsResponseBody$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace ListOperationLogsResponseBody$ {
-  /** @deprecated use `ListOperationLogsResponseBody$inboundSchema` instead. */
-  export const inboundSchema = ListOperationLogsResponseBody$inboundSchema;
-  /** @deprecated use `ListOperationLogsResponseBody$outboundSchema` instead. */
-  export const outboundSchema = ListOperationLogsResponseBody$outboundSchema;
-  /** @deprecated use `ListOperationLogsResponseBody$Outbound` instead. */
-  export type Outbound = ListOperationLogsResponseBody$Outbound;
+export namespace ListOperationLogsAPIProblem$ {
+  /** @deprecated use `ListOperationLogsAPIProblem$inboundSchema` instead. */
+  export const inboundSchema = ListOperationLogsAPIProblem$inboundSchema;
+  /** @deprecated use `ListOperationLogsAPIProblem$outboundSchema` instead. */
+  export const outboundSchema = ListOperationLogsAPIProblem$outboundSchema;
+  /** @deprecated use `ListOperationLogsAPIProblem$Outbound` instead. */
+  export type Outbound = ListOperationLogsAPIProblem$Outbound;
 }
 
-export function listOperationLogsResponseBodyToJSON(
-  listOperationLogsResponseBody: ListOperationLogsResponseBody,
+export function listOperationLogsAPIProblemToJSON(
+  listOperationLogsAPIProblem: ListOperationLogsAPIProblem,
 ): string {
   return JSON.stringify(
-    ListOperationLogsResponseBody$outboundSchema.parse(
-      listOperationLogsResponseBody,
+    ListOperationLogsAPIProblem$outboundSchema.parse(
+      listOperationLogsAPIProblem,
     ),
   );
 }
 
-export function listOperationLogsResponseBodyFromJSON(
+export function listOperationLogsAPIProblemFromJSON(
   jsonString: string,
-): SafeParseResult<ListOperationLogsResponseBody, SDKValidationError> {
+): SafeParseResult<ListOperationLogsAPIProblem, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => ListOperationLogsResponseBody$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ListOperationLogsResponseBody' from JSON`,
+    (x) => ListOperationLogsAPIProblem$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListOperationLogsAPIProblem' from JSON`,
   );
 }
 
@@ -360,73 +360,52 @@ export function messageFromJSON(
 }
 
 /** @internal */
-export const ListOperationLogsOperationsResponseBody$inboundSchema: z.ZodType<
-  ListOperationLogsOperationsResponseBody,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  timestamp: z.string(),
-  message: z.lazy(() => Message$inboundSchema),
-  severity: z.string(),
-});
+export const Log$inboundSchema: z.ZodType<Log, z.ZodTypeDef, unknown> = z
+  .object({
+    timestamp: z.string(),
+    message: z.lazy(() => Message$inboundSchema),
+    severity: z.string(),
+  });
 
 /** @internal */
-export type ListOperationLogsOperationsResponseBody$Outbound = {
+export type Log$Outbound = {
   timestamp: string;
   message: Message$Outbound;
   severity: string;
 };
 
 /** @internal */
-export const ListOperationLogsOperationsResponseBody$outboundSchema: z.ZodType<
-  ListOperationLogsOperationsResponseBody$Outbound,
-  z.ZodTypeDef,
-  ListOperationLogsOperationsResponseBody
-> = z.object({
-  timestamp: z.string(),
-  message: z.lazy(() => Message$outboundSchema),
-  severity: z.string(),
-});
+export const Log$outboundSchema: z.ZodType<Log$Outbound, z.ZodTypeDef, Log> = z
+  .object({
+    timestamp: z.string(),
+    message: z.lazy(() => Message$outboundSchema),
+    severity: z.string(),
+  });
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace ListOperationLogsOperationsResponseBody$ {
-  /** @deprecated use `ListOperationLogsOperationsResponseBody$inboundSchema` instead. */
-  export const inboundSchema =
-    ListOperationLogsOperationsResponseBody$inboundSchema;
-  /** @deprecated use `ListOperationLogsOperationsResponseBody$outboundSchema` instead. */
-  export const outboundSchema =
-    ListOperationLogsOperationsResponseBody$outboundSchema;
-  /** @deprecated use `ListOperationLogsOperationsResponseBody$Outbound` instead. */
-  export type Outbound = ListOperationLogsOperationsResponseBody$Outbound;
+export namespace Log$ {
+  /** @deprecated use `Log$inboundSchema` instead. */
+  export const inboundSchema = Log$inboundSchema;
+  /** @deprecated use `Log$outboundSchema` instead. */
+  export const outboundSchema = Log$outboundSchema;
+  /** @deprecated use `Log$Outbound` instead. */
+  export type Outbound = Log$Outbound;
 }
 
-export function listOperationLogsOperationsResponseBodyToJSON(
-  listOperationLogsOperationsResponseBody:
-    ListOperationLogsOperationsResponseBody,
-): string {
-  return JSON.stringify(
-    ListOperationLogsOperationsResponseBody$outboundSchema.parse(
-      listOperationLogsOperationsResponseBody,
-    ),
-  );
+export function logToJSON(log: Log): string {
+  return JSON.stringify(Log$outboundSchema.parse(log));
 }
 
-export function listOperationLogsOperationsResponseBodyFromJSON(
+export function logFromJSON(
   jsonString: string,
-): SafeParseResult<
-  ListOperationLogsOperationsResponseBody,
-  SDKValidationError
-> {
+): SafeParseResult<Log, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) =>
-      ListOperationLogsOperationsResponseBody$inboundSchema.parse(
-        JSON.parse(x),
-      ),
-    `Failed to parse 'ListOperationLogsOperationsResponseBody' from JSON`,
+    (x) => Log$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Log' from JSON`,
   );
 }
 
@@ -436,14 +415,14 @@ export const ListOperationLogsResponse$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.union([
-  z.lazy(() => ListOperationLogsResponseBody$inboundSchema),
-  z.array(z.lazy(() => ListOperationLogsOperationsResponseBody$inboundSchema)),
+  z.lazy(() => ListOperationLogsAPIProblem$inboundSchema),
+  z.array(z.lazy(() => Log$inboundSchema)),
 ]);
 
 /** @internal */
 export type ListOperationLogsResponse$Outbound =
-  | ListOperationLogsResponseBody$Outbound
-  | Array<ListOperationLogsOperationsResponseBody$Outbound>;
+  | ListOperationLogsAPIProblem$Outbound
+  | Array<Log$Outbound>;
 
 /** @internal */
 export const ListOperationLogsResponse$outboundSchema: z.ZodType<
@@ -451,8 +430,8 @@ export const ListOperationLogsResponse$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   ListOperationLogsResponse
 > = z.union([
-  z.lazy(() => ListOperationLogsResponseBody$outboundSchema),
-  z.array(z.lazy(() => ListOperationLogsOperationsResponseBody$outboundSchema)),
+  z.lazy(() => ListOperationLogsAPIProblem$outboundSchema),
+  z.array(z.lazy(() => Log$outboundSchema)),
 ]);
 
 /**
