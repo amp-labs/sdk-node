@@ -27,7 +27,7 @@ export type ListProviderAppsIn = ClosedEnum<typeof ListProviderAppsIn>;
  *
  * @remarks
  */
-export type ListProviderAppsIssues = {
+export type ListProviderAppsInputValidationIssue = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -120,7 +120,7 @@ export type ListProviderAppsIssues = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export type ListProviderAppsResponseBodyData = {
+export type ListProviderAppsInputValidationProblemData = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -192,7 +192,7 @@ export type ListProviderAppsResponseBodyData = {
    * Additional context for the problem
    */
   context?: { [k: string]: any } | undefined;
-  issues?: Array<ListProviderAppsIssues> | undefined;
+  issues?: Array<ListProviderAppsInputValidationIssue> | undefined;
 };
 
 /**
@@ -202,7 +202,7 @@ export type ListProviderAppsResponseBodyData = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export class ListProviderAppsResponseBody extends Error {
+export class ListProviderAppsInputValidationProblem extends Error {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -274,12 +274,12 @@ export class ListProviderAppsResponseBody extends Error {
    * Additional context for the problem
    */
   context?: { [k: string]: any } | undefined;
-  issues?: Array<ListProviderAppsIssues> | undefined;
+  issues?: Array<ListProviderAppsInputValidationIssue> | undefined;
 
   /** The original data that was passed to this error instance. */
-  data$: ListProviderAppsResponseBodyData;
+  data$: ListProviderAppsInputValidationProblemData;
 
-  constructor(err: ListProviderAppsResponseBodyData) {
+  constructor(err: ListProviderAppsInputValidationProblemData) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
@@ -305,7 +305,7 @@ export class ListProviderAppsResponseBody extends Error {
     if (err.context != null) this.context = err.context;
     if (err.issues != null) this.issues = err.issues;
 
-    this.name = "ListProviderAppsResponseBody";
+    this.name = "ListProviderAppsInputValidationProblem";
   }
 }
 
@@ -331,8 +331,8 @@ export namespace ListProviderAppsIn$ {
 }
 
 /** @internal */
-export const ListProviderAppsIssues$inboundSchema: z.ZodType<
-  ListProviderAppsIssues,
+export const ListProviderAppsInputValidationIssue$inboundSchema: z.ZodType<
+  ListProviderAppsInputValidationIssue,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -361,7 +361,7 @@ export const ListProviderAppsIssues$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type ListProviderAppsIssues$Outbound = {
+export type ListProviderAppsInputValidationIssue$Outbound = {
   type: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -385,10 +385,10 @@ export type ListProviderAppsIssues$Outbound = {
 };
 
 /** @internal */
-export const ListProviderAppsIssues$outboundSchema: z.ZodType<
-  ListProviderAppsIssues$Outbound,
+export const ListProviderAppsInputValidationIssue$outboundSchema: z.ZodType<
+  ListProviderAppsInputValidationIssue$Outbound,
   z.ZodTypeDef,
-  ListProviderAppsIssues
+  ListProviderAppsInputValidationIssue
 > = z.object({
   type: z.string().default("about:blank"),
   href: z.string().optional(),
@@ -416,36 +416,41 @@ export const ListProviderAppsIssues$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace ListProviderAppsIssues$ {
-  /** @deprecated use `ListProviderAppsIssues$inboundSchema` instead. */
-  export const inboundSchema = ListProviderAppsIssues$inboundSchema;
-  /** @deprecated use `ListProviderAppsIssues$outboundSchema` instead. */
-  export const outboundSchema = ListProviderAppsIssues$outboundSchema;
-  /** @deprecated use `ListProviderAppsIssues$Outbound` instead. */
-  export type Outbound = ListProviderAppsIssues$Outbound;
+export namespace ListProviderAppsInputValidationIssue$ {
+  /** @deprecated use `ListProviderAppsInputValidationIssue$inboundSchema` instead. */
+  export const inboundSchema =
+    ListProviderAppsInputValidationIssue$inboundSchema;
+  /** @deprecated use `ListProviderAppsInputValidationIssue$outboundSchema` instead. */
+  export const outboundSchema =
+    ListProviderAppsInputValidationIssue$outboundSchema;
+  /** @deprecated use `ListProviderAppsInputValidationIssue$Outbound` instead. */
+  export type Outbound = ListProviderAppsInputValidationIssue$Outbound;
 }
 
-export function listProviderAppsIssuesToJSON(
-  listProviderAppsIssues: ListProviderAppsIssues,
+export function listProviderAppsInputValidationIssueToJSON(
+  listProviderAppsInputValidationIssue: ListProviderAppsInputValidationIssue,
 ): string {
   return JSON.stringify(
-    ListProviderAppsIssues$outboundSchema.parse(listProviderAppsIssues),
+    ListProviderAppsInputValidationIssue$outboundSchema.parse(
+      listProviderAppsInputValidationIssue,
+    ),
   );
 }
 
-export function listProviderAppsIssuesFromJSON(
+export function listProviderAppsInputValidationIssueFromJSON(
   jsonString: string,
-): SafeParseResult<ListProviderAppsIssues, SDKValidationError> {
+): SafeParseResult<ListProviderAppsInputValidationIssue, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => ListProviderAppsIssues$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ListProviderAppsIssues' from JSON`,
+    (x) =>
+      ListProviderAppsInputValidationIssue$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListProviderAppsInputValidationIssue' from JSON`,
   );
 }
 
 /** @internal */
-export const ListProviderAppsResponseBody$inboundSchema: z.ZodType<
-  ListProviderAppsResponseBody,
+export const ListProviderAppsInputValidationProblem$inboundSchema: z.ZodType<
+  ListProviderAppsInputValidationProblem,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -468,15 +473,16 @@ export const ListProviderAppsResponseBody$inboundSchema: z.ZodType<
   retryAfter: z.string().datetime({ offset: true }).transform(v => new Date(v))
     .optional(),
   context: z.record(z.any()).optional(),
-  issues: z.array(z.lazy(() => ListProviderAppsIssues$inboundSchema))
-    .optional(),
+  issues: z.array(
+    z.lazy(() => ListProviderAppsInputValidationIssue$inboundSchema),
+  ).optional(),
 })
   .transform((v) => {
-    return new ListProviderAppsResponseBody(v);
+    return new ListProviderAppsInputValidationProblem(v);
   });
 
 /** @internal */
-export type ListProviderAppsResponseBody$Outbound = {
+export type ListProviderAppsInputValidationProblem$Outbound = {
   type?: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -494,15 +500,15 @@ export type ListProviderAppsResponseBody$Outbound = {
   retryable?: boolean | undefined;
   retryAfter?: string | undefined;
   context?: { [k: string]: any } | undefined;
-  issues?: Array<ListProviderAppsIssues$Outbound> | undefined;
+  issues?: Array<ListProviderAppsInputValidationIssue$Outbound> | undefined;
 };
 
 /** @internal */
-export const ListProviderAppsResponseBody$outboundSchema: z.ZodType<
-  ListProviderAppsResponseBody$Outbound,
+export const ListProviderAppsInputValidationProblem$outboundSchema: z.ZodType<
+  ListProviderAppsInputValidationProblem$Outbound,
   z.ZodTypeDef,
-  ListProviderAppsResponseBody
-> = z.instanceof(ListProviderAppsResponseBody)
+  ListProviderAppsInputValidationProblem
+> = z.instanceof(ListProviderAppsInputValidationProblem)
   .transform(v => v.data$)
   .pipe(z.object({
     type: z.string().default("about:blank"),
@@ -522,19 +528,22 @@ export const ListProviderAppsResponseBody$outboundSchema: z.ZodType<
     retryable: z.boolean().optional(),
     retryAfter: z.date().transform(v => v.toISOString()).optional(),
     context: z.record(z.any()).optional(),
-    issues: z.array(z.lazy(() => ListProviderAppsIssues$outboundSchema))
-      .optional(),
+    issues: z.array(
+      z.lazy(() => ListProviderAppsInputValidationIssue$outboundSchema),
+    ).optional(),
   }));
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace ListProviderAppsResponseBody$ {
-  /** @deprecated use `ListProviderAppsResponseBody$inboundSchema` instead. */
-  export const inboundSchema = ListProviderAppsResponseBody$inboundSchema;
-  /** @deprecated use `ListProviderAppsResponseBody$outboundSchema` instead. */
-  export const outboundSchema = ListProviderAppsResponseBody$outboundSchema;
-  /** @deprecated use `ListProviderAppsResponseBody$Outbound` instead. */
-  export type Outbound = ListProviderAppsResponseBody$Outbound;
+export namespace ListProviderAppsInputValidationProblem$ {
+  /** @deprecated use `ListProviderAppsInputValidationProblem$inboundSchema` instead. */
+  export const inboundSchema =
+    ListProviderAppsInputValidationProblem$inboundSchema;
+  /** @deprecated use `ListProviderAppsInputValidationProblem$outboundSchema` instead. */
+  export const outboundSchema =
+    ListProviderAppsInputValidationProblem$outboundSchema;
+  /** @deprecated use `ListProviderAppsInputValidationProblem$Outbound` instead. */
+  export type Outbound = ListProviderAppsInputValidationProblem$Outbound;
 }

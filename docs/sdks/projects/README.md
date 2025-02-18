@@ -160,10 +160,10 @@ run();
 
 ### Errors
 
-| Error Type                       | Status Code                      | Content Type                     |
-| -------------------------------- | -------------------------------- | -------------------------------- |
-| errors.CreateProjectResponseBody | 422                              | application/problem+json         |
-| errors.APIError                  | 4XX, 5XX                         | \*/\*                            |
+| Error Type                                 | Status Code                                | Content Type                               |
+| ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
+| errors.CreateProjectInputValidationProblem | 422                                        | application/problem+json                   |
+| errors.APIError                            | 4XX, 5XX                                   | \*/\*                                      |
 
 ## get
 
@@ -238,10 +238,10 @@ run();
 
 ### Errors
 
-| Error Type                    | Status Code                   | Content Type                  |
-| ----------------------------- | ----------------------------- | ----------------------------- |
-| errors.GetProjectResponseBody | 404                           | application/problem+json      |
-| errors.APIError               | 4XX, 5XX                      | \*/\*                         |
+| Error Type                              | Status Code                             | Content Type                            |
+| --------------------------------------- | --------------------------------------- | --------------------------------------- |
+| errors.GetProjectInputValidationProblem | 404                                     | application/problem+json                |
+| errors.APIError                         | 4XX, 5XX                                | \*/\*                                   |
 
 ## delete
 
@@ -312,14 +312,14 @@ run();
 
 ### Response
 
-**Promise\<[operations.DeleteProjectResponseBody](../../models/operations/deleteprojectresponsebody.md)\>**
+**Promise\<[operations.DeleteProjectAPIProblem](../../models/operations/deleteprojectapiproblem.md)\>**
 
 ### Errors
 
-| Error Type                       | Status Code                      | Content Type                     |
-| -------------------------------- | -------------------------------- | -------------------------------- |
-| errors.DeleteProjectResponseBody | 422                              | application/problem+json         |
-| errors.APIError                  | 4XX, 5XX                         | \*/\*                            |
+| Error Type                                 | Status Code                                | Content Type                               |
+| ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
+| errors.DeleteProjectInputValidationProblem | 422                                        | application/problem+json                   |
+| errors.APIError                            | 4XX, 5XX                                   | \*/\*                                      |
 
 ## update
 
@@ -412,8 +412,8 @@ run();
 
 ### Errors
 
-| Error Type                               | Status Code                              | Content Type                             |
-| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| errors.UpdateProjectResponseBody         | 400                                      | application/problem+json                 |
-| errors.UpdateProjectProjectsResponseBody | 422                                      | application/problem+json                 |
-| errors.APIError                          | 4XX, 5XX                                 | \*/\*                                    |
+| Error Type                                         | Status Code                                        | Content Type                                       |
+| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
+| errors.UpdateProjectInputValidationProblem         | 400                                                | application/problem+json                           |
+| errors.UpdateProjectProjectsInputValidationProblem | 422                                                | application/problem+json                           |
+| errors.APIError                                    | 4XX, 5XX                                           | \*/\*                                              |

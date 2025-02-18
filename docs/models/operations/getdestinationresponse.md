@@ -3,10 +3,10 @@
 
 ## Supported Types
 
-### `operations.GetDestinationResponseBody`
+### `operations.GetDestinationDestination`
 
 ```typescript
-const value: operations.GetDestinationResponseBody = {
+const value: operations.GetDestinationDestination = {
   id: "<id>",
   name: "leadConvertedWebhook",
   type: "webhook",
@@ -20,10 +20,10 @@ const value: operations.GetDestinationResponseBody = {
 };
 ```
 
-### `operations.GetDestinationDestinationsResponseBody`
+### `operations.GetDestinationAPIProblem`
 
 ```typescript
-const value: operations.GetDestinationDestinationsResponseBody = {
+const value: operations.GetDestinationAPIProblem = {
   href:
     "https://www.belgif.be/specification/rest/api-guide/#standardized-problem-types",
   title: "Description of the type of problem that occurred",

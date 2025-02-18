@@ -415,11 +415,11 @@ run();
 
 Some methods specify known errors which can be thrown. All the known errors are enumerated in the `models/errors/errors.ts` module. The known errors for a method are documented under the *Errors* tables in SDK docs. For example, the `records` method may throw the following errors:
 
-| Error Type                         | Status Code | Content Type     |
-| ---------------------------------- | ----------- | ---------------- |
-| errors.TriggerReadResponseBody     | 400         | application/json |
-| errors.TriggerReadReadResponseBody | 500         | application/json |
-| errors.APIError                    | 4XX, 5XX    | \*/\*            |
+| Error Type                       | Status Code | Content Type     |
+| -------------------------------- | ----------- | ---------------- |
+| errors.TriggerReadAPIProblem     | 400         | application/json |
+| errors.TriggerReadReadAPIProblem | 500         | application/json |
+| errors.APIError                  | 4XX, 5XX    | \*/\*            |
 
 If the method throws an error and it is not captured by the known errors, it will default to throwing a `APIError`.
 
@@ -427,8 +427,8 @@ If the method throws an error and it is not captured by the known errors, it wil
 import { SDK } from "@amp-labs/sdk-node";
 import {
   SDKValidationError,
-  TriggerReadReadResponseBody,
-  TriggerReadResponseBody,
+  TriggerReadAPIProblem,
+  TriggerReadReadAPIProblem,
 } from "@amp-labs/sdk-node/models/errors";
 
 const sdk = new SDK({
@@ -461,13 +461,13 @@ async function run() {
         console.error(err.rawValue);
         return;
       }
-      case (err instanceof TriggerReadResponseBody): {
-        // Handle err.data$: TriggerReadResponseBodyData
+      case (err instanceof TriggerReadAPIProblem): {
+        // Handle err.data$: TriggerReadAPIProblemData
         console.error(err);
         return;
       }
-      case (err instanceof TriggerReadReadResponseBody): {
-        // Handle err.data$: TriggerReadReadResponseBodyData
+      case (err instanceof TriggerReadReadAPIProblem): {
+        // Handle err.data$: TriggerReadReadAPIProblemData
         console.error(err);
         return;
       }

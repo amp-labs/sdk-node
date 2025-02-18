@@ -75,7 +75,7 @@ run();
 
 ### Errors
 
-| Error Type                           | Status Code                          | Content Type                         |
-| ------------------------------------ | ------------------------------------ | ------------------------------------ |
-| errors.GenerateUploadUrlResponseBody | 422                                  | application/problem+json             |
-| errors.APIError                      | 4XX, 5XX                             | \*/\*                                |
+| Error Type                                     | Status Code                                    | Content Type                                   |
+| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| errors.GenerateUploadUrlInputValidationProblem | 422                                            | application/problem+json                       |
+| errors.APIError                                | 4XX, 5XX                                       | \*/\*                                          |

@@ -35,7 +35,7 @@ export type CreateGroupRequest = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export type CreateGroupResponseBody = {
+export type CreateGroupAPIProblem = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -232,8 +232,8 @@ export function createGroupRequestFromJSON(
 }
 
 /** @internal */
-export const CreateGroupResponseBody$inboundSchema: z.ZodType<
-  CreateGroupResponseBody,
+export const CreateGroupAPIProblem$inboundSchema: z.ZodType<
+  CreateGroupAPIProblem,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -259,7 +259,7 @@ export const CreateGroupResponseBody$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type CreateGroupResponseBody$Outbound = {
+export type CreateGroupAPIProblem$Outbound = {
   type: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -280,10 +280,10 @@ export type CreateGroupResponseBody$Outbound = {
 };
 
 /** @internal */
-export const CreateGroupResponseBody$outboundSchema: z.ZodType<
-  CreateGroupResponseBody$Outbound,
+export const CreateGroupAPIProblem$outboundSchema: z.ZodType<
+  CreateGroupAPIProblem$Outbound,
   z.ZodTypeDef,
-  CreateGroupResponseBody
+  CreateGroupAPIProblem
 > = z.object({
   type: z.string().default("about:blank"),
   href: z.string().optional(),
@@ -308,29 +308,29 @@ export const CreateGroupResponseBody$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace CreateGroupResponseBody$ {
-  /** @deprecated use `CreateGroupResponseBody$inboundSchema` instead. */
-  export const inboundSchema = CreateGroupResponseBody$inboundSchema;
-  /** @deprecated use `CreateGroupResponseBody$outboundSchema` instead. */
-  export const outboundSchema = CreateGroupResponseBody$outboundSchema;
-  /** @deprecated use `CreateGroupResponseBody$Outbound` instead. */
-  export type Outbound = CreateGroupResponseBody$Outbound;
+export namespace CreateGroupAPIProblem$ {
+  /** @deprecated use `CreateGroupAPIProblem$inboundSchema` instead. */
+  export const inboundSchema = CreateGroupAPIProblem$inboundSchema;
+  /** @deprecated use `CreateGroupAPIProblem$outboundSchema` instead. */
+  export const outboundSchema = CreateGroupAPIProblem$outboundSchema;
+  /** @deprecated use `CreateGroupAPIProblem$Outbound` instead. */
+  export type Outbound = CreateGroupAPIProblem$Outbound;
 }
 
-export function createGroupResponseBodyToJSON(
-  createGroupResponseBody: CreateGroupResponseBody,
+export function createGroupAPIProblemToJSON(
+  createGroupAPIProblem: CreateGroupAPIProblem,
 ): string {
   return JSON.stringify(
-    CreateGroupResponseBody$outboundSchema.parse(createGroupResponseBody),
+    CreateGroupAPIProblem$outboundSchema.parse(createGroupAPIProblem),
   );
 }
 
-export function createGroupResponseBodyFromJSON(
+export function createGroupAPIProblemFromJSON(
   jsonString: string,
-): SafeParseResult<CreateGroupResponseBody, SDKValidationError> {
+): SafeParseResult<CreateGroupAPIProblem, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => CreateGroupResponseBody$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreateGroupResponseBody' from JSON`,
+    (x) => CreateGroupAPIProblem$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreateGroupAPIProblem' from JSON`,
   );
 }

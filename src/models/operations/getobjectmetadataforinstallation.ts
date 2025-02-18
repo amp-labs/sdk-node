@@ -38,7 +38,7 @@ export type GetObjectMetadataForInstallationRequest = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export type GetObjectMetadataForInstallationObjectsAndFieldsResponseBody = {
+export type GetObjectMetadataForInstallationAPIProblem = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -134,7 +134,7 @@ export type ValueType = ClosedEnum<typeof ValueType>;
 /**
  * Represents a field value
  */
-export type Values = {
+export type FieldValue = {
   /**
    * The internal value used by the system
    */
@@ -145,7 +145,7 @@ export type Values = {
   displayValue: string;
 };
 
-export type Fields = {
+export type FieldMetadata = {
   /**
    * The name of the field from the provider API.
    */
@@ -169,13 +169,13 @@ export type Fields = {
   /**
    * If the valueType is singleSelect or multiSelect, this is a list of possible values
    */
-  values?: Array<Values> | undefined;
+  values?: Array<FieldValue> | undefined;
 };
 
 /**
  * The retrieved object metadata
  */
-export type GetObjectMetadataForInstallationResponseBody = {
+export type GetObjectMetadataForInstallationObjectMetadata = {
   /**
    * The provider name of the object
    */
@@ -188,12 +188,12 @@ export type GetObjectMetadataForInstallationResponseBody = {
   /**
    * Map of field metadata keyed by field name
    */
-  fields: { [k: string]: Fields };
+  fields: { [k: string]: FieldMetadata };
 };
 
 export type GetObjectMetadataForInstallationResponse =
-  | GetObjectMetadataForInstallationResponseBody
-  | GetObjectMetadataForInstallationObjectsAndFieldsResponseBody;
+  | GetObjectMetadataForInstallationObjectMetadata
+  | GetObjectMetadataForInstallationAPIProblem;
 
 /** @internal */
 export const GetObjectMetadataForInstallationRequest$inboundSchema: z.ZodType<
@@ -270,62 +270,58 @@ export function getObjectMetadataForInstallationRequestFromJSON(
 }
 
 /** @internal */
-export const GetObjectMetadataForInstallationObjectsAndFieldsResponseBody$inboundSchema:
-  z.ZodType<
-    GetObjectMetadataForInstallationObjectsAndFieldsResponseBody,
-    z.ZodTypeDef,
-    unknown
-  > = z.object({
-    type: z.string().default("about:blank"),
-    href: z.string().optional(),
-    title: z.string().optional(),
-    status: z.number().int().optional(),
-    detail: z.string().optional(),
-    instance: z.string().optional(),
-    subsystem: z.string().optional(),
-    time: z.string().datetime({ offset: true }).transform(v => new Date(v))
-      .optional(),
-    requestId: z.string().optional(),
-    causes: z.array(z.string()).optional(),
-    remedy: z.string().optional(),
-    supportEmail: z.string().optional(),
-    supportPhone: z.string().optional(),
-    supportUrl: z.string().optional(),
-    retryable: z.boolean().optional(),
-    retryAfter: z.string().datetime({ offset: true }).transform(v =>
-      new Date(v)
-    ).optional(),
-    context: z.record(z.any()).optional(),
-  });
+export const GetObjectMetadataForInstallationAPIProblem$inboundSchema:
+  z.ZodType<GetObjectMetadataForInstallationAPIProblem, z.ZodTypeDef, unknown> =
+    z.object({
+      type: z.string().default("about:blank"),
+      href: z.string().optional(),
+      title: z.string().optional(),
+      status: z.number().int().optional(),
+      detail: z.string().optional(),
+      instance: z.string().optional(),
+      subsystem: z.string().optional(),
+      time: z.string().datetime({ offset: true }).transform(v => new Date(v))
+        .optional(),
+      requestId: z.string().optional(),
+      causes: z.array(z.string()).optional(),
+      remedy: z.string().optional(),
+      supportEmail: z.string().optional(),
+      supportPhone: z.string().optional(),
+      supportUrl: z.string().optional(),
+      retryable: z.boolean().optional(),
+      retryAfter: z.string().datetime({ offset: true }).transform(v =>
+        new Date(v)
+      ).optional(),
+      context: z.record(z.any()).optional(),
+    });
 
 /** @internal */
-export type GetObjectMetadataForInstallationObjectsAndFieldsResponseBody$Outbound =
-  {
-    type: string;
-    href?: string | undefined;
-    title?: string | undefined;
-    status?: number | undefined;
-    detail?: string | undefined;
-    instance?: string | undefined;
-    subsystem?: string | undefined;
-    time?: string | undefined;
-    requestId?: string | undefined;
-    causes?: Array<string> | undefined;
-    remedy?: string | undefined;
-    supportEmail?: string | undefined;
-    supportPhone?: string | undefined;
-    supportUrl?: string | undefined;
-    retryable?: boolean | undefined;
-    retryAfter?: string | undefined;
-    context?: { [k: string]: any } | undefined;
-  };
+export type GetObjectMetadataForInstallationAPIProblem$Outbound = {
+  type: string;
+  href?: string | undefined;
+  title?: string | undefined;
+  status?: number | undefined;
+  detail?: string | undefined;
+  instance?: string | undefined;
+  subsystem?: string | undefined;
+  time?: string | undefined;
+  requestId?: string | undefined;
+  causes?: Array<string> | undefined;
+  remedy?: string | undefined;
+  supportEmail?: string | undefined;
+  supportPhone?: string | undefined;
+  supportUrl?: string | undefined;
+  retryable?: boolean | undefined;
+  retryAfter?: string | undefined;
+  context?: { [k: string]: any } | undefined;
+};
 
 /** @internal */
-export const GetObjectMetadataForInstallationObjectsAndFieldsResponseBody$outboundSchema:
+export const GetObjectMetadataForInstallationAPIProblem$outboundSchema:
   z.ZodType<
-    GetObjectMetadataForInstallationObjectsAndFieldsResponseBody$Outbound,
+    GetObjectMetadataForInstallationAPIProblem$Outbound,
     z.ZodTypeDef,
-    GetObjectMetadataForInstallationObjectsAndFieldsResponseBody
+    GetObjectMetadataForInstallationAPIProblem
   > = z.object({
     type: z.string().default("about:blank"),
     href: z.string().optional(),
@@ -350,40 +346,41 @@ export const GetObjectMetadataForInstallationObjectsAndFieldsResponseBody$outbou
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace GetObjectMetadataForInstallationObjectsAndFieldsResponseBody$ {
-  /** @deprecated use `GetObjectMetadataForInstallationObjectsAndFieldsResponseBody$inboundSchema` instead. */
+export namespace GetObjectMetadataForInstallationAPIProblem$ {
+  /** @deprecated use `GetObjectMetadataForInstallationAPIProblem$inboundSchema` instead. */
   export const inboundSchema =
-    GetObjectMetadataForInstallationObjectsAndFieldsResponseBody$inboundSchema;
-  /** @deprecated use `GetObjectMetadataForInstallationObjectsAndFieldsResponseBody$outboundSchema` instead. */
+    GetObjectMetadataForInstallationAPIProblem$inboundSchema;
+  /** @deprecated use `GetObjectMetadataForInstallationAPIProblem$outboundSchema` instead. */
   export const outboundSchema =
-    GetObjectMetadataForInstallationObjectsAndFieldsResponseBody$outboundSchema;
-  /** @deprecated use `GetObjectMetadataForInstallationObjectsAndFieldsResponseBody$Outbound` instead. */
-  export type Outbound =
-    GetObjectMetadataForInstallationObjectsAndFieldsResponseBody$Outbound;
+    GetObjectMetadataForInstallationAPIProblem$outboundSchema;
+  /** @deprecated use `GetObjectMetadataForInstallationAPIProblem$Outbound` instead. */
+  export type Outbound = GetObjectMetadataForInstallationAPIProblem$Outbound;
 }
 
-export function getObjectMetadataForInstallationObjectsAndFieldsResponseBodyToJSON(
-  getObjectMetadataForInstallationObjectsAndFieldsResponseBody:
-    GetObjectMetadataForInstallationObjectsAndFieldsResponseBody,
+export function getObjectMetadataForInstallationAPIProblemToJSON(
+  getObjectMetadataForInstallationAPIProblem:
+    GetObjectMetadataForInstallationAPIProblem,
 ): string {
   return JSON.stringify(
-    GetObjectMetadataForInstallationObjectsAndFieldsResponseBody$outboundSchema
-      .parse(getObjectMetadataForInstallationObjectsAndFieldsResponseBody),
+    GetObjectMetadataForInstallationAPIProblem$outboundSchema.parse(
+      getObjectMetadataForInstallationAPIProblem,
+    ),
   );
 }
 
-export function getObjectMetadataForInstallationObjectsAndFieldsResponseBodyFromJSON(
+export function getObjectMetadataForInstallationAPIProblemFromJSON(
   jsonString: string,
 ): SafeParseResult<
-  GetObjectMetadataForInstallationObjectsAndFieldsResponseBody,
+  GetObjectMetadataForInstallationAPIProblem,
   SDKValidationError
 > {
   return safeParse(
     jsonString,
     (x) =>
-      GetObjectMetadataForInstallationObjectsAndFieldsResponseBody$inboundSchema
-        .parse(JSON.parse(x)),
-    `Failed to parse 'GetObjectMetadataForInstallationObjectsAndFieldsResponseBody' from JSON`,
+      GetObjectMetadataForInstallationAPIProblem$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'GetObjectMetadataForInstallationAPIProblem' from JSON`,
   );
 }
 
@@ -407,23 +404,26 @@ export namespace ValueType$ {
 }
 
 /** @internal */
-export const Values$inboundSchema: z.ZodType<Values, z.ZodTypeDef, unknown> = z
-  .object({
-    value: z.string(),
-    displayValue: z.string(),
-  });
+export const FieldValue$inboundSchema: z.ZodType<
+  FieldValue,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  value: z.string(),
+  displayValue: z.string(),
+});
 
 /** @internal */
-export type Values$Outbound = {
+export type FieldValue$Outbound = {
   value: string;
   displayValue: string;
 };
 
 /** @internal */
-export const Values$outboundSchema: z.ZodType<
-  Values$Outbound,
+export const FieldValue$outboundSchema: z.ZodType<
+  FieldValue$Outbound,
   z.ZodTypeDef,
-  Values
+  FieldValue
 > = z.object({
   value: z.string(),
   displayValue: z.string(),
@@ -433,164 +433,168 @@ export const Values$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace Values$ {
-  /** @deprecated use `Values$inboundSchema` instead. */
-  export const inboundSchema = Values$inboundSchema;
-  /** @deprecated use `Values$outboundSchema` instead. */
-  export const outboundSchema = Values$outboundSchema;
-  /** @deprecated use `Values$Outbound` instead. */
-  export type Outbound = Values$Outbound;
+export namespace FieldValue$ {
+  /** @deprecated use `FieldValue$inboundSchema` instead. */
+  export const inboundSchema = FieldValue$inboundSchema;
+  /** @deprecated use `FieldValue$outboundSchema` instead. */
+  export const outboundSchema = FieldValue$outboundSchema;
+  /** @deprecated use `FieldValue$Outbound` instead. */
+  export type Outbound = FieldValue$Outbound;
 }
 
-export function valuesToJSON(values: Values): string {
-  return JSON.stringify(Values$outboundSchema.parse(values));
+export function fieldValueToJSON(fieldValue: FieldValue): string {
+  return JSON.stringify(FieldValue$outboundSchema.parse(fieldValue));
 }
 
-export function valuesFromJSON(
+export function fieldValueFromJSON(
   jsonString: string,
-): SafeParseResult<Values, SDKValidationError> {
+): SafeParseResult<FieldValue, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => Values$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Values' from JSON`,
+    (x) => FieldValue$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'FieldValue' from JSON`,
   );
 }
 
 /** @internal */
-export const Fields$inboundSchema: z.ZodType<Fields, z.ZodTypeDef, unknown> = z
-  .object({
-    fieldName: z.string(),
-    displayName: z.string(),
-    valueType: ValueType$inboundSchema.optional(),
-    providerType: z.string().optional(),
-    readOnly: z.boolean().optional(),
-    values: z.array(z.lazy(() => Values$inboundSchema)).optional(),
-  });
+export const FieldMetadata$inboundSchema: z.ZodType<
+  FieldMetadata,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  fieldName: z.string(),
+  displayName: z.string(),
+  valueType: ValueType$inboundSchema.optional(),
+  providerType: z.string().optional(),
+  readOnly: z.boolean().optional(),
+  values: z.array(z.lazy(() => FieldValue$inboundSchema)).optional(),
+});
 
 /** @internal */
-export type Fields$Outbound = {
+export type FieldMetadata$Outbound = {
   fieldName: string;
   displayName: string;
   valueType?: string | undefined;
   providerType?: string | undefined;
   readOnly?: boolean | undefined;
-  values?: Array<Values$Outbound> | undefined;
+  values?: Array<FieldValue$Outbound> | undefined;
 };
 
 /** @internal */
-export const Fields$outboundSchema: z.ZodType<
-  Fields$Outbound,
+export const FieldMetadata$outboundSchema: z.ZodType<
+  FieldMetadata$Outbound,
   z.ZodTypeDef,
-  Fields
+  FieldMetadata
 > = z.object({
   fieldName: z.string(),
   displayName: z.string(),
   valueType: ValueType$outboundSchema.optional(),
   providerType: z.string().optional(),
   readOnly: z.boolean().optional(),
-  values: z.array(z.lazy(() => Values$outboundSchema)).optional(),
+  values: z.array(z.lazy(() => FieldValue$outboundSchema)).optional(),
 });
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace Fields$ {
-  /** @deprecated use `Fields$inboundSchema` instead. */
-  export const inboundSchema = Fields$inboundSchema;
-  /** @deprecated use `Fields$outboundSchema` instead. */
-  export const outboundSchema = Fields$outboundSchema;
-  /** @deprecated use `Fields$Outbound` instead. */
-  export type Outbound = Fields$Outbound;
+export namespace FieldMetadata$ {
+  /** @deprecated use `FieldMetadata$inboundSchema` instead. */
+  export const inboundSchema = FieldMetadata$inboundSchema;
+  /** @deprecated use `FieldMetadata$outboundSchema` instead. */
+  export const outboundSchema = FieldMetadata$outboundSchema;
+  /** @deprecated use `FieldMetadata$Outbound` instead. */
+  export type Outbound = FieldMetadata$Outbound;
 }
 
-export function fieldsToJSON(fields: Fields): string {
-  return JSON.stringify(Fields$outboundSchema.parse(fields));
+export function fieldMetadataToJSON(fieldMetadata: FieldMetadata): string {
+  return JSON.stringify(FieldMetadata$outboundSchema.parse(fieldMetadata));
 }
 
-export function fieldsFromJSON(
+export function fieldMetadataFromJSON(
   jsonString: string,
-): SafeParseResult<Fields, SDKValidationError> {
+): SafeParseResult<FieldMetadata, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => Fields$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Fields' from JSON`,
+    (x) => FieldMetadata$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'FieldMetadata' from JSON`,
   );
 }
 
 /** @internal */
-export const GetObjectMetadataForInstallationResponseBody$inboundSchema:
+export const GetObjectMetadataForInstallationObjectMetadata$inboundSchema:
   z.ZodType<
-    GetObjectMetadataForInstallationResponseBody,
+    GetObjectMetadataForInstallationObjectMetadata,
     z.ZodTypeDef,
     unknown
   > = z.object({
     name: z.string(),
     displayName: z.string().optional(),
     mappedObjectName: z.string().optional(),
-    fields: z.record(z.lazy(() => Fields$inboundSchema)),
+    fields: z.record(z.lazy(() => FieldMetadata$inboundSchema)),
   });
 
 /** @internal */
-export type GetObjectMetadataForInstallationResponseBody$Outbound = {
+export type GetObjectMetadataForInstallationObjectMetadata$Outbound = {
   name: string;
   displayName?: string | undefined;
   mappedObjectName?: string | undefined;
-  fields: { [k: string]: Fields$Outbound };
+  fields: { [k: string]: FieldMetadata$Outbound };
 };
 
 /** @internal */
-export const GetObjectMetadataForInstallationResponseBody$outboundSchema:
+export const GetObjectMetadataForInstallationObjectMetadata$outboundSchema:
   z.ZodType<
-    GetObjectMetadataForInstallationResponseBody$Outbound,
+    GetObjectMetadataForInstallationObjectMetadata$Outbound,
     z.ZodTypeDef,
-    GetObjectMetadataForInstallationResponseBody
+    GetObjectMetadataForInstallationObjectMetadata
   > = z.object({
     name: z.string(),
     displayName: z.string().optional(),
     mappedObjectName: z.string().optional(),
-    fields: z.record(z.lazy(() => Fields$outboundSchema)),
+    fields: z.record(z.lazy(() => FieldMetadata$outboundSchema)),
   });
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace GetObjectMetadataForInstallationResponseBody$ {
-  /** @deprecated use `GetObjectMetadataForInstallationResponseBody$inboundSchema` instead. */
+export namespace GetObjectMetadataForInstallationObjectMetadata$ {
+  /** @deprecated use `GetObjectMetadataForInstallationObjectMetadata$inboundSchema` instead. */
   export const inboundSchema =
-    GetObjectMetadataForInstallationResponseBody$inboundSchema;
-  /** @deprecated use `GetObjectMetadataForInstallationResponseBody$outboundSchema` instead. */
+    GetObjectMetadataForInstallationObjectMetadata$inboundSchema;
+  /** @deprecated use `GetObjectMetadataForInstallationObjectMetadata$outboundSchema` instead. */
   export const outboundSchema =
-    GetObjectMetadataForInstallationResponseBody$outboundSchema;
-  /** @deprecated use `GetObjectMetadataForInstallationResponseBody$Outbound` instead. */
-  export type Outbound = GetObjectMetadataForInstallationResponseBody$Outbound;
+    GetObjectMetadataForInstallationObjectMetadata$outboundSchema;
+  /** @deprecated use `GetObjectMetadataForInstallationObjectMetadata$Outbound` instead. */
+  export type Outbound =
+    GetObjectMetadataForInstallationObjectMetadata$Outbound;
 }
 
-export function getObjectMetadataForInstallationResponseBodyToJSON(
-  getObjectMetadataForInstallationResponseBody:
-    GetObjectMetadataForInstallationResponseBody,
+export function getObjectMetadataForInstallationObjectMetadataToJSON(
+  getObjectMetadataForInstallationObjectMetadata:
+    GetObjectMetadataForInstallationObjectMetadata,
 ): string {
   return JSON.stringify(
-    GetObjectMetadataForInstallationResponseBody$outboundSchema.parse(
-      getObjectMetadataForInstallationResponseBody,
+    GetObjectMetadataForInstallationObjectMetadata$outboundSchema.parse(
+      getObjectMetadataForInstallationObjectMetadata,
     ),
   );
 }
 
-export function getObjectMetadataForInstallationResponseBodyFromJSON(
+export function getObjectMetadataForInstallationObjectMetadataFromJSON(
   jsonString: string,
 ): SafeParseResult<
-  GetObjectMetadataForInstallationResponseBody,
+  GetObjectMetadataForInstallationObjectMetadata,
   SDKValidationError
 > {
   return safeParse(
     jsonString,
     (x) =>
-      GetObjectMetadataForInstallationResponseBody$inboundSchema.parse(
+      GetObjectMetadataForInstallationObjectMetadata$inboundSchema.parse(
         JSON.parse(x),
       ),
-    `Failed to parse 'GetObjectMetadataForInstallationResponseBody' from JSON`,
+    `Failed to parse 'GetObjectMetadataForInstallationObjectMetadata' from JSON`,
   );
 }
 
@@ -600,16 +604,14 @@ export const GetObjectMetadataForInstallationResponse$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.union([
-  z.lazy(() => GetObjectMetadataForInstallationResponseBody$inboundSchema),
-  z.lazy(() =>
-    GetObjectMetadataForInstallationObjectsAndFieldsResponseBody$inboundSchema
-  ),
+  z.lazy(() => GetObjectMetadataForInstallationObjectMetadata$inboundSchema),
+  z.lazy(() => GetObjectMetadataForInstallationAPIProblem$inboundSchema),
 ]);
 
 /** @internal */
 export type GetObjectMetadataForInstallationResponse$Outbound =
-  | GetObjectMetadataForInstallationResponseBody$Outbound
-  | GetObjectMetadataForInstallationObjectsAndFieldsResponseBody$Outbound;
+  | GetObjectMetadataForInstallationObjectMetadata$Outbound
+  | GetObjectMetadataForInstallationAPIProblem$Outbound;
 
 /** @internal */
 export const GetObjectMetadataForInstallationResponse$outboundSchema: z.ZodType<
@@ -617,10 +619,8 @@ export const GetObjectMetadataForInstallationResponse$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   GetObjectMetadataForInstallationResponse
 > = z.union([
-  z.lazy(() => GetObjectMetadataForInstallationResponseBody$outboundSchema),
-  z.lazy(() =>
-    GetObjectMetadataForInstallationObjectsAndFieldsResponseBody$outboundSchema
-  ),
+  z.lazy(() => GetObjectMetadataForInstallationObjectMetadata$outboundSchema),
+  z.lazy(() => GetObjectMetadataForInstallationAPIProblem$outboundSchema),
 ]);
 
 /**

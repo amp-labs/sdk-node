@@ -34,9 +34,9 @@ export function integrationsCreate(
   options?: RequestOptions,
 ): APIPromise<
   Result<
-    operations.CreateIntegrationResponseBody | undefined,
-    | errors.CreateIntegrationResponseBody
-    | errors.CreateIntegrationIntegrationsResponseBody
+    operations.CreateIntegrationAPIProblem | undefined,
+    | errors.CreateIntegrationInputValidationProblem
+    | errors.CreateIntegrationIntegrationsInputValidationProblem
     | APIError
     | SDKValidationError
     | UnexpectedClientError
@@ -60,9 +60,9 @@ async function $do(
 ): Promise<
   [
     Result<
-      operations.CreateIntegrationResponseBody | undefined,
-      | errors.CreateIntegrationResponseBody
-      | errors.CreateIntegrationIntegrationsResponseBody
+      operations.CreateIntegrationAPIProblem | undefined,
+      | errors.CreateIntegrationInputValidationProblem
+      | errors.CreateIntegrationIntegrationsInputValidationProblem
       | APIError
       | SDKValidationError
       | UnexpectedClientError
@@ -164,9 +164,9 @@ async function $do(
   };
 
   const [result] = await M.match<
-    operations.CreateIntegrationResponseBody | undefined,
-    | errors.CreateIntegrationResponseBody
-    | errors.CreateIntegrationIntegrationsResponseBody
+    operations.CreateIntegrationAPIProblem | undefined,
+    | errors.CreateIntegrationInputValidationProblem
+    | errors.CreateIntegrationIntegrationsInputValidationProblem
     | APIError
     | SDKValidationError
     | UnexpectedClientError
@@ -175,23 +175,22 @@ async function $do(
     | RequestTimeoutError
     | ConnectionError
   >(
-    M.nil(
-      201,
-      operations.CreateIntegrationResponseBody$inboundSchema.optional(),
+    M.nil(201, operations.CreateIntegrationAPIProblem$inboundSchema.optional()),
+    M.jsonErr(
+      400,
+      errors.CreateIntegrationInputValidationProblem$inboundSchema,
+      { ctype: "application/problem+json" },
     ),
-    M.jsonErr(400, errors.CreateIntegrationResponseBody$inboundSchema, {
-      ctype: "application/problem+json",
-    }),
     M.jsonErr(
       422,
-      errors.CreateIntegrationIntegrationsResponseBody$inboundSchema,
+      errors.CreateIntegrationIntegrationsInputValidationProblem$inboundSchema,
       { ctype: "application/problem+json" },
     ),
     M.fail("4XX"),
     M.fail("5XX"),
     M.json(
       "default",
-      operations.CreateIntegrationResponseBody$inboundSchema.optional(),
+      operations.CreateIntegrationAPIProblem$inboundSchema.optional(),
       { ctype: "application/problem+json" },
     ),
   )(response, { extraFields: responseFields });

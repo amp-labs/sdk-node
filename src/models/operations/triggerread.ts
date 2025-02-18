@@ -23,7 +23,7 @@ export type Mode = ClosedEnum<typeof Mode>;
 /**
  * Read Request
  */
-export type TriggerReadRequestBody = {
+export type TriggerReadReadRequest = {
   /**
    * The ID of the user group whose SaaS instance you'd like to read data from. This is the ID that was provided during installation creation.
    */
@@ -45,7 +45,7 @@ export type TriggerReadRequest = {
   /**
    * Read Request
    */
-  requestBody: TriggerReadRequestBody;
+  requestBody: TriggerReadReadRequest;
 };
 
 /**
@@ -55,7 +55,7 @@ export type TriggerReadRequest = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export type TriggerReadReadResponseBody = {
+export type TriggerReadAPIProblem = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -132,7 +132,7 @@ export type TriggerReadReadResponseBody = {
 /**
  * The success response
  */
-export type TriggerReadResponseBody = {
+export type TriggerReadReadResultAsync = {
   /**
    * The operation ID
    */
@@ -140,8 +140,8 @@ export type TriggerReadResponseBody = {
 };
 
 export type TriggerReadResponse =
-  | TriggerReadResponseBody
-  | TriggerReadReadResponseBody;
+  | TriggerReadReadResultAsync
+  | TriggerReadAPIProblem;
 
 /** @internal */
 export const Mode$inboundSchema: z.ZodNativeEnum<typeof Mode> = z.nativeEnum(
@@ -164,8 +164,8 @@ export namespace Mode$ {
 }
 
 /** @internal */
-export const TriggerReadRequestBody$inboundSchema: z.ZodType<
-  TriggerReadRequestBody,
+export const TriggerReadReadRequest$inboundSchema: z.ZodType<
+  TriggerReadReadRequest,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -175,17 +175,17 @@ export const TriggerReadRequestBody$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type TriggerReadRequestBody$Outbound = {
+export type TriggerReadReadRequest$Outbound = {
   groupRef: string;
   mode: string;
   sinceTimestamp?: string | undefined;
 };
 
 /** @internal */
-export const TriggerReadRequestBody$outboundSchema: z.ZodType<
-  TriggerReadRequestBody$Outbound,
+export const TriggerReadReadRequest$outboundSchema: z.ZodType<
+  TriggerReadReadRequest$Outbound,
   z.ZodTypeDef,
-  TriggerReadRequestBody
+  TriggerReadReadRequest
 > = z.object({
   groupRef: z.string(),
   mode: Mode$outboundSchema,
@@ -196,30 +196,30 @@ export const TriggerReadRequestBody$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace TriggerReadRequestBody$ {
-  /** @deprecated use `TriggerReadRequestBody$inboundSchema` instead. */
-  export const inboundSchema = TriggerReadRequestBody$inboundSchema;
-  /** @deprecated use `TriggerReadRequestBody$outboundSchema` instead. */
-  export const outboundSchema = TriggerReadRequestBody$outboundSchema;
-  /** @deprecated use `TriggerReadRequestBody$Outbound` instead. */
-  export type Outbound = TriggerReadRequestBody$Outbound;
+export namespace TriggerReadReadRequest$ {
+  /** @deprecated use `TriggerReadReadRequest$inboundSchema` instead. */
+  export const inboundSchema = TriggerReadReadRequest$inboundSchema;
+  /** @deprecated use `TriggerReadReadRequest$outboundSchema` instead. */
+  export const outboundSchema = TriggerReadReadRequest$outboundSchema;
+  /** @deprecated use `TriggerReadReadRequest$Outbound` instead. */
+  export type Outbound = TriggerReadReadRequest$Outbound;
 }
 
-export function triggerReadRequestBodyToJSON(
-  triggerReadRequestBody: TriggerReadRequestBody,
+export function triggerReadReadRequestToJSON(
+  triggerReadReadRequest: TriggerReadReadRequest,
 ): string {
   return JSON.stringify(
-    TriggerReadRequestBody$outboundSchema.parse(triggerReadRequestBody),
+    TriggerReadReadRequest$outboundSchema.parse(triggerReadReadRequest),
   );
 }
 
-export function triggerReadRequestBodyFromJSON(
+export function triggerReadReadRequestFromJSON(
   jsonString: string,
-): SafeParseResult<TriggerReadRequestBody, SDKValidationError> {
+): SafeParseResult<TriggerReadReadRequest, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => TriggerReadRequestBody$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'TriggerReadRequestBody' from JSON`,
+    (x) => TriggerReadReadRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TriggerReadReadRequest' from JSON`,
   );
 }
 
@@ -232,7 +232,7 @@ export const TriggerReadRequest$inboundSchema: z.ZodType<
   projectIdOrName: z.string(),
   integrationId: z.string(),
   objectName: z.string(),
-  RequestBody: z.lazy(() => TriggerReadRequestBody$inboundSchema),
+  RequestBody: z.lazy(() => TriggerReadReadRequest$inboundSchema),
 }).transform((v) => {
   return remap$(v, {
     "RequestBody": "requestBody",
@@ -244,7 +244,7 @@ export type TriggerReadRequest$Outbound = {
   projectIdOrName: string;
   integrationId: string;
   objectName: string;
-  RequestBody: TriggerReadRequestBody$Outbound;
+  RequestBody: TriggerReadReadRequest$Outbound;
 };
 
 /** @internal */
@@ -256,7 +256,7 @@ export const TriggerReadRequest$outboundSchema: z.ZodType<
   projectIdOrName: z.string(),
   integrationId: z.string(),
   objectName: z.string(),
-  requestBody: z.lazy(() => TriggerReadRequestBody$outboundSchema),
+  requestBody: z.lazy(() => TriggerReadReadRequest$outboundSchema),
 }).transform((v) => {
   return remap$(v, {
     requestBody: "RequestBody",
@@ -295,8 +295,8 @@ export function triggerReadRequestFromJSON(
 }
 
 /** @internal */
-export const TriggerReadReadResponseBody$inboundSchema: z.ZodType<
-  TriggerReadReadResponseBody,
+export const TriggerReadAPIProblem$inboundSchema: z.ZodType<
+  TriggerReadAPIProblem,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -322,7 +322,7 @@ export const TriggerReadReadResponseBody$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type TriggerReadReadResponseBody$Outbound = {
+export type TriggerReadAPIProblem$Outbound = {
   type: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -343,10 +343,10 @@ export type TriggerReadReadResponseBody$Outbound = {
 };
 
 /** @internal */
-export const TriggerReadReadResponseBody$outboundSchema: z.ZodType<
-  TriggerReadReadResponseBody$Outbound,
+export const TriggerReadAPIProblem$outboundSchema: z.ZodType<
+  TriggerReadAPIProblem$Outbound,
   z.ZodTypeDef,
-  TriggerReadReadResponseBody
+  TriggerReadAPIProblem
 > = z.object({
   type: z.string().default("about:blank"),
   href: z.string().optional(),
@@ -371,38 +371,36 @@ export const TriggerReadReadResponseBody$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace TriggerReadReadResponseBody$ {
-  /** @deprecated use `TriggerReadReadResponseBody$inboundSchema` instead. */
-  export const inboundSchema = TriggerReadReadResponseBody$inboundSchema;
-  /** @deprecated use `TriggerReadReadResponseBody$outboundSchema` instead. */
-  export const outboundSchema = TriggerReadReadResponseBody$outboundSchema;
-  /** @deprecated use `TriggerReadReadResponseBody$Outbound` instead. */
-  export type Outbound = TriggerReadReadResponseBody$Outbound;
+export namespace TriggerReadAPIProblem$ {
+  /** @deprecated use `TriggerReadAPIProblem$inboundSchema` instead. */
+  export const inboundSchema = TriggerReadAPIProblem$inboundSchema;
+  /** @deprecated use `TriggerReadAPIProblem$outboundSchema` instead. */
+  export const outboundSchema = TriggerReadAPIProblem$outboundSchema;
+  /** @deprecated use `TriggerReadAPIProblem$Outbound` instead. */
+  export type Outbound = TriggerReadAPIProblem$Outbound;
 }
 
-export function triggerReadReadResponseBodyToJSON(
-  triggerReadReadResponseBody: TriggerReadReadResponseBody,
+export function triggerReadAPIProblemToJSON(
+  triggerReadAPIProblem: TriggerReadAPIProblem,
 ): string {
   return JSON.stringify(
-    TriggerReadReadResponseBody$outboundSchema.parse(
-      triggerReadReadResponseBody,
-    ),
+    TriggerReadAPIProblem$outboundSchema.parse(triggerReadAPIProblem),
   );
 }
 
-export function triggerReadReadResponseBodyFromJSON(
+export function triggerReadAPIProblemFromJSON(
   jsonString: string,
-): SafeParseResult<TriggerReadReadResponseBody, SDKValidationError> {
+): SafeParseResult<TriggerReadAPIProblem, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => TriggerReadReadResponseBody$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'TriggerReadReadResponseBody' from JSON`,
+    (x) => TriggerReadAPIProblem$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TriggerReadAPIProblem' from JSON`,
   );
 }
 
 /** @internal */
-export const TriggerReadResponseBody$inboundSchema: z.ZodType<
-  TriggerReadResponseBody,
+export const TriggerReadReadResultAsync$inboundSchema: z.ZodType<
+  TriggerReadReadResultAsync,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -410,15 +408,15 @@ export const TriggerReadResponseBody$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type TriggerReadResponseBody$Outbound = {
+export type TriggerReadReadResultAsync$Outbound = {
   operationId: string;
 };
 
 /** @internal */
-export const TriggerReadResponseBody$outboundSchema: z.ZodType<
-  TriggerReadResponseBody$Outbound,
+export const TriggerReadReadResultAsync$outboundSchema: z.ZodType<
+  TriggerReadReadResultAsync$Outbound,
   z.ZodTypeDef,
-  TriggerReadResponseBody
+  TriggerReadReadResultAsync
 > = z.object({
   operationId: z.string(),
 });
@@ -427,30 +425,30 @@ export const TriggerReadResponseBody$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace TriggerReadResponseBody$ {
-  /** @deprecated use `TriggerReadResponseBody$inboundSchema` instead. */
-  export const inboundSchema = TriggerReadResponseBody$inboundSchema;
-  /** @deprecated use `TriggerReadResponseBody$outboundSchema` instead. */
-  export const outboundSchema = TriggerReadResponseBody$outboundSchema;
-  /** @deprecated use `TriggerReadResponseBody$Outbound` instead. */
-  export type Outbound = TriggerReadResponseBody$Outbound;
+export namespace TriggerReadReadResultAsync$ {
+  /** @deprecated use `TriggerReadReadResultAsync$inboundSchema` instead. */
+  export const inboundSchema = TriggerReadReadResultAsync$inboundSchema;
+  /** @deprecated use `TriggerReadReadResultAsync$outboundSchema` instead. */
+  export const outboundSchema = TriggerReadReadResultAsync$outboundSchema;
+  /** @deprecated use `TriggerReadReadResultAsync$Outbound` instead. */
+  export type Outbound = TriggerReadReadResultAsync$Outbound;
 }
 
-export function triggerReadResponseBodyToJSON(
-  triggerReadResponseBody: TriggerReadResponseBody,
+export function triggerReadReadResultAsyncToJSON(
+  triggerReadReadResultAsync: TriggerReadReadResultAsync,
 ): string {
   return JSON.stringify(
-    TriggerReadResponseBody$outboundSchema.parse(triggerReadResponseBody),
+    TriggerReadReadResultAsync$outboundSchema.parse(triggerReadReadResultAsync),
   );
 }
 
-export function triggerReadResponseBodyFromJSON(
+export function triggerReadReadResultAsyncFromJSON(
   jsonString: string,
-): SafeParseResult<TriggerReadResponseBody, SDKValidationError> {
+): SafeParseResult<TriggerReadReadResultAsync, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => TriggerReadResponseBody$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'TriggerReadResponseBody' from JSON`,
+    (x) => TriggerReadReadResultAsync$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TriggerReadReadResultAsync' from JSON`,
   );
 }
 
@@ -460,14 +458,14 @@ export const TriggerReadResponse$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.union([
-  z.lazy(() => TriggerReadResponseBody$inboundSchema),
-  z.lazy(() => TriggerReadReadResponseBody$inboundSchema),
+  z.lazy(() => TriggerReadReadResultAsync$inboundSchema),
+  z.lazy(() => TriggerReadAPIProblem$inboundSchema),
 ]);
 
 /** @internal */
 export type TriggerReadResponse$Outbound =
-  | TriggerReadResponseBody$Outbound
-  | TriggerReadReadResponseBody$Outbound;
+  | TriggerReadReadResultAsync$Outbound
+  | TriggerReadAPIProblem$Outbound;
 
 /** @internal */
 export const TriggerReadResponse$outboundSchema: z.ZodType<
@@ -475,8 +473,8 @@ export const TriggerReadResponse$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   TriggerReadResponse
 > = z.union([
-  z.lazy(() => TriggerReadResponseBody$outboundSchema),
-  z.lazy(() => TriggerReadReadResponseBody$outboundSchema),
+  z.lazy(() => TriggerReadReadResultAsync$outboundSchema),
+  z.lazy(() => TriggerReadAPIProblem$outboundSchema),
 ]);
 
 /**

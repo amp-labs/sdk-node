@@ -88,7 +88,7 @@ export class Destinations extends ClientSDK {
   async delete(
     request: operations.DeleteDestinationRequest,
     options?: RequestOptions,
-  ): Promise<operations.DeleteDestinationResponseBody | undefined> {
+  ): Promise<operations.DeleteDestinationAPIProblem | undefined> {
     return unwrapAsync(destinationsDelete(
       this,
       request,

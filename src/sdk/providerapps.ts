@@ -57,7 +57,7 @@ export class ProviderApps extends ClientSDK {
   async delete(
     request: operations.DeleteProviderAppRequest,
     options?: RequestOptions,
-  ): Promise<operations.DeleteProviderAppResponseBody | undefined> {
+  ): Promise<operations.DeleteProviderAppAPIProblem | undefined> {
     return unwrapAsync(providerAppsDelete(
       this,
       request,

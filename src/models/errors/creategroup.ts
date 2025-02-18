@@ -27,7 +27,7 @@ export type CreateGroupIn = ClosedEnum<typeof CreateGroupIn>;
  *
  * @remarks
  */
-export type CreateGroupIssues = {
+export type CreateGroupInputValidationIssue = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -120,7 +120,7 @@ export type CreateGroupIssues = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export type CreateGroupResponseBodyData = {
+export type CreateGroupInputValidationProblemData = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -192,7 +192,7 @@ export type CreateGroupResponseBodyData = {
    * Additional context for the problem
    */
   context?: { [k: string]: any } | undefined;
-  issues?: Array<CreateGroupIssues> | undefined;
+  issues?: Array<CreateGroupInputValidationIssue> | undefined;
 };
 
 /**
@@ -202,7 +202,7 @@ export type CreateGroupResponseBodyData = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export class CreateGroupResponseBody extends Error {
+export class CreateGroupInputValidationProblem extends Error {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -274,12 +274,12 @@ export class CreateGroupResponseBody extends Error {
    * Additional context for the problem
    */
   context?: { [k: string]: any } | undefined;
-  issues?: Array<CreateGroupIssues> | undefined;
+  issues?: Array<CreateGroupInputValidationIssue> | undefined;
 
   /** The original data that was passed to this error instance. */
-  data$: CreateGroupResponseBodyData;
+  data$: CreateGroupInputValidationProblemData;
 
-  constructor(err: CreateGroupResponseBodyData) {
+  constructor(err: CreateGroupInputValidationProblemData) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
@@ -305,7 +305,7 @@ export class CreateGroupResponseBody extends Error {
     if (err.context != null) this.context = err.context;
     if (err.issues != null) this.issues = err.issues;
 
-    this.name = "CreateGroupResponseBody";
+    this.name = "CreateGroupInputValidationProblem";
   }
 }
 
@@ -331,8 +331,8 @@ export namespace CreateGroupIn$ {
 }
 
 /** @internal */
-export const CreateGroupIssues$inboundSchema: z.ZodType<
-  CreateGroupIssues,
+export const CreateGroupInputValidationIssue$inboundSchema: z.ZodType<
+  CreateGroupInputValidationIssue,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -361,7 +361,7 @@ export const CreateGroupIssues$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type CreateGroupIssues$Outbound = {
+export type CreateGroupInputValidationIssue$Outbound = {
   type: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -385,10 +385,10 @@ export type CreateGroupIssues$Outbound = {
 };
 
 /** @internal */
-export const CreateGroupIssues$outboundSchema: z.ZodType<
-  CreateGroupIssues$Outbound,
+export const CreateGroupInputValidationIssue$outboundSchema: z.ZodType<
+  CreateGroupInputValidationIssue$Outbound,
   z.ZodTypeDef,
-  CreateGroupIssues
+  CreateGroupInputValidationIssue
 > = z.object({
   type: z.string().default("about:blank"),
   href: z.string().optional(),
@@ -416,36 +416,38 @@ export const CreateGroupIssues$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace CreateGroupIssues$ {
-  /** @deprecated use `CreateGroupIssues$inboundSchema` instead. */
-  export const inboundSchema = CreateGroupIssues$inboundSchema;
-  /** @deprecated use `CreateGroupIssues$outboundSchema` instead. */
-  export const outboundSchema = CreateGroupIssues$outboundSchema;
-  /** @deprecated use `CreateGroupIssues$Outbound` instead. */
-  export type Outbound = CreateGroupIssues$Outbound;
+export namespace CreateGroupInputValidationIssue$ {
+  /** @deprecated use `CreateGroupInputValidationIssue$inboundSchema` instead. */
+  export const inboundSchema = CreateGroupInputValidationIssue$inboundSchema;
+  /** @deprecated use `CreateGroupInputValidationIssue$outboundSchema` instead. */
+  export const outboundSchema = CreateGroupInputValidationIssue$outboundSchema;
+  /** @deprecated use `CreateGroupInputValidationIssue$Outbound` instead. */
+  export type Outbound = CreateGroupInputValidationIssue$Outbound;
 }
 
-export function createGroupIssuesToJSON(
-  createGroupIssues: CreateGroupIssues,
+export function createGroupInputValidationIssueToJSON(
+  createGroupInputValidationIssue: CreateGroupInputValidationIssue,
 ): string {
   return JSON.stringify(
-    CreateGroupIssues$outboundSchema.parse(createGroupIssues),
+    CreateGroupInputValidationIssue$outboundSchema.parse(
+      createGroupInputValidationIssue,
+    ),
   );
 }
 
-export function createGroupIssuesFromJSON(
+export function createGroupInputValidationIssueFromJSON(
   jsonString: string,
-): SafeParseResult<CreateGroupIssues, SDKValidationError> {
+): SafeParseResult<CreateGroupInputValidationIssue, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => CreateGroupIssues$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreateGroupIssues' from JSON`,
+    (x) => CreateGroupInputValidationIssue$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreateGroupInputValidationIssue' from JSON`,
   );
 }
 
 /** @internal */
-export const CreateGroupResponseBody$inboundSchema: z.ZodType<
-  CreateGroupResponseBody,
+export const CreateGroupInputValidationProblem$inboundSchema: z.ZodType<
+  CreateGroupInputValidationProblem,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -468,14 +470,15 @@ export const CreateGroupResponseBody$inboundSchema: z.ZodType<
   retryAfter: z.string().datetime({ offset: true }).transform(v => new Date(v))
     .optional(),
   context: z.record(z.any()).optional(),
-  issues: z.array(z.lazy(() => CreateGroupIssues$inboundSchema)).optional(),
+  issues: z.array(z.lazy(() => CreateGroupInputValidationIssue$inboundSchema))
+    .optional(),
 })
   .transform((v) => {
-    return new CreateGroupResponseBody(v);
+    return new CreateGroupInputValidationProblem(v);
   });
 
 /** @internal */
-export type CreateGroupResponseBody$Outbound = {
+export type CreateGroupInputValidationProblem$Outbound = {
   type?: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -493,15 +496,15 @@ export type CreateGroupResponseBody$Outbound = {
   retryable?: boolean | undefined;
   retryAfter?: string | undefined;
   context?: { [k: string]: any } | undefined;
-  issues?: Array<CreateGroupIssues$Outbound> | undefined;
+  issues?: Array<CreateGroupInputValidationIssue$Outbound> | undefined;
 };
 
 /** @internal */
-export const CreateGroupResponseBody$outboundSchema: z.ZodType<
-  CreateGroupResponseBody$Outbound,
+export const CreateGroupInputValidationProblem$outboundSchema: z.ZodType<
+  CreateGroupInputValidationProblem$Outbound,
   z.ZodTypeDef,
-  CreateGroupResponseBody
-> = z.instanceof(CreateGroupResponseBody)
+  CreateGroupInputValidationProblem
+> = z.instanceof(CreateGroupInputValidationProblem)
   .transform(v => v.data$)
   .pipe(z.object({
     type: z.string().default("about:blank"),
@@ -521,18 +524,21 @@ export const CreateGroupResponseBody$outboundSchema: z.ZodType<
     retryable: z.boolean().optional(),
     retryAfter: z.date().transform(v => v.toISOString()).optional(),
     context: z.record(z.any()).optional(),
-    issues: z.array(z.lazy(() => CreateGroupIssues$outboundSchema)).optional(),
+    issues: z.array(
+      z.lazy(() => CreateGroupInputValidationIssue$outboundSchema),
+    ).optional(),
   }));
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace CreateGroupResponseBody$ {
-  /** @deprecated use `CreateGroupResponseBody$inboundSchema` instead. */
-  export const inboundSchema = CreateGroupResponseBody$inboundSchema;
-  /** @deprecated use `CreateGroupResponseBody$outboundSchema` instead. */
-  export const outboundSchema = CreateGroupResponseBody$outboundSchema;
-  /** @deprecated use `CreateGroupResponseBody$Outbound` instead. */
-  export type Outbound = CreateGroupResponseBody$Outbound;
+export namespace CreateGroupInputValidationProblem$ {
+  /** @deprecated use `CreateGroupInputValidationProblem$inboundSchema` instead. */
+  export const inboundSchema = CreateGroupInputValidationProblem$inboundSchema;
+  /** @deprecated use `CreateGroupInputValidationProblem$outboundSchema` instead. */
+  export const outboundSchema =
+    CreateGroupInputValidationProblem$outboundSchema;
+  /** @deprecated use `CreateGroupInputValidationProblem$Outbound` instead. */
+  export type Outbound = CreateGroupInputValidationProblem$Outbound;
 }

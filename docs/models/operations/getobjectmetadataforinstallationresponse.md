@@ -3,10 +3,10 @@
 
 ## Supported Types
 
-### `operations.GetObjectMetadataForInstallationResponseBody`
+### `operations.GetObjectMetadataForInstallationObjectMetadata`
 
 ```typescript
-const value: operations.GetObjectMetadataForInstallationResponseBody = {
+const value: operations.GetObjectMetadataForInstallationObjectMetadata = {
   name: "contact",
   displayName: "Contact",
   mappedObjectName: "people",
@@ -27,17 +27,16 @@ const value: operations.GetObjectMetadataForInstallationResponseBody = {
 };
 ```
 
-### `operations.GetObjectMetadataForInstallationObjectsAndFieldsResponseBody`
+### `operations.GetObjectMetadataForInstallationAPIProblem`
 
 ```typescript
-const value:
-  operations.GetObjectMetadataForInstallationObjectsAndFieldsResponseBody = {
-    href:
-      "https://www.belgif.be/specification/rest/api-guide/#standardized-problem-types",
-    title: "Description of the type of problem that occurred",
-    status: 400,
-    detail: "Description of specific occurrence of the problem",
-    instance: "urn:uuid:123e4567-e89b-12d3-a456-426614174000",
-  };
+const value: operations.GetObjectMetadataForInstallationAPIProblem = {
+  href:
+    "https://www.belgif.be/specification/rest/api-guide/#standardized-problem-types",
+  title: "Description of the type of problem that occurred",
+  status: 400,
+  detail: "Description of specific occurrence of the problem",
+  instance: "urn:uuid:123e4567-e89b-12d3-a456-426614174000",
+};
 ```
 

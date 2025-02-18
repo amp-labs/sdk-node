@@ -3,10 +3,10 @@
 
 ## Supported Types
 
-### `operations.CreateInstallationResponseBody`
+### `operations.CreateInstallationInstallation`
 
 ```typescript
-const value: operations.CreateInstallationResponseBody = {
+const value: operations.CreateInstallationInstallation = {
   id: "installation-123",
   projectId: "project-456",
   integrationId: "integration-123",
@@ -69,10 +69,10 @@ const value: operations.CreateInstallationResponseBody = {
 };
 ```
 
-### `operations.CreateInstallationInstallationsResponseBody`
+### `operations.CreateInstallationAPIProblem`
 
 ```typescript
-const value: operations.CreateInstallationInstallationsResponseBody = {
+const value: operations.CreateInstallationAPIProblem = {
   href:
     "https://www.belgif.be/specification/rest/api-guide/#standardized-problem-types",
   title: "Description of the type of problem that occurred",

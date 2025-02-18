@@ -86,10 +86,10 @@ run();
 
 ### Errors
 
-| Error Type                           | Status Code                          | Content Type                         |
-| ------------------------------------ | ------------------------------------ | ------------------------------------ |
-| errors.ListInstallationsResponseBody | 400                                  | application/problem+json             |
-| errors.APIError                      | 4XX, 5XX                             | \*/\*                                |
+| Error Type                                     | Status Code                                    | Content Type                                   |
+| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| errors.ListInstallationsInputValidationProblem | 400                                            | application/problem+json                       |
+| errors.APIError                                | 4XX, 5XX                                       | \*/\*                                          |
 
 ## create
 
@@ -182,11 +182,11 @@ run();
 
 ### Errors
 
-| Error Type                                         | Status Code                                        | Content Type                                       |
-| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
-| errors.CreateInstallationResponseBody              | 400                                                | application/problem+json                           |
-| errors.CreateInstallationInstallationsResponseBody | 422                                                | application/problem+json                           |
-| errors.APIError                                    | 4XX, 5XX                                           | \*/\*                                              |
+| Error Type                                                   | Status Code                                                  | Content Type                                                 |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| errors.CreateInstallationInputValidationProblem              | 400                                                          | application/problem+json                                     |
+| errors.CreateInstallationInstallationsInputValidationProblem | 422                                                          | application/problem+json                                     |
+| errors.APIError                                              | 4XX, 5XX                                                     | \*/\*                                                        |
 
 ## get
 
@@ -265,10 +265,10 @@ run();
 
 ### Errors
 
-| Error Type                         | Status Code                        | Content Type                       |
-| ---------------------------------- | ---------------------------------- | ---------------------------------- |
-| errors.GetInstallationResponseBody | 400                                | application/problem+json           |
-| errors.APIError                    | 4XX, 5XX                           | \*/\*                              |
+| Error Type                                   | Status Code                                  | Content Type                                 |
+| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| errors.GetInstallationInputValidationProblem | 400                                          | application/problem+json                     |
+| errors.APIError                              | 4XX, 5XX                                     | \*/\*                                        |
 
 ## delete
 
@@ -343,7 +343,7 @@ run();
 
 ### Response
 
-**Promise\<[operations.DeleteInstallationResponseBody](../../models/operations/deleteinstallationresponsebody.md)\>**
+**Promise\<[operations.DeleteInstallationAPIProblem](../../models/operations/deleteinstallationapiproblem.md)\>**
 
 ### Errors
 
@@ -1314,8 +1314,8 @@ run();
 
 ### Errors
 
-| Error Type                                         | Status Code                                        | Content Type                                       |
-| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
-| errors.UpdateInstallationResponseBody              | 400                                                | application/problem+json                           |
-| errors.UpdateInstallationInstallationsResponseBody | 422                                                | application/problem+json                           |
-| errors.APIError                                    | 4XX, 5XX                                           | \*/\*                                              |
+| Error Type                                                   | Status Code                                                  | Content Type                                                 |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| errors.UpdateInstallationInputValidationProblem              | 400                                                          | application/problem+json                                     |
+| errors.UpdateInstallationInstallationsInputValidationProblem | 422                                                          | application/problem+json                                     |
+| errors.APIError                                              | 4XX, 5XX                                                     | \*/\*                                                        |

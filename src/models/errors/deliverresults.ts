@@ -11,7 +11,7 @@ import * as z from "zod";
  *
  * Additional properties specific to the problem type may be present.
  */
-export type DeliverResultsReadResponseBodyData = {
+export type DeliverResultsReadAPIProblemData = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -92,7 +92,7 @@ export type DeliverResultsReadResponseBodyData = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export class DeliverResultsReadResponseBody extends Error {
+export class DeliverResultsReadAPIProblem extends Error {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -166,9 +166,9 @@ export class DeliverResultsReadResponseBody extends Error {
   context?: { [k: string]: any } | undefined;
 
   /** The original data that was passed to this error instance. */
-  data$: DeliverResultsReadResponseBodyData;
+  data$: DeliverResultsReadAPIProblemData;
 
-  constructor(err: DeliverResultsReadResponseBodyData) {
+  constructor(err: DeliverResultsReadAPIProblemData) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
@@ -193,7 +193,7 @@ export class DeliverResultsReadResponseBody extends Error {
     if (err.retryAfter != null) this.retryAfter = err.retryAfter;
     if (err.context != null) this.context = err.context;
 
-    this.name = "DeliverResultsReadResponseBody";
+    this.name = "DeliverResultsReadAPIProblem";
   }
 }
 
@@ -204,7 +204,7 @@ export class DeliverResultsReadResponseBody extends Error {
  *
  * Additional properties specific to the problem type may be present.
  */
-export type DeliverResultsResponseBodyData = {
+export type DeliverResultsAPIProblemData = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -285,7 +285,7 @@ export type DeliverResultsResponseBodyData = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export class DeliverResultsResponseBody extends Error {
+export class DeliverResultsAPIProblem extends Error {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -359,9 +359,9 @@ export class DeliverResultsResponseBody extends Error {
   context?: { [k: string]: any } | undefined;
 
   /** The original data that was passed to this error instance. */
-  data$: DeliverResultsResponseBodyData;
+  data$: DeliverResultsAPIProblemData;
 
-  constructor(err: DeliverResultsResponseBodyData) {
+  constructor(err: DeliverResultsAPIProblemData) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
@@ -386,13 +386,13 @@ export class DeliverResultsResponseBody extends Error {
     if (err.retryAfter != null) this.retryAfter = err.retryAfter;
     if (err.context != null) this.context = err.context;
 
-    this.name = "DeliverResultsResponseBody";
+    this.name = "DeliverResultsAPIProblem";
   }
 }
 
 /** @internal */
-export const DeliverResultsReadResponseBody$inboundSchema: z.ZodType<
-  DeliverResultsReadResponseBody,
+export const DeliverResultsReadAPIProblem$inboundSchema: z.ZodType<
+  DeliverResultsReadAPIProblem,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -417,11 +417,11 @@ export const DeliverResultsReadResponseBody$inboundSchema: z.ZodType<
   context: z.record(z.any()).optional(),
 })
   .transform((v) => {
-    return new DeliverResultsReadResponseBody(v);
+    return new DeliverResultsReadAPIProblem(v);
   });
 
 /** @internal */
-export type DeliverResultsReadResponseBody$Outbound = {
+export type DeliverResultsReadAPIProblem$Outbound = {
   type?: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -442,11 +442,11 @@ export type DeliverResultsReadResponseBody$Outbound = {
 };
 
 /** @internal */
-export const DeliverResultsReadResponseBody$outboundSchema: z.ZodType<
-  DeliverResultsReadResponseBody$Outbound,
+export const DeliverResultsReadAPIProblem$outboundSchema: z.ZodType<
+  DeliverResultsReadAPIProblem$Outbound,
   z.ZodTypeDef,
-  DeliverResultsReadResponseBody
-> = z.instanceof(DeliverResultsReadResponseBody)
+  DeliverResultsReadAPIProblem
+> = z.instanceof(DeliverResultsReadAPIProblem)
   .transform(v => v.data$)
   .pipe(z.object({
     type: z.string().default("about:blank"),
@@ -472,18 +472,18 @@ export const DeliverResultsReadResponseBody$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace DeliverResultsReadResponseBody$ {
-  /** @deprecated use `DeliverResultsReadResponseBody$inboundSchema` instead. */
-  export const inboundSchema = DeliverResultsReadResponseBody$inboundSchema;
-  /** @deprecated use `DeliverResultsReadResponseBody$outboundSchema` instead. */
-  export const outboundSchema = DeliverResultsReadResponseBody$outboundSchema;
-  /** @deprecated use `DeliverResultsReadResponseBody$Outbound` instead. */
-  export type Outbound = DeliverResultsReadResponseBody$Outbound;
+export namespace DeliverResultsReadAPIProblem$ {
+  /** @deprecated use `DeliverResultsReadAPIProblem$inboundSchema` instead. */
+  export const inboundSchema = DeliverResultsReadAPIProblem$inboundSchema;
+  /** @deprecated use `DeliverResultsReadAPIProblem$outboundSchema` instead. */
+  export const outboundSchema = DeliverResultsReadAPIProblem$outboundSchema;
+  /** @deprecated use `DeliverResultsReadAPIProblem$Outbound` instead. */
+  export type Outbound = DeliverResultsReadAPIProblem$Outbound;
 }
 
 /** @internal */
-export const DeliverResultsResponseBody$inboundSchema: z.ZodType<
-  DeliverResultsResponseBody,
+export const DeliverResultsAPIProblem$inboundSchema: z.ZodType<
+  DeliverResultsAPIProblem,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -508,11 +508,11 @@ export const DeliverResultsResponseBody$inboundSchema: z.ZodType<
   context: z.record(z.any()).optional(),
 })
   .transform((v) => {
-    return new DeliverResultsResponseBody(v);
+    return new DeliverResultsAPIProblem(v);
   });
 
 /** @internal */
-export type DeliverResultsResponseBody$Outbound = {
+export type DeliverResultsAPIProblem$Outbound = {
   type?: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -533,11 +533,11 @@ export type DeliverResultsResponseBody$Outbound = {
 };
 
 /** @internal */
-export const DeliverResultsResponseBody$outboundSchema: z.ZodType<
-  DeliverResultsResponseBody$Outbound,
+export const DeliverResultsAPIProblem$outboundSchema: z.ZodType<
+  DeliverResultsAPIProblem$Outbound,
   z.ZodTypeDef,
-  DeliverResultsResponseBody
-> = z.instanceof(DeliverResultsResponseBody)
+  DeliverResultsAPIProblem
+> = z.instanceof(DeliverResultsAPIProblem)
   .transform(v => v.data$)
   .pipe(z.object({
     type: z.string().default("about:blank"),
@@ -563,11 +563,11 @@ export const DeliverResultsResponseBody$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace DeliverResultsResponseBody$ {
-  /** @deprecated use `DeliverResultsResponseBody$inboundSchema` instead. */
-  export const inboundSchema = DeliverResultsResponseBody$inboundSchema;
-  /** @deprecated use `DeliverResultsResponseBody$outboundSchema` instead. */
-  export const outboundSchema = DeliverResultsResponseBody$outboundSchema;
-  /** @deprecated use `DeliverResultsResponseBody$Outbound` instead. */
-  export type Outbound = DeliverResultsResponseBody$Outbound;
+export namespace DeliverResultsAPIProblem$ {
+  /** @deprecated use `DeliverResultsAPIProblem$inboundSchema` instead. */
+  export const inboundSchema = DeliverResultsAPIProblem$inboundSchema;
+  /** @deprecated use `DeliverResultsAPIProblem$outboundSchema` instead. */
+  export const outboundSchema = DeliverResultsAPIProblem$outboundSchema;
+  /** @deprecated use `DeliverResultsAPIProblem$Outbound` instead. */
+  export type Outbound = DeliverResultsAPIProblem$Outbound;
 }

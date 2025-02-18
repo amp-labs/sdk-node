@@ -77,7 +77,7 @@ export class Installations extends ClientSDK {
   async delete(
     request: operations.DeleteInstallationRequest,
     options?: RequestOptions,
-  ): Promise<operations.DeleteInstallationResponseBody | undefined> {
+  ): Promise<operations.DeleteInstallationAPIProblem | undefined> {
     return unwrapAsync(installationsDelete(
       this,
       request,

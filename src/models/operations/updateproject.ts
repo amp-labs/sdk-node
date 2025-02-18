@@ -46,7 +46,7 @@ export type UpdateProjectRequest = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export type UpdateProjectProjectsResponseBody = {
+export type UpdateProjectAPIProblem = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -123,7 +123,7 @@ export type UpdateProjectProjectsResponseBody = {
 /**
  * The updated project
  */
-export type UpdateProjectResponseBody = {
+export type UpdateProjectProject = {
   /**
    * The project ID.
    */
@@ -151,8 +151,8 @@ export type UpdateProjectResponseBody = {
 };
 
 export type UpdateProjectResponse =
-  | UpdateProjectResponseBody
-  | UpdateProjectProjectsResponseBody;
+  | UpdateProjectProject
+  | UpdateProjectAPIProblem;
 
 /** @internal */
 export const Project$inboundSchema: z.ZodType<Project, z.ZodTypeDef, unknown> =
@@ -327,8 +327,8 @@ export function updateProjectRequestFromJSON(
 }
 
 /** @internal */
-export const UpdateProjectProjectsResponseBody$inboundSchema: z.ZodType<
-  UpdateProjectProjectsResponseBody,
+export const UpdateProjectAPIProblem$inboundSchema: z.ZodType<
+  UpdateProjectAPIProblem,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -354,7 +354,7 @@ export const UpdateProjectProjectsResponseBody$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type UpdateProjectProjectsResponseBody$Outbound = {
+export type UpdateProjectAPIProblem$Outbound = {
   type: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -375,10 +375,10 @@ export type UpdateProjectProjectsResponseBody$Outbound = {
 };
 
 /** @internal */
-export const UpdateProjectProjectsResponseBody$outboundSchema: z.ZodType<
-  UpdateProjectProjectsResponseBody$Outbound,
+export const UpdateProjectAPIProblem$outboundSchema: z.ZodType<
+  UpdateProjectAPIProblem$Outbound,
   z.ZodTypeDef,
-  UpdateProjectProjectsResponseBody
+  UpdateProjectAPIProblem
 > = z.object({
   type: z.string().default("about:blank"),
   href: z.string().optional(),
@@ -403,39 +403,36 @@ export const UpdateProjectProjectsResponseBody$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace UpdateProjectProjectsResponseBody$ {
-  /** @deprecated use `UpdateProjectProjectsResponseBody$inboundSchema` instead. */
-  export const inboundSchema = UpdateProjectProjectsResponseBody$inboundSchema;
-  /** @deprecated use `UpdateProjectProjectsResponseBody$outboundSchema` instead. */
-  export const outboundSchema =
-    UpdateProjectProjectsResponseBody$outboundSchema;
-  /** @deprecated use `UpdateProjectProjectsResponseBody$Outbound` instead. */
-  export type Outbound = UpdateProjectProjectsResponseBody$Outbound;
+export namespace UpdateProjectAPIProblem$ {
+  /** @deprecated use `UpdateProjectAPIProblem$inboundSchema` instead. */
+  export const inboundSchema = UpdateProjectAPIProblem$inboundSchema;
+  /** @deprecated use `UpdateProjectAPIProblem$outboundSchema` instead. */
+  export const outboundSchema = UpdateProjectAPIProblem$outboundSchema;
+  /** @deprecated use `UpdateProjectAPIProblem$Outbound` instead. */
+  export type Outbound = UpdateProjectAPIProblem$Outbound;
 }
 
-export function updateProjectProjectsResponseBodyToJSON(
-  updateProjectProjectsResponseBody: UpdateProjectProjectsResponseBody,
+export function updateProjectAPIProblemToJSON(
+  updateProjectAPIProblem: UpdateProjectAPIProblem,
 ): string {
   return JSON.stringify(
-    UpdateProjectProjectsResponseBody$outboundSchema.parse(
-      updateProjectProjectsResponseBody,
-    ),
+    UpdateProjectAPIProblem$outboundSchema.parse(updateProjectAPIProblem),
   );
 }
 
-export function updateProjectProjectsResponseBodyFromJSON(
+export function updateProjectAPIProblemFromJSON(
   jsonString: string,
-): SafeParseResult<UpdateProjectProjectsResponseBody, SDKValidationError> {
+): SafeParseResult<UpdateProjectAPIProblem, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => UpdateProjectProjectsResponseBody$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'UpdateProjectProjectsResponseBody' from JSON`,
+    (x) => UpdateProjectAPIProblem$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'UpdateProjectAPIProblem' from JSON`,
   );
 }
 
 /** @internal */
-export const UpdateProjectResponseBody$inboundSchema: z.ZodType<
-  UpdateProjectResponseBody,
+export const UpdateProjectProject$inboundSchema: z.ZodType<
+  UpdateProjectProject,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -449,7 +446,7 @@ export const UpdateProjectResponseBody$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type UpdateProjectResponseBody$Outbound = {
+export type UpdateProjectProject$Outbound = {
   id: string;
   name: string;
   appName: string;
@@ -459,10 +456,10 @@ export type UpdateProjectResponseBody$Outbound = {
 };
 
 /** @internal */
-export const UpdateProjectResponseBody$outboundSchema: z.ZodType<
-  UpdateProjectResponseBody$Outbound,
+export const UpdateProjectProject$outboundSchema: z.ZodType<
+  UpdateProjectProject$Outbound,
   z.ZodTypeDef,
-  UpdateProjectResponseBody
+  UpdateProjectProject
 > = z.object({
   id: z.string(),
   name: z.string(),
@@ -476,30 +473,30 @@ export const UpdateProjectResponseBody$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace UpdateProjectResponseBody$ {
-  /** @deprecated use `UpdateProjectResponseBody$inboundSchema` instead. */
-  export const inboundSchema = UpdateProjectResponseBody$inboundSchema;
-  /** @deprecated use `UpdateProjectResponseBody$outboundSchema` instead. */
-  export const outboundSchema = UpdateProjectResponseBody$outboundSchema;
-  /** @deprecated use `UpdateProjectResponseBody$Outbound` instead. */
-  export type Outbound = UpdateProjectResponseBody$Outbound;
+export namespace UpdateProjectProject$ {
+  /** @deprecated use `UpdateProjectProject$inboundSchema` instead. */
+  export const inboundSchema = UpdateProjectProject$inboundSchema;
+  /** @deprecated use `UpdateProjectProject$outboundSchema` instead. */
+  export const outboundSchema = UpdateProjectProject$outboundSchema;
+  /** @deprecated use `UpdateProjectProject$Outbound` instead. */
+  export type Outbound = UpdateProjectProject$Outbound;
 }
 
-export function updateProjectResponseBodyToJSON(
-  updateProjectResponseBody: UpdateProjectResponseBody,
+export function updateProjectProjectToJSON(
+  updateProjectProject: UpdateProjectProject,
 ): string {
   return JSON.stringify(
-    UpdateProjectResponseBody$outboundSchema.parse(updateProjectResponseBody),
+    UpdateProjectProject$outboundSchema.parse(updateProjectProject),
   );
 }
 
-export function updateProjectResponseBodyFromJSON(
+export function updateProjectProjectFromJSON(
   jsonString: string,
-): SafeParseResult<UpdateProjectResponseBody, SDKValidationError> {
+): SafeParseResult<UpdateProjectProject, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => UpdateProjectResponseBody$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'UpdateProjectResponseBody' from JSON`,
+    (x) => UpdateProjectProject$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'UpdateProjectProject' from JSON`,
   );
 }
 
@@ -509,14 +506,14 @@ export const UpdateProjectResponse$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.union([
-  z.lazy(() => UpdateProjectResponseBody$inboundSchema),
-  z.lazy(() => UpdateProjectProjectsResponseBody$inboundSchema),
+  z.lazy(() => UpdateProjectProject$inboundSchema),
+  z.lazy(() => UpdateProjectAPIProblem$inboundSchema),
 ]);
 
 /** @internal */
 export type UpdateProjectResponse$Outbound =
-  | UpdateProjectResponseBody$Outbound
-  | UpdateProjectProjectsResponseBody$Outbound;
+  | UpdateProjectProject$Outbound
+  | UpdateProjectAPIProblem$Outbound;
 
 /** @internal */
 export const UpdateProjectResponse$outboundSchema: z.ZodType<
@@ -524,8 +521,8 @@ export const UpdateProjectResponse$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   UpdateProjectResponse
 > = z.union([
-  z.lazy(() => UpdateProjectResponseBody$outboundSchema),
-  z.lazy(() => UpdateProjectProjectsResponseBody$outboundSchema),
+  z.lazy(() => UpdateProjectProject$outboundSchema),
+  z.lazy(() => UpdateProjectAPIProblem$outboundSchema),
 ]);
 
 /**

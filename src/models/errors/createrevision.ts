@@ -29,7 +29,7 @@ export type CreateRevisionRevisionsIn = ClosedEnum<
  *
  * @remarks
  */
-export type CreateRevisionRevisionsIssues = {
+export type CreateRevisionRevisionsInputValidationIssue = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -122,7 +122,7 @@ export type CreateRevisionRevisionsIssues = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export type CreateRevisionRevisionsResponseBodyData = {
+export type CreateRevisionRevisionsInputValidationProblemData = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -194,7 +194,7 @@ export type CreateRevisionRevisionsResponseBodyData = {
    * Additional context for the problem
    */
   context?: { [k: string]: any } | undefined;
-  issues?: Array<CreateRevisionRevisionsIssues> | undefined;
+  issues?: Array<CreateRevisionRevisionsInputValidationIssue> | undefined;
 };
 
 /**
@@ -204,7 +204,7 @@ export type CreateRevisionRevisionsResponseBodyData = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export class CreateRevisionRevisionsResponseBody extends Error {
+export class CreateRevisionRevisionsInputValidationProblem extends Error {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -276,12 +276,12 @@ export class CreateRevisionRevisionsResponseBody extends Error {
    * Additional context for the problem
    */
   context?: { [k: string]: any } | undefined;
-  issues?: Array<CreateRevisionRevisionsIssues> | undefined;
+  issues?: Array<CreateRevisionRevisionsInputValidationIssue> | undefined;
 
   /** The original data that was passed to this error instance. */
-  data$: CreateRevisionRevisionsResponseBodyData;
+  data$: CreateRevisionRevisionsInputValidationProblemData;
 
-  constructor(err: CreateRevisionRevisionsResponseBodyData) {
+  constructor(err: CreateRevisionRevisionsInputValidationProblemData) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
@@ -307,7 +307,7 @@ export class CreateRevisionRevisionsResponseBody extends Error {
     if (err.context != null) this.context = err.context;
     if (err.issues != null) this.issues = err.issues;
 
-    this.name = "CreateRevisionRevisionsResponseBody";
+    this.name = "CreateRevisionRevisionsInputValidationProblem";
   }
 }
 
@@ -330,7 +330,7 @@ export type CreateRevisionIn = ClosedEnum<typeof CreateRevisionIn>;
  *
  * @remarks
  */
-export type CreateRevisionIssues = {
+export type CreateRevisionInputValidationIssue = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -423,7 +423,7 @@ export type CreateRevisionIssues = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export type CreateRevisionResponseBodyData = {
+export type CreateRevisionInputValidationProblemData = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -495,7 +495,7 @@ export type CreateRevisionResponseBodyData = {
    * Additional context for the problem
    */
   context?: { [k: string]: any } | undefined;
-  issues?: Array<CreateRevisionIssues> | undefined;
+  issues?: Array<CreateRevisionInputValidationIssue> | undefined;
 };
 
 /**
@@ -505,7 +505,7 @@ export type CreateRevisionResponseBodyData = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export class CreateRevisionResponseBody extends Error {
+export class CreateRevisionInputValidationProblem extends Error {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -577,12 +577,12 @@ export class CreateRevisionResponseBody extends Error {
    * Additional context for the problem
    */
   context?: { [k: string]: any } | undefined;
-  issues?: Array<CreateRevisionIssues> | undefined;
+  issues?: Array<CreateRevisionInputValidationIssue> | undefined;
 
   /** The original data that was passed to this error instance. */
-  data$: CreateRevisionResponseBodyData;
+  data$: CreateRevisionInputValidationProblemData;
 
-  constructor(err: CreateRevisionResponseBodyData) {
+  constructor(err: CreateRevisionInputValidationProblemData) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
@@ -608,7 +608,7 @@ export class CreateRevisionResponseBody extends Error {
     if (err.context != null) this.context = err.context;
     if (err.issues != null) this.issues = err.issues;
 
-    this.name = "CreateRevisionResponseBody";
+    this.name = "CreateRevisionInputValidationProblem";
   }
 }
 
@@ -634,37 +634,39 @@ export namespace CreateRevisionRevisionsIn$ {
 }
 
 /** @internal */
-export const CreateRevisionRevisionsIssues$inboundSchema: z.ZodType<
-  CreateRevisionRevisionsIssues,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  type: z.string().default("about:blank"),
-  href: z.string().optional(),
-  title: z.string().optional(),
-  status: z.number().int().optional(),
-  detail: z.string().optional(),
-  instance: z.string().optional(),
-  subsystem: z.string().optional(),
-  time: z.string().datetime({ offset: true }).transform(v => new Date(v))
-    .optional(),
-  requestId: z.string().optional(),
-  causes: z.array(z.string()).optional(),
-  remedy: z.string().optional(),
-  supportEmail: z.string().optional(),
-  supportPhone: z.string().optional(),
-  supportUrl: z.string().optional(),
-  retryable: z.boolean().optional(),
-  retryAfter: z.string().datetime({ offset: true }).transform(v => new Date(v))
-    .optional(),
-  context: z.record(z.any()).optional(),
-  in: CreateRevisionRevisionsIn$inboundSchema.optional(),
-  name: z.string().optional(),
-  value: z.any().optional(),
-});
+export const CreateRevisionRevisionsInputValidationIssue$inboundSchema:
+  z.ZodType<
+    CreateRevisionRevisionsInputValidationIssue,
+    z.ZodTypeDef,
+    unknown
+  > = z.object({
+    type: z.string().default("about:blank"),
+    href: z.string().optional(),
+    title: z.string().optional(),
+    status: z.number().int().optional(),
+    detail: z.string().optional(),
+    instance: z.string().optional(),
+    subsystem: z.string().optional(),
+    time: z.string().datetime({ offset: true }).transform(v => new Date(v))
+      .optional(),
+    requestId: z.string().optional(),
+    causes: z.array(z.string()).optional(),
+    remedy: z.string().optional(),
+    supportEmail: z.string().optional(),
+    supportPhone: z.string().optional(),
+    supportUrl: z.string().optional(),
+    retryable: z.boolean().optional(),
+    retryAfter: z.string().datetime({ offset: true }).transform(v =>
+      new Date(v)
+    ).optional(),
+    context: z.record(z.any()).optional(),
+    in: CreateRevisionRevisionsIn$inboundSchema.optional(),
+    name: z.string().optional(),
+    value: z.any().optional(),
+  });
 
 /** @internal */
-export type CreateRevisionRevisionsIssues$Outbound = {
+export type CreateRevisionRevisionsInputValidationIssue$Outbound = {
   type: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -688,128 +690,12 @@ export type CreateRevisionRevisionsIssues$Outbound = {
 };
 
 /** @internal */
-export const CreateRevisionRevisionsIssues$outboundSchema: z.ZodType<
-  CreateRevisionRevisionsIssues$Outbound,
-  z.ZodTypeDef,
-  CreateRevisionRevisionsIssues
-> = z.object({
-  type: z.string().default("about:blank"),
-  href: z.string().optional(),
-  title: z.string().optional(),
-  status: z.number().int().optional(),
-  detail: z.string().optional(),
-  instance: z.string().optional(),
-  subsystem: z.string().optional(),
-  time: z.date().transform(v => v.toISOString()).optional(),
-  requestId: z.string().optional(),
-  causes: z.array(z.string()).optional(),
-  remedy: z.string().optional(),
-  supportEmail: z.string().optional(),
-  supportPhone: z.string().optional(),
-  supportUrl: z.string().optional(),
-  retryable: z.boolean().optional(),
-  retryAfter: z.date().transform(v => v.toISOString()).optional(),
-  context: z.record(z.any()).optional(),
-  in: CreateRevisionRevisionsIn$outboundSchema.optional(),
-  name: z.string().optional(),
-  value: z.any().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateRevisionRevisionsIssues$ {
-  /** @deprecated use `CreateRevisionRevisionsIssues$inboundSchema` instead. */
-  export const inboundSchema = CreateRevisionRevisionsIssues$inboundSchema;
-  /** @deprecated use `CreateRevisionRevisionsIssues$outboundSchema` instead. */
-  export const outboundSchema = CreateRevisionRevisionsIssues$outboundSchema;
-  /** @deprecated use `CreateRevisionRevisionsIssues$Outbound` instead. */
-  export type Outbound = CreateRevisionRevisionsIssues$Outbound;
-}
-
-export function createRevisionRevisionsIssuesToJSON(
-  createRevisionRevisionsIssues: CreateRevisionRevisionsIssues,
-): string {
-  return JSON.stringify(
-    CreateRevisionRevisionsIssues$outboundSchema.parse(
-      createRevisionRevisionsIssues,
-    ),
-  );
-}
-
-export function createRevisionRevisionsIssuesFromJSON(
-  jsonString: string,
-): SafeParseResult<CreateRevisionRevisionsIssues, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CreateRevisionRevisionsIssues$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreateRevisionRevisionsIssues' from JSON`,
-  );
-}
-
-/** @internal */
-export const CreateRevisionRevisionsResponseBody$inboundSchema: z.ZodType<
-  CreateRevisionRevisionsResponseBody,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  type: z.string().default("about:blank"),
-  href: z.string().optional(),
-  title: z.string().optional(),
-  status: z.number().int().optional(),
-  detail: z.string().optional(),
-  instance: z.string().optional(),
-  subsystem: z.string().optional(),
-  time: z.string().datetime({ offset: true }).transform(v => new Date(v))
-    .optional(),
-  requestId: z.string().optional(),
-  causes: z.array(z.string()).optional(),
-  remedy: z.string().optional(),
-  supportEmail: z.string().optional(),
-  supportPhone: z.string().optional(),
-  supportUrl: z.string().optional(),
-  retryable: z.boolean().optional(),
-  retryAfter: z.string().datetime({ offset: true }).transform(v => new Date(v))
-    .optional(),
-  context: z.record(z.any()).optional(),
-  issues: z.array(z.lazy(() => CreateRevisionRevisionsIssues$inboundSchema))
-    .optional(),
-})
-  .transform((v) => {
-    return new CreateRevisionRevisionsResponseBody(v);
-  });
-
-/** @internal */
-export type CreateRevisionRevisionsResponseBody$Outbound = {
-  type?: string;
-  href?: string | undefined;
-  title?: string | undefined;
-  status?: number | undefined;
-  detail?: string | undefined;
-  instance?: string | undefined;
-  subsystem?: string | undefined;
-  time?: string | undefined;
-  requestId?: string | undefined;
-  causes?: Array<string> | undefined;
-  remedy?: string | undefined;
-  supportEmail?: string | undefined;
-  supportPhone?: string | undefined;
-  supportUrl?: string | undefined;
-  retryable?: boolean | undefined;
-  retryAfter?: string | undefined;
-  context?: { [k: string]: any } | undefined;
-  issues?: Array<CreateRevisionRevisionsIssues$Outbound> | undefined;
-};
-
-/** @internal */
-export const CreateRevisionRevisionsResponseBody$outboundSchema: z.ZodType<
-  CreateRevisionRevisionsResponseBody$Outbound,
-  z.ZodTypeDef,
-  CreateRevisionRevisionsResponseBody
-> = z.instanceof(CreateRevisionRevisionsResponseBody)
-  .transform(v => v.data$)
-  .pipe(z.object({
+export const CreateRevisionRevisionsInputValidationIssue$outboundSchema:
+  z.ZodType<
+    CreateRevisionRevisionsInputValidationIssue$Outbound,
+    z.ZodTypeDef,
+    CreateRevisionRevisionsInputValidationIssue
+  > = z.object({
     type: z.string().default("about:blank"),
     href: z.string().optional(),
     title: z.string().optional(),
@@ -827,23 +713,158 @@ export const CreateRevisionRevisionsResponseBody$outboundSchema: z.ZodType<
     retryable: z.boolean().optional(),
     retryAfter: z.date().transform(v => v.toISOString()).optional(),
     context: z.record(z.any()).optional(),
-    issues: z.array(z.lazy(() => CreateRevisionRevisionsIssues$outboundSchema))
-      .optional(),
-  }));
+    in: CreateRevisionRevisionsIn$outboundSchema.optional(),
+    name: z.string().optional(),
+    value: z.any().optional(),
+  });
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace CreateRevisionRevisionsResponseBody$ {
-  /** @deprecated use `CreateRevisionRevisionsResponseBody$inboundSchema` instead. */
+export namespace CreateRevisionRevisionsInputValidationIssue$ {
+  /** @deprecated use `CreateRevisionRevisionsInputValidationIssue$inboundSchema` instead. */
   export const inboundSchema =
-    CreateRevisionRevisionsResponseBody$inboundSchema;
-  /** @deprecated use `CreateRevisionRevisionsResponseBody$outboundSchema` instead. */
+    CreateRevisionRevisionsInputValidationIssue$inboundSchema;
+  /** @deprecated use `CreateRevisionRevisionsInputValidationIssue$outboundSchema` instead. */
   export const outboundSchema =
-    CreateRevisionRevisionsResponseBody$outboundSchema;
-  /** @deprecated use `CreateRevisionRevisionsResponseBody$Outbound` instead. */
-  export type Outbound = CreateRevisionRevisionsResponseBody$Outbound;
+    CreateRevisionRevisionsInputValidationIssue$outboundSchema;
+  /** @deprecated use `CreateRevisionRevisionsInputValidationIssue$Outbound` instead. */
+  export type Outbound = CreateRevisionRevisionsInputValidationIssue$Outbound;
+}
+
+export function createRevisionRevisionsInputValidationIssueToJSON(
+  createRevisionRevisionsInputValidationIssue:
+    CreateRevisionRevisionsInputValidationIssue,
+): string {
+  return JSON.stringify(
+    CreateRevisionRevisionsInputValidationIssue$outboundSchema.parse(
+      createRevisionRevisionsInputValidationIssue,
+    ),
+  );
+}
+
+export function createRevisionRevisionsInputValidationIssueFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  CreateRevisionRevisionsInputValidationIssue,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      CreateRevisionRevisionsInputValidationIssue$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'CreateRevisionRevisionsInputValidationIssue' from JSON`,
+  );
+}
+
+/** @internal */
+export const CreateRevisionRevisionsInputValidationProblem$inboundSchema:
+  z.ZodType<
+    CreateRevisionRevisionsInputValidationProblem,
+    z.ZodTypeDef,
+    unknown
+  > = z.object({
+    type: z.string().default("about:blank"),
+    href: z.string().optional(),
+    title: z.string().optional(),
+    status: z.number().int().optional(),
+    detail: z.string().optional(),
+    instance: z.string().optional(),
+    subsystem: z.string().optional(),
+    time: z.string().datetime({ offset: true }).transform(v => new Date(v))
+      .optional(),
+    requestId: z.string().optional(),
+    causes: z.array(z.string()).optional(),
+    remedy: z.string().optional(),
+    supportEmail: z.string().optional(),
+    supportPhone: z.string().optional(),
+    supportUrl: z.string().optional(),
+    retryable: z.boolean().optional(),
+    retryAfter: z.string().datetime({ offset: true }).transform(v =>
+      new Date(v)
+    ).optional(),
+    context: z.record(z.any()).optional(),
+    issues: z.array(
+      z.lazy(() => CreateRevisionRevisionsInputValidationIssue$inboundSchema),
+    ).optional(),
+  })
+    .transform((v) => {
+      return new CreateRevisionRevisionsInputValidationProblem(v);
+    });
+
+/** @internal */
+export type CreateRevisionRevisionsInputValidationProblem$Outbound = {
+  type?: string;
+  href?: string | undefined;
+  title?: string | undefined;
+  status?: number | undefined;
+  detail?: string | undefined;
+  instance?: string | undefined;
+  subsystem?: string | undefined;
+  time?: string | undefined;
+  requestId?: string | undefined;
+  causes?: Array<string> | undefined;
+  remedy?: string | undefined;
+  supportEmail?: string | undefined;
+  supportPhone?: string | undefined;
+  supportUrl?: string | undefined;
+  retryable?: boolean | undefined;
+  retryAfter?: string | undefined;
+  context?: { [k: string]: any } | undefined;
+  issues?:
+    | Array<CreateRevisionRevisionsInputValidationIssue$Outbound>
+    | undefined;
+};
+
+/** @internal */
+export const CreateRevisionRevisionsInputValidationProblem$outboundSchema:
+  z.ZodType<
+    CreateRevisionRevisionsInputValidationProblem$Outbound,
+    z.ZodTypeDef,
+    CreateRevisionRevisionsInputValidationProblem
+  > = z.instanceof(CreateRevisionRevisionsInputValidationProblem)
+    .transform(v => v.data$)
+    .pipe(z.object({
+      type: z.string().default("about:blank"),
+      href: z.string().optional(),
+      title: z.string().optional(),
+      status: z.number().int().optional(),
+      detail: z.string().optional(),
+      instance: z.string().optional(),
+      subsystem: z.string().optional(),
+      time: z.date().transform(v => v.toISOString()).optional(),
+      requestId: z.string().optional(),
+      causes: z.array(z.string()).optional(),
+      remedy: z.string().optional(),
+      supportEmail: z.string().optional(),
+      supportPhone: z.string().optional(),
+      supportUrl: z.string().optional(),
+      retryable: z.boolean().optional(),
+      retryAfter: z.date().transform(v => v.toISOString()).optional(),
+      context: z.record(z.any()).optional(),
+      issues: z.array(
+        z.lazy(() =>
+          CreateRevisionRevisionsInputValidationIssue$outboundSchema
+        ),
+      ).optional(),
+    }));
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace CreateRevisionRevisionsInputValidationProblem$ {
+  /** @deprecated use `CreateRevisionRevisionsInputValidationProblem$inboundSchema` instead. */
+  export const inboundSchema =
+    CreateRevisionRevisionsInputValidationProblem$inboundSchema;
+  /** @deprecated use `CreateRevisionRevisionsInputValidationProblem$outboundSchema` instead. */
+  export const outboundSchema =
+    CreateRevisionRevisionsInputValidationProblem$outboundSchema;
+  /** @deprecated use `CreateRevisionRevisionsInputValidationProblem$Outbound` instead. */
+  export type Outbound = CreateRevisionRevisionsInputValidationProblem$Outbound;
 }
 
 /** @internal */
@@ -868,8 +889,8 @@ export namespace CreateRevisionIn$ {
 }
 
 /** @internal */
-export const CreateRevisionIssues$inboundSchema: z.ZodType<
-  CreateRevisionIssues,
+export const CreateRevisionInputValidationIssue$inboundSchema: z.ZodType<
+  CreateRevisionInputValidationIssue,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -898,7 +919,7 @@ export const CreateRevisionIssues$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type CreateRevisionIssues$Outbound = {
+export type CreateRevisionInputValidationIssue$Outbound = {
   type: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -922,10 +943,10 @@ export type CreateRevisionIssues$Outbound = {
 };
 
 /** @internal */
-export const CreateRevisionIssues$outboundSchema: z.ZodType<
-  CreateRevisionIssues$Outbound,
+export const CreateRevisionInputValidationIssue$outboundSchema: z.ZodType<
+  CreateRevisionInputValidationIssue$Outbound,
   z.ZodTypeDef,
-  CreateRevisionIssues
+  CreateRevisionInputValidationIssue
 > = z.object({
   type: z.string().default("about:blank"),
   href: z.string().optional(),
@@ -953,36 +974,40 @@ export const CreateRevisionIssues$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace CreateRevisionIssues$ {
-  /** @deprecated use `CreateRevisionIssues$inboundSchema` instead. */
-  export const inboundSchema = CreateRevisionIssues$inboundSchema;
-  /** @deprecated use `CreateRevisionIssues$outboundSchema` instead. */
-  export const outboundSchema = CreateRevisionIssues$outboundSchema;
-  /** @deprecated use `CreateRevisionIssues$Outbound` instead. */
-  export type Outbound = CreateRevisionIssues$Outbound;
+export namespace CreateRevisionInputValidationIssue$ {
+  /** @deprecated use `CreateRevisionInputValidationIssue$inboundSchema` instead. */
+  export const inboundSchema = CreateRevisionInputValidationIssue$inboundSchema;
+  /** @deprecated use `CreateRevisionInputValidationIssue$outboundSchema` instead. */
+  export const outboundSchema =
+    CreateRevisionInputValidationIssue$outboundSchema;
+  /** @deprecated use `CreateRevisionInputValidationIssue$Outbound` instead. */
+  export type Outbound = CreateRevisionInputValidationIssue$Outbound;
 }
 
-export function createRevisionIssuesToJSON(
-  createRevisionIssues: CreateRevisionIssues,
+export function createRevisionInputValidationIssueToJSON(
+  createRevisionInputValidationIssue: CreateRevisionInputValidationIssue,
 ): string {
   return JSON.stringify(
-    CreateRevisionIssues$outboundSchema.parse(createRevisionIssues),
+    CreateRevisionInputValidationIssue$outboundSchema.parse(
+      createRevisionInputValidationIssue,
+    ),
   );
 }
 
-export function createRevisionIssuesFromJSON(
+export function createRevisionInputValidationIssueFromJSON(
   jsonString: string,
-): SafeParseResult<CreateRevisionIssues, SDKValidationError> {
+): SafeParseResult<CreateRevisionInputValidationIssue, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => CreateRevisionIssues$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreateRevisionIssues' from JSON`,
+    (x) =>
+      CreateRevisionInputValidationIssue$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreateRevisionInputValidationIssue' from JSON`,
   );
 }
 
 /** @internal */
-export const CreateRevisionResponseBody$inboundSchema: z.ZodType<
-  CreateRevisionResponseBody,
+export const CreateRevisionInputValidationProblem$inboundSchema: z.ZodType<
+  CreateRevisionInputValidationProblem,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -1005,14 +1030,16 @@ export const CreateRevisionResponseBody$inboundSchema: z.ZodType<
   retryAfter: z.string().datetime({ offset: true }).transform(v => new Date(v))
     .optional(),
   context: z.record(z.any()).optional(),
-  issues: z.array(z.lazy(() => CreateRevisionIssues$inboundSchema)).optional(),
+  issues: z.array(
+    z.lazy(() => CreateRevisionInputValidationIssue$inboundSchema),
+  ).optional(),
 })
   .transform((v) => {
-    return new CreateRevisionResponseBody(v);
+    return new CreateRevisionInputValidationProblem(v);
   });
 
 /** @internal */
-export type CreateRevisionResponseBody$Outbound = {
+export type CreateRevisionInputValidationProblem$Outbound = {
   type?: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -1030,15 +1057,15 @@ export type CreateRevisionResponseBody$Outbound = {
   retryable?: boolean | undefined;
   retryAfter?: string | undefined;
   context?: { [k: string]: any } | undefined;
-  issues?: Array<CreateRevisionIssues$Outbound> | undefined;
+  issues?: Array<CreateRevisionInputValidationIssue$Outbound> | undefined;
 };
 
 /** @internal */
-export const CreateRevisionResponseBody$outboundSchema: z.ZodType<
-  CreateRevisionResponseBody$Outbound,
+export const CreateRevisionInputValidationProblem$outboundSchema: z.ZodType<
+  CreateRevisionInputValidationProblem$Outbound,
   z.ZodTypeDef,
-  CreateRevisionResponseBody
-> = z.instanceof(CreateRevisionResponseBody)
+  CreateRevisionInputValidationProblem
+> = z.instanceof(CreateRevisionInputValidationProblem)
   .transform(v => v.data$)
   .pipe(z.object({
     type: z.string().default("about:blank"),
@@ -1058,19 +1085,22 @@ export const CreateRevisionResponseBody$outboundSchema: z.ZodType<
     retryable: z.boolean().optional(),
     retryAfter: z.date().transform(v => v.toISOString()).optional(),
     context: z.record(z.any()).optional(),
-    issues: z.array(z.lazy(() => CreateRevisionIssues$outboundSchema))
-      .optional(),
+    issues: z.array(
+      z.lazy(() => CreateRevisionInputValidationIssue$outboundSchema),
+    ).optional(),
   }));
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace CreateRevisionResponseBody$ {
-  /** @deprecated use `CreateRevisionResponseBody$inboundSchema` instead. */
-  export const inboundSchema = CreateRevisionResponseBody$inboundSchema;
-  /** @deprecated use `CreateRevisionResponseBody$outboundSchema` instead. */
-  export const outboundSchema = CreateRevisionResponseBody$outboundSchema;
-  /** @deprecated use `CreateRevisionResponseBody$Outbound` instead. */
-  export type Outbound = CreateRevisionResponseBody$Outbound;
+export namespace CreateRevisionInputValidationProblem$ {
+  /** @deprecated use `CreateRevisionInputValidationProblem$inboundSchema` instead. */
+  export const inboundSchema =
+    CreateRevisionInputValidationProblem$inboundSchema;
+  /** @deprecated use `CreateRevisionInputValidationProblem$outboundSchema` instead. */
+  export const outboundSchema =
+    CreateRevisionInputValidationProblem$outboundSchema;
+  /** @deprecated use `CreateRevisionInputValidationProblem$Outbound` instead. */
+  export type Outbound = CreateRevisionInputValidationProblem$Outbound;
 }

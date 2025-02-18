@@ -33,7 +33,7 @@ export function connectionsDelete(
   options?: RequestOptions,
 ): APIPromise<
   Result<
-    operations.DeleteConnectionResponseBody | undefined,
+    operations.DeleteConnectionAPIProblem | undefined,
     | APIError
     | SDKValidationError
     | UnexpectedClientError
@@ -57,7 +57,7 @@ async function $do(
 ): Promise<
   [
     Result<
-      operations.DeleteConnectionResponseBody | undefined,
+      operations.DeleteConnectionAPIProblem | undefined,
       | APIError
       | SDKValidationError
       | UnexpectedClientError
@@ -156,7 +156,7 @@ async function $do(
   const response = doResult.value;
 
   const [result] = await M.match<
-    operations.DeleteConnectionResponseBody | undefined,
+    operations.DeleteConnectionAPIProblem | undefined,
     | APIError
     | SDKValidationError
     | UnexpectedClientError
@@ -165,15 +165,12 @@ async function $do(
     | RequestTimeoutError
     | ConnectionError
   >(
-    M.nil(
-      204,
-      operations.DeleteConnectionResponseBody$inboundSchema.optional(),
-    ),
+    M.nil(204, operations.DeleteConnectionAPIProblem$inboundSchema.optional()),
     M.fail("4XX"),
     M.fail("5XX"),
     M.json(
       "default",
-      operations.DeleteConnectionResponseBody$inboundSchema.optional(),
+      operations.DeleteConnectionAPIProblem$inboundSchema.optional(),
       { ctype: "application/problem+json" },
     ),
   )(response);

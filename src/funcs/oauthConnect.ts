@@ -42,7 +42,7 @@ export function oauthConnect(
 ): APIPromise<
   Result<
     operations.OauthConnectResponse,
-    | errors.OauthConnectResponseBody
+    | errors.OauthConnectInputValidationProblem
     | APIError
     | SDKValidationError
     | UnexpectedClientError
@@ -67,7 +67,7 @@ async function $do(
   [
     Result<
       operations.OauthConnectResponse,
-      | errors.OauthConnectResponseBody
+      | errors.OauthConnectInputValidationProblem
       | APIError
       | SDKValidationError
       | UnexpectedClientError
@@ -155,7 +155,7 @@ async function $do(
 
   const [result] = await M.match<
     operations.OauthConnectResponse,
-    | errors.OauthConnectResponseBody
+    | errors.OauthConnectInputValidationProblem
     | APIError
     | SDKValidationError
     | UnexpectedClientError
@@ -165,7 +165,7 @@ async function $do(
     | ConnectionError
   >(
     M.text(200, operations.OauthConnectResponse$inboundSchema),
-    M.jsonErr(400, errors.OauthConnectResponseBody$inboundSchema, {
+    M.jsonErr(400, errors.OauthConnectInputValidationProblem$inboundSchema, {
       ctype: "application/problem+json",
     }),
     M.fail("4XX"),

@@ -20,7 +20,7 @@ export class Revisions extends ClientSDK {
   async create(
     request: operations.CreateRevisionRequest,
     options?: RequestOptions,
-  ): Promise<operations.CreateRevisionResponseBody | undefined> {
+  ): Promise<operations.CreateRevisionAPIProblem | undefined> {
     return unwrapAsync(revisionsCreate(
       this,
       request,

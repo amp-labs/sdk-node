@@ -22,7 +22,7 @@ export type GetProjectRequest = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export type GetProjectProjectsResponseBody = {
+export type GetProjectAPIProblem = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -99,7 +99,7 @@ export type GetProjectProjectsResponseBody = {
 /**
  * Project
  */
-export type GetProjectResponseBody = {
+export type GetProjectProject = {
   /**
    * The project ID.
    */
@@ -126,9 +126,7 @@ export type GetProjectResponseBody = {
   updateTime?: Date | undefined;
 };
 
-export type GetProjectResponse =
-  | GetProjectResponseBody
-  | GetProjectProjectsResponseBody;
+export type GetProjectResponse = GetProjectProject | GetProjectAPIProblem;
 
 /** @internal */
 export const GetProjectRequest$inboundSchema: z.ZodType<
@@ -185,8 +183,8 @@ export function getProjectRequestFromJSON(
 }
 
 /** @internal */
-export const GetProjectProjectsResponseBody$inboundSchema: z.ZodType<
-  GetProjectProjectsResponseBody,
+export const GetProjectAPIProblem$inboundSchema: z.ZodType<
+  GetProjectAPIProblem,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -212,7 +210,7 @@ export const GetProjectProjectsResponseBody$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type GetProjectProjectsResponseBody$Outbound = {
+export type GetProjectAPIProblem$Outbound = {
   type: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -233,10 +231,10 @@ export type GetProjectProjectsResponseBody$Outbound = {
 };
 
 /** @internal */
-export const GetProjectProjectsResponseBody$outboundSchema: z.ZodType<
-  GetProjectProjectsResponseBody$Outbound,
+export const GetProjectAPIProblem$outboundSchema: z.ZodType<
+  GetProjectAPIProblem$Outbound,
   z.ZodTypeDef,
-  GetProjectProjectsResponseBody
+  GetProjectAPIProblem
 > = z.object({
   type: z.string().default("about:blank"),
   href: z.string().optional(),
@@ -261,38 +259,36 @@ export const GetProjectProjectsResponseBody$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace GetProjectProjectsResponseBody$ {
-  /** @deprecated use `GetProjectProjectsResponseBody$inboundSchema` instead. */
-  export const inboundSchema = GetProjectProjectsResponseBody$inboundSchema;
-  /** @deprecated use `GetProjectProjectsResponseBody$outboundSchema` instead. */
-  export const outboundSchema = GetProjectProjectsResponseBody$outboundSchema;
-  /** @deprecated use `GetProjectProjectsResponseBody$Outbound` instead. */
-  export type Outbound = GetProjectProjectsResponseBody$Outbound;
+export namespace GetProjectAPIProblem$ {
+  /** @deprecated use `GetProjectAPIProblem$inboundSchema` instead. */
+  export const inboundSchema = GetProjectAPIProblem$inboundSchema;
+  /** @deprecated use `GetProjectAPIProblem$outboundSchema` instead. */
+  export const outboundSchema = GetProjectAPIProblem$outboundSchema;
+  /** @deprecated use `GetProjectAPIProblem$Outbound` instead. */
+  export type Outbound = GetProjectAPIProblem$Outbound;
 }
 
-export function getProjectProjectsResponseBodyToJSON(
-  getProjectProjectsResponseBody: GetProjectProjectsResponseBody,
+export function getProjectAPIProblemToJSON(
+  getProjectAPIProblem: GetProjectAPIProblem,
 ): string {
   return JSON.stringify(
-    GetProjectProjectsResponseBody$outboundSchema.parse(
-      getProjectProjectsResponseBody,
-    ),
+    GetProjectAPIProblem$outboundSchema.parse(getProjectAPIProblem),
   );
 }
 
-export function getProjectProjectsResponseBodyFromJSON(
+export function getProjectAPIProblemFromJSON(
   jsonString: string,
-): SafeParseResult<GetProjectProjectsResponseBody, SDKValidationError> {
+): SafeParseResult<GetProjectAPIProblem, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => GetProjectProjectsResponseBody$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetProjectProjectsResponseBody' from JSON`,
+    (x) => GetProjectAPIProblem$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetProjectAPIProblem' from JSON`,
   );
 }
 
 /** @internal */
-export const GetProjectResponseBody$inboundSchema: z.ZodType<
-  GetProjectResponseBody,
+export const GetProjectProject$inboundSchema: z.ZodType<
+  GetProjectProject,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -306,7 +302,7 @@ export const GetProjectResponseBody$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type GetProjectResponseBody$Outbound = {
+export type GetProjectProject$Outbound = {
   id: string;
   name: string;
   appName: string;
@@ -316,10 +312,10 @@ export type GetProjectResponseBody$Outbound = {
 };
 
 /** @internal */
-export const GetProjectResponseBody$outboundSchema: z.ZodType<
-  GetProjectResponseBody$Outbound,
+export const GetProjectProject$outboundSchema: z.ZodType<
+  GetProjectProject$Outbound,
   z.ZodTypeDef,
-  GetProjectResponseBody
+  GetProjectProject
 > = z.object({
   id: z.string(),
   name: z.string(),
@@ -333,30 +329,30 @@ export const GetProjectResponseBody$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace GetProjectResponseBody$ {
-  /** @deprecated use `GetProjectResponseBody$inboundSchema` instead. */
-  export const inboundSchema = GetProjectResponseBody$inboundSchema;
-  /** @deprecated use `GetProjectResponseBody$outboundSchema` instead. */
-  export const outboundSchema = GetProjectResponseBody$outboundSchema;
-  /** @deprecated use `GetProjectResponseBody$Outbound` instead. */
-  export type Outbound = GetProjectResponseBody$Outbound;
+export namespace GetProjectProject$ {
+  /** @deprecated use `GetProjectProject$inboundSchema` instead. */
+  export const inboundSchema = GetProjectProject$inboundSchema;
+  /** @deprecated use `GetProjectProject$outboundSchema` instead. */
+  export const outboundSchema = GetProjectProject$outboundSchema;
+  /** @deprecated use `GetProjectProject$Outbound` instead. */
+  export type Outbound = GetProjectProject$Outbound;
 }
 
-export function getProjectResponseBodyToJSON(
-  getProjectResponseBody: GetProjectResponseBody,
+export function getProjectProjectToJSON(
+  getProjectProject: GetProjectProject,
 ): string {
   return JSON.stringify(
-    GetProjectResponseBody$outboundSchema.parse(getProjectResponseBody),
+    GetProjectProject$outboundSchema.parse(getProjectProject),
   );
 }
 
-export function getProjectResponseBodyFromJSON(
+export function getProjectProjectFromJSON(
   jsonString: string,
-): SafeParseResult<GetProjectResponseBody, SDKValidationError> {
+): SafeParseResult<GetProjectProject, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => GetProjectResponseBody$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetProjectResponseBody' from JSON`,
+    (x) => GetProjectProject$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetProjectProject' from JSON`,
   );
 }
 
@@ -366,14 +362,14 @@ export const GetProjectResponse$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.union([
-  z.lazy(() => GetProjectResponseBody$inboundSchema),
-  z.lazy(() => GetProjectProjectsResponseBody$inboundSchema),
+  z.lazy(() => GetProjectProject$inboundSchema),
+  z.lazy(() => GetProjectAPIProblem$inboundSchema),
 ]);
 
 /** @internal */
 export type GetProjectResponse$Outbound =
-  | GetProjectResponseBody$Outbound
-  | GetProjectProjectsResponseBody$Outbound;
+  | GetProjectProject$Outbound
+  | GetProjectAPIProblem$Outbound;
 
 /** @internal */
 export const GetProjectResponse$outboundSchema: z.ZodType<
@@ -381,8 +377,8 @@ export const GetProjectResponse$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   GetProjectResponse
 > = z.union([
-  z.lazy(() => GetProjectResponseBody$outboundSchema),
-  z.lazy(() => GetProjectProjectsResponseBody$outboundSchema),
+  z.lazy(() => GetProjectProject$outboundSchema),
+  z.lazy(() => GetProjectAPIProblem$outboundSchema),
 ]);
 
 /**

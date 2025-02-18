@@ -24,7 +24,7 @@ export type DeleteInstallationRequest = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export type DeleteInstallationResponseBody = {
+export type DeleteInstallationAPIProblem = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -159,8 +159,8 @@ export function deleteInstallationRequestFromJSON(
 }
 
 /** @internal */
-export const DeleteInstallationResponseBody$inboundSchema: z.ZodType<
-  DeleteInstallationResponseBody,
+export const DeleteInstallationAPIProblem$inboundSchema: z.ZodType<
+  DeleteInstallationAPIProblem,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -186,7 +186,7 @@ export const DeleteInstallationResponseBody$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type DeleteInstallationResponseBody$Outbound = {
+export type DeleteInstallationAPIProblem$Outbound = {
   type: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -207,10 +207,10 @@ export type DeleteInstallationResponseBody$Outbound = {
 };
 
 /** @internal */
-export const DeleteInstallationResponseBody$outboundSchema: z.ZodType<
-  DeleteInstallationResponseBody$Outbound,
+export const DeleteInstallationAPIProblem$outboundSchema: z.ZodType<
+  DeleteInstallationAPIProblem$Outbound,
   z.ZodTypeDef,
-  DeleteInstallationResponseBody
+  DeleteInstallationAPIProblem
 > = z.object({
   type: z.string().default("about:blank"),
   href: z.string().optional(),
@@ -235,31 +235,31 @@ export const DeleteInstallationResponseBody$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace DeleteInstallationResponseBody$ {
-  /** @deprecated use `DeleteInstallationResponseBody$inboundSchema` instead. */
-  export const inboundSchema = DeleteInstallationResponseBody$inboundSchema;
-  /** @deprecated use `DeleteInstallationResponseBody$outboundSchema` instead. */
-  export const outboundSchema = DeleteInstallationResponseBody$outboundSchema;
-  /** @deprecated use `DeleteInstallationResponseBody$Outbound` instead. */
-  export type Outbound = DeleteInstallationResponseBody$Outbound;
+export namespace DeleteInstallationAPIProblem$ {
+  /** @deprecated use `DeleteInstallationAPIProblem$inboundSchema` instead. */
+  export const inboundSchema = DeleteInstallationAPIProblem$inboundSchema;
+  /** @deprecated use `DeleteInstallationAPIProblem$outboundSchema` instead. */
+  export const outboundSchema = DeleteInstallationAPIProblem$outboundSchema;
+  /** @deprecated use `DeleteInstallationAPIProblem$Outbound` instead. */
+  export type Outbound = DeleteInstallationAPIProblem$Outbound;
 }
 
-export function deleteInstallationResponseBodyToJSON(
-  deleteInstallationResponseBody: DeleteInstallationResponseBody,
+export function deleteInstallationAPIProblemToJSON(
+  deleteInstallationAPIProblem: DeleteInstallationAPIProblem,
 ): string {
   return JSON.stringify(
-    DeleteInstallationResponseBody$outboundSchema.parse(
-      deleteInstallationResponseBody,
+    DeleteInstallationAPIProblem$outboundSchema.parse(
+      deleteInstallationAPIProblem,
     ),
   );
 }
 
-export function deleteInstallationResponseBodyFromJSON(
+export function deleteInstallationAPIProblemFromJSON(
   jsonString: string,
-): SafeParseResult<DeleteInstallationResponseBody, SDKValidationError> {
+): SafeParseResult<DeleteInstallationAPIProblem, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => DeleteInstallationResponseBody$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'DeleteInstallationResponseBody' from JSON`,
+    (x) => DeleteInstallationAPIProblem$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'DeleteInstallationAPIProblem' from JSON`,
   );
 }

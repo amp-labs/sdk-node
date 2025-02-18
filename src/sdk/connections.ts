@@ -71,7 +71,7 @@ export class Connections extends ClientSDK {
   async delete(
     request: operations.DeleteConnectionRequest,
     options?: RequestOptions,
-  ): Promise<operations.DeleteConnectionResponseBody | undefined> {
+  ): Promise<operations.DeleteConnectionAPIProblem | undefined> {
     return unwrapAsync(connectionsDelete(
       this,
       request,

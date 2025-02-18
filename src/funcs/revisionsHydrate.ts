@@ -43,8 +43,8 @@ export function revisionsHydrate(
 ): APIPromise<
   Result<
     operations.GetHydratedRevisionResponse,
-    | errors.GetHydratedRevisionResponseBody
-    | errors.GetHydratedRevisionRevisionsResponseBody
+    | errors.GetHydratedRevisionInputValidationProblem
+    | errors.GetHydratedRevisionRevisionsInputValidationProblem
     | APIError
     | SDKValidationError
     | UnexpectedClientError
@@ -69,8 +69,8 @@ async function $do(
   [
     Result<
       operations.GetHydratedRevisionResponse,
-      | errors.GetHydratedRevisionResponseBody
-      | errors.GetHydratedRevisionRevisionsResponseBody
+      | errors.GetHydratedRevisionInputValidationProblem
+      | errors.GetHydratedRevisionRevisionsInputValidationProblem
       | APIError
       | SDKValidationError
       | UnexpectedClientError
@@ -187,8 +187,8 @@ async function $do(
 
   const [result] = await M.match<
     operations.GetHydratedRevisionResponse,
-    | errors.GetHydratedRevisionResponseBody
-    | errors.GetHydratedRevisionRevisionsResponseBody
+    | errors.GetHydratedRevisionInputValidationProblem
+    | errors.GetHydratedRevisionRevisionsInputValidationProblem
     | APIError
     | SDKValidationError
     | UnexpectedClientError
@@ -198,12 +198,14 @@ async function $do(
     | ConnectionError
   >(
     M.json(200, operations.GetHydratedRevisionResponse$inboundSchema),
-    M.jsonErr(400, errors.GetHydratedRevisionResponseBody$inboundSchema, {
-      ctype: "application/problem+json",
-    }),
+    M.jsonErr(
+      400,
+      errors.GetHydratedRevisionInputValidationProblem$inboundSchema,
+      { ctype: "application/problem+json" },
+    ),
     M.jsonErr(
       422,
-      errors.GetHydratedRevisionRevisionsResponseBody$inboundSchema,
+      errors.GetHydratedRevisionRevisionsInputValidationProblem$inboundSchema,
       { ctype: "application/problem+json" },
     ),
     M.fail("4XX"),

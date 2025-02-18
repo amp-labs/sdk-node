@@ -23,7 +23,7 @@ export type GetOperationRequest = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export type GetOperationOperationsResponseBody = {
+export type GetOperationAPIProblem = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -105,7 +105,7 @@ export type GetOperationMetadata = {};
 /**
  * Operation
  */
-export type GetOperationResponseBody = {
+export type GetOperationOperation = {
   /**
    * The Ampersand project ID.
    */
@@ -149,8 +149,8 @@ export type GetOperationResponseBody = {
 };
 
 export type GetOperationResponse =
-  | GetOperationResponseBody
-  | GetOperationOperationsResponseBody;
+  | GetOperationOperation
+  | GetOperationAPIProblem;
 
 /** @internal */
 export const GetOperationRequest$inboundSchema: z.ZodType<
@@ -210,8 +210,8 @@ export function getOperationRequestFromJSON(
 }
 
 /** @internal */
-export const GetOperationOperationsResponseBody$inboundSchema: z.ZodType<
-  GetOperationOperationsResponseBody,
+export const GetOperationAPIProblem$inboundSchema: z.ZodType<
+  GetOperationAPIProblem,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -237,7 +237,7 @@ export const GetOperationOperationsResponseBody$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type GetOperationOperationsResponseBody$Outbound = {
+export type GetOperationAPIProblem$Outbound = {
   type: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -258,10 +258,10 @@ export type GetOperationOperationsResponseBody$Outbound = {
 };
 
 /** @internal */
-export const GetOperationOperationsResponseBody$outboundSchema: z.ZodType<
-  GetOperationOperationsResponseBody$Outbound,
+export const GetOperationAPIProblem$outboundSchema: z.ZodType<
+  GetOperationAPIProblem$Outbound,
   z.ZodTypeDef,
-  GetOperationOperationsResponseBody
+  GetOperationAPIProblem
 > = z.object({
   type: z.string().default("about:blank"),
   href: z.string().optional(),
@@ -286,34 +286,30 @@ export const GetOperationOperationsResponseBody$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace GetOperationOperationsResponseBody$ {
-  /** @deprecated use `GetOperationOperationsResponseBody$inboundSchema` instead. */
-  export const inboundSchema = GetOperationOperationsResponseBody$inboundSchema;
-  /** @deprecated use `GetOperationOperationsResponseBody$outboundSchema` instead. */
-  export const outboundSchema =
-    GetOperationOperationsResponseBody$outboundSchema;
-  /** @deprecated use `GetOperationOperationsResponseBody$Outbound` instead. */
-  export type Outbound = GetOperationOperationsResponseBody$Outbound;
+export namespace GetOperationAPIProblem$ {
+  /** @deprecated use `GetOperationAPIProblem$inboundSchema` instead. */
+  export const inboundSchema = GetOperationAPIProblem$inboundSchema;
+  /** @deprecated use `GetOperationAPIProblem$outboundSchema` instead. */
+  export const outboundSchema = GetOperationAPIProblem$outboundSchema;
+  /** @deprecated use `GetOperationAPIProblem$Outbound` instead. */
+  export type Outbound = GetOperationAPIProblem$Outbound;
 }
 
-export function getOperationOperationsResponseBodyToJSON(
-  getOperationOperationsResponseBody: GetOperationOperationsResponseBody,
+export function getOperationAPIProblemToJSON(
+  getOperationAPIProblem: GetOperationAPIProblem,
 ): string {
   return JSON.stringify(
-    GetOperationOperationsResponseBody$outboundSchema.parse(
-      getOperationOperationsResponseBody,
-    ),
+    GetOperationAPIProblem$outboundSchema.parse(getOperationAPIProblem),
   );
 }
 
-export function getOperationOperationsResponseBodyFromJSON(
+export function getOperationAPIProblemFromJSON(
   jsonString: string,
-): SafeParseResult<GetOperationOperationsResponseBody, SDKValidationError> {
+): SafeParseResult<GetOperationAPIProblem, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) =>
-      GetOperationOperationsResponseBody$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetOperationOperationsResponseBody' from JSON`,
+    (x) => GetOperationAPIProblem$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetOperationAPIProblem' from JSON`,
   );
 }
 
@@ -366,8 +362,8 @@ export function getOperationMetadataFromJSON(
 }
 
 /** @internal */
-export const GetOperationResponseBody$inboundSchema: z.ZodType<
-  GetOperationResponseBody,
+export const GetOperationOperation$inboundSchema: z.ZodType<
+  GetOperationOperation,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -385,7 +381,7 @@ export const GetOperationResponseBody$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type GetOperationResponseBody$Outbound = {
+export type GetOperationOperation$Outbound = {
   projectId: string;
   integrationId: string;
   configId: string;
@@ -399,10 +395,10 @@ export type GetOperationResponseBody$Outbound = {
 };
 
 /** @internal */
-export const GetOperationResponseBody$outboundSchema: z.ZodType<
-  GetOperationResponseBody$Outbound,
+export const GetOperationOperation$outboundSchema: z.ZodType<
+  GetOperationOperation$Outbound,
   z.ZodTypeDef,
-  GetOperationResponseBody
+  GetOperationOperation
 > = z.object({
   projectId: z.string(),
   integrationId: z.string(),
@@ -420,30 +416,30 @@ export const GetOperationResponseBody$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace GetOperationResponseBody$ {
-  /** @deprecated use `GetOperationResponseBody$inboundSchema` instead. */
-  export const inboundSchema = GetOperationResponseBody$inboundSchema;
-  /** @deprecated use `GetOperationResponseBody$outboundSchema` instead. */
-  export const outboundSchema = GetOperationResponseBody$outboundSchema;
-  /** @deprecated use `GetOperationResponseBody$Outbound` instead. */
-  export type Outbound = GetOperationResponseBody$Outbound;
+export namespace GetOperationOperation$ {
+  /** @deprecated use `GetOperationOperation$inboundSchema` instead. */
+  export const inboundSchema = GetOperationOperation$inboundSchema;
+  /** @deprecated use `GetOperationOperation$outboundSchema` instead. */
+  export const outboundSchema = GetOperationOperation$outboundSchema;
+  /** @deprecated use `GetOperationOperation$Outbound` instead. */
+  export type Outbound = GetOperationOperation$Outbound;
 }
 
-export function getOperationResponseBodyToJSON(
-  getOperationResponseBody: GetOperationResponseBody,
+export function getOperationOperationToJSON(
+  getOperationOperation: GetOperationOperation,
 ): string {
   return JSON.stringify(
-    GetOperationResponseBody$outboundSchema.parse(getOperationResponseBody),
+    GetOperationOperation$outboundSchema.parse(getOperationOperation),
   );
 }
 
-export function getOperationResponseBodyFromJSON(
+export function getOperationOperationFromJSON(
   jsonString: string,
-): SafeParseResult<GetOperationResponseBody, SDKValidationError> {
+): SafeParseResult<GetOperationOperation, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => GetOperationResponseBody$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetOperationResponseBody' from JSON`,
+    (x) => GetOperationOperation$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetOperationOperation' from JSON`,
   );
 }
 
@@ -453,14 +449,14 @@ export const GetOperationResponse$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.union([
-  z.lazy(() => GetOperationResponseBody$inboundSchema),
-  z.lazy(() => GetOperationOperationsResponseBody$inboundSchema),
+  z.lazy(() => GetOperationOperation$inboundSchema),
+  z.lazy(() => GetOperationAPIProblem$inboundSchema),
 ]);
 
 /** @internal */
 export type GetOperationResponse$Outbound =
-  | GetOperationResponseBody$Outbound
-  | GetOperationOperationsResponseBody$Outbound;
+  | GetOperationOperation$Outbound
+  | GetOperationAPIProblem$Outbound;
 
 /** @internal */
 export const GetOperationResponse$outboundSchema: z.ZodType<
@@ -468,8 +464,8 @@ export const GetOperationResponse$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   GetOperationResponse
 > = z.union([
-  z.lazy(() => GetOperationResponseBody$outboundSchema),
-  z.lazy(() => GetOperationOperationsResponseBody$outboundSchema),
+  z.lazy(() => GetOperationOperation$outboundSchema),
+  z.lazy(() => GetOperationAPIProblem$outboundSchema),
 ]);
 
 /**

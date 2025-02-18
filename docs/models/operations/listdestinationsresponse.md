@@ -3,10 +3,10 @@
 
 ## Supported Types
 
-### `operations.ListDestinationsDestinationsResponseBody[]`
+### `operations.ListDestinationsDestination[]`
 
 ```typescript
-const value: operations.ListDestinationsDestinationsResponseBody[] = [
+const value: operations.ListDestinationsDestination[] = [
   {
     id: "<id>",
     name: "leadConvertedWebhook",
@@ -22,10 +22,10 @@ const value: operations.ListDestinationsDestinationsResponseBody[] = [
 ];
 ```
 
-### `operations.ListDestinationsResponseBody`
+### `operations.ListDestinationsAPIProblem`
 
 ```typescript
-const value: operations.ListDestinationsResponseBody = {
+const value: operations.ListDestinationsAPIProblem = {
   href:
     "https://www.belgif.be/specification/rest/api-guide/#standardized-problem-types",
   title: "Description of the type of problem that occurred",

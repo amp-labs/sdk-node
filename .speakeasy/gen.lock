@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 9323fb0c-51c0-423a-ae97-da9ff22a9f89
 management:
-  docChecksum: 83d138639d67b2b3d21cd0b97f5afa54
+  docChecksum: 57b1c79b801804ad2c1ae62e77a251b2
   docVersion: 1.0.0
   speakeasyVersion: 1.494.0
   generationVersion: 2.515.0
-  releaseVersion: 0.4.1
-  configChecksum: c397d543ef5eda5a349a2b9ace2bc12e
+  releaseVersion: 0.4.2
+  configChecksum: 2d33ddf2dc44caa6ac886581dc49fd96
   repoURL: https://github.com/amp-labs/sdk-node.git
   installationURL: https://github.com/amp-labs/sdk-node
   published: true
@@ -41,370 +41,369 @@ generatedFiles:
   - docs/lib/utils/retryconfig.md
   - docs/models/components/security.md
   - docs/models/errors/batchupsertintegrationsin.md
-  - docs/models/errors/batchupsertintegrationsissues.md
-  - docs/models/errors/batchupsertintegrationsresponsebody.md
+  - docs/models/errors/batchupsertintegrationsinputvalidationissue.md
+  - docs/models/errors/batchupsertintegrationsinputvalidationproblem.md
   - docs/models/errors/createconsumerin.md
-  - docs/models/errors/createconsumerissues.md
-  - docs/models/errors/createconsumerresponsebody.md
+  - docs/models/errors/createconsumerinputvalidationissue.md
+  - docs/models/errors/createconsumerinputvalidationproblem.md
   - docs/models/errors/createdestinationdestinationsin.md
-  - docs/models/errors/createdestinationdestinationsissues.md
-  - docs/models/errors/createdestinationdestinationsresponsebody.md
+  - docs/models/errors/createdestinationdestinationsinputvalidationissue.md
+  - docs/models/errors/createdestinationdestinationsinputvalidationproblem.md
   - docs/models/errors/createdestinationin.md
-  - docs/models/errors/createdestinationissues.md
-  - docs/models/errors/createdestinationresponsebody.md
+  - docs/models/errors/createdestinationinputvalidationissue.md
+  - docs/models/errors/createdestinationinputvalidationproblem.md
   - docs/models/errors/creategroupin.md
-  - docs/models/errors/creategroupissues.md
-  - docs/models/errors/creategroupresponsebody.md
+  - docs/models/errors/creategroupinputvalidationissue.md
+  - docs/models/errors/creategroupinputvalidationproblem.md
   - docs/models/errors/createinstallationin.md
+  - docs/models/errors/createinstallationinputvalidationissue.md
+  - docs/models/errors/createinstallationinputvalidationproblem.md
   - docs/models/errors/createinstallationinstallationsin.md
-  - docs/models/errors/createinstallationinstallationsissues.md
-  - docs/models/errors/createinstallationinstallationsresponsebody.md
-  - docs/models/errors/createinstallationissues.md
-  - docs/models/errors/createinstallationresponsebody.md
+  - docs/models/errors/createinstallationinstallationsinputvalidationissue.md
+  - docs/models/errors/createinstallationinstallationsinputvalidationproblem.md
   - docs/models/errors/createintegrationin.md
+  - docs/models/errors/createintegrationinputvalidationissue.md
+  - docs/models/errors/createintegrationinputvalidationproblem.md
   - docs/models/errors/createintegrationintegrationsin.md
-  - docs/models/errors/createintegrationintegrationsissues.md
-  - docs/models/errors/createintegrationintegrationsresponsebody.md
-  - docs/models/errors/createintegrationissues.md
-  - docs/models/errors/createintegrationresponsebody.md
+  - docs/models/errors/createintegrationintegrationsinputvalidationissue.md
+  - docs/models/errors/createintegrationintegrationsinputvalidationproblem.md
   - docs/models/errors/createprojectin.md
-  - docs/models/errors/createprojectissues.md
-  - docs/models/errors/createprojectresponsebody.md
+  - docs/models/errors/createprojectinputvalidationissue.md
+  - docs/models/errors/createprojectinputvalidationproblem.md
   - docs/models/errors/createproviderappin.md
-  - docs/models/errors/createproviderappissues.md
+  - docs/models/errors/createproviderappinputvalidationissue.md
+  - docs/models/errors/createproviderappinputvalidationproblem.md
   - docs/models/errors/createproviderappproviderappsin.md
-  - docs/models/errors/createproviderappproviderappsissues.md
-  - docs/models/errors/createproviderappproviderappsresponsebody.md
-  - docs/models/errors/createproviderappresponsebody.md
+  - docs/models/errors/createproviderappproviderappsinputvalidationissue.md
+  - docs/models/errors/createproviderappproviderappsinputvalidationproblem.md
   - docs/models/errors/createrevisionin.md
-  - docs/models/errors/createrevisionissues.md
-  - docs/models/errors/createrevisionresponsebody.md
+  - docs/models/errors/createrevisioninputvalidationissue.md
+  - docs/models/errors/createrevisioninputvalidationproblem.md
   - docs/models/errors/createrevisionrevisionsin.md
-  - docs/models/errors/createrevisionrevisionsissues.md
-  - docs/models/errors/createrevisionrevisionsresponsebody.md
+  - docs/models/errors/createrevisionrevisionsinputvalidationissue.md
+  - docs/models/errors/createrevisionrevisionsinputvalidationproblem.md
   - docs/models/errors/deleteintegrationin.md
+  - docs/models/errors/deleteintegrationinputvalidationissue.md
+  - docs/models/errors/deleteintegrationinputvalidationproblem.md
   - docs/models/errors/deleteintegrationintegrationsin.md
-  - docs/models/errors/deleteintegrationintegrationsissues.md
-  - docs/models/errors/deleteintegrationintegrationsresponsebody.md
-  - docs/models/errors/deleteintegrationissues.md
-  - docs/models/errors/deleteintegrationresponsebody.md
+  - docs/models/errors/deleteintegrationintegrationsinputvalidationissue.md
+  - docs/models/errors/deleteintegrationintegrationsinputvalidationproblem.md
   - docs/models/errors/deleteprojectin.md
-  - docs/models/errors/deleteprojectissues.md
-  - docs/models/errors/deleteprojectresponsebody.md
+  - docs/models/errors/deleteprojectinputvalidationissue.md
+  - docs/models/errors/deleteprojectinputvalidationproblem.md
   - docs/models/errors/deleteproviderappin.md
-  - docs/models/errors/deleteproviderappissues.md
-  - docs/models/errors/deleteproviderappresponsebody.md
-  - docs/models/errors/deliverresultsreadresponsebody.md
-  - docs/models/errors/deliverresultsresponsebody.md
+  - docs/models/errors/deleteproviderappinputvalidationissue.md
+  - docs/models/errors/deleteproviderappinputvalidationproblem.md
+  - docs/models/errors/deliverresultsapiproblem.md
+  - docs/models/errors/deliverresultsreadapiproblem.md
   - docs/models/errors/generateconnectionconnectionsin.md
-  - docs/models/errors/generateconnectionconnectionsissues.md
-  - docs/models/errors/generateconnectionconnectionsresponsebody.md
+  - docs/models/errors/generateconnectionconnectionsinputvalidationissue.md
+  - docs/models/errors/generateconnectionconnectionsinputvalidationproblem.md
   - docs/models/errors/generateconnectionin.md
-  - docs/models/errors/generateconnectionissues.md
-  - docs/models/errors/generateconnectionresponsebody.md
+  - docs/models/errors/generateconnectioninputvalidationissue.md
+  - docs/models/errors/generateconnectioninputvalidationproblem.md
   - docs/models/errors/generateuploadurlin.md
-  - docs/models/errors/generateuploadurlissues.md
-  - docs/models/errors/generateuploadurlresponsebody.md
+  - docs/models/errors/generateuploadurlinputvalidationissue.md
+  - docs/models/errors/generateuploadurlinputvalidationproblem.md
   - docs/models/errors/getconnectionin.md
-  - docs/models/errors/getconnectionissues.md
-  - docs/models/errors/getconnectionresponsebody.md
+  - docs/models/errors/getconnectioninputvalidationissue.md
+  - docs/models/errors/getconnectioninputvalidationproblem.md
   - docs/models/errors/getdestinationin.md
-  - docs/models/errors/getdestinationissues.md
-  - docs/models/errors/getdestinationresponsebody.md
+  - docs/models/errors/getdestinationinputvalidationissue.md
+  - docs/models/errors/getdestinationinputvalidationproblem.md
   - docs/models/errors/gethydratedrevisionin.md
-  - docs/models/errors/gethydratedrevisionissues.md
-  - docs/models/errors/gethydratedrevisionresponsebody.md
+  - docs/models/errors/gethydratedrevisioninputvalidationissue.md
+  - docs/models/errors/gethydratedrevisioninputvalidationproblem.md
   - docs/models/errors/gethydratedrevisionrevisionsin.md
-  - docs/models/errors/gethydratedrevisionrevisionsissues.md
-  - docs/models/errors/gethydratedrevisionrevisionsresponsebody.md
+  - docs/models/errors/gethydratedrevisionrevisionsinputvalidationissue.md
+  - docs/models/errors/gethydratedrevisionrevisionsinputvalidationproblem.md
   - docs/models/errors/getinstallationin.md
-  - docs/models/errors/getinstallationissues.md
-  - docs/models/errors/getinstallationresponsebody.md
+  - docs/models/errors/getinstallationinputvalidationissue.md
+  - docs/models/errors/getinstallationinputvalidationproblem.md
   - docs/models/errors/getoperationin.md
-  - docs/models/errors/getoperationissues.md
+  - docs/models/errors/getoperationinputvalidationissue.md
+  - docs/models/errors/getoperationinputvalidationproblem.md
   - docs/models/errors/getoperationoperationsin.md
-  - docs/models/errors/getoperationoperationsissues.md
-  - docs/models/errors/getoperationoperationsresponsebody.md
-  - docs/models/errors/getoperationresponsebody.md
+  - docs/models/errors/getoperationoperationsinputvalidationissue.md
+  - docs/models/errors/getoperationoperationsinputvalidationproblem.md
   - docs/models/errors/getprojectin.md
-  - docs/models/errors/getprojectissues.md
-  - docs/models/errors/getprojectresponsebody.md
+  - docs/models/errors/getprojectinputvalidationissue.md
+  - docs/models/errors/getprojectinputvalidationproblem.md
   - docs/models/errors/in.md
-  - docs/models/errors/issues.md
+  - docs/models/errors/inputvalidationissue.md
   - docs/models/errors/listconnectionsin.md
-  - docs/models/errors/listconnectionsissues.md
-  - docs/models/errors/listconnectionsresponsebody.md
+  - docs/models/errors/listconnectionsinputvalidationissue.md
+  - docs/models/errors/listconnectionsinputvalidationproblem.md
   - docs/models/errors/listinstallationsin.md
-  - docs/models/errors/listinstallationsissues.md
-  - docs/models/errors/listinstallationsresponsebody.md
+  - docs/models/errors/listinstallationsinputvalidationissue.md
+  - docs/models/errors/listinstallationsinputvalidationproblem.md
   - docs/models/errors/listintegrationsin.md
-  - docs/models/errors/listintegrationsissues.md
-  - docs/models/errors/listintegrationsresponsebody.md
+  - docs/models/errors/listintegrationsinputvalidationissue.md
+  - docs/models/errors/listintegrationsinputvalidationproblem.md
   - docs/models/errors/listoperationlogsin.md
-  - docs/models/errors/listoperationlogsissues.md
+  - docs/models/errors/listoperationlogsinputvalidationissue.md
+  - docs/models/errors/listoperationlogsinputvalidationproblem.md
   - docs/models/errors/listoperationlogsoperationsin.md
-  - docs/models/errors/listoperationlogsoperationsissues.md
-  - docs/models/errors/listoperationlogsoperationsresponsebody.md
-  - docs/models/errors/listoperationlogsresponsebody.md
+  - docs/models/errors/listoperationlogsoperationsinputvalidationissue.md
+  - docs/models/errors/listoperationlogsoperationsinputvalidationproblem.md
   - docs/models/errors/listoperationsin.md
-  - docs/models/errors/listoperationsissues.md
+  - docs/models/errors/listoperationsinputvalidationissue.md
+  - docs/models/errors/listoperationsinputvalidationproblem.md
   - docs/models/errors/listoperationsoperationsin.md
-  - docs/models/errors/listoperationsoperationsissues.md
-  - docs/models/errors/listoperationsoperationsresponsebody.md
-  - docs/models/errors/listoperationsresponsebody.md
+  - docs/models/errors/listoperationsoperationsinputvalidationissue.md
+  - docs/models/errors/listoperationsoperationsinputvalidationproblem.md
   - docs/models/errors/listproviderappsin.md
-  - docs/models/errors/listproviderappsissues.md
-  - docs/models/errors/listproviderappsresponsebody.md
-  - docs/models/errors/oauthconnectresponsebody.md
-  - docs/models/errors/triggerreadreadresponsebody.md
-  - docs/models/errors/triggerreadresponsebody.md
+  - docs/models/errors/listproviderappsinputvalidationissue.md
+  - docs/models/errors/listproviderappsinputvalidationproblem.md
+  - docs/models/errors/oauthconnectinputvalidationproblem.md
+  - docs/models/errors/triggerreadapiproblem.md
+  - docs/models/errors/triggerreadreadapiproblem.md
   - docs/models/errors/updatedestinationdestinationsin.md
-  - docs/models/errors/updatedestinationdestinationsissues.md
-  - docs/models/errors/updatedestinationdestinationsresponsebody.md
+  - docs/models/errors/updatedestinationdestinationsinputvalidationissue.md
+  - docs/models/errors/updatedestinationdestinationsinputvalidationproblem.md
   - docs/models/errors/updatedestinationdestinationsresponsein.md
-  - docs/models/errors/updatedestinationdestinationsresponseissues.md
-  - docs/models/errors/updatedestinationdestinationsresponseresponsebody.md
+  - docs/models/errors/updatedestinationdestinationsresponseinputvalidationissue.md
+  - docs/models/errors/updatedestinationdestinationsresponseinputvalidationproblem.md
   - docs/models/errors/updatedestinationin.md
-  - docs/models/errors/updatedestinationissues.md
-  - docs/models/errors/updatedestinationresponsebody.md
+  - docs/models/errors/updatedestinationinputvalidationissue.md
+  - docs/models/errors/updatedestinationinputvalidationproblem.md
   - docs/models/errors/updateinstallationin.md
+  - docs/models/errors/updateinstallationinputvalidationissue.md
+  - docs/models/errors/updateinstallationinputvalidationproblem.md
   - docs/models/errors/updateinstallationinstallationsin.md
-  - docs/models/errors/updateinstallationinstallationsissues.md
-  - docs/models/errors/updateinstallationinstallationsresponsebody.md
-  - docs/models/errors/updateinstallationissues.md
-  - docs/models/errors/updateinstallationresponsebody.md
+  - docs/models/errors/updateinstallationinstallationsinputvalidationissue.md
+  - docs/models/errors/updateinstallationinstallationsinputvalidationproblem.md
   - docs/models/errors/updateprojectin.md
-  - docs/models/errors/updateprojectissues.md
+  - docs/models/errors/updateprojectinputvalidationissue.md
+  - docs/models/errors/updateprojectinputvalidationproblem.md
   - docs/models/errors/updateprojectprojectsin.md
-  - docs/models/errors/updateprojectprojectsissues.md
-  - docs/models/errors/updateprojectprojectsresponsebody.md
-  - docs/models/errors/updateprojectresponsebody.md
+  - docs/models/errors/updateprojectprojectsinputvalidationissue.md
+  - docs/models/errors/updateprojectprojectsinputvalidationproblem.md
   - docs/models/errors/updateproviderappin.md
-  - docs/models/errors/updateproviderappissues.md
-  - docs/models/errors/updateproviderappresponsebody.md
+  - docs/models/errors/updateproviderappinputvalidationissue.md
+  - docs/models/errors/updateproviderappinputvalidationproblem.md
   - docs/models/operations/accesstoken.md
-  - docs/models/operations/allfields.md
-  - docs/models/operations/allfields1.md
-  - docs/models/operations/allfields2.md
-  - docs/models/operations/allfieldsmetadata.md
-  - docs/models/operations/apikeyasbasicopts.md
-  - docs/models/operations/apikeyopts.md
+  - docs/models/operations/apikeyasbasicoptions.md
+  - docs/models/operations/apikeyheaderoptions.md
+  - docs/models/operations/apikeyoptions.md
+  - docs/models/operations/apikeyqueryoptions.md
   - docs/models/operations/applyonupdate.md
   - docs/models/operations/attachmenttype.md
   - docs/models/operations/authscheme.md
   - docs/models/operations/authtype.md
   - docs/models/operations/backfill.md
+  - docs/models/operations/backfillconfig.md
+  - docs/models/operations/baseproxyconfig.md
+  - docs/models/operations/basereadconfig.md
+  - docs/models/operations/basereadconfigobject.md
+  - docs/models/operations/basewriteconfig.md
+  - docs/models/operations/basewriteconfigobject.md
   - docs/models/operations/basicauth.md
-  - docs/models/operations/basicopts.md
+  - docs/models/operations/basicauthoptions.md
+  - docs/models/operations/batchupsertintegrationsapiproblem.md
   - docs/models/operations/batchupsertintegrationsbackfill.md
-  - docs/models/operations/batchupsertintegrationscontent.md
   - docs/models/operations/batchupsertintegrationsdefaultperiod.md
   - docs/models/operations/batchupsertintegrationsdelivery.md
-  - docs/models/operations/batchupsertintegrationsintegrationsobjects.md
-  - docs/models/operations/batchupsertintegrationsintegrationsresponsebody.md
-  - docs/models/operations/batchupsertintegrationslatestrevision.md
+  - docs/models/operations/batchupsertintegrationsintegration.md
+  - docs/models/operations/batchupsertintegrationsintegrationfield.md
+  - docs/models/operations/batchupsertintegrationsintegrationfieldintegrationfieldexistent.md
+  - docs/models/operations/batchupsertintegrationsintegrationfieldintegrationfieldmapping.md
+  - docs/models/operations/batchupsertintegrationsintegrationfieldintegrationsintegrationfieldexistent.md
+  - docs/models/operations/batchupsertintegrationsintegrationfieldintegrationsintegrationfieldmapping.md
+  - docs/models/operations/batchupsertintegrationsintegrationobject.md
+  - docs/models/operations/batchupsertintegrationsintegrationsintegration.md
+  - docs/models/operations/batchupsertintegrationsintegrationsintegrationfield.md
+  - docs/models/operations/batchupsertintegrationsintegrationwriteobject.md
   - docs/models/operations/batchupsertintegrationsmode.md
-  - docs/models/operations/batchupsertintegrationsobjects.md
-  - docs/models/operations/batchupsertintegrationsoptionalfields.md
-  - docs/models/operations/batchupsertintegrationsoptionalfields1.md
-  - docs/models/operations/batchupsertintegrationsoptionalfields2.md
-  - docs/models/operations/batchupsertintegrationsoptionalfieldsauto.md
-  - docs/models/operations/batchupsertintegrationsproxy.md
-  - docs/models/operations/batchupsertintegrationsread.md
+  - docs/models/operations/batchupsertintegrationsoptionalfieldsautooption.md
+  - docs/models/operations/batchupsertintegrationsproxyintegration.md
+  - docs/models/operations/batchupsertintegrationsreadintegration.md
   - docs/models/operations/batchupsertintegrationsrequest.md
   - docs/models/operations/batchupsertintegrationsrequestbody.md
-  - docs/models/operations/batchupsertintegrationsrequiredfields.md
-  - docs/models/operations/batchupsertintegrationsrequiredfields1.md
-  - docs/models/operations/batchupsertintegrationsrequiredfields2.md
   - docs/models/operations/batchupsertintegrationsresponse.md
-  - docs/models/operations/batchupsertintegrationsresponsebody.md
+  - docs/models/operations/batchupsertintegrationsrevision.md
   - docs/models/operations/batchupsertintegrationsvaluedefaults.md
-  - docs/models/operations/batchupsertintegrationswrite.md
-  - docs/models/operations/bulkwrite.md
+  - docs/models/operations/batchupsertintegrationswriteintegration.md
+  - docs/models/operations/bulkwritesupport.md
   - docs/models/operations/config.md
+  - docs/models/operations/configcontent.md
   - docs/models/operations/connection.md
   - docs/models/operations/consumer.md
-  - docs/models/operations/content.md
+  - docs/models/operations/createconsumerapiproblem.md
   - docs/models/operations/createconsumerrequest.md
   - docs/models/operations/createconsumerrequestbody.md
-  - docs/models/operations/createconsumerresponsebody.md
-  - docs/models/operations/createdestinationdestinationsresponsebody.md
+  - docs/models/operations/createdestinationapiproblem.md
+  - docs/models/operations/createdestinationdestination.md
   - docs/models/operations/createdestinationmetadata.md
   - docs/models/operations/createdestinationrequest.md
   - docs/models/operations/createdestinationrequestbody.md
   - docs/models/operations/createdestinationresponse.md
-  - docs/models/operations/createdestinationresponsebody.md
+  - docs/models/operations/creategroupapiproblem.md
   - docs/models/operations/creategrouprequest.md
   - docs/models/operations/creategrouprequestbody.md
-  - docs/models/operations/creategroupresponsebody.md
   - docs/models/operations/createinstallationaccesstoken.md
+  - docs/models/operations/createinstallationapiproblem.md
   - docs/models/operations/createinstallationauthscheme.md
+  - docs/models/operations/createinstallationbaseproxyconfig.md
   - docs/models/operations/createinstallationconfig.md
+  - docs/models/operations/createinstallationconfigcontent.md
   - docs/models/operations/createinstallationconnection.md
   - docs/models/operations/createinstallationconsumer.md
-  - docs/models/operations/createinstallationcontent.md
   - docs/models/operations/createinstallationgroup.md
-  - docs/models/operations/createinstallationinstallationscontent.md
+  - docs/models/operations/createinstallationinstallation.md
   - docs/models/operations/createinstallationinstallationsgroup.md
-  - docs/models/operations/createinstallationinstallationsproxy.md
-  - docs/models/operations/createinstallationinstallationsresponsebody.md
-  - docs/models/operations/createinstallationoauth2authorizationcode.md
+  - docs/models/operations/createinstallationoauth2authorizationcodetoken.md
   - docs/models/operations/createinstallationproviderapp.md
-  - docs/models/operations/createinstallationproxy.md
   - docs/models/operations/createinstallationrefreshtoken.md
   - docs/models/operations/createinstallationrequest.md
   - docs/models/operations/createinstallationrequestbody.md
   - docs/models/operations/createinstallationresponse.md
-  - docs/models/operations/createinstallationresponsebody.md
   - docs/models/operations/createinstallationstatus.md
+  - docs/models/operations/createintegrationapiproblem.md
+  - docs/models/operations/createintegrationintegrationfield.md
   - docs/models/operations/createintegrationmode.md
-  - docs/models/operations/createintegrationobjects.md
   - docs/models/operations/createintegrationrequest.md
   - docs/models/operations/createintegrationrequestbody.md
-  - docs/models/operations/createintegrationresponsebody.md
-  - docs/models/operations/createprojectprojectsresponsebody.md
+  - docs/models/operations/createprojectapiproblem.md
+  - docs/models/operations/createprojectproject.md
   - docs/models/operations/createprojectrequestbody.md
   - docs/models/operations/createprojectresponse.md
-  - docs/models/operations/createprojectresponsebody.md
-  - docs/models/operations/createproviderappproviderappsresponsebody.md
+  - docs/models/operations/createproviderappapiproblem.md
+  - docs/models/operations/createproviderappproviderapp.md
   - docs/models/operations/createproviderapprequest.md
   - docs/models/operations/createproviderapprequestbody.md
   - docs/models/operations/createproviderappresponse.md
-  - docs/models/operations/createproviderappresponsebody.md
+  - docs/models/operations/createrevisionapiproblem.md
   - docs/models/operations/createrevisionrequest.md
   - docs/models/operations/createrevisionrequestbody.md
-  - docs/models/operations/createrevisionresponsebody.md
-  - docs/models/operations/darkmode.md
   - docs/models/operations/defaultperiod.md
+  - docs/models/operations/defaultperiodconfig.md
+  - docs/models/operations/deleteconnectionapiproblem.md
   - docs/models/operations/deleteconnectionrequest.md
-  - docs/models/operations/deleteconnectionresponsebody.md
+  - docs/models/operations/deletedestinationapiproblem.md
   - docs/models/operations/deletedestinationrequest.md
-  - docs/models/operations/deletedestinationresponsebody.md
+  - docs/models/operations/deleteinstallationapiproblem.md
   - docs/models/operations/deleteinstallationrequest.md
-  - docs/models/operations/deleteinstallationresponsebody.md
+  - docs/models/operations/deleteintegrationapiproblem.md
   - docs/models/operations/deleteintegrationrequest.md
-  - docs/models/operations/deleteintegrationresponsebody.md
+  - docs/models/operations/deleteprojectapiproblem.md
   - docs/models/operations/deleteprojectrequest.md
-  - docs/models/operations/deleteprojectresponsebody.md
+  - docs/models/operations/deleteproviderappapiproblem.md
   - docs/models/operations/deleteproviderapprequest.md
-  - docs/models/operations/deleteproviderappresponsebody.md
+  - docs/models/operations/deliverresultsapiproblem.md
   - docs/models/operations/deliverresultsrequest.md
-  - docs/models/operations/deliverresultsrequestbody.md
-  - docs/models/operations/deliverresultsresponsebody.md
+  - docs/models/operations/deliverresultsresultdeliveryrequest.md
   - docs/models/operations/delivery.md
   - docs/models/operations/destination.md
-  - docs/models/operations/fields.md
+  - docs/models/operations/fieldmetadata.md
   - docs/models/operations/fieldused.md
+  - docs/models/operations/fieldvalue.md
   - docs/models/operations/generateconnectionaccesstoken.md
+  - docs/models/operations/generateconnectionapiproblem.md
   - docs/models/operations/generateconnectionauthscheme.md
-  - docs/models/operations/generateconnectionconnectionsresponsebody.md
+  - docs/models/operations/generateconnectionconnection.md
   - docs/models/operations/generateconnectionconsumer.md
   - docs/models/operations/generateconnectiongroup.md
-  - docs/models/operations/generateconnectionoauth2authorizationcode.md
+  - docs/models/operations/generateconnectionoauth2authorizationcodetoken.md
   - docs/models/operations/generateconnectionproviderapp.md
   - docs/models/operations/generateconnectionrefreshtoken.md
   - docs/models/operations/generateconnectionrequest.md
   - docs/models/operations/generateconnectionrequestbody.md
   - docs/models/operations/generateconnectionresponse.md
-  - docs/models/operations/generateconnectionresponsebody.md
   - docs/models/operations/generateconnectionstatus.md
+  - docs/models/operations/generateuploadurlapiproblem.md
   - docs/models/operations/generateuploadurlresponse.md
-  - docs/models/operations/generateuploadurlresponsebody.md
-  - docs/models/operations/generateuploadurluploadurlsresponsebody.md
+  - docs/models/operations/generateuploadurlsignedurl.md
   - docs/models/operations/getconnectionaccesstoken.md
+  - docs/models/operations/getconnectionapiproblem.md
   - docs/models/operations/getconnectionauthscheme.md
-  - docs/models/operations/getconnectionconnectionsresponsebody.md
+  - docs/models/operations/getconnectionconnection.md
   - docs/models/operations/getconnectionconsumer.md
   - docs/models/operations/getconnectiongroup.md
-  - docs/models/operations/getconnectionoauth2authorizationcode.md
+  - docs/models/operations/getconnectionoauth2authorizationcodetoken.md
   - docs/models/operations/getconnectionproviderapp.md
   - docs/models/operations/getconnectionrefreshtoken.md
   - docs/models/operations/getconnectionrequest.md
   - docs/models/operations/getconnectionresponse.md
-  - docs/models/operations/getconnectionresponsebody.md
   - docs/models/operations/getconnectionstatus.md
-  - docs/models/operations/getdestinationdestinationsresponsebody.md
+  - docs/models/operations/getdestinationapiproblem.md
+  - docs/models/operations/getdestinationdestination.md
   - docs/models/operations/getdestinationmetadata.md
   - docs/models/operations/getdestinationrequest.md
   - docs/models/operations/getdestinationresponse.md
-  - docs/models/operations/getdestinationresponsebody.md
+  - docs/models/operations/gethydratedrevisionapiproblem.md
   - docs/models/operations/gethydratedrevisionbackfill.md
-  - docs/models/operations/gethydratedrevisioncontent.md
   - docs/models/operations/gethydratedrevisiondefaultperiod.md
-  - docs/models/operations/gethydratedrevisionobjects.md
-  - docs/models/operations/gethydratedrevisionoptionalfields.md
-  - docs/models/operations/gethydratedrevisionoptionalfields1.md
-  - docs/models/operations/gethydratedrevisionoptionalfields2.md
-  - docs/models/operations/gethydratedrevisionoptionalfieldsauto.md
-  - docs/models/operations/gethydratedrevisionproxy.md
-  - docs/models/operations/gethydratedrevisionread.md
+  - docs/models/operations/gethydratedrevisionfieldmetadata.md
+  - docs/models/operations/gethydratedrevisionfieldvalue.md
+  - docs/models/operations/gethydratedrevisionhydratedintegrationfield.md
+  - docs/models/operations/gethydratedrevisionhydratedintegrationfield1.md
+  - docs/models/operations/gethydratedrevisionhydratedintegrationfieldintegrationfieldmapping.md
+  - docs/models/operations/gethydratedrevisionhydratedintegrationfieldrevisionsintegrationfieldmapping.md
+  - docs/models/operations/gethydratedrevisionhydratedrevision.md
+  - docs/models/operations/gethydratedrevisionoptionalfieldsautooption.md
   - docs/models/operations/gethydratedrevisionrequest.md
-  - docs/models/operations/gethydratedrevisionrequiredfields.md
   - docs/models/operations/gethydratedrevisionresponse.md
-  - docs/models/operations/gethydratedrevisionresponsebody.md
-  - docs/models/operations/gethydratedrevisionrevisionsobjects.md
-  - docs/models/operations/gethydratedrevisionrevisionsresponsebody.md
+  - docs/models/operations/gethydratedrevisionrevisionshydratedintegrationfield.md
   - docs/models/operations/gethydratedrevisionvaluedefaults.md
-  - docs/models/operations/gethydratedrevisionvalues.md
   - docs/models/operations/gethydratedrevisionvaluetype.md
-  - docs/models/operations/gethydratedrevisionwrite.md
   - docs/models/operations/getinstallationaccesstoken.md
+  - docs/models/operations/getinstallationapiproblem.md
   - docs/models/operations/getinstallationauthscheme.md
+  - docs/models/operations/getinstallationbaseproxyconfig.md
   - docs/models/operations/getinstallationconfig.md
+  - docs/models/operations/getinstallationconfigcontent.md
   - docs/models/operations/getinstallationconnection.md
   - docs/models/operations/getinstallationconsumer.md
-  - docs/models/operations/getinstallationcontent.md
   - docs/models/operations/getinstallationgroup.md
+  - docs/models/operations/getinstallationinstallation.md
   - docs/models/operations/getinstallationinstallationsgroup.md
-  - docs/models/operations/getinstallationinstallationsresponsebody.md
-  - docs/models/operations/getinstallationoauth2authorizationcode.md
+  - docs/models/operations/getinstallationoauth2authorizationcodetoken.md
   - docs/models/operations/getinstallationproviderapp.md
-  - docs/models/operations/getinstallationproxy.md
   - docs/models/operations/getinstallationrefreshtoken.md
   - docs/models/operations/getinstallationrequest.md
   - docs/models/operations/getinstallationresponse.md
-  - docs/models/operations/getinstallationresponsebody.md
   - docs/models/operations/getinstallationstatus.md
-  - docs/models/operations/getobjectmetadataforconnectionfields.md
-  - docs/models/operations/getobjectmetadataforconnectionobjectsandfieldsresponsebody.md
+  - docs/models/operations/getobjectmetadataforconnectionapiproblem.md
+  - docs/models/operations/getobjectmetadataforconnectionfieldmetadata.md
+  - docs/models/operations/getobjectmetadataforconnectionfieldvalue.md
+  - docs/models/operations/getobjectmetadataforconnectionobjectmetadata.md
   - docs/models/operations/getobjectmetadataforconnectionrequest.md
   - docs/models/operations/getobjectmetadataforconnectionresponse.md
-  - docs/models/operations/getobjectmetadataforconnectionresponsebody.md
-  - docs/models/operations/getobjectmetadataforconnectionvalues.md
   - docs/models/operations/getobjectmetadataforconnectionvaluetype.md
-  - docs/models/operations/getobjectmetadataforinstallationobjectsandfieldsresponsebody.md
+  - docs/models/operations/getobjectmetadataforinstallationapiproblem.md
+  - docs/models/operations/getobjectmetadataforinstallationobjectmetadata.md
   - docs/models/operations/getobjectmetadataforinstallationrequest.md
   - docs/models/operations/getobjectmetadataforinstallationresponse.md
-  - docs/models/operations/getobjectmetadataforinstallationresponsebody.md
+  - docs/models/operations/getoperationapiproblem.md
   - docs/models/operations/getoperationmetadata.md
-  - docs/models/operations/getoperationoperationsresponsebody.md
+  - docs/models/operations/getoperationoperation.md
   - docs/models/operations/getoperationrequest.md
   - docs/models/operations/getoperationresponse.md
-  - docs/models/operations/getoperationresponsebody.md
-  - docs/models/operations/getprojectprojectsresponsebody.md
+  - docs/models/operations/getprojectapiproblem.md
+  - docs/models/operations/getprojectproject.md
   - docs/models/operations/getprojectrequest.md
   - docs/models/operations/getprojectresponse.md
-  - docs/models/operations/getprojectresponsebody.md
-  - docs/models/operations/getproviderapikeyasbasicopts.md
-  - docs/models/operations/getproviderapikeyopts.md
+  - docs/models/operations/getproviderapikeyasbasicoptions.md
+  - docs/models/operations/getproviderapikeyheaderoptions.md
+  - docs/models/operations/getproviderapikeyoptions.md
+  - docs/models/operations/getproviderapikeyqueryoptions.md
+  - docs/models/operations/getproviderapiproblem.md
   - docs/models/operations/getproviderattachmenttype.md
   - docs/models/operations/getproviderauthtype.md
-  - docs/models/operations/getproviderbasicopts.md
-  - docs/models/operations/getproviderbulkwrite.md
-  - docs/models/operations/getproviderdarkmode.md
+  - docs/models/operations/getproviderbasicauthoptions.md
+  - docs/models/operations/getproviderbulkwritesupport.md
   - docs/models/operations/getproviderfieldused.md
   - docs/models/operations/getprovidergranttype.md
-  - docs/models/operations/getproviderheader.md
   - docs/models/operations/getprovidermedia.md
-  - docs/models/operations/getprovideroauth2opts.md
-  - docs/models/operations/getproviderprovidersresponsebody.md
-  - docs/models/operations/getproviderquery.md
+  - docs/models/operations/getprovidermediatypedarkmode.md
+  - docs/models/operations/getprovidermediatyperegular.md
+  - docs/models/operations/getprovideroauth2options.md
+  - docs/models/operations/getproviderproviderinfo.md
   - docs/models/operations/getproviderregistrationtiming.md
-  - docs/models/operations/getproviderregular.md
   - docs/models/operations/getproviderrequest.md
   - docs/models/operations/getproviderresponse.md
-  - docs/models/operations/getproviderresponsebody.md
-  - docs/models/operations/getprovidersubscribeopts.md
+  - docs/models/operations/getprovidersubscribeoptions.md
   - docs/models/operations/getprovidersubscribesupport.md
   - docs/models/operations/getprovidersubscriptionscope.md
   - docs/models/operations/getprovidersupport.md
@@ -412,179 +411,180 @@ generatedFiles:
   - docs/models/operations/getprovidertokenmetadatafields.md
   - docs/models/operations/granttype.md
   - docs/models/operations/group.md
-  - docs/models/operations/header.md
+  - docs/models/operations/hydratedintegration.md
+  - docs/models/operations/hydratedintegrationfield.md
+  - docs/models/operations/hydratedintegrationfield1.md
+  - docs/models/operations/hydratedintegrationfieldintegrationfieldmapping.md
+  - docs/models/operations/hydratedintegrationobject.md
+  - docs/models/operations/hydratedproxyintegration.md
+  - docs/models/operations/hydratedreadintegration.md
   - docs/models/operations/installation.md
+  - docs/models/operations/integration.md
+  - docs/models/operations/integrationfield.md
+  - docs/models/operations/integrationfieldexistent.md
+  - docs/models/operations/integrationfieldintegrationfieldexistent.md
+  - docs/models/operations/integrationfieldintegrationfieldmapping.md
+  - docs/models/operations/integrationfieldmapping.md
+  - docs/models/operations/integrationobject.md
+  - docs/models/operations/integrationwriteobject.md
   - docs/models/operations/latestrevision.md
   - docs/models/operations/listconnectionsaccesstoken.md
-  - docs/models/operations/listconnectionsconnectionsresponsebody.md
+  - docs/models/operations/listconnectionsapiproblem.md
   - docs/models/operations/listconnectionsgroup.md
-  - docs/models/operations/listconnectionsoauth2authorizationcode.md
   - docs/models/operations/listconnectionsproviderapp.md
   - docs/models/operations/listconnectionsrefreshtoken.md
   - docs/models/operations/listconnectionsrequest.md
   - docs/models/operations/listconnectionsresponse.md
-  - docs/models/operations/listconnectionsresponsebody.md
-  - docs/models/operations/listdestinationsdestinationsresponsebody.md
+  - docs/models/operations/listdestinationsapiproblem.md
+  - docs/models/operations/listdestinationsdestination.md
   - docs/models/operations/listdestinationsmetadata.md
   - docs/models/operations/listdestinationsrequest.md
   - docs/models/operations/listdestinationsresponse.md
-  - docs/models/operations/listdestinationsresponsebody.md
   - docs/models/operations/listinstallationsaccesstoken.md
+  - docs/models/operations/listinstallationsapiproblem.md
   - docs/models/operations/listinstallationsauthscheme.md
+  - docs/models/operations/listinstallationsbaseproxyconfig.md
   - docs/models/operations/listinstallationsconfig.md
+  - docs/models/operations/listinstallationsconfigcontent.md
+  - docs/models/operations/listinstallationsconnection.md
   - docs/models/operations/listinstallationsconsumer.md
-  - docs/models/operations/listinstallationscontent.md
   - docs/models/operations/listinstallationsgroup.md
-  - docs/models/operations/listinstallationsinstallationsresponsebody.md
-  - docs/models/operations/listinstallationsoauth2authorizationcode.md
+  - docs/models/operations/listinstallationsinstallation.md
+  - docs/models/operations/listinstallationsoauth2authorizationcodetoken.md
   - docs/models/operations/listinstallationsproviderapp.md
-  - docs/models/operations/listinstallationsproxy.md
   - docs/models/operations/listinstallationsrefreshtoken.md
   - docs/models/operations/listinstallationsrequest.md
   - docs/models/operations/listinstallationsresponse.md
-  - docs/models/operations/listinstallationsresponsebody.md
   - docs/models/operations/listinstallationsstatus.md
+  - docs/models/operations/listintegrationsapiproblem.md
   - docs/models/operations/listintegrationsbackfill.md
-  - docs/models/operations/listintegrationscontent.md
   - docs/models/operations/listintegrationsdefaultperiod.md
   - docs/models/operations/listintegrationsdelivery.md
-  - docs/models/operations/listintegrationsintegrationsobjects.md
-  - docs/models/operations/listintegrationsintegrationsresponsebody.md
-  - docs/models/operations/listintegrationslatestrevision.md
+  - docs/models/operations/listintegrationsintegration.md
+  - docs/models/operations/listintegrationsintegrationfield.md
+  - docs/models/operations/listintegrationsintegrationfieldintegrationfieldexistent.md
+  - docs/models/operations/listintegrationsintegrationfieldintegrationfieldmapping.md
+  - docs/models/operations/listintegrationsintegrationfieldintegrationsintegrationfieldexistent.md
+  - docs/models/operations/listintegrationsintegrationfieldintegrationsintegrationfieldmapping.md
+  - docs/models/operations/listintegrationsintegrationobject.md
+  - docs/models/operations/listintegrationsintegrationsintegration.md
+  - docs/models/operations/listintegrationsintegrationsintegrationfield.md
+  - docs/models/operations/listintegrationsintegrationwriteobject.md
   - docs/models/operations/listintegrationsmode.md
-  - docs/models/operations/listintegrationsobjects.md
-  - docs/models/operations/listintegrationsoptionalfields.md
-  - docs/models/operations/listintegrationsoptionalfields1.md
-  - docs/models/operations/listintegrationsoptionalfields2.md
-  - docs/models/operations/listintegrationsoptionalfieldsauto.md
-  - docs/models/operations/listintegrationsproxy.md
-  - docs/models/operations/listintegrationsread.md
+  - docs/models/operations/listintegrationsoptionalfieldsautooption.md
+  - docs/models/operations/listintegrationsproxyintegration.md
+  - docs/models/operations/listintegrationsreadintegration.md
   - docs/models/operations/listintegrationsrequest.md
-  - docs/models/operations/listintegrationsrequiredfields.md
-  - docs/models/operations/listintegrationsrequiredfields1.md
-  - docs/models/operations/listintegrationsrequiredfields2.md
   - docs/models/operations/listintegrationsresponse.md
-  - docs/models/operations/listintegrationsresponsebody.md
   - docs/models/operations/listintegrationsvaluedefaults.md
-  - docs/models/operations/listintegrationswrite.md
-  - docs/models/operations/listoperationlogsoperationsresponsebody.md
+  - docs/models/operations/listintegrationswriteintegration.md
+  - docs/models/operations/listoperationlogsapiproblem.md
   - docs/models/operations/listoperationlogsrequest.md
   - docs/models/operations/listoperationlogsresponse.md
-  - docs/models/operations/listoperationlogsresponsebody.md
+  - docs/models/operations/listoperationsapiproblem.md
   - docs/models/operations/listoperationsmetadata.md
-  - docs/models/operations/listoperationsoperationsresponsebody.md
   - docs/models/operations/listoperationsrequest.md
   - docs/models/operations/listoperationsresponse.md
   - docs/models/operations/listoperationsresponsebody.md
+  - docs/models/operations/listprojectsapiproblem.md
+  - docs/models/operations/listprojectsproject.md
   - docs/models/operations/listprojectsresponse.md
-  - docs/models/operations/listprojectsresponsebody.md
-  - docs/models/operations/listproviderappsproviderappsresponsebody.md
+  - docs/models/operations/listproviderappsapiproblem.md
+  - docs/models/operations/listproviderappsproviderapp.md
   - docs/models/operations/listproviderappsrequest.md
   - docs/models/operations/listproviderappsresponse.md
-  - docs/models/operations/listproviderappsresponsebody.md
-  - docs/models/operations/listprovidersprovidersresponsebody.md
+  - docs/models/operations/listprovidersapiproblem.md
   - docs/models/operations/listprovidersresponse.md
-  - docs/models/operations/listprovidersresponsebody.md
+  - docs/models/operations/log.md
   - docs/models/operations/media.md
+  - docs/models/operations/mediatypedarkmode.md
+  - docs/models/operations/mediatyperegular.md
   - docs/models/operations/message.md
   - docs/models/operations/metadata.md
   - docs/models/operations/mode.md
   - docs/models/operations/oauth2authorizationcode.md
+  - docs/models/operations/oauth2authorizationcodetoken.md
   - docs/models/operations/oauth2clientcredentials.md
-  - docs/models/operations/oauth2opts.md
+  - docs/models/operations/oauth2options.md
   - docs/models/operations/oauth2password.md
+  - docs/models/operations/oauthconnectapiproblem.md
   - docs/models/operations/oauthconnectrequestbody.md
   - docs/models/operations/oauthconnectresponse.md
-  - docs/models/operations/oauthconnectresponsebody.md
   - docs/models/operations/objects.md
   - docs/models/operations/one.md
-  - docs/models/operations/optionalfields.md
-  - docs/models/operations/optionalfields1.md
-  - docs/models/operations/optionalfields2.md
-  - docs/models/operations/optionalfieldsauto.md
-  - docs/models/operations/pagination.md
+  - docs/models/operations/operation.md
+  - docs/models/operations/optionalfieldsautooption.md
+  - docs/models/operations/paginationinformation.md
   - docs/models/operations/project.md
   - docs/models/operations/providerapp.md
-  - docs/models/operations/proxy.md
-  - docs/models/operations/query.md
-  - docs/models/operations/read.md
+  - docs/models/operations/providerinfo.md
+  - docs/models/operations/proxyintegration.md
+  - docs/models/operations/readintegration.md
   - docs/models/operations/refresh.md
   - docs/models/operations/refreshtoken.md
   - docs/models/operations/registrationtiming.md
-  - docs/models/operations/regular.md
-  - docs/models/operations/requiredfields.md
-  - docs/models/operations/requiredfields1.md
-  - docs/models/operations/requiredfields2.md
-  - docs/models/operations/responsebody.md
-  - docs/models/operations/results.md
-  - docs/models/operations/selectedfieldsauto.md
-  - docs/models/operations/selectedvaluedefaults.md
-  - docs/models/operations/selectedvaluedefaults1.md
-  - docs/models/operations/selectedvaluedefaults2.md
-  - docs/models/operations/selectedvaluedefaultsapplyonupdate.md
+  - docs/models/operations/revision.md
+  - docs/models/operations/selectedfieldsautoconfig.md
   - docs/models/operations/status.md
-  - docs/models/operations/subscribeopts.md
+  - docs/models/operations/subscribeoptions.md
   - docs/models/operations/subscribesupport.md
   - docs/models/operations/subscriptionscope.md
   - docs/models/operations/support.md
   - docs/models/operations/targeturlscope.md
-  - docs/models/operations/three.md
   - docs/models/operations/tokenmetadatafields.md
-  - docs/models/operations/triggerreadreadresponsebody.md
+  - docs/models/operations/triggerreadapiproblem.md
+  - docs/models/operations/triggerreadreadrequest.md
+  - docs/models/operations/triggerreadreadresultasync.md
   - docs/models/operations/triggerreadrequest.md
-  - docs/models/operations/triggerreadrequestbody.md
   - docs/models/operations/triggerreadresponse.md
-  - docs/models/operations/triggerreadresponsebody.md
-  - docs/models/operations/two.md
+  - docs/models/operations/updatedestinationapiproblem.md
+  - docs/models/operations/updatedestinationdestination.md
   - docs/models/operations/updatedestinationdestinationsmetadata.md
-  - docs/models/operations/updatedestinationdestinationsresponsebody.md
   - docs/models/operations/updatedestinationmetadata.md
   - docs/models/operations/updatedestinationrequest.md
   - docs/models/operations/updatedestinationrequestbody.md
   - docs/models/operations/updatedestinationresponse.md
-  - docs/models/operations/updatedestinationresponsebody.md
   - docs/models/operations/updateinstallationaccesstoken.md
+  - docs/models/operations/updateinstallationapiproblem.md
   - docs/models/operations/updateinstallationauthscheme.md
-  - docs/models/operations/updateinstallationbackfill.md
+  - docs/models/operations/updateinstallationbaseproxyconfig.md
   - docs/models/operations/updateinstallationconfig.md
+  - docs/models/operations/updateinstallationconfigcontent.md
   - docs/models/operations/updateinstallationconnection.md
   - docs/models/operations/updateinstallationconsumer.md
-  - docs/models/operations/updateinstallationcontent.md
-  - docs/models/operations/updateinstallationdefaultperiod.md
   - docs/models/operations/updateinstallationgroup.md
+  - docs/models/operations/updateinstallationinstallation.md
+  - docs/models/operations/updateinstallationinstallationsbaseproxyconfig.md
   - docs/models/operations/updateinstallationinstallationsconfig.md
-  - docs/models/operations/updateinstallationinstallationscontent.md
+  - docs/models/operations/updateinstallationinstallationsconfigcontent.md
   - docs/models/operations/updateinstallationinstallationsgroup.md
-  - docs/models/operations/updateinstallationinstallationsobjects.md
-  - docs/models/operations/updateinstallationinstallationsproxy.md
-  - docs/models/operations/updateinstallationinstallationsresponsebody.md
-  - docs/models/operations/updateinstallationoauth2authorizationcode.md
-  - docs/models/operations/updateinstallationobjects.md
+  - docs/models/operations/updateinstallationoauth2authorizationcodetoken.md
   - docs/models/operations/updateinstallationproviderapp.md
-  - docs/models/operations/updateinstallationproxy.md
-  - docs/models/operations/updateinstallationread.md
   - docs/models/operations/updateinstallationrefreshtoken.md
   - docs/models/operations/updateinstallationrequest.md
   - docs/models/operations/updateinstallationrequestbody.md
   - docs/models/operations/updateinstallationresponse.md
-  - docs/models/operations/updateinstallationresponsebody.md
-  - docs/models/operations/updateinstallationselectedvaluedefaultsapplyonupdate.md
   - docs/models/operations/updateinstallationstatus.md
-  - docs/models/operations/updateinstallationwrite.md
-  - docs/models/operations/updateprojectprojectsresponsebody.md
+  - docs/models/operations/updateinstallationvaluedefaultapplyonupdate.md
+  - docs/models/operations/updateprojectapiproblem.md
+  - docs/models/operations/updateprojectproject.md
   - docs/models/operations/updateprojectrequest.md
   - docs/models/operations/updateprojectrequestbody.md
   - docs/models/operations/updateprojectresponse.md
-  - docs/models/operations/updateprojectresponsebody.md
-  - docs/models/operations/updateproviderappproviderappsresponsebody.md
+  - docs/models/operations/updateproviderappapiproblem.md
+  - docs/models/operations/updateproviderappproviderapp.md
   - docs/models/operations/updateproviderapprequest.md
   - docs/models/operations/updateproviderapprequestbody.md
   - docs/models/operations/updateproviderappresponse.md
-  - docs/models/operations/updateproviderappresponsebody.md
+  - docs/models/operations/valuedefault.md
+  - docs/models/operations/valuedefaultapplyonupdate.md
+  - docs/models/operations/valuedefaultboolean.md
+  - docs/models/operations/valuedefaultinteger.md
   - docs/models/operations/valuedefaults.md
-  - docs/models/operations/values.md
+  - docs/models/operations/valuedefaultstring.md
   - docs/models/operations/valuetype.md
   - docs/models/operations/write.md
+  - docs/models/operations/writeintegration.md
   - docs/sdks/connections/README.md
   - docs/sdks/consumers/README.md
   - docs/sdks/destinations/README.md

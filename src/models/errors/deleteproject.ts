@@ -27,7 +27,7 @@ export type DeleteProjectIn = ClosedEnum<typeof DeleteProjectIn>;
  *
  * @remarks
  */
-export type DeleteProjectIssues = {
+export type DeleteProjectInputValidationIssue = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -120,7 +120,7 @@ export type DeleteProjectIssues = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export type DeleteProjectResponseBodyData = {
+export type DeleteProjectInputValidationProblemData = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -192,7 +192,7 @@ export type DeleteProjectResponseBodyData = {
    * Additional context for the problem
    */
   context?: { [k: string]: any } | undefined;
-  issues?: Array<DeleteProjectIssues> | undefined;
+  issues?: Array<DeleteProjectInputValidationIssue> | undefined;
 };
 
 /**
@@ -202,7 +202,7 @@ export type DeleteProjectResponseBodyData = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export class DeleteProjectResponseBody extends Error {
+export class DeleteProjectInputValidationProblem extends Error {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -274,12 +274,12 @@ export class DeleteProjectResponseBody extends Error {
    * Additional context for the problem
    */
   context?: { [k: string]: any } | undefined;
-  issues?: Array<DeleteProjectIssues> | undefined;
+  issues?: Array<DeleteProjectInputValidationIssue> | undefined;
 
   /** The original data that was passed to this error instance. */
-  data$: DeleteProjectResponseBodyData;
+  data$: DeleteProjectInputValidationProblemData;
 
-  constructor(err: DeleteProjectResponseBodyData) {
+  constructor(err: DeleteProjectInputValidationProblemData) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
@@ -305,7 +305,7 @@ export class DeleteProjectResponseBody extends Error {
     if (err.context != null) this.context = err.context;
     if (err.issues != null) this.issues = err.issues;
 
-    this.name = "DeleteProjectResponseBody";
+    this.name = "DeleteProjectInputValidationProblem";
   }
 }
 
@@ -331,8 +331,8 @@ export namespace DeleteProjectIn$ {
 }
 
 /** @internal */
-export const DeleteProjectIssues$inboundSchema: z.ZodType<
-  DeleteProjectIssues,
+export const DeleteProjectInputValidationIssue$inboundSchema: z.ZodType<
+  DeleteProjectInputValidationIssue,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -361,7 +361,7 @@ export const DeleteProjectIssues$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type DeleteProjectIssues$Outbound = {
+export type DeleteProjectInputValidationIssue$Outbound = {
   type: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -385,10 +385,10 @@ export type DeleteProjectIssues$Outbound = {
 };
 
 /** @internal */
-export const DeleteProjectIssues$outboundSchema: z.ZodType<
-  DeleteProjectIssues$Outbound,
+export const DeleteProjectInputValidationIssue$outboundSchema: z.ZodType<
+  DeleteProjectInputValidationIssue$Outbound,
   z.ZodTypeDef,
-  DeleteProjectIssues
+  DeleteProjectInputValidationIssue
 > = z.object({
   type: z.string().default("about:blank"),
   href: z.string().optional(),
@@ -416,36 +416,39 @@ export const DeleteProjectIssues$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace DeleteProjectIssues$ {
-  /** @deprecated use `DeleteProjectIssues$inboundSchema` instead. */
-  export const inboundSchema = DeleteProjectIssues$inboundSchema;
-  /** @deprecated use `DeleteProjectIssues$outboundSchema` instead. */
-  export const outboundSchema = DeleteProjectIssues$outboundSchema;
-  /** @deprecated use `DeleteProjectIssues$Outbound` instead. */
-  export type Outbound = DeleteProjectIssues$Outbound;
+export namespace DeleteProjectInputValidationIssue$ {
+  /** @deprecated use `DeleteProjectInputValidationIssue$inboundSchema` instead. */
+  export const inboundSchema = DeleteProjectInputValidationIssue$inboundSchema;
+  /** @deprecated use `DeleteProjectInputValidationIssue$outboundSchema` instead. */
+  export const outboundSchema =
+    DeleteProjectInputValidationIssue$outboundSchema;
+  /** @deprecated use `DeleteProjectInputValidationIssue$Outbound` instead. */
+  export type Outbound = DeleteProjectInputValidationIssue$Outbound;
 }
 
-export function deleteProjectIssuesToJSON(
-  deleteProjectIssues: DeleteProjectIssues,
+export function deleteProjectInputValidationIssueToJSON(
+  deleteProjectInputValidationIssue: DeleteProjectInputValidationIssue,
 ): string {
   return JSON.stringify(
-    DeleteProjectIssues$outboundSchema.parse(deleteProjectIssues),
+    DeleteProjectInputValidationIssue$outboundSchema.parse(
+      deleteProjectInputValidationIssue,
+    ),
   );
 }
 
-export function deleteProjectIssuesFromJSON(
+export function deleteProjectInputValidationIssueFromJSON(
   jsonString: string,
-): SafeParseResult<DeleteProjectIssues, SDKValidationError> {
+): SafeParseResult<DeleteProjectInputValidationIssue, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => DeleteProjectIssues$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'DeleteProjectIssues' from JSON`,
+    (x) => DeleteProjectInputValidationIssue$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'DeleteProjectInputValidationIssue' from JSON`,
   );
 }
 
 /** @internal */
-export const DeleteProjectResponseBody$inboundSchema: z.ZodType<
-  DeleteProjectResponseBody,
+export const DeleteProjectInputValidationProblem$inboundSchema: z.ZodType<
+  DeleteProjectInputValidationProblem,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -468,14 +471,15 @@ export const DeleteProjectResponseBody$inboundSchema: z.ZodType<
   retryAfter: z.string().datetime({ offset: true }).transform(v => new Date(v))
     .optional(),
   context: z.record(z.any()).optional(),
-  issues: z.array(z.lazy(() => DeleteProjectIssues$inboundSchema)).optional(),
+  issues: z.array(z.lazy(() => DeleteProjectInputValidationIssue$inboundSchema))
+    .optional(),
 })
   .transform((v) => {
-    return new DeleteProjectResponseBody(v);
+    return new DeleteProjectInputValidationProblem(v);
   });
 
 /** @internal */
-export type DeleteProjectResponseBody$Outbound = {
+export type DeleteProjectInputValidationProblem$Outbound = {
   type?: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -493,15 +497,15 @@ export type DeleteProjectResponseBody$Outbound = {
   retryable?: boolean | undefined;
   retryAfter?: string | undefined;
   context?: { [k: string]: any } | undefined;
-  issues?: Array<DeleteProjectIssues$Outbound> | undefined;
+  issues?: Array<DeleteProjectInputValidationIssue$Outbound> | undefined;
 };
 
 /** @internal */
-export const DeleteProjectResponseBody$outboundSchema: z.ZodType<
-  DeleteProjectResponseBody$Outbound,
+export const DeleteProjectInputValidationProblem$outboundSchema: z.ZodType<
+  DeleteProjectInputValidationProblem$Outbound,
   z.ZodTypeDef,
-  DeleteProjectResponseBody
-> = z.instanceof(DeleteProjectResponseBody)
+  DeleteProjectInputValidationProblem
+> = z.instanceof(DeleteProjectInputValidationProblem)
   .transform(v => v.data$)
   .pipe(z.object({
     type: z.string().default("about:blank"),
@@ -521,19 +525,22 @@ export const DeleteProjectResponseBody$outboundSchema: z.ZodType<
     retryable: z.boolean().optional(),
     retryAfter: z.date().transform(v => v.toISOString()).optional(),
     context: z.record(z.any()).optional(),
-    issues: z.array(z.lazy(() => DeleteProjectIssues$outboundSchema))
-      .optional(),
+    issues: z.array(
+      z.lazy(() => DeleteProjectInputValidationIssue$outboundSchema),
+    ).optional(),
   }));
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace DeleteProjectResponseBody$ {
-  /** @deprecated use `DeleteProjectResponseBody$inboundSchema` instead. */
-  export const inboundSchema = DeleteProjectResponseBody$inboundSchema;
-  /** @deprecated use `DeleteProjectResponseBody$outboundSchema` instead. */
-  export const outboundSchema = DeleteProjectResponseBody$outboundSchema;
-  /** @deprecated use `DeleteProjectResponseBody$Outbound` instead. */
-  export type Outbound = DeleteProjectResponseBody$Outbound;
+export namespace DeleteProjectInputValidationProblem$ {
+  /** @deprecated use `DeleteProjectInputValidationProblem$inboundSchema` instead. */
+  export const inboundSchema =
+    DeleteProjectInputValidationProblem$inboundSchema;
+  /** @deprecated use `DeleteProjectInputValidationProblem$outboundSchema` instead. */
+  export const outboundSchema =
+    DeleteProjectInputValidationProblem$outboundSchema;
+  /** @deprecated use `DeleteProjectInputValidationProblem$Outbound` instead. */
+  export type Outbound = DeleteProjectInputValidationProblem$Outbound;
 }

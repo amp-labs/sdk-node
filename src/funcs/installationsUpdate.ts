@@ -40,8 +40,8 @@ export function installationsUpdate(
 ): APIPromise<
   Result<
     operations.UpdateInstallationResponse,
-    | errors.UpdateInstallationResponseBody
-    | errors.UpdateInstallationInstallationsResponseBody
+    | errors.UpdateInstallationInputValidationProblem
+    | errors.UpdateInstallationInstallationsInputValidationProblem
     | APIError
     | SDKValidationError
     | UnexpectedClientError
@@ -66,8 +66,8 @@ async function $do(
   [
     Result<
       operations.UpdateInstallationResponse,
-      | errors.UpdateInstallationResponseBody
-      | errors.UpdateInstallationInstallationsResponseBody
+      | errors.UpdateInstallationInputValidationProblem
+      | errors.UpdateInstallationInstallationsInputValidationProblem
       | APIError
       | SDKValidationError
       | UnexpectedClientError
@@ -179,8 +179,8 @@ async function $do(
 
   const [result] = await M.match<
     operations.UpdateInstallationResponse,
-    | errors.UpdateInstallationResponseBody
-    | errors.UpdateInstallationInstallationsResponseBody
+    | errors.UpdateInstallationInputValidationProblem
+    | errors.UpdateInstallationInstallationsInputValidationProblem
     | APIError
     | SDKValidationError
     | UnexpectedClientError
@@ -190,12 +190,15 @@ async function $do(
     | ConnectionError
   >(
     M.json(200, operations.UpdateInstallationResponse$inboundSchema),
-    M.jsonErr(400, errors.UpdateInstallationResponseBody$inboundSchema, {
-      ctype: "application/problem+json",
-    }),
+    M.jsonErr(
+      400,
+      errors.UpdateInstallationInputValidationProblem$inboundSchema,
+      { ctype: "application/problem+json" },
+    ),
     M.jsonErr(
       422,
-      errors.UpdateInstallationInstallationsResponseBody$inboundSchema,
+      errors
+        .UpdateInstallationInstallationsInputValidationProblem$inboundSchema,
       { ctype: "application/problem+json" },
     ),
     M.fail("4XX"),

@@ -3,10 +3,10 @@
 
 ## Supported Types
 
-### `operations.ListOperationLogsOperationsResponseBody[]`
+### `operations.Log[]`
 
 ```typescript
-const value: operations.ListOperationLogsOperationsResponseBody[] = [
+const value: operations.Log[] = [
   {
     timestamp: "2023-07-13T21:34:44.816Z",
     message: {
@@ -17,10 +17,10 @@ const value: operations.ListOperationLogsOperationsResponseBody[] = [
 ];
 ```
 
-### `operations.ListOperationLogsResponseBody`
+### `operations.ListOperationLogsAPIProblem`
 
 ```typescript
-const value: operations.ListOperationLogsResponseBody = {
+const value: operations.ListOperationLogsAPIProblem = {
   href:
     "https://www.belgif.be/specification/rest/api-guide/#standardized-problem-types",
   title: "Description of the type of problem that occurred",

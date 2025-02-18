@@ -83,10 +83,10 @@ run();
 
 ### Errors
 
-| Error Type                          | Status Code                         | Content Type                        |
-| ----------------------------------- | ----------------------------------- | ----------------------------------- |
-| errors.ListIntegrationsResponseBody | 422                                 | application/problem+json            |
-| errors.APIError                     | 4XX, 5XX                            | \*/\*                               |
+| Error Type                                    | Status Code                                   | Content Type                                  |
+| --------------------------------------------- | --------------------------------------------- | --------------------------------------------- |
+| errors.ListIntegrationsInputValidationProblem | 422                                           | application/problem+json                      |
+| errors.APIError                               | 4XX, 5XX                                      | \*/\*                                         |
 
 ## create
 
@@ -327,15 +327,15 @@ run();
 
 ### Response
 
-**Promise\<[operations.CreateIntegrationResponseBody](../../models/operations/createintegrationresponsebody.md)\>**
+**Promise\<[operations.CreateIntegrationAPIProblem](../../models/operations/createintegrationapiproblem.md)\>**
 
 ### Errors
 
-| Error Type                                       | Status Code                                      | Content Type                                     |
-| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
-| errors.CreateIntegrationResponseBody             | 400                                              | application/problem+json                         |
-| errors.CreateIntegrationIntegrationsResponseBody | 422                                              | application/problem+json                         |
-| errors.APIError                                  | 4XX, 5XX                                         | \*/\*                                            |
+| Error Type                                                 | Status Code                                                | Content Type                                               |
+| ---------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- |
+| errors.CreateIntegrationInputValidationProblem             | 400                                                        | application/problem+json                                   |
+| errors.CreateIntegrationIntegrationsInputValidationProblem | 422                                                        | application/problem+json                                   |
+| errors.APIError                                            | 4XX, 5XX                                                   | \*/\*                                                      |
 
 ## delete
 
@@ -408,15 +408,15 @@ run();
 
 ### Response
 
-**Promise\<[operations.DeleteIntegrationResponseBody](../../models/operations/deleteintegrationresponsebody.md)\>**
+**Promise\<[operations.DeleteIntegrationAPIProblem](../../models/operations/deleteintegrationapiproblem.md)\>**
 
 ### Errors
 
-| Error Type                                       | Status Code                                      | Content Type                                     |
-| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
-| errors.DeleteIntegrationResponseBody             | 404                                              | application/problem+json                         |
-| errors.DeleteIntegrationIntegrationsResponseBody | 422                                              | application/problem+json                         |
-| errors.APIError                                  | 4XX, 5XX                                         | \*/\*                                            |
+| Error Type                                                 | Status Code                                                | Content Type                                               |
+| ---------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- |
+| errors.DeleteIntegrationInputValidationProblem             | 404                                                        | application/problem+json                                   |
+| errors.DeleteIntegrationIntegrationsInputValidationProblem | 422                                                        | application/problem+json                                   |
+| errors.APIError                                            | 4XX, 5XX                                                   | \*/\*                                                      |
 
 ## batchUpsert
 
@@ -493,7 +493,7 @@ run();
 
 ### Errors
 
-| Error Type                                 | Status Code                                | Content Type                               |
-| ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
-| errors.BatchUpsertIntegrationsResponseBody | 422                                        | application/problem+json                   |
-| errors.APIError                            | 4XX, 5XX                                   | \*/\*                                      |
+| Error Type                                           | Status Code                                          | Content Type                                         |
+| ---------------------------------------------------- | ---------------------------------------------------- | ---------------------------------------------------- |
+| errors.BatchUpsertIntegrationsInputValidationProblem | 422                                                  | application/problem+json                             |
+| errors.APIError                                      | 4XX, 5XX                                             | \*/\*                                                |

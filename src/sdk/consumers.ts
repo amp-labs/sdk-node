@@ -14,7 +14,7 @@ export class Consumers extends ClientSDK {
   async create(
     request: operations.CreateConsumerRequest,
     options?: RequestOptions,
-  ): Promise<operations.CreateConsumerResponseBody | undefined> {
+  ): Promise<operations.CreateConsumerAPIProblem | undefined> {
     return unwrapAsync(consumersCreate(
       this,
       request,

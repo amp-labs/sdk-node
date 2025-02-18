@@ -36,9 +36,9 @@ export function readDeliverResults(
   options?: RequestOptions,
 ): APIPromise<
   Result<
-    operations.DeliverResultsResponseBody | undefined,
-    | errors.DeliverResultsResponseBody
-    | errors.DeliverResultsReadResponseBody
+    operations.DeliverResultsAPIProblem | undefined,
+    | errors.DeliverResultsAPIProblem
+    | errors.DeliverResultsReadAPIProblem
     | APIError
     | SDKValidationError
     | UnexpectedClientError
@@ -62,9 +62,9 @@ async function $do(
 ): Promise<
   [
     Result<
-      operations.DeliverResultsResponseBody | undefined,
-      | errors.DeliverResultsResponseBody
-      | errors.DeliverResultsReadResponseBody
+      operations.DeliverResultsAPIProblem | undefined,
+      | errors.DeliverResultsAPIProblem
+      | errors.DeliverResultsReadAPIProblem
       | APIError
       | SDKValidationError
       | UnexpectedClientError
@@ -169,9 +169,9 @@ async function $do(
   };
 
   const [result] = await M.match<
-    operations.DeliverResultsResponseBody | undefined,
-    | errors.DeliverResultsResponseBody
-    | errors.DeliverResultsReadResponseBody
+    operations.DeliverResultsAPIProblem | undefined,
+    | errors.DeliverResultsAPIProblem
+    | errors.DeliverResultsReadAPIProblem
     | APIError
     | SDKValidationError
     | UnexpectedClientError
@@ -180,14 +180,14 @@ async function $do(
     | RequestTimeoutError
     | ConnectionError
   >(
-    M.nil(204, operations.DeliverResultsResponseBody$inboundSchema.optional()),
-    M.jsonErr(400, errors.DeliverResultsResponseBody$inboundSchema),
-    M.jsonErr(500, errors.DeliverResultsReadResponseBody$inboundSchema),
+    M.nil(204, operations.DeliverResultsAPIProblem$inboundSchema.optional()),
+    M.jsonErr(400, errors.DeliverResultsAPIProblem$inboundSchema),
+    M.jsonErr(500, errors.DeliverResultsReadAPIProblem$inboundSchema),
     M.fail("4XX"),
     M.fail("5XX"),
     M.json(
       "default",
-      operations.DeliverResultsResponseBody$inboundSchema.optional(),
+      operations.DeliverResultsAPIProblem$inboundSchema.optional(),
       { ctype: "application/problem+json" },
     ),
   )(response, { extraFields: responseFields });

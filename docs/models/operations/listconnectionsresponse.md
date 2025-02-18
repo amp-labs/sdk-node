@@ -3,10 +3,10 @@
 
 ## Supported Types
 
-### `operations.ListConnectionsConnectionsResponseBody[]`
+### `operations.Connection[]`
 
 ```typescript
-const value: operations.ListConnectionsConnectionsResponseBody[] = [
+const value: operations.Connection[] = [
   {
     id: "connection-123",
     projectId: "project-456",
@@ -47,10 +47,10 @@ const value: operations.ListConnectionsConnectionsResponseBody[] = [
 ];
 ```
 
-### `operations.ListConnectionsResponseBody`
+### `operations.ListConnectionsAPIProblem`
 
 ```typescript
-const value: operations.ListConnectionsResponseBody = {
+const value: operations.ListConnectionsAPIProblem = {
   href:
     "https://www.belgif.be/specification/rest/api-guide/#standardized-problem-types",
   title: "Description of the type of problem that occurred",

@@ -40,7 +40,7 @@ export function installationsGet(
 ): APIPromise<
   Result<
     operations.GetInstallationResponse,
-    | errors.GetInstallationResponseBody
+    | errors.GetInstallationInputValidationProblem
     | APIError
     | SDKValidationError
     | UnexpectedClientError
@@ -65,7 +65,7 @@ async function $do(
   [
     Result<
       operations.GetInstallationResponse,
-      | errors.GetInstallationResponseBody
+      | errors.GetInstallationInputValidationProblem
       | APIError
       | SDKValidationError
       | UnexpectedClientError
@@ -174,7 +174,7 @@ async function $do(
 
   const [result] = await M.match<
     operations.GetInstallationResponse,
-    | errors.GetInstallationResponseBody
+    | errors.GetInstallationInputValidationProblem
     | APIError
     | SDKValidationError
     | UnexpectedClientError
@@ -184,7 +184,7 @@ async function $do(
     | ConnectionError
   >(
     M.json(200, operations.GetInstallationResponse$inboundSchema),
-    M.jsonErr(400, errors.GetInstallationResponseBody$inboundSchema, {
+    M.jsonErr(400, errors.GetInstallationInputValidationProblem$inboundSchema, {
       ctype: "application/problem+json",
     }),
     M.fail("4XX"),

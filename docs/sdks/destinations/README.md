@@ -104,11 +104,11 @@ run();
 
 ### Errors
 
-| Error Type                                       | Status Code                                      | Content Type                                     |
-| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
-| errors.CreateDestinationResponseBody             | 400                                              | application/problem+json                         |
-| errors.CreateDestinationDestinationsResponseBody | 422                                              | application/problem+json                         |
-| errors.APIError                                  | 4XX, 5XX                                         | \*/\*                                            |
+| Error Type                                                 | Status Code                                                | Content Type                                               |
+| ---------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- |
+| errors.CreateDestinationInputValidationProblem             | 400                                                        | application/problem+json                                   |
+| errors.CreateDestinationDestinationsInputValidationProblem | 422                                                        | application/problem+json                                   |
+| errors.APIError                                            | 4XX, 5XX                                                   | \*/\*                                                      |
 
 ## list
 
@@ -262,10 +262,10 @@ run();
 
 ### Errors
 
-| Error Type                        | Status Code                       | Content Type                      |
-| --------------------------------- | --------------------------------- | --------------------------------- |
-| errors.GetDestinationResponseBody | 404                               | application/problem+json          |
-| errors.APIError                   | 4XX, 5XX                          | \*/\*                             |
+| Error Type                                  | Status Code                                 | Content Type                                |
+| ------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
+| errors.GetDestinationInputValidationProblem | 404                                         | application/problem+json                    |
+| errors.APIError                             | 4XX, 5XX                                    | \*/\*                                       |
 
 ## update
 
@@ -374,12 +374,12 @@ run();
 
 ### Errors
 
-| Error Type                                               | Status Code                                              | Content Type                                             |
-| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
-| errors.UpdateDestinationResponseBody                     | 400                                                      | application/problem+json                                 |
-| errors.UpdateDestinationDestinationsResponseBody         | 404                                                      | application/problem+json                                 |
-| errors.UpdateDestinationDestinationsResponseResponseBody | 422                                                      | application/problem+json                                 |
-| errors.APIError                                          | 4XX, 5XX                                                 | \*/\*                                                    |
+| Error Type                                                         | Status Code                                                        | Content Type                                                       |
+| ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ |
+| errors.UpdateDestinationInputValidationProblem                     | 400                                                                | application/problem+json                                           |
+| errors.UpdateDestinationDestinationsInputValidationProblem         | 404                                                                | application/problem+json                                           |
+| errors.UpdateDestinationDestinationsResponseInputValidationProblem | 422                                                                | application/problem+json                                           |
+| errors.APIError                                                    | 4XX, 5XX                                                           | \*/\*                                                              |
 
 ## delete
 
@@ -452,7 +452,7 @@ run();
 
 ### Response
 
-**Promise\<[operations.DeleteDestinationResponseBody](../../models/operations/deletedestinationresponsebody.md)\>**
+**Promise\<[operations.DeleteDestinationAPIProblem](../../models/operations/deletedestinationapiproblem.md)\>**
 
 ### Errors
 

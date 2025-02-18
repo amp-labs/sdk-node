@@ -94,11 +94,11 @@ run();
 
 ### Errors
 
-| Error Type                         | Status Code                        | Content Type                       |
-| ---------------------------------- | ---------------------------------- | ---------------------------------- |
-| errors.TriggerReadResponseBody     | 400                                | application/json                   |
-| errors.TriggerReadReadResponseBody | 500                                | application/json                   |
-| errors.APIError                    | 4XX, 5XX                           | \*/\*                              |
+| Error Type                       | Status Code                      | Content Type                     |
+| -------------------------------- | -------------------------------- | -------------------------------- |
+| errors.TriggerReadAPIProblem     | 400                              | application/json                 |
+| errors.TriggerReadReadAPIProblem | 500                              | application/json                 |
+| errors.APIError                  | 4XX, 5XX                         | \*/\*                            |
 
 ## deliverResults
 
@@ -180,12 +180,12 @@ run();
 
 ### Response
 
-**Promise\<[operations.DeliverResultsResponseBody](../../models/operations/deliverresultsresponsebody.md)\>**
+**Promise\<[operations.DeliverResultsAPIProblem](../../models/operations/deliverresultsapiproblem.md)\>**
 
 ### Errors
 
-| Error Type                            | Status Code                           | Content Type                          |
-| ------------------------------------- | ------------------------------------- | ------------------------------------- |
-| errors.DeliverResultsResponseBody     | 400                                   | application/json                      |
-| errors.DeliverResultsReadResponseBody | 500                                   | application/json                      |
-| errors.APIError                       | 4XX, 5XX                              | \*/\*                                 |
+| Error Type                          | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| errors.DeliverResultsAPIProblem     | 400                                 | application/json                    |
+| errors.DeliverResultsReadAPIProblem | 500                                 | application/json                    |
+| errors.APIError                     | 4XX, 5XX                            | \*/\*                               |

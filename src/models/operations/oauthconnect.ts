@@ -54,7 +54,7 @@ export type OauthConnectRequestBody = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export type OauthConnectResponseBody = {
+export type OauthConnectAPIProblem = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -128,7 +128,7 @@ export type OauthConnectResponseBody = {
   context?: { [k: string]: any } | undefined;
 };
 
-export type OauthConnectResponse = OauthConnectResponseBody | string;
+export type OauthConnectResponse = OauthConnectAPIProblem | string;
 
 /** @internal */
 export const OauthConnectRequestBody$inboundSchema: z.ZodType<
@@ -209,8 +209,8 @@ export function oauthConnectRequestBodyFromJSON(
 }
 
 /** @internal */
-export const OauthConnectResponseBody$inboundSchema: z.ZodType<
-  OauthConnectResponseBody,
+export const OauthConnectAPIProblem$inboundSchema: z.ZodType<
+  OauthConnectAPIProblem,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -236,7 +236,7 @@ export const OauthConnectResponseBody$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type OauthConnectResponseBody$Outbound = {
+export type OauthConnectAPIProblem$Outbound = {
   type: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -257,10 +257,10 @@ export type OauthConnectResponseBody$Outbound = {
 };
 
 /** @internal */
-export const OauthConnectResponseBody$outboundSchema: z.ZodType<
-  OauthConnectResponseBody$Outbound,
+export const OauthConnectAPIProblem$outboundSchema: z.ZodType<
+  OauthConnectAPIProblem$Outbound,
   z.ZodTypeDef,
-  OauthConnectResponseBody
+  OauthConnectAPIProblem
 > = z.object({
   type: z.string().default("about:blank"),
   href: z.string().optional(),
@@ -285,30 +285,30 @@ export const OauthConnectResponseBody$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace OauthConnectResponseBody$ {
-  /** @deprecated use `OauthConnectResponseBody$inboundSchema` instead. */
-  export const inboundSchema = OauthConnectResponseBody$inboundSchema;
-  /** @deprecated use `OauthConnectResponseBody$outboundSchema` instead. */
-  export const outboundSchema = OauthConnectResponseBody$outboundSchema;
-  /** @deprecated use `OauthConnectResponseBody$Outbound` instead. */
-  export type Outbound = OauthConnectResponseBody$Outbound;
+export namespace OauthConnectAPIProblem$ {
+  /** @deprecated use `OauthConnectAPIProblem$inboundSchema` instead. */
+  export const inboundSchema = OauthConnectAPIProblem$inboundSchema;
+  /** @deprecated use `OauthConnectAPIProblem$outboundSchema` instead. */
+  export const outboundSchema = OauthConnectAPIProblem$outboundSchema;
+  /** @deprecated use `OauthConnectAPIProblem$Outbound` instead. */
+  export type Outbound = OauthConnectAPIProblem$Outbound;
 }
 
-export function oauthConnectResponseBodyToJSON(
-  oauthConnectResponseBody: OauthConnectResponseBody,
+export function oauthConnectAPIProblemToJSON(
+  oauthConnectAPIProblem: OauthConnectAPIProblem,
 ): string {
   return JSON.stringify(
-    OauthConnectResponseBody$outboundSchema.parse(oauthConnectResponseBody),
+    OauthConnectAPIProblem$outboundSchema.parse(oauthConnectAPIProblem),
   );
 }
 
-export function oauthConnectResponseBodyFromJSON(
+export function oauthConnectAPIProblemFromJSON(
   jsonString: string,
-): SafeParseResult<OauthConnectResponseBody, SDKValidationError> {
+): SafeParseResult<OauthConnectAPIProblem, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => OauthConnectResponseBody$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'OauthConnectResponseBody' from JSON`,
+    (x) => OauthConnectAPIProblem$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'OauthConnectAPIProblem' from JSON`,
   );
 }
 
@@ -317,11 +317,11 @@ export const OauthConnectResponse$inboundSchema: z.ZodType<
   OauthConnectResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([z.lazy(() => OauthConnectResponseBody$inboundSchema), z.string()]);
+> = z.union([z.lazy(() => OauthConnectAPIProblem$inboundSchema), z.string()]);
 
 /** @internal */
 export type OauthConnectResponse$Outbound =
-  | OauthConnectResponseBody$Outbound
+  | OauthConnectAPIProblem$Outbound
   | string;
 
 /** @internal */
@@ -329,10 +329,7 @@ export const OauthConnectResponse$outboundSchema: z.ZodType<
   OauthConnectResponse$Outbound,
   z.ZodTypeDef,
   OauthConnectResponse
-> = z.union([
-  z.lazy(() => OauthConnectResponseBody$outboundSchema),
-  z.string(),
-]);
+> = z.union([z.lazy(() => OauthConnectAPIProblem$outboundSchema), z.string()]);
 
 /**
  * @internal

@@ -27,7 +27,7 @@ export type CreateConsumerIn = ClosedEnum<typeof CreateConsumerIn>;
  *
  * @remarks
  */
-export type CreateConsumerIssues = {
+export type CreateConsumerInputValidationIssue = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -120,7 +120,7 @@ export type CreateConsumerIssues = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export type CreateConsumerResponseBodyData = {
+export type CreateConsumerInputValidationProblemData = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -192,7 +192,7 @@ export type CreateConsumerResponseBodyData = {
    * Additional context for the problem
    */
   context?: { [k: string]: any } | undefined;
-  issues?: Array<CreateConsumerIssues> | undefined;
+  issues?: Array<CreateConsumerInputValidationIssue> | undefined;
 };
 
 /**
@@ -202,7 +202,7 @@ export type CreateConsumerResponseBodyData = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export class CreateConsumerResponseBody extends Error {
+export class CreateConsumerInputValidationProblem extends Error {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -274,12 +274,12 @@ export class CreateConsumerResponseBody extends Error {
    * Additional context for the problem
    */
   context?: { [k: string]: any } | undefined;
-  issues?: Array<CreateConsumerIssues> | undefined;
+  issues?: Array<CreateConsumerInputValidationIssue> | undefined;
 
   /** The original data that was passed to this error instance. */
-  data$: CreateConsumerResponseBodyData;
+  data$: CreateConsumerInputValidationProblemData;
 
-  constructor(err: CreateConsumerResponseBodyData) {
+  constructor(err: CreateConsumerInputValidationProblemData) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
@@ -305,7 +305,7 @@ export class CreateConsumerResponseBody extends Error {
     if (err.context != null) this.context = err.context;
     if (err.issues != null) this.issues = err.issues;
 
-    this.name = "CreateConsumerResponseBody";
+    this.name = "CreateConsumerInputValidationProblem";
   }
 }
 
@@ -331,8 +331,8 @@ export namespace CreateConsumerIn$ {
 }
 
 /** @internal */
-export const CreateConsumerIssues$inboundSchema: z.ZodType<
-  CreateConsumerIssues,
+export const CreateConsumerInputValidationIssue$inboundSchema: z.ZodType<
+  CreateConsumerInputValidationIssue,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -361,7 +361,7 @@ export const CreateConsumerIssues$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type CreateConsumerIssues$Outbound = {
+export type CreateConsumerInputValidationIssue$Outbound = {
   type: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -385,10 +385,10 @@ export type CreateConsumerIssues$Outbound = {
 };
 
 /** @internal */
-export const CreateConsumerIssues$outboundSchema: z.ZodType<
-  CreateConsumerIssues$Outbound,
+export const CreateConsumerInputValidationIssue$outboundSchema: z.ZodType<
+  CreateConsumerInputValidationIssue$Outbound,
   z.ZodTypeDef,
-  CreateConsumerIssues
+  CreateConsumerInputValidationIssue
 > = z.object({
   type: z.string().default("about:blank"),
   href: z.string().optional(),
@@ -416,36 +416,40 @@ export const CreateConsumerIssues$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace CreateConsumerIssues$ {
-  /** @deprecated use `CreateConsumerIssues$inboundSchema` instead. */
-  export const inboundSchema = CreateConsumerIssues$inboundSchema;
-  /** @deprecated use `CreateConsumerIssues$outboundSchema` instead. */
-  export const outboundSchema = CreateConsumerIssues$outboundSchema;
-  /** @deprecated use `CreateConsumerIssues$Outbound` instead. */
-  export type Outbound = CreateConsumerIssues$Outbound;
+export namespace CreateConsumerInputValidationIssue$ {
+  /** @deprecated use `CreateConsumerInputValidationIssue$inboundSchema` instead. */
+  export const inboundSchema = CreateConsumerInputValidationIssue$inboundSchema;
+  /** @deprecated use `CreateConsumerInputValidationIssue$outboundSchema` instead. */
+  export const outboundSchema =
+    CreateConsumerInputValidationIssue$outboundSchema;
+  /** @deprecated use `CreateConsumerInputValidationIssue$Outbound` instead. */
+  export type Outbound = CreateConsumerInputValidationIssue$Outbound;
 }
 
-export function createConsumerIssuesToJSON(
-  createConsumerIssues: CreateConsumerIssues,
+export function createConsumerInputValidationIssueToJSON(
+  createConsumerInputValidationIssue: CreateConsumerInputValidationIssue,
 ): string {
   return JSON.stringify(
-    CreateConsumerIssues$outboundSchema.parse(createConsumerIssues),
+    CreateConsumerInputValidationIssue$outboundSchema.parse(
+      createConsumerInputValidationIssue,
+    ),
   );
 }
 
-export function createConsumerIssuesFromJSON(
+export function createConsumerInputValidationIssueFromJSON(
   jsonString: string,
-): SafeParseResult<CreateConsumerIssues, SDKValidationError> {
+): SafeParseResult<CreateConsumerInputValidationIssue, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => CreateConsumerIssues$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreateConsumerIssues' from JSON`,
+    (x) =>
+      CreateConsumerInputValidationIssue$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreateConsumerInputValidationIssue' from JSON`,
   );
 }
 
 /** @internal */
-export const CreateConsumerResponseBody$inboundSchema: z.ZodType<
-  CreateConsumerResponseBody,
+export const CreateConsumerInputValidationProblem$inboundSchema: z.ZodType<
+  CreateConsumerInputValidationProblem,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -468,14 +472,16 @@ export const CreateConsumerResponseBody$inboundSchema: z.ZodType<
   retryAfter: z.string().datetime({ offset: true }).transform(v => new Date(v))
     .optional(),
   context: z.record(z.any()).optional(),
-  issues: z.array(z.lazy(() => CreateConsumerIssues$inboundSchema)).optional(),
+  issues: z.array(
+    z.lazy(() => CreateConsumerInputValidationIssue$inboundSchema),
+  ).optional(),
 })
   .transform((v) => {
-    return new CreateConsumerResponseBody(v);
+    return new CreateConsumerInputValidationProblem(v);
   });
 
 /** @internal */
-export type CreateConsumerResponseBody$Outbound = {
+export type CreateConsumerInputValidationProblem$Outbound = {
   type?: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -493,15 +499,15 @@ export type CreateConsumerResponseBody$Outbound = {
   retryable?: boolean | undefined;
   retryAfter?: string | undefined;
   context?: { [k: string]: any } | undefined;
-  issues?: Array<CreateConsumerIssues$Outbound> | undefined;
+  issues?: Array<CreateConsumerInputValidationIssue$Outbound> | undefined;
 };
 
 /** @internal */
-export const CreateConsumerResponseBody$outboundSchema: z.ZodType<
-  CreateConsumerResponseBody$Outbound,
+export const CreateConsumerInputValidationProblem$outboundSchema: z.ZodType<
+  CreateConsumerInputValidationProblem$Outbound,
   z.ZodTypeDef,
-  CreateConsumerResponseBody
-> = z.instanceof(CreateConsumerResponseBody)
+  CreateConsumerInputValidationProblem
+> = z.instanceof(CreateConsumerInputValidationProblem)
   .transform(v => v.data$)
   .pipe(z.object({
     type: z.string().default("about:blank"),
@@ -521,19 +527,22 @@ export const CreateConsumerResponseBody$outboundSchema: z.ZodType<
     retryable: z.boolean().optional(),
     retryAfter: z.date().transform(v => v.toISOString()).optional(),
     context: z.record(z.any()).optional(),
-    issues: z.array(z.lazy(() => CreateConsumerIssues$outboundSchema))
-      .optional(),
+    issues: z.array(
+      z.lazy(() => CreateConsumerInputValidationIssue$outboundSchema),
+    ).optional(),
   }));
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace CreateConsumerResponseBody$ {
-  /** @deprecated use `CreateConsumerResponseBody$inboundSchema` instead. */
-  export const inboundSchema = CreateConsumerResponseBody$inboundSchema;
-  /** @deprecated use `CreateConsumerResponseBody$outboundSchema` instead. */
-  export const outboundSchema = CreateConsumerResponseBody$outboundSchema;
-  /** @deprecated use `CreateConsumerResponseBody$Outbound` instead. */
-  export type Outbound = CreateConsumerResponseBody$Outbound;
+export namespace CreateConsumerInputValidationProblem$ {
+  /** @deprecated use `CreateConsumerInputValidationProblem$inboundSchema` instead. */
+  export const inboundSchema =
+    CreateConsumerInputValidationProblem$inboundSchema;
+  /** @deprecated use `CreateConsumerInputValidationProblem$outboundSchema` instead. */
+  export const outboundSchema =
+    CreateConsumerInputValidationProblem$outboundSchema;
+  /** @deprecated use `CreateConsumerInputValidationProblem$Outbound` instead. */
+  export type Outbound = CreateConsumerInputValidationProblem$Outbound;
 }

@@ -28,10 +28,10 @@ const value: operations.ListOperationsResponseBody = {
 };
 ```
 
-### `operations.ListOperationsOperationsResponseBody`
+### `operations.ListOperationsAPIProblem`
 
 ```typescript
-const value: operations.ListOperationsOperationsResponseBody = {
+const value: operations.ListOperationsAPIProblem = {
   href:
     "https://www.belgif.be/specification/rest/api-guide/#standardized-problem-types",
   title: "Description of the type of problem that occurred",

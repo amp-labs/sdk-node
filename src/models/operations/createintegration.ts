@@ -13,14 +13,14 @@ export const CreateIntegrationServerList = [
   "https://api.withampersand.com/v1",
 ] as const;
 
-export type Two = {
+export type IntegrationFieldMapping = {
   mapToName: string;
   mapToDisplayName?: string | undefined;
   default?: string | undefined;
   prompt?: string | undefined;
 };
 
-export type One = {
+export type IntegrationFieldExistent = {
   fieldName: string;
   /**
    * The field name to map to.
@@ -32,16 +32,18 @@ export type One = {
   mapToDisplayName?: string | undefined;
 };
 
-export type RequiredFields = One | Two;
+export type IntegrationField =
+  | IntegrationFieldExistent
+  | IntegrationFieldMapping;
 
-export type OptionalFields2 = {
+export type IntegrationFieldIntegrationFieldMapping = {
   mapToName: string;
   mapToDisplayName?: string | undefined;
   default?: string | undefined;
   prompt?: string | undefined;
 };
 
-export type OptionalFields1 = {
+export type IntegrationFieldIntegrationFieldExistent = {
   fieldName: string;
   /**
    * The field name to map to.
@@ -53,12 +55,16 @@ export type OptionalFields1 = {
   mapToDisplayName?: string | undefined;
 };
 
-export type OptionalFields = OptionalFields1 | OptionalFields2;
+export type CreateIntegrationIntegrationField =
+  | IntegrationFieldIntegrationFieldExistent
+  | IntegrationFieldIntegrationFieldMapping;
 
-export const OptionalFieldsAuto = {
+export const OptionalFieldsAutoOption = {
   All: "all",
 } as const;
-export type OptionalFieldsAuto = ClosedEnum<typeof OptionalFieldsAuto>;
+export type OptionalFieldsAutoOption = ClosedEnum<
+  typeof OptionalFieldsAutoOption
+>;
 
 export type DefaultPeriod = {
   /**
@@ -98,7 +104,7 @@ export type Delivery = {
   pageSize?: number | undefined;
 };
 
-export type Objects = {
+export type IntegrationObject = {
   objectName: string;
   destination: string;
   schedule: string;
@@ -110,15 +116,22 @@ export type Objects = {
    * A display name to map to.
    */
   mapToDisplayName?: string | undefined;
-  requiredFields?: Array<One | Two> | undefined;
-  optionalFields?: Array<OptionalFields1 | OptionalFields2> | undefined;
-  optionalFieldsAuto?: OptionalFieldsAuto | undefined;
+  requiredFields?:
+    | Array<IntegrationFieldExistent | IntegrationFieldMapping>
+    | undefined;
+  optionalFields?:
+    | Array<
+      | IntegrationFieldIntegrationFieldExistent
+      | IntegrationFieldIntegrationFieldMapping
+    >
+    | undefined;
+  optionalFieldsAuto?: OptionalFieldsAutoOption | undefined;
   backfill?: Backfill | undefined;
   delivery?: Delivery | undefined;
 };
 
-export type Read = {
-  objects?: Array<Objects> | undefined;
+export type ReadIntegration = {
+  objects?: Array<IntegrationObject> | undefined;
 };
 
 /**
@@ -131,7 +144,7 @@ export type ValueDefaults = {
   allowAnyFields?: boolean | undefined;
 };
 
-export type CreateIntegrationObjects = {
+export type IntegrationWriteObject = {
   objectName: string;
   /**
    * If true, the write object will inherit the mapping from the read object. If false, the write object will have no mapping.
@@ -143,21 +156,21 @@ export type CreateIntegrationObjects = {
   valueDefaults?: ValueDefaults | undefined;
 };
 
-export type Write = {
-  objects?: Array<CreateIntegrationObjects> | undefined;
+export type WriteIntegration = {
+  objects?: Array<IntegrationWriteObject> | undefined;
 };
 
-export type Proxy = {
+export type ProxyIntegration = {
   enabled?: boolean | undefined;
 };
 
-export type Content = {
+export type Integration = {
   name: string;
   displayName?: string | undefined;
   provider: string;
-  read?: Read | undefined;
-  write?: Write | undefined;
-  proxy?: Proxy | undefined;
+  read?: ReadIntegration | undefined;
+  write?: WriteIntegration | undefined;
+  proxy?: ProxyIntegration | undefined;
 };
 
 export type LatestRevision = {
@@ -165,7 +178,7 @@ export type LatestRevision = {
    * The spec version string.
    */
   specVersion: string;
-  content: Content;
+  content: Integration;
 };
 
 export type CreateIntegrationRequestBody = {
@@ -192,7 +205,7 @@ export type CreateIntegrationRequest = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export type CreateIntegrationResponseBody = {
+export type CreateIntegrationAPIProblem = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -267,158 +280,8 @@ export type CreateIntegrationResponseBody = {
 };
 
 /** @internal */
-export const Two$inboundSchema: z.ZodType<Two, z.ZodTypeDef, unknown> = z
-  .object({
-    mapToName: z.string(),
-    mapToDisplayName: z.string().optional(),
-    default: z.string().optional(),
-    prompt: z.string().optional(),
-  });
-
-/** @internal */
-export type Two$Outbound = {
-  mapToName: string;
-  mapToDisplayName?: string | undefined;
-  default?: string | undefined;
-  prompt?: string | undefined;
-};
-
-/** @internal */
-export const Two$outboundSchema: z.ZodType<Two$Outbound, z.ZodTypeDef, Two> = z
-  .object({
-    mapToName: z.string(),
-    mapToDisplayName: z.string().optional(),
-    default: z.string().optional(),
-    prompt: z.string().optional(),
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Two$ {
-  /** @deprecated use `Two$inboundSchema` instead. */
-  export const inboundSchema = Two$inboundSchema;
-  /** @deprecated use `Two$outboundSchema` instead. */
-  export const outboundSchema = Two$outboundSchema;
-  /** @deprecated use `Two$Outbound` instead. */
-  export type Outbound = Two$Outbound;
-}
-
-export function twoToJSON(two: Two): string {
-  return JSON.stringify(Two$outboundSchema.parse(two));
-}
-
-export function twoFromJSON(
-  jsonString: string,
-): SafeParseResult<Two, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => Two$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Two' from JSON`,
-  );
-}
-
-/** @internal */
-export const One$inboundSchema: z.ZodType<One, z.ZodTypeDef, unknown> = z
-  .object({
-    fieldName: z.string(),
-    mapToName: z.string().optional(),
-    mapToDisplayName: z.string().optional(),
-  });
-
-/** @internal */
-export type One$Outbound = {
-  fieldName: string;
-  mapToName?: string | undefined;
-  mapToDisplayName?: string | undefined;
-};
-
-/** @internal */
-export const One$outboundSchema: z.ZodType<One$Outbound, z.ZodTypeDef, One> = z
-  .object({
-    fieldName: z.string(),
-    mapToName: z.string().optional(),
-    mapToDisplayName: z.string().optional(),
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace One$ {
-  /** @deprecated use `One$inboundSchema` instead. */
-  export const inboundSchema = One$inboundSchema;
-  /** @deprecated use `One$outboundSchema` instead. */
-  export const outboundSchema = One$outboundSchema;
-  /** @deprecated use `One$Outbound` instead. */
-  export type Outbound = One$Outbound;
-}
-
-export function oneToJSON(one: One): string {
-  return JSON.stringify(One$outboundSchema.parse(one));
-}
-
-export function oneFromJSON(
-  jsonString: string,
-): SafeParseResult<One, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => One$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'One' from JSON`,
-  );
-}
-
-/** @internal */
-export const RequiredFields$inboundSchema: z.ZodType<
-  RequiredFields,
-  z.ZodTypeDef,
-  unknown
-> = z.union([z.lazy(() => One$inboundSchema), z.lazy(() => Two$inboundSchema)]);
-
-/** @internal */
-export type RequiredFields$Outbound = One$Outbound | Two$Outbound;
-
-/** @internal */
-export const RequiredFields$outboundSchema: z.ZodType<
-  RequiredFields$Outbound,
-  z.ZodTypeDef,
-  RequiredFields
-> = z.union([
-  z.lazy(() => One$outboundSchema),
-  z.lazy(() => Two$outboundSchema),
-]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RequiredFields$ {
-  /** @deprecated use `RequiredFields$inboundSchema` instead. */
-  export const inboundSchema = RequiredFields$inboundSchema;
-  /** @deprecated use `RequiredFields$outboundSchema` instead. */
-  export const outboundSchema = RequiredFields$outboundSchema;
-  /** @deprecated use `RequiredFields$Outbound` instead. */
-  export type Outbound = RequiredFields$Outbound;
-}
-
-export function requiredFieldsToJSON(requiredFields: RequiredFields): string {
-  return JSON.stringify(RequiredFields$outboundSchema.parse(requiredFields));
-}
-
-export function requiredFieldsFromJSON(
-  jsonString: string,
-): SafeParseResult<RequiredFields, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => RequiredFields$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'RequiredFields' from JSON`,
-  );
-}
-
-/** @internal */
-export const OptionalFields2$inboundSchema: z.ZodType<
-  OptionalFields2,
+export const IntegrationFieldMapping$inboundSchema: z.ZodType<
+  IntegrationFieldMapping,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -429,7 +292,7 @@ export const OptionalFields2$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type OptionalFields2$Outbound = {
+export type IntegrationFieldMapping$Outbound = {
   mapToName: string;
   mapToDisplayName?: string | undefined;
   default?: string | undefined;
@@ -437,10 +300,10 @@ export type OptionalFields2$Outbound = {
 };
 
 /** @internal */
-export const OptionalFields2$outboundSchema: z.ZodType<
-  OptionalFields2$Outbound,
+export const IntegrationFieldMapping$outboundSchema: z.ZodType<
+  IntegrationFieldMapping$Outbound,
   z.ZodTypeDef,
-  OptionalFields2
+  IntegrationFieldMapping
 > = z.object({
   mapToName: z.string(),
   mapToDisplayName: z.string().optional(),
@@ -452,34 +315,36 @@ export const OptionalFields2$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace OptionalFields2$ {
-  /** @deprecated use `OptionalFields2$inboundSchema` instead. */
-  export const inboundSchema = OptionalFields2$inboundSchema;
-  /** @deprecated use `OptionalFields2$outboundSchema` instead. */
-  export const outboundSchema = OptionalFields2$outboundSchema;
-  /** @deprecated use `OptionalFields2$Outbound` instead. */
-  export type Outbound = OptionalFields2$Outbound;
+export namespace IntegrationFieldMapping$ {
+  /** @deprecated use `IntegrationFieldMapping$inboundSchema` instead. */
+  export const inboundSchema = IntegrationFieldMapping$inboundSchema;
+  /** @deprecated use `IntegrationFieldMapping$outboundSchema` instead. */
+  export const outboundSchema = IntegrationFieldMapping$outboundSchema;
+  /** @deprecated use `IntegrationFieldMapping$Outbound` instead. */
+  export type Outbound = IntegrationFieldMapping$Outbound;
 }
 
-export function optionalFields2ToJSON(
-  optionalFields2: OptionalFields2,
+export function integrationFieldMappingToJSON(
+  integrationFieldMapping: IntegrationFieldMapping,
 ): string {
-  return JSON.stringify(OptionalFields2$outboundSchema.parse(optionalFields2));
+  return JSON.stringify(
+    IntegrationFieldMapping$outboundSchema.parse(integrationFieldMapping),
+  );
 }
 
-export function optionalFields2FromJSON(
+export function integrationFieldMappingFromJSON(
   jsonString: string,
-): SafeParseResult<OptionalFields2, SDKValidationError> {
+): SafeParseResult<IntegrationFieldMapping, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => OptionalFields2$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'OptionalFields2' from JSON`,
+    (x) => IntegrationFieldMapping$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'IntegrationFieldMapping' from JSON`,
   );
 }
 
 /** @internal */
-export const OptionalFields1$inboundSchema: z.ZodType<
-  OptionalFields1,
+export const IntegrationFieldExistent$inboundSchema: z.ZodType<
+  IntegrationFieldExistent,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -489,17 +354,17 @@ export const OptionalFields1$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type OptionalFields1$Outbound = {
+export type IntegrationFieldExistent$Outbound = {
   fieldName: string;
   mapToName?: string | undefined;
   mapToDisplayName?: string | undefined;
 };
 
 /** @internal */
-export const OptionalFields1$outboundSchema: z.ZodType<
-  OptionalFields1$Outbound,
+export const IntegrationFieldExistent$outboundSchema: z.ZodType<
+  IntegrationFieldExistent$Outbound,
   z.ZodTypeDef,
-  OptionalFields1
+  IntegrationFieldExistent
 > = z.object({
   fieldName: z.string(),
   mapToName: z.string().optional(),
@@ -510,102 +375,312 @@ export const OptionalFields1$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace OptionalFields1$ {
-  /** @deprecated use `OptionalFields1$inboundSchema` instead. */
-  export const inboundSchema = OptionalFields1$inboundSchema;
-  /** @deprecated use `OptionalFields1$outboundSchema` instead. */
-  export const outboundSchema = OptionalFields1$outboundSchema;
-  /** @deprecated use `OptionalFields1$Outbound` instead. */
-  export type Outbound = OptionalFields1$Outbound;
+export namespace IntegrationFieldExistent$ {
+  /** @deprecated use `IntegrationFieldExistent$inboundSchema` instead. */
+  export const inboundSchema = IntegrationFieldExistent$inboundSchema;
+  /** @deprecated use `IntegrationFieldExistent$outboundSchema` instead. */
+  export const outboundSchema = IntegrationFieldExistent$outboundSchema;
+  /** @deprecated use `IntegrationFieldExistent$Outbound` instead. */
+  export type Outbound = IntegrationFieldExistent$Outbound;
 }
 
-export function optionalFields1ToJSON(
-  optionalFields1: OptionalFields1,
+export function integrationFieldExistentToJSON(
+  integrationFieldExistent: IntegrationFieldExistent,
 ): string {
-  return JSON.stringify(OptionalFields1$outboundSchema.parse(optionalFields1));
+  return JSON.stringify(
+    IntegrationFieldExistent$outboundSchema.parse(integrationFieldExistent),
+  );
 }
 
-export function optionalFields1FromJSON(
+export function integrationFieldExistentFromJSON(
   jsonString: string,
-): SafeParseResult<OptionalFields1, SDKValidationError> {
+): SafeParseResult<IntegrationFieldExistent, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => OptionalFields1$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'OptionalFields1' from JSON`,
+    (x) => IntegrationFieldExistent$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'IntegrationFieldExistent' from JSON`,
   );
 }
 
 /** @internal */
-export const OptionalFields$inboundSchema: z.ZodType<
-  OptionalFields,
+export const IntegrationField$inboundSchema: z.ZodType<
+  IntegrationField,
   z.ZodTypeDef,
   unknown
 > = z.union([
-  z.lazy(() => OptionalFields1$inboundSchema),
-  z.lazy(() => OptionalFields2$inboundSchema),
+  z.lazy(() => IntegrationFieldExistent$inboundSchema),
+  z.lazy(() => IntegrationFieldMapping$inboundSchema),
 ]);
 
 /** @internal */
-export type OptionalFields$Outbound =
-  | OptionalFields1$Outbound
-  | OptionalFields2$Outbound;
+export type IntegrationField$Outbound =
+  | IntegrationFieldExistent$Outbound
+  | IntegrationFieldMapping$Outbound;
 
 /** @internal */
-export const OptionalFields$outboundSchema: z.ZodType<
-  OptionalFields$Outbound,
+export const IntegrationField$outboundSchema: z.ZodType<
+  IntegrationField$Outbound,
   z.ZodTypeDef,
-  OptionalFields
+  IntegrationField
 > = z.union([
-  z.lazy(() => OptionalFields1$outboundSchema),
-  z.lazy(() => OptionalFields2$outboundSchema),
+  z.lazy(() => IntegrationFieldExistent$outboundSchema),
+  z.lazy(() => IntegrationFieldMapping$outboundSchema),
 ]);
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace OptionalFields$ {
-  /** @deprecated use `OptionalFields$inboundSchema` instead. */
-  export const inboundSchema = OptionalFields$inboundSchema;
-  /** @deprecated use `OptionalFields$outboundSchema` instead. */
-  export const outboundSchema = OptionalFields$outboundSchema;
-  /** @deprecated use `OptionalFields$Outbound` instead. */
-  export type Outbound = OptionalFields$Outbound;
+export namespace IntegrationField$ {
+  /** @deprecated use `IntegrationField$inboundSchema` instead. */
+  export const inboundSchema = IntegrationField$inboundSchema;
+  /** @deprecated use `IntegrationField$outboundSchema` instead. */
+  export const outboundSchema = IntegrationField$outboundSchema;
+  /** @deprecated use `IntegrationField$Outbound` instead. */
+  export type Outbound = IntegrationField$Outbound;
 }
 
-export function optionalFieldsToJSON(optionalFields: OptionalFields): string {
-  return JSON.stringify(OptionalFields$outboundSchema.parse(optionalFields));
+export function integrationFieldToJSON(
+  integrationField: IntegrationField,
+): string {
+  return JSON.stringify(
+    IntegrationField$outboundSchema.parse(integrationField),
+  );
 }
 
-export function optionalFieldsFromJSON(
+export function integrationFieldFromJSON(
   jsonString: string,
-): SafeParseResult<OptionalFields, SDKValidationError> {
+): SafeParseResult<IntegrationField, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => OptionalFields$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'OptionalFields' from JSON`,
+    (x) => IntegrationField$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'IntegrationField' from JSON`,
   );
 }
 
 /** @internal */
-export const OptionalFieldsAuto$inboundSchema: z.ZodNativeEnum<
-  typeof OptionalFieldsAuto
-> = z.nativeEnum(OptionalFieldsAuto);
+export const IntegrationFieldIntegrationFieldMapping$inboundSchema: z.ZodType<
+  IntegrationFieldIntegrationFieldMapping,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  mapToName: z.string(),
+  mapToDisplayName: z.string().optional(),
+  default: z.string().optional(),
+  prompt: z.string().optional(),
+});
 
 /** @internal */
-export const OptionalFieldsAuto$outboundSchema: z.ZodNativeEnum<
-  typeof OptionalFieldsAuto
-> = OptionalFieldsAuto$inboundSchema;
+export type IntegrationFieldIntegrationFieldMapping$Outbound = {
+  mapToName: string;
+  mapToDisplayName?: string | undefined;
+  default?: string | undefined;
+  prompt?: string | undefined;
+};
+
+/** @internal */
+export const IntegrationFieldIntegrationFieldMapping$outboundSchema: z.ZodType<
+  IntegrationFieldIntegrationFieldMapping$Outbound,
+  z.ZodTypeDef,
+  IntegrationFieldIntegrationFieldMapping
+> = z.object({
+  mapToName: z.string(),
+  mapToDisplayName: z.string().optional(),
+  default: z.string().optional(),
+  prompt: z.string().optional(),
+});
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace OptionalFieldsAuto$ {
-  /** @deprecated use `OptionalFieldsAuto$inboundSchema` instead. */
-  export const inboundSchema = OptionalFieldsAuto$inboundSchema;
-  /** @deprecated use `OptionalFieldsAuto$outboundSchema` instead. */
-  export const outboundSchema = OptionalFieldsAuto$outboundSchema;
+export namespace IntegrationFieldIntegrationFieldMapping$ {
+  /** @deprecated use `IntegrationFieldIntegrationFieldMapping$inboundSchema` instead. */
+  export const inboundSchema =
+    IntegrationFieldIntegrationFieldMapping$inboundSchema;
+  /** @deprecated use `IntegrationFieldIntegrationFieldMapping$outboundSchema` instead. */
+  export const outboundSchema =
+    IntegrationFieldIntegrationFieldMapping$outboundSchema;
+  /** @deprecated use `IntegrationFieldIntegrationFieldMapping$Outbound` instead. */
+  export type Outbound = IntegrationFieldIntegrationFieldMapping$Outbound;
+}
+
+export function integrationFieldIntegrationFieldMappingToJSON(
+  integrationFieldIntegrationFieldMapping:
+    IntegrationFieldIntegrationFieldMapping,
+): string {
+  return JSON.stringify(
+    IntegrationFieldIntegrationFieldMapping$outboundSchema.parse(
+      integrationFieldIntegrationFieldMapping,
+    ),
+  );
+}
+
+export function integrationFieldIntegrationFieldMappingFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  IntegrationFieldIntegrationFieldMapping,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      IntegrationFieldIntegrationFieldMapping$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'IntegrationFieldIntegrationFieldMapping' from JSON`,
+  );
+}
+
+/** @internal */
+export const IntegrationFieldIntegrationFieldExistent$inboundSchema: z.ZodType<
+  IntegrationFieldIntegrationFieldExistent,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  fieldName: z.string(),
+  mapToName: z.string().optional(),
+  mapToDisplayName: z.string().optional(),
+});
+
+/** @internal */
+export type IntegrationFieldIntegrationFieldExistent$Outbound = {
+  fieldName: string;
+  mapToName?: string | undefined;
+  mapToDisplayName?: string | undefined;
+};
+
+/** @internal */
+export const IntegrationFieldIntegrationFieldExistent$outboundSchema: z.ZodType<
+  IntegrationFieldIntegrationFieldExistent$Outbound,
+  z.ZodTypeDef,
+  IntegrationFieldIntegrationFieldExistent
+> = z.object({
+  fieldName: z.string(),
+  mapToName: z.string().optional(),
+  mapToDisplayName: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace IntegrationFieldIntegrationFieldExistent$ {
+  /** @deprecated use `IntegrationFieldIntegrationFieldExistent$inboundSchema` instead. */
+  export const inboundSchema =
+    IntegrationFieldIntegrationFieldExistent$inboundSchema;
+  /** @deprecated use `IntegrationFieldIntegrationFieldExistent$outboundSchema` instead. */
+  export const outboundSchema =
+    IntegrationFieldIntegrationFieldExistent$outboundSchema;
+  /** @deprecated use `IntegrationFieldIntegrationFieldExistent$Outbound` instead. */
+  export type Outbound = IntegrationFieldIntegrationFieldExistent$Outbound;
+}
+
+export function integrationFieldIntegrationFieldExistentToJSON(
+  integrationFieldIntegrationFieldExistent:
+    IntegrationFieldIntegrationFieldExistent,
+): string {
+  return JSON.stringify(
+    IntegrationFieldIntegrationFieldExistent$outboundSchema.parse(
+      integrationFieldIntegrationFieldExistent,
+    ),
+  );
+}
+
+export function integrationFieldIntegrationFieldExistentFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  IntegrationFieldIntegrationFieldExistent,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      IntegrationFieldIntegrationFieldExistent$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'IntegrationFieldIntegrationFieldExistent' from JSON`,
+  );
+}
+
+/** @internal */
+export const CreateIntegrationIntegrationField$inboundSchema: z.ZodType<
+  CreateIntegrationIntegrationField,
+  z.ZodTypeDef,
+  unknown
+> = z.union([
+  z.lazy(() => IntegrationFieldIntegrationFieldExistent$inboundSchema),
+  z.lazy(() => IntegrationFieldIntegrationFieldMapping$inboundSchema),
+]);
+
+/** @internal */
+export type CreateIntegrationIntegrationField$Outbound =
+  | IntegrationFieldIntegrationFieldExistent$Outbound
+  | IntegrationFieldIntegrationFieldMapping$Outbound;
+
+/** @internal */
+export const CreateIntegrationIntegrationField$outboundSchema: z.ZodType<
+  CreateIntegrationIntegrationField$Outbound,
+  z.ZodTypeDef,
+  CreateIntegrationIntegrationField
+> = z.union([
+  z.lazy(() => IntegrationFieldIntegrationFieldExistent$outboundSchema),
+  z.lazy(() => IntegrationFieldIntegrationFieldMapping$outboundSchema),
+]);
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace CreateIntegrationIntegrationField$ {
+  /** @deprecated use `CreateIntegrationIntegrationField$inboundSchema` instead. */
+  export const inboundSchema = CreateIntegrationIntegrationField$inboundSchema;
+  /** @deprecated use `CreateIntegrationIntegrationField$outboundSchema` instead. */
+  export const outboundSchema =
+    CreateIntegrationIntegrationField$outboundSchema;
+  /** @deprecated use `CreateIntegrationIntegrationField$Outbound` instead. */
+  export type Outbound = CreateIntegrationIntegrationField$Outbound;
+}
+
+export function createIntegrationIntegrationFieldToJSON(
+  createIntegrationIntegrationField: CreateIntegrationIntegrationField,
+): string {
+  return JSON.stringify(
+    CreateIntegrationIntegrationField$outboundSchema.parse(
+      createIntegrationIntegrationField,
+    ),
+  );
+}
+
+export function createIntegrationIntegrationFieldFromJSON(
+  jsonString: string,
+): SafeParseResult<CreateIntegrationIntegrationField, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CreateIntegrationIntegrationField$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreateIntegrationIntegrationField' from JSON`,
+  );
+}
+
+/** @internal */
+export const OptionalFieldsAutoOption$inboundSchema: z.ZodNativeEnum<
+  typeof OptionalFieldsAutoOption
+> = z.nativeEnum(OptionalFieldsAutoOption);
+
+/** @internal */
+export const OptionalFieldsAutoOption$outboundSchema: z.ZodNativeEnum<
+  typeof OptionalFieldsAutoOption
+> = OptionalFieldsAutoOption$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace OptionalFieldsAutoOption$ {
+  /** @deprecated use `OptionalFieldsAutoOption$inboundSchema` instead. */
+  export const inboundSchema = OptionalFieldsAutoOption$inboundSchema;
+  /** @deprecated use `OptionalFieldsAutoOption$outboundSchema` instead. */
+  export const outboundSchema = OptionalFieldsAutoOption$outboundSchema;
 }
 
 /** @internal */
@@ -786,51 +861,10 @@ export function deliveryFromJSON(
 }
 
 /** @internal */
-export const Objects$inboundSchema: z.ZodType<Objects, z.ZodTypeDef, unknown> =
-  z.object({
-    objectName: z.string(),
-    destination: z.string(),
-    schedule: z.string(),
-    mapToName: z.string().optional(),
-    mapToDisplayName: z.string().optional(),
-    requiredFields: z.array(
-      z.union([
-        z.lazy(() => One$inboundSchema),
-        z.lazy(() => Two$inboundSchema),
-      ]),
-    ).optional(),
-    optionalFields: z.array(
-      z.union([
-        z.lazy(() => OptionalFields1$inboundSchema),
-        z.lazy(() => OptionalFields2$inboundSchema),
-      ]),
-    ).optional(),
-    optionalFieldsAuto: OptionalFieldsAuto$inboundSchema.optional(),
-    backfill: z.lazy(() => Backfill$inboundSchema).optional(),
-    delivery: z.lazy(() => Delivery$inboundSchema).optional(),
-  });
-
-/** @internal */
-export type Objects$Outbound = {
-  objectName: string;
-  destination: string;
-  schedule: string;
-  mapToName?: string | undefined;
-  mapToDisplayName?: string | undefined;
-  requiredFields?: Array<One$Outbound | Two$Outbound> | undefined;
-  optionalFields?:
-    | Array<OptionalFields1$Outbound | OptionalFields2$Outbound>
-    | undefined;
-  optionalFieldsAuto?: string | undefined;
-  backfill?: Backfill$Outbound | undefined;
-  delivery?: Delivery$Outbound | undefined;
-};
-
-/** @internal */
-export const Objects$outboundSchema: z.ZodType<
-  Objects$Outbound,
+export const IntegrationObject$inboundSchema: z.ZodType<
+  IntegrationObject,
   z.ZodTypeDef,
-  Objects
+  unknown
 > = z.object({
   objectName: z.string(),
   destination: z.string(),
@@ -839,17 +873,68 @@ export const Objects$outboundSchema: z.ZodType<
   mapToDisplayName: z.string().optional(),
   requiredFields: z.array(
     z.union([
-      z.lazy(() => One$outboundSchema),
-      z.lazy(() => Two$outboundSchema),
+      z.lazy(() => IntegrationFieldExistent$inboundSchema),
+      z.lazy(() => IntegrationFieldMapping$inboundSchema),
     ]),
   ).optional(),
   optionalFields: z.array(
     z.union([
-      z.lazy(() => OptionalFields1$outboundSchema),
-      z.lazy(() => OptionalFields2$outboundSchema),
+      z.lazy(() => IntegrationFieldIntegrationFieldExistent$inboundSchema),
+      z.lazy(() => IntegrationFieldIntegrationFieldMapping$inboundSchema),
     ]),
   ).optional(),
-  optionalFieldsAuto: OptionalFieldsAuto$outboundSchema.optional(),
+  optionalFieldsAuto: OptionalFieldsAutoOption$inboundSchema.optional(),
+  backfill: z.lazy(() => Backfill$inboundSchema).optional(),
+  delivery: z.lazy(() => Delivery$inboundSchema).optional(),
+});
+
+/** @internal */
+export type IntegrationObject$Outbound = {
+  objectName: string;
+  destination: string;
+  schedule: string;
+  mapToName?: string | undefined;
+  mapToDisplayName?: string | undefined;
+  requiredFields?:
+    | Array<
+      IntegrationFieldExistent$Outbound | IntegrationFieldMapping$Outbound
+    >
+    | undefined;
+  optionalFields?:
+    | Array<
+      | IntegrationFieldIntegrationFieldExistent$Outbound
+      | IntegrationFieldIntegrationFieldMapping$Outbound
+    >
+    | undefined;
+  optionalFieldsAuto?: string | undefined;
+  backfill?: Backfill$Outbound | undefined;
+  delivery?: Delivery$Outbound | undefined;
+};
+
+/** @internal */
+export const IntegrationObject$outboundSchema: z.ZodType<
+  IntegrationObject$Outbound,
+  z.ZodTypeDef,
+  IntegrationObject
+> = z.object({
+  objectName: z.string(),
+  destination: z.string(),
+  schedule: z.string(),
+  mapToName: z.string().optional(),
+  mapToDisplayName: z.string().optional(),
+  requiredFields: z.array(
+    z.union([
+      z.lazy(() => IntegrationFieldExistent$outboundSchema),
+      z.lazy(() => IntegrationFieldMapping$outboundSchema),
+    ]),
+  ).optional(),
+  optionalFields: z.array(
+    z.union([
+      z.lazy(() => IntegrationFieldIntegrationFieldExistent$outboundSchema),
+      z.lazy(() => IntegrationFieldIntegrationFieldMapping$outboundSchema),
+    ]),
+  ).optional(),
+  optionalFieldsAuto: OptionalFieldsAutoOption$outboundSchema.optional(),
   backfill: z.lazy(() => Backfill$outboundSchema).optional(),
   delivery: z.lazy(() => Delivery$outboundSchema).optional(),
 });
@@ -858,70 +943,82 @@ export const Objects$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace Objects$ {
-  /** @deprecated use `Objects$inboundSchema` instead. */
-  export const inboundSchema = Objects$inboundSchema;
-  /** @deprecated use `Objects$outboundSchema` instead. */
-  export const outboundSchema = Objects$outboundSchema;
-  /** @deprecated use `Objects$Outbound` instead. */
-  export type Outbound = Objects$Outbound;
+export namespace IntegrationObject$ {
+  /** @deprecated use `IntegrationObject$inboundSchema` instead. */
+  export const inboundSchema = IntegrationObject$inboundSchema;
+  /** @deprecated use `IntegrationObject$outboundSchema` instead. */
+  export const outboundSchema = IntegrationObject$outboundSchema;
+  /** @deprecated use `IntegrationObject$Outbound` instead. */
+  export type Outbound = IntegrationObject$Outbound;
 }
 
-export function objectsToJSON(objects: Objects): string {
-  return JSON.stringify(Objects$outboundSchema.parse(objects));
+export function integrationObjectToJSON(
+  integrationObject: IntegrationObject,
+): string {
+  return JSON.stringify(
+    IntegrationObject$outboundSchema.parse(integrationObject),
+  );
 }
 
-export function objectsFromJSON(
+export function integrationObjectFromJSON(
   jsonString: string,
-): SafeParseResult<Objects, SDKValidationError> {
+): SafeParseResult<IntegrationObject, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => Objects$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Objects' from JSON`,
+    (x) => IntegrationObject$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'IntegrationObject' from JSON`,
   );
 }
 
 /** @internal */
-export const Read$inboundSchema: z.ZodType<Read, z.ZodTypeDef, unknown> = z
-  .object({
-    objects: z.array(z.lazy(() => Objects$inboundSchema)).optional(),
-  });
+export const ReadIntegration$inboundSchema: z.ZodType<
+  ReadIntegration,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  objects: z.array(z.lazy(() => IntegrationObject$inboundSchema)).optional(),
+});
 
 /** @internal */
-export type Read$Outbound = {
-  objects?: Array<Objects$Outbound> | undefined;
+export type ReadIntegration$Outbound = {
+  objects?: Array<IntegrationObject$Outbound> | undefined;
 };
 
 /** @internal */
-export const Read$outboundSchema: z.ZodType<Read$Outbound, z.ZodTypeDef, Read> =
-  z.object({
-    objects: z.array(z.lazy(() => Objects$outboundSchema)).optional(),
-  });
+export const ReadIntegration$outboundSchema: z.ZodType<
+  ReadIntegration$Outbound,
+  z.ZodTypeDef,
+  ReadIntegration
+> = z.object({
+  objects: z.array(z.lazy(() => IntegrationObject$outboundSchema)).optional(),
+});
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace Read$ {
-  /** @deprecated use `Read$inboundSchema` instead. */
-  export const inboundSchema = Read$inboundSchema;
-  /** @deprecated use `Read$outboundSchema` instead. */
-  export const outboundSchema = Read$outboundSchema;
-  /** @deprecated use `Read$Outbound` instead. */
-  export type Outbound = Read$Outbound;
+export namespace ReadIntegration$ {
+  /** @deprecated use `ReadIntegration$inboundSchema` instead. */
+  export const inboundSchema = ReadIntegration$inboundSchema;
+  /** @deprecated use `ReadIntegration$outboundSchema` instead. */
+  export const outboundSchema = ReadIntegration$outboundSchema;
+  /** @deprecated use `ReadIntegration$Outbound` instead. */
+  export type Outbound = ReadIntegration$Outbound;
 }
 
-export function readToJSON(read: Read): string {
-  return JSON.stringify(Read$outboundSchema.parse(read));
+export function readIntegrationToJSON(
+  readIntegration: ReadIntegration,
+): string {
+  return JSON.stringify(ReadIntegration$outboundSchema.parse(readIntegration));
 }
 
-export function readFromJSON(
+export function readIntegrationFromJSON(
   jsonString: string,
-): SafeParseResult<Read, SDKValidationError> {
+): SafeParseResult<ReadIntegration, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => Read$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Read' from JSON`,
+    (x) => ReadIntegration$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ReadIntegration' from JSON`,
   );
 }
 
@@ -976,8 +1073,8 @@ export function valueDefaultsFromJSON(
 }
 
 /** @internal */
-export const CreateIntegrationObjects$inboundSchema: z.ZodType<
-  CreateIntegrationObjects,
+export const IntegrationWriteObject$inboundSchema: z.ZodType<
+  IntegrationWriteObject,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -987,17 +1084,17 @@ export const CreateIntegrationObjects$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type CreateIntegrationObjects$Outbound = {
+export type IntegrationWriteObject$Outbound = {
   objectName: string;
   inheritMapping?: boolean | undefined;
   valueDefaults?: ValueDefaults$Outbound | undefined;
 };
 
 /** @internal */
-export const CreateIntegrationObjects$outboundSchema: z.ZodType<
-  CreateIntegrationObjects$Outbound,
+export const IntegrationWriteObject$outboundSchema: z.ZodType<
+  IntegrationWriteObject$Outbound,
   z.ZodTypeDef,
-  CreateIntegrationObjects
+  IntegrationWriteObject
 > = z.object({
   objectName: z.string(),
   inheritMapping: z.boolean().optional(),
@@ -1008,52 +1105,55 @@ export const CreateIntegrationObjects$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace CreateIntegrationObjects$ {
-  /** @deprecated use `CreateIntegrationObjects$inboundSchema` instead. */
-  export const inboundSchema = CreateIntegrationObjects$inboundSchema;
-  /** @deprecated use `CreateIntegrationObjects$outboundSchema` instead. */
-  export const outboundSchema = CreateIntegrationObjects$outboundSchema;
-  /** @deprecated use `CreateIntegrationObjects$Outbound` instead. */
-  export type Outbound = CreateIntegrationObjects$Outbound;
+export namespace IntegrationWriteObject$ {
+  /** @deprecated use `IntegrationWriteObject$inboundSchema` instead. */
+  export const inboundSchema = IntegrationWriteObject$inboundSchema;
+  /** @deprecated use `IntegrationWriteObject$outboundSchema` instead. */
+  export const outboundSchema = IntegrationWriteObject$outboundSchema;
+  /** @deprecated use `IntegrationWriteObject$Outbound` instead. */
+  export type Outbound = IntegrationWriteObject$Outbound;
 }
 
-export function createIntegrationObjectsToJSON(
-  createIntegrationObjects: CreateIntegrationObjects,
+export function integrationWriteObjectToJSON(
+  integrationWriteObject: IntegrationWriteObject,
 ): string {
   return JSON.stringify(
-    CreateIntegrationObjects$outboundSchema.parse(createIntegrationObjects),
+    IntegrationWriteObject$outboundSchema.parse(integrationWriteObject),
   );
 }
 
-export function createIntegrationObjectsFromJSON(
+export function integrationWriteObjectFromJSON(
   jsonString: string,
-): SafeParseResult<CreateIntegrationObjects, SDKValidationError> {
+): SafeParseResult<IntegrationWriteObject, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => CreateIntegrationObjects$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreateIntegrationObjects' from JSON`,
+    (x) => IntegrationWriteObject$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'IntegrationWriteObject' from JSON`,
   );
 }
 
 /** @internal */
-export const Write$inboundSchema: z.ZodType<Write, z.ZodTypeDef, unknown> = z
-  .object({
-    objects: z.array(z.lazy(() => CreateIntegrationObjects$inboundSchema))
-      .optional(),
-  });
+export const WriteIntegration$inboundSchema: z.ZodType<
+  WriteIntegration,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  objects: z.array(z.lazy(() => IntegrationWriteObject$inboundSchema))
+    .optional(),
+});
 
 /** @internal */
-export type Write$Outbound = {
-  objects?: Array<CreateIntegrationObjects$Outbound> | undefined;
+export type WriteIntegration$Outbound = {
+  objects?: Array<IntegrationWriteObject$Outbound> | undefined;
 };
 
 /** @internal */
-export const Write$outboundSchema: z.ZodType<
-  Write$Outbound,
+export const WriteIntegration$outboundSchema: z.ZodType<
+  WriteIntegration$Outbound,
   z.ZodTypeDef,
-  Write
+  WriteIntegration
 > = z.object({
-  objects: z.array(z.lazy(() => CreateIntegrationObjects$outboundSchema))
+  objects: z.array(z.lazy(() => IntegrationWriteObject$outboundSchema))
     .optional(),
 });
 
@@ -1061,45 +1161,52 @@ export const Write$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace Write$ {
-  /** @deprecated use `Write$inboundSchema` instead. */
-  export const inboundSchema = Write$inboundSchema;
-  /** @deprecated use `Write$outboundSchema` instead. */
-  export const outboundSchema = Write$outboundSchema;
-  /** @deprecated use `Write$Outbound` instead. */
-  export type Outbound = Write$Outbound;
+export namespace WriteIntegration$ {
+  /** @deprecated use `WriteIntegration$inboundSchema` instead. */
+  export const inboundSchema = WriteIntegration$inboundSchema;
+  /** @deprecated use `WriteIntegration$outboundSchema` instead. */
+  export const outboundSchema = WriteIntegration$outboundSchema;
+  /** @deprecated use `WriteIntegration$Outbound` instead. */
+  export type Outbound = WriteIntegration$Outbound;
 }
 
-export function writeToJSON(write: Write): string {
-  return JSON.stringify(Write$outboundSchema.parse(write));
+export function writeIntegrationToJSON(
+  writeIntegration: WriteIntegration,
+): string {
+  return JSON.stringify(
+    WriteIntegration$outboundSchema.parse(writeIntegration),
+  );
 }
 
-export function writeFromJSON(
+export function writeIntegrationFromJSON(
   jsonString: string,
-): SafeParseResult<Write, SDKValidationError> {
+): SafeParseResult<WriteIntegration, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => Write$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Write' from JSON`,
+    (x) => WriteIntegration$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'WriteIntegration' from JSON`,
   );
 }
 
 /** @internal */
-export const Proxy$inboundSchema: z.ZodType<Proxy, z.ZodTypeDef, unknown> = z
-  .object({
-    enabled: z.boolean().optional(),
-  });
+export const ProxyIntegration$inboundSchema: z.ZodType<
+  ProxyIntegration,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  enabled: z.boolean().optional(),
+});
 
 /** @internal */
-export type Proxy$Outbound = {
+export type ProxyIntegration$Outbound = {
   enabled?: boolean | undefined;
 };
 
 /** @internal */
-export const Proxy$outboundSchema: z.ZodType<
-  Proxy$Outbound,
+export const ProxyIntegration$outboundSchema: z.ZodType<
+  ProxyIntegration$Outbound,
   z.ZodTypeDef,
-  Proxy
+  ProxyIntegration
 > = z.object({
   enabled: z.boolean().optional(),
 });
@@ -1108,88 +1215,95 @@ export const Proxy$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace Proxy$ {
-  /** @deprecated use `Proxy$inboundSchema` instead. */
-  export const inboundSchema = Proxy$inboundSchema;
-  /** @deprecated use `Proxy$outboundSchema` instead. */
-  export const outboundSchema = Proxy$outboundSchema;
-  /** @deprecated use `Proxy$Outbound` instead. */
-  export type Outbound = Proxy$Outbound;
+export namespace ProxyIntegration$ {
+  /** @deprecated use `ProxyIntegration$inboundSchema` instead. */
+  export const inboundSchema = ProxyIntegration$inboundSchema;
+  /** @deprecated use `ProxyIntegration$outboundSchema` instead. */
+  export const outboundSchema = ProxyIntegration$outboundSchema;
+  /** @deprecated use `ProxyIntegration$Outbound` instead. */
+  export type Outbound = ProxyIntegration$Outbound;
 }
 
-export function proxyToJSON(proxy: Proxy): string {
-  return JSON.stringify(Proxy$outboundSchema.parse(proxy));
+export function proxyIntegrationToJSON(
+  proxyIntegration: ProxyIntegration,
+): string {
+  return JSON.stringify(
+    ProxyIntegration$outboundSchema.parse(proxyIntegration),
+  );
 }
 
-export function proxyFromJSON(
+export function proxyIntegrationFromJSON(
   jsonString: string,
-): SafeParseResult<Proxy, SDKValidationError> {
+): SafeParseResult<ProxyIntegration, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => Proxy$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Proxy' from JSON`,
+    (x) => ProxyIntegration$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ProxyIntegration' from JSON`,
   );
 }
 
 /** @internal */
-export const Content$inboundSchema: z.ZodType<Content, z.ZodTypeDef, unknown> =
-  z.object({
-    name: z.string(),
-    displayName: z.string().optional(),
-    provider: z.string(),
-    read: z.lazy(() => Read$inboundSchema).optional(),
-    write: z.lazy(() => Write$inboundSchema).optional(),
-    proxy: z.lazy(() => Proxy$inboundSchema).optional(),
-  });
-
-/** @internal */
-export type Content$Outbound = {
-  name: string;
-  displayName?: string | undefined;
-  provider: string;
-  read?: Read$Outbound | undefined;
-  write?: Write$Outbound | undefined;
-  proxy?: Proxy$Outbound | undefined;
-};
-
-/** @internal */
-export const Content$outboundSchema: z.ZodType<
-  Content$Outbound,
+export const Integration$inboundSchema: z.ZodType<
+  Integration,
   z.ZodTypeDef,
-  Content
+  unknown
 > = z.object({
   name: z.string(),
   displayName: z.string().optional(),
   provider: z.string(),
-  read: z.lazy(() => Read$outboundSchema).optional(),
-  write: z.lazy(() => Write$outboundSchema).optional(),
-  proxy: z.lazy(() => Proxy$outboundSchema).optional(),
+  read: z.lazy(() => ReadIntegration$inboundSchema).optional(),
+  write: z.lazy(() => WriteIntegration$inboundSchema).optional(),
+  proxy: z.lazy(() => ProxyIntegration$inboundSchema).optional(),
+});
+
+/** @internal */
+export type Integration$Outbound = {
+  name: string;
+  displayName?: string | undefined;
+  provider: string;
+  read?: ReadIntegration$Outbound | undefined;
+  write?: WriteIntegration$Outbound | undefined;
+  proxy?: ProxyIntegration$Outbound | undefined;
+};
+
+/** @internal */
+export const Integration$outboundSchema: z.ZodType<
+  Integration$Outbound,
+  z.ZodTypeDef,
+  Integration
+> = z.object({
+  name: z.string(),
+  displayName: z.string().optional(),
+  provider: z.string(),
+  read: z.lazy(() => ReadIntegration$outboundSchema).optional(),
+  write: z.lazy(() => WriteIntegration$outboundSchema).optional(),
+  proxy: z.lazy(() => ProxyIntegration$outboundSchema).optional(),
 });
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace Content$ {
-  /** @deprecated use `Content$inboundSchema` instead. */
-  export const inboundSchema = Content$inboundSchema;
-  /** @deprecated use `Content$outboundSchema` instead. */
-  export const outboundSchema = Content$outboundSchema;
-  /** @deprecated use `Content$Outbound` instead. */
-  export type Outbound = Content$Outbound;
+export namespace Integration$ {
+  /** @deprecated use `Integration$inboundSchema` instead. */
+  export const inboundSchema = Integration$inboundSchema;
+  /** @deprecated use `Integration$outboundSchema` instead. */
+  export const outboundSchema = Integration$outboundSchema;
+  /** @deprecated use `Integration$Outbound` instead. */
+  export type Outbound = Integration$Outbound;
 }
 
-export function contentToJSON(content: Content): string {
-  return JSON.stringify(Content$outboundSchema.parse(content));
+export function integrationToJSON(integration: Integration): string {
+  return JSON.stringify(Integration$outboundSchema.parse(integration));
 }
 
-export function contentFromJSON(
+export function integrationFromJSON(
   jsonString: string,
-): SafeParseResult<Content, SDKValidationError> {
+): SafeParseResult<Integration, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => Content$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Content' from JSON`,
+    (x) => Integration$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Integration' from JSON`,
   );
 }
 
@@ -1200,13 +1314,13 @@ export const LatestRevision$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   specVersion: z.string(),
-  content: z.lazy(() => Content$inboundSchema),
+  content: z.lazy(() => Integration$inboundSchema),
 });
 
 /** @internal */
 export type LatestRevision$Outbound = {
   specVersion: string;
-  content: Content$Outbound;
+  content: Integration$Outbound;
 };
 
 /** @internal */
@@ -1216,7 +1330,7 @@ export const LatestRevision$outboundSchema: z.ZodType<
   LatestRevision
 > = z.object({
   specVersion: z.string(),
-  content: z.lazy(() => Content$outboundSchema),
+  content: z.lazy(() => Integration$outboundSchema),
 });
 
 /**
@@ -1374,8 +1488,8 @@ export function createIntegrationRequestFromJSON(
 }
 
 /** @internal */
-export const CreateIntegrationResponseBody$inboundSchema: z.ZodType<
-  CreateIntegrationResponseBody,
+export const CreateIntegrationAPIProblem$inboundSchema: z.ZodType<
+  CreateIntegrationAPIProblem,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -1401,7 +1515,7 @@ export const CreateIntegrationResponseBody$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type CreateIntegrationResponseBody$Outbound = {
+export type CreateIntegrationAPIProblem$Outbound = {
   type: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -1422,10 +1536,10 @@ export type CreateIntegrationResponseBody$Outbound = {
 };
 
 /** @internal */
-export const CreateIntegrationResponseBody$outboundSchema: z.ZodType<
-  CreateIntegrationResponseBody$Outbound,
+export const CreateIntegrationAPIProblem$outboundSchema: z.ZodType<
+  CreateIntegrationAPIProblem$Outbound,
   z.ZodTypeDef,
-  CreateIntegrationResponseBody
+  CreateIntegrationAPIProblem
 > = z.object({
   type: z.string().default("about:blank"),
   href: z.string().optional(),
@@ -1450,31 +1564,31 @@ export const CreateIntegrationResponseBody$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace CreateIntegrationResponseBody$ {
-  /** @deprecated use `CreateIntegrationResponseBody$inboundSchema` instead. */
-  export const inboundSchema = CreateIntegrationResponseBody$inboundSchema;
-  /** @deprecated use `CreateIntegrationResponseBody$outboundSchema` instead. */
-  export const outboundSchema = CreateIntegrationResponseBody$outboundSchema;
-  /** @deprecated use `CreateIntegrationResponseBody$Outbound` instead. */
-  export type Outbound = CreateIntegrationResponseBody$Outbound;
+export namespace CreateIntegrationAPIProblem$ {
+  /** @deprecated use `CreateIntegrationAPIProblem$inboundSchema` instead. */
+  export const inboundSchema = CreateIntegrationAPIProblem$inboundSchema;
+  /** @deprecated use `CreateIntegrationAPIProblem$outboundSchema` instead. */
+  export const outboundSchema = CreateIntegrationAPIProblem$outboundSchema;
+  /** @deprecated use `CreateIntegrationAPIProblem$Outbound` instead. */
+  export type Outbound = CreateIntegrationAPIProblem$Outbound;
 }
 
-export function createIntegrationResponseBodyToJSON(
-  createIntegrationResponseBody: CreateIntegrationResponseBody,
+export function createIntegrationAPIProblemToJSON(
+  createIntegrationAPIProblem: CreateIntegrationAPIProblem,
 ): string {
   return JSON.stringify(
-    CreateIntegrationResponseBody$outboundSchema.parse(
-      createIntegrationResponseBody,
+    CreateIntegrationAPIProblem$outboundSchema.parse(
+      createIntegrationAPIProblem,
     ),
   );
 }
 
-export function createIntegrationResponseBodyFromJSON(
+export function createIntegrationAPIProblemFromJSON(
   jsonString: string,
-): SafeParseResult<CreateIntegrationResponseBody, SDKValidationError> {
+): SafeParseResult<CreateIntegrationAPIProblem, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => CreateIntegrationResponseBody$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreateIntegrationResponseBody' from JSON`,
+    (x) => CreateIntegrationAPIProblem$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreateIntegrationAPIProblem' from JSON`,
   );
 }

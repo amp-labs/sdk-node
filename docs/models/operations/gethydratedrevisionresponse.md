@@ -3,10 +3,10 @@
 
 ## Supported Types
 
-### `operations.GetHydratedRevisionResponseBody`
+### `operations.GetHydratedRevisionHydratedRevision`
 
 ```typescript
-const value: operations.GetHydratedRevisionResponseBody = {
+const value: operations.GetHydratedRevisionHydratedRevision = {
   id: "revision-id-1",
   specVersion: "1.0.0",
   createTime: new Date("2025-03-21T13:08:38.807Z"),
@@ -78,10 +78,10 @@ const value: operations.GetHydratedRevisionResponseBody = {
 };
 ```
 
-### `operations.GetHydratedRevisionRevisionsResponseBody`
+### `operations.GetHydratedRevisionAPIProblem`
 
 ```typescript
-const value: operations.GetHydratedRevisionRevisionsResponseBody = {
+const value: operations.GetHydratedRevisionAPIProblem = {
   href:
     "https://www.belgif.be/specification/rest/api-guide/#standardized-problem-types",
   title: "Description of the type of problem that occurred",

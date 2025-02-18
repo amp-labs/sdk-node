@@ -3,10 +3,10 @@
 
 ## Supported Types
 
-### `operations.BatchUpsertIntegrationsIntegrationsResponseBody[]`
+### `operations.BatchUpsertIntegrationsIntegration[]`
 
 ```typescript
-const value: operations.BatchUpsertIntegrationsIntegrationsResponseBody[] = [
+const value: operations.BatchUpsertIntegrationsIntegration[] = [
   {
     id: "integration-123",
     projectId: "project-456",
@@ -68,10 +68,10 @@ const value: operations.BatchUpsertIntegrationsIntegrationsResponseBody[] = [
 ];
 ```
 
-### `operations.BatchUpsertIntegrationsResponseBody`
+### `operations.BatchUpsertIntegrationsAPIProblem`
 
 ```typescript
-const value: operations.BatchUpsertIntegrationsResponseBody = {
+const value: operations.BatchUpsertIntegrationsAPIProblem = {
   href:
     "https://www.belgif.be/specification/rest/api-guide/#standardized-problem-types",
   title: "Description of the type of problem that occurred",

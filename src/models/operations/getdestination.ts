@@ -26,7 +26,7 @@ export type GetDestinationRequest = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export type GetDestinationDestinationsResponseBody = {
+export type GetDestinationAPIProblem = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -114,7 +114,7 @@ export type GetDestinationMetadata = {
 /**
  * OK
  */
-export type GetDestinationResponseBody = {
+export type GetDestinationDestination = {
   /**
    * The destination ID.
    */
@@ -139,8 +139,8 @@ export type GetDestinationResponseBody = {
 };
 
 export type GetDestinationResponse =
-  | GetDestinationResponseBody
-  | GetDestinationDestinationsResponseBody;
+  | GetDestinationDestination
+  | GetDestinationAPIProblem;
 
 /** @internal */
 export const GetDestinationRequest$inboundSchema: z.ZodType<
@@ -200,8 +200,8 @@ export function getDestinationRequestFromJSON(
 }
 
 /** @internal */
-export const GetDestinationDestinationsResponseBody$inboundSchema: z.ZodType<
-  GetDestinationDestinationsResponseBody,
+export const GetDestinationAPIProblem$inboundSchema: z.ZodType<
+  GetDestinationAPIProblem,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -227,7 +227,7 @@ export const GetDestinationDestinationsResponseBody$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type GetDestinationDestinationsResponseBody$Outbound = {
+export type GetDestinationAPIProblem$Outbound = {
   type: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -248,10 +248,10 @@ export type GetDestinationDestinationsResponseBody$Outbound = {
 };
 
 /** @internal */
-export const GetDestinationDestinationsResponseBody$outboundSchema: z.ZodType<
-  GetDestinationDestinationsResponseBody$Outbound,
+export const GetDestinationAPIProblem$outboundSchema: z.ZodType<
+  GetDestinationAPIProblem$Outbound,
   z.ZodTypeDef,
-  GetDestinationDestinationsResponseBody
+  GetDestinationAPIProblem
 > = z.object({
   type: z.string().default("about:blank"),
   href: z.string().optional(),
@@ -276,36 +276,30 @@ export const GetDestinationDestinationsResponseBody$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace GetDestinationDestinationsResponseBody$ {
-  /** @deprecated use `GetDestinationDestinationsResponseBody$inboundSchema` instead. */
-  export const inboundSchema =
-    GetDestinationDestinationsResponseBody$inboundSchema;
-  /** @deprecated use `GetDestinationDestinationsResponseBody$outboundSchema` instead. */
-  export const outboundSchema =
-    GetDestinationDestinationsResponseBody$outboundSchema;
-  /** @deprecated use `GetDestinationDestinationsResponseBody$Outbound` instead. */
-  export type Outbound = GetDestinationDestinationsResponseBody$Outbound;
+export namespace GetDestinationAPIProblem$ {
+  /** @deprecated use `GetDestinationAPIProblem$inboundSchema` instead. */
+  export const inboundSchema = GetDestinationAPIProblem$inboundSchema;
+  /** @deprecated use `GetDestinationAPIProblem$outboundSchema` instead. */
+  export const outboundSchema = GetDestinationAPIProblem$outboundSchema;
+  /** @deprecated use `GetDestinationAPIProblem$Outbound` instead. */
+  export type Outbound = GetDestinationAPIProblem$Outbound;
 }
 
-export function getDestinationDestinationsResponseBodyToJSON(
-  getDestinationDestinationsResponseBody:
-    GetDestinationDestinationsResponseBody,
+export function getDestinationAPIProblemToJSON(
+  getDestinationAPIProblem: GetDestinationAPIProblem,
 ): string {
   return JSON.stringify(
-    GetDestinationDestinationsResponseBody$outboundSchema.parse(
-      getDestinationDestinationsResponseBody,
-    ),
+    GetDestinationAPIProblem$outboundSchema.parse(getDestinationAPIProblem),
   );
 }
 
-export function getDestinationDestinationsResponseBodyFromJSON(
+export function getDestinationAPIProblemFromJSON(
   jsonString: string,
-): SafeParseResult<GetDestinationDestinationsResponseBody, SDKValidationError> {
+): SafeParseResult<GetDestinationAPIProblem, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) =>
-      GetDestinationDestinationsResponseBody$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetDestinationDestinationsResponseBody' from JSON`,
+    (x) => GetDestinationAPIProblem$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetDestinationAPIProblem' from JSON`,
   );
 }
 
@@ -367,8 +361,8 @@ export function getDestinationMetadataFromJSON(
 }
 
 /** @internal */
-export const GetDestinationResponseBody$inboundSchema: z.ZodType<
-  GetDestinationResponseBody,
+export const GetDestinationDestination$inboundSchema: z.ZodType<
+  GetDestinationDestination,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -382,7 +376,7 @@ export const GetDestinationResponseBody$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type GetDestinationResponseBody$Outbound = {
+export type GetDestinationDestination$Outbound = {
   id: string;
   name: string;
   type: string;
@@ -392,10 +386,10 @@ export type GetDestinationResponseBody$Outbound = {
 };
 
 /** @internal */
-export const GetDestinationResponseBody$outboundSchema: z.ZodType<
-  GetDestinationResponseBody$Outbound,
+export const GetDestinationDestination$outboundSchema: z.ZodType<
+  GetDestinationDestination$Outbound,
   z.ZodTypeDef,
-  GetDestinationResponseBody
+  GetDestinationDestination
 > = z.object({
   id: z.string(),
   name: z.string(),
@@ -409,30 +403,30 @@ export const GetDestinationResponseBody$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace GetDestinationResponseBody$ {
-  /** @deprecated use `GetDestinationResponseBody$inboundSchema` instead. */
-  export const inboundSchema = GetDestinationResponseBody$inboundSchema;
-  /** @deprecated use `GetDestinationResponseBody$outboundSchema` instead. */
-  export const outboundSchema = GetDestinationResponseBody$outboundSchema;
-  /** @deprecated use `GetDestinationResponseBody$Outbound` instead. */
-  export type Outbound = GetDestinationResponseBody$Outbound;
+export namespace GetDestinationDestination$ {
+  /** @deprecated use `GetDestinationDestination$inboundSchema` instead. */
+  export const inboundSchema = GetDestinationDestination$inboundSchema;
+  /** @deprecated use `GetDestinationDestination$outboundSchema` instead. */
+  export const outboundSchema = GetDestinationDestination$outboundSchema;
+  /** @deprecated use `GetDestinationDestination$Outbound` instead. */
+  export type Outbound = GetDestinationDestination$Outbound;
 }
 
-export function getDestinationResponseBodyToJSON(
-  getDestinationResponseBody: GetDestinationResponseBody,
+export function getDestinationDestinationToJSON(
+  getDestinationDestination: GetDestinationDestination,
 ): string {
   return JSON.stringify(
-    GetDestinationResponseBody$outboundSchema.parse(getDestinationResponseBody),
+    GetDestinationDestination$outboundSchema.parse(getDestinationDestination),
   );
 }
 
-export function getDestinationResponseBodyFromJSON(
+export function getDestinationDestinationFromJSON(
   jsonString: string,
-): SafeParseResult<GetDestinationResponseBody, SDKValidationError> {
+): SafeParseResult<GetDestinationDestination, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => GetDestinationResponseBody$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetDestinationResponseBody' from JSON`,
+    (x) => GetDestinationDestination$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetDestinationDestination' from JSON`,
   );
 }
 
@@ -442,14 +436,14 @@ export const GetDestinationResponse$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.union([
-  z.lazy(() => GetDestinationResponseBody$inboundSchema),
-  z.lazy(() => GetDestinationDestinationsResponseBody$inboundSchema),
+  z.lazy(() => GetDestinationDestination$inboundSchema),
+  z.lazy(() => GetDestinationAPIProblem$inboundSchema),
 ]);
 
 /** @internal */
 export type GetDestinationResponse$Outbound =
-  | GetDestinationResponseBody$Outbound
-  | GetDestinationDestinationsResponseBody$Outbound;
+  | GetDestinationDestination$Outbound
+  | GetDestinationAPIProblem$Outbound;
 
 /** @internal */
 export const GetDestinationResponse$outboundSchema: z.ZodType<
@@ -457,8 +451,8 @@ export const GetDestinationResponse$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   GetDestinationResponse
 > = z.union([
-  z.lazy(() => GetDestinationResponseBody$outboundSchema),
-  z.lazy(() => GetDestinationDestinationsResponseBody$outboundSchema),
+  z.lazy(() => GetDestinationDestination$outboundSchema),
+  z.lazy(() => GetDestinationAPIProblem$outboundSchema),
 ]);
 
 /**

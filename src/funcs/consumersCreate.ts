@@ -34,8 +34,8 @@ export function consumersCreate(
   options?: RequestOptions,
 ): APIPromise<
   Result<
-    operations.CreateConsumerResponseBody | undefined,
-    | errors.CreateConsumerResponseBody
+    operations.CreateConsumerAPIProblem | undefined,
+    | errors.CreateConsumerInputValidationProblem
     | APIError
     | SDKValidationError
     | UnexpectedClientError
@@ -59,8 +59,8 @@ async function $do(
 ): Promise<
   [
     Result<
-      operations.CreateConsumerResponseBody | undefined,
-      | errors.CreateConsumerResponseBody
+      operations.CreateConsumerAPIProblem | undefined,
+      | errors.CreateConsumerInputValidationProblem
       | APIError
       | SDKValidationError
       | UnexpectedClientError
@@ -158,8 +158,8 @@ async function $do(
   };
 
   const [result] = await M.match<
-    operations.CreateConsumerResponseBody | undefined,
-    | errors.CreateConsumerResponseBody
+    operations.CreateConsumerAPIProblem | undefined,
+    | errors.CreateConsumerInputValidationProblem
     | APIError
     | SDKValidationError
     | UnexpectedClientError
@@ -168,15 +168,15 @@ async function $do(
     | RequestTimeoutError
     | ConnectionError
   >(
-    M.nil(201, operations.CreateConsumerResponseBody$inboundSchema.optional()),
-    M.jsonErr(422, errors.CreateConsumerResponseBody$inboundSchema, {
+    M.nil(201, operations.CreateConsumerAPIProblem$inboundSchema.optional()),
+    M.jsonErr(422, errors.CreateConsumerInputValidationProblem$inboundSchema, {
       ctype: "application/problem+json",
     }),
     M.fail("4XX"),
     M.fail("5XX"),
     M.json(
       "default",
-      operations.CreateConsumerResponseBody$inboundSchema.optional(),
+      operations.CreateConsumerAPIProblem$inboundSchema.optional(),
       { ctype: "application/problem+json" },
     ),
   )(response, { extraFields: responseFields });
