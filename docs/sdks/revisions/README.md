@@ -81,15 +81,15 @@ run();
 
 ### Response
 
-**Promise\<[operations.CreateRevisionResponseBody](../../models/operations/createrevisionresponsebody.md)\>**
+**Promise\<[operations.CreateRevisionAPIProblem](../../models/operations/createrevisionapiproblem.md)\>**
 
 ### Errors
 
-| Error Type                                 | Status Code                                | Content Type                               |
-| ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
-| errors.CreateRevisionResponseBody          | 400                                        | application/problem+json                   |
-| errors.CreateRevisionRevisionsResponseBody | 422                                        | application/problem+json                   |
-| errors.APIError                            | 4XX, 5XX                                   | \*/\*                                      |
+| Error Type                                           | Status Code                                          | Content Type                                         |
+| ---------------------------------------------------- | ---------------------------------------------------- | ---------------------------------------------------- |
+| errors.CreateRevisionInputValidationProblem          | 400                                                  | application/problem+json                             |
+| errors.CreateRevisionRevisionsInputValidationProblem | 422                                                  | application/problem+json                             |
+| errors.APIError                                      | 4XX, 5XX                                             | \*/\*                                                |
 
 ## hydrate
 
@@ -170,8 +170,8 @@ run();
 
 ### Errors
 
-| Error Type                                      | Status Code                                     | Content Type                                    |
-| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| errors.GetHydratedRevisionResponseBody          | 400                                             | application/problem+json                        |
-| errors.GetHydratedRevisionRevisionsResponseBody | 422                                             | application/problem+json                        |
-| errors.APIError                                 | 4XX, 5XX                                        | \*/\*                                           |
+| Error Type                                                | Status Code                                               | Content Type                                              |
+| --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- |
+| errors.GetHydratedRevisionInputValidationProblem          | 400                                                       | application/problem+json                                  |
+| errors.GetHydratedRevisionRevisionsInputValidationProblem | 422                                                       | application/problem+json                                  |
+| errors.APIError                                           | 4XX, 5XX                                                  | \*/\*                                                     |

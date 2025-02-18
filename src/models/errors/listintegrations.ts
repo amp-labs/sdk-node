@@ -27,7 +27,7 @@ export type ListIntegrationsIn = ClosedEnum<typeof ListIntegrationsIn>;
  *
  * @remarks
  */
-export type ListIntegrationsIssues = {
+export type ListIntegrationsInputValidationIssue = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -120,7 +120,7 @@ export type ListIntegrationsIssues = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export type ListIntegrationsResponseBodyData = {
+export type ListIntegrationsInputValidationProblemData = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -192,7 +192,7 @@ export type ListIntegrationsResponseBodyData = {
    * Additional context for the problem
    */
   context?: { [k: string]: any } | undefined;
-  issues?: Array<ListIntegrationsIssues> | undefined;
+  issues?: Array<ListIntegrationsInputValidationIssue> | undefined;
 };
 
 /**
@@ -202,7 +202,7 @@ export type ListIntegrationsResponseBodyData = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export class ListIntegrationsResponseBody extends Error {
+export class ListIntegrationsInputValidationProblem extends Error {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -274,12 +274,12 @@ export class ListIntegrationsResponseBody extends Error {
    * Additional context for the problem
    */
   context?: { [k: string]: any } | undefined;
-  issues?: Array<ListIntegrationsIssues> | undefined;
+  issues?: Array<ListIntegrationsInputValidationIssue> | undefined;
 
   /** The original data that was passed to this error instance. */
-  data$: ListIntegrationsResponseBodyData;
+  data$: ListIntegrationsInputValidationProblemData;
 
-  constructor(err: ListIntegrationsResponseBodyData) {
+  constructor(err: ListIntegrationsInputValidationProblemData) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
@@ -305,7 +305,7 @@ export class ListIntegrationsResponseBody extends Error {
     if (err.context != null) this.context = err.context;
     if (err.issues != null) this.issues = err.issues;
 
-    this.name = "ListIntegrationsResponseBody";
+    this.name = "ListIntegrationsInputValidationProblem";
   }
 }
 
@@ -331,8 +331,8 @@ export namespace ListIntegrationsIn$ {
 }
 
 /** @internal */
-export const ListIntegrationsIssues$inboundSchema: z.ZodType<
-  ListIntegrationsIssues,
+export const ListIntegrationsInputValidationIssue$inboundSchema: z.ZodType<
+  ListIntegrationsInputValidationIssue,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -361,7 +361,7 @@ export const ListIntegrationsIssues$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type ListIntegrationsIssues$Outbound = {
+export type ListIntegrationsInputValidationIssue$Outbound = {
   type: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -385,10 +385,10 @@ export type ListIntegrationsIssues$Outbound = {
 };
 
 /** @internal */
-export const ListIntegrationsIssues$outboundSchema: z.ZodType<
-  ListIntegrationsIssues$Outbound,
+export const ListIntegrationsInputValidationIssue$outboundSchema: z.ZodType<
+  ListIntegrationsInputValidationIssue$Outbound,
   z.ZodTypeDef,
-  ListIntegrationsIssues
+  ListIntegrationsInputValidationIssue
 > = z.object({
   type: z.string().default("about:blank"),
   href: z.string().optional(),
@@ -416,36 +416,41 @@ export const ListIntegrationsIssues$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace ListIntegrationsIssues$ {
-  /** @deprecated use `ListIntegrationsIssues$inboundSchema` instead. */
-  export const inboundSchema = ListIntegrationsIssues$inboundSchema;
-  /** @deprecated use `ListIntegrationsIssues$outboundSchema` instead. */
-  export const outboundSchema = ListIntegrationsIssues$outboundSchema;
-  /** @deprecated use `ListIntegrationsIssues$Outbound` instead. */
-  export type Outbound = ListIntegrationsIssues$Outbound;
+export namespace ListIntegrationsInputValidationIssue$ {
+  /** @deprecated use `ListIntegrationsInputValidationIssue$inboundSchema` instead. */
+  export const inboundSchema =
+    ListIntegrationsInputValidationIssue$inboundSchema;
+  /** @deprecated use `ListIntegrationsInputValidationIssue$outboundSchema` instead. */
+  export const outboundSchema =
+    ListIntegrationsInputValidationIssue$outboundSchema;
+  /** @deprecated use `ListIntegrationsInputValidationIssue$Outbound` instead. */
+  export type Outbound = ListIntegrationsInputValidationIssue$Outbound;
 }
 
-export function listIntegrationsIssuesToJSON(
-  listIntegrationsIssues: ListIntegrationsIssues,
+export function listIntegrationsInputValidationIssueToJSON(
+  listIntegrationsInputValidationIssue: ListIntegrationsInputValidationIssue,
 ): string {
   return JSON.stringify(
-    ListIntegrationsIssues$outboundSchema.parse(listIntegrationsIssues),
+    ListIntegrationsInputValidationIssue$outboundSchema.parse(
+      listIntegrationsInputValidationIssue,
+    ),
   );
 }
 
-export function listIntegrationsIssuesFromJSON(
+export function listIntegrationsInputValidationIssueFromJSON(
   jsonString: string,
-): SafeParseResult<ListIntegrationsIssues, SDKValidationError> {
+): SafeParseResult<ListIntegrationsInputValidationIssue, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => ListIntegrationsIssues$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ListIntegrationsIssues' from JSON`,
+    (x) =>
+      ListIntegrationsInputValidationIssue$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListIntegrationsInputValidationIssue' from JSON`,
   );
 }
 
 /** @internal */
-export const ListIntegrationsResponseBody$inboundSchema: z.ZodType<
-  ListIntegrationsResponseBody,
+export const ListIntegrationsInputValidationProblem$inboundSchema: z.ZodType<
+  ListIntegrationsInputValidationProblem,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -468,15 +473,16 @@ export const ListIntegrationsResponseBody$inboundSchema: z.ZodType<
   retryAfter: z.string().datetime({ offset: true }).transform(v => new Date(v))
     .optional(),
   context: z.record(z.any()).optional(),
-  issues: z.array(z.lazy(() => ListIntegrationsIssues$inboundSchema))
-    .optional(),
+  issues: z.array(
+    z.lazy(() => ListIntegrationsInputValidationIssue$inboundSchema),
+  ).optional(),
 })
   .transform((v) => {
-    return new ListIntegrationsResponseBody(v);
+    return new ListIntegrationsInputValidationProblem(v);
   });
 
 /** @internal */
-export type ListIntegrationsResponseBody$Outbound = {
+export type ListIntegrationsInputValidationProblem$Outbound = {
   type?: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -494,15 +500,15 @@ export type ListIntegrationsResponseBody$Outbound = {
   retryable?: boolean | undefined;
   retryAfter?: string | undefined;
   context?: { [k: string]: any } | undefined;
-  issues?: Array<ListIntegrationsIssues$Outbound> | undefined;
+  issues?: Array<ListIntegrationsInputValidationIssue$Outbound> | undefined;
 };
 
 /** @internal */
-export const ListIntegrationsResponseBody$outboundSchema: z.ZodType<
-  ListIntegrationsResponseBody$Outbound,
+export const ListIntegrationsInputValidationProblem$outboundSchema: z.ZodType<
+  ListIntegrationsInputValidationProblem$Outbound,
   z.ZodTypeDef,
-  ListIntegrationsResponseBody
-> = z.instanceof(ListIntegrationsResponseBody)
+  ListIntegrationsInputValidationProblem
+> = z.instanceof(ListIntegrationsInputValidationProblem)
   .transform(v => v.data$)
   .pipe(z.object({
     type: z.string().default("about:blank"),
@@ -522,19 +528,22 @@ export const ListIntegrationsResponseBody$outboundSchema: z.ZodType<
     retryable: z.boolean().optional(),
     retryAfter: z.date().transform(v => v.toISOString()).optional(),
     context: z.record(z.any()).optional(),
-    issues: z.array(z.lazy(() => ListIntegrationsIssues$outboundSchema))
-      .optional(),
+    issues: z.array(
+      z.lazy(() => ListIntegrationsInputValidationIssue$outboundSchema),
+    ).optional(),
   }));
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace ListIntegrationsResponseBody$ {
-  /** @deprecated use `ListIntegrationsResponseBody$inboundSchema` instead. */
-  export const inboundSchema = ListIntegrationsResponseBody$inboundSchema;
-  /** @deprecated use `ListIntegrationsResponseBody$outboundSchema` instead. */
-  export const outboundSchema = ListIntegrationsResponseBody$outboundSchema;
-  /** @deprecated use `ListIntegrationsResponseBody$Outbound` instead. */
-  export type Outbound = ListIntegrationsResponseBody$Outbound;
+export namespace ListIntegrationsInputValidationProblem$ {
+  /** @deprecated use `ListIntegrationsInputValidationProblem$inboundSchema` instead. */
+  export const inboundSchema =
+    ListIntegrationsInputValidationProblem$inboundSchema;
+  /** @deprecated use `ListIntegrationsInputValidationProblem$outboundSchema` instead. */
+  export const outboundSchema =
+    ListIntegrationsInputValidationProblem$outboundSchema;
+  /** @deprecated use `ListIntegrationsInputValidationProblem$Outbound` instead. */
+  export type Outbound = ListIntegrationsInputValidationProblem$Outbound;
 }

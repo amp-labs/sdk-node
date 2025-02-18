@@ -40,7 +40,7 @@ export function providerAppsList(
 ): APIPromise<
   Result<
     operations.ListProviderAppsResponse,
-    | errors.ListProviderAppsResponseBody
+    | errors.ListProviderAppsInputValidationProblem
     | APIError
     | SDKValidationError
     | UnexpectedClientError
@@ -65,7 +65,7 @@ async function $do(
   [
     Result<
       operations.ListProviderAppsResponse,
-      | errors.ListProviderAppsResponseBody
+      | errors.ListProviderAppsInputValidationProblem
       | APIError
       | SDKValidationError
       | UnexpectedClientError
@@ -166,7 +166,7 @@ async function $do(
 
   const [result] = await M.match<
     operations.ListProviderAppsResponse,
-    | errors.ListProviderAppsResponseBody
+    | errors.ListProviderAppsInputValidationProblem
     | APIError
     | SDKValidationError
     | UnexpectedClientError
@@ -176,9 +176,11 @@ async function $do(
     | ConnectionError
   >(
     M.json(200, operations.ListProviderAppsResponse$inboundSchema),
-    M.jsonErr(422, errors.ListProviderAppsResponseBody$inboundSchema, {
-      ctype: "application/problem+json",
-    }),
+    M.jsonErr(
+      422,
+      errors.ListProviderAppsInputValidationProblem$inboundSchema,
+      { ctype: "application/problem+json" },
+    ),
     M.fail("4XX"),
     M.fail("5XX"),
     M.json("default", operations.ListProviderAppsResponse$inboundSchema, {

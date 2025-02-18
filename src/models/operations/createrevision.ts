@@ -39,7 +39,7 @@ export type CreateRevisionRequest = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export type CreateRevisionResponseBody = {
+export type CreateRevisionAPIProblem = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -239,8 +239,8 @@ export function createRevisionRequestFromJSON(
 }
 
 /** @internal */
-export const CreateRevisionResponseBody$inboundSchema: z.ZodType<
-  CreateRevisionResponseBody,
+export const CreateRevisionAPIProblem$inboundSchema: z.ZodType<
+  CreateRevisionAPIProblem,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -266,7 +266,7 @@ export const CreateRevisionResponseBody$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type CreateRevisionResponseBody$Outbound = {
+export type CreateRevisionAPIProblem$Outbound = {
   type: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -287,10 +287,10 @@ export type CreateRevisionResponseBody$Outbound = {
 };
 
 /** @internal */
-export const CreateRevisionResponseBody$outboundSchema: z.ZodType<
-  CreateRevisionResponseBody$Outbound,
+export const CreateRevisionAPIProblem$outboundSchema: z.ZodType<
+  CreateRevisionAPIProblem$Outbound,
   z.ZodTypeDef,
-  CreateRevisionResponseBody
+  CreateRevisionAPIProblem
 > = z.object({
   type: z.string().default("about:blank"),
   href: z.string().optional(),
@@ -315,29 +315,29 @@ export const CreateRevisionResponseBody$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace CreateRevisionResponseBody$ {
-  /** @deprecated use `CreateRevisionResponseBody$inboundSchema` instead. */
-  export const inboundSchema = CreateRevisionResponseBody$inboundSchema;
-  /** @deprecated use `CreateRevisionResponseBody$outboundSchema` instead. */
-  export const outboundSchema = CreateRevisionResponseBody$outboundSchema;
-  /** @deprecated use `CreateRevisionResponseBody$Outbound` instead. */
-  export type Outbound = CreateRevisionResponseBody$Outbound;
+export namespace CreateRevisionAPIProblem$ {
+  /** @deprecated use `CreateRevisionAPIProblem$inboundSchema` instead. */
+  export const inboundSchema = CreateRevisionAPIProblem$inboundSchema;
+  /** @deprecated use `CreateRevisionAPIProblem$outboundSchema` instead. */
+  export const outboundSchema = CreateRevisionAPIProblem$outboundSchema;
+  /** @deprecated use `CreateRevisionAPIProblem$Outbound` instead. */
+  export type Outbound = CreateRevisionAPIProblem$Outbound;
 }
 
-export function createRevisionResponseBodyToJSON(
-  createRevisionResponseBody: CreateRevisionResponseBody,
+export function createRevisionAPIProblemToJSON(
+  createRevisionAPIProblem: CreateRevisionAPIProblem,
 ): string {
   return JSON.stringify(
-    CreateRevisionResponseBody$outboundSchema.parse(createRevisionResponseBody),
+    CreateRevisionAPIProblem$outboundSchema.parse(createRevisionAPIProblem),
   );
 }
 
-export function createRevisionResponseBodyFromJSON(
+export function createRevisionAPIProblemFromJSON(
   jsonString: string,
-): SafeParseResult<CreateRevisionResponseBody, SDKValidationError> {
+): SafeParseResult<CreateRevisionAPIProblem, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => CreateRevisionResponseBody$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreateRevisionResponseBody' from JSON`,
+    (x) => CreateRevisionAPIProblem$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreateRevisionAPIProblem' from JSON`,
   );
 }

@@ -11,7 +11,7 @@ import * as z from "zod";
  *
  * Additional properties specific to the problem type may be present.
  */
-export type TriggerReadReadResponseBodyData = {
+export type TriggerReadReadAPIProblemData = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -92,7 +92,7 @@ export type TriggerReadReadResponseBodyData = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export class TriggerReadReadResponseBody extends Error {
+export class TriggerReadReadAPIProblem extends Error {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -166,9 +166,9 @@ export class TriggerReadReadResponseBody extends Error {
   context?: { [k: string]: any } | undefined;
 
   /** The original data that was passed to this error instance. */
-  data$: TriggerReadReadResponseBodyData;
+  data$: TriggerReadReadAPIProblemData;
 
-  constructor(err: TriggerReadReadResponseBodyData) {
+  constructor(err: TriggerReadReadAPIProblemData) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
@@ -193,7 +193,7 @@ export class TriggerReadReadResponseBody extends Error {
     if (err.retryAfter != null) this.retryAfter = err.retryAfter;
     if (err.context != null) this.context = err.context;
 
-    this.name = "TriggerReadReadResponseBody";
+    this.name = "TriggerReadReadAPIProblem";
   }
 }
 
@@ -204,7 +204,7 @@ export class TriggerReadReadResponseBody extends Error {
  *
  * Additional properties specific to the problem type may be present.
  */
-export type TriggerReadResponseBodyData = {
+export type TriggerReadAPIProblemData = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -285,7 +285,7 @@ export type TriggerReadResponseBodyData = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export class TriggerReadResponseBody extends Error {
+export class TriggerReadAPIProblem extends Error {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -359,9 +359,9 @@ export class TriggerReadResponseBody extends Error {
   context?: { [k: string]: any } | undefined;
 
   /** The original data that was passed to this error instance. */
-  data$: TriggerReadResponseBodyData;
+  data$: TriggerReadAPIProblemData;
 
-  constructor(err: TriggerReadResponseBodyData) {
+  constructor(err: TriggerReadAPIProblemData) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
@@ -386,13 +386,13 @@ export class TriggerReadResponseBody extends Error {
     if (err.retryAfter != null) this.retryAfter = err.retryAfter;
     if (err.context != null) this.context = err.context;
 
-    this.name = "TriggerReadResponseBody";
+    this.name = "TriggerReadAPIProblem";
   }
 }
 
 /** @internal */
-export const TriggerReadReadResponseBody$inboundSchema: z.ZodType<
-  TriggerReadReadResponseBody,
+export const TriggerReadReadAPIProblem$inboundSchema: z.ZodType<
+  TriggerReadReadAPIProblem,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -417,11 +417,11 @@ export const TriggerReadReadResponseBody$inboundSchema: z.ZodType<
   context: z.record(z.any()).optional(),
 })
   .transform((v) => {
-    return new TriggerReadReadResponseBody(v);
+    return new TriggerReadReadAPIProblem(v);
   });
 
 /** @internal */
-export type TriggerReadReadResponseBody$Outbound = {
+export type TriggerReadReadAPIProblem$Outbound = {
   type?: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -442,11 +442,11 @@ export type TriggerReadReadResponseBody$Outbound = {
 };
 
 /** @internal */
-export const TriggerReadReadResponseBody$outboundSchema: z.ZodType<
-  TriggerReadReadResponseBody$Outbound,
+export const TriggerReadReadAPIProblem$outboundSchema: z.ZodType<
+  TriggerReadReadAPIProblem$Outbound,
   z.ZodTypeDef,
-  TriggerReadReadResponseBody
-> = z.instanceof(TriggerReadReadResponseBody)
+  TriggerReadReadAPIProblem
+> = z.instanceof(TriggerReadReadAPIProblem)
   .transform(v => v.data$)
   .pipe(z.object({
     type: z.string().default("about:blank"),
@@ -472,18 +472,18 @@ export const TriggerReadReadResponseBody$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace TriggerReadReadResponseBody$ {
-  /** @deprecated use `TriggerReadReadResponseBody$inboundSchema` instead. */
-  export const inboundSchema = TriggerReadReadResponseBody$inboundSchema;
-  /** @deprecated use `TriggerReadReadResponseBody$outboundSchema` instead. */
-  export const outboundSchema = TriggerReadReadResponseBody$outboundSchema;
-  /** @deprecated use `TriggerReadReadResponseBody$Outbound` instead. */
-  export type Outbound = TriggerReadReadResponseBody$Outbound;
+export namespace TriggerReadReadAPIProblem$ {
+  /** @deprecated use `TriggerReadReadAPIProblem$inboundSchema` instead. */
+  export const inboundSchema = TriggerReadReadAPIProblem$inboundSchema;
+  /** @deprecated use `TriggerReadReadAPIProblem$outboundSchema` instead. */
+  export const outboundSchema = TriggerReadReadAPIProblem$outboundSchema;
+  /** @deprecated use `TriggerReadReadAPIProblem$Outbound` instead. */
+  export type Outbound = TriggerReadReadAPIProblem$Outbound;
 }
 
 /** @internal */
-export const TriggerReadResponseBody$inboundSchema: z.ZodType<
-  TriggerReadResponseBody,
+export const TriggerReadAPIProblem$inboundSchema: z.ZodType<
+  TriggerReadAPIProblem,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -508,11 +508,11 @@ export const TriggerReadResponseBody$inboundSchema: z.ZodType<
   context: z.record(z.any()).optional(),
 })
   .transform((v) => {
-    return new TriggerReadResponseBody(v);
+    return new TriggerReadAPIProblem(v);
   });
 
 /** @internal */
-export type TriggerReadResponseBody$Outbound = {
+export type TriggerReadAPIProblem$Outbound = {
   type?: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -533,11 +533,11 @@ export type TriggerReadResponseBody$Outbound = {
 };
 
 /** @internal */
-export const TriggerReadResponseBody$outboundSchema: z.ZodType<
-  TriggerReadResponseBody$Outbound,
+export const TriggerReadAPIProblem$outboundSchema: z.ZodType<
+  TriggerReadAPIProblem$Outbound,
   z.ZodTypeDef,
-  TriggerReadResponseBody
-> = z.instanceof(TriggerReadResponseBody)
+  TriggerReadAPIProblem
+> = z.instanceof(TriggerReadAPIProblem)
   .transform(v => v.data$)
   .pipe(z.object({
     type: z.string().default("about:blank"),
@@ -563,11 +563,11 @@ export const TriggerReadResponseBody$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace TriggerReadResponseBody$ {
-  /** @deprecated use `TriggerReadResponseBody$inboundSchema` instead. */
-  export const inboundSchema = TriggerReadResponseBody$inboundSchema;
-  /** @deprecated use `TriggerReadResponseBody$outboundSchema` instead. */
-  export const outboundSchema = TriggerReadResponseBody$outboundSchema;
-  /** @deprecated use `TriggerReadResponseBody$Outbound` instead. */
-  export type Outbound = TriggerReadResponseBody$Outbound;
+export namespace TriggerReadAPIProblem$ {
+  /** @deprecated use `TriggerReadAPIProblem$inboundSchema` instead. */
+  export const inboundSchema = TriggerReadAPIProblem$inboundSchema;
+  /** @deprecated use `TriggerReadAPIProblem$outboundSchema` instead. */
+  export const outboundSchema = TriggerReadAPIProblem$outboundSchema;
+  /** @deprecated use `TriggerReadAPIProblem$Outbound` instead. */
+  export type Outbound = TriggerReadAPIProblem$Outbound;
 }

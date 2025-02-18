@@ -34,8 +34,8 @@ export function providerAppsDelete(
   options?: RequestOptions,
 ): APIPromise<
   Result<
-    operations.DeleteProviderAppResponseBody | undefined,
-    | errors.DeleteProviderAppResponseBody
+    operations.DeleteProviderAppAPIProblem | undefined,
+    | errors.DeleteProviderAppInputValidationProblem
     | APIError
     | SDKValidationError
     | UnexpectedClientError
@@ -59,8 +59,8 @@ async function $do(
 ): Promise<
   [
     Result<
-      operations.DeleteProviderAppResponseBody | undefined,
-      | errors.DeleteProviderAppResponseBody
+      operations.DeleteProviderAppAPIProblem | undefined,
+      | errors.DeleteProviderAppInputValidationProblem
       | APIError
       | SDKValidationError
       | UnexpectedClientError
@@ -165,8 +165,8 @@ async function $do(
   };
 
   const [result] = await M.match<
-    operations.DeleteProviderAppResponseBody | undefined,
-    | errors.DeleteProviderAppResponseBody
+    operations.DeleteProviderAppAPIProblem | undefined,
+    | errors.DeleteProviderAppInputValidationProblem
     | APIError
     | SDKValidationError
     | UnexpectedClientError
@@ -175,18 +175,17 @@ async function $do(
     | RequestTimeoutError
     | ConnectionError
   >(
-    M.nil(
-      204,
-      operations.DeleteProviderAppResponseBody$inboundSchema.optional(),
+    M.nil(204, operations.DeleteProviderAppAPIProblem$inboundSchema.optional()),
+    M.jsonErr(
+      422,
+      errors.DeleteProviderAppInputValidationProblem$inboundSchema,
+      { ctype: "application/problem+json" },
     ),
-    M.jsonErr(422, errors.DeleteProviderAppResponseBody$inboundSchema, {
-      ctype: "application/problem+json",
-    }),
     M.fail("4XX"),
     M.fail("5XX"),
     M.json(
       "default",
-      operations.DeleteProviderAppResponseBody$inboundSchema.optional(),
+      operations.DeleteProviderAppAPIProblem$inboundSchema.optional(),
       { ctype: "application/problem+json" },
     ),
   )(response, { extraFields: responseFields });

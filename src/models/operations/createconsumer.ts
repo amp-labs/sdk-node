@@ -35,7 +35,7 @@ export type CreateConsumerRequest = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export type CreateConsumerResponseBody = {
+export type CreateConsumerAPIProblem = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -232,8 +232,8 @@ export function createConsumerRequestFromJSON(
 }
 
 /** @internal */
-export const CreateConsumerResponseBody$inboundSchema: z.ZodType<
-  CreateConsumerResponseBody,
+export const CreateConsumerAPIProblem$inboundSchema: z.ZodType<
+  CreateConsumerAPIProblem,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -259,7 +259,7 @@ export const CreateConsumerResponseBody$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type CreateConsumerResponseBody$Outbound = {
+export type CreateConsumerAPIProblem$Outbound = {
   type: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -280,10 +280,10 @@ export type CreateConsumerResponseBody$Outbound = {
 };
 
 /** @internal */
-export const CreateConsumerResponseBody$outboundSchema: z.ZodType<
-  CreateConsumerResponseBody$Outbound,
+export const CreateConsumerAPIProblem$outboundSchema: z.ZodType<
+  CreateConsumerAPIProblem$Outbound,
   z.ZodTypeDef,
-  CreateConsumerResponseBody
+  CreateConsumerAPIProblem
 > = z.object({
   type: z.string().default("about:blank"),
   href: z.string().optional(),
@@ -308,29 +308,29 @@ export const CreateConsumerResponseBody$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace CreateConsumerResponseBody$ {
-  /** @deprecated use `CreateConsumerResponseBody$inboundSchema` instead. */
-  export const inboundSchema = CreateConsumerResponseBody$inboundSchema;
-  /** @deprecated use `CreateConsumerResponseBody$outboundSchema` instead. */
-  export const outboundSchema = CreateConsumerResponseBody$outboundSchema;
-  /** @deprecated use `CreateConsumerResponseBody$Outbound` instead. */
-  export type Outbound = CreateConsumerResponseBody$Outbound;
+export namespace CreateConsumerAPIProblem$ {
+  /** @deprecated use `CreateConsumerAPIProblem$inboundSchema` instead. */
+  export const inboundSchema = CreateConsumerAPIProblem$inboundSchema;
+  /** @deprecated use `CreateConsumerAPIProblem$outboundSchema` instead. */
+  export const outboundSchema = CreateConsumerAPIProblem$outboundSchema;
+  /** @deprecated use `CreateConsumerAPIProblem$Outbound` instead. */
+  export type Outbound = CreateConsumerAPIProblem$Outbound;
 }
 
-export function createConsumerResponseBodyToJSON(
-  createConsumerResponseBody: CreateConsumerResponseBody,
+export function createConsumerAPIProblemToJSON(
+  createConsumerAPIProblem: CreateConsumerAPIProblem,
 ): string {
   return JSON.stringify(
-    CreateConsumerResponseBody$outboundSchema.parse(createConsumerResponseBody),
+    CreateConsumerAPIProblem$outboundSchema.parse(createConsumerAPIProblem),
   );
 }
 
-export function createConsumerResponseBodyFromJSON(
+export function createConsumerAPIProblemFromJSON(
   jsonString: string,
-): SafeParseResult<CreateConsumerResponseBody, SDKValidationError> {
+): SafeParseResult<CreateConsumerAPIProblem, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => CreateConsumerResponseBody$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreateConsumerResponseBody' from JSON`,
+    (x) => CreateConsumerAPIProblem$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreateConsumerAPIProblem' from JSON`,
   );
 }

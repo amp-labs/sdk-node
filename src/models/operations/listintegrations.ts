@@ -23,7 +23,7 @@ export type ListIntegrationsRequest = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export type ListIntegrationsResponseBody = {
+export type ListIntegrationsAPIProblem = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -97,14 +97,14 @@ export type ListIntegrationsResponseBody = {
   context?: { [k: string]: any } | undefined;
 };
 
-export type ListIntegrationsRequiredFields2 = {
+export type ListIntegrationsIntegrationFieldIntegrationFieldMapping = {
   mapToName: string;
   mapToDisplayName?: string | undefined;
   default?: string | undefined;
   prompt?: string | undefined;
 };
 
-export type ListIntegrationsRequiredFields1 = {
+export type ListIntegrationsIntegrationFieldIntegrationFieldExistent = {
   fieldName: string;
   /**
    * The field name to map to.
@@ -116,38 +116,40 @@ export type ListIntegrationsRequiredFields1 = {
   mapToDisplayName?: string | undefined;
 };
 
-export type ListIntegrationsRequiredFields =
-  | ListIntegrationsRequiredFields1
-  | ListIntegrationsRequiredFields2;
+export type ListIntegrationsIntegrationsIntegrationField =
+  | ListIntegrationsIntegrationFieldIntegrationFieldExistent
+  | ListIntegrationsIntegrationFieldIntegrationFieldMapping;
 
-export type ListIntegrationsOptionalFields2 = {
-  mapToName: string;
-  mapToDisplayName?: string | undefined;
-  default?: string | undefined;
-  prompt?: string | undefined;
-};
+export type ListIntegrationsIntegrationFieldIntegrationsIntegrationFieldMapping =
+  {
+    mapToName: string;
+    mapToDisplayName?: string | undefined;
+    default?: string | undefined;
+    prompt?: string | undefined;
+  };
 
-export type ListIntegrationsOptionalFields1 = {
-  fieldName: string;
-  /**
-   * The field name to map to.
-   */
-  mapToName?: string | undefined;
-  /**
-   * The display name to map to.
-   */
-  mapToDisplayName?: string | undefined;
-};
+export type ListIntegrationsIntegrationFieldIntegrationsIntegrationFieldExistent =
+  {
+    fieldName: string;
+    /**
+     * The field name to map to.
+     */
+    mapToName?: string | undefined;
+    /**
+     * The display name to map to.
+     */
+    mapToDisplayName?: string | undefined;
+  };
 
-export type ListIntegrationsOptionalFields =
-  | ListIntegrationsOptionalFields1
-  | ListIntegrationsOptionalFields2;
+export type ListIntegrationsIntegrationField =
+  | ListIntegrationsIntegrationFieldIntegrationsIntegrationFieldExistent
+  | ListIntegrationsIntegrationFieldIntegrationsIntegrationFieldMapping;
 
-export const ListIntegrationsOptionalFieldsAuto = {
+export const ListIntegrationsOptionalFieldsAutoOption = {
   All: "all",
 } as const;
-export type ListIntegrationsOptionalFieldsAuto = ClosedEnum<
-  typeof ListIntegrationsOptionalFieldsAuto
+export type ListIntegrationsOptionalFieldsAutoOption = ClosedEnum<
+  typeof ListIntegrationsOptionalFieldsAutoOption
 >;
 
 export type ListIntegrationsDefaultPeriod = {
@@ -188,7 +190,7 @@ export type ListIntegrationsDelivery = {
   pageSize?: number | undefined;
 };
 
-export type ListIntegrationsIntegrationsObjects = {
+export type ListIntegrationsIntegrationObject = {
   objectName: string;
   destination: string;
   schedule: string;
@@ -201,18 +203,24 @@ export type ListIntegrationsIntegrationsObjects = {
    */
   mapToDisplayName?: string | undefined;
   requiredFields?:
-    | Array<ListIntegrationsRequiredFields1 | ListIntegrationsRequiredFields2>
+    | Array<
+      | ListIntegrationsIntegrationFieldIntegrationFieldExistent
+      | ListIntegrationsIntegrationFieldIntegrationFieldMapping
+    >
     | undefined;
   optionalFields?:
-    | Array<ListIntegrationsOptionalFields1 | ListIntegrationsOptionalFields2>
+    | Array<
+      | ListIntegrationsIntegrationFieldIntegrationsIntegrationFieldExistent
+      | ListIntegrationsIntegrationFieldIntegrationsIntegrationFieldMapping
+    >
     | undefined;
-  optionalFieldsAuto?: ListIntegrationsOptionalFieldsAuto | undefined;
+  optionalFieldsAuto?: ListIntegrationsOptionalFieldsAutoOption | undefined;
   backfill?: ListIntegrationsBackfill | undefined;
   delivery?: ListIntegrationsDelivery | undefined;
 };
 
-export type ListIntegrationsRead = {
-  objects?: Array<ListIntegrationsIntegrationsObjects> | undefined;
+export type ListIntegrationsReadIntegration = {
+  objects?: Array<ListIntegrationsIntegrationObject> | undefined;
 };
 
 /**
@@ -225,7 +233,7 @@ export type ListIntegrationsValueDefaults = {
   allowAnyFields?: boolean | undefined;
 };
 
-export type ListIntegrationsObjects = {
+export type ListIntegrationsIntegrationWriteObject = {
   objectName: string;
   /**
    * If true, the write object will inherit the mapping from the read object. If false, the write object will have no mapping.
@@ -237,24 +245,24 @@ export type ListIntegrationsObjects = {
   valueDefaults?: ListIntegrationsValueDefaults | undefined;
 };
 
-export type ListIntegrationsWrite = {
-  objects?: Array<ListIntegrationsObjects> | undefined;
+export type ListIntegrationsWriteIntegration = {
+  objects?: Array<ListIntegrationsIntegrationWriteObject> | undefined;
 };
 
-export type ListIntegrationsProxy = {
+export type ListIntegrationsProxyIntegration = {
   enabled?: boolean | undefined;
 };
 
-export type ListIntegrationsContent = {
+export type ListIntegrationsIntegrationsIntegration = {
   name: string;
   displayName?: string | undefined;
   provider: string;
-  read?: ListIntegrationsRead | undefined;
-  write?: ListIntegrationsWrite | undefined;
-  proxy?: ListIntegrationsProxy | undefined;
+  read?: ListIntegrationsReadIntegration | undefined;
+  write?: ListIntegrationsWriteIntegration | undefined;
+  proxy?: ListIntegrationsProxyIntegration | undefined;
 };
 
-export type ListIntegrationsLatestRevision = {
+export type Revision = {
   /**
    * The revision ID.
    */
@@ -267,10 +275,10 @@ export type ListIntegrationsLatestRevision = {
    * The time the revision was created.
    */
   createTime: Date;
-  content: ListIntegrationsContent;
+  content: ListIntegrationsIntegrationsIntegration;
 };
 
-export type ListIntegrationsIntegrationsResponseBody = {
+export type ListIntegrationsIntegration = {
   /**
    * The integration ID.
    */
@@ -295,12 +303,12 @@ export type ListIntegrationsIntegrationsResponseBody = {
    * The time the integration was last updated.
    */
   updateTime?: Date | undefined;
-  latestRevision: ListIntegrationsLatestRevision;
+  latestRevision: Revision;
 };
 
 export type ListIntegrationsResponse =
-  | ListIntegrationsResponseBody
-  | Array<ListIntegrationsIntegrationsResponseBody>;
+  | ListIntegrationsAPIProblem
+  | Array<ListIntegrationsIntegration>;
 
 /** @internal */
 export const ListIntegrationsRequest$inboundSchema: z.ZodType<
@@ -357,8 +365,8 @@ export function listIntegrationsRequestFromJSON(
 }
 
 /** @internal */
-export const ListIntegrationsResponseBody$inboundSchema: z.ZodType<
-  ListIntegrationsResponseBody,
+export const ListIntegrationsAPIProblem$inboundSchema: z.ZodType<
+  ListIntegrationsAPIProblem,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -384,7 +392,7 @@ export const ListIntegrationsResponseBody$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type ListIntegrationsResponseBody$Outbound = {
+export type ListIntegrationsAPIProblem$Outbound = {
   type: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -405,10 +413,10 @@ export type ListIntegrationsResponseBody$Outbound = {
 };
 
 /** @internal */
-export const ListIntegrationsResponseBody$outboundSchema: z.ZodType<
-  ListIntegrationsResponseBody$Outbound,
+export const ListIntegrationsAPIProblem$outboundSchema: z.ZodType<
+  ListIntegrationsAPIProblem$Outbound,
   z.ZodTypeDef,
-  ListIntegrationsResponseBody
+  ListIntegrationsAPIProblem
 > = z.object({
   type: z.string().default("about:blank"),
   href: z.string().optional(),
@@ -433,49 +441,48 @@ export const ListIntegrationsResponseBody$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace ListIntegrationsResponseBody$ {
-  /** @deprecated use `ListIntegrationsResponseBody$inboundSchema` instead. */
-  export const inboundSchema = ListIntegrationsResponseBody$inboundSchema;
-  /** @deprecated use `ListIntegrationsResponseBody$outboundSchema` instead. */
-  export const outboundSchema = ListIntegrationsResponseBody$outboundSchema;
-  /** @deprecated use `ListIntegrationsResponseBody$Outbound` instead. */
-  export type Outbound = ListIntegrationsResponseBody$Outbound;
+export namespace ListIntegrationsAPIProblem$ {
+  /** @deprecated use `ListIntegrationsAPIProblem$inboundSchema` instead. */
+  export const inboundSchema = ListIntegrationsAPIProblem$inboundSchema;
+  /** @deprecated use `ListIntegrationsAPIProblem$outboundSchema` instead. */
+  export const outboundSchema = ListIntegrationsAPIProblem$outboundSchema;
+  /** @deprecated use `ListIntegrationsAPIProblem$Outbound` instead. */
+  export type Outbound = ListIntegrationsAPIProblem$Outbound;
 }
 
-export function listIntegrationsResponseBodyToJSON(
-  listIntegrationsResponseBody: ListIntegrationsResponseBody,
+export function listIntegrationsAPIProblemToJSON(
+  listIntegrationsAPIProblem: ListIntegrationsAPIProblem,
 ): string {
   return JSON.stringify(
-    ListIntegrationsResponseBody$outboundSchema.parse(
-      listIntegrationsResponseBody,
-    ),
+    ListIntegrationsAPIProblem$outboundSchema.parse(listIntegrationsAPIProblem),
   );
 }
 
-export function listIntegrationsResponseBodyFromJSON(
+export function listIntegrationsAPIProblemFromJSON(
   jsonString: string,
-): SafeParseResult<ListIntegrationsResponseBody, SDKValidationError> {
+): SafeParseResult<ListIntegrationsAPIProblem, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => ListIntegrationsResponseBody$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ListIntegrationsResponseBody' from JSON`,
+    (x) => ListIntegrationsAPIProblem$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListIntegrationsAPIProblem' from JSON`,
   );
 }
 
 /** @internal */
-export const ListIntegrationsRequiredFields2$inboundSchema: z.ZodType<
-  ListIntegrationsRequiredFields2,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  mapToName: z.string(),
-  mapToDisplayName: z.string().optional(),
-  default: z.string().optional(),
-  prompt: z.string().optional(),
-});
+export const ListIntegrationsIntegrationFieldIntegrationFieldMapping$inboundSchema:
+  z.ZodType<
+    ListIntegrationsIntegrationFieldIntegrationFieldMapping,
+    z.ZodTypeDef,
+    unknown
+  > = z.object({
+    mapToName: z.string(),
+    mapToDisplayName: z.string().optional(),
+    default: z.string().optional(),
+    prompt: z.string().optional(),
+  });
 
 /** @internal */
-export type ListIntegrationsRequiredFields2$Outbound = {
+export type ListIntegrationsIntegrationFieldIntegrationFieldMapping$Outbound = {
   mapToName: string;
   mapToDisplayName?: string | undefined;
   default?: string | undefined;
@@ -483,375 +490,449 @@ export type ListIntegrationsRequiredFields2$Outbound = {
 };
 
 /** @internal */
-export const ListIntegrationsRequiredFields2$outboundSchema: z.ZodType<
-  ListIntegrationsRequiredFields2$Outbound,
-  z.ZodTypeDef,
-  ListIntegrationsRequiredFields2
-> = z.object({
-  mapToName: z.string(),
-  mapToDisplayName: z.string().optional(),
-  default: z.string().optional(),
-  prompt: z.string().optional(),
-});
+export const ListIntegrationsIntegrationFieldIntegrationFieldMapping$outboundSchema:
+  z.ZodType<
+    ListIntegrationsIntegrationFieldIntegrationFieldMapping$Outbound,
+    z.ZodTypeDef,
+    ListIntegrationsIntegrationFieldIntegrationFieldMapping
+  > = z.object({
+    mapToName: z.string(),
+    mapToDisplayName: z.string().optional(),
+    default: z.string().optional(),
+    prompt: z.string().optional(),
+  });
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace ListIntegrationsRequiredFields2$ {
-  /** @deprecated use `ListIntegrationsRequiredFields2$inboundSchema` instead. */
-  export const inboundSchema = ListIntegrationsRequiredFields2$inboundSchema;
-  /** @deprecated use `ListIntegrationsRequiredFields2$outboundSchema` instead. */
-  export const outboundSchema = ListIntegrationsRequiredFields2$outboundSchema;
-  /** @deprecated use `ListIntegrationsRequiredFields2$Outbound` instead. */
-  export type Outbound = ListIntegrationsRequiredFields2$Outbound;
-}
-
-export function listIntegrationsRequiredFields2ToJSON(
-  listIntegrationsRequiredFields2: ListIntegrationsRequiredFields2,
-): string {
-  return JSON.stringify(
-    ListIntegrationsRequiredFields2$outboundSchema.parse(
-      listIntegrationsRequiredFields2,
-    ),
-  );
-}
-
-export function listIntegrationsRequiredFields2FromJSON(
-  jsonString: string,
-): SafeParseResult<ListIntegrationsRequiredFields2, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ListIntegrationsRequiredFields2$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ListIntegrationsRequiredFields2' from JSON`,
-  );
-}
-
-/** @internal */
-export const ListIntegrationsRequiredFields1$inboundSchema: z.ZodType<
-  ListIntegrationsRequiredFields1,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  fieldName: z.string(),
-  mapToName: z.string().optional(),
-  mapToDisplayName: z.string().optional(),
-});
-
-/** @internal */
-export type ListIntegrationsRequiredFields1$Outbound = {
-  fieldName: string;
-  mapToName?: string | undefined;
-  mapToDisplayName?: string | undefined;
-};
-
-/** @internal */
-export const ListIntegrationsRequiredFields1$outboundSchema: z.ZodType<
-  ListIntegrationsRequiredFields1$Outbound,
-  z.ZodTypeDef,
-  ListIntegrationsRequiredFields1
-> = z.object({
-  fieldName: z.string(),
-  mapToName: z.string().optional(),
-  mapToDisplayName: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListIntegrationsRequiredFields1$ {
-  /** @deprecated use `ListIntegrationsRequiredFields1$inboundSchema` instead. */
-  export const inboundSchema = ListIntegrationsRequiredFields1$inboundSchema;
-  /** @deprecated use `ListIntegrationsRequiredFields1$outboundSchema` instead. */
-  export const outboundSchema = ListIntegrationsRequiredFields1$outboundSchema;
-  /** @deprecated use `ListIntegrationsRequiredFields1$Outbound` instead. */
-  export type Outbound = ListIntegrationsRequiredFields1$Outbound;
-}
-
-export function listIntegrationsRequiredFields1ToJSON(
-  listIntegrationsRequiredFields1: ListIntegrationsRequiredFields1,
-): string {
-  return JSON.stringify(
-    ListIntegrationsRequiredFields1$outboundSchema.parse(
-      listIntegrationsRequiredFields1,
-    ),
-  );
-}
-
-export function listIntegrationsRequiredFields1FromJSON(
-  jsonString: string,
-): SafeParseResult<ListIntegrationsRequiredFields1, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ListIntegrationsRequiredFields1$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ListIntegrationsRequiredFields1' from JSON`,
-  );
-}
-
-/** @internal */
-export const ListIntegrationsRequiredFields$inboundSchema: z.ZodType<
-  ListIntegrationsRequiredFields,
-  z.ZodTypeDef,
-  unknown
-> = z.union([
-  z.lazy(() => ListIntegrationsRequiredFields1$inboundSchema),
-  z.lazy(() => ListIntegrationsRequiredFields2$inboundSchema),
-]);
-
-/** @internal */
-export type ListIntegrationsRequiredFields$Outbound =
-  | ListIntegrationsRequiredFields1$Outbound
-  | ListIntegrationsRequiredFields2$Outbound;
-
-/** @internal */
-export const ListIntegrationsRequiredFields$outboundSchema: z.ZodType<
-  ListIntegrationsRequiredFields$Outbound,
-  z.ZodTypeDef,
-  ListIntegrationsRequiredFields
-> = z.union([
-  z.lazy(() => ListIntegrationsRequiredFields1$outboundSchema),
-  z.lazy(() => ListIntegrationsRequiredFields2$outboundSchema),
-]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListIntegrationsRequiredFields$ {
-  /** @deprecated use `ListIntegrationsRequiredFields$inboundSchema` instead. */
-  export const inboundSchema = ListIntegrationsRequiredFields$inboundSchema;
-  /** @deprecated use `ListIntegrationsRequiredFields$outboundSchema` instead. */
-  export const outboundSchema = ListIntegrationsRequiredFields$outboundSchema;
-  /** @deprecated use `ListIntegrationsRequiredFields$Outbound` instead. */
-  export type Outbound = ListIntegrationsRequiredFields$Outbound;
-}
-
-export function listIntegrationsRequiredFieldsToJSON(
-  listIntegrationsRequiredFields: ListIntegrationsRequiredFields,
-): string {
-  return JSON.stringify(
-    ListIntegrationsRequiredFields$outboundSchema.parse(
-      listIntegrationsRequiredFields,
-    ),
-  );
-}
-
-export function listIntegrationsRequiredFieldsFromJSON(
-  jsonString: string,
-): SafeParseResult<ListIntegrationsRequiredFields, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ListIntegrationsRequiredFields$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ListIntegrationsRequiredFields' from JSON`,
-  );
-}
-
-/** @internal */
-export const ListIntegrationsOptionalFields2$inboundSchema: z.ZodType<
-  ListIntegrationsOptionalFields2,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  mapToName: z.string(),
-  mapToDisplayName: z.string().optional(),
-  default: z.string().optional(),
-  prompt: z.string().optional(),
-});
-
-/** @internal */
-export type ListIntegrationsOptionalFields2$Outbound = {
-  mapToName: string;
-  mapToDisplayName?: string | undefined;
-  default?: string | undefined;
-  prompt?: string | undefined;
-};
-
-/** @internal */
-export const ListIntegrationsOptionalFields2$outboundSchema: z.ZodType<
-  ListIntegrationsOptionalFields2$Outbound,
-  z.ZodTypeDef,
-  ListIntegrationsOptionalFields2
-> = z.object({
-  mapToName: z.string(),
-  mapToDisplayName: z.string().optional(),
-  default: z.string().optional(),
-  prompt: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListIntegrationsOptionalFields2$ {
-  /** @deprecated use `ListIntegrationsOptionalFields2$inboundSchema` instead. */
-  export const inboundSchema = ListIntegrationsOptionalFields2$inboundSchema;
-  /** @deprecated use `ListIntegrationsOptionalFields2$outboundSchema` instead. */
-  export const outboundSchema = ListIntegrationsOptionalFields2$outboundSchema;
-  /** @deprecated use `ListIntegrationsOptionalFields2$Outbound` instead. */
-  export type Outbound = ListIntegrationsOptionalFields2$Outbound;
-}
-
-export function listIntegrationsOptionalFields2ToJSON(
-  listIntegrationsOptionalFields2: ListIntegrationsOptionalFields2,
-): string {
-  return JSON.stringify(
-    ListIntegrationsOptionalFields2$outboundSchema.parse(
-      listIntegrationsOptionalFields2,
-    ),
-  );
-}
-
-export function listIntegrationsOptionalFields2FromJSON(
-  jsonString: string,
-): SafeParseResult<ListIntegrationsOptionalFields2, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ListIntegrationsOptionalFields2$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ListIntegrationsOptionalFields2' from JSON`,
-  );
-}
-
-/** @internal */
-export const ListIntegrationsOptionalFields1$inboundSchema: z.ZodType<
-  ListIntegrationsOptionalFields1,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  fieldName: z.string(),
-  mapToName: z.string().optional(),
-  mapToDisplayName: z.string().optional(),
-});
-
-/** @internal */
-export type ListIntegrationsOptionalFields1$Outbound = {
-  fieldName: string;
-  mapToName?: string | undefined;
-  mapToDisplayName?: string | undefined;
-};
-
-/** @internal */
-export const ListIntegrationsOptionalFields1$outboundSchema: z.ZodType<
-  ListIntegrationsOptionalFields1$Outbound,
-  z.ZodTypeDef,
-  ListIntegrationsOptionalFields1
-> = z.object({
-  fieldName: z.string(),
-  mapToName: z.string().optional(),
-  mapToDisplayName: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListIntegrationsOptionalFields1$ {
-  /** @deprecated use `ListIntegrationsOptionalFields1$inboundSchema` instead. */
-  export const inboundSchema = ListIntegrationsOptionalFields1$inboundSchema;
-  /** @deprecated use `ListIntegrationsOptionalFields1$outboundSchema` instead. */
-  export const outboundSchema = ListIntegrationsOptionalFields1$outboundSchema;
-  /** @deprecated use `ListIntegrationsOptionalFields1$Outbound` instead. */
-  export type Outbound = ListIntegrationsOptionalFields1$Outbound;
-}
-
-export function listIntegrationsOptionalFields1ToJSON(
-  listIntegrationsOptionalFields1: ListIntegrationsOptionalFields1,
-): string {
-  return JSON.stringify(
-    ListIntegrationsOptionalFields1$outboundSchema.parse(
-      listIntegrationsOptionalFields1,
-    ),
-  );
-}
-
-export function listIntegrationsOptionalFields1FromJSON(
-  jsonString: string,
-): SafeParseResult<ListIntegrationsOptionalFields1, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ListIntegrationsOptionalFields1$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ListIntegrationsOptionalFields1' from JSON`,
-  );
-}
-
-/** @internal */
-export const ListIntegrationsOptionalFields$inboundSchema: z.ZodType<
-  ListIntegrationsOptionalFields,
-  z.ZodTypeDef,
-  unknown
-> = z.union([
-  z.lazy(() => ListIntegrationsOptionalFields1$inboundSchema),
-  z.lazy(() => ListIntegrationsOptionalFields2$inboundSchema),
-]);
-
-/** @internal */
-export type ListIntegrationsOptionalFields$Outbound =
-  | ListIntegrationsOptionalFields1$Outbound
-  | ListIntegrationsOptionalFields2$Outbound;
-
-/** @internal */
-export const ListIntegrationsOptionalFields$outboundSchema: z.ZodType<
-  ListIntegrationsOptionalFields$Outbound,
-  z.ZodTypeDef,
-  ListIntegrationsOptionalFields
-> = z.union([
-  z.lazy(() => ListIntegrationsOptionalFields1$outboundSchema),
-  z.lazy(() => ListIntegrationsOptionalFields2$outboundSchema),
-]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListIntegrationsOptionalFields$ {
-  /** @deprecated use `ListIntegrationsOptionalFields$inboundSchema` instead. */
-  export const inboundSchema = ListIntegrationsOptionalFields$inboundSchema;
-  /** @deprecated use `ListIntegrationsOptionalFields$outboundSchema` instead. */
-  export const outboundSchema = ListIntegrationsOptionalFields$outboundSchema;
-  /** @deprecated use `ListIntegrationsOptionalFields$Outbound` instead. */
-  export type Outbound = ListIntegrationsOptionalFields$Outbound;
-}
-
-export function listIntegrationsOptionalFieldsToJSON(
-  listIntegrationsOptionalFields: ListIntegrationsOptionalFields,
-): string {
-  return JSON.stringify(
-    ListIntegrationsOptionalFields$outboundSchema.parse(
-      listIntegrationsOptionalFields,
-    ),
-  );
-}
-
-export function listIntegrationsOptionalFieldsFromJSON(
-  jsonString: string,
-): SafeParseResult<ListIntegrationsOptionalFields, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ListIntegrationsOptionalFields$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ListIntegrationsOptionalFields' from JSON`,
-  );
-}
-
-/** @internal */
-export const ListIntegrationsOptionalFieldsAuto$inboundSchema: z.ZodNativeEnum<
-  typeof ListIntegrationsOptionalFieldsAuto
-> = z.nativeEnum(ListIntegrationsOptionalFieldsAuto);
-
-/** @internal */
-export const ListIntegrationsOptionalFieldsAuto$outboundSchema: z.ZodNativeEnum<
-  typeof ListIntegrationsOptionalFieldsAuto
-> = ListIntegrationsOptionalFieldsAuto$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListIntegrationsOptionalFieldsAuto$ {
-  /** @deprecated use `ListIntegrationsOptionalFieldsAuto$inboundSchema` instead. */
-  export const inboundSchema = ListIntegrationsOptionalFieldsAuto$inboundSchema;
-  /** @deprecated use `ListIntegrationsOptionalFieldsAuto$outboundSchema` instead. */
+export namespace ListIntegrationsIntegrationFieldIntegrationFieldMapping$ {
+  /** @deprecated use `ListIntegrationsIntegrationFieldIntegrationFieldMapping$inboundSchema` instead. */
+  export const inboundSchema =
+    ListIntegrationsIntegrationFieldIntegrationFieldMapping$inboundSchema;
+  /** @deprecated use `ListIntegrationsIntegrationFieldIntegrationFieldMapping$outboundSchema` instead. */
   export const outboundSchema =
-    ListIntegrationsOptionalFieldsAuto$outboundSchema;
+    ListIntegrationsIntegrationFieldIntegrationFieldMapping$outboundSchema;
+  /** @deprecated use `ListIntegrationsIntegrationFieldIntegrationFieldMapping$Outbound` instead. */
+  export type Outbound =
+    ListIntegrationsIntegrationFieldIntegrationFieldMapping$Outbound;
+}
+
+export function listIntegrationsIntegrationFieldIntegrationFieldMappingToJSON(
+  listIntegrationsIntegrationFieldIntegrationFieldMapping:
+    ListIntegrationsIntegrationFieldIntegrationFieldMapping,
+): string {
+  return JSON.stringify(
+    ListIntegrationsIntegrationFieldIntegrationFieldMapping$outboundSchema
+      .parse(listIntegrationsIntegrationFieldIntegrationFieldMapping),
+  );
+}
+
+export function listIntegrationsIntegrationFieldIntegrationFieldMappingFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  ListIntegrationsIntegrationFieldIntegrationFieldMapping,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      ListIntegrationsIntegrationFieldIntegrationFieldMapping$inboundSchema
+        .parse(JSON.parse(x)),
+    `Failed to parse 'ListIntegrationsIntegrationFieldIntegrationFieldMapping' from JSON`,
+  );
+}
+
+/** @internal */
+export const ListIntegrationsIntegrationFieldIntegrationFieldExistent$inboundSchema:
+  z.ZodType<
+    ListIntegrationsIntegrationFieldIntegrationFieldExistent,
+    z.ZodTypeDef,
+    unknown
+  > = z.object({
+    fieldName: z.string(),
+    mapToName: z.string().optional(),
+    mapToDisplayName: z.string().optional(),
+  });
+
+/** @internal */
+export type ListIntegrationsIntegrationFieldIntegrationFieldExistent$Outbound =
+  {
+    fieldName: string;
+    mapToName?: string | undefined;
+    mapToDisplayName?: string | undefined;
+  };
+
+/** @internal */
+export const ListIntegrationsIntegrationFieldIntegrationFieldExistent$outboundSchema:
+  z.ZodType<
+    ListIntegrationsIntegrationFieldIntegrationFieldExistent$Outbound,
+    z.ZodTypeDef,
+    ListIntegrationsIntegrationFieldIntegrationFieldExistent
+  > = z.object({
+    fieldName: z.string(),
+    mapToName: z.string().optional(),
+    mapToDisplayName: z.string().optional(),
+  });
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace ListIntegrationsIntegrationFieldIntegrationFieldExistent$ {
+  /** @deprecated use `ListIntegrationsIntegrationFieldIntegrationFieldExistent$inboundSchema` instead. */
+  export const inboundSchema =
+    ListIntegrationsIntegrationFieldIntegrationFieldExistent$inboundSchema;
+  /** @deprecated use `ListIntegrationsIntegrationFieldIntegrationFieldExistent$outboundSchema` instead. */
+  export const outboundSchema =
+    ListIntegrationsIntegrationFieldIntegrationFieldExistent$outboundSchema;
+  /** @deprecated use `ListIntegrationsIntegrationFieldIntegrationFieldExistent$Outbound` instead. */
+  export type Outbound =
+    ListIntegrationsIntegrationFieldIntegrationFieldExistent$Outbound;
+}
+
+export function listIntegrationsIntegrationFieldIntegrationFieldExistentToJSON(
+  listIntegrationsIntegrationFieldIntegrationFieldExistent:
+    ListIntegrationsIntegrationFieldIntegrationFieldExistent,
+): string {
+  return JSON.stringify(
+    ListIntegrationsIntegrationFieldIntegrationFieldExistent$outboundSchema
+      .parse(listIntegrationsIntegrationFieldIntegrationFieldExistent),
+  );
+}
+
+export function listIntegrationsIntegrationFieldIntegrationFieldExistentFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  ListIntegrationsIntegrationFieldIntegrationFieldExistent,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      ListIntegrationsIntegrationFieldIntegrationFieldExistent$inboundSchema
+        .parse(JSON.parse(x)),
+    `Failed to parse 'ListIntegrationsIntegrationFieldIntegrationFieldExistent' from JSON`,
+  );
+}
+
+/** @internal */
+export const ListIntegrationsIntegrationsIntegrationField$inboundSchema:
+  z.ZodType<
+    ListIntegrationsIntegrationsIntegrationField,
+    z.ZodTypeDef,
+    unknown
+  > = z.union([
+    z.lazy(() =>
+      ListIntegrationsIntegrationFieldIntegrationFieldExistent$inboundSchema
+    ),
+    z.lazy(() =>
+      ListIntegrationsIntegrationFieldIntegrationFieldMapping$inboundSchema
+    ),
+  ]);
+
+/** @internal */
+export type ListIntegrationsIntegrationsIntegrationField$Outbound =
+  | ListIntegrationsIntegrationFieldIntegrationFieldExistent$Outbound
+  | ListIntegrationsIntegrationFieldIntegrationFieldMapping$Outbound;
+
+/** @internal */
+export const ListIntegrationsIntegrationsIntegrationField$outboundSchema:
+  z.ZodType<
+    ListIntegrationsIntegrationsIntegrationField$Outbound,
+    z.ZodTypeDef,
+    ListIntegrationsIntegrationsIntegrationField
+  > = z.union([
+    z.lazy(() =>
+      ListIntegrationsIntegrationFieldIntegrationFieldExistent$outboundSchema
+    ),
+    z.lazy(() =>
+      ListIntegrationsIntegrationFieldIntegrationFieldMapping$outboundSchema
+    ),
+  ]);
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace ListIntegrationsIntegrationsIntegrationField$ {
+  /** @deprecated use `ListIntegrationsIntegrationsIntegrationField$inboundSchema` instead. */
+  export const inboundSchema =
+    ListIntegrationsIntegrationsIntegrationField$inboundSchema;
+  /** @deprecated use `ListIntegrationsIntegrationsIntegrationField$outboundSchema` instead. */
+  export const outboundSchema =
+    ListIntegrationsIntegrationsIntegrationField$outboundSchema;
+  /** @deprecated use `ListIntegrationsIntegrationsIntegrationField$Outbound` instead. */
+  export type Outbound = ListIntegrationsIntegrationsIntegrationField$Outbound;
+}
+
+export function listIntegrationsIntegrationsIntegrationFieldToJSON(
+  listIntegrationsIntegrationsIntegrationField:
+    ListIntegrationsIntegrationsIntegrationField,
+): string {
+  return JSON.stringify(
+    ListIntegrationsIntegrationsIntegrationField$outboundSchema.parse(
+      listIntegrationsIntegrationsIntegrationField,
+    ),
+  );
+}
+
+export function listIntegrationsIntegrationsIntegrationFieldFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  ListIntegrationsIntegrationsIntegrationField,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      ListIntegrationsIntegrationsIntegrationField$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'ListIntegrationsIntegrationsIntegrationField' from JSON`,
+  );
+}
+
+/** @internal */
+export const ListIntegrationsIntegrationFieldIntegrationsIntegrationFieldMapping$inboundSchema:
+  z.ZodType<
+    ListIntegrationsIntegrationFieldIntegrationsIntegrationFieldMapping,
+    z.ZodTypeDef,
+    unknown
+  > = z.object({
+    mapToName: z.string(),
+    mapToDisplayName: z.string().optional(),
+    default: z.string().optional(),
+    prompt: z.string().optional(),
+  });
+
+/** @internal */
+export type ListIntegrationsIntegrationFieldIntegrationsIntegrationFieldMapping$Outbound =
+  {
+    mapToName: string;
+    mapToDisplayName?: string | undefined;
+    default?: string | undefined;
+    prompt?: string | undefined;
+  };
+
+/** @internal */
+export const ListIntegrationsIntegrationFieldIntegrationsIntegrationFieldMapping$outboundSchema:
+  z.ZodType<
+    ListIntegrationsIntegrationFieldIntegrationsIntegrationFieldMapping$Outbound,
+    z.ZodTypeDef,
+    ListIntegrationsIntegrationFieldIntegrationsIntegrationFieldMapping
+  > = z.object({
+    mapToName: z.string(),
+    mapToDisplayName: z.string().optional(),
+    default: z.string().optional(),
+    prompt: z.string().optional(),
+  });
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace ListIntegrationsIntegrationFieldIntegrationsIntegrationFieldMapping$ {
+  /** @deprecated use `ListIntegrationsIntegrationFieldIntegrationsIntegrationFieldMapping$inboundSchema` instead. */
+  export const inboundSchema =
+    ListIntegrationsIntegrationFieldIntegrationsIntegrationFieldMapping$inboundSchema;
+  /** @deprecated use `ListIntegrationsIntegrationFieldIntegrationsIntegrationFieldMapping$outboundSchema` instead. */
+  export const outboundSchema =
+    ListIntegrationsIntegrationFieldIntegrationsIntegrationFieldMapping$outboundSchema;
+  /** @deprecated use `ListIntegrationsIntegrationFieldIntegrationsIntegrationFieldMapping$Outbound` instead. */
+  export type Outbound =
+    ListIntegrationsIntegrationFieldIntegrationsIntegrationFieldMapping$Outbound;
+}
+
+export function listIntegrationsIntegrationFieldIntegrationsIntegrationFieldMappingToJSON(
+  listIntegrationsIntegrationFieldIntegrationsIntegrationFieldMapping:
+    ListIntegrationsIntegrationFieldIntegrationsIntegrationFieldMapping,
+): string {
+  return JSON.stringify(
+    ListIntegrationsIntegrationFieldIntegrationsIntegrationFieldMapping$outboundSchema
+      .parse(
+        listIntegrationsIntegrationFieldIntegrationsIntegrationFieldMapping,
+      ),
+  );
+}
+
+export function listIntegrationsIntegrationFieldIntegrationsIntegrationFieldMappingFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  ListIntegrationsIntegrationFieldIntegrationsIntegrationFieldMapping,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      ListIntegrationsIntegrationFieldIntegrationsIntegrationFieldMapping$inboundSchema
+        .parse(JSON.parse(x)),
+    `Failed to parse 'ListIntegrationsIntegrationFieldIntegrationsIntegrationFieldMapping' from JSON`,
+  );
+}
+
+/** @internal */
+export const ListIntegrationsIntegrationFieldIntegrationsIntegrationFieldExistent$inboundSchema:
+  z.ZodType<
+    ListIntegrationsIntegrationFieldIntegrationsIntegrationFieldExistent,
+    z.ZodTypeDef,
+    unknown
+  > = z.object({
+    fieldName: z.string(),
+    mapToName: z.string().optional(),
+    mapToDisplayName: z.string().optional(),
+  });
+
+/** @internal */
+export type ListIntegrationsIntegrationFieldIntegrationsIntegrationFieldExistent$Outbound =
+  {
+    fieldName: string;
+    mapToName?: string | undefined;
+    mapToDisplayName?: string | undefined;
+  };
+
+/** @internal */
+export const ListIntegrationsIntegrationFieldIntegrationsIntegrationFieldExistent$outboundSchema:
+  z.ZodType<
+    ListIntegrationsIntegrationFieldIntegrationsIntegrationFieldExistent$Outbound,
+    z.ZodTypeDef,
+    ListIntegrationsIntegrationFieldIntegrationsIntegrationFieldExistent
+  > = z.object({
+    fieldName: z.string(),
+    mapToName: z.string().optional(),
+    mapToDisplayName: z.string().optional(),
+  });
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace ListIntegrationsIntegrationFieldIntegrationsIntegrationFieldExistent$ {
+  /** @deprecated use `ListIntegrationsIntegrationFieldIntegrationsIntegrationFieldExistent$inboundSchema` instead. */
+  export const inboundSchema =
+    ListIntegrationsIntegrationFieldIntegrationsIntegrationFieldExistent$inboundSchema;
+  /** @deprecated use `ListIntegrationsIntegrationFieldIntegrationsIntegrationFieldExistent$outboundSchema` instead. */
+  export const outboundSchema =
+    ListIntegrationsIntegrationFieldIntegrationsIntegrationFieldExistent$outboundSchema;
+  /** @deprecated use `ListIntegrationsIntegrationFieldIntegrationsIntegrationFieldExistent$Outbound` instead. */
+  export type Outbound =
+    ListIntegrationsIntegrationFieldIntegrationsIntegrationFieldExistent$Outbound;
+}
+
+export function listIntegrationsIntegrationFieldIntegrationsIntegrationFieldExistentToJSON(
+  listIntegrationsIntegrationFieldIntegrationsIntegrationFieldExistent:
+    ListIntegrationsIntegrationFieldIntegrationsIntegrationFieldExistent,
+): string {
+  return JSON.stringify(
+    ListIntegrationsIntegrationFieldIntegrationsIntegrationFieldExistent$outboundSchema
+      .parse(
+        listIntegrationsIntegrationFieldIntegrationsIntegrationFieldExistent,
+      ),
+  );
+}
+
+export function listIntegrationsIntegrationFieldIntegrationsIntegrationFieldExistentFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  ListIntegrationsIntegrationFieldIntegrationsIntegrationFieldExistent,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      ListIntegrationsIntegrationFieldIntegrationsIntegrationFieldExistent$inboundSchema
+        .parse(JSON.parse(x)),
+    `Failed to parse 'ListIntegrationsIntegrationFieldIntegrationsIntegrationFieldExistent' from JSON`,
+  );
+}
+
+/** @internal */
+export const ListIntegrationsIntegrationField$inboundSchema: z.ZodType<
+  ListIntegrationsIntegrationField,
+  z.ZodTypeDef,
+  unknown
+> = z.union([
+  z.lazy(() =>
+    ListIntegrationsIntegrationFieldIntegrationsIntegrationFieldExistent$inboundSchema
+  ),
+  z.lazy(() =>
+    ListIntegrationsIntegrationFieldIntegrationsIntegrationFieldMapping$inboundSchema
+  ),
+]);
+
+/** @internal */
+export type ListIntegrationsIntegrationField$Outbound =
+  | ListIntegrationsIntegrationFieldIntegrationsIntegrationFieldExistent$Outbound
+  | ListIntegrationsIntegrationFieldIntegrationsIntegrationFieldMapping$Outbound;
+
+/** @internal */
+export const ListIntegrationsIntegrationField$outboundSchema: z.ZodType<
+  ListIntegrationsIntegrationField$Outbound,
+  z.ZodTypeDef,
+  ListIntegrationsIntegrationField
+> = z.union([
+  z.lazy(() =>
+    ListIntegrationsIntegrationFieldIntegrationsIntegrationFieldExistent$outboundSchema
+  ),
+  z.lazy(() =>
+    ListIntegrationsIntegrationFieldIntegrationsIntegrationFieldMapping$outboundSchema
+  ),
+]);
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace ListIntegrationsIntegrationField$ {
+  /** @deprecated use `ListIntegrationsIntegrationField$inboundSchema` instead. */
+  export const inboundSchema = ListIntegrationsIntegrationField$inboundSchema;
+  /** @deprecated use `ListIntegrationsIntegrationField$outboundSchema` instead. */
+  export const outboundSchema = ListIntegrationsIntegrationField$outboundSchema;
+  /** @deprecated use `ListIntegrationsIntegrationField$Outbound` instead. */
+  export type Outbound = ListIntegrationsIntegrationField$Outbound;
+}
+
+export function listIntegrationsIntegrationFieldToJSON(
+  listIntegrationsIntegrationField: ListIntegrationsIntegrationField,
+): string {
+  return JSON.stringify(
+    ListIntegrationsIntegrationField$outboundSchema.parse(
+      listIntegrationsIntegrationField,
+    ),
+  );
+}
+
+export function listIntegrationsIntegrationFieldFromJSON(
+  jsonString: string,
+): SafeParseResult<ListIntegrationsIntegrationField, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ListIntegrationsIntegrationField$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListIntegrationsIntegrationField' from JSON`,
+  );
+}
+
+/** @internal */
+export const ListIntegrationsOptionalFieldsAutoOption$inboundSchema:
+  z.ZodNativeEnum<typeof ListIntegrationsOptionalFieldsAutoOption> = z
+    .nativeEnum(ListIntegrationsOptionalFieldsAutoOption);
+
+/** @internal */
+export const ListIntegrationsOptionalFieldsAutoOption$outboundSchema:
+  z.ZodNativeEnum<typeof ListIntegrationsOptionalFieldsAutoOption> =
+    ListIntegrationsOptionalFieldsAutoOption$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace ListIntegrationsOptionalFieldsAutoOption$ {
+  /** @deprecated use `ListIntegrationsOptionalFieldsAutoOption$inboundSchema` instead. */
+  export const inboundSchema =
+    ListIntegrationsOptionalFieldsAutoOption$inboundSchema;
+  /** @deprecated use `ListIntegrationsOptionalFieldsAutoOption$outboundSchema` instead. */
+  export const outboundSchema =
+    ListIntegrationsOptionalFieldsAutoOption$outboundSchema;
 }
 
 /** @internal */
@@ -1046,8 +1127,8 @@ export function listIntegrationsDeliveryFromJSON(
 }
 
 /** @internal */
-export const ListIntegrationsIntegrationsObjects$inboundSchema: z.ZodType<
-  ListIntegrationsIntegrationsObjects,
+export const ListIntegrationsIntegrationObject$inboundSchema: z.ZodType<
+  ListIntegrationsIntegrationObject,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -1058,24 +1139,32 @@ export const ListIntegrationsIntegrationsObjects$inboundSchema: z.ZodType<
   mapToDisplayName: z.string().optional(),
   requiredFields: z.array(
     z.union([
-      z.lazy(() => ListIntegrationsRequiredFields1$inboundSchema),
-      z.lazy(() => ListIntegrationsRequiredFields2$inboundSchema),
+      z.lazy(() =>
+        ListIntegrationsIntegrationFieldIntegrationFieldExistent$inboundSchema
+      ),
+      z.lazy(() =>
+        ListIntegrationsIntegrationFieldIntegrationFieldMapping$inboundSchema
+      ),
     ]),
   ).optional(),
   optionalFields: z.array(
     z.union([
-      z.lazy(() => ListIntegrationsOptionalFields1$inboundSchema),
-      z.lazy(() => ListIntegrationsOptionalFields2$inboundSchema),
+      z.lazy(() =>
+        ListIntegrationsIntegrationFieldIntegrationsIntegrationFieldExistent$inboundSchema
+      ),
+      z.lazy(() =>
+        ListIntegrationsIntegrationFieldIntegrationsIntegrationFieldMapping$inboundSchema
+      ),
     ]),
   ).optional(),
-  optionalFieldsAuto: ListIntegrationsOptionalFieldsAuto$inboundSchema
+  optionalFieldsAuto: ListIntegrationsOptionalFieldsAutoOption$inboundSchema
     .optional(),
   backfill: z.lazy(() => ListIntegrationsBackfill$inboundSchema).optional(),
   delivery: z.lazy(() => ListIntegrationsDelivery$inboundSchema).optional(),
 });
 
 /** @internal */
-export type ListIntegrationsIntegrationsObjects$Outbound = {
+export type ListIntegrationsIntegrationObject$Outbound = {
   objectName: string;
   destination: string;
   schedule: string;
@@ -1083,14 +1172,14 @@ export type ListIntegrationsIntegrationsObjects$Outbound = {
   mapToDisplayName?: string | undefined;
   requiredFields?:
     | Array<
-      | ListIntegrationsRequiredFields1$Outbound
-      | ListIntegrationsRequiredFields2$Outbound
+      | ListIntegrationsIntegrationFieldIntegrationFieldExistent$Outbound
+      | ListIntegrationsIntegrationFieldIntegrationFieldMapping$Outbound
     >
     | undefined;
   optionalFields?:
     | Array<
-      | ListIntegrationsOptionalFields1$Outbound
-      | ListIntegrationsOptionalFields2$Outbound
+      | ListIntegrationsIntegrationFieldIntegrationsIntegrationFieldExistent$Outbound
+      | ListIntegrationsIntegrationFieldIntegrationsIntegrationFieldMapping$Outbound
     >
     | undefined;
   optionalFieldsAuto?: string | undefined;
@@ -1099,10 +1188,10 @@ export type ListIntegrationsIntegrationsObjects$Outbound = {
 };
 
 /** @internal */
-export const ListIntegrationsIntegrationsObjects$outboundSchema: z.ZodType<
-  ListIntegrationsIntegrationsObjects$Outbound,
+export const ListIntegrationsIntegrationObject$outboundSchema: z.ZodType<
+  ListIntegrationsIntegrationObject$Outbound,
   z.ZodTypeDef,
-  ListIntegrationsIntegrationsObjects
+  ListIntegrationsIntegrationObject
 > = z.object({
   objectName: z.string(),
   destination: z.string(),
@@ -1111,17 +1200,25 @@ export const ListIntegrationsIntegrationsObjects$outboundSchema: z.ZodType<
   mapToDisplayName: z.string().optional(),
   requiredFields: z.array(
     z.union([
-      z.lazy(() => ListIntegrationsRequiredFields1$outboundSchema),
-      z.lazy(() => ListIntegrationsRequiredFields2$outboundSchema),
+      z.lazy(() =>
+        ListIntegrationsIntegrationFieldIntegrationFieldExistent$outboundSchema
+      ),
+      z.lazy(() =>
+        ListIntegrationsIntegrationFieldIntegrationFieldMapping$outboundSchema
+      ),
     ]),
   ).optional(),
   optionalFields: z.array(
     z.union([
-      z.lazy(() => ListIntegrationsOptionalFields1$outboundSchema),
-      z.lazy(() => ListIntegrationsOptionalFields2$outboundSchema),
+      z.lazy(() =>
+        ListIntegrationsIntegrationFieldIntegrationsIntegrationFieldExistent$outboundSchema
+      ),
+      z.lazy(() =>
+        ListIntegrationsIntegrationFieldIntegrationsIntegrationFieldMapping$outboundSchema
+      ),
     ]),
   ).optional(),
-  optionalFieldsAuto: ListIntegrationsOptionalFieldsAuto$outboundSchema
+  optionalFieldsAuto: ListIntegrationsOptionalFieldsAutoOption$outboundSchema
     .optional(),
   backfill: z.lazy(() => ListIntegrationsBackfill$outboundSchema).optional(),
   delivery: z.lazy(() => ListIntegrationsDelivery$outboundSchema).optional(),
@@ -1131,62 +1228,60 @@ export const ListIntegrationsIntegrationsObjects$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace ListIntegrationsIntegrationsObjects$ {
-  /** @deprecated use `ListIntegrationsIntegrationsObjects$inboundSchema` instead. */
-  export const inboundSchema =
-    ListIntegrationsIntegrationsObjects$inboundSchema;
-  /** @deprecated use `ListIntegrationsIntegrationsObjects$outboundSchema` instead. */
+export namespace ListIntegrationsIntegrationObject$ {
+  /** @deprecated use `ListIntegrationsIntegrationObject$inboundSchema` instead. */
+  export const inboundSchema = ListIntegrationsIntegrationObject$inboundSchema;
+  /** @deprecated use `ListIntegrationsIntegrationObject$outboundSchema` instead. */
   export const outboundSchema =
-    ListIntegrationsIntegrationsObjects$outboundSchema;
-  /** @deprecated use `ListIntegrationsIntegrationsObjects$Outbound` instead. */
-  export type Outbound = ListIntegrationsIntegrationsObjects$Outbound;
+    ListIntegrationsIntegrationObject$outboundSchema;
+  /** @deprecated use `ListIntegrationsIntegrationObject$Outbound` instead. */
+  export type Outbound = ListIntegrationsIntegrationObject$Outbound;
 }
 
-export function listIntegrationsIntegrationsObjectsToJSON(
-  listIntegrationsIntegrationsObjects: ListIntegrationsIntegrationsObjects,
+export function listIntegrationsIntegrationObjectToJSON(
+  listIntegrationsIntegrationObject: ListIntegrationsIntegrationObject,
 ): string {
   return JSON.stringify(
-    ListIntegrationsIntegrationsObjects$outboundSchema.parse(
-      listIntegrationsIntegrationsObjects,
+    ListIntegrationsIntegrationObject$outboundSchema.parse(
+      listIntegrationsIntegrationObject,
     ),
   );
 }
 
-export function listIntegrationsIntegrationsObjectsFromJSON(
+export function listIntegrationsIntegrationObjectFromJSON(
   jsonString: string,
-): SafeParseResult<ListIntegrationsIntegrationsObjects, SDKValidationError> {
+): SafeParseResult<ListIntegrationsIntegrationObject, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) =>
-      ListIntegrationsIntegrationsObjects$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ListIntegrationsIntegrationsObjects' from JSON`,
+    (x) => ListIntegrationsIntegrationObject$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListIntegrationsIntegrationObject' from JSON`,
   );
 }
 
 /** @internal */
-export const ListIntegrationsRead$inboundSchema: z.ZodType<
-  ListIntegrationsRead,
+export const ListIntegrationsReadIntegration$inboundSchema: z.ZodType<
+  ListIntegrationsReadIntegration,
   z.ZodTypeDef,
   unknown
 > = z.object({
   objects: z.array(
-    z.lazy(() => ListIntegrationsIntegrationsObjects$inboundSchema),
+    z.lazy(() => ListIntegrationsIntegrationObject$inboundSchema),
   ).optional(),
 });
 
 /** @internal */
-export type ListIntegrationsRead$Outbound = {
-  objects?: Array<ListIntegrationsIntegrationsObjects$Outbound> | undefined;
+export type ListIntegrationsReadIntegration$Outbound = {
+  objects?: Array<ListIntegrationsIntegrationObject$Outbound> | undefined;
 };
 
 /** @internal */
-export const ListIntegrationsRead$outboundSchema: z.ZodType<
-  ListIntegrationsRead$Outbound,
+export const ListIntegrationsReadIntegration$outboundSchema: z.ZodType<
+  ListIntegrationsReadIntegration$Outbound,
   z.ZodTypeDef,
-  ListIntegrationsRead
+  ListIntegrationsReadIntegration
 > = z.object({
   objects: z.array(
-    z.lazy(() => ListIntegrationsIntegrationsObjects$outboundSchema),
+    z.lazy(() => ListIntegrationsIntegrationObject$outboundSchema),
   ).optional(),
 });
 
@@ -1194,30 +1289,32 @@ export const ListIntegrationsRead$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace ListIntegrationsRead$ {
-  /** @deprecated use `ListIntegrationsRead$inboundSchema` instead. */
-  export const inboundSchema = ListIntegrationsRead$inboundSchema;
-  /** @deprecated use `ListIntegrationsRead$outboundSchema` instead. */
-  export const outboundSchema = ListIntegrationsRead$outboundSchema;
-  /** @deprecated use `ListIntegrationsRead$Outbound` instead. */
-  export type Outbound = ListIntegrationsRead$Outbound;
+export namespace ListIntegrationsReadIntegration$ {
+  /** @deprecated use `ListIntegrationsReadIntegration$inboundSchema` instead. */
+  export const inboundSchema = ListIntegrationsReadIntegration$inboundSchema;
+  /** @deprecated use `ListIntegrationsReadIntegration$outboundSchema` instead. */
+  export const outboundSchema = ListIntegrationsReadIntegration$outboundSchema;
+  /** @deprecated use `ListIntegrationsReadIntegration$Outbound` instead. */
+  export type Outbound = ListIntegrationsReadIntegration$Outbound;
 }
 
-export function listIntegrationsReadToJSON(
-  listIntegrationsRead: ListIntegrationsRead,
+export function listIntegrationsReadIntegrationToJSON(
+  listIntegrationsReadIntegration: ListIntegrationsReadIntegration,
 ): string {
   return JSON.stringify(
-    ListIntegrationsRead$outboundSchema.parse(listIntegrationsRead),
+    ListIntegrationsReadIntegration$outboundSchema.parse(
+      listIntegrationsReadIntegration,
+    ),
   );
 }
 
-export function listIntegrationsReadFromJSON(
+export function listIntegrationsReadIntegrationFromJSON(
   jsonString: string,
-): SafeParseResult<ListIntegrationsRead, SDKValidationError> {
+): SafeParseResult<ListIntegrationsReadIntegration, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => ListIntegrationsRead$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ListIntegrationsRead' from JSON`,
+    (x) => ListIntegrationsReadIntegration$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListIntegrationsReadIntegration' from JSON`,
   );
 }
 
@@ -1278,8 +1375,8 @@ export function listIntegrationsValueDefaultsFromJSON(
 }
 
 /** @internal */
-export const ListIntegrationsObjects$inboundSchema: z.ZodType<
-  ListIntegrationsObjects,
+export const ListIntegrationsIntegrationWriteObject$inboundSchema: z.ZodType<
+  ListIntegrationsIntegrationWriteObject,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -1290,17 +1387,17 @@ export const ListIntegrationsObjects$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type ListIntegrationsObjects$Outbound = {
+export type ListIntegrationsIntegrationWriteObject$Outbound = {
   objectName: string;
   inheritMapping?: boolean | undefined;
   valueDefaults?: ListIntegrationsValueDefaults$Outbound | undefined;
 };
 
 /** @internal */
-export const ListIntegrationsObjects$outboundSchema: z.ZodType<
-  ListIntegrationsObjects$Outbound,
+export const ListIntegrationsIntegrationWriteObject$outboundSchema: z.ZodType<
+  ListIntegrationsIntegrationWriteObject$Outbound,
   z.ZodTypeDef,
-  ListIntegrationsObjects
+  ListIntegrationsIntegrationWriteObject
 > = z.object({
   objectName: z.string(),
   inheritMapping: z.boolean().optional(),
@@ -1312,92 +1409,102 @@ export const ListIntegrationsObjects$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace ListIntegrationsObjects$ {
-  /** @deprecated use `ListIntegrationsObjects$inboundSchema` instead. */
-  export const inboundSchema = ListIntegrationsObjects$inboundSchema;
-  /** @deprecated use `ListIntegrationsObjects$outboundSchema` instead. */
-  export const outboundSchema = ListIntegrationsObjects$outboundSchema;
-  /** @deprecated use `ListIntegrationsObjects$Outbound` instead. */
-  export type Outbound = ListIntegrationsObjects$Outbound;
+export namespace ListIntegrationsIntegrationWriteObject$ {
+  /** @deprecated use `ListIntegrationsIntegrationWriteObject$inboundSchema` instead. */
+  export const inboundSchema =
+    ListIntegrationsIntegrationWriteObject$inboundSchema;
+  /** @deprecated use `ListIntegrationsIntegrationWriteObject$outboundSchema` instead. */
+  export const outboundSchema =
+    ListIntegrationsIntegrationWriteObject$outboundSchema;
+  /** @deprecated use `ListIntegrationsIntegrationWriteObject$Outbound` instead. */
+  export type Outbound = ListIntegrationsIntegrationWriteObject$Outbound;
 }
 
-export function listIntegrationsObjectsToJSON(
-  listIntegrationsObjects: ListIntegrationsObjects,
+export function listIntegrationsIntegrationWriteObjectToJSON(
+  listIntegrationsIntegrationWriteObject:
+    ListIntegrationsIntegrationWriteObject,
 ): string {
   return JSON.stringify(
-    ListIntegrationsObjects$outboundSchema.parse(listIntegrationsObjects),
+    ListIntegrationsIntegrationWriteObject$outboundSchema.parse(
+      listIntegrationsIntegrationWriteObject,
+    ),
   );
 }
 
-export function listIntegrationsObjectsFromJSON(
+export function listIntegrationsIntegrationWriteObjectFromJSON(
   jsonString: string,
-): SafeParseResult<ListIntegrationsObjects, SDKValidationError> {
+): SafeParseResult<ListIntegrationsIntegrationWriteObject, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => ListIntegrationsObjects$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ListIntegrationsObjects' from JSON`,
+    (x) =>
+      ListIntegrationsIntegrationWriteObject$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListIntegrationsIntegrationWriteObject' from JSON`,
   );
 }
 
 /** @internal */
-export const ListIntegrationsWrite$inboundSchema: z.ZodType<
-  ListIntegrationsWrite,
+export const ListIntegrationsWriteIntegration$inboundSchema: z.ZodType<
+  ListIntegrationsWriteIntegration,
   z.ZodTypeDef,
   unknown
 > = z.object({
-  objects: z.array(z.lazy(() => ListIntegrationsObjects$inboundSchema))
-    .optional(),
+  objects: z.array(
+    z.lazy(() => ListIntegrationsIntegrationWriteObject$inboundSchema),
+  ).optional(),
 });
 
 /** @internal */
-export type ListIntegrationsWrite$Outbound = {
-  objects?: Array<ListIntegrationsObjects$Outbound> | undefined;
+export type ListIntegrationsWriteIntegration$Outbound = {
+  objects?: Array<ListIntegrationsIntegrationWriteObject$Outbound> | undefined;
 };
 
 /** @internal */
-export const ListIntegrationsWrite$outboundSchema: z.ZodType<
-  ListIntegrationsWrite$Outbound,
+export const ListIntegrationsWriteIntegration$outboundSchema: z.ZodType<
+  ListIntegrationsWriteIntegration$Outbound,
   z.ZodTypeDef,
-  ListIntegrationsWrite
+  ListIntegrationsWriteIntegration
 > = z.object({
-  objects: z.array(z.lazy(() => ListIntegrationsObjects$outboundSchema))
-    .optional(),
+  objects: z.array(
+    z.lazy(() => ListIntegrationsIntegrationWriteObject$outboundSchema),
+  ).optional(),
 });
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace ListIntegrationsWrite$ {
-  /** @deprecated use `ListIntegrationsWrite$inboundSchema` instead. */
-  export const inboundSchema = ListIntegrationsWrite$inboundSchema;
-  /** @deprecated use `ListIntegrationsWrite$outboundSchema` instead. */
-  export const outboundSchema = ListIntegrationsWrite$outboundSchema;
-  /** @deprecated use `ListIntegrationsWrite$Outbound` instead. */
-  export type Outbound = ListIntegrationsWrite$Outbound;
+export namespace ListIntegrationsWriteIntegration$ {
+  /** @deprecated use `ListIntegrationsWriteIntegration$inboundSchema` instead. */
+  export const inboundSchema = ListIntegrationsWriteIntegration$inboundSchema;
+  /** @deprecated use `ListIntegrationsWriteIntegration$outboundSchema` instead. */
+  export const outboundSchema = ListIntegrationsWriteIntegration$outboundSchema;
+  /** @deprecated use `ListIntegrationsWriteIntegration$Outbound` instead. */
+  export type Outbound = ListIntegrationsWriteIntegration$Outbound;
 }
 
-export function listIntegrationsWriteToJSON(
-  listIntegrationsWrite: ListIntegrationsWrite,
+export function listIntegrationsWriteIntegrationToJSON(
+  listIntegrationsWriteIntegration: ListIntegrationsWriteIntegration,
 ): string {
   return JSON.stringify(
-    ListIntegrationsWrite$outboundSchema.parse(listIntegrationsWrite),
+    ListIntegrationsWriteIntegration$outboundSchema.parse(
+      listIntegrationsWriteIntegration,
+    ),
   );
 }
 
-export function listIntegrationsWriteFromJSON(
+export function listIntegrationsWriteIntegrationFromJSON(
   jsonString: string,
-): SafeParseResult<ListIntegrationsWrite, SDKValidationError> {
+): SafeParseResult<ListIntegrationsWriteIntegration, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => ListIntegrationsWrite$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ListIntegrationsWrite' from JSON`,
+    (x) => ListIntegrationsWriteIntegration$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListIntegrationsWriteIntegration' from JSON`,
   );
 }
 
 /** @internal */
-export const ListIntegrationsProxy$inboundSchema: z.ZodType<
-  ListIntegrationsProxy,
+export const ListIntegrationsProxyIntegration$inboundSchema: z.ZodType<
+  ListIntegrationsProxyIntegration,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -1405,15 +1512,15 @@ export const ListIntegrationsProxy$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type ListIntegrationsProxy$Outbound = {
+export type ListIntegrationsProxyIntegration$Outbound = {
   enabled?: boolean | undefined;
 };
 
 /** @internal */
-export const ListIntegrationsProxy$outboundSchema: z.ZodType<
-  ListIntegrationsProxy$Outbound,
+export const ListIntegrationsProxyIntegration$outboundSchema: z.ZodType<
+  ListIntegrationsProxyIntegration$Outbound,
   z.ZodTypeDef,
-  ListIntegrationsProxy
+  ListIntegrationsProxyIntegration
 > = z.object({
   enabled: z.boolean().optional(),
 });
@@ -1422,170 +1529,181 @@ export const ListIntegrationsProxy$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace ListIntegrationsProxy$ {
-  /** @deprecated use `ListIntegrationsProxy$inboundSchema` instead. */
-  export const inboundSchema = ListIntegrationsProxy$inboundSchema;
-  /** @deprecated use `ListIntegrationsProxy$outboundSchema` instead. */
-  export const outboundSchema = ListIntegrationsProxy$outboundSchema;
-  /** @deprecated use `ListIntegrationsProxy$Outbound` instead. */
-  export type Outbound = ListIntegrationsProxy$Outbound;
+export namespace ListIntegrationsProxyIntegration$ {
+  /** @deprecated use `ListIntegrationsProxyIntegration$inboundSchema` instead. */
+  export const inboundSchema = ListIntegrationsProxyIntegration$inboundSchema;
+  /** @deprecated use `ListIntegrationsProxyIntegration$outboundSchema` instead. */
+  export const outboundSchema = ListIntegrationsProxyIntegration$outboundSchema;
+  /** @deprecated use `ListIntegrationsProxyIntegration$Outbound` instead. */
+  export type Outbound = ListIntegrationsProxyIntegration$Outbound;
 }
 
-export function listIntegrationsProxyToJSON(
-  listIntegrationsProxy: ListIntegrationsProxy,
+export function listIntegrationsProxyIntegrationToJSON(
+  listIntegrationsProxyIntegration: ListIntegrationsProxyIntegration,
 ): string {
   return JSON.stringify(
-    ListIntegrationsProxy$outboundSchema.parse(listIntegrationsProxy),
+    ListIntegrationsProxyIntegration$outboundSchema.parse(
+      listIntegrationsProxyIntegration,
+    ),
   );
 }
 
-export function listIntegrationsProxyFromJSON(
+export function listIntegrationsProxyIntegrationFromJSON(
   jsonString: string,
-): SafeParseResult<ListIntegrationsProxy, SDKValidationError> {
+): SafeParseResult<ListIntegrationsProxyIntegration, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => ListIntegrationsProxy$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ListIntegrationsProxy' from JSON`,
+    (x) => ListIntegrationsProxyIntegration$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListIntegrationsProxyIntegration' from JSON`,
   );
 }
 
 /** @internal */
-export const ListIntegrationsContent$inboundSchema: z.ZodType<
-  ListIntegrationsContent,
+export const ListIntegrationsIntegrationsIntegration$inboundSchema: z.ZodType<
+  ListIntegrationsIntegrationsIntegration,
   z.ZodTypeDef,
   unknown
 > = z.object({
   name: z.string(),
   displayName: z.string().optional(),
   provider: z.string(),
-  read: z.lazy(() => ListIntegrationsRead$inboundSchema).optional(),
-  write: z.lazy(() => ListIntegrationsWrite$inboundSchema).optional(),
-  proxy: z.lazy(() => ListIntegrationsProxy$inboundSchema).optional(),
+  read: z.lazy(() => ListIntegrationsReadIntegration$inboundSchema).optional(),
+  write: z.lazy(() => ListIntegrationsWriteIntegration$inboundSchema)
+    .optional(),
+  proxy: z.lazy(() => ListIntegrationsProxyIntegration$inboundSchema)
+    .optional(),
 });
 
 /** @internal */
-export type ListIntegrationsContent$Outbound = {
+export type ListIntegrationsIntegrationsIntegration$Outbound = {
   name: string;
   displayName?: string | undefined;
   provider: string;
-  read?: ListIntegrationsRead$Outbound | undefined;
-  write?: ListIntegrationsWrite$Outbound | undefined;
-  proxy?: ListIntegrationsProxy$Outbound | undefined;
+  read?: ListIntegrationsReadIntegration$Outbound | undefined;
+  write?: ListIntegrationsWriteIntegration$Outbound | undefined;
+  proxy?: ListIntegrationsProxyIntegration$Outbound | undefined;
 };
 
 /** @internal */
-export const ListIntegrationsContent$outboundSchema: z.ZodType<
-  ListIntegrationsContent$Outbound,
+export const ListIntegrationsIntegrationsIntegration$outboundSchema: z.ZodType<
+  ListIntegrationsIntegrationsIntegration$Outbound,
   z.ZodTypeDef,
-  ListIntegrationsContent
+  ListIntegrationsIntegrationsIntegration
 > = z.object({
   name: z.string(),
   displayName: z.string().optional(),
   provider: z.string(),
-  read: z.lazy(() => ListIntegrationsRead$outboundSchema).optional(),
-  write: z.lazy(() => ListIntegrationsWrite$outboundSchema).optional(),
-  proxy: z.lazy(() => ListIntegrationsProxy$outboundSchema).optional(),
+  read: z.lazy(() => ListIntegrationsReadIntegration$outboundSchema).optional(),
+  write: z.lazy(() => ListIntegrationsWriteIntegration$outboundSchema)
+    .optional(),
+  proxy: z.lazy(() => ListIntegrationsProxyIntegration$outboundSchema)
+    .optional(),
 });
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace ListIntegrationsContent$ {
-  /** @deprecated use `ListIntegrationsContent$inboundSchema` instead. */
-  export const inboundSchema = ListIntegrationsContent$inboundSchema;
-  /** @deprecated use `ListIntegrationsContent$outboundSchema` instead. */
-  export const outboundSchema = ListIntegrationsContent$outboundSchema;
-  /** @deprecated use `ListIntegrationsContent$Outbound` instead. */
-  export type Outbound = ListIntegrationsContent$Outbound;
+export namespace ListIntegrationsIntegrationsIntegration$ {
+  /** @deprecated use `ListIntegrationsIntegrationsIntegration$inboundSchema` instead. */
+  export const inboundSchema =
+    ListIntegrationsIntegrationsIntegration$inboundSchema;
+  /** @deprecated use `ListIntegrationsIntegrationsIntegration$outboundSchema` instead. */
+  export const outboundSchema =
+    ListIntegrationsIntegrationsIntegration$outboundSchema;
+  /** @deprecated use `ListIntegrationsIntegrationsIntegration$Outbound` instead. */
+  export type Outbound = ListIntegrationsIntegrationsIntegration$Outbound;
 }
 
-export function listIntegrationsContentToJSON(
-  listIntegrationsContent: ListIntegrationsContent,
+export function listIntegrationsIntegrationsIntegrationToJSON(
+  listIntegrationsIntegrationsIntegration:
+    ListIntegrationsIntegrationsIntegration,
 ): string {
   return JSON.stringify(
-    ListIntegrationsContent$outboundSchema.parse(listIntegrationsContent),
+    ListIntegrationsIntegrationsIntegration$outboundSchema.parse(
+      listIntegrationsIntegrationsIntegration,
+    ),
   );
 }
 
-export function listIntegrationsContentFromJSON(
+export function listIntegrationsIntegrationsIntegrationFromJSON(
   jsonString: string,
-): SafeParseResult<ListIntegrationsContent, SDKValidationError> {
+): SafeParseResult<
+  ListIntegrationsIntegrationsIntegration,
+  SDKValidationError
+> {
   return safeParse(
     jsonString,
-    (x) => ListIntegrationsContent$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ListIntegrationsContent' from JSON`,
+    (x) =>
+      ListIntegrationsIntegrationsIntegration$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'ListIntegrationsIntegrationsIntegration' from JSON`,
   );
 }
 
 /** @internal */
-export const ListIntegrationsLatestRevision$inboundSchema: z.ZodType<
-  ListIntegrationsLatestRevision,
+export const Revision$inboundSchema: z.ZodType<
+  Revision,
   z.ZodTypeDef,
   unknown
 > = z.object({
   id: z.string(),
   specVersion: z.string(),
   createTime: z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  content: z.lazy(() => ListIntegrationsContent$inboundSchema),
+  content: z.lazy(() => ListIntegrationsIntegrationsIntegration$inboundSchema),
 });
 
 /** @internal */
-export type ListIntegrationsLatestRevision$Outbound = {
+export type Revision$Outbound = {
   id: string;
   specVersion: string;
   createTime: string;
-  content: ListIntegrationsContent$Outbound;
+  content: ListIntegrationsIntegrationsIntegration$Outbound;
 };
 
 /** @internal */
-export const ListIntegrationsLatestRevision$outboundSchema: z.ZodType<
-  ListIntegrationsLatestRevision$Outbound,
+export const Revision$outboundSchema: z.ZodType<
+  Revision$Outbound,
   z.ZodTypeDef,
-  ListIntegrationsLatestRevision
+  Revision
 > = z.object({
   id: z.string(),
   specVersion: z.string(),
   createTime: z.date().transform(v => v.toISOString()),
-  content: z.lazy(() => ListIntegrationsContent$outboundSchema),
+  content: z.lazy(() => ListIntegrationsIntegrationsIntegration$outboundSchema),
 });
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace ListIntegrationsLatestRevision$ {
-  /** @deprecated use `ListIntegrationsLatestRevision$inboundSchema` instead. */
-  export const inboundSchema = ListIntegrationsLatestRevision$inboundSchema;
-  /** @deprecated use `ListIntegrationsLatestRevision$outboundSchema` instead. */
-  export const outboundSchema = ListIntegrationsLatestRevision$outboundSchema;
-  /** @deprecated use `ListIntegrationsLatestRevision$Outbound` instead. */
-  export type Outbound = ListIntegrationsLatestRevision$Outbound;
+export namespace Revision$ {
+  /** @deprecated use `Revision$inboundSchema` instead. */
+  export const inboundSchema = Revision$inboundSchema;
+  /** @deprecated use `Revision$outboundSchema` instead. */
+  export const outboundSchema = Revision$outboundSchema;
+  /** @deprecated use `Revision$Outbound` instead. */
+  export type Outbound = Revision$Outbound;
 }
 
-export function listIntegrationsLatestRevisionToJSON(
-  listIntegrationsLatestRevision: ListIntegrationsLatestRevision,
-): string {
-  return JSON.stringify(
-    ListIntegrationsLatestRevision$outboundSchema.parse(
-      listIntegrationsLatestRevision,
-    ),
-  );
+export function revisionToJSON(revision: Revision): string {
+  return JSON.stringify(Revision$outboundSchema.parse(revision));
 }
 
-export function listIntegrationsLatestRevisionFromJSON(
+export function revisionFromJSON(
   jsonString: string,
-): SafeParseResult<ListIntegrationsLatestRevision, SDKValidationError> {
+): SafeParseResult<Revision, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => ListIntegrationsLatestRevision$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ListIntegrationsLatestRevision' from JSON`,
+    (x) => Revision$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Revision' from JSON`,
   );
 }
 
 /** @internal */
-export const ListIntegrationsIntegrationsResponseBody$inboundSchema: z.ZodType<
-  ListIntegrationsIntegrationsResponseBody,
+export const ListIntegrationsIntegration$inboundSchema: z.ZodType<
+  ListIntegrationsIntegration,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -1596,25 +1714,25 @@ export const ListIntegrationsIntegrationsResponseBody$inboundSchema: z.ZodType<
   createTime: z.string().datetime({ offset: true }).transform(v => new Date(v)),
   updateTime: z.string().datetime({ offset: true }).transform(v => new Date(v))
     .optional(),
-  latestRevision: z.lazy(() => ListIntegrationsLatestRevision$inboundSchema),
+  latestRevision: z.lazy(() => Revision$inboundSchema),
 });
 
 /** @internal */
-export type ListIntegrationsIntegrationsResponseBody$Outbound = {
+export type ListIntegrationsIntegration$Outbound = {
   id: string;
   projectId: string;
   name: string;
   provider: string;
   createTime: string;
   updateTime?: string | undefined;
-  latestRevision: ListIntegrationsLatestRevision$Outbound;
+  latestRevision: Revision$Outbound;
 };
 
 /** @internal */
-export const ListIntegrationsIntegrationsResponseBody$outboundSchema: z.ZodType<
-  ListIntegrationsIntegrationsResponseBody$Outbound,
+export const ListIntegrationsIntegration$outboundSchema: z.ZodType<
+  ListIntegrationsIntegration$Outbound,
   z.ZodTypeDef,
-  ListIntegrationsIntegrationsResponseBody
+  ListIntegrationsIntegration
 > = z.object({
   id: z.string(),
   projectId: z.string(),
@@ -1622,48 +1740,39 @@ export const ListIntegrationsIntegrationsResponseBody$outboundSchema: z.ZodType<
   provider: z.string(),
   createTime: z.date().transform(v => v.toISOString()),
   updateTime: z.date().transform(v => v.toISOString()).optional(),
-  latestRevision: z.lazy(() => ListIntegrationsLatestRevision$outboundSchema),
+  latestRevision: z.lazy(() => Revision$outboundSchema),
 });
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace ListIntegrationsIntegrationsResponseBody$ {
-  /** @deprecated use `ListIntegrationsIntegrationsResponseBody$inboundSchema` instead. */
-  export const inboundSchema =
-    ListIntegrationsIntegrationsResponseBody$inboundSchema;
-  /** @deprecated use `ListIntegrationsIntegrationsResponseBody$outboundSchema` instead. */
-  export const outboundSchema =
-    ListIntegrationsIntegrationsResponseBody$outboundSchema;
-  /** @deprecated use `ListIntegrationsIntegrationsResponseBody$Outbound` instead. */
-  export type Outbound = ListIntegrationsIntegrationsResponseBody$Outbound;
+export namespace ListIntegrationsIntegration$ {
+  /** @deprecated use `ListIntegrationsIntegration$inboundSchema` instead. */
+  export const inboundSchema = ListIntegrationsIntegration$inboundSchema;
+  /** @deprecated use `ListIntegrationsIntegration$outboundSchema` instead. */
+  export const outboundSchema = ListIntegrationsIntegration$outboundSchema;
+  /** @deprecated use `ListIntegrationsIntegration$Outbound` instead. */
+  export type Outbound = ListIntegrationsIntegration$Outbound;
 }
 
-export function listIntegrationsIntegrationsResponseBodyToJSON(
-  listIntegrationsIntegrationsResponseBody:
-    ListIntegrationsIntegrationsResponseBody,
+export function listIntegrationsIntegrationToJSON(
+  listIntegrationsIntegration: ListIntegrationsIntegration,
 ): string {
   return JSON.stringify(
-    ListIntegrationsIntegrationsResponseBody$outboundSchema.parse(
-      listIntegrationsIntegrationsResponseBody,
+    ListIntegrationsIntegration$outboundSchema.parse(
+      listIntegrationsIntegration,
     ),
   );
 }
 
-export function listIntegrationsIntegrationsResponseBodyFromJSON(
+export function listIntegrationsIntegrationFromJSON(
   jsonString: string,
-): SafeParseResult<
-  ListIntegrationsIntegrationsResponseBody,
-  SDKValidationError
-> {
+): SafeParseResult<ListIntegrationsIntegration, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) =>
-      ListIntegrationsIntegrationsResponseBody$inboundSchema.parse(
-        JSON.parse(x),
-      ),
-    `Failed to parse 'ListIntegrationsIntegrationsResponseBody' from JSON`,
+    (x) => ListIntegrationsIntegration$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListIntegrationsIntegration' from JSON`,
   );
 }
 
@@ -1673,14 +1782,14 @@ export const ListIntegrationsResponse$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.union([
-  z.lazy(() => ListIntegrationsResponseBody$inboundSchema),
-  z.array(z.lazy(() => ListIntegrationsIntegrationsResponseBody$inboundSchema)),
+  z.lazy(() => ListIntegrationsAPIProblem$inboundSchema),
+  z.array(z.lazy(() => ListIntegrationsIntegration$inboundSchema)),
 ]);
 
 /** @internal */
 export type ListIntegrationsResponse$Outbound =
-  | ListIntegrationsResponseBody$Outbound
-  | Array<ListIntegrationsIntegrationsResponseBody$Outbound>;
+  | ListIntegrationsAPIProblem$Outbound
+  | Array<ListIntegrationsIntegration$Outbound>;
 
 /** @internal */
 export const ListIntegrationsResponse$outboundSchema: z.ZodType<
@@ -1688,10 +1797,8 @@ export const ListIntegrationsResponse$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   ListIntegrationsResponse
 > = z.union([
-  z.lazy(() => ListIntegrationsResponseBody$outboundSchema),
-  z.array(
-    z.lazy(() => ListIntegrationsIntegrationsResponseBody$outboundSchema),
-  ),
+  z.lazy(() => ListIntegrationsAPIProblem$outboundSchema),
+  z.array(z.lazy(() => ListIntegrationsIntegration$outboundSchema)),
 ]);
 
 /**

@@ -27,7 +27,7 @@ export type GetConnectionIn = ClosedEnum<typeof GetConnectionIn>;
  *
  * @remarks
  */
-export type GetConnectionIssues = {
+export type GetConnectionInputValidationIssue = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -120,7 +120,7 @@ export type GetConnectionIssues = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export type GetConnectionResponseBodyData = {
+export type GetConnectionInputValidationProblemData = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -192,7 +192,7 @@ export type GetConnectionResponseBodyData = {
    * Additional context for the problem
    */
   context?: { [k: string]: any } | undefined;
-  issues?: Array<GetConnectionIssues> | undefined;
+  issues?: Array<GetConnectionInputValidationIssue> | undefined;
 };
 
 /**
@@ -202,7 +202,7 @@ export type GetConnectionResponseBodyData = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export class GetConnectionResponseBody extends Error {
+export class GetConnectionInputValidationProblem extends Error {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -274,12 +274,12 @@ export class GetConnectionResponseBody extends Error {
    * Additional context for the problem
    */
   context?: { [k: string]: any } | undefined;
-  issues?: Array<GetConnectionIssues> | undefined;
+  issues?: Array<GetConnectionInputValidationIssue> | undefined;
 
   /** The original data that was passed to this error instance. */
-  data$: GetConnectionResponseBodyData;
+  data$: GetConnectionInputValidationProblemData;
 
-  constructor(err: GetConnectionResponseBodyData) {
+  constructor(err: GetConnectionInputValidationProblemData) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
@@ -305,7 +305,7 @@ export class GetConnectionResponseBody extends Error {
     if (err.context != null) this.context = err.context;
     if (err.issues != null) this.issues = err.issues;
 
-    this.name = "GetConnectionResponseBody";
+    this.name = "GetConnectionInputValidationProblem";
   }
 }
 
@@ -331,8 +331,8 @@ export namespace GetConnectionIn$ {
 }
 
 /** @internal */
-export const GetConnectionIssues$inboundSchema: z.ZodType<
-  GetConnectionIssues,
+export const GetConnectionInputValidationIssue$inboundSchema: z.ZodType<
+  GetConnectionInputValidationIssue,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -361,7 +361,7 @@ export const GetConnectionIssues$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type GetConnectionIssues$Outbound = {
+export type GetConnectionInputValidationIssue$Outbound = {
   type: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -385,10 +385,10 @@ export type GetConnectionIssues$Outbound = {
 };
 
 /** @internal */
-export const GetConnectionIssues$outboundSchema: z.ZodType<
-  GetConnectionIssues$Outbound,
+export const GetConnectionInputValidationIssue$outboundSchema: z.ZodType<
+  GetConnectionInputValidationIssue$Outbound,
   z.ZodTypeDef,
-  GetConnectionIssues
+  GetConnectionInputValidationIssue
 > = z.object({
   type: z.string().default("about:blank"),
   href: z.string().optional(),
@@ -416,36 +416,39 @@ export const GetConnectionIssues$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace GetConnectionIssues$ {
-  /** @deprecated use `GetConnectionIssues$inboundSchema` instead. */
-  export const inboundSchema = GetConnectionIssues$inboundSchema;
-  /** @deprecated use `GetConnectionIssues$outboundSchema` instead. */
-  export const outboundSchema = GetConnectionIssues$outboundSchema;
-  /** @deprecated use `GetConnectionIssues$Outbound` instead. */
-  export type Outbound = GetConnectionIssues$Outbound;
+export namespace GetConnectionInputValidationIssue$ {
+  /** @deprecated use `GetConnectionInputValidationIssue$inboundSchema` instead. */
+  export const inboundSchema = GetConnectionInputValidationIssue$inboundSchema;
+  /** @deprecated use `GetConnectionInputValidationIssue$outboundSchema` instead. */
+  export const outboundSchema =
+    GetConnectionInputValidationIssue$outboundSchema;
+  /** @deprecated use `GetConnectionInputValidationIssue$Outbound` instead. */
+  export type Outbound = GetConnectionInputValidationIssue$Outbound;
 }
 
-export function getConnectionIssuesToJSON(
-  getConnectionIssues: GetConnectionIssues,
+export function getConnectionInputValidationIssueToJSON(
+  getConnectionInputValidationIssue: GetConnectionInputValidationIssue,
 ): string {
   return JSON.stringify(
-    GetConnectionIssues$outboundSchema.parse(getConnectionIssues),
+    GetConnectionInputValidationIssue$outboundSchema.parse(
+      getConnectionInputValidationIssue,
+    ),
   );
 }
 
-export function getConnectionIssuesFromJSON(
+export function getConnectionInputValidationIssueFromJSON(
   jsonString: string,
-): SafeParseResult<GetConnectionIssues, SDKValidationError> {
+): SafeParseResult<GetConnectionInputValidationIssue, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => GetConnectionIssues$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetConnectionIssues' from JSON`,
+    (x) => GetConnectionInputValidationIssue$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetConnectionInputValidationIssue' from JSON`,
   );
 }
 
 /** @internal */
-export const GetConnectionResponseBody$inboundSchema: z.ZodType<
-  GetConnectionResponseBody,
+export const GetConnectionInputValidationProblem$inboundSchema: z.ZodType<
+  GetConnectionInputValidationProblem,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -468,14 +471,15 @@ export const GetConnectionResponseBody$inboundSchema: z.ZodType<
   retryAfter: z.string().datetime({ offset: true }).transform(v => new Date(v))
     .optional(),
   context: z.record(z.any()).optional(),
-  issues: z.array(z.lazy(() => GetConnectionIssues$inboundSchema)).optional(),
+  issues: z.array(z.lazy(() => GetConnectionInputValidationIssue$inboundSchema))
+    .optional(),
 })
   .transform((v) => {
-    return new GetConnectionResponseBody(v);
+    return new GetConnectionInputValidationProblem(v);
   });
 
 /** @internal */
-export type GetConnectionResponseBody$Outbound = {
+export type GetConnectionInputValidationProblem$Outbound = {
   type?: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -493,15 +497,15 @@ export type GetConnectionResponseBody$Outbound = {
   retryable?: boolean | undefined;
   retryAfter?: string | undefined;
   context?: { [k: string]: any } | undefined;
-  issues?: Array<GetConnectionIssues$Outbound> | undefined;
+  issues?: Array<GetConnectionInputValidationIssue$Outbound> | undefined;
 };
 
 /** @internal */
-export const GetConnectionResponseBody$outboundSchema: z.ZodType<
-  GetConnectionResponseBody$Outbound,
+export const GetConnectionInputValidationProblem$outboundSchema: z.ZodType<
+  GetConnectionInputValidationProblem$Outbound,
   z.ZodTypeDef,
-  GetConnectionResponseBody
-> = z.instanceof(GetConnectionResponseBody)
+  GetConnectionInputValidationProblem
+> = z.instanceof(GetConnectionInputValidationProblem)
   .transform(v => v.data$)
   .pipe(z.object({
     type: z.string().default("about:blank"),
@@ -521,19 +525,22 @@ export const GetConnectionResponseBody$outboundSchema: z.ZodType<
     retryable: z.boolean().optional(),
     retryAfter: z.date().transform(v => v.toISOString()).optional(),
     context: z.record(z.any()).optional(),
-    issues: z.array(z.lazy(() => GetConnectionIssues$outboundSchema))
-      .optional(),
+    issues: z.array(
+      z.lazy(() => GetConnectionInputValidationIssue$outboundSchema),
+    ).optional(),
   }));
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace GetConnectionResponseBody$ {
-  /** @deprecated use `GetConnectionResponseBody$inboundSchema` instead. */
-  export const inboundSchema = GetConnectionResponseBody$inboundSchema;
-  /** @deprecated use `GetConnectionResponseBody$outboundSchema` instead. */
-  export const outboundSchema = GetConnectionResponseBody$outboundSchema;
-  /** @deprecated use `GetConnectionResponseBody$Outbound` instead. */
-  export type Outbound = GetConnectionResponseBody$Outbound;
+export namespace GetConnectionInputValidationProblem$ {
+  /** @deprecated use `GetConnectionInputValidationProblem$inboundSchema` instead. */
+  export const inboundSchema =
+    GetConnectionInputValidationProblem$inboundSchema;
+  /** @deprecated use `GetConnectionInputValidationProblem$outboundSchema` instead. */
+  export const outboundSchema =
+    GetConnectionInputValidationProblem$outboundSchema;
+  /** @deprecated use `GetConnectionInputValidationProblem$Outbound` instead. */
+  export type Outbound = GetConnectionInputValidationProblem$Outbound;
 }

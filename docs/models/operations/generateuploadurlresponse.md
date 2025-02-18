@@ -3,20 +3,20 @@
 
 ## Supported Types
 
-### `operations.GenerateUploadUrlResponseBody`
+### `operations.GenerateUploadURLSignedURL`
 
 ```typescript
-const value: operations.GenerateUploadUrlResponseBody = {
+const value: operations.GenerateUploadURLSignedURL = {
   url: "https://impeccable-barge.info",
   bucket: "<value>",
   path: "/Library",
 };
 ```
 
-### `operations.GenerateUploadUrlUploadUrlsResponseBody`
+### `operations.GenerateUploadUrlAPIProblem`
 
 ```typescript
-const value: operations.GenerateUploadUrlUploadUrlsResponseBody = {
+const value: operations.GenerateUploadUrlAPIProblem = {
   href:
     "https://www.belgif.be/specification/rest/api-guide/#standardized-problem-types",
   title: "Description of the type of problem that occurred",

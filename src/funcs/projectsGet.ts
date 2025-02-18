@@ -40,7 +40,7 @@ export function projectsGet(
 ): APIPromise<
   Result<
     operations.GetProjectResponse,
-    | errors.GetProjectResponseBody
+    | errors.GetProjectInputValidationProblem
     | APIError
     | SDKValidationError
     | UnexpectedClientError
@@ -65,7 +65,7 @@ async function $do(
   [
     Result<
       operations.GetProjectResponse,
-      | errors.GetProjectResponseBody
+      | errors.GetProjectInputValidationProblem
       | APIError
       | SDKValidationError
       | UnexpectedClientError
@@ -164,7 +164,7 @@ async function $do(
 
   const [result] = await M.match<
     operations.GetProjectResponse,
-    | errors.GetProjectResponseBody
+    | errors.GetProjectInputValidationProblem
     | APIError
     | SDKValidationError
     | UnexpectedClientError
@@ -174,7 +174,7 @@ async function $do(
     | ConnectionError
   >(
     M.json(200, operations.GetProjectResponse$inboundSchema),
-    M.jsonErr(404, errors.GetProjectResponseBody$inboundSchema, {
+    M.jsonErr(404, errors.GetProjectInputValidationProblem$inboundSchema, {
       ctype: "application/problem+json",
     }),
     M.fail("4XX"),

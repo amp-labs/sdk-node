@@ -14,7 +14,7 @@ export class Groups extends ClientSDK {
   async create(
     request: operations.CreateGroupRequest,
     options?: RequestOptions,
-  ): Promise<operations.CreateGroupResponseBody | undefined> {
+  ): Promise<operations.CreateGroupAPIProblem | undefined> {
     return unwrapAsync(groupsCreate(
       this,
       request,

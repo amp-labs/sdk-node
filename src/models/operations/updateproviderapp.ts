@@ -59,7 +59,7 @@ export type UpdateProviderAppRequest = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export type UpdateProviderAppProviderAppsResponseBody = {
+export type UpdateProviderAppAPIProblem = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -136,7 +136,7 @@ export type UpdateProviderAppProviderAppsResponseBody = {
 /**
  * The updated provider app
  */
-export type UpdateProviderAppResponseBody = {
+export type UpdateProviderAppProviderApp = {
   /**
    * The provider app ID.
    */
@@ -172,8 +172,8 @@ export type UpdateProviderAppResponseBody = {
 };
 
 export type UpdateProviderAppResponse =
-  | UpdateProviderAppResponseBody
-  | UpdateProviderAppProviderAppsResponseBody;
+  | UpdateProviderAppProviderApp
+  | UpdateProviderAppAPIProblem;
 
 /** @internal */
 export const ProviderApp$inboundSchema: z.ZodType<
@@ -365,8 +365,8 @@ export function updateProviderAppRequestFromJSON(
 }
 
 /** @internal */
-export const UpdateProviderAppProviderAppsResponseBody$inboundSchema: z.ZodType<
-  UpdateProviderAppProviderAppsResponseBody,
+export const UpdateProviderAppAPIProblem$inboundSchema: z.ZodType<
+  UpdateProviderAppAPIProblem,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -392,7 +392,7 @@ export const UpdateProviderAppProviderAppsResponseBody$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type UpdateProviderAppProviderAppsResponseBody$Outbound = {
+export type UpdateProviderAppAPIProblem$Outbound = {
   type: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -413,76 +413,66 @@ export type UpdateProviderAppProviderAppsResponseBody$Outbound = {
 };
 
 /** @internal */
-export const UpdateProviderAppProviderAppsResponseBody$outboundSchema:
-  z.ZodType<
-    UpdateProviderAppProviderAppsResponseBody$Outbound,
-    z.ZodTypeDef,
-    UpdateProviderAppProviderAppsResponseBody
-  > = z.object({
-    type: z.string().default("about:blank"),
-    href: z.string().optional(),
-    title: z.string().optional(),
-    status: z.number().int().optional(),
-    detail: z.string().optional(),
-    instance: z.string().optional(),
-    subsystem: z.string().optional(),
-    time: z.date().transform(v => v.toISOString()).optional(),
-    requestId: z.string().optional(),
-    causes: z.array(z.string()).optional(),
-    remedy: z.string().optional(),
-    supportEmail: z.string().optional(),
-    supportPhone: z.string().optional(),
-    supportUrl: z.string().optional(),
-    retryable: z.boolean().optional(),
-    retryAfter: z.date().transform(v => v.toISOString()).optional(),
-    context: z.record(z.any()).optional(),
-  });
+export const UpdateProviderAppAPIProblem$outboundSchema: z.ZodType<
+  UpdateProviderAppAPIProblem$Outbound,
+  z.ZodTypeDef,
+  UpdateProviderAppAPIProblem
+> = z.object({
+  type: z.string().default("about:blank"),
+  href: z.string().optional(),
+  title: z.string().optional(),
+  status: z.number().int().optional(),
+  detail: z.string().optional(),
+  instance: z.string().optional(),
+  subsystem: z.string().optional(),
+  time: z.date().transform(v => v.toISOString()).optional(),
+  requestId: z.string().optional(),
+  causes: z.array(z.string()).optional(),
+  remedy: z.string().optional(),
+  supportEmail: z.string().optional(),
+  supportPhone: z.string().optional(),
+  supportUrl: z.string().optional(),
+  retryable: z.boolean().optional(),
+  retryAfter: z.date().transform(v => v.toISOString()).optional(),
+  context: z.record(z.any()).optional(),
+});
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace UpdateProviderAppProviderAppsResponseBody$ {
-  /** @deprecated use `UpdateProviderAppProviderAppsResponseBody$inboundSchema` instead. */
-  export const inboundSchema =
-    UpdateProviderAppProviderAppsResponseBody$inboundSchema;
-  /** @deprecated use `UpdateProviderAppProviderAppsResponseBody$outboundSchema` instead. */
-  export const outboundSchema =
-    UpdateProviderAppProviderAppsResponseBody$outboundSchema;
-  /** @deprecated use `UpdateProviderAppProviderAppsResponseBody$Outbound` instead. */
-  export type Outbound = UpdateProviderAppProviderAppsResponseBody$Outbound;
+export namespace UpdateProviderAppAPIProblem$ {
+  /** @deprecated use `UpdateProviderAppAPIProblem$inboundSchema` instead. */
+  export const inboundSchema = UpdateProviderAppAPIProblem$inboundSchema;
+  /** @deprecated use `UpdateProviderAppAPIProblem$outboundSchema` instead. */
+  export const outboundSchema = UpdateProviderAppAPIProblem$outboundSchema;
+  /** @deprecated use `UpdateProviderAppAPIProblem$Outbound` instead. */
+  export type Outbound = UpdateProviderAppAPIProblem$Outbound;
 }
 
-export function updateProviderAppProviderAppsResponseBodyToJSON(
-  updateProviderAppProviderAppsResponseBody:
-    UpdateProviderAppProviderAppsResponseBody,
+export function updateProviderAppAPIProblemToJSON(
+  updateProviderAppAPIProblem: UpdateProviderAppAPIProblem,
 ): string {
   return JSON.stringify(
-    UpdateProviderAppProviderAppsResponseBody$outboundSchema.parse(
-      updateProviderAppProviderAppsResponseBody,
+    UpdateProviderAppAPIProblem$outboundSchema.parse(
+      updateProviderAppAPIProblem,
     ),
   );
 }
 
-export function updateProviderAppProviderAppsResponseBodyFromJSON(
+export function updateProviderAppAPIProblemFromJSON(
   jsonString: string,
-): SafeParseResult<
-  UpdateProviderAppProviderAppsResponseBody,
-  SDKValidationError
-> {
+): SafeParseResult<UpdateProviderAppAPIProblem, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) =>
-      UpdateProviderAppProviderAppsResponseBody$inboundSchema.parse(
-        JSON.parse(x),
-      ),
-    `Failed to parse 'UpdateProviderAppProviderAppsResponseBody' from JSON`,
+    (x) => UpdateProviderAppAPIProblem$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'UpdateProviderAppAPIProblem' from JSON`,
   );
 }
 
 /** @internal */
-export const UpdateProviderAppResponseBody$inboundSchema: z.ZodType<
-  UpdateProviderAppResponseBody,
+export const UpdateProviderAppProviderApp$inboundSchema: z.ZodType<
+  UpdateProviderAppProviderApp,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -498,7 +488,7 @@ export const UpdateProviderAppResponseBody$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type UpdateProviderAppResponseBody$Outbound = {
+export type UpdateProviderAppProviderApp$Outbound = {
   id: string;
   projectId: string;
   externalRef?: string | undefined;
@@ -510,10 +500,10 @@ export type UpdateProviderAppResponseBody$Outbound = {
 };
 
 /** @internal */
-export const UpdateProviderAppResponseBody$outboundSchema: z.ZodType<
-  UpdateProviderAppResponseBody$Outbound,
+export const UpdateProviderAppProviderApp$outboundSchema: z.ZodType<
+  UpdateProviderAppProviderApp$Outbound,
   z.ZodTypeDef,
-  UpdateProviderAppResponseBody
+  UpdateProviderAppProviderApp
 > = z.object({
   id: z.string(),
   projectId: z.string(),
@@ -529,32 +519,32 @@ export const UpdateProviderAppResponseBody$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace UpdateProviderAppResponseBody$ {
-  /** @deprecated use `UpdateProviderAppResponseBody$inboundSchema` instead. */
-  export const inboundSchema = UpdateProviderAppResponseBody$inboundSchema;
-  /** @deprecated use `UpdateProviderAppResponseBody$outboundSchema` instead. */
-  export const outboundSchema = UpdateProviderAppResponseBody$outboundSchema;
-  /** @deprecated use `UpdateProviderAppResponseBody$Outbound` instead. */
-  export type Outbound = UpdateProviderAppResponseBody$Outbound;
+export namespace UpdateProviderAppProviderApp$ {
+  /** @deprecated use `UpdateProviderAppProviderApp$inboundSchema` instead. */
+  export const inboundSchema = UpdateProviderAppProviderApp$inboundSchema;
+  /** @deprecated use `UpdateProviderAppProviderApp$outboundSchema` instead. */
+  export const outboundSchema = UpdateProviderAppProviderApp$outboundSchema;
+  /** @deprecated use `UpdateProviderAppProviderApp$Outbound` instead. */
+  export type Outbound = UpdateProviderAppProviderApp$Outbound;
 }
 
-export function updateProviderAppResponseBodyToJSON(
-  updateProviderAppResponseBody: UpdateProviderAppResponseBody,
+export function updateProviderAppProviderAppToJSON(
+  updateProviderAppProviderApp: UpdateProviderAppProviderApp,
 ): string {
   return JSON.stringify(
-    UpdateProviderAppResponseBody$outboundSchema.parse(
-      updateProviderAppResponseBody,
+    UpdateProviderAppProviderApp$outboundSchema.parse(
+      updateProviderAppProviderApp,
     ),
   );
 }
 
-export function updateProviderAppResponseBodyFromJSON(
+export function updateProviderAppProviderAppFromJSON(
   jsonString: string,
-): SafeParseResult<UpdateProviderAppResponseBody, SDKValidationError> {
+): SafeParseResult<UpdateProviderAppProviderApp, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => UpdateProviderAppResponseBody$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'UpdateProviderAppResponseBody' from JSON`,
+    (x) => UpdateProviderAppProviderApp$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'UpdateProviderAppProviderApp' from JSON`,
   );
 }
 
@@ -564,14 +554,14 @@ export const UpdateProviderAppResponse$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.union([
-  z.lazy(() => UpdateProviderAppResponseBody$inboundSchema),
-  z.lazy(() => UpdateProviderAppProviderAppsResponseBody$inboundSchema),
+  z.lazy(() => UpdateProviderAppProviderApp$inboundSchema),
+  z.lazy(() => UpdateProviderAppAPIProblem$inboundSchema),
 ]);
 
 /** @internal */
 export type UpdateProviderAppResponse$Outbound =
-  | UpdateProviderAppResponseBody$Outbound
-  | UpdateProviderAppProviderAppsResponseBody$Outbound;
+  | UpdateProviderAppProviderApp$Outbound
+  | UpdateProviderAppAPIProblem$Outbound;
 
 /** @internal */
 export const UpdateProviderAppResponse$outboundSchema: z.ZodType<
@@ -579,8 +569,8 @@ export const UpdateProviderAppResponse$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   UpdateProviderAppResponse
 > = z.union([
-  z.lazy(() => UpdateProviderAppResponseBody$outboundSchema),
-  z.lazy(() => UpdateProviderAppProviderAppsResponseBody$outboundSchema),
+  z.lazy(() => UpdateProviderAppProviderApp$outboundSchema),
+  z.lazy(() => UpdateProviderAppAPIProblem$outboundSchema),
 ]);
 
 /**

@@ -27,7 +27,7 @@ export type GenerateUploadUrlIn = ClosedEnum<typeof GenerateUploadUrlIn>;
  *
  * @remarks
  */
-export type GenerateUploadUrlIssues = {
+export type GenerateUploadUrlInputValidationIssue = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -120,7 +120,7 @@ export type GenerateUploadUrlIssues = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export type GenerateUploadUrlResponseBodyData = {
+export type GenerateUploadUrlInputValidationProblemData = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -192,7 +192,7 @@ export type GenerateUploadUrlResponseBodyData = {
    * Additional context for the problem
    */
   context?: { [k: string]: any } | undefined;
-  issues?: Array<GenerateUploadUrlIssues> | undefined;
+  issues?: Array<GenerateUploadUrlInputValidationIssue> | undefined;
 };
 
 /**
@@ -202,7 +202,7 @@ export type GenerateUploadUrlResponseBodyData = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export class GenerateUploadUrlResponseBody extends Error {
+export class GenerateUploadUrlInputValidationProblem extends Error {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -274,12 +274,12 @@ export class GenerateUploadUrlResponseBody extends Error {
    * Additional context for the problem
    */
   context?: { [k: string]: any } | undefined;
-  issues?: Array<GenerateUploadUrlIssues> | undefined;
+  issues?: Array<GenerateUploadUrlInputValidationIssue> | undefined;
 
   /** The original data that was passed to this error instance. */
-  data$: GenerateUploadUrlResponseBodyData;
+  data$: GenerateUploadUrlInputValidationProblemData;
 
-  constructor(err: GenerateUploadUrlResponseBodyData) {
+  constructor(err: GenerateUploadUrlInputValidationProblemData) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
@@ -305,7 +305,7 @@ export class GenerateUploadUrlResponseBody extends Error {
     if (err.context != null) this.context = err.context;
     if (err.issues != null) this.issues = err.issues;
 
-    this.name = "GenerateUploadUrlResponseBody";
+    this.name = "GenerateUploadUrlInputValidationProblem";
   }
 }
 
@@ -331,8 +331,8 @@ export namespace GenerateUploadUrlIn$ {
 }
 
 /** @internal */
-export const GenerateUploadUrlIssues$inboundSchema: z.ZodType<
-  GenerateUploadUrlIssues,
+export const GenerateUploadUrlInputValidationIssue$inboundSchema: z.ZodType<
+  GenerateUploadUrlInputValidationIssue,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -361,7 +361,7 @@ export const GenerateUploadUrlIssues$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type GenerateUploadUrlIssues$Outbound = {
+export type GenerateUploadUrlInputValidationIssue$Outbound = {
   type: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -385,10 +385,10 @@ export type GenerateUploadUrlIssues$Outbound = {
 };
 
 /** @internal */
-export const GenerateUploadUrlIssues$outboundSchema: z.ZodType<
-  GenerateUploadUrlIssues$Outbound,
+export const GenerateUploadUrlInputValidationIssue$outboundSchema: z.ZodType<
+  GenerateUploadUrlInputValidationIssue$Outbound,
   z.ZodTypeDef,
-  GenerateUploadUrlIssues
+  GenerateUploadUrlInputValidationIssue
 > = z.object({
   type: z.string().default("about:blank"),
   href: z.string().optional(),
@@ -416,36 +416,41 @@ export const GenerateUploadUrlIssues$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace GenerateUploadUrlIssues$ {
-  /** @deprecated use `GenerateUploadUrlIssues$inboundSchema` instead. */
-  export const inboundSchema = GenerateUploadUrlIssues$inboundSchema;
-  /** @deprecated use `GenerateUploadUrlIssues$outboundSchema` instead. */
-  export const outboundSchema = GenerateUploadUrlIssues$outboundSchema;
-  /** @deprecated use `GenerateUploadUrlIssues$Outbound` instead. */
-  export type Outbound = GenerateUploadUrlIssues$Outbound;
+export namespace GenerateUploadUrlInputValidationIssue$ {
+  /** @deprecated use `GenerateUploadUrlInputValidationIssue$inboundSchema` instead. */
+  export const inboundSchema =
+    GenerateUploadUrlInputValidationIssue$inboundSchema;
+  /** @deprecated use `GenerateUploadUrlInputValidationIssue$outboundSchema` instead. */
+  export const outboundSchema =
+    GenerateUploadUrlInputValidationIssue$outboundSchema;
+  /** @deprecated use `GenerateUploadUrlInputValidationIssue$Outbound` instead. */
+  export type Outbound = GenerateUploadUrlInputValidationIssue$Outbound;
 }
 
-export function generateUploadUrlIssuesToJSON(
-  generateUploadUrlIssues: GenerateUploadUrlIssues,
+export function generateUploadUrlInputValidationIssueToJSON(
+  generateUploadUrlInputValidationIssue: GenerateUploadUrlInputValidationIssue,
 ): string {
   return JSON.stringify(
-    GenerateUploadUrlIssues$outboundSchema.parse(generateUploadUrlIssues),
+    GenerateUploadUrlInputValidationIssue$outboundSchema.parse(
+      generateUploadUrlInputValidationIssue,
+    ),
   );
 }
 
-export function generateUploadUrlIssuesFromJSON(
+export function generateUploadUrlInputValidationIssueFromJSON(
   jsonString: string,
-): SafeParseResult<GenerateUploadUrlIssues, SDKValidationError> {
+): SafeParseResult<GenerateUploadUrlInputValidationIssue, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => GenerateUploadUrlIssues$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GenerateUploadUrlIssues' from JSON`,
+    (x) =>
+      GenerateUploadUrlInputValidationIssue$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GenerateUploadUrlInputValidationIssue' from JSON`,
   );
 }
 
 /** @internal */
-export const GenerateUploadUrlResponseBody$inboundSchema: z.ZodType<
-  GenerateUploadUrlResponseBody,
+export const GenerateUploadUrlInputValidationProblem$inboundSchema: z.ZodType<
+  GenerateUploadUrlInputValidationProblem,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -468,15 +473,16 @@ export const GenerateUploadUrlResponseBody$inboundSchema: z.ZodType<
   retryAfter: z.string().datetime({ offset: true }).transform(v => new Date(v))
     .optional(),
   context: z.record(z.any()).optional(),
-  issues: z.array(z.lazy(() => GenerateUploadUrlIssues$inboundSchema))
-    .optional(),
+  issues: z.array(
+    z.lazy(() => GenerateUploadUrlInputValidationIssue$inboundSchema),
+  ).optional(),
 })
   .transform((v) => {
-    return new GenerateUploadUrlResponseBody(v);
+    return new GenerateUploadUrlInputValidationProblem(v);
   });
 
 /** @internal */
-export type GenerateUploadUrlResponseBody$Outbound = {
+export type GenerateUploadUrlInputValidationProblem$Outbound = {
   type?: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -494,15 +500,15 @@ export type GenerateUploadUrlResponseBody$Outbound = {
   retryable?: boolean | undefined;
   retryAfter?: string | undefined;
   context?: { [k: string]: any } | undefined;
-  issues?: Array<GenerateUploadUrlIssues$Outbound> | undefined;
+  issues?: Array<GenerateUploadUrlInputValidationIssue$Outbound> | undefined;
 };
 
 /** @internal */
-export const GenerateUploadUrlResponseBody$outboundSchema: z.ZodType<
-  GenerateUploadUrlResponseBody$Outbound,
+export const GenerateUploadUrlInputValidationProblem$outboundSchema: z.ZodType<
+  GenerateUploadUrlInputValidationProblem$Outbound,
   z.ZodTypeDef,
-  GenerateUploadUrlResponseBody
-> = z.instanceof(GenerateUploadUrlResponseBody)
+  GenerateUploadUrlInputValidationProblem
+> = z.instanceof(GenerateUploadUrlInputValidationProblem)
   .transform(v => v.data$)
   .pipe(z.object({
     type: z.string().default("about:blank"),
@@ -522,19 +528,22 @@ export const GenerateUploadUrlResponseBody$outboundSchema: z.ZodType<
     retryable: z.boolean().optional(),
     retryAfter: z.date().transform(v => v.toISOString()).optional(),
     context: z.record(z.any()).optional(),
-    issues: z.array(z.lazy(() => GenerateUploadUrlIssues$outboundSchema))
-      .optional(),
+    issues: z.array(
+      z.lazy(() => GenerateUploadUrlInputValidationIssue$outboundSchema),
+    ).optional(),
   }));
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace GenerateUploadUrlResponseBody$ {
-  /** @deprecated use `GenerateUploadUrlResponseBody$inboundSchema` instead. */
-  export const inboundSchema = GenerateUploadUrlResponseBody$inboundSchema;
-  /** @deprecated use `GenerateUploadUrlResponseBody$outboundSchema` instead. */
-  export const outboundSchema = GenerateUploadUrlResponseBody$outboundSchema;
-  /** @deprecated use `GenerateUploadUrlResponseBody$Outbound` instead. */
-  export type Outbound = GenerateUploadUrlResponseBody$Outbound;
+export namespace GenerateUploadUrlInputValidationProblem$ {
+  /** @deprecated use `GenerateUploadUrlInputValidationProblem$inboundSchema` instead. */
+  export const inboundSchema =
+    GenerateUploadUrlInputValidationProblem$inboundSchema;
+  /** @deprecated use `GenerateUploadUrlInputValidationProblem$outboundSchema` instead. */
+  export const outboundSchema =
+    GenerateUploadUrlInputValidationProblem$outboundSchema;
+  /** @deprecated use `GenerateUploadUrlInputValidationProblem$Outbound` instead. */
+  export type Outbound = GenerateUploadUrlInputValidationProblem$Outbound;
 }

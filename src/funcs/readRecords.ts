@@ -42,8 +42,8 @@ export function readRecords(
 ): APIPromise<
   Result<
     operations.TriggerReadResponse,
-    | errors.TriggerReadResponseBody
-    | errors.TriggerReadReadResponseBody
+    | errors.TriggerReadAPIProblem
+    | errors.TriggerReadReadAPIProblem
     | APIError
     | SDKValidationError
     | UnexpectedClientError
@@ -68,8 +68,8 @@ async function $do(
   [
     Result<
       operations.TriggerReadResponse,
-      | errors.TriggerReadResponseBody
-      | errors.TriggerReadReadResponseBody
+      | errors.TriggerReadAPIProblem
+      | errors.TriggerReadReadAPIProblem
       | APIError
       | SDKValidationError
       | UnexpectedClientError
@@ -176,8 +176,8 @@ async function $do(
 
   const [result] = await M.match<
     operations.TriggerReadResponse,
-    | errors.TriggerReadResponseBody
-    | errors.TriggerReadReadResponseBody
+    | errors.TriggerReadAPIProblem
+    | errors.TriggerReadReadAPIProblem
     | APIError
     | SDKValidationError
     | UnexpectedClientError
@@ -187,8 +187,8 @@ async function $do(
     | ConnectionError
   >(
     M.json(201, operations.TriggerReadResponse$inboundSchema),
-    M.jsonErr(400, errors.TriggerReadResponseBody$inboundSchema),
-    M.jsonErr(500, errors.TriggerReadReadResponseBody$inboundSchema),
+    M.jsonErr(400, errors.TriggerReadAPIProblem$inboundSchema),
+    M.jsonErr(500, errors.TriggerReadReadAPIProblem$inboundSchema),
     M.fail("4XX"),
     M.fail("5XX"),
     M.json("default", operations.TriggerReadResponse$inboundSchema, {

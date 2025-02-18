@@ -32,7 +32,7 @@ export type ListOperationsRequest = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export type ListOperationsOperationsResponseBody = {
+export type ListOperationsAPIProblem = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -111,7 +111,7 @@ export type ListOperationsOperationsResponseBody = {
  */
 export type ListOperationsMetadata = {};
 
-export type Results = {
+export type Operation = {
   /**
    * The Ampersand project ID.
    */
@@ -154,7 +154,7 @@ export type Results = {
   createTime?: Date | undefined;
 };
 
-export type Pagination = {
+export type PaginationInformation = {
   /**
    * If set to true, this is the last page of results for the given operation. There are no more results & there will be no nextPageToken sent when done is true.
    */
@@ -169,13 +169,13 @@ export type Pagination = {
  * List of operations
  */
 export type ListOperationsResponseBody = {
-  results: Array<Results>;
-  pagination: Pagination;
+  results: Array<Operation>;
+  pagination: PaginationInformation;
 };
 
 export type ListOperationsResponse =
   | ListOperationsResponseBody
-  | ListOperationsOperationsResponseBody;
+  | ListOperationsAPIProblem;
 
 /** @internal */
 export const ListOperationsRequest$inboundSchema: z.ZodType<
@@ -244,8 +244,8 @@ export function listOperationsRequestFromJSON(
 }
 
 /** @internal */
-export const ListOperationsOperationsResponseBody$inboundSchema: z.ZodType<
-  ListOperationsOperationsResponseBody,
+export const ListOperationsAPIProblem$inboundSchema: z.ZodType<
+  ListOperationsAPIProblem,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -271,7 +271,7 @@ export const ListOperationsOperationsResponseBody$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type ListOperationsOperationsResponseBody$Outbound = {
+export type ListOperationsAPIProblem$Outbound = {
   type: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -292,10 +292,10 @@ export type ListOperationsOperationsResponseBody$Outbound = {
 };
 
 /** @internal */
-export const ListOperationsOperationsResponseBody$outboundSchema: z.ZodType<
-  ListOperationsOperationsResponseBody$Outbound,
+export const ListOperationsAPIProblem$outboundSchema: z.ZodType<
+  ListOperationsAPIProblem$Outbound,
   z.ZodTypeDef,
-  ListOperationsOperationsResponseBody
+  ListOperationsAPIProblem
 > = z.object({
   type: z.string().default("about:blank"),
   href: z.string().optional(),
@@ -320,35 +320,30 @@ export const ListOperationsOperationsResponseBody$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace ListOperationsOperationsResponseBody$ {
-  /** @deprecated use `ListOperationsOperationsResponseBody$inboundSchema` instead. */
-  export const inboundSchema =
-    ListOperationsOperationsResponseBody$inboundSchema;
-  /** @deprecated use `ListOperationsOperationsResponseBody$outboundSchema` instead. */
-  export const outboundSchema =
-    ListOperationsOperationsResponseBody$outboundSchema;
-  /** @deprecated use `ListOperationsOperationsResponseBody$Outbound` instead. */
-  export type Outbound = ListOperationsOperationsResponseBody$Outbound;
+export namespace ListOperationsAPIProblem$ {
+  /** @deprecated use `ListOperationsAPIProblem$inboundSchema` instead. */
+  export const inboundSchema = ListOperationsAPIProblem$inboundSchema;
+  /** @deprecated use `ListOperationsAPIProblem$outboundSchema` instead. */
+  export const outboundSchema = ListOperationsAPIProblem$outboundSchema;
+  /** @deprecated use `ListOperationsAPIProblem$Outbound` instead. */
+  export type Outbound = ListOperationsAPIProblem$Outbound;
 }
 
-export function listOperationsOperationsResponseBodyToJSON(
-  listOperationsOperationsResponseBody: ListOperationsOperationsResponseBody,
+export function listOperationsAPIProblemToJSON(
+  listOperationsAPIProblem: ListOperationsAPIProblem,
 ): string {
   return JSON.stringify(
-    ListOperationsOperationsResponseBody$outboundSchema.parse(
-      listOperationsOperationsResponseBody,
-    ),
+    ListOperationsAPIProblem$outboundSchema.parse(listOperationsAPIProblem),
   );
 }
 
-export function listOperationsOperationsResponseBodyFromJSON(
+export function listOperationsAPIProblemFromJSON(
   jsonString: string,
-): SafeParseResult<ListOperationsOperationsResponseBody, SDKValidationError> {
+): SafeParseResult<ListOperationsAPIProblem, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) =>
-      ListOperationsOperationsResponseBody$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ListOperationsOperationsResponseBody' from JSON`,
+    (x) => ListOperationsAPIProblem$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListOperationsAPIProblem' from JSON`,
   );
 }
 
@@ -401,24 +396,26 @@ export function listOperationsMetadataFromJSON(
 }
 
 /** @internal */
-export const Results$inboundSchema: z.ZodType<Results, z.ZodTypeDef, unknown> =
-  z.object({
-    projectId: z.string(),
-    integrationId: z.string(),
-    configId: z.string(),
-    actionType: z.string(),
-    id: z.string(),
-    installationId: z.string(),
-    status: z.string(),
-    result: z.string().optional(),
-    metadata: z.lazy(() => ListOperationsMetadata$inboundSchema).optional(),
-    createTime: z.string().datetime({ offset: true }).transform(v =>
-      new Date(v)
-    ).optional(),
-  });
+export const Operation$inboundSchema: z.ZodType<
+  Operation,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  projectId: z.string(),
+  integrationId: z.string(),
+  configId: z.string(),
+  actionType: z.string(),
+  id: z.string(),
+  installationId: z.string(),
+  status: z.string(),
+  result: z.string().optional(),
+  metadata: z.lazy(() => ListOperationsMetadata$inboundSchema).optional(),
+  createTime: z.string().datetime({ offset: true }).transform(v => new Date(v))
+    .optional(),
+});
 
 /** @internal */
-export type Results$Outbound = {
+export type Operation$Outbound = {
   projectId: string;
   integrationId: string;
   configId: string;
@@ -432,10 +429,10 @@ export type Results$Outbound = {
 };
 
 /** @internal */
-export const Results$outboundSchema: z.ZodType<
-  Results$Outbound,
+export const Operation$outboundSchema: z.ZodType<
+  Operation$Outbound,
   z.ZodTypeDef,
-  Results
+  Operation
 > = z.object({
   projectId: z.string(),
   integrationId: z.string(),
@@ -453,32 +450,32 @@ export const Results$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace Results$ {
-  /** @deprecated use `Results$inboundSchema` instead. */
-  export const inboundSchema = Results$inboundSchema;
-  /** @deprecated use `Results$outboundSchema` instead. */
-  export const outboundSchema = Results$outboundSchema;
-  /** @deprecated use `Results$Outbound` instead. */
-  export type Outbound = Results$Outbound;
+export namespace Operation$ {
+  /** @deprecated use `Operation$inboundSchema` instead. */
+  export const inboundSchema = Operation$inboundSchema;
+  /** @deprecated use `Operation$outboundSchema` instead. */
+  export const outboundSchema = Operation$outboundSchema;
+  /** @deprecated use `Operation$Outbound` instead. */
+  export type Outbound = Operation$Outbound;
 }
 
-export function resultsToJSON(results: Results): string {
-  return JSON.stringify(Results$outboundSchema.parse(results));
+export function operationToJSON(operation: Operation): string {
+  return JSON.stringify(Operation$outboundSchema.parse(operation));
 }
 
-export function resultsFromJSON(
+export function operationFromJSON(
   jsonString: string,
-): SafeParseResult<Results, SDKValidationError> {
+): SafeParseResult<Operation, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => Results$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Results' from JSON`,
+    (x) => Operation$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Operation' from JSON`,
   );
 }
 
 /** @internal */
-export const Pagination$inboundSchema: z.ZodType<
-  Pagination,
+export const PaginationInformation$inboundSchema: z.ZodType<
+  PaginationInformation,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -487,16 +484,16 @@ export const Pagination$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type Pagination$Outbound = {
+export type PaginationInformation$Outbound = {
   done: boolean;
   nextPageToken?: string | undefined;
 };
 
 /** @internal */
-export const Pagination$outboundSchema: z.ZodType<
-  Pagination$Outbound,
+export const PaginationInformation$outboundSchema: z.ZodType<
+  PaginationInformation$Outbound,
   z.ZodTypeDef,
-  Pagination
+  PaginationInformation
 > = z.object({
   done: z.boolean(),
   nextPageToken: z.string().optional(),
@@ -506,26 +503,30 @@ export const Pagination$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace Pagination$ {
-  /** @deprecated use `Pagination$inboundSchema` instead. */
-  export const inboundSchema = Pagination$inboundSchema;
-  /** @deprecated use `Pagination$outboundSchema` instead. */
-  export const outboundSchema = Pagination$outboundSchema;
-  /** @deprecated use `Pagination$Outbound` instead. */
-  export type Outbound = Pagination$Outbound;
+export namespace PaginationInformation$ {
+  /** @deprecated use `PaginationInformation$inboundSchema` instead. */
+  export const inboundSchema = PaginationInformation$inboundSchema;
+  /** @deprecated use `PaginationInformation$outboundSchema` instead. */
+  export const outboundSchema = PaginationInformation$outboundSchema;
+  /** @deprecated use `PaginationInformation$Outbound` instead. */
+  export type Outbound = PaginationInformation$Outbound;
 }
 
-export function paginationToJSON(pagination: Pagination): string {
-  return JSON.stringify(Pagination$outboundSchema.parse(pagination));
+export function paginationInformationToJSON(
+  paginationInformation: PaginationInformation,
+): string {
+  return JSON.stringify(
+    PaginationInformation$outboundSchema.parse(paginationInformation),
+  );
 }
 
-export function paginationFromJSON(
+export function paginationInformationFromJSON(
   jsonString: string,
-): SafeParseResult<Pagination, SDKValidationError> {
+): SafeParseResult<PaginationInformation, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => Pagination$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Pagination' from JSON`,
+    (x) => PaginationInformation$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'PaginationInformation' from JSON`,
   );
 }
 
@@ -535,14 +536,14 @@ export const ListOperationsResponseBody$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  results: z.array(z.lazy(() => Results$inboundSchema)),
-  pagination: z.lazy(() => Pagination$inboundSchema),
+  results: z.array(z.lazy(() => Operation$inboundSchema)),
+  pagination: z.lazy(() => PaginationInformation$inboundSchema),
 });
 
 /** @internal */
 export type ListOperationsResponseBody$Outbound = {
-  results: Array<Results$Outbound>;
-  pagination: Pagination$Outbound;
+  results: Array<Operation$Outbound>;
+  pagination: PaginationInformation$Outbound;
 };
 
 /** @internal */
@@ -551,8 +552,8 @@ export const ListOperationsResponseBody$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   ListOperationsResponseBody
 > = z.object({
-  results: z.array(z.lazy(() => Results$outboundSchema)),
-  pagination: z.lazy(() => Pagination$outboundSchema),
+  results: z.array(z.lazy(() => Operation$outboundSchema)),
+  pagination: z.lazy(() => PaginationInformation$outboundSchema),
 });
 
 /**
@@ -593,13 +594,13 @@ export const ListOperationsResponse$inboundSchema: z.ZodType<
   unknown
 > = z.union([
   z.lazy(() => ListOperationsResponseBody$inboundSchema),
-  z.lazy(() => ListOperationsOperationsResponseBody$inboundSchema),
+  z.lazy(() => ListOperationsAPIProblem$inboundSchema),
 ]);
 
 /** @internal */
 export type ListOperationsResponse$Outbound =
   | ListOperationsResponseBody$Outbound
-  | ListOperationsOperationsResponseBody$Outbound;
+  | ListOperationsAPIProblem$Outbound;
 
 /** @internal */
 export const ListOperationsResponse$outboundSchema: z.ZodType<
@@ -608,7 +609,7 @@ export const ListOperationsResponse$outboundSchema: z.ZodType<
   ListOperationsResponse
 > = z.union([
   z.lazy(() => ListOperationsResponseBody$outboundSchema),
-  z.lazy(() => ListOperationsOperationsResponseBody$outboundSchema),
+  z.lazy(() => ListOperationsAPIProblem$outboundSchema),
 ]);
 
 /**

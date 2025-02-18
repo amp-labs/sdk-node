@@ -29,7 +29,7 @@ export type BatchUpsertIntegrationsIn = ClosedEnum<
  *
  * @remarks
  */
-export type BatchUpsertIntegrationsIssues = {
+export type BatchUpsertIntegrationsInputValidationIssue = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -122,7 +122,7 @@ export type BatchUpsertIntegrationsIssues = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export type BatchUpsertIntegrationsResponseBodyData = {
+export type BatchUpsertIntegrationsInputValidationProblemData = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -194,7 +194,7 @@ export type BatchUpsertIntegrationsResponseBodyData = {
    * Additional context for the problem
    */
   context?: { [k: string]: any } | undefined;
-  issues?: Array<BatchUpsertIntegrationsIssues> | undefined;
+  issues?: Array<BatchUpsertIntegrationsInputValidationIssue> | undefined;
 };
 
 /**
@@ -204,7 +204,7 @@ export type BatchUpsertIntegrationsResponseBodyData = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export class BatchUpsertIntegrationsResponseBody extends Error {
+export class BatchUpsertIntegrationsInputValidationProblem extends Error {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -276,12 +276,12 @@ export class BatchUpsertIntegrationsResponseBody extends Error {
    * Additional context for the problem
    */
   context?: { [k: string]: any } | undefined;
-  issues?: Array<BatchUpsertIntegrationsIssues> | undefined;
+  issues?: Array<BatchUpsertIntegrationsInputValidationIssue> | undefined;
 
   /** The original data that was passed to this error instance. */
-  data$: BatchUpsertIntegrationsResponseBodyData;
+  data$: BatchUpsertIntegrationsInputValidationProblemData;
 
-  constructor(err: BatchUpsertIntegrationsResponseBodyData) {
+  constructor(err: BatchUpsertIntegrationsInputValidationProblemData) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
@@ -307,7 +307,7 @@ export class BatchUpsertIntegrationsResponseBody extends Error {
     if (err.context != null) this.context = err.context;
     if (err.issues != null) this.issues = err.issues;
 
-    this.name = "BatchUpsertIntegrationsResponseBody";
+    this.name = "BatchUpsertIntegrationsInputValidationProblem";
   }
 }
 
@@ -333,37 +333,39 @@ export namespace BatchUpsertIntegrationsIn$ {
 }
 
 /** @internal */
-export const BatchUpsertIntegrationsIssues$inboundSchema: z.ZodType<
-  BatchUpsertIntegrationsIssues,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  type: z.string().default("about:blank"),
-  href: z.string().optional(),
-  title: z.string().optional(),
-  status: z.number().int().optional(),
-  detail: z.string().optional(),
-  instance: z.string().optional(),
-  subsystem: z.string().optional(),
-  time: z.string().datetime({ offset: true }).transform(v => new Date(v))
-    .optional(),
-  requestId: z.string().optional(),
-  causes: z.array(z.string()).optional(),
-  remedy: z.string().optional(),
-  supportEmail: z.string().optional(),
-  supportPhone: z.string().optional(),
-  supportUrl: z.string().optional(),
-  retryable: z.boolean().optional(),
-  retryAfter: z.string().datetime({ offset: true }).transform(v => new Date(v))
-    .optional(),
-  context: z.record(z.any()).optional(),
-  in: BatchUpsertIntegrationsIn$inboundSchema.optional(),
-  name: z.string().optional(),
-  value: z.any().optional(),
-});
+export const BatchUpsertIntegrationsInputValidationIssue$inboundSchema:
+  z.ZodType<
+    BatchUpsertIntegrationsInputValidationIssue,
+    z.ZodTypeDef,
+    unknown
+  > = z.object({
+    type: z.string().default("about:blank"),
+    href: z.string().optional(),
+    title: z.string().optional(),
+    status: z.number().int().optional(),
+    detail: z.string().optional(),
+    instance: z.string().optional(),
+    subsystem: z.string().optional(),
+    time: z.string().datetime({ offset: true }).transform(v => new Date(v))
+      .optional(),
+    requestId: z.string().optional(),
+    causes: z.array(z.string()).optional(),
+    remedy: z.string().optional(),
+    supportEmail: z.string().optional(),
+    supportPhone: z.string().optional(),
+    supportUrl: z.string().optional(),
+    retryable: z.boolean().optional(),
+    retryAfter: z.string().datetime({ offset: true }).transform(v =>
+      new Date(v)
+    ).optional(),
+    context: z.record(z.any()).optional(),
+    in: BatchUpsertIntegrationsIn$inboundSchema.optional(),
+    name: z.string().optional(),
+    value: z.any().optional(),
+  });
 
 /** @internal */
-export type BatchUpsertIntegrationsIssues$Outbound = {
+export type BatchUpsertIntegrationsInputValidationIssue$Outbound = {
   type: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -387,128 +389,12 @@ export type BatchUpsertIntegrationsIssues$Outbound = {
 };
 
 /** @internal */
-export const BatchUpsertIntegrationsIssues$outboundSchema: z.ZodType<
-  BatchUpsertIntegrationsIssues$Outbound,
-  z.ZodTypeDef,
-  BatchUpsertIntegrationsIssues
-> = z.object({
-  type: z.string().default("about:blank"),
-  href: z.string().optional(),
-  title: z.string().optional(),
-  status: z.number().int().optional(),
-  detail: z.string().optional(),
-  instance: z.string().optional(),
-  subsystem: z.string().optional(),
-  time: z.date().transform(v => v.toISOString()).optional(),
-  requestId: z.string().optional(),
-  causes: z.array(z.string()).optional(),
-  remedy: z.string().optional(),
-  supportEmail: z.string().optional(),
-  supportPhone: z.string().optional(),
-  supportUrl: z.string().optional(),
-  retryable: z.boolean().optional(),
-  retryAfter: z.date().transform(v => v.toISOString()).optional(),
-  context: z.record(z.any()).optional(),
-  in: BatchUpsertIntegrationsIn$outboundSchema.optional(),
-  name: z.string().optional(),
-  value: z.any().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace BatchUpsertIntegrationsIssues$ {
-  /** @deprecated use `BatchUpsertIntegrationsIssues$inboundSchema` instead. */
-  export const inboundSchema = BatchUpsertIntegrationsIssues$inboundSchema;
-  /** @deprecated use `BatchUpsertIntegrationsIssues$outboundSchema` instead. */
-  export const outboundSchema = BatchUpsertIntegrationsIssues$outboundSchema;
-  /** @deprecated use `BatchUpsertIntegrationsIssues$Outbound` instead. */
-  export type Outbound = BatchUpsertIntegrationsIssues$Outbound;
-}
-
-export function batchUpsertIntegrationsIssuesToJSON(
-  batchUpsertIntegrationsIssues: BatchUpsertIntegrationsIssues,
-): string {
-  return JSON.stringify(
-    BatchUpsertIntegrationsIssues$outboundSchema.parse(
-      batchUpsertIntegrationsIssues,
-    ),
-  );
-}
-
-export function batchUpsertIntegrationsIssuesFromJSON(
-  jsonString: string,
-): SafeParseResult<BatchUpsertIntegrationsIssues, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => BatchUpsertIntegrationsIssues$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'BatchUpsertIntegrationsIssues' from JSON`,
-  );
-}
-
-/** @internal */
-export const BatchUpsertIntegrationsResponseBody$inboundSchema: z.ZodType<
-  BatchUpsertIntegrationsResponseBody,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  type: z.string().default("about:blank"),
-  href: z.string().optional(),
-  title: z.string().optional(),
-  status: z.number().int().optional(),
-  detail: z.string().optional(),
-  instance: z.string().optional(),
-  subsystem: z.string().optional(),
-  time: z.string().datetime({ offset: true }).transform(v => new Date(v))
-    .optional(),
-  requestId: z.string().optional(),
-  causes: z.array(z.string()).optional(),
-  remedy: z.string().optional(),
-  supportEmail: z.string().optional(),
-  supportPhone: z.string().optional(),
-  supportUrl: z.string().optional(),
-  retryable: z.boolean().optional(),
-  retryAfter: z.string().datetime({ offset: true }).transform(v => new Date(v))
-    .optional(),
-  context: z.record(z.any()).optional(),
-  issues: z.array(z.lazy(() => BatchUpsertIntegrationsIssues$inboundSchema))
-    .optional(),
-})
-  .transform((v) => {
-    return new BatchUpsertIntegrationsResponseBody(v);
-  });
-
-/** @internal */
-export type BatchUpsertIntegrationsResponseBody$Outbound = {
-  type?: string;
-  href?: string | undefined;
-  title?: string | undefined;
-  status?: number | undefined;
-  detail?: string | undefined;
-  instance?: string | undefined;
-  subsystem?: string | undefined;
-  time?: string | undefined;
-  requestId?: string | undefined;
-  causes?: Array<string> | undefined;
-  remedy?: string | undefined;
-  supportEmail?: string | undefined;
-  supportPhone?: string | undefined;
-  supportUrl?: string | undefined;
-  retryable?: boolean | undefined;
-  retryAfter?: string | undefined;
-  context?: { [k: string]: any } | undefined;
-  issues?: Array<BatchUpsertIntegrationsIssues$Outbound> | undefined;
-};
-
-/** @internal */
-export const BatchUpsertIntegrationsResponseBody$outboundSchema: z.ZodType<
-  BatchUpsertIntegrationsResponseBody$Outbound,
-  z.ZodTypeDef,
-  BatchUpsertIntegrationsResponseBody
-> = z.instanceof(BatchUpsertIntegrationsResponseBody)
-  .transform(v => v.data$)
-  .pipe(z.object({
+export const BatchUpsertIntegrationsInputValidationIssue$outboundSchema:
+  z.ZodType<
+    BatchUpsertIntegrationsInputValidationIssue$Outbound,
+    z.ZodTypeDef,
+    BatchUpsertIntegrationsInputValidationIssue
+  > = z.object({
     type: z.string().default("about:blank"),
     href: z.string().optional(),
     title: z.string().optional(),
@@ -526,21 +412,156 @@ export const BatchUpsertIntegrationsResponseBody$outboundSchema: z.ZodType<
     retryable: z.boolean().optional(),
     retryAfter: z.date().transform(v => v.toISOString()).optional(),
     context: z.record(z.any()).optional(),
-    issues: z.array(z.lazy(() => BatchUpsertIntegrationsIssues$outboundSchema))
-      .optional(),
-  }));
+    in: BatchUpsertIntegrationsIn$outboundSchema.optional(),
+    name: z.string().optional(),
+    value: z.any().optional(),
+  });
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace BatchUpsertIntegrationsResponseBody$ {
-  /** @deprecated use `BatchUpsertIntegrationsResponseBody$inboundSchema` instead. */
+export namespace BatchUpsertIntegrationsInputValidationIssue$ {
+  /** @deprecated use `BatchUpsertIntegrationsInputValidationIssue$inboundSchema` instead. */
   export const inboundSchema =
-    BatchUpsertIntegrationsResponseBody$inboundSchema;
-  /** @deprecated use `BatchUpsertIntegrationsResponseBody$outboundSchema` instead. */
+    BatchUpsertIntegrationsInputValidationIssue$inboundSchema;
+  /** @deprecated use `BatchUpsertIntegrationsInputValidationIssue$outboundSchema` instead. */
   export const outboundSchema =
-    BatchUpsertIntegrationsResponseBody$outboundSchema;
-  /** @deprecated use `BatchUpsertIntegrationsResponseBody$Outbound` instead. */
-  export type Outbound = BatchUpsertIntegrationsResponseBody$Outbound;
+    BatchUpsertIntegrationsInputValidationIssue$outboundSchema;
+  /** @deprecated use `BatchUpsertIntegrationsInputValidationIssue$Outbound` instead. */
+  export type Outbound = BatchUpsertIntegrationsInputValidationIssue$Outbound;
+}
+
+export function batchUpsertIntegrationsInputValidationIssueToJSON(
+  batchUpsertIntegrationsInputValidationIssue:
+    BatchUpsertIntegrationsInputValidationIssue,
+): string {
+  return JSON.stringify(
+    BatchUpsertIntegrationsInputValidationIssue$outboundSchema.parse(
+      batchUpsertIntegrationsInputValidationIssue,
+    ),
+  );
+}
+
+export function batchUpsertIntegrationsInputValidationIssueFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  BatchUpsertIntegrationsInputValidationIssue,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      BatchUpsertIntegrationsInputValidationIssue$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'BatchUpsertIntegrationsInputValidationIssue' from JSON`,
+  );
+}
+
+/** @internal */
+export const BatchUpsertIntegrationsInputValidationProblem$inboundSchema:
+  z.ZodType<
+    BatchUpsertIntegrationsInputValidationProblem,
+    z.ZodTypeDef,
+    unknown
+  > = z.object({
+    type: z.string().default("about:blank"),
+    href: z.string().optional(),
+    title: z.string().optional(),
+    status: z.number().int().optional(),
+    detail: z.string().optional(),
+    instance: z.string().optional(),
+    subsystem: z.string().optional(),
+    time: z.string().datetime({ offset: true }).transform(v => new Date(v))
+      .optional(),
+    requestId: z.string().optional(),
+    causes: z.array(z.string()).optional(),
+    remedy: z.string().optional(),
+    supportEmail: z.string().optional(),
+    supportPhone: z.string().optional(),
+    supportUrl: z.string().optional(),
+    retryable: z.boolean().optional(),
+    retryAfter: z.string().datetime({ offset: true }).transform(v =>
+      new Date(v)
+    ).optional(),
+    context: z.record(z.any()).optional(),
+    issues: z.array(
+      z.lazy(() => BatchUpsertIntegrationsInputValidationIssue$inboundSchema),
+    ).optional(),
+  })
+    .transform((v) => {
+      return new BatchUpsertIntegrationsInputValidationProblem(v);
+    });
+
+/** @internal */
+export type BatchUpsertIntegrationsInputValidationProblem$Outbound = {
+  type?: string;
+  href?: string | undefined;
+  title?: string | undefined;
+  status?: number | undefined;
+  detail?: string | undefined;
+  instance?: string | undefined;
+  subsystem?: string | undefined;
+  time?: string | undefined;
+  requestId?: string | undefined;
+  causes?: Array<string> | undefined;
+  remedy?: string | undefined;
+  supportEmail?: string | undefined;
+  supportPhone?: string | undefined;
+  supportUrl?: string | undefined;
+  retryable?: boolean | undefined;
+  retryAfter?: string | undefined;
+  context?: { [k: string]: any } | undefined;
+  issues?:
+    | Array<BatchUpsertIntegrationsInputValidationIssue$Outbound>
+    | undefined;
+};
+
+/** @internal */
+export const BatchUpsertIntegrationsInputValidationProblem$outboundSchema:
+  z.ZodType<
+    BatchUpsertIntegrationsInputValidationProblem$Outbound,
+    z.ZodTypeDef,
+    BatchUpsertIntegrationsInputValidationProblem
+  > = z.instanceof(BatchUpsertIntegrationsInputValidationProblem)
+    .transform(v => v.data$)
+    .pipe(z.object({
+      type: z.string().default("about:blank"),
+      href: z.string().optional(),
+      title: z.string().optional(),
+      status: z.number().int().optional(),
+      detail: z.string().optional(),
+      instance: z.string().optional(),
+      subsystem: z.string().optional(),
+      time: z.date().transform(v => v.toISOString()).optional(),
+      requestId: z.string().optional(),
+      causes: z.array(z.string()).optional(),
+      remedy: z.string().optional(),
+      supportEmail: z.string().optional(),
+      supportPhone: z.string().optional(),
+      supportUrl: z.string().optional(),
+      retryable: z.boolean().optional(),
+      retryAfter: z.date().transform(v => v.toISOString()).optional(),
+      context: z.record(z.any()).optional(),
+      issues: z.array(
+        z.lazy(() =>
+          BatchUpsertIntegrationsInputValidationIssue$outboundSchema
+        ),
+      ).optional(),
+    }));
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace BatchUpsertIntegrationsInputValidationProblem$ {
+  /** @deprecated use `BatchUpsertIntegrationsInputValidationProblem$inboundSchema` instead. */
+  export const inboundSchema =
+    BatchUpsertIntegrationsInputValidationProblem$inboundSchema;
+  /** @deprecated use `BatchUpsertIntegrationsInputValidationProblem$outboundSchema` instead. */
+  export const outboundSchema =
+    BatchUpsertIntegrationsInputValidationProblem$outboundSchema;
+  /** @deprecated use `BatchUpsertIntegrationsInputValidationProblem$Outbound` instead. */
+  export type Outbound = BatchUpsertIntegrationsInputValidationProblem$Outbound;
 }

@@ -66,7 +66,7 @@ export class Projects extends ClientSDK {
   async delete(
     request: operations.DeleteProjectRequest,
     options?: RequestOptions,
-  ): Promise<operations.DeleteProjectResponseBody | undefined> {
+  ): Promise<operations.DeleteProjectAPIProblem | undefined> {
     return unwrapAsync(projectsDelete(
       this,
       request,

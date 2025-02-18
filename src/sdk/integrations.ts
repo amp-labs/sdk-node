@@ -38,7 +38,7 @@ export class Integrations extends ClientSDK {
   async create(
     request: operations.CreateIntegrationRequest,
     options?: RequestOptions,
-  ): Promise<operations.CreateIntegrationResponseBody | undefined> {
+  ): Promise<operations.CreateIntegrationAPIProblem | undefined> {
     return unwrapAsync(integrationsCreate(
       this,
       request,
@@ -52,7 +52,7 @@ export class Integrations extends ClientSDK {
   async delete(
     request: operations.DeleteIntegrationRequest,
     options?: RequestOptions,
-  ): Promise<operations.DeleteIntegrationResponseBody | undefined> {
+  ): Promise<operations.DeleteIntegrationAPIProblem | undefined> {
     return unwrapAsync(integrationsDelete(
       this,
       request,

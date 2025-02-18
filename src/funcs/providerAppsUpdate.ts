@@ -40,7 +40,7 @@ export function providerAppsUpdate(
 ): APIPromise<
   Result<
     operations.UpdateProviderAppResponse,
-    | errors.UpdateProviderAppResponseBody
+    | errors.UpdateProviderAppInputValidationProblem
     | APIError
     | SDKValidationError
     | UnexpectedClientError
@@ -65,7 +65,7 @@ async function $do(
   [
     Result<
       operations.UpdateProviderAppResponse,
-      | errors.UpdateProviderAppResponseBody
+      | errors.UpdateProviderAppInputValidationProblem
       | APIError
       | SDKValidationError
       | UnexpectedClientError
@@ -173,7 +173,7 @@ async function $do(
 
   const [result] = await M.match<
     operations.UpdateProviderAppResponse,
-    | errors.UpdateProviderAppResponseBody
+    | errors.UpdateProviderAppInputValidationProblem
     | APIError
     | SDKValidationError
     | UnexpectedClientError
@@ -183,9 +183,11 @@ async function $do(
     | ConnectionError
   >(
     M.json(200, operations.UpdateProviderAppResponse$inboundSchema),
-    M.jsonErr(400, errors.UpdateProviderAppResponseBody$inboundSchema, {
-      ctype: "application/problem+json",
-    }),
+    M.jsonErr(
+      400,
+      errors.UpdateProviderAppInputValidationProblem$inboundSchema,
+      { ctype: "application/problem+json" },
+    ),
     M.fail("4XX"),
     M.fail("5XX"),
     M.json("default", operations.UpdateProviderAppResponse$inboundSchema, {

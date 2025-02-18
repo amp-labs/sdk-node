@@ -43,8 +43,8 @@ export function connectionsGenerate(
 ): APIPromise<
   Result<
     operations.GenerateConnectionResponse,
-    | errors.GenerateConnectionResponseBody
-    | errors.GenerateConnectionConnectionsResponseBody
+    | errors.GenerateConnectionInputValidationProblem
+    | errors.GenerateConnectionConnectionsInputValidationProblem
     | APIError
     | SDKValidationError
     | UnexpectedClientError
@@ -69,8 +69,8 @@ async function $do(
   [
     Result<
       operations.GenerateConnectionResponse,
-      | errors.GenerateConnectionResponseBody
-      | errors.GenerateConnectionConnectionsResponseBody
+      | errors.GenerateConnectionInputValidationProblem
+      | errors.GenerateConnectionConnectionsInputValidationProblem
       | APIError
       | SDKValidationError
       | UnexpectedClientError
@@ -174,8 +174,8 @@ async function $do(
 
   const [result] = await M.match<
     operations.GenerateConnectionResponse,
-    | errors.GenerateConnectionResponseBody
-    | errors.GenerateConnectionConnectionsResponseBody
+    | errors.GenerateConnectionInputValidationProblem
+    | errors.GenerateConnectionConnectionsInputValidationProblem
     | APIError
     | SDKValidationError
     | UnexpectedClientError
@@ -185,12 +185,14 @@ async function $do(
     | ConnectionError
   >(
     M.json(201, operations.GenerateConnectionResponse$inboundSchema),
-    M.jsonErr(400, errors.GenerateConnectionResponseBody$inboundSchema, {
-      ctype: "application/problem+json",
-    }),
+    M.jsonErr(
+      400,
+      errors.GenerateConnectionInputValidationProblem$inboundSchema,
+      { ctype: "application/problem+json" },
+    ),
     M.jsonErr(
       422,
-      errors.GenerateConnectionConnectionsResponseBody$inboundSchema,
+      errors.GenerateConnectionConnectionsInputValidationProblem$inboundSchema,
       { ctype: "application/problem+json" },
     ),
     M.fail("4XX"),

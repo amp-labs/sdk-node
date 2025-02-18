@@ -84,11 +84,11 @@ run();
 
 ### Response
 
-**Promise\<[operations.CreateConsumerResponseBody](../../models/operations/createconsumerresponsebody.md)\>**
+**Promise\<[operations.CreateConsumerAPIProblem](../../models/operations/createconsumerapiproblem.md)\>**
 
 ### Errors
 
-| Error Type                        | Status Code                       | Content Type                      |
-| --------------------------------- | --------------------------------- | --------------------------------- |
-| errors.CreateConsumerResponseBody | 422                               | application/problem+json          |
-| errors.APIError                   | 4XX, 5XX                          | \*/\*                             |
+| Error Type                                  | Status Code                                 | Content Type                                |
+| ------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
+| errors.CreateConsumerInputValidationProblem | 422                                         | application/problem+json                    |
+| errors.APIError                             | 4XX, 5XX                                    | \*/\*                                       |

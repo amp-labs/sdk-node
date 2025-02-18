@@ -19,7 +19,7 @@ let value: Media = {
 
 ## Fields
 
-| Field                                                      | Type                                                       | Required                                                   | Description                                                |
-| ---------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- |
-| `regular`                                                  | [operations.Regular](../../models/operations/regular.md)   | :heavy_minus_sign:                                         | Media for light/regular mode.                              |
-| `darkMode`                                                 | [operations.DarkMode](../../models/operations/darkmode.md) | :heavy_minus_sign:                                         | Media to be used in dark mode.                             |
+| Field                                                                        | Type                                                                         | Required                                                                     | Description                                                                  |
+| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| `regular`                                                                    | [operations.MediaTypeRegular](../../models/operations/mediatyperegular.md)   | :heavy_minus_sign:                                                           | Media for light/regular mode.                                                |
+| `darkMode`                                                                   | [operations.MediaTypeDarkMode](../../models/operations/mediatypedarkmode.md) | :heavy_minus_sign:                                                           | Media to be used in dark mode.                                               |

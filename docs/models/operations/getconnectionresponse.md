@@ -3,10 +3,10 @@
 
 ## Supported Types
 
-### `operations.GetConnectionResponseBody`
+### `operations.GetConnectionConnection`
 
 ```typescript
-const value: operations.GetConnectionResponseBody = {
+const value: operations.GetConnectionConnection = {
   id: "connection-123",
   projectId: "project-456",
   provider: "salesforce",
@@ -45,10 +45,10 @@ const value: operations.GetConnectionResponseBody = {
 };
 ```
 
-### `operations.GetConnectionConnectionsResponseBody`
+### `operations.GetConnectionAPIProblem`
 
 ```typescript
-const value: operations.GetConnectionConnectionsResponseBody = {
+const value: operations.GetConnectionAPIProblem = {
   href:
     "https://www.belgif.be/specification/rest/api-guide/#standardized-problem-types",
   title: "Description of the type of problem that occurred",

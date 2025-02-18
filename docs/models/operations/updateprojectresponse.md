@@ -3,10 +3,10 @@
 
 ## Supported Types
 
-### `operations.UpdateProjectResponseBody`
+### `operations.UpdateProjectProject`
 
 ```typescript
-const value: operations.UpdateProjectResponseBody = {
+const value: operations.UpdateProjectProject = {
   id: "project-id-123",
   name: "mailmonkey-staging",
   appName: "MailMonkey",
@@ -14,10 +14,10 @@ const value: operations.UpdateProjectResponseBody = {
 };
 ```
 
-### `operations.UpdateProjectProjectsResponseBody`
+### `operations.UpdateProjectAPIProblem`
 
 ```typescript
-const value: operations.UpdateProjectProjectsResponseBody = {
+const value: operations.UpdateProjectAPIProblem = {
   href:
     "https://www.belgif.be/specification/rest/api-guide/#standardized-problem-types",
   title: "Description of the type of problem that occurred",

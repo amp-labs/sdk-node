@@ -16,15 +16,17 @@ export const UpdateInstallationServerList = [
 /**
  * If selectedFieldsAuto is set to all, all fields will be read.
  */
-export const SelectedFieldsAuto = {
+export const SelectedFieldsAutoConfig = {
   All: "all",
 } as const;
 /**
  * If selectedFieldsAuto is set to all, all fields will be read.
  */
-export type SelectedFieldsAuto = ClosedEnum<typeof SelectedFieldsAuto>;
+export type SelectedFieldsAutoConfig = ClosedEnum<
+  typeof SelectedFieldsAutoConfig
+>;
 
-export type UpdateInstallationDefaultPeriod = {
+export type DefaultPeriodConfig = {
   /**
    * Number of days in past to backfill from. 0 is no backfill. e.g) if 10, then backfill last 10 days of data. Required if fullHistory is not set.
    */
@@ -35,11 +37,11 @@ export type UpdateInstallationDefaultPeriod = {
   fullHistory?: boolean | undefined;
 };
 
-export type UpdateInstallationBackfill = {
-  defaultPeriod: UpdateInstallationDefaultPeriod;
+export type BackfillConfig = {
+  defaultPeriod: DefaultPeriodConfig;
 };
 
-export type UpdateInstallationObjects = {
+export type BaseReadConfigObject = {
   /**
    * The name of the object to read from.
    */
@@ -67,15 +69,15 @@ export type UpdateInstallationObjects = {
   /**
    * If selectedFieldsAuto is set to all, all fields will be read.
    */
-  selectedFieldsAuto?: SelectedFieldsAuto | undefined;
-  backfill?: UpdateInstallationBackfill | undefined;
+  selectedFieldsAuto?: SelectedFieldsAutoConfig | undefined;
+  backfill?: BackfillConfig | undefined;
 };
 
-export type UpdateInstallationRead = {
+export type BaseReadConfig = {
   /**
    * This is a map of object names to their configuration.
    */
-  objects?: { [k: string]: UpdateInstallationObjects } | undefined;
+  objects?: { [k: string]: BaseReadConfigObject } | undefined;
 };
 
 /**
@@ -87,7 +89,7 @@ export type UpdateInstallationRead = {
  * only when creating a record.
  * If unspecified, then `always` is assumed.
  */
-export const UpdateInstallationSelectedValueDefaultsApplyOnUpdate = {
+export const UpdateInstallationValueDefaultApplyOnUpdate = {
   Always: "always",
   Never: "never",
 } as const;
@@ -100,11 +102,11 @@ export const UpdateInstallationSelectedValueDefaultsApplyOnUpdate = {
  * only when creating a record.
  * If unspecified, then `always` is assumed.
  */
-export type UpdateInstallationSelectedValueDefaultsApplyOnUpdate = ClosedEnum<
-  typeof UpdateInstallationSelectedValueDefaultsApplyOnUpdate
+export type UpdateInstallationValueDefaultApplyOnUpdate = ClosedEnum<
+  typeof UpdateInstallationValueDefaultApplyOnUpdate
 >;
 
-export type Three = {
+export type ValueDefaultBoolean = {
   /**
    * The value to be used as a default.
    */
@@ -118,9 +120,7 @@ export type Three = {
    * only when creating a record.
    * If unspecified, then `always` is assumed.
    */
-  applyOnUpdate?:
-    | UpdateInstallationSelectedValueDefaultsApplyOnUpdate
-    | undefined;
+  applyOnUpdate?: UpdateInstallationValueDefaultApplyOnUpdate | undefined;
 };
 
 /**
@@ -132,7 +132,7 @@ export type Three = {
  * only when creating a record.
  * If unspecified, then `always` is assumed.
  */
-export const SelectedValueDefaultsApplyOnUpdate = {
+export const ValueDefaultApplyOnUpdate = {
   Always: "always",
   Never: "never",
 } as const;
@@ -145,11 +145,11 @@ export const SelectedValueDefaultsApplyOnUpdate = {
  * only when creating a record.
  * If unspecified, then `always` is assumed.
  */
-export type SelectedValueDefaultsApplyOnUpdate = ClosedEnum<
-  typeof SelectedValueDefaultsApplyOnUpdate
+export type ValueDefaultApplyOnUpdate = ClosedEnum<
+  typeof ValueDefaultApplyOnUpdate
 >;
 
-export type SelectedValueDefaults2 = {
+export type ValueDefaultInteger = {
   /**
    * The value to be used as a default.
    */
@@ -163,7 +163,7 @@ export type SelectedValueDefaults2 = {
    * only when creating a record.
    * If unspecified, then `always` is assumed.
    */
-  applyOnUpdate?: SelectedValueDefaultsApplyOnUpdate | undefined;
+  applyOnUpdate?: ValueDefaultApplyOnUpdate | undefined;
 };
 
 /**
@@ -190,7 +190,7 @@ export const ApplyOnUpdate = {
  */
 export type ApplyOnUpdate = ClosedEnum<typeof ApplyOnUpdate>;
 
-export type SelectedValueDefaults1 = {
+export type ValueDefaultString = {
   /**
    * The value to be used as a default.
    */
@@ -207,12 +207,12 @@ export type SelectedValueDefaults1 = {
   applyOnUpdate?: ApplyOnUpdate | undefined;
 };
 
-export type SelectedValueDefaults =
-  | SelectedValueDefaults1
-  | SelectedValueDefaults2
-  | Three;
+export type ValueDefault =
+  | ValueDefaultString
+  | ValueDefaultInteger
+  | ValueDefaultBoolean;
 
-export type UpdateInstallationInstallationsObjects = {
+export type BaseWriteConfigObject = {
   /**
    * The name of the object to write to.
    */
@@ -221,29 +221,32 @@ export type UpdateInstallationInstallationsObjects = {
    * This is a map of field names to default values. These values will be used when writing to the object.
    */
   selectedValueDefaults?: {
-    [k: string]: SelectedValueDefaults1 | SelectedValueDefaults2 | Three;
+    [k: string]: ValueDefaultString | ValueDefaultInteger | ValueDefaultBoolean;
   } | undefined;
 };
 
-export type UpdateInstallationWrite = {
+export type BaseWriteConfig = {
   /**
    * This is a map of object names to their configuration.
    */
-  objects?: { [k: string]: UpdateInstallationInstallationsObjects } | undefined;
+  objects?: { [k: string]: BaseWriteConfigObject } | undefined;
 };
 
-export type UpdateInstallationProxy = {
+export type UpdateInstallationBaseProxyConfig = {
   enabled?: boolean | undefined;
 };
 
-export type UpdateInstallationContent = {
+/**
+ * The content of the config.
+ */
+export type UpdateInstallationConfigContent = {
   /**
    * The SaaS API that we are integrating with.
    */
   provider?: string | undefined;
-  read?: UpdateInstallationRead | undefined;
-  write?: UpdateInstallationWrite | undefined;
-  proxy?: UpdateInstallationProxy | undefined;
+  read?: BaseReadConfig | undefined;
+  write?: BaseWriteConfig | undefined;
+  proxy?: UpdateInstallationBaseProxyConfig | undefined;
 };
 
 /**
@@ -261,7 +264,7 @@ export type UpdateInstallationConfig = {
   /**
    * The content of the config.
    */
-  content?: UpdateInstallationContent | undefined;
+  content?: UpdateInstallationConfigContent | undefined;
 };
 
 /**
@@ -300,7 +303,7 @@ export type UpdateInstallationRequest = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export type UpdateInstallationInstallationsResponseBody = {
+export type UpdateInstallationAPIProblem = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -526,7 +529,7 @@ export type UpdateInstallationRefreshToken = {
   token: string;
 };
 
-export type UpdateInstallationOauth2AuthorizationCode = {
+export type UpdateInstallationOAuth2AuthorizationCodeToken = {
   /**
    * The access token for the connection.
    */
@@ -582,7 +585,7 @@ export type UpdateInstallationConnection = {
    */
   status: UpdateInstallationStatus;
   oauth2AuthorizationCode?:
-    | UpdateInstallationOauth2AuthorizationCode
+    | UpdateInstallationOAuth2AuthorizationCodeToken
     | undefined;
   /**
    * The API key used while making the connection.
@@ -590,18 +593,18 @@ export type UpdateInstallationConnection = {
   apiKey?: string | undefined;
 };
 
-export type UpdateInstallationInstallationsProxy = {
+export type UpdateInstallationInstallationsBaseProxyConfig = {
   enabled?: boolean | undefined;
 };
 
-export type UpdateInstallationInstallationsContent = {
+export type UpdateInstallationInstallationsConfigContent = {
   /**
    * The SaaS API that we are integrating with.
    */
   provider: string;
   read?: any | undefined;
   write?: any | undefined;
-  proxy?: UpdateInstallationInstallationsProxy | undefined;
+  proxy?: UpdateInstallationInstallationsBaseProxyConfig | undefined;
 };
 
 export type UpdateInstallationInstallationsConfig = {
@@ -621,13 +624,13 @@ export type UpdateInstallationInstallationsConfig = {
    * The person who created the config, in the format of "consumer:{consumer-id}" or "builder:{builder-id}".
    */
   createdBy: string;
-  content: UpdateInstallationInstallationsContent;
+  content: UpdateInstallationInstallationsConfigContent;
 };
 
 /**
  * The updated installation
  */
-export type UpdateInstallationResponseBody = {
+export type UpdateInstallationInstallation = {
   /**
    * The installation ID.
    */
@@ -662,33 +665,33 @@ export type UpdateInstallationResponseBody = {
 };
 
 export type UpdateInstallationResponse =
-  | UpdateInstallationResponseBody
-  | UpdateInstallationInstallationsResponseBody;
+  | UpdateInstallationInstallation
+  | UpdateInstallationAPIProblem;
 
 /** @internal */
-export const SelectedFieldsAuto$inboundSchema: z.ZodNativeEnum<
-  typeof SelectedFieldsAuto
-> = z.nativeEnum(SelectedFieldsAuto);
+export const SelectedFieldsAutoConfig$inboundSchema: z.ZodNativeEnum<
+  typeof SelectedFieldsAutoConfig
+> = z.nativeEnum(SelectedFieldsAutoConfig);
 
 /** @internal */
-export const SelectedFieldsAuto$outboundSchema: z.ZodNativeEnum<
-  typeof SelectedFieldsAuto
-> = SelectedFieldsAuto$inboundSchema;
+export const SelectedFieldsAutoConfig$outboundSchema: z.ZodNativeEnum<
+  typeof SelectedFieldsAutoConfig
+> = SelectedFieldsAutoConfig$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace SelectedFieldsAuto$ {
-  /** @deprecated use `SelectedFieldsAuto$inboundSchema` instead. */
-  export const inboundSchema = SelectedFieldsAuto$inboundSchema;
-  /** @deprecated use `SelectedFieldsAuto$outboundSchema` instead. */
-  export const outboundSchema = SelectedFieldsAuto$outboundSchema;
+export namespace SelectedFieldsAutoConfig$ {
+  /** @deprecated use `SelectedFieldsAutoConfig$inboundSchema` instead. */
+  export const inboundSchema = SelectedFieldsAutoConfig$inboundSchema;
+  /** @deprecated use `SelectedFieldsAutoConfig$outboundSchema` instead. */
+  export const outboundSchema = SelectedFieldsAutoConfig$outboundSchema;
 }
 
 /** @internal */
-export const UpdateInstallationDefaultPeriod$inboundSchema: z.ZodType<
-  UpdateInstallationDefaultPeriod,
+export const DefaultPeriodConfig$inboundSchema: z.ZodType<
+  DefaultPeriodConfig,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -697,16 +700,16 @@ export const UpdateInstallationDefaultPeriod$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type UpdateInstallationDefaultPeriod$Outbound = {
+export type DefaultPeriodConfig$Outbound = {
   days?: number | undefined;
   fullHistory?: boolean | undefined;
 };
 
 /** @internal */
-export const UpdateInstallationDefaultPeriod$outboundSchema: z.ZodType<
-  UpdateInstallationDefaultPeriod$Outbound,
+export const DefaultPeriodConfig$outboundSchema: z.ZodType<
+  DefaultPeriodConfig$Outbound,
   z.ZodTypeDef,
-  UpdateInstallationDefaultPeriod
+  DefaultPeriodConfig
 > = z.object({
   days: z.number().int().optional(),
   fullHistory: z.boolean().optional(),
@@ -716,92 +719,86 @@ export const UpdateInstallationDefaultPeriod$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace UpdateInstallationDefaultPeriod$ {
-  /** @deprecated use `UpdateInstallationDefaultPeriod$inboundSchema` instead. */
-  export const inboundSchema = UpdateInstallationDefaultPeriod$inboundSchema;
-  /** @deprecated use `UpdateInstallationDefaultPeriod$outboundSchema` instead. */
-  export const outboundSchema = UpdateInstallationDefaultPeriod$outboundSchema;
-  /** @deprecated use `UpdateInstallationDefaultPeriod$Outbound` instead. */
-  export type Outbound = UpdateInstallationDefaultPeriod$Outbound;
+export namespace DefaultPeriodConfig$ {
+  /** @deprecated use `DefaultPeriodConfig$inboundSchema` instead. */
+  export const inboundSchema = DefaultPeriodConfig$inboundSchema;
+  /** @deprecated use `DefaultPeriodConfig$outboundSchema` instead. */
+  export const outboundSchema = DefaultPeriodConfig$outboundSchema;
+  /** @deprecated use `DefaultPeriodConfig$Outbound` instead. */
+  export type Outbound = DefaultPeriodConfig$Outbound;
 }
 
-export function updateInstallationDefaultPeriodToJSON(
-  updateInstallationDefaultPeriod: UpdateInstallationDefaultPeriod,
+export function defaultPeriodConfigToJSON(
+  defaultPeriodConfig: DefaultPeriodConfig,
 ): string {
   return JSON.stringify(
-    UpdateInstallationDefaultPeriod$outboundSchema.parse(
-      updateInstallationDefaultPeriod,
-    ),
+    DefaultPeriodConfig$outboundSchema.parse(defaultPeriodConfig),
   );
 }
 
-export function updateInstallationDefaultPeriodFromJSON(
+export function defaultPeriodConfigFromJSON(
   jsonString: string,
-): SafeParseResult<UpdateInstallationDefaultPeriod, SDKValidationError> {
+): SafeParseResult<DefaultPeriodConfig, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => UpdateInstallationDefaultPeriod$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'UpdateInstallationDefaultPeriod' from JSON`,
+    (x) => DefaultPeriodConfig$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'DefaultPeriodConfig' from JSON`,
   );
 }
 
 /** @internal */
-export const UpdateInstallationBackfill$inboundSchema: z.ZodType<
-  UpdateInstallationBackfill,
+export const BackfillConfig$inboundSchema: z.ZodType<
+  BackfillConfig,
   z.ZodTypeDef,
   unknown
 > = z.object({
-  defaultPeriod: z.lazy(() => UpdateInstallationDefaultPeriod$inboundSchema),
+  defaultPeriod: z.lazy(() => DefaultPeriodConfig$inboundSchema),
 });
 
 /** @internal */
-export type UpdateInstallationBackfill$Outbound = {
-  defaultPeriod: UpdateInstallationDefaultPeriod$Outbound;
+export type BackfillConfig$Outbound = {
+  defaultPeriod: DefaultPeriodConfig$Outbound;
 };
 
 /** @internal */
-export const UpdateInstallationBackfill$outboundSchema: z.ZodType<
-  UpdateInstallationBackfill$Outbound,
+export const BackfillConfig$outboundSchema: z.ZodType<
+  BackfillConfig$Outbound,
   z.ZodTypeDef,
-  UpdateInstallationBackfill
+  BackfillConfig
 > = z.object({
-  defaultPeriod: z.lazy(() => UpdateInstallationDefaultPeriod$outboundSchema),
+  defaultPeriod: z.lazy(() => DefaultPeriodConfig$outboundSchema),
 });
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace UpdateInstallationBackfill$ {
-  /** @deprecated use `UpdateInstallationBackfill$inboundSchema` instead. */
-  export const inboundSchema = UpdateInstallationBackfill$inboundSchema;
-  /** @deprecated use `UpdateInstallationBackfill$outboundSchema` instead. */
-  export const outboundSchema = UpdateInstallationBackfill$outboundSchema;
-  /** @deprecated use `UpdateInstallationBackfill$Outbound` instead. */
-  export type Outbound = UpdateInstallationBackfill$Outbound;
+export namespace BackfillConfig$ {
+  /** @deprecated use `BackfillConfig$inboundSchema` instead. */
+  export const inboundSchema = BackfillConfig$inboundSchema;
+  /** @deprecated use `BackfillConfig$outboundSchema` instead. */
+  export const outboundSchema = BackfillConfig$outboundSchema;
+  /** @deprecated use `BackfillConfig$Outbound` instead. */
+  export type Outbound = BackfillConfig$Outbound;
 }
 
-export function updateInstallationBackfillToJSON(
-  updateInstallationBackfill: UpdateInstallationBackfill,
-): string {
-  return JSON.stringify(
-    UpdateInstallationBackfill$outboundSchema.parse(updateInstallationBackfill),
-  );
+export function backfillConfigToJSON(backfillConfig: BackfillConfig): string {
+  return JSON.stringify(BackfillConfig$outboundSchema.parse(backfillConfig));
 }
 
-export function updateInstallationBackfillFromJSON(
+export function backfillConfigFromJSON(
   jsonString: string,
-): SafeParseResult<UpdateInstallationBackfill, SDKValidationError> {
+): SafeParseResult<BackfillConfig, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => UpdateInstallationBackfill$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'UpdateInstallationBackfill' from JSON`,
+    (x) => BackfillConfig$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'BackfillConfig' from JSON`,
   );
 }
 
 /** @internal */
-export const UpdateInstallationObjects$inboundSchema: z.ZodType<
-  UpdateInstallationObjects,
+export const BaseReadConfigObject$inboundSchema: z.ZodType<
+  BaseReadConfigObject,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -811,12 +808,12 @@ export const UpdateInstallationObjects$inboundSchema: z.ZodType<
   selectedFields: z.record(z.boolean()).optional(),
   selectedValueMappings: z.record(z.record(z.string())).optional(),
   selectedFieldMappings: z.record(z.string()).optional(),
-  selectedFieldsAuto: SelectedFieldsAuto$inboundSchema.optional(),
-  backfill: z.lazy(() => UpdateInstallationBackfill$inboundSchema).optional(),
+  selectedFieldsAuto: SelectedFieldsAutoConfig$inboundSchema.optional(),
+  backfill: z.lazy(() => BackfillConfig$inboundSchema).optional(),
 });
 
 /** @internal */
-export type UpdateInstallationObjects$Outbound = {
+export type BaseReadConfigObject$Outbound = {
   objectName?: string | undefined;
   schedule?: string | undefined;
   destination?: string | undefined;
@@ -824,14 +821,14 @@ export type UpdateInstallationObjects$Outbound = {
   selectedValueMappings?: { [k: string]: { [k: string]: string } } | undefined;
   selectedFieldMappings?: { [k: string]: string } | undefined;
   selectedFieldsAuto?: string | undefined;
-  backfill?: UpdateInstallationBackfill$Outbound | undefined;
+  backfill?: BackfillConfig$Outbound | undefined;
 };
 
 /** @internal */
-export const UpdateInstallationObjects$outboundSchema: z.ZodType<
-  UpdateInstallationObjects$Outbound,
+export const BaseReadConfigObject$outboundSchema: z.ZodType<
+  BaseReadConfigObject$Outbound,
   z.ZodTypeDef,
-  UpdateInstallationObjects
+  BaseReadConfigObject
 > = z.object({
   objectName: z.string().optional(),
   schedule: z.string().optional(),
@@ -839,63 +836,63 @@ export const UpdateInstallationObjects$outboundSchema: z.ZodType<
   selectedFields: z.record(z.boolean()).optional(),
   selectedValueMappings: z.record(z.record(z.string())).optional(),
   selectedFieldMappings: z.record(z.string()).optional(),
-  selectedFieldsAuto: SelectedFieldsAuto$outboundSchema.optional(),
-  backfill: z.lazy(() => UpdateInstallationBackfill$outboundSchema).optional(),
+  selectedFieldsAuto: SelectedFieldsAutoConfig$outboundSchema.optional(),
+  backfill: z.lazy(() => BackfillConfig$outboundSchema).optional(),
 });
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace UpdateInstallationObjects$ {
-  /** @deprecated use `UpdateInstallationObjects$inboundSchema` instead. */
-  export const inboundSchema = UpdateInstallationObjects$inboundSchema;
-  /** @deprecated use `UpdateInstallationObjects$outboundSchema` instead. */
-  export const outboundSchema = UpdateInstallationObjects$outboundSchema;
-  /** @deprecated use `UpdateInstallationObjects$Outbound` instead. */
-  export type Outbound = UpdateInstallationObjects$Outbound;
+export namespace BaseReadConfigObject$ {
+  /** @deprecated use `BaseReadConfigObject$inboundSchema` instead. */
+  export const inboundSchema = BaseReadConfigObject$inboundSchema;
+  /** @deprecated use `BaseReadConfigObject$outboundSchema` instead. */
+  export const outboundSchema = BaseReadConfigObject$outboundSchema;
+  /** @deprecated use `BaseReadConfigObject$Outbound` instead. */
+  export type Outbound = BaseReadConfigObject$Outbound;
 }
 
-export function updateInstallationObjectsToJSON(
-  updateInstallationObjects: UpdateInstallationObjects,
+export function baseReadConfigObjectToJSON(
+  baseReadConfigObject: BaseReadConfigObject,
 ): string {
   return JSON.stringify(
-    UpdateInstallationObjects$outboundSchema.parse(updateInstallationObjects),
+    BaseReadConfigObject$outboundSchema.parse(baseReadConfigObject),
   );
 }
 
-export function updateInstallationObjectsFromJSON(
+export function baseReadConfigObjectFromJSON(
   jsonString: string,
-): SafeParseResult<UpdateInstallationObjects, SDKValidationError> {
+): SafeParseResult<BaseReadConfigObject, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => UpdateInstallationObjects$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'UpdateInstallationObjects' from JSON`,
+    (x) => BaseReadConfigObject$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'BaseReadConfigObject' from JSON`,
   );
 }
 
 /** @internal */
-export const UpdateInstallationRead$inboundSchema: z.ZodType<
-  UpdateInstallationRead,
+export const BaseReadConfig$inboundSchema: z.ZodType<
+  BaseReadConfig,
   z.ZodTypeDef,
   unknown
 > = z.object({
-  objects: z.record(z.lazy(() => UpdateInstallationObjects$inboundSchema))
+  objects: z.record(z.lazy(() => BaseReadConfigObject$inboundSchema))
     .optional(),
 });
 
 /** @internal */
-export type UpdateInstallationRead$Outbound = {
-  objects?: { [k: string]: UpdateInstallationObjects$Outbound } | undefined;
+export type BaseReadConfig$Outbound = {
+  objects?: { [k: string]: BaseReadConfigObject$Outbound } | undefined;
 };
 
 /** @internal */
-export const UpdateInstallationRead$outboundSchema: z.ZodType<
-  UpdateInstallationRead$Outbound,
+export const BaseReadConfig$outboundSchema: z.ZodType<
+  BaseReadConfig$Outbound,
   z.ZodTypeDef,
-  UpdateInstallationRead
+  BaseReadConfig
 > = z.object({
-  objects: z.record(z.lazy(() => UpdateInstallationObjects$outboundSchema))
+  objects: z.record(z.lazy(() => BaseReadConfigObject$outboundSchema))
     .optional(),
 });
 
@@ -903,186 +900,186 @@ export const UpdateInstallationRead$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace UpdateInstallationRead$ {
-  /** @deprecated use `UpdateInstallationRead$inboundSchema` instead. */
-  export const inboundSchema = UpdateInstallationRead$inboundSchema;
-  /** @deprecated use `UpdateInstallationRead$outboundSchema` instead. */
-  export const outboundSchema = UpdateInstallationRead$outboundSchema;
-  /** @deprecated use `UpdateInstallationRead$Outbound` instead. */
-  export type Outbound = UpdateInstallationRead$Outbound;
+export namespace BaseReadConfig$ {
+  /** @deprecated use `BaseReadConfig$inboundSchema` instead. */
+  export const inboundSchema = BaseReadConfig$inboundSchema;
+  /** @deprecated use `BaseReadConfig$outboundSchema` instead. */
+  export const outboundSchema = BaseReadConfig$outboundSchema;
+  /** @deprecated use `BaseReadConfig$Outbound` instead. */
+  export type Outbound = BaseReadConfig$Outbound;
 }
 
-export function updateInstallationReadToJSON(
-  updateInstallationRead: UpdateInstallationRead,
-): string {
-  return JSON.stringify(
-    UpdateInstallationRead$outboundSchema.parse(updateInstallationRead),
-  );
+export function baseReadConfigToJSON(baseReadConfig: BaseReadConfig): string {
+  return JSON.stringify(BaseReadConfig$outboundSchema.parse(baseReadConfig));
 }
 
-export function updateInstallationReadFromJSON(
+export function baseReadConfigFromJSON(
   jsonString: string,
-): SafeParseResult<UpdateInstallationRead, SDKValidationError> {
+): SafeParseResult<BaseReadConfig, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => UpdateInstallationRead$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'UpdateInstallationRead' from JSON`,
+    (x) => BaseReadConfig$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'BaseReadConfig' from JSON`,
   );
 }
 
 /** @internal */
-export const UpdateInstallationSelectedValueDefaultsApplyOnUpdate$inboundSchema:
-  z.ZodNativeEnum<typeof UpdateInstallationSelectedValueDefaultsApplyOnUpdate> =
-    z.nativeEnum(UpdateInstallationSelectedValueDefaultsApplyOnUpdate);
+export const UpdateInstallationValueDefaultApplyOnUpdate$inboundSchema:
+  z.ZodNativeEnum<typeof UpdateInstallationValueDefaultApplyOnUpdate> = z
+    .nativeEnum(UpdateInstallationValueDefaultApplyOnUpdate);
 
 /** @internal */
-export const UpdateInstallationSelectedValueDefaultsApplyOnUpdate$outboundSchema:
-  z.ZodNativeEnum<typeof UpdateInstallationSelectedValueDefaultsApplyOnUpdate> =
-    UpdateInstallationSelectedValueDefaultsApplyOnUpdate$inboundSchema;
+export const UpdateInstallationValueDefaultApplyOnUpdate$outboundSchema:
+  z.ZodNativeEnum<typeof UpdateInstallationValueDefaultApplyOnUpdate> =
+    UpdateInstallationValueDefaultApplyOnUpdate$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace UpdateInstallationSelectedValueDefaultsApplyOnUpdate$ {
-  /** @deprecated use `UpdateInstallationSelectedValueDefaultsApplyOnUpdate$inboundSchema` instead. */
+export namespace UpdateInstallationValueDefaultApplyOnUpdate$ {
+  /** @deprecated use `UpdateInstallationValueDefaultApplyOnUpdate$inboundSchema` instead. */
   export const inboundSchema =
-    UpdateInstallationSelectedValueDefaultsApplyOnUpdate$inboundSchema;
-  /** @deprecated use `UpdateInstallationSelectedValueDefaultsApplyOnUpdate$outboundSchema` instead. */
+    UpdateInstallationValueDefaultApplyOnUpdate$inboundSchema;
+  /** @deprecated use `UpdateInstallationValueDefaultApplyOnUpdate$outboundSchema` instead. */
   export const outboundSchema =
-    UpdateInstallationSelectedValueDefaultsApplyOnUpdate$outboundSchema;
+    UpdateInstallationValueDefaultApplyOnUpdate$outboundSchema;
 }
 
 /** @internal */
-export const Three$inboundSchema: z.ZodType<Three, z.ZodTypeDef, unknown> = z
-  .object({
-    value: z.boolean(),
-    applyOnUpdate:
-      UpdateInstallationSelectedValueDefaultsApplyOnUpdate$inboundSchema
-        .optional(),
-  });
+export const ValueDefaultBoolean$inboundSchema: z.ZodType<
+  ValueDefaultBoolean,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  value: z.boolean(),
+  applyOnUpdate: UpdateInstallationValueDefaultApplyOnUpdate$inboundSchema
+    .optional(),
+});
 
 /** @internal */
-export type Three$Outbound = {
+export type ValueDefaultBoolean$Outbound = {
   value: boolean;
   applyOnUpdate?: string | undefined;
 };
 
 /** @internal */
-export const Three$outboundSchema: z.ZodType<
-  Three$Outbound,
+export const ValueDefaultBoolean$outboundSchema: z.ZodType<
+  ValueDefaultBoolean$Outbound,
   z.ZodTypeDef,
-  Three
+  ValueDefaultBoolean
 > = z.object({
   value: z.boolean(),
-  applyOnUpdate:
-    UpdateInstallationSelectedValueDefaultsApplyOnUpdate$outboundSchema
-      .optional(),
+  applyOnUpdate: UpdateInstallationValueDefaultApplyOnUpdate$outboundSchema
+    .optional(),
 });
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace Three$ {
-  /** @deprecated use `Three$inboundSchema` instead. */
-  export const inboundSchema = Three$inboundSchema;
-  /** @deprecated use `Three$outboundSchema` instead. */
-  export const outboundSchema = Three$outboundSchema;
-  /** @deprecated use `Three$Outbound` instead. */
-  export type Outbound = Three$Outbound;
+export namespace ValueDefaultBoolean$ {
+  /** @deprecated use `ValueDefaultBoolean$inboundSchema` instead. */
+  export const inboundSchema = ValueDefaultBoolean$inboundSchema;
+  /** @deprecated use `ValueDefaultBoolean$outboundSchema` instead. */
+  export const outboundSchema = ValueDefaultBoolean$outboundSchema;
+  /** @deprecated use `ValueDefaultBoolean$Outbound` instead. */
+  export type Outbound = ValueDefaultBoolean$Outbound;
 }
 
-export function threeToJSON(three: Three): string {
-  return JSON.stringify(Three$outboundSchema.parse(three));
+export function valueDefaultBooleanToJSON(
+  valueDefaultBoolean: ValueDefaultBoolean,
+): string {
+  return JSON.stringify(
+    ValueDefaultBoolean$outboundSchema.parse(valueDefaultBoolean),
+  );
 }
 
-export function threeFromJSON(
+export function valueDefaultBooleanFromJSON(
   jsonString: string,
-): SafeParseResult<Three, SDKValidationError> {
+): SafeParseResult<ValueDefaultBoolean, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => Three$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Three' from JSON`,
+    (x) => ValueDefaultBoolean$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ValueDefaultBoolean' from JSON`,
   );
 }
 
 /** @internal */
-export const SelectedValueDefaultsApplyOnUpdate$inboundSchema: z.ZodNativeEnum<
-  typeof SelectedValueDefaultsApplyOnUpdate
-> = z.nativeEnum(SelectedValueDefaultsApplyOnUpdate);
+export const ValueDefaultApplyOnUpdate$inboundSchema: z.ZodNativeEnum<
+  typeof ValueDefaultApplyOnUpdate
+> = z.nativeEnum(ValueDefaultApplyOnUpdate);
 
 /** @internal */
-export const SelectedValueDefaultsApplyOnUpdate$outboundSchema: z.ZodNativeEnum<
-  typeof SelectedValueDefaultsApplyOnUpdate
-> = SelectedValueDefaultsApplyOnUpdate$inboundSchema;
+export const ValueDefaultApplyOnUpdate$outboundSchema: z.ZodNativeEnum<
+  typeof ValueDefaultApplyOnUpdate
+> = ValueDefaultApplyOnUpdate$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace SelectedValueDefaultsApplyOnUpdate$ {
-  /** @deprecated use `SelectedValueDefaultsApplyOnUpdate$inboundSchema` instead. */
-  export const inboundSchema = SelectedValueDefaultsApplyOnUpdate$inboundSchema;
-  /** @deprecated use `SelectedValueDefaultsApplyOnUpdate$outboundSchema` instead. */
-  export const outboundSchema =
-    SelectedValueDefaultsApplyOnUpdate$outboundSchema;
+export namespace ValueDefaultApplyOnUpdate$ {
+  /** @deprecated use `ValueDefaultApplyOnUpdate$inboundSchema` instead. */
+  export const inboundSchema = ValueDefaultApplyOnUpdate$inboundSchema;
+  /** @deprecated use `ValueDefaultApplyOnUpdate$outboundSchema` instead. */
+  export const outboundSchema = ValueDefaultApplyOnUpdate$outboundSchema;
 }
 
 /** @internal */
-export const SelectedValueDefaults2$inboundSchema: z.ZodType<
-  SelectedValueDefaults2,
+export const ValueDefaultInteger$inboundSchema: z.ZodType<
+  ValueDefaultInteger,
   z.ZodTypeDef,
   unknown
 > = z.object({
   value: z.number().int(),
-  applyOnUpdate: SelectedValueDefaultsApplyOnUpdate$inboundSchema.optional(),
+  applyOnUpdate: ValueDefaultApplyOnUpdate$inboundSchema.optional(),
 });
 
 /** @internal */
-export type SelectedValueDefaults2$Outbound = {
+export type ValueDefaultInteger$Outbound = {
   value: number;
   applyOnUpdate?: string | undefined;
 };
 
 /** @internal */
-export const SelectedValueDefaults2$outboundSchema: z.ZodType<
-  SelectedValueDefaults2$Outbound,
+export const ValueDefaultInteger$outboundSchema: z.ZodType<
+  ValueDefaultInteger$Outbound,
   z.ZodTypeDef,
-  SelectedValueDefaults2
+  ValueDefaultInteger
 > = z.object({
   value: z.number().int(),
-  applyOnUpdate: SelectedValueDefaultsApplyOnUpdate$outboundSchema.optional(),
+  applyOnUpdate: ValueDefaultApplyOnUpdate$outboundSchema.optional(),
 });
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace SelectedValueDefaults2$ {
-  /** @deprecated use `SelectedValueDefaults2$inboundSchema` instead. */
-  export const inboundSchema = SelectedValueDefaults2$inboundSchema;
-  /** @deprecated use `SelectedValueDefaults2$outboundSchema` instead. */
-  export const outboundSchema = SelectedValueDefaults2$outboundSchema;
-  /** @deprecated use `SelectedValueDefaults2$Outbound` instead. */
-  export type Outbound = SelectedValueDefaults2$Outbound;
+export namespace ValueDefaultInteger$ {
+  /** @deprecated use `ValueDefaultInteger$inboundSchema` instead. */
+  export const inboundSchema = ValueDefaultInteger$inboundSchema;
+  /** @deprecated use `ValueDefaultInteger$outboundSchema` instead. */
+  export const outboundSchema = ValueDefaultInteger$outboundSchema;
+  /** @deprecated use `ValueDefaultInteger$Outbound` instead. */
+  export type Outbound = ValueDefaultInteger$Outbound;
 }
 
-export function selectedValueDefaults2ToJSON(
-  selectedValueDefaults2: SelectedValueDefaults2,
+export function valueDefaultIntegerToJSON(
+  valueDefaultInteger: ValueDefaultInteger,
 ): string {
   return JSON.stringify(
-    SelectedValueDefaults2$outboundSchema.parse(selectedValueDefaults2),
+    ValueDefaultInteger$outboundSchema.parse(valueDefaultInteger),
   );
 }
 
-export function selectedValueDefaults2FromJSON(
+export function valueDefaultIntegerFromJSON(
   jsonString: string,
-): SafeParseResult<SelectedValueDefaults2, SDKValidationError> {
+): SafeParseResult<ValueDefaultInteger, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => SelectedValueDefaults2$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'SelectedValueDefaults2' from JSON`,
+    (x) => ValueDefaultInteger$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ValueDefaultInteger' from JSON`,
   );
 }
 
@@ -1108,8 +1105,8 @@ export namespace ApplyOnUpdate$ {
 }
 
 /** @internal */
-export const SelectedValueDefaults1$inboundSchema: z.ZodType<
-  SelectedValueDefaults1,
+export const ValueDefaultString$inboundSchema: z.ZodType<
+  ValueDefaultString,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -1118,16 +1115,16 @@ export const SelectedValueDefaults1$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type SelectedValueDefaults1$Outbound = {
+export type ValueDefaultString$Outbound = {
   value: string;
   applyOnUpdate?: string | undefined;
 };
 
 /** @internal */
-export const SelectedValueDefaults1$outboundSchema: z.ZodType<
-  SelectedValueDefaults1$Outbound,
+export const ValueDefaultString$outboundSchema: z.ZodType<
+  ValueDefaultString$Outbound,
   z.ZodTypeDef,
-  SelectedValueDefaults1
+  ValueDefaultString
 > = z.object({
   value: z.string(),
   applyOnUpdate: ApplyOnUpdate$outboundSchema.optional(),
@@ -1137,131 +1134,127 @@ export const SelectedValueDefaults1$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace SelectedValueDefaults1$ {
-  /** @deprecated use `SelectedValueDefaults1$inboundSchema` instead. */
-  export const inboundSchema = SelectedValueDefaults1$inboundSchema;
-  /** @deprecated use `SelectedValueDefaults1$outboundSchema` instead. */
-  export const outboundSchema = SelectedValueDefaults1$outboundSchema;
-  /** @deprecated use `SelectedValueDefaults1$Outbound` instead. */
-  export type Outbound = SelectedValueDefaults1$Outbound;
+export namespace ValueDefaultString$ {
+  /** @deprecated use `ValueDefaultString$inboundSchema` instead. */
+  export const inboundSchema = ValueDefaultString$inboundSchema;
+  /** @deprecated use `ValueDefaultString$outboundSchema` instead. */
+  export const outboundSchema = ValueDefaultString$outboundSchema;
+  /** @deprecated use `ValueDefaultString$Outbound` instead. */
+  export type Outbound = ValueDefaultString$Outbound;
 }
 
-export function selectedValueDefaults1ToJSON(
-  selectedValueDefaults1: SelectedValueDefaults1,
+export function valueDefaultStringToJSON(
+  valueDefaultString: ValueDefaultString,
 ): string {
   return JSON.stringify(
-    SelectedValueDefaults1$outboundSchema.parse(selectedValueDefaults1),
+    ValueDefaultString$outboundSchema.parse(valueDefaultString),
   );
 }
 
-export function selectedValueDefaults1FromJSON(
+export function valueDefaultStringFromJSON(
   jsonString: string,
-): SafeParseResult<SelectedValueDefaults1, SDKValidationError> {
+): SafeParseResult<ValueDefaultString, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => SelectedValueDefaults1$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'SelectedValueDefaults1' from JSON`,
+    (x) => ValueDefaultString$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ValueDefaultString' from JSON`,
   );
 }
 
 /** @internal */
-export const SelectedValueDefaults$inboundSchema: z.ZodType<
-  SelectedValueDefaults,
+export const ValueDefault$inboundSchema: z.ZodType<
+  ValueDefault,
   z.ZodTypeDef,
   unknown
 > = z.union([
-  z.lazy(() => SelectedValueDefaults1$inboundSchema),
-  z.lazy(() => SelectedValueDefaults2$inboundSchema),
-  z.lazy(() => Three$inboundSchema),
+  z.lazy(() => ValueDefaultString$inboundSchema),
+  z.lazy(() => ValueDefaultInteger$inboundSchema),
+  z.lazy(() => ValueDefaultBoolean$inboundSchema),
 ]);
 
 /** @internal */
-export type SelectedValueDefaults$Outbound =
-  | SelectedValueDefaults1$Outbound
-  | SelectedValueDefaults2$Outbound
-  | Three$Outbound;
+export type ValueDefault$Outbound =
+  | ValueDefaultString$Outbound
+  | ValueDefaultInteger$Outbound
+  | ValueDefaultBoolean$Outbound;
 
 /** @internal */
-export const SelectedValueDefaults$outboundSchema: z.ZodType<
-  SelectedValueDefaults$Outbound,
+export const ValueDefault$outboundSchema: z.ZodType<
+  ValueDefault$Outbound,
   z.ZodTypeDef,
-  SelectedValueDefaults
+  ValueDefault
 > = z.union([
-  z.lazy(() => SelectedValueDefaults1$outboundSchema),
-  z.lazy(() => SelectedValueDefaults2$outboundSchema),
-  z.lazy(() => Three$outboundSchema),
+  z.lazy(() => ValueDefaultString$outboundSchema),
+  z.lazy(() => ValueDefaultInteger$outboundSchema),
+  z.lazy(() => ValueDefaultBoolean$outboundSchema),
 ]);
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace SelectedValueDefaults$ {
-  /** @deprecated use `SelectedValueDefaults$inboundSchema` instead. */
-  export const inboundSchema = SelectedValueDefaults$inboundSchema;
-  /** @deprecated use `SelectedValueDefaults$outboundSchema` instead. */
-  export const outboundSchema = SelectedValueDefaults$outboundSchema;
-  /** @deprecated use `SelectedValueDefaults$Outbound` instead. */
-  export type Outbound = SelectedValueDefaults$Outbound;
+export namespace ValueDefault$ {
+  /** @deprecated use `ValueDefault$inboundSchema` instead. */
+  export const inboundSchema = ValueDefault$inboundSchema;
+  /** @deprecated use `ValueDefault$outboundSchema` instead. */
+  export const outboundSchema = ValueDefault$outboundSchema;
+  /** @deprecated use `ValueDefault$Outbound` instead. */
+  export type Outbound = ValueDefault$Outbound;
 }
 
-export function selectedValueDefaultsToJSON(
-  selectedValueDefaults: SelectedValueDefaults,
-): string {
-  return JSON.stringify(
-    SelectedValueDefaults$outboundSchema.parse(selectedValueDefaults),
-  );
+export function valueDefaultToJSON(valueDefault: ValueDefault): string {
+  return JSON.stringify(ValueDefault$outboundSchema.parse(valueDefault));
 }
 
-export function selectedValueDefaultsFromJSON(
+export function valueDefaultFromJSON(
   jsonString: string,
-): SafeParseResult<SelectedValueDefaults, SDKValidationError> {
+): SafeParseResult<ValueDefault, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => SelectedValueDefaults$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'SelectedValueDefaults' from JSON`,
+    (x) => ValueDefault$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ValueDefault' from JSON`,
   );
 }
 
 /** @internal */
-export const UpdateInstallationInstallationsObjects$inboundSchema: z.ZodType<
-  UpdateInstallationInstallationsObjects,
+export const BaseWriteConfigObject$inboundSchema: z.ZodType<
+  BaseWriteConfigObject,
   z.ZodTypeDef,
   unknown
 > = z.object({
   objectName: z.string().optional(),
   selectedValueDefaults: z.record(
     z.union([
-      z.lazy(() => SelectedValueDefaults1$inboundSchema),
-      z.lazy(() => SelectedValueDefaults2$inboundSchema),
-      z.lazy(() => Three$inboundSchema),
+      z.lazy(() => ValueDefaultString$inboundSchema),
+      z.lazy(() => ValueDefaultInteger$inboundSchema),
+      z.lazy(() => ValueDefaultBoolean$inboundSchema),
     ]),
   ).optional(),
 });
 
 /** @internal */
-export type UpdateInstallationInstallationsObjects$Outbound = {
+export type BaseWriteConfigObject$Outbound = {
   objectName?: string | undefined;
   selectedValueDefaults?: {
     [k: string]:
-      | SelectedValueDefaults1$Outbound
-      | SelectedValueDefaults2$Outbound
-      | Three$Outbound;
+      | ValueDefaultString$Outbound
+      | ValueDefaultInteger$Outbound
+      | ValueDefaultBoolean$Outbound;
   } | undefined;
 };
 
 /** @internal */
-export const UpdateInstallationInstallationsObjects$outboundSchema: z.ZodType<
-  UpdateInstallationInstallationsObjects$Outbound,
+export const BaseWriteConfigObject$outboundSchema: z.ZodType<
+  BaseWriteConfigObject$Outbound,
   z.ZodTypeDef,
-  UpdateInstallationInstallationsObjects
+  BaseWriteConfigObject
 > = z.object({
   objectName: z.string().optional(),
   selectedValueDefaults: z.record(
     z.union([
-      z.lazy(() => SelectedValueDefaults1$outboundSchema),
-      z.lazy(() => SelectedValueDefaults2$outboundSchema),
-      z.lazy(() => Three$outboundSchema),
+      z.lazy(() => ValueDefaultString$outboundSchema),
+      z.lazy(() => ValueDefaultInteger$outboundSchema),
+      z.lazy(() => ValueDefaultBoolean$outboundSchema),
     ]),
   ).optional(),
 });
@@ -1270,102 +1263,90 @@ export const UpdateInstallationInstallationsObjects$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace UpdateInstallationInstallationsObjects$ {
-  /** @deprecated use `UpdateInstallationInstallationsObjects$inboundSchema` instead. */
-  export const inboundSchema =
-    UpdateInstallationInstallationsObjects$inboundSchema;
-  /** @deprecated use `UpdateInstallationInstallationsObjects$outboundSchema` instead. */
-  export const outboundSchema =
-    UpdateInstallationInstallationsObjects$outboundSchema;
-  /** @deprecated use `UpdateInstallationInstallationsObjects$Outbound` instead. */
-  export type Outbound = UpdateInstallationInstallationsObjects$Outbound;
+export namespace BaseWriteConfigObject$ {
+  /** @deprecated use `BaseWriteConfigObject$inboundSchema` instead. */
+  export const inboundSchema = BaseWriteConfigObject$inboundSchema;
+  /** @deprecated use `BaseWriteConfigObject$outboundSchema` instead. */
+  export const outboundSchema = BaseWriteConfigObject$outboundSchema;
+  /** @deprecated use `BaseWriteConfigObject$Outbound` instead. */
+  export type Outbound = BaseWriteConfigObject$Outbound;
 }
 
-export function updateInstallationInstallationsObjectsToJSON(
-  updateInstallationInstallationsObjects:
-    UpdateInstallationInstallationsObjects,
+export function baseWriteConfigObjectToJSON(
+  baseWriteConfigObject: BaseWriteConfigObject,
 ): string {
   return JSON.stringify(
-    UpdateInstallationInstallationsObjects$outboundSchema.parse(
-      updateInstallationInstallationsObjects,
-    ),
+    BaseWriteConfigObject$outboundSchema.parse(baseWriteConfigObject),
   );
 }
 
-export function updateInstallationInstallationsObjectsFromJSON(
+export function baseWriteConfigObjectFromJSON(
   jsonString: string,
-): SafeParseResult<UpdateInstallationInstallationsObjects, SDKValidationError> {
+): SafeParseResult<BaseWriteConfigObject, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) =>
-      UpdateInstallationInstallationsObjects$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'UpdateInstallationInstallationsObjects' from JSON`,
+    (x) => BaseWriteConfigObject$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'BaseWriteConfigObject' from JSON`,
   );
 }
 
 /** @internal */
-export const UpdateInstallationWrite$inboundSchema: z.ZodType<
-  UpdateInstallationWrite,
+export const BaseWriteConfig$inboundSchema: z.ZodType<
+  BaseWriteConfig,
   z.ZodTypeDef,
   unknown
 > = z.object({
-  objects: z.record(
-    z.lazy(() => UpdateInstallationInstallationsObjects$inboundSchema),
-  ).optional(),
+  objects: z.record(z.lazy(() => BaseWriteConfigObject$inboundSchema))
+    .optional(),
 });
 
 /** @internal */
-export type UpdateInstallationWrite$Outbound = {
-  objects?:
-    | { [k: string]: UpdateInstallationInstallationsObjects$Outbound }
-    | undefined;
+export type BaseWriteConfig$Outbound = {
+  objects?: { [k: string]: BaseWriteConfigObject$Outbound } | undefined;
 };
 
 /** @internal */
-export const UpdateInstallationWrite$outboundSchema: z.ZodType<
-  UpdateInstallationWrite$Outbound,
+export const BaseWriteConfig$outboundSchema: z.ZodType<
+  BaseWriteConfig$Outbound,
   z.ZodTypeDef,
-  UpdateInstallationWrite
+  BaseWriteConfig
 > = z.object({
-  objects: z.record(
-    z.lazy(() => UpdateInstallationInstallationsObjects$outboundSchema),
-  ).optional(),
+  objects: z.record(z.lazy(() => BaseWriteConfigObject$outboundSchema))
+    .optional(),
 });
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace UpdateInstallationWrite$ {
-  /** @deprecated use `UpdateInstallationWrite$inboundSchema` instead. */
-  export const inboundSchema = UpdateInstallationWrite$inboundSchema;
-  /** @deprecated use `UpdateInstallationWrite$outboundSchema` instead. */
-  export const outboundSchema = UpdateInstallationWrite$outboundSchema;
-  /** @deprecated use `UpdateInstallationWrite$Outbound` instead. */
-  export type Outbound = UpdateInstallationWrite$Outbound;
+export namespace BaseWriteConfig$ {
+  /** @deprecated use `BaseWriteConfig$inboundSchema` instead. */
+  export const inboundSchema = BaseWriteConfig$inboundSchema;
+  /** @deprecated use `BaseWriteConfig$outboundSchema` instead. */
+  export const outboundSchema = BaseWriteConfig$outboundSchema;
+  /** @deprecated use `BaseWriteConfig$Outbound` instead. */
+  export type Outbound = BaseWriteConfig$Outbound;
 }
 
-export function updateInstallationWriteToJSON(
-  updateInstallationWrite: UpdateInstallationWrite,
+export function baseWriteConfigToJSON(
+  baseWriteConfig: BaseWriteConfig,
 ): string {
-  return JSON.stringify(
-    UpdateInstallationWrite$outboundSchema.parse(updateInstallationWrite),
-  );
+  return JSON.stringify(BaseWriteConfig$outboundSchema.parse(baseWriteConfig));
 }
 
-export function updateInstallationWriteFromJSON(
+export function baseWriteConfigFromJSON(
   jsonString: string,
-): SafeParseResult<UpdateInstallationWrite, SDKValidationError> {
+): SafeParseResult<BaseWriteConfig, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => UpdateInstallationWrite$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'UpdateInstallationWrite' from JSON`,
+    (x) => BaseWriteConfig$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'BaseWriteConfig' from JSON`,
   );
 }
 
 /** @internal */
-export const UpdateInstallationProxy$inboundSchema: z.ZodType<
-  UpdateInstallationProxy,
+export const UpdateInstallationBaseProxyConfig$inboundSchema: z.ZodType<
+  UpdateInstallationBaseProxyConfig,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -1373,15 +1354,15 @@ export const UpdateInstallationProxy$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type UpdateInstallationProxy$Outbound = {
+export type UpdateInstallationBaseProxyConfig$Outbound = {
   enabled?: boolean | undefined;
 };
 
 /** @internal */
-export const UpdateInstallationProxy$outboundSchema: z.ZodType<
-  UpdateInstallationProxy$Outbound,
+export const UpdateInstallationBaseProxyConfig$outboundSchema: z.ZodType<
+  UpdateInstallationBaseProxyConfig$Outbound,
   z.ZodTypeDef,
-  UpdateInstallationProxy
+  UpdateInstallationBaseProxyConfig
 > = z.object({
   enabled: z.boolean().optional(),
 });
@@ -1390,93 +1371,100 @@ export const UpdateInstallationProxy$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace UpdateInstallationProxy$ {
-  /** @deprecated use `UpdateInstallationProxy$inboundSchema` instead. */
-  export const inboundSchema = UpdateInstallationProxy$inboundSchema;
-  /** @deprecated use `UpdateInstallationProxy$outboundSchema` instead. */
-  export const outboundSchema = UpdateInstallationProxy$outboundSchema;
-  /** @deprecated use `UpdateInstallationProxy$Outbound` instead. */
-  export type Outbound = UpdateInstallationProxy$Outbound;
+export namespace UpdateInstallationBaseProxyConfig$ {
+  /** @deprecated use `UpdateInstallationBaseProxyConfig$inboundSchema` instead. */
+  export const inboundSchema = UpdateInstallationBaseProxyConfig$inboundSchema;
+  /** @deprecated use `UpdateInstallationBaseProxyConfig$outboundSchema` instead. */
+  export const outboundSchema =
+    UpdateInstallationBaseProxyConfig$outboundSchema;
+  /** @deprecated use `UpdateInstallationBaseProxyConfig$Outbound` instead. */
+  export type Outbound = UpdateInstallationBaseProxyConfig$Outbound;
 }
 
-export function updateInstallationProxyToJSON(
-  updateInstallationProxy: UpdateInstallationProxy,
+export function updateInstallationBaseProxyConfigToJSON(
+  updateInstallationBaseProxyConfig: UpdateInstallationBaseProxyConfig,
 ): string {
   return JSON.stringify(
-    UpdateInstallationProxy$outboundSchema.parse(updateInstallationProxy),
+    UpdateInstallationBaseProxyConfig$outboundSchema.parse(
+      updateInstallationBaseProxyConfig,
+    ),
   );
 }
 
-export function updateInstallationProxyFromJSON(
+export function updateInstallationBaseProxyConfigFromJSON(
   jsonString: string,
-): SafeParseResult<UpdateInstallationProxy, SDKValidationError> {
+): SafeParseResult<UpdateInstallationBaseProxyConfig, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => UpdateInstallationProxy$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'UpdateInstallationProxy' from JSON`,
+    (x) => UpdateInstallationBaseProxyConfig$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'UpdateInstallationBaseProxyConfig' from JSON`,
   );
 }
 
 /** @internal */
-export const UpdateInstallationContent$inboundSchema: z.ZodType<
-  UpdateInstallationContent,
+export const UpdateInstallationConfigContent$inboundSchema: z.ZodType<
+  UpdateInstallationConfigContent,
   z.ZodTypeDef,
   unknown
 > = z.object({
   provider: z.string().optional(),
-  read: z.lazy(() => UpdateInstallationRead$inboundSchema).optional(),
-  write: z.lazy(() => UpdateInstallationWrite$inboundSchema).optional(),
-  proxy: z.lazy(() => UpdateInstallationProxy$inboundSchema).optional(),
+  read: z.lazy(() => BaseReadConfig$inboundSchema).optional(),
+  write: z.lazy(() => BaseWriteConfig$inboundSchema).optional(),
+  proxy: z.lazy(() => UpdateInstallationBaseProxyConfig$inboundSchema)
+    .optional(),
 });
 
 /** @internal */
-export type UpdateInstallationContent$Outbound = {
+export type UpdateInstallationConfigContent$Outbound = {
   provider?: string | undefined;
-  read?: UpdateInstallationRead$Outbound | undefined;
-  write?: UpdateInstallationWrite$Outbound | undefined;
-  proxy?: UpdateInstallationProxy$Outbound | undefined;
+  read?: BaseReadConfig$Outbound | undefined;
+  write?: BaseWriteConfig$Outbound | undefined;
+  proxy?: UpdateInstallationBaseProxyConfig$Outbound | undefined;
 };
 
 /** @internal */
-export const UpdateInstallationContent$outboundSchema: z.ZodType<
-  UpdateInstallationContent$Outbound,
+export const UpdateInstallationConfigContent$outboundSchema: z.ZodType<
+  UpdateInstallationConfigContent$Outbound,
   z.ZodTypeDef,
-  UpdateInstallationContent
+  UpdateInstallationConfigContent
 > = z.object({
   provider: z.string().optional(),
-  read: z.lazy(() => UpdateInstallationRead$outboundSchema).optional(),
-  write: z.lazy(() => UpdateInstallationWrite$outboundSchema).optional(),
-  proxy: z.lazy(() => UpdateInstallationProxy$outboundSchema).optional(),
+  read: z.lazy(() => BaseReadConfig$outboundSchema).optional(),
+  write: z.lazy(() => BaseWriteConfig$outboundSchema).optional(),
+  proxy: z.lazy(() => UpdateInstallationBaseProxyConfig$outboundSchema)
+    .optional(),
 });
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace UpdateInstallationContent$ {
-  /** @deprecated use `UpdateInstallationContent$inboundSchema` instead. */
-  export const inboundSchema = UpdateInstallationContent$inboundSchema;
-  /** @deprecated use `UpdateInstallationContent$outboundSchema` instead. */
-  export const outboundSchema = UpdateInstallationContent$outboundSchema;
-  /** @deprecated use `UpdateInstallationContent$Outbound` instead. */
-  export type Outbound = UpdateInstallationContent$Outbound;
+export namespace UpdateInstallationConfigContent$ {
+  /** @deprecated use `UpdateInstallationConfigContent$inboundSchema` instead. */
+  export const inboundSchema = UpdateInstallationConfigContent$inboundSchema;
+  /** @deprecated use `UpdateInstallationConfigContent$outboundSchema` instead. */
+  export const outboundSchema = UpdateInstallationConfigContent$outboundSchema;
+  /** @deprecated use `UpdateInstallationConfigContent$Outbound` instead. */
+  export type Outbound = UpdateInstallationConfigContent$Outbound;
 }
 
-export function updateInstallationContentToJSON(
-  updateInstallationContent: UpdateInstallationContent,
+export function updateInstallationConfigContentToJSON(
+  updateInstallationConfigContent: UpdateInstallationConfigContent,
 ): string {
   return JSON.stringify(
-    UpdateInstallationContent$outboundSchema.parse(updateInstallationContent),
+    UpdateInstallationConfigContent$outboundSchema.parse(
+      updateInstallationConfigContent,
+    ),
   );
 }
 
-export function updateInstallationContentFromJSON(
+export function updateInstallationConfigContentFromJSON(
   jsonString: string,
-): SafeParseResult<UpdateInstallationContent, SDKValidationError> {
+): SafeParseResult<UpdateInstallationConfigContent, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => UpdateInstallationContent$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'UpdateInstallationContent' from JSON`,
+    (x) => UpdateInstallationConfigContent$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'UpdateInstallationConfigContent' from JSON`,
   );
 }
 
@@ -1488,14 +1476,15 @@ export const UpdateInstallationConfig$inboundSchema: z.ZodType<
 > = z.object({
   revisionId: z.string().optional(),
   createdBy: z.string().optional(),
-  content: z.lazy(() => UpdateInstallationContent$inboundSchema).optional(),
+  content: z.lazy(() => UpdateInstallationConfigContent$inboundSchema)
+    .optional(),
 });
 
 /** @internal */
 export type UpdateInstallationConfig$Outbound = {
   revisionId?: string | undefined;
   createdBy?: string | undefined;
-  content?: UpdateInstallationContent$Outbound | undefined;
+  content?: UpdateInstallationConfigContent$Outbound | undefined;
 };
 
 /** @internal */
@@ -1506,7 +1495,8 @@ export const UpdateInstallationConfig$outboundSchema: z.ZodType<
 > = z.object({
   revisionId: z.string().optional(),
   createdBy: z.string().optional(),
-  content: z.lazy(() => UpdateInstallationContent$outboundSchema).optional(),
+  content: z.lazy(() => UpdateInstallationConfigContent$outboundSchema)
+    .optional(),
 });
 
 /**
@@ -1724,36 +1714,34 @@ export function updateInstallationRequestFromJSON(
 }
 
 /** @internal */
-export const UpdateInstallationInstallationsResponseBody$inboundSchema:
-  z.ZodType<
-    UpdateInstallationInstallationsResponseBody,
-    z.ZodTypeDef,
-    unknown
-  > = z.object({
-    type: z.string().default("about:blank"),
-    href: z.string().optional(),
-    title: z.string().optional(),
-    status: z.number().int().optional(),
-    detail: z.string().optional(),
-    instance: z.string().optional(),
-    subsystem: z.string().optional(),
-    time: z.string().datetime({ offset: true }).transform(v => new Date(v))
-      .optional(),
-    requestId: z.string().optional(),
-    causes: z.array(z.string()).optional(),
-    remedy: z.string().optional(),
-    supportEmail: z.string().optional(),
-    supportPhone: z.string().optional(),
-    supportUrl: z.string().optional(),
-    retryable: z.boolean().optional(),
-    retryAfter: z.string().datetime({ offset: true }).transform(v =>
-      new Date(v)
-    ).optional(),
-    context: z.record(z.any()).optional(),
-  });
+export const UpdateInstallationAPIProblem$inboundSchema: z.ZodType<
+  UpdateInstallationAPIProblem,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  type: z.string().default("about:blank"),
+  href: z.string().optional(),
+  title: z.string().optional(),
+  status: z.number().int().optional(),
+  detail: z.string().optional(),
+  instance: z.string().optional(),
+  subsystem: z.string().optional(),
+  time: z.string().datetime({ offset: true }).transform(v => new Date(v))
+    .optional(),
+  requestId: z.string().optional(),
+  causes: z.array(z.string()).optional(),
+  remedy: z.string().optional(),
+  supportEmail: z.string().optional(),
+  supportPhone: z.string().optional(),
+  supportUrl: z.string().optional(),
+  retryable: z.boolean().optional(),
+  retryAfter: z.string().datetime({ offset: true }).transform(v => new Date(v))
+    .optional(),
+  context: z.record(z.any()).optional(),
+});
 
 /** @internal */
-export type UpdateInstallationInstallationsResponseBody$Outbound = {
+export type UpdateInstallationAPIProblem$Outbound = {
   type: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -1774,70 +1762,60 @@ export type UpdateInstallationInstallationsResponseBody$Outbound = {
 };
 
 /** @internal */
-export const UpdateInstallationInstallationsResponseBody$outboundSchema:
-  z.ZodType<
-    UpdateInstallationInstallationsResponseBody$Outbound,
-    z.ZodTypeDef,
-    UpdateInstallationInstallationsResponseBody
-  > = z.object({
-    type: z.string().default("about:blank"),
-    href: z.string().optional(),
-    title: z.string().optional(),
-    status: z.number().int().optional(),
-    detail: z.string().optional(),
-    instance: z.string().optional(),
-    subsystem: z.string().optional(),
-    time: z.date().transform(v => v.toISOString()).optional(),
-    requestId: z.string().optional(),
-    causes: z.array(z.string()).optional(),
-    remedy: z.string().optional(),
-    supportEmail: z.string().optional(),
-    supportPhone: z.string().optional(),
-    supportUrl: z.string().optional(),
-    retryable: z.boolean().optional(),
-    retryAfter: z.date().transform(v => v.toISOString()).optional(),
-    context: z.record(z.any()).optional(),
-  });
+export const UpdateInstallationAPIProblem$outboundSchema: z.ZodType<
+  UpdateInstallationAPIProblem$Outbound,
+  z.ZodTypeDef,
+  UpdateInstallationAPIProblem
+> = z.object({
+  type: z.string().default("about:blank"),
+  href: z.string().optional(),
+  title: z.string().optional(),
+  status: z.number().int().optional(),
+  detail: z.string().optional(),
+  instance: z.string().optional(),
+  subsystem: z.string().optional(),
+  time: z.date().transform(v => v.toISOString()).optional(),
+  requestId: z.string().optional(),
+  causes: z.array(z.string()).optional(),
+  remedy: z.string().optional(),
+  supportEmail: z.string().optional(),
+  supportPhone: z.string().optional(),
+  supportUrl: z.string().optional(),
+  retryable: z.boolean().optional(),
+  retryAfter: z.date().transform(v => v.toISOString()).optional(),
+  context: z.record(z.any()).optional(),
+});
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace UpdateInstallationInstallationsResponseBody$ {
-  /** @deprecated use `UpdateInstallationInstallationsResponseBody$inboundSchema` instead. */
-  export const inboundSchema =
-    UpdateInstallationInstallationsResponseBody$inboundSchema;
-  /** @deprecated use `UpdateInstallationInstallationsResponseBody$outboundSchema` instead. */
-  export const outboundSchema =
-    UpdateInstallationInstallationsResponseBody$outboundSchema;
-  /** @deprecated use `UpdateInstallationInstallationsResponseBody$Outbound` instead. */
-  export type Outbound = UpdateInstallationInstallationsResponseBody$Outbound;
+export namespace UpdateInstallationAPIProblem$ {
+  /** @deprecated use `UpdateInstallationAPIProblem$inboundSchema` instead. */
+  export const inboundSchema = UpdateInstallationAPIProblem$inboundSchema;
+  /** @deprecated use `UpdateInstallationAPIProblem$outboundSchema` instead. */
+  export const outboundSchema = UpdateInstallationAPIProblem$outboundSchema;
+  /** @deprecated use `UpdateInstallationAPIProblem$Outbound` instead. */
+  export type Outbound = UpdateInstallationAPIProblem$Outbound;
 }
 
-export function updateInstallationInstallationsResponseBodyToJSON(
-  updateInstallationInstallationsResponseBody:
-    UpdateInstallationInstallationsResponseBody,
+export function updateInstallationAPIProblemToJSON(
+  updateInstallationAPIProblem: UpdateInstallationAPIProblem,
 ): string {
   return JSON.stringify(
-    UpdateInstallationInstallationsResponseBody$outboundSchema.parse(
-      updateInstallationInstallationsResponseBody,
+    UpdateInstallationAPIProblem$outboundSchema.parse(
+      updateInstallationAPIProblem,
     ),
   );
 }
 
-export function updateInstallationInstallationsResponseBodyFromJSON(
+export function updateInstallationAPIProblemFromJSON(
   jsonString: string,
-): SafeParseResult<
-  UpdateInstallationInstallationsResponseBody,
-  SDKValidationError
-> {
+): SafeParseResult<UpdateInstallationAPIProblem, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) =>
-      UpdateInstallationInstallationsResponseBody$inboundSchema.parse(
-        JSON.parse(x),
-      ),
-    `Failed to parse 'UpdateInstallationInstallationsResponseBody' from JSON`,
+    (x) => UpdateInstallationAPIProblem$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'UpdateInstallationAPIProblem' from JSON`,
   );
 }
 
@@ -2280,31 +2258,32 @@ export function updateInstallationRefreshTokenFromJSON(
 }
 
 /** @internal */
-export const UpdateInstallationOauth2AuthorizationCode$inboundSchema: z.ZodType<
-  UpdateInstallationOauth2AuthorizationCode,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  accessToken: z.lazy(() => UpdateInstallationAccessToken$inboundSchema)
-    .optional(),
-  refreshToken: z.lazy(() => UpdateInstallationRefreshToken$inboundSchema)
-    .optional(),
-  scopes: z.array(z.string()).optional(),
-});
+export const UpdateInstallationOAuth2AuthorizationCodeToken$inboundSchema:
+  z.ZodType<
+    UpdateInstallationOAuth2AuthorizationCodeToken,
+    z.ZodTypeDef,
+    unknown
+  > = z.object({
+    accessToken: z.lazy(() => UpdateInstallationAccessToken$inboundSchema)
+      .optional(),
+    refreshToken: z.lazy(() => UpdateInstallationRefreshToken$inboundSchema)
+      .optional(),
+    scopes: z.array(z.string()).optional(),
+  });
 
 /** @internal */
-export type UpdateInstallationOauth2AuthorizationCode$Outbound = {
+export type UpdateInstallationOAuth2AuthorizationCodeToken$Outbound = {
   accessToken?: UpdateInstallationAccessToken$Outbound | undefined;
   refreshToken?: UpdateInstallationRefreshToken$Outbound | undefined;
   scopes?: Array<string> | undefined;
 };
 
 /** @internal */
-export const UpdateInstallationOauth2AuthorizationCode$outboundSchema:
+export const UpdateInstallationOAuth2AuthorizationCodeToken$outboundSchema:
   z.ZodType<
-    UpdateInstallationOauth2AuthorizationCode$Outbound,
+    UpdateInstallationOAuth2AuthorizationCodeToken$Outbound,
     z.ZodTypeDef,
-    UpdateInstallationOauth2AuthorizationCode
+    UpdateInstallationOAuth2AuthorizationCodeToken
   > = z.object({
     accessToken: z.lazy(() => UpdateInstallationAccessToken$outboundSchema)
       .optional(),
@@ -2317,41 +2296,42 @@ export const UpdateInstallationOauth2AuthorizationCode$outboundSchema:
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace UpdateInstallationOauth2AuthorizationCode$ {
-  /** @deprecated use `UpdateInstallationOauth2AuthorizationCode$inboundSchema` instead. */
+export namespace UpdateInstallationOAuth2AuthorizationCodeToken$ {
+  /** @deprecated use `UpdateInstallationOAuth2AuthorizationCodeToken$inboundSchema` instead. */
   export const inboundSchema =
-    UpdateInstallationOauth2AuthorizationCode$inboundSchema;
-  /** @deprecated use `UpdateInstallationOauth2AuthorizationCode$outboundSchema` instead. */
+    UpdateInstallationOAuth2AuthorizationCodeToken$inboundSchema;
+  /** @deprecated use `UpdateInstallationOAuth2AuthorizationCodeToken$outboundSchema` instead. */
   export const outboundSchema =
-    UpdateInstallationOauth2AuthorizationCode$outboundSchema;
-  /** @deprecated use `UpdateInstallationOauth2AuthorizationCode$Outbound` instead. */
-  export type Outbound = UpdateInstallationOauth2AuthorizationCode$Outbound;
+    UpdateInstallationOAuth2AuthorizationCodeToken$outboundSchema;
+  /** @deprecated use `UpdateInstallationOAuth2AuthorizationCodeToken$Outbound` instead. */
+  export type Outbound =
+    UpdateInstallationOAuth2AuthorizationCodeToken$Outbound;
 }
 
-export function updateInstallationOauth2AuthorizationCodeToJSON(
-  updateInstallationOauth2AuthorizationCode:
-    UpdateInstallationOauth2AuthorizationCode,
+export function updateInstallationOAuth2AuthorizationCodeTokenToJSON(
+  updateInstallationOAuth2AuthorizationCodeToken:
+    UpdateInstallationOAuth2AuthorizationCodeToken,
 ): string {
   return JSON.stringify(
-    UpdateInstallationOauth2AuthorizationCode$outboundSchema.parse(
-      updateInstallationOauth2AuthorizationCode,
+    UpdateInstallationOAuth2AuthorizationCodeToken$outboundSchema.parse(
+      updateInstallationOAuth2AuthorizationCodeToken,
     ),
   );
 }
 
-export function updateInstallationOauth2AuthorizationCodeFromJSON(
+export function updateInstallationOAuth2AuthorizationCodeTokenFromJSON(
   jsonString: string,
 ): SafeParseResult<
-  UpdateInstallationOauth2AuthorizationCode,
+  UpdateInstallationOAuth2AuthorizationCodeToken,
   SDKValidationError
 > {
   return safeParse(
     jsonString,
     (x) =>
-      UpdateInstallationOauth2AuthorizationCode$inboundSchema.parse(
+      UpdateInstallationOAuth2AuthorizationCodeToken$inboundSchema.parse(
         JSON.parse(x),
       ),
-    `Failed to parse 'UpdateInstallationOauth2AuthorizationCode' from JSON`,
+    `Failed to parse 'UpdateInstallationOAuth2AuthorizationCodeToken' from JSON`,
   );
 }
 
@@ -2376,7 +2356,7 @@ export const UpdateInstallationConnection$inboundSchema: z.ZodType<
   authScheme: UpdateInstallationAuthScheme$inboundSchema,
   status: UpdateInstallationStatus$inboundSchema,
   oauth2AuthorizationCode: z.lazy(() =>
-    UpdateInstallationOauth2AuthorizationCode$inboundSchema
+    UpdateInstallationOAuth2AuthorizationCodeToken$inboundSchema
   ).optional(),
   apiKey: z.string().optional(),
 });
@@ -2396,7 +2376,7 @@ export type UpdateInstallationConnection$Outbound = {
   authScheme: string;
   status: string;
   oauth2AuthorizationCode?:
-    | UpdateInstallationOauth2AuthorizationCode$Outbound
+    | UpdateInstallationOAuth2AuthorizationCodeToken$Outbound
     | undefined;
   apiKey?: string | undefined;
 };
@@ -2421,7 +2401,7 @@ export const UpdateInstallationConnection$outboundSchema: z.ZodType<
   authScheme: UpdateInstallationAuthScheme$outboundSchema,
   status: UpdateInstallationStatus$outboundSchema,
   oauth2AuthorizationCode: z.lazy(() =>
-    UpdateInstallationOauth2AuthorizationCode$outboundSchema
+    UpdateInstallationOAuth2AuthorizationCodeToken$outboundSchema
   ).optional(),
   apiKey: z.string().optional(),
 });
@@ -2460,132 +2440,150 @@ export function updateInstallationConnectionFromJSON(
 }
 
 /** @internal */
-export const UpdateInstallationInstallationsProxy$inboundSchema: z.ZodType<
-  UpdateInstallationInstallationsProxy,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  enabled: z.boolean().optional(),
-});
+export const UpdateInstallationInstallationsBaseProxyConfig$inboundSchema:
+  z.ZodType<
+    UpdateInstallationInstallationsBaseProxyConfig,
+    z.ZodTypeDef,
+    unknown
+  > = z.object({
+    enabled: z.boolean().optional(),
+  });
 
 /** @internal */
-export type UpdateInstallationInstallationsProxy$Outbound = {
+export type UpdateInstallationInstallationsBaseProxyConfig$Outbound = {
   enabled?: boolean | undefined;
 };
 
 /** @internal */
-export const UpdateInstallationInstallationsProxy$outboundSchema: z.ZodType<
-  UpdateInstallationInstallationsProxy$Outbound,
-  z.ZodTypeDef,
-  UpdateInstallationInstallationsProxy
-> = z.object({
-  enabled: z.boolean().optional(),
-});
+export const UpdateInstallationInstallationsBaseProxyConfig$outboundSchema:
+  z.ZodType<
+    UpdateInstallationInstallationsBaseProxyConfig$Outbound,
+    z.ZodTypeDef,
+    UpdateInstallationInstallationsBaseProxyConfig
+  > = z.object({
+    enabled: z.boolean().optional(),
+  });
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace UpdateInstallationInstallationsProxy$ {
-  /** @deprecated use `UpdateInstallationInstallationsProxy$inboundSchema` instead. */
+export namespace UpdateInstallationInstallationsBaseProxyConfig$ {
+  /** @deprecated use `UpdateInstallationInstallationsBaseProxyConfig$inboundSchema` instead. */
   export const inboundSchema =
-    UpdateInstallationInstallationsProxy$inboundSchema;
-  /** @deprecated use `UpdateInstallationInstallationsProxy$outboundSchema` instead. */
+    UpdateInstallationInstallationsBaseProxyConfig$inboundSchema;
+  /** @deprecated use `UpdateInstallationInstallationsBaseProxyConfig$outboundSchema` instead. */
   export const outboundSchema =
-    UpdateInstallationInstallationsProxy$outboundSchema;
-  /** @deprecated use `UpdateInstallationInstallationsProxy$Outbound` instead. */
-  export type Outbound = UpdateInstallationInstallationsProxy$Outbound;
+    UpdateInstallationInstallationsBaseProxyConfig$outboundSchema;
+  /** @deprecated use `UpdateInstallationInstallationsBaseProxyConfig$Outbound` instead. */
+  export type Outbound =
+    UpdateInstallationInstallationsBaseProxyConfig$Outbound;
 }
 
-export function updateInstallationInstallationsProxyToJSON(
-  updateInstallationInstallationsProxy: UpdateInstallationInstallationsProxy,
+export function updateInstallationInstallationsBaseProxyConfigToJSON(
+  updateInstallationInstallationsBaseProxyConfig:
+    UpdateInstallationInstallationsBaseProxyConfig,
 ): string {
   return JSON.stringify(
-    UpdateInstallationInstallationsProxy$outboundSchema.parse(
-      updateInstallationInstallationsProxy,
+    UpdateInstallationInstallationsBaseProxyConfig$outboundSchema.parse(
+      updateInstallationInstallationsBaseProxyConfig,
     ),
   );
 }
 
-export function updateInstallationInstallationsProxyFromJSON(
+export function updateInstallationInstallationsBaseProxyConfigFromJSON(
   jsonString: string,
-): SafeParseResult<UpdateInstallationInstallationsProxy, SDKValidationError> {
+): SafeParseResult<
+  UpdateInstallationInstallationsBaseProxyConfig,
+  SDKValidationError
+> {
   return safeParse(
     jsonString,
     (x) =>
-      UpdateInstallationInstallationsProxy$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'UpdateInstallationInstallationsProxy' from JSON`,
+      UpdateInstallationInstallationsBaseProxyConfig$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'UpdateInstallationInstallationsBaseProxyConfig' from JSON`,
   );
 }
 
 /** @internal */
-export const UpdateInstallationInstallationsContent$inboundSchema: z.ZodType<
-  UpdateInstallationInstallationsContent,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  provider: z.string(),
-  read: z.any().optional(),
-  write: z.any().optional(),
-  proxy: z.lazy(() => UpdateInstallationInstallationsProxy$inboundSchema)
-    .optional(),
-});
+export const UpdateInstallationInstallationsConfigContent$inboundSchema:
+  z.ZodType<
+    UpdateInstallationInstallationsConfigContent,
+    z.ZodTypeDef,
+    unknown
+  > = z.object({
+    provider: z.string(),
+    read: z.any().optional(),
+    write: z.any().optional(),
+    proxy: z.lazy(() =>
+      UpdateInstallationInstallationsBaseProxyConfig$inboundSchema
+    ).optional(),
+  });
 
 /** @internal */
-export type UpdateInstallationInstallationsContent$Outbound = {
+export type UpdateInstallationInstallationsConfigContent$Outbound = {
   provider: string;
   read?: any | undefined;
   write?: any | undefined;
-  proxy?: UpdateInstallationInstallationsProxy$Outbound | undefined;
+  proxy?: UpdateInstallationInstallationsBaseProxyConfig$Outbound | undefined;
 };
 
 /** @internal */
-export const UpdateInstallationInstallationsContent$outboundSchema: z.ZodType<
-  UpdateInstallationInstallationsContent$Outbound,
-  z.ZodTypeDef,
-  UpdateInstallationInstallationsContent
-> = z.object({
-  provider: z.string(),
-  read: z.any().optional(),
-  write: z.any().optional(),
-  proxy: z.lazy(() => UpdateInstallationInstallationsProxy$outboundSchema)
-    .optional(),
-});
+export const UpdateInstallationInstallationsConfigContent$outboundSchema:
+  z.ZodType<
+    UpdateInstallationInstallationsConfigContent$Outbound,
+    z.ZodTypeDef,
+    UpdateInstallationInstallationsConfigContent
+  > = z.object({
+    provider: z.string(),
+    read: z.any().optional(),
+    write: z.any().optional(),
+    proxy: z.lazy(() =>
+      UpdateInstallationInstallationsBaseProxyConfig$outboundSchema
+    ).optional(),
+  });
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace UpdateInstallationInstallationsContent$ {
-  /** @deprecated use `UpdateInstallationInstallationsContent$inboundSchema` instead. */
+export namespace UpdateInstallationInstallationsConfigContent$ {
+  /** @deprecated use `UpdateInstallationInstallationsConfigContent$inboundSchema` instead. */
   export const inboundSchema =
-    UpdateInstallationInstallationsContent$inboundSchema;
-  /** @deprecated use `UpdateInstallationInstallationsContent$outboundSchema` instead. */
+    UpdateInstallationInstallationsConfigContent$inboundSchema;
+  /** @deprecated use `UpdateInstallationInstallationsConfigContent$outboundSchema` instead. */
   export const outboundSchema =
-    UpdateInstallationInstallationsContent$outboundSchema;
-  /** @deprecated use `UpdateInstallationInstallationsContent$Outbound` instead. */
-  export type Outbound = UpdateInstallationInstallationsContent$Outbound;
+    UpdateInstallationInstallationsConfigContent$outboundSchema;
+  /** @deprecated use `UpdateInstallationInstallationsConfigContent$Outbound` instead. */
+  export type Outbound = UpdateInstallationInstallationsConfigContent$Outbound;
 }
 
-export function updateInstallationInstallationsContentToJSON(
-  updateInstallationInstallationsContent:
-    UpdateInstallationInstallationsContent,
+export function updateInstallationInstallationsConfigContentToJSON(
+  updateInstallationInstallationsConfigContent:
+    UpdateInstallationInstallationsConfigContent,
 ): string {
   return JSON.stringify(
-    UpdateInstallationInstallationsContent$outboundSchema.parse(
-      updateInstallationInstallationsContent,
+    UpdateInstallationInstallationsConfigContent$outboundSchema.parse(
+      updateInstallationInstallationsConfigContent,
     ),
   );
 }
 
-export function updateInstallationInstallationsContentFromJSON(
+export function updateInstallationInstallationsConfigContentFromJSON(
   jsonString: string,
-): SafeParseResult<UpdateInstallationInstallationsContent, SDKValidationError> {
+): SafeParseResult<
+  UpdateInstallationInstallationsConfigContent,
+  SDKValidationError
+> {
   return safeParse(
     jsonString,
     (x) =>
-      UpdateInstallationInstallationsContent$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'UpdateInstallationInstallationsContent' from JSON`,
+      UpdateInstallationInstallationsConfigContent$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'UpdateInstallationInstallationsConfigContent' from JSON`,
   );
 }
 
@@ -2599,7 +2597,9 @@ export const UpdateInstallationInstallationsConfig$inboundSchema: z.ZodType<
   revisionId: z.string(),
   createTime: z.string().datetime({ offset: true }).transform(v => new Date(v)),
   createdBy: z.string(),
-  content: z.lazy(() => UpdateInstallationInstallationsContent$inboundSchema),
+  content: z.lazy(() =>
+    UpdateInstallationInstallationsConfigContent$inboundSchema
+  ),
 });
 
 /** @internal */
@@ -2608,7 +2608,7 @@ export type UpdateInstallationInstallationsConfig$Outbound = {
   revisionId: string;
   createTime: string;
   createdBy: string;
-  content: UpdateInstallationInstallationsContent$Outbound;
+  content: UpdateInstallationInstallationsConfigContent$Outbound;
 };
 
 /** @internal */
@@ -2621,7 +2621,9 @@ export const UpdateInstallationInstallationsConfig$outboundSchema: z.ZodType<
   revisionId: z.string(),
   createTime: z.date().transform(v => v.toISOString()),
   createdBy: z.string(),
-  content: z.lazy(() => UpdateInstallationInstallationsContent$outboundSchema),
+  content: z.lazy(() =>
+    UpdateInstallationInstallationsConfigContent$outboundSchema
+  ),
 });
 
 /**
@@ -2661,8 +2663,8 @@ export function updateInstallationInstallationsConfigFromJSON(
 }
 
 /** @internal */
-export const UpdateInstallationResponseBody$inboundSchema: z.ZodType<
-  UpdateInstallationResponseBody,
+export const UpdateInstallationInstallation$inboundSchema: z.ZodType<
+  UpdateInstallationInstallation,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -2680,7 +2682,7 @@ export const UpdateInstallationResponseBody$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type UpdateInstallationResponseBody$Outbound = {
+export type UpdateInstallationInstallation$Outbound = {
   id: string;
   projectId: string;
   integrationId: string;
@@ -2694,10 +2696,10 @@ export type UpdateInstallationResponseBody$Outbound = {
 };
 
 /** @internal */
-export const UpdateInstallationResponseBody$outboundSchema: z.ZodType<
-  UpdateInstallationResponseBody$Outbound,
+export const UpdateInstallationInstallation$outboundSchema: z.ZodType<
+  UpdateInstallationInstallation$Outbound,
   z.ZodTypeDef,
-  UpdateInstallationResponseBody
+  UpdateInstallationInstallation
 > = z.object({
   id: z.string(),
   projectId: z.string(),
@@ -2715,32 +2717,32 @@ export const UpdateInstallationResponseBody$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace UpdateInstallationResponseBody$ {
-  /** @deprecated use `UpdateInstallationResponseBody$inboundSchema` instead. */
-  export const inboundSchema = UpdateInstallationResponseBody$inboundSchema;
-  /** @deprecated use `UpdateInstallationResponseBody$outboundSchema` instead. */
-  export const outboundSchema = UpdateInstallationResponseBody$outboundSchema;
-  /** @deprecated use `UpdateInstallationResponseBody$Outbound` instead. */
-  export type Outbound = UpdateInstallationResponseBody$Outbound;
+export namespace UpdateInstallationInstallation$ {
+  /** @deprecated use `UpdateInstallationInstallation$inboundSchema` instead. */
+  export const inboundSchema = UpdateInstallationInstallation$inboundSchema;
+  /** @deprecated use `UpdateInstallationInstallation$outboundSchema` instead. */
+  export const outboundSchema = UpdateInstallationInstallation$outboundSchema;
+  /** @deprecated use `UpdateInstallationInstallation$Outbound` instead. */
+  export type Outbound = UpdateInstallationInstallation$Outbound;
 }
 
-export function updateInstallationResponseBodyToJSON(
-  updateInstallationResponseBody: UpdateInstallationResponseBody,
+export function updateInstallationInstallationToJSON(
+  updateInstallationInstallation: UpdateInstallationInstallation,
 ): string {
   return JSON.stringify(
-    UpdateInstallationResponseBody$outboundSchema.parse(
-      updateInstallationResponseBody,
+    UpdateInstallationInstallation$outboundSchema.parse(
+      updateInstallationInstallation,
     ),
   );
 }
 
-export function updateInstallationResponseBodyFromJSON(
+export function updateInstallationInstallationFromJSON(
   jsonString: string,
-): SafeParseResult<UpdateInstallationResponseBody, SDKValidationError> {
+): SafeParseResult<UpdateInstallationInstallation, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => UpdateInstallationResponseBody$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'UpdateInstallationResponseBody' from JSON`,
+    (x) => UpdateInstallationInstallation$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'UpdateInstallationInstallation' from JSON`,
   );
 }
 
@@ -2750,14 +2752,14 @@ export const UpdateInstallationResponse$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.union([
-  z.lazy(() => UpdateInstallationResponseBody$inboundSchema),
-  z.lazy(() => UpdateInstallationInstallationsResponseBody$inboundSchema),
+  z.lazy(() => UpdateInstallationInstallation$inboundSchema),
+  z.lazy(() => UpdateInstallationAPIProblem$inboundSchema),
 ]);
 
 /** @internal */
 export type UpdateInstallationResponse$Outbound =
-  | UpdateInstallationResponseBody$Outbound
-  | UpdateInstallationInstallationsResponseBody$Outbound;
+  | UpdateInstallationInstallation$Outbound
+  | UpdateInstallationAPIProblem$Outbound;
 
 /** @internal */
 export const UpdateInstallationResponse$outboundSchema: z.ZodType<
@@ -2765,8 +2767,8 @@ export const UpdateInstallationResponse$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   UpdateInstallationResponse
 > = z.union([
-  z.lazy(() => UpdateInstallationResponseBody$outboundSchema),
-  z.lazy(() => UpdateInstallationInstallationsResponseBody$outboundSchema),
+  z.lazy(() => UpdateInstallationInstallation$outboundSchema),
+  z.lazy(() => UpdateInstallationAPIProblem$outboundSchema),
 ]);
 
 /**

@@ -83,10 +83,10 @@ run();
 
 ### Errors
 
-| Error Type                         | Status Code                        | Content Type                       |
-| ---------------------------------- | ---------------------------------- | ---------------------------------- |
-| errors.ListConnectionsResponseBody | 404                                | application/problem+json           |
-| errors.APIError                    | 4XX, 5XX                           | \*/\*                              |
+| Error Type                                   | Status Code                                  | Content Type                                 |
+| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| errors.ListConnectionsInputValidationProblem | 404                                          | application/problem+json                     |
+| errors.APIError                              | 4XX, 5XX                                     | \*/\*                                        |
 
 ## generate
 
@@ -104,6 +104,11 @@ const sdk = new SDK({
 async function run() {
   const result = await sdk.connections.generate({
     projectIdOrName: "<value>",
+    requestBody: {
+      groupRef: "<value>",
+      consumerRef: "<value>",
+      provider: "<value>",
+    },
   });
 
   // Handle the result
@@ -130,6 +135,11 @@ const sdk = new SDKCore({
 async function run() {
   const res = await connectionsGenerate(sdk, {
     projectIdOrName: "<value>",
+    requestBody: {
+      groupRef: "<value>",
+      consumerRef: "<value>",
+      provider: "<value>",
+    },
   });
 
   if (!res.ok) {
@@ -161,11 +171,11 @@ run();
 
 ### Errors
 
-| Error Type                                       | Status Code                                      | Content Type                                     |
-| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
-| errors.GenerateConnectionResponseBody            | 400                                              | application/problem+json                         |
-| errors.GenerateConnectionConnectionsResponseBody | 422                                              | application/problem+json                         |
-| errors.APIError                                  | 4XX, 5XX                                         | \*/\*                                            |
+| Error Type                                                 | Status Code                                                | Content Type                                               |
+| ---------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- |
+| errors.GenerateConnectionInputValidationProblem            | 400                                                        | application/problem+json                                   |
+| errors.GenerateConnectionConnectionsInputValidationProblem | 422                                                        | application/problem+json                                   |
+| errors.APIError                                            | 4XX, 5XX                                                   | \*/\*                                                      |
 
 ## get
 
@@ -242,10 +252,10 @@ run();
 
 ### Errors
 
-| Error Type                       | Status Code                      | Content Type                     |
-| -------------------------------- | -------------------------------- | -------------------------------- |
-| errors.GetConnectionResponseBody | 404                              | application/problem+json         |
-| errors.APIError                  | 4XX, 5XX                         | \*/\*                            |
+| Error Type                                 | Status Code                                | Content Type                               |
+| ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
+| errors.GetConnectionInputValidationProblem | 404                                        | application/problem+json                   |
+| errors.APIError                            | 4XX, 5XX                                   | \*/\*                                      |
 
 ## delete
 
@@ -318,7 +328,7 @@ run();
 
 ### Response
 
-**Promise\<[operations.DeleteConnectionResponseBody](../../models/operations/deleteconnectionresponsebody.md)\>**
+**Promise\<[operations.DeleteConnectionAPIProblem](../../models/operations/deleteconnectionapiproblem.md)\>**
 
 ### Errors
 

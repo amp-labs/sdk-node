@@ -34,9 +34,9 @@ export function revisionsCreate(
   options?: RequestOptions,
 ): APIPromise<
   Result<
-    operations.CreateRevisionResponseBody | undefined,
-    | errors.CreateRevisionResponseBody
-    | errors.CreateRevisionRevisionsResponseBody
+    operations.CreateRevisionAPIProblem | undefined,
+    | errors.CreateRevisionInputValidationProblem
+    | errors.CreateRevisionRevisionsInputValidationProblem
     | APIError
     | SDKValidationError
     | UnexpectedClientError
@@ -60,9 +60,9 @@ async function $do(
 ): Promise<
   [
     Result<
-      operations.CreateRevisionResponseBody | undefined,
-      | errors.CreateRevisionResponseBody
-      | errors.CreateRevisionRevisionsResponseBody
+      operations.CreateRevisionAPIProblem | undefined,
+      | errors.CreateRevisionInputValidationProblem
+      | errors.CreateRevisionRevisionsInputValidationProblem
       | APIError
       | SDKValidationError
       | UnexpectedClientError
@@ -166,9 +166,9 @@ async function $do(
   };
 
   const [result] = await M.match<
-    operations.CreateRevisionResponseBody | undefined,
-    | errors.CreateRevisionResponseBody
-    | errors.CreateRevisionRevisionsResponseBody
+    operations.CreateRevisionAPIProblem | undefined,
+    | errors.CreateRevisionInputValidationProblem
+    | errors.CreateRevisionRevisionsInputValidationProblem
     | APIError
     | SDKValidationError
     | UnexpectedClientError
@@ -177,18 +177,20 @@ async function $do(
     | RequestTimeoutError
     | ConnectionError
   >(
-    M.nil(201, operations.CreateRevisionResponseBody$inboundSchema.optional()),
-    M.jsonErr(400, errors.CreateRevisionResponseBody$inboundSchema, {
+    M.nil(201, operations.CreateRevisionAPIProblem$inboundSchema.optional()),
+    M.jsonErr(400, errors.CreateRevisionInputValidationProblem$inboundSchema, {
       ctype: "application/problem+json",
     }),
-    M.jsonErr(422, errors.CreateRevisionRevisionsResponseBody$inboundSchema, {
-      ctype: "application/problem+json",
-    }),
+    M.jsonErr(
+      422,
+      errors.CreateRevisionRevisionsInputValidationProblem$inboundSchema,
+      { ctype: "application/problem+json" },
+    ),
     M.fail("4XX"),
     M.fail("5XX"),
     M.json(
       "default",
-      operations.CreateRevisionResponseBody$inboundSchema.optional(),
+      operations.CreateRevisionAPIProblem$inboundSchema.optional(),
       { ctype: "application/problem+json" },
     ),
   )(response, { extraFields: responseFields });

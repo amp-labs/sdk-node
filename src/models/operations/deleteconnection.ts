@@ -23,7 +23,7 @@ export type DeleteConnectionRequest = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export type DeleteConnectionResponseBody = {
+export type DeleteConnectionAPIProblem = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -155,8 +155,8 @@ export function deleteConnectionRequestFromJSON(
 }
 
 /** @internal */
-export const DeleteConnectionResponseBody$inboundSchema: z.ZodType<
-  DeleteConnectionResponseBody,
+export const DeleteConnectionAPIProblem$inboundSchema: z.ZodType<
+  DeleteConnectionAPIProblem,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -182,7 +182,7 @@ export const DeleteConnectionResponseBody$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type DeleteConnectionResponseBody$Outbound = {
+export type DeleteConnectionAPIProblem$Outbound = {
   type: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -203,10 +203,10 @@ export type DeleteConnectionResponseBody$Outbound = {
 };
 
 /** @internal */
-export const DeleteConnectionResponseBody$outboundSchema: z.ZodType<
-  DeleteConnectionResponseBody$Outbound,
+export const DeleteConnectionAPIProblem$outboundSchema: z.ZodType<
+  DeleteConnectionAPIProblem$Outbound,
   z.ZodTypeDef,
-  DeleteConnectionResponseBody
+  DeleteConnectionAPIProblem
 > = z.object({
   type: z.string().default("about:blank"),
   href: z.string().optional(),
@@ -231,31 +231,29 @@ export const DeleteConnectionResponseBody$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace DeleteConnectionResponseBody$ {
-  /** @deprecated use `DeleteConnectionResponseBody$inboundSchema` instead. */
-  export const inboundSchema = DeleteConnectionResponseBody$inboundSchema;
-  /** @deprecated use `DeleteConnectionResponseBody$outboundSchema` instead. */
-  export const outboundSchema = DeleteConnectionResponseBody$outboundSchema;
-  /** @deprecated use `DeleteConnectionResponseBody$Outbound` instead. */
-  export type Outbound = DeleteConnectionResponseBody$Outbound;
+export namespace DeleteConnectionAPIProblem$ {
+  /** @deprecated use `DeleteConnectionAPIProblem$inboundSchema` instead. */
+  export const inboundSchema = DeleteConnectionAPIProblem$inboundSchema;
+  /** @deprecated use `DeleteConnectionAPIProblem$outboundSchema` instead. */
+  export const outboundSchema = DeleteConnectionAPIProblem$outboundSchema;
+  /** @deprecated use `DeleteConnectionAPIProblem$Outbound` instead. */
+  export type Outbound = DeleteConnectionAPIProblem$Outbound;
 }
 
-export function deleteConnectionResponseBodyToJSON(
-  deleteConnectionResponseBody: DeleteConnectionResponseBody,
+export function deleteConnectionAPIProblemToJSON(
+  deleteConnectionAPIProblem: DeleteConnectionAPIProblem,
 ): string {
   return JSON.stringify(
-    DeleteConnectionResponseBody$outboundSchema.parse(
-      deleteConnectionResponseBody,
-    ),
+    DeleteConnectionAPIProblem$outboundSchema.parse(deleteConnectionAPIProblem),
   );
 }
 
-export function deleteConnectionResponseBodyFromJSON(
+export function deleteConnectionAPIProblemFromJSON(
   jsonString: string,
-): SafeParseResult<DeleteConnectionResponseBody, SDKValidationError> {
+): SafeParseResult<DeleteConnectionAPIProblem, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => DeleteConnectionResponseBody$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'DeleteConnectionResponseBody' from JSON`,
+    (x) => DeleteConnectionAPIProblem$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'DeleteConnectionAPIProblem' from JSON`,
   );
 }

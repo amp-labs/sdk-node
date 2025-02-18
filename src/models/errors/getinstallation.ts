@@ -27,7 +27,7 @@ export type GetInstallationIn = ClosedEnum<typeof GetInstallationIn>;
  *
  * @remarks
  */
-export type GetInstallationIssues = {
+export type GetInstallationInputValidationIssue = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -120,7 +120,7 @@ export type GetInstallationIssues = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export type GetInstallationResponseBodyData = {
+export type GetInstallationInputValidationProblemData = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -192,7 +192,7 @@ export type GetInstallationResponseBodyData = {
    * Additional context for the problem
    */
   context?: { [k: string]: any } | undefined;
-  issues?: Array<GetInstallationIssues> | undefined;
+  issues?: Array<GetInstallationInputValidationIssue> | undefined;
 };
 
 /**
@@ -202,7 +202,7 @@ export type GetInstallationResponseBodyData = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export class GetInstallationResponseBody extends Error {
+export class GetInstallationInputValidationProblem extends Error {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -274,12 +274,12 @@ export class GetInstallationResponseBody extends Error {
    * Additional context for the problem
    */
   context?: { [k: string]: any } | undefined;
-  issues?: Array<GetInstallationIssues> | undefined;
+  issues?: Array<GetInstallationInputValidationIssue> | undefined;
 
   /** The original data that was passed to this error instance. */
-  data$: GetInstallationResponseBodyData;
+  data$: GetInstallationInputValidationProblemData;
 
-  constructor(err: GetInstallationResponseBodyData) {
+  constructor(err: GetInstallationInputValidationProblemData) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
@@ -305,7 +305,7 @@ export class GetInstallationResponseBody extends Error {
     if (err.context != null) this.context = err.context;
     if (err.issues != null) this.issues = err.issues;
 
-    this.name = "GetInstallationResponseBody";
+    this.name = "GetInstallationInputValidationProblem";
   }
 }
 
@@ -331,8 +331,8 @@ export namespace GetInstallationIn$ {
 }
 
 /** @internal */
-export const GetInstallationIssues$inboundSchema: z.ZodType<
-  GetInstallationIssues,
+export const GetInstallationInputValidationIssue$inboundSchema: z.ZodType<
+  GetInstallationInputValidationIssue,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -361,7 +361,7 @@ export const GetInstallationIssues$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type GetInstallationIssues$Outbound = {
+export type GetInstallationInputValidationIssue$Outbound = {
   type: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -385,10 +385,10 @@ export type GetInstallationIssues$Outbound = {
 };
 
 /** @internal */
-export const GetInstallationIssues$outboundSchema: z.ZodType<
-  GetInstallationIssues$Outbound,
+export const GetInstallationInputValidationIssue$outboundSchema: z.ZodType<
+  GetInstallationInputValidationIssue$Outbound,
   z.ZodTypeDef,
-  GetInstallationIssues
+  GetInstallationInputValidationIssue
 > = z.object({
   type: z.string().default("about:blank"),
   href: z.string().optional(),
@@ -416,36 +416,41 @@ export const GetInstallationIssues$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace GetInstallationIssues$ {
-  /** @deprecated use `GetInstallationIssues$inboundSchema` instead. */
-  export const inboundSchema = GetInstallationIssues$inboundSchema;
-  /** @deprecated use `GetInstallationIssues$outboundSchema` instead. */
-  export const outboundSchema = GetInstallationIssues$outboundSchema;
-  /** @deprecated use `GetInstallationIssues$Outbound` instead. */
-  export type Outbound = GetInstallationIssues$Outbound;
+export namespace GetInstallationInputValidationIssue$ {
+  /** @deprecated use `GetInstallationInputValidationIssue$inboundSchema` instead. */
+  export const inboundSchema =
+    GetInstallationInputValidationIssue$inboundSchema;
+  /** @deprecated use `GetInstallationInputValidationIssue$outboundSchema` instead. */
+  export const outboundSchema =
+    GetInstallationInputValidationIssue$outboundSchema;
+  /** @deprecated use `GetInstallationInputValidationIssue$Outbound` instead. */
+  export type Outbound = GetInstallationInputValidationIssue$Outbound;
 }
 
-export function getInstallationIssuesToJSON(
-  getInstallationIssues: GetInstallationIssues,
+export function getInstallationInputValidationIssueToJSON(
+  getInstallationInputValidationIssue: GetInstallationInputValidationIssue,
 ): string {
   return JSON.stringify(
-    GetInstallationIssues$outboundSchema.parse(getInstallationIssues),
+    GetInstallationInputValidationIssue$outboundSchema.parse(
+      getInstallationInputValidationIssue,
+    ),
   );
 }
 
-export function getInstallationIssuesFromJSON(
+export function getInstallationInputValidationIssueFromJSON(
   jsonString: string,
-): SafeParseResult<GetInstallationIssues, SDKValidationError> {
+): SafeParseResult<GetInstallationInputValidationIssue, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => GetInstallationIssues$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetInstallationIssues' from JSON`,
+    (x) =>
+      GetInstallationInputValidationIssue$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetInstallationInputValidationIssue' from JSON`,
   );
 }
 
 /** @internal */
-export const GetInstallationResponseBody$inboundSchema: z.ZodType<
-  GetInstallationResponseBody,
+export const GetInstallationInputValidationProblem$inboundSchema: z.ZodType<
+  GetInstallationInputValidationProblem,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -468,14 +473,16 @@ export const GetInstallationResponseBody$inboundSchema: z.ZodType<
   retryAfter: z.string().datetime({ offset: true }).transform(v => new Date(v))
     .optional(),
   context: z.record(z.any()).optional(),
-  issues: z.array(z.lazy(() => GetInstallationIssues$inboundSchema)).optional(),
+  issues: z.array(
+    z.lazy(() => GetInstallationInputValidationIssue$inboundSchema),
+  ).optional(),
 })
   .transform((v) => {
-    return new GetInstallationResponseBody(v);
+    return new GetInstallationInputValidationProblem(v);
   });
 
 /** @internal */
-export type GetInstallationResponseBody$Outbound = {
+export type GetInstallationInputValidationProblem$Outbound = {
   type?: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -493,15 +500,15 @@ export type GetInstallationResponseBody$Outbound = {
   retryable?: boolean | undefined;
   retryAfter?: string | undefined;
   context?: { [k: string]: any } | undefined;
-  issues?: Array<GetInstallationIssues$Outbound> | undefined;
+  issues?: Array<GetInstallationInputValidationIssue$Outbound> | undefined;
 };
 
 /** @internal */
-export const GetInstallationResponseBody$outboundSchema: z.ZodType<
-  GetInstallationResponseBody$Outbound,
+export const GetInstallationInputValidationProblem$outboundSchema: z.ZodType<
+  GetInstallationInputValidationProblem$Outbound,
   z.ZodTypeDef,
-  GetInstallationResponseBody
-> = z.instanceof(GetInstallationResponseBody)
+  GetInstallationInputValidationProblem
+> = z.instanceof(GetInstallationInputValidationProblem)
   .transform(v => v.data$)
   .pipe(z.object({
     type: z.string().default("about:blank"),
@@ -521,19 +528,22 @@ export const GetInstallationResponseBody$outboundSchema: z.ZodType<
     retryable: z.boolean().optional(),
     retryAfter: z.date().transform(v => v.toISOString()).optional(),
     context: z.record(z.any()).optional(),
-    issues: z.array(z.lazy(() => GetInstallationIssues$outboundSchema))
-      .optional(),
+    issues: z.array(
+      z.lazy(() => GetInstallationInputValidationIssue$outboundSchema),
+    ).optional(),
   }));
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace GetInstallationResponseBody$ {
-  /** @deprecated use `GetInstallationResponseBody$inboundSchema` instead. */
-  export const inboundSchema = GetInstallationResponseBody$inboundSchema;
-  /** @deprecated use `GetInstallationResponseBody$outboundSchema` instead. */
-  export const outboundSchema = GetInstallationResponseBody$outboundSchema;
-  /** @deprecated use `GetInstallationResponseBody$Outbound` instead. */
-  export type Outbound = GetInstallationResponseBody$Outbound;
+export namespace GetInstallationInputValidationProblem$ {
+  /** @deprecated use `GetInstallationInputValidationProblem$inboundSchema` instead. */
+  export const inboundSchema =
+    GetInstallationInputValidationProblem$inboundSchema;
+  /** @deprecated use `GetInstallationInputValidationProblem$outboundSchema` instead. */
+  export const outboundSchema =
+    GetInstallationInputValidationProblem$outboundSchema;
+  /** @deprecated use `GetInstallationInputValidationProblem$Outbound` instead. */
+  export type Outbound = GetInstallationInputValidationProblem$Outbound;
 }

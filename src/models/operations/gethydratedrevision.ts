@@ -26,7 +26,7 @@ export type GetHydratedRevisionRequest = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export type GetHydratedRevisionRevisionsResponseBody = {
+export type GetHydratedRevisionAPIProblem = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -100,14 +100,14 @@ export type GetHydratedRevisionRevisionsResponseBody = {
   context?: { [k: string]: any } | undefined;
 };
 
-export type RequiredFields2 = {
+export type HydratedIntegrationFieldIntegrationFieldMapping = {
   mapToName: string;
   mapToDisplayName?: string | undefined;
   default?: string | undefined;
   prompt?: string | undefined;
 };
 
-export type RequiredFields1 = {
+export type One = {
   fieldName: string;
   displayName: string;
   /**
@@ -120,18 +120,19 @@ export type RequiredFields1 = {
   mapToDisplayName?: string | undefined;
 };
 
-export type GetHydratedRevisionRequiredFields =
-  | RequiredFields1
-  | RequiredFields2;
+export type HydratedIntegrationField =
+  | One
+  | HydratedIntegrationFieldIntegrationFieldMapping;
 
-export type GetHydratedRevisionOptionalFields2 = {
-  mapToName: string;
-  mapToDisplayName?: string | undefined;
-  default?: string | undefined;
-  prompt?: string | undefined;
-};
+export type GetHydratedRevisionHydratedIntegrationFieldIntegrationFieldMapping =
+  {
+    mapToName: string;
+    mapToDisplayName?: string | undefined;
+    default?: string | undefined;
+    prompt?: string | undefined;
+  };
 
-export type GetHydratedRevisionOptionalFields1 = {
+export type HydratedIntegrationField1 = {
   fieldName: string;
   displayName: string;
   /**
@@ -144,25 +145,26 @@ export type GetHydratedRevisionOptionalFields1 = {
   mapToDisplayName?: string | undefined;
 };
 
-export type GetHydratedRevisionOptionalFields =
-  | GetHydratedRevisionOptionalFields1
-  | GetHydratedRevisionOptionalFields2;
+export type GetHydratedRevisionHydratedIntegrationField =
+  | HydratedIntegrationField1
+  | GetHydratedRevisionHydratedIntegrationFieldIntegrationFieldMapping;
 
-export const GetHydratedRevisionOptionalFieldsAuto = {
+export const GetHydratedRevisionOptionalFieldsAutoOption = {
   All: "all",
 } as const;
-export type GetHydratedRevisionOptionalFieldsAuto = ClosedEnum<
-  typeof GetHydratedRevisionOptionalFieldsAuto
+export type GetHydratedRevisionOptionalFieldsAutoOption = ClosedEnum<
+  typeof GetHydratedRevisionOptionalFieldsAutoOption
 >;
 
-export type AllFields2 = {
-  mapToName: string;
-  mapToDisplayName?: string | undefined;
-  default?: string | undefined;
-  prompt?: string | undefined;
-};
+export type GetHydratedRevisionHydratedIntegrationFieldRevisionsIntegrationFieldMapping =
+  {
+    mapToName: string;
+    mapToDisplayName?: string | undefined;
+    default?: string | undefined;
+    prompt?: string | undefined;
+  };
 
-export type AllFields1 = {
+export type GetHydratedRevisionHydratedIntegrationField1 = {
   fieldName: string;
   displayName: string;
   /**
@@ -175,7 +177,9 @@ export type AllFields1 = {
   mapToDisplayName?: string | undefined;
 };
 
-export type AllFields = AllFields1 | AllFields2;
+export type GetHydratedRevisionRevisionsHydratedIntegrationField =
+  | GetHydratedRevisionHydratedIntegrationField1
+  | GetHydratedRevisionHydratedIntegrationFieldRevisionsIntegrationFieldMapping;
 
 /**
  * A normalized field type
@@ -201,7 +205,7 @@ export type GetHydratedRevisionValueType = ClosedEnum<
 /**
  * Represents a field value
  */
-export type GetHydratedRevisionValues = {
+export type GetHydratedRevisionFieldValue = {
   /**
    * The internal value used by the system
    */
@@ -212,7 +216,7 @@ export type GetHydratedRevisionValues = {
   displayValue: string;
 };
 
-export type AllFieldsMetadata = {
+export type GetHydratedRevisionFieldMetadata = {
   /**
    * The name of the field from the provider API.
    */
@@ -236,7 +240,7 @@ export type AllFieldsMetadata = {
   /**
    * If the valueType is singleSelect or multiSelect, this is a list of possible values
    */
-  values?: Array<GetHydratedRevisionValues> | undefined;
+  values?: Array<GetHydratedRevisionFieldValue> | undefined;
 };
 
 export type GetHydratedRevisionDefaultPeriod = {
@@ -254,7 +258,7 @@ export type GetHydratedRevisionBackfill = {
   defaultPeriod: GetHydratedRevisionDefaultPeriod;
 };
 
-export type GetHydratedRevisionObjects = {
+export type HydratedIntegrationObject = {
   objectName: string;
   displayName: string;
   /**
@@ -267,26 +271,36 @@ export type GetHydratedRevisionObjects = {
   mapToDisplayName?: string | undefined;
   destination: string;
   schedule: string;
-  requiredFields?: Array<RequiredFields1 | RequiredFields2> | undefined;
+  requiredFields?:
+    | Array<One | HydratedIntegrationFieldIntegrationFieldMapping>
+    | undefined;
   optionalFields?:
     | Array<
-      GetHydratedRevisionOptionalFields1 | GetHydratedRevisionOptionalFields2
+      | HydratedIntegrationField1
+      | GetHydratedRevisionHydratedIntegrationFieldIntegrationFieldMapping
     >
     | undefined;
-  optionalFieldsAuto?: GetHydratedRevisionOptionalFieldsAuto | undefined;
+  optionalFieldsAuto?: GetHydratedRevisionOptionalFieldsAutoOption | undefined;
   /**
    * This is a list of all fields on the object for a particular SaaS instance, including their display names.
    */
-  allFields?: Array<AllFields1 | AllFields2> | undefined;
+  allFields?:
+    | Array<
+      | GetHydratedRevisionHydratedIntegrationField1
+      | GetHydratedRevisionHydratedIntegrationFieldRevisionsIntegrationFieldMapping
+    >
+    | undefined;
   /**
    * This is a map of all fields on the object including their metadata (such as display name and type), the keys of the map are the field names.
    */
-  allFieldsMetadata?: { [k: string]: AllFieldsMetadata } | undefined;
+  allFieldsMetadata?:
+    | { [k: string]: GetHydratedRevisionFieldMetadata }
+    | undefined;
   backfill?: GetHydratedRevisionBackfill | undefined;
 };
 
-export type GetHydratedRevisionRead = {
-  objects?: Array<GetHydratedRevisionObjects> | undefined;
+export type HydratedReadIntegration = {
+  objects?: Array<HydratedIntegrationObject> | undefined;
 };
 
 /**
@@ -299,7 +313,7 @@ export type GetHydratedRevisionValueDefaults = {
   allowAnyFields?: boolean | undefined;
 };
 
-export type GetHydratedRevisionRevisionsObjects = {
+export type Objects = {
   objectName: string;
   displayName: string;
   /**
@@ -308,27 +322,27 @@ export type GetHydratedRevisionRevisionsObjects = {
   valueDefaults?: GetHydratedRevisionValueDefaults | undefined;
 };
 
-export type GetHydratedRevisionWrite = {
-  objects?: Array<GetHydratedRevisionRevisionsObjects> | undefined;
+export type Write = {
+  objects?: Array<Objects> | undefined;
 };
 
-export type GetHydratedRevisionProxy = {
+export type HydratedProxyIntegration = {
   enabled?: boolean | undefined;
 };
 
-export type GetHydratedRevisionContent = {
+export type HydratedIntegration = {
   name: string;
   displayName?: string | undefined;
   provider: string;
-  read?: GetHydratedRevisionRead | undefined;
-  write?: GetHydratedRevisionWrite | undefined;
-  proxy?: GetHydratedRevisionProxy | undefined;
+  read?: HydratedReadIntegration | undefined;
+  write?: Write | undefined;
+  proxy?: HydratedProxyIntegration | undefined;
 };
 
 /**
  * Hydrated revision
  */
-export type GetHydratedRevisionResponseBody = {
+export type GetHydratedRevisionHydratedRevision = {
   /**
    * The revision ID.
    */
@@ -341,12 +355,12 @@ export type GetHydratedRevisionResponseBody = {
    * The time the revision was created.
    */
   createTime: Date;
-  content: GetHydratedRevisionContent;
+  content: HydratedIntegration;
 };
 
 export type GetHydratedRevisionResponse =
-  | GetHydratedRevisionResponseBody
-  | GetHydratedRevisionRevisionsResponseBody;
+  | GetHydratedRevisionHydratedRevision
+  | GetHydratedRevisionAPIProblem;
 
 /** @internal */
 export const GetHydratedRevisionRequest$inboundSchema: z.ZodType<
@@ -412,8 +426,8 @@ export function getHydratedRevisionRequestFromJSON(
 }
 
 /** @internal */
-export const GetHydratedRevisionRevisionsResponseBody$inboundSchema: z.ZodType<
-  GetHydratedRevisionRevisionsResponseBody,
+export const GetHydratedRevisionAPIProblem$inboundSchema: z.ZodType<
+  GetHydratedRevisionAPIProblem,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -439,7 +453,7 @@ export const GetHydratedRevisionRevisionsResponseBody$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type GetHydratedRevisionRevisionsResponseBody$Outbound = {
+export type GetHydratedRevisionAPIProblem$Outbound = {
   type: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -460,10 +474,10 @@ export type GetHydratedRevisionRevisionsResponseBody$Outbound = {
 };
 
 /** @internal */
-export const GetHydratedRevisionRevisionsResponseBody$outboundSchema: z.ZodType<
-  GetHydratedRevisionRevisionsResponseBody$Outbound,
+export const GetHydratedRevisionAPIProblem$outboundSchema: z.ZodType<
+  GetHydratedRevisionAPIProblem$Outbound,
   z.ZodTypeDef,
-  GetHydratedRevisionRevisionsResponseBody
+  GetHydratedRevisionAPIProblem
 > = z.object({
   type: z.string().default("about:blank"),
   href: z.string().optional(),
@@ -488,119 +502,123 @@ export const GetHydratedRevisionRevisionsResponseBody$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace GetHydratedRevisionRevisionsResponseBody$ {
-  /** @deprecated use `GetHydratedRevisionRevisionsResponseBody$inboundSchema` instead. */
-  export const inboundSchema =
-    GetHydratedRevisionRevisionsResponseBody$inboundSchema;
-  /** @deprecated use `GetHydratedRevisionRevisionsResponseBody$outboundSchema` instead. */
-  export const outboundSchema =
-    GetHydratedRevisionRevisionsResponseBody$outboundSchema;
-  /** @deprecated use `GetHydratedRevisionRevisionsResponseBody$Outbound` instead. */
-  export type Outbound = GetHydratedRevisionRevisionsResponseBody$Outbound;
+export namespace GetHydratedRevisionAPIProblem$ {
+  /** @deprecated use `GetHydratedRevisionAPIProblem$inboundSchema` instead. */
+  export const inboundSchema = GetHydratedRevisionAPIProblem$inboundSchema;
+  /** @deprecated use `GetHydratedRevisionAPIProblem$outboundSchema` instead. */
+  export const outboundSchema = GetHydratedRevisionAPIProblem$outboundSchema;
+  /** @deprecated use `GetHydratedRevisionAPIProblem$Outbound` instead. */
+  export type Outbound = GetHydratedRevisionAPIProblem$Outbound;
 }
 
-export function getHydratedRevisionRevisionsResponseBodyToJSON(
-  getHydratedRevisionRevisionsResponseBody:
-    GetHydratedRevisionRevisionsResponseBody,
+export function getHydratedRevisionAPIProblemToJSON(
+  getHydratedRevisionAPIProblem: GetHydratedRevisionAPIProblem,
 ): string {
   return JSON.stringify(
-    GetHydratedRevisionRevisionsResponseBody$outboundSchema.parse(
-      getHydratedRevisionRevisionsResponseBody,
+    GetHydratedRevisionAPIProblem$outboundSchema.parse(
+      getHydratedRevisionAPIProblem,
     ),
   );
 }
 
-export function getHydratedRevisionRevisionsResponseBodyFromJSON(
+export function getHydratedRevisionAPIProblemFromJSON(
+  jsonString: string,
+): SafeParseResult<GetHydratedRevisionAPIProblem, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetHydratedRevisionAPIProblem$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetHydratedRevisionAPIProblem' from JSON`,
+  );
+}
+
+/** @internal */
+export const HydratedIntegrationFieldIntegrationFieldMapping$inboundSchema:
+  z.ZodType<
+    HydratedIntegrationFieldIntegrationFieldMapping,
+    z.ZodTypeDef,
+    unknown
+  > = z.object({
+    mapToName: z.string(),
+    mapToDisplayName: z.string().optional(),
+    default: z.string().optional(),
+    prompt: z.string().optional(),
+  });
+
+/** @internal */
+export type HydratedIntegrationFieldIntegrationFieldMapping$Outbound = {
+  mapToName: string;
+  mapToDisplayName?: string | undefined;
+  default?: string | undefined;
+  prompt?: string | undefined;
+};
+
+/** @internal */
+export const HydratedIntegrationFieldIntegrationFieldMapping$outboundSchema:
+  z.ZodType<
+    HydratedIntegrationFieldIntegrationFieldMapping$Outbound,
+    z.ZodTypeDef,
+    HydratedIntegrationFieldIntegrationFieldMapping
+  > = z.object({
+    mapToName: z.string(),
+    mapToDisplayName: z.string().optional(),
+    default: z.string().optional(),
+    prompt: z.string().optional(),
+  });
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace HydratedIntegrationFieldIntegrationFieldMapping$ {
+  /** @deprecated use `HydratedIntegrationFieldIntegrationFieldMapping$inboundSchema` instead. */
+  export const inboundSchema =
+    HydratedIntegrationFieldIntegrationFieldMapping$inboundSchema;
+  /** @deprecated use `HydratedIntegrationFieldIntegrationFieldMapping$outboundSchema` instead. */
+  export const outboundSchema =
+    HydratedIntegrationFieldIntegrationFieldMapping$outboundSchema;
+  /** @deprecated use `HydratedIntegrationFieldIntegrationFieldMapping$Outbound` instead. */
+  export type Outbound =
+    HydratedIntegrationFieldIntegrationFieldMapping$Outbound;
+}
+
+export function hydratedIntegrationFieldIntegrationFieldMappingToJSON(
+  hydratedIntegrationFieldIntegrationFieldMapping:
+    HydratedIntegrationFieldIntegrationFieldMapping,
+): string {
+  return JSON.stringify(
+    HydratedIntegrationFieldIntegrationFieldMapping$outboundSchema.parse(
+      hydratedIntegrationFieldIntegrationFieldMapping,
+    ),
+  );
+}
+
+export function hydratedIntegrationFieldIntegrationFieldMappingFromJSON(
   jsonString: string,
 ): SafeParseResult<
-  GetHydratedRevisionRevisionsResponseBody,
+  HydratedIntegrationFieldIntegrationFieldMapping,
   SDKValidationError
 > {
   return safeParse(
     jsonString,
     (x) =>
-      GetHydratedRevisionRevisionsResponseBody$inboundSchema.parse(
+      HydratedIntegrationFieldIntegrationFieldMapping$inboundSchema.parse(
         JSON.parse(x),
       ),
-    `Failed to parse 'GetHydratedRevisionRevisionsResponseBody' from JSON`,
+    `Failed to parse 'HydratedIntegrationFieldIntegrationFieldMapping' from JSON`,
   );
 }
 
 /** @internal */
-export const RequiredFields2$inboundSchema: z.ZodType<
-  RequiredFields2,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  mapToName: z.string(),
-  mapToDisplayName: z.string().optional(),
-  default: z.string().optional(),
-  prompt: z.string().optional(),
-});
+export const One$inboundSchema: z.ZodType<One, z.ZodTypeDef, unknown> = z
+  .object({
+    fieldName: z.string(),
+    displayName: z.string(),
+    mapToName: z.string().optional(),
+    mapToDisplayName: z.string().optional(),
+  });
 
 /** @internal */
-export type RequiredFields2$Outbound = {
-  mapToName: string;
-  mapToDisplayName?: string | undefined;
-  default?: string | undefined;
-  prompt?: string | undefined;
-};
-
-/** @internal */
-export const RequiredFields2$outboundSchema: z.ZodType<
-  RequiredFields2$Outbound,
-  z.ZodTypeDef,
-  RequiredFields2
-> = z.object({
-  mapToName: z.string(),
-  mapToDisplayName: z.string().optional(),
-  default: z.string().optional(),
-  prompt: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RequiredFields2$ {
-  /** @deprecated use `RequiredFields2$inboundSchema` instead. */
-  export const inboundSchema = RequiredFields2$inboundSchema;
-  /** @deprecated use `RequiredFields2$outboundSchema` instead. */
-  export const outboundSchema = RequiredFields2$outboundSchema;
-  /** @deprecated use `RequiredFields2$Outbound` instead. */
-  export type Outbound = RequiredFields2$Outbound;
-}
-
-export function requiredFields2ToJSON(
-  requiredFields2: RequiredFields2,
-): string {
-  return JSON.stringify(RequiredFields2$outboundSchema.parse(requiredFields2));
-}
-
-export function requiredFields2FromJSON(
-  jsonString: string,
-): SafeParseResult<RequiredFields2, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => RequiredFields2$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'RequiredFields2' from JSON`,
-  );
-}
-
-/** @internal */
-export const RequiredFields1$inboundSchema: z.ZodType<
-  RequiredFields1,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  fieldName: z.string(),
-  displayName: z.string(),
-  mapToName: z.string().optional(),
-  mapToDisplayName: z.string().optional(),
-});
-
-/** @internal */
-export type RequiredFields1$Outbound = {
+export type One$Outbound = {
   fieldName: string;
   displayName: string;
   mapToName?: string | undefined;
@@ -608,384 +626,178 @@ export type RequiredFields1$Outbound = {
 };
 
 /** @internal */
-export const RequiredFields1$outboundSchema: z.ZodType<
-  RequiredFields1$Outbound,
-  z.ZodTypeDef,
-  RequiredFields1
-> = z.object({
-  fieldName: z.string(),
-  displayName: z.string(),
-  mapToName: z.string().optional(),
-  mapToDisplayName: z.string().optional(),
-});
+export const One$outboundSchema: z.ZodType<One$Outbound, z.ZodTypeDef, One> = z
+  .object({
+    fieldName: z.string(),
+    displayName: z.string(),
+    mapToName: z.string().optional(),
+    mapToDisplayName: z.string().optional(),
+  });
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace RequiredFields1$ {
-  /** @deprecated use `RequiredFields1$inboundSchema` instead. */
-  export const inboundSchema = RequiredFields1$inboundSchema;
-  /** @deprecated use `RequiredFields1$outboundSchema` instead. */
-  export const outboundSchema = RequiredFields1$outboundSchema;
-  /** @deprecated use `RequiredFields1$Outbound` instead. */
-  export type Outbound = RequiredFields1$Outbound;
+export namespace One$ {
+  /** @deprecated use `One$inboundSchema` instead. */
+  export const inboundSchema = One$inboundSchema;
+  /** @deprecated use `One$outboundSchema` instead. */
+  export const outboundSchema = One$outboundSchema;
+  /** @deprecated use `One$Outbound` instead. */
+  export type Outbound = One$Outbound;
 }
 
-export function requiredFields1ToJSON(
-  requiredFields1: RequiredFields1,
-): string {
-  return JSON.stringify(RequiredFields1$outboundSchema.parse(requiredFields1));
+export function oneToJSON(one: One): string {
+  return JSON.stringify(One$outboundSchema.parse(one));
 }
 
-export function requiredFields1FromJSON(
+export function oneFromJSON(
   jsonString: string,
-): SafeParseResult<RequiredFields1, SDKValidationError> {
+): SafeParseResult<One, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => RequiredFields1$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'RequiredFields1' from JSON`,
+    (x) => One$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'One' from JSON`,
   );
 }
 
 /** @internal */
-export const GetHydratedRevisionRequiredFields$inboundSchema: z.ZodType<
-  GetHydratedRevisionRequiredFields,
+export const HydratedIntegrationField$inboundSchema: z.ZodType<
+  HydratedIntegrationField,
   z.ZodTypeDef,
   unknown
 > = z.union([
-  z.lazy(() => RequiredFields1$inboundSchema),
-  z.lazy(() => RequiredFields2$inboundSchema),
+  z.lazy(() => One$inboundSchema),
+  z.lazy(() => HydratedIntegrationFieldIntegrationFieldMapping$inboundSchema),
 ]);
 
 /** @internal */
-export type GetHydratedRevisionRequiredFields$Outbound =
-  | RequiredFields1$Outbound
-  | RequiredFields2$Outbound;
+export type HydratedIntegrationField$Outbound =
+  | One$Outbound
+  | HydratedIntegrationFieldIntegrationFieldMapping$Outbound;
 
 /** @internal */
-export const GetHydratedRevisionRequiredFields$outboundSchema: z.ZodType<
-  GetHydratedRevisionRequiredFields$Outbound,
+export const HydratedIntegrationField$outboundSchema: z.ZodType<
+  HydratedIntegrationField$Outbound,
   z.ZodTypeDef,
-  GetHydratedRevisionRequiredFields
+  HydratedIntegrationField
 > = z.union([
-  z.lazy(() => RequiredFields1$outboundSchema),
-  z.lazy(() => RequiredFields2$outboundSchema),
+  z.lazy(() => One$outboundSchema),
+  z.lazy(() => HydratedIntegrationFieldIntegrationFieldMapping$outboundSchema),
 ]);
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace GetHydratedRevisionRequiredFields$ {
-  /** @deprecated use `GetHydratedRevisionRequiredFields$inboundSchema` instead. */
-  export const inboundSchema = GetHydratedRevisionRequiredFields$inboundSchema;
-  /** @deprecated use `GetHydratedRevisionRequiredFields$outboundSchema` instead. */
-  export const outboundSchema =
-    GetHydratedRevisionRequiredFields$outboundSchema;
-  /** @deprecated use `GetHydratedRevisionRequiredFields$Outbound` instead. */
-  export type Outbound = GetHydratedRevisionRequiredFields$Outbound;
+export namespace HydratedIntegrationField$ {
+  /** @deprecated use `HydratedIntegrationField$inboundSchema` instead. */
+  export const inboundSchema = HydratedIntegrationField$inboundSchema;
+  /** @deprecated use `HydratedIntegrationField$outboundSchema` instead. */
+  export const outboundSchema = HydratedIntegrationField$outboundSchema;
+  /** @deprecated use `HydratedIntegrationField$Outbound` instead. */
+  export type Outbound = HydratedIntegrationField$Outbound;
 }
 
-export function getHydratedRevisionRequiredFieldsToJSON(
-  getHydratedRevisionRequiredFields: GetHydratedRevisionRequiredFields,
+export function hydratedIntegrationFieldToJSON(
+  hydratedIntegrationField: HydratedIntegrationField,
 ): string {
   return JSON.stringify(
-    GetHydratedRevisionRequiredFields$outboundSchema.parse(
-      getHydratedRevisionRequiredFields,
-    ),
+    HydratedIntegrationField$outboundSchema.parse(hydratedIntegrationField),
   );
 }
 
-export function getHydratedRevisionRequiredFieldsFromJSON(
+export function hydratedIntegrationFieldFromJSON(
   jsonString: string,
-): SafeParseResult<GetHydratedRevisionRequiredFields, SDKValidationError> {
+): SafeParseResult<HydratedIntegrationField, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => GetHydratedRevisionRequiredFields$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetHydratedRevisionRequiredFields' from JSON`,
+    (x) => HydratedIntegrationField$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'HydratedIntegrationField' from JSON`,
   );
 }
 
 /** @internal */
-export const GetHydratedRevisionOptionalFields2$inboundSchema: z.ZodType<
-  GetHydratedRevisionOptionalFields2,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  mapToName: z.string(),
-  mapToDisplayName: z.string().optional(),
-  default: z.string().optional(),
-  prompt: z.string().optional(),
-});
+export const GetHydratedRevisionHydratedIntegrationFieldIntegrationFieldMapping$inboundSchema:
+  z.ZodType<
+    GetHydratedRevisionHydratedIntegrationFieldIntegrationFieldMapping,
+    z.ZodTypeDef,
+    unknown
+  > = z.object({
+    mapToName: z.string(),
+    mapToDisplayName: z.string().optional(),
+    default: z.string().optional(),
+    prompt: z.string().optional(),
+  });
 
 /** @internal */
-export type GetHydratedRevisionOptionalFields2$Outbound = {
-  mapToName: string;
-  mapToDisplayName?: string | undefined;
-  default?: string | undefined;
-  prompt?: string | undefined;
-};
+export type GetHydratedRevisionHydratedIntegrationFieldIntegrationFieldMapping$Outbound =
+  {
+    mapToName: string;
+    mapToDisplayName?: string | undefined;
+    default?: string | undefined;
+    prompt?: string | undefined;
+  };
 
 /** @internal */
-export const GetHydratedRevisionOptionalFields2$outboundSchema: z.ZodType<
-  GetHydratedRevisionOptionalFields2$Outbound,
-  z.ZodTypeDef,
-  GetHydratedRevisionOptionalFields2
-> = z.object({
-  mapToName: z.string(),
-  mapToDisplayName: z.string().optional(),
-  default: z.string().optional(),
-  prompt: z.string().optional(),
-});
+export const GetHydratedRevisionHydratedIntegrationFieldIntegrationFieldMapping$outboundSchema:
+  z.ZodType<
+    GetHydratedRevisionHydratedIntegrationFieldIntegrationFieldMapping$Outbound,
+    z.ZodTypeDef,
+    GetHydratedRevisionHydratedIntegrationFieldIntegrationFieldMapping
+  > = z.object({
+    mapToName: z.string(),
+    mapToDisplayName: z.string().optional(),
+    default: z.string().optional(),
+    prompt: z.string().optional(),
+  });
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace GetHydratedRevisionOptionalFields2$ {
-  /** @deprecated use `GetHydratedRevisionOptionalFields2$inboundSchema` instead. */
-  export const inboundSchema = GetHydratedRevisionOptionalFields2$inboundSchema;
-  /** @deprecated use `GetHydratedRevisionOptionalFields2$outboundSchema` instead. */
-  export const outboundSchema =
-    GetHydratedRevisionOptionalFields2$outboundSchema;
-  /** @deprecated use `GetHydratedRevisionOptionalFields2$Outbound` instead. */
-  export type Outbound = GetHydratedRevisionOptionalFields2$Outbound;
-}
-
-export function getHydratedRevisionOptionalFields2ToJSON(
-  getHydratedRevisionOptionalFields2: GetHydratedRevisionOptionalFields2,
-): string {
-  return JSON.stringify(
-    GetHydratedRevisionOptionalFields2$outboundSchema.parse(
-      getHydratedRevisionOptionalFields2,
-    ),
-  );
-}
-
-export function getHydratedRevisionOptionalFields2FromJSON(
-  jsonString: string,
-): SafeParseResult<GetHydratedRevisionOptionalFields2, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      GetHydratedRevisionOptionalFields2$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetHydratedRevisionOptionalFields2' from JSON`,
-  );
-}
-
-/** @internal */
-export const GetHydratedRevisionOptionalFields1$inboundSchema: z.ZodType<
-  GetHydratedRevisionOptionalFields1,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  fieldName: z.string(),
-  displayName: z.string(),
-  mapToName: z.string().optional(),
-  mapToDisplayName: z.string().optional(),
-});
-
-/** @internal */
-export type GetHydratedRevisionOptionalFields1$Outbound = {
-  fieldName: string;
-  displayName: string;
-  mapToName?: string | undefined;
-  mapToDisplayName?: string | undefined;
-};
-
-/** @internal */
-export const GetHydratedRevisionOptionalFields1$outboundSchema: z.ZodType<
-  GetHydratedRevisionOptionalFields1$Outbound,
-  z.ZodTypeDef,
-  GetHydratedRevisionOptionalFields1
-> = z.object({
-  fieldName: z.string(),
-  displayName: z.string(),
-  mapToName: z.string().optional(),
-  mapToDisplayName: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetHydratedRevisionOptionalFields1$ {
-  /** @deprecated use `GetHydratedRevisionOptionalFields1$inboundSchema` instead. */
-  export const inboundSchema = GetHydratedRevisionOptionalFields1$inboundSchema;
-  /** @deprecated use `GetHydratedRevisionOptionalFields1$outboundSchema` instead. */
-  export const outboundSchema =
-    GetHydratedRevisionOptionalFields1$outboundSchema;
-  /** @deprecated use `GetHydratedRevisionOptionalFields1$Outbound` instead. */
-  export type Outbound = GetHydratedRevisionOptionalFields1$Outbound;
-}
-
-export function getHydratedRevisionOptionalFields1ToJSON(
-  getHydratedRevisionOptionalFields1: GetHydratedRevisionOptionalFields1,
-): string {
-  return JSON.stringify(
-    GetHydratedRevisionOptionalFields1$outboundSchema.parse(
-      getHydratedRevisionOptionalFields1,
-    ),
-  );
-}
-
-export function getHydratedRevisionOptionalFields1FromJSON(
-  jsonString: string,
-): SafeParseResult<GetHydratedRevisionOptionalFields1, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      GetHydratedRevisionOptionalFields1$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetHydratedRevisionOptionalFields1' from JSON`,
-  );
-}
-
-/** @internal */
-export const GetHydratedRevisionOptionalFields$inboundSchema: z.ZodType<
-  GetHydratedRevisionOptionalFields,
-  z.ZodTypeDef,
-  unknown
-> = z.union([
-  z.lazy(() => GetHydratedRevisionOptionalFields1$inboundSchema),
-  z.lazy(() => GetHydratedRevisionOptionalFields2$inboundSchema),
-]);
-
-/** @internal */
-export type GetHydratedRevisionOptionalFields$Outbound =
-  | GetHydratedRevisionOptionalFields1$Outbound
-  | GetHydratedRevisionOptionalFields2$Outbound;
-
-/** @internal */
-export const GetHydratedRevisionOptionalFields$outboundSchema: z.ZodType<
-  GetHydratedRevisionOptionalFields$Outbound,
-  z.ZodTypeDef,
-  GetHydratedRevisionOptionalFields
-> = z.union([
-  z.lazy(() => GetHydratedRevisionOptionalFields1$outboundSchema),
-  z.lazy(() => GetHydratedRevisionOptionalFields2$outboundSchema),
-]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetHydratedRevisionOptionalFields$ {
-  /** @deprecated use `GetHydratedRevisionOptionalFields$inboundSchema` instead. */
-  export const inboundSchema = GetHydratedRevisionOptionalFields$inboundSchema;
-  /** @deprecated use `GetHydratedRevisionOptionalFields$outboundSchema` instead. */
-  export const outboundSchema =
-    GetHydratedRevisionOptionalFields$outboundSchema;
-  /** @deprecated use `GetHydratedRevisionOptionalFields$Outbound` instead. */
-  export type Outbound = GetHydratedRevisionOptionalFields$Outbound;
-}
-
-export function getHydratedRevisionOptionalFieldsToJSON(
-  getHydratedRevisionOptionalFields: GetHydratedRevisionOptionalFields,
-): string {
-  return JSON.stringify(
-    GetHydratedRevisionOptionalFields$outboundSchema.parse(
-      getHydratedRevisionOptionalFields,
-    ),
-  );
-}
-
-export function getHydratedRevisionOptionalFieldsFromJSON(
-  jsonString: string,
-): SafeParseResult<GetHydratedRevisionOptionalFields, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GetHydratedRevisionOptionalFields$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetHydratedRevisionOptionalFields' from JSON`,
-  );
-}
-
-/** @internal */
-export const GetHydratedRevisionOptionalFieldsAuto$inboundSchema:
-  z.ZodNativeEnum<typeof GetHydratedRevisionOptionalFieldsAuto> = z.nativeEnum(
-    GetHydratedRevisionOptionalFieldsAuto,
-  );
-
-/** @internal */
-export const GetHydratedRevisionOptionalFieldsAuto$outboundSchema:
-  z.ZodNativeEnum<typeof GetHydratedRevisionOptionalFieldsAuto> =
-    GetHydratedRevisionOptionalFieldsAuto$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetHydratedRevisionOptionalFieldsAuto$ {
-  /** @deprecated use `GetHydratedRevisionOptionalFieldsAuto$inboundSchema` instead. */
+export namespace GetHydratedRevisionHydratedIntegrationFieldIntegrationFieldMapping$ {
+  /** @deprecated use `GetHydratedRevisionHydratedIntegrationFieldIntegrationFieldMapping$inboundSchema` instead. */
   export const inboundSchema =
-    GetHydratedRevisionOptionalFieldsAuto$inboundSchema;
-  /** @deprecated use `GetHydratedRevisionOptionalFieldsAuto$outboundSchema` instead. */
+    GetHydratedRevisionHydratedIntegrationFieldIntegrationFieldMapping$inboundSchema;
+  /** @deprecated use `GetHydratedRevisionHydratedIntegrationFieldIntegrationFieldMapping$outboundSchema` instead. */
   export const outboundSchema =
-    GetHydratedRevisionOptionalFieldsAuto$outboundSchema;
+    GetHydratedRevisionHydratedIntegrationFieldIntegrationFieldMapping$outboundSchema;
+  /** @deprecated use `GetHydratedRevisionHydratedIntegrationFieldIntegrationFieldMapping$Outbound` instead. */
+  export type Outbound =
+    GetHydratedRevisionHydratedIntegrationFieldIntegrationFieldMapping$Outbound;
 }
 
-/** @internal */
-export const AllFields2$inboundSchema: z.ZodType<
-  AllFields2,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  mapToName: z.string(),
-  mapToDisplayName: z.string().optional(),
-  default: z.string().optional(),
-  prompt: z.string().optional(),
-});
-
-/** @internal */
-export type AllFields2$Outbound = {
-  mapToName: string;
-  mapToDisplayName?: string | undefined;
-  default?: string | undefined;
-  prompt?: string | undefined;
-};
-
-/** @internal */
-export const AllFields2$outboundSchema: z.ZodType<
-  AllFields2$Outbound,
-  z.ZodTypeDef,
-  AllFields2
-> = z.object({
-  mapToName: z.string(),
-  mapToDisplayName: z.string().optional(),
-  default: z.string().optional(),
-  prompt: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AllFields2$ {
-  /** @deprecated use `AllFields2$inboundSchema` instead. */
-  export const inboundSchema = AllFields2$inboundSchema;
-  /** @deprecated use `AllFields2$outboundSchema` instead. */
-  export const outboundSchema = AllFields2$outboundSchema;
-  /** @deprecated use `AllFields2$Outbound` instead. */
-  export type Outbound = AllFields2$Outbound;
+export function getHydratedRevisionHydratedIntegrationFieldIntegrationFieldMappingToJSON(
+  getHydratedRevisionHydratedIntegrationFieldIntegrationFieldMapping:
+    GetHydratedRevisionHydratedIntegrationFieldIntegrationFieldMapping,
+): string {
+  return JSON.stringify(
+    GetHydratedRevisionHydratedIntegrationFieldIntegrationFieldMapping$outboundSchema
+      .parse(
+        getHydratedRevisionHydratedIntegrationFieldIntegrationFieldMapping,
+      ),
+  );
 }
 
-export function allFields2ToJSON(allFields2: AllFields2): string {
-  return JSON.stringify(AllFields2$outboundSchema.parse(allFields2));
-}
-
-export function allFields2FromJSON(
+export function getHydratedRevisionHydratedIntegrationFieldIntegrationFieldMappingFromJSON(
   jsonString: string,
-): SafeParseResult<AllFields2, SDKValidationError> {
+): SafeParseResult<
+  GetHydratedRevisionHydratedIntegrationFieldIntegrationFieldMapping,
+  SDKValidationError
+> {
   return safeParse(
     jsonString,
-    (x) => AllFields2$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AllFields2' from JSON`,
+    (x) =>
+      GetHydratedRevisionHydratedIntegrationFieldIntegrationFieldMapping$inboundSchema
+        .parse(JSON.parse(x)),
+    `Failed to parse 'GetHydratedRevisionHydratedIntegrationFieldIntegrationFieldMapping' from JSON`,
   );
 }
 
 /** @internal */
-export const AllFields1$inboundSchema: z.ZodType<
-  AllFields1,
+export const HydratedIntegrationField1$inboundSchema: z.ZodType<
+  HydratedIntegrationField1,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -996,7 +808,7 @@ export const AllFields1$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type AllFields1$Outbound = {
+export type HydratedIntegrationField1$Outbound = {
   fieldName: string;
   displayName: string;
   mapToName?: string | undefined;
@@ -1004,10 +816,10 @@ export type AllFields1$Outbound = {
 };
 
 /** @internal */
-export const AllFields1$outboundSchema: z.ZodType<
-  AllFields1$Outbound,
+export const HydratedIntegrationField1$outboundSchema: z.ZodType<
+  HydratedIntegrationField1$Outbound,
   z.ZodTypeDef,
-  AllFields1
+  HydratedIntegrationField1
 > = z.object({
   fieldName: z.string(),
   displayName: z.string(),
@@ -1019,76 +831,354 @@ export const AllFields1$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace AllFields1$ {
-  /** @deprecated use `AllFields1$inboundSchema` instead. */
-  export const inboundSchema = AllFields1$inboundSchema;
-  /** @deprecated use `AllFields1$outboundSchema` instead. */
-  export const outboundSchema = AllFields1$outboundSchema;
-  /** @deprecated use `AllFields1$Outbound` instead. */
-  export type Outbound = AllFields1$Outbound;
+export namespace HydratedIntegrationField1$ {
+  /** @deprecated use `HydratedIntegrationField1$inboundSchema` instead. */
+  export const inboundSchema = HydratedIntegrationField1$inboundSchema;
+  /** @deprecated use `HydratedIntegrationField1$outboundSchema` instead. */
+  export const outboundSchema = HydratedIntegrationField1$outboundSchema;
+  /** @deprecated use `HydratedIntegrationField1$Outbound` instead. */
+  export type Outbound = HydratedIntegrationField1$Outbound;
 }
 
-export function allFields1ToJSON(allFields1: AllFields1): string {
-  return JSON.stringify(AllFields1$outboundSchema.parse(allFields1));
+export function hydratedIntegrationField1ToJSON(
+  hydratedIntegrationField1: HydratedIntegrationField1,
+): string {
+  return JSON.stringify(
+    HydratedIntegrationField1$outboundSchema.parse(hydratedIntegrationField1),
+  );
 }
 
-export function allFields1FromJSON(
+export function hydratedIntegrationField1FromJSON(
   jsonString: string,
-): SafeParseResult<AllFields1, SDKValidationError> {
+): SafeParseResult<HydratedIntegrationField1, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => AllFields1$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AllFields1' from JSON`,
+    (x) => HydratedIntegrationField1$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'HydratedIntegrationField1' from JSON`,
   );
 }
 
 /** @internal */
-export const AllFields$inboundSchema: z.ZodType<
-  AllFields,
-  z.ZodTypeDef,
-  unknown
-> = z.union([
-  z.lazy(() => AllFields1$inboundSchema),
-  z.lazy(() => AllFields2$inboundSchema),
-]);
+export const GetHydratedRevisionHydratedIntegrationField$inboundSchema:
+  z.ZodType<
+    GetHydratedRevisionHydratedIntegrationField,
+    z.ZodTypeDef,
+    unknown
+  > = z.union([
+    z.lazy(() => HydratedIntegrationField1$inboundSchema),
+    z.lazy(() =>
+      GetHydratedRevisionHydratedIntegrationFieldIntegrationFieldMapping$inboundSchema
+    ),
+  ]);
 
 /** @internal */
-export type AllFields$Outbound = AllFields1$Outbound | AllFields2$Outbound;
+export type GetHydratedRevisionHydratedIntegrationField$Outbound =
+  | HydratedIntegrationField1$Outbound
+  | GetHydratedRevisionHydratedIntegrationFieldIntegrationFieldMapping$Outbound;
 
 /** @internal */
-export const AllFields$outboundSchema: z.ZodType<
-  AllFields$Outbound,
-  z.ZodTypeDef,
-  AllFields
-> = z.union([
-  z.lazy(() => AllFields1$outboundSchema),
-  z.lazy(() => AllFields2$outboundSchema),
-]);
+export const GetHydratedRevisionHydratedIntegrationField$outboundSchema:
+  z.ZodType<
+    GetHydratedRevisionHydratedIntegrationField$Outbound,
+    z.ZodTypeDef,
+    GetHydratedRevisionHydratedIntegrationField
+  > = z.union([
+    z.lazy(() => HydratedIntegrationField1$outboundSchema),
+    z.lazy(() =>
+      GetHydratedRevisionHydratedIntegrationFieldIntegrationFieldMapping$outboundSchema
+    ),
+  ]);
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace AllFields$ {
-  /** @deprecated use `AllFields$inboundSchema` instead. */
-  export const inboundSchema = AllFields$inboundSchema;
-  /** @deprecated use `AllFields$outboundSchema` instead. */
-  export const outboundSchema = AllFields$outboundSchema;
-  /** @deprecated use `AllFields$Outbound` instead. */
-  export type Outbound = AllFields$Outbound;
+export namespace GetHydratedRevisionHydratedIntegrationField$ {
+  /** @deprecated use `GetHydratedRevisionHydratedIntegrationField$inboundSchema` instead. */
+  export const inboundSchema =
+    GetHydratedRevisionHydratedIntegrationField$inboundSchema;
+  /** @deprecated use `GetHydratedRevisionHydratedIntegrationField$outboundSchema` instead. */
+  export const outboundSchema =
+    GetHydratedRevisionHydratedIntegrationField$outboundSchema;
+  /** @deprecated use `GetHydratedRevisionHydratedIntegrationField$Outbound` instead. */
+  export type Outbound = GetHydratedRevisionHydratedIntegrationField$Outbound;
 }
 
-export function allFieldsToJSON(allFields: AllFields): string {
-  return JSON.stringify(AllFields$outboundSchema.parse(allFields));
+export function getHydratedRevisionHydratedIntegrationFieldToJSON(
+  getHydratedRevisionHydratedIntegrationField:
+    GetHydratedRevisionHydratedIntegrationField,
+): string {
+  return JSON.stringify(
+    GetHydratedRevisionHydratedIntegrationField$outboundSchema.parse(
+      getHydratedRevisionHydratedIntegrationField,
+    ),
+  );
 }
 
-export function allFieldsFromJSON(
+export function getHydratedRevisionHydratedIntegrationFieldFromJSON(
   jsonString: string,
-): SafeParseResult<AllFields, SDKValidationError> {
+): SafeParseResult<
+  GetHydratedRevisionHydratedIntegrationField,
+  SDKValidationError
+> {
   return safeParse(
     jsonString,
-    (x) => AllFields$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AllFields' from JSON`,
+    (x) =>
+      GetHydratedRevisionHydratedIntegrationField$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'GetHydratedRevisionHydratedIntegrationField' from JSON`,
+  );
+}
+
+/** @internal */
+export const GetHydratedRevisionOptionalFieldsAutoOption$inboundSchema:
+  z.ZodNativeEnum<typeof GetHydratedRevisionOptionalFieldsAutoOption> = z
+    .nativeEnum(GetHydratedRevisionOptionalFieldsAutoOption);
+
+/** @internal */
+export const GetHydratedRevisionOptionalFieldsAutoOption$outboundSchema:
+  z.ZodNativeEnum<typeof GetHydratedRevisionOptionalFieldsAutoOption> =
+    GetHydratedRevisionOptionalFieldsAutoOption$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetHydratedRevisionOptionalFieldsAutoOption$ {
+  /** @deprecated use `GetHydratedRevisionOptionalFieldsAutoOption$inboundSchema` instead. */
+  export const inboundSchema =
+    GetHydratedRevisionOptionalFieldsAutoOption$inboundSchema;
+  /** @deprecated use `GetHydratedRevisionOptionalFieldsAutoOption$outboundSchema` instead. */
+  export const outboundSchema =
+    GetHydratedRevisionOptionalFieldsAutoOption$outboundSchema;
+}
+
+/** @internal */
+export const GetHydratedRevisionHydratedIntegrationFieldRevisionsIntegrationFieldMapping$inboundSchema:
+  z.ZodType<
+    GetHydratedRevisionHydratedIntegrationFieldRevisionsIntegrationFieldMapping,
+    z.ZodTypeDef,
+    unknown
+  > = z.object({
+    mapToName: z.string(),
+    mapToDisplayName: z.string().optional(),
+    default: z.string().optional(),
+    prompt: z.string().optional(),
+  });
+
+/** @internal */
+export type GetHydratedRevisionHydratedIntegrationFieldRevisionsIntegrationFieldMapping$Outbound =
+  {
+    mapToName: string;
+    mapToDisplayName?: string | undefined;
+    default?: string | undefined;
+    prompt?: string | undefined;
+  };
+
+/** @internal */
+export const GetHydratedRevisionHydratedIntegrationFieldRevisionsIntegrationFieldMapping$outboundSchema:
+  z.ZodType<
+    GetHydratedRevisionHydratedIntegrationFieldRevisionsIntegrationFieldMapping$Outbound,
+    z.ZodTypeDef,
+    GetHydratedRevisionHydratedIntegrationFieldRevisionsIntegrationFieldMapping
+  > = z.object({
+    mapToName: z.string(),
+    mapToDisplayName: z.string().optional(),
+    default: z.string().optional(),
+    prompt: z.string().optional(),
+  });
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetHydratedRevisionHydratedIntegrationFieldRevisionsIntegrationFieldMapping$ {
+  /** @deprecated use `GetHydratedRevisionHydratedIntegrationFieldRevisionsIntegrationFieldMapping$inboundSchema` instead. */
+  export const inboundSchema =
+    GetHydratedRevisionHydratedIntegrationFieldRevisionsIntegrationFieldMapping$inboundSchema;
+  /** @deprecated use `GetHydratedRevisionHydratedIntegrationFieldRevisionsIntegrationFieldMapping$outboundSchema` instead. */
+  export const outboundSchema =
+    GetHydratedRevisionHydratedIntegrationFieldRevisionsIntegrationFieldMapping$outboundSchema;
+  /** @deprecated use `GetHydratedRevisionHydratedIntegrationFieldRevisionsIntegrationFieldMapping$Outbound` instead. */
+  export type Outbound =
+    GetHydratedRevisionHydratedIntegrationFieldRevisionsIntegrationFieldMapping$Outbound;
+}
+
+export function getHydratedRevisionHydratedIntegrationFieldRevisionsIntegrationFieldMappingToJSON(
+  getHydratedRevisionHydratedIntegrationFieldRevisionsIntegrationFieldMapping:
+    GetHydratedRevisionHydratedIntegrationFieldRevisionsIntegrationFieldMapping,
+): string {
+  return JSON.stringify(
+    GetHydratedRevisionHydratedIntegrationFieldRevisionsIntegrationFieldMapping$outboundSchema
+      .parse(
+        getHydratedRevisionHydratedIntegrationFieldRevisionsIntegrationFieldMapping,
+      ),
+  );
+}
+
+export function getHydratedRevisionHydratedIntegrationFieldRevisionsIntegrationFieldMappingFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  GetHydratedRevisionHydratedIntegrationFieldRevisionsIntegrationFieldMapping,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      GetHydratedRevisionHydratedIntegrationFieldRevisionsIntegrationFieldMapping$inboundSchema
+        .parse(JSON.parse(x)),
+    `Failed to parse 'GetHydratedRevisionHydratedIntegrationFieldRevisionsIntegrationFieldMapping' from JSON`,
+  );
+}
+
+/** @internal */
+export const GetHydratedRevisionHydratedIntegrationField1$inboundSchema:
+  z.ZodType<
+    GetHydratedRevisionHydratedIntegrationField1,
+    z.ZodTypeDef,
+    unknown
+  > = z.object({
+    fieldName: z.string(),
+    displayName: z.string(),
+    mapToName: z.string().optional(),
+    mapToDisplayName: z.string().optional(),
+  });
+
+/** @internal */
+export type GetHydratedRevisionHydratedIntegrationField1$Outbound = {
+  fieldName: string;
+  displayName: string;
+  mapToName?: string | undefined;
+  mapToDisplayName?: string | undefined;
+};
+
+/** @internal */
+export const GetHydratedRevisionHydratedIntegrationField1$outboundSchema:
+  z.ZodType<
+    GetHydratedRevisionHydratedIntegrationField1$Outbound,
+    z.ZodTypeDef,
+    GetHydratedRevisionHydratedIntegrationField1
+  > = z.object({
+    fieldName: z.string(),
+    displayName: z.string(),
+    mapToName: z.string().optional(),
+    mapToDisplayName: z.string().optional(),
+  });
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetHydratedRevisionHydratedIntegrationField1$ {
+  /** @deprecated use `GetHydratedRevisionHydratedIntegrationField1$inboundSchema` instead. */
+  export const inboundSchema =
+    GetHydratedRevisionHydratedIntegrationField1$inboundSchema;
+  /** @deprecated use `GetHydratedRevisionHydratedIntegrationField1$outboundSchema` instead. */
+  export const outboundSchema =
+    GetHydratedRevisionHydratedIntegrationField1$outboundSchema;
+  /** @deprecated use `GetHydratedRevisionHydratedIntegrationField1$Outbound` instead. */
+  export type Outbound = GetHydratedRevisionHydratedIntegrationField1$Outbound;
+}
+
+export function getHydratedRevisionHydratedIntegrationField1ToJSON(
+  getHydratedRevisionHydratedIntegrationField1:
+    GetHydratedRevisionHydratedIntegrationField1,
+): string {
+  return JSON.stringify(
+    GetHydratedRevisionHydratedIntegrationField1$outboundSchema.parse(
+      getHydratedRevisionHydratedIntegrationField1,
+    ),
+  );
+}
+
+export function getHydratedRevisionHydratedIntegrationField1FromJSON(
+  jsonString: string,
+): SafeParseResult<
+  GetHydratedRevisionHydratedIntegrationField1,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      GetHydratedRevisionHydratedIntegrationField1$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'GetHydratedRevisionHydratedIntegrationField1' from JSON`,
+  );
+}
+
+/** @internal */
+export const GetHydratedRevisionRevisionsHydratedIntegrationField$inboundSchema:
+  z.ZodType<
+    GetHydratedRevisionRevisionsHydratedIntegrationField,
+    z.ZodTypeDef,
+    unknown
+  > = z.union([
+    z.lazy(() => GetHydratedRevisionHydratedIntegrationField1$inboundSchema),
+    z.lazy(() =>
+      GetHydratedRevisionHydratedIntegrationFieldRevisionsIntegrationFieldMapping$inboundSchema
+    ),
+  ]);
+
+/** @internal */
+export type GetHydratedRevisionRevisionsHydratedIntegrationField$Outbound =
+  | GetHydratedRevisionHydratedIntegrationField1$Outbound
+  | GetHydratedRevisionHydratedIntegrationFieldRevisionsIntegrationFieldMapping$Outbound;
+
+/** @internal */
+export const GetHydratedRevisionRevisionsHydratedIntegrationField$outboundSchema:
+  z.ZodType<
+    GetHydratedRevisionRevisionsHydratedIntegrationField$Outbound,
+    z.ZodTypeDef,
+    GetHydratedRevisionRevisionsHydratedIntegrationField
+  > = z.union([
+    z.lazy(() => GetHydratedRevisionHydratedIntegrationField1$outboundSchema),
+    z.lazy(() =>
+      GetHydratedRevisionHydratedIntegrationFieldRevisionsIntegrationFieldMapping$outboundSchema
+    ),
+  ]);
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetHydratedRevisionRevisionsHydratedIntegrationField$ {
+  /** @deprecated use `GetHydratedRevisionRevisionsHydratedIntegrationField$inboundSchema` instead. */
+  export const inboundSchema =
+    GetHydratedRevisionRevisionsHydratedIntegrationField$inboundSchema;
+  /** @deprecated use `GetHydratedRevisionRevisionsHydratedIntegrationField$outboundSchema` instead. */
+  export const outboundSchema =
+    GetHydratedRevisionRevisionsHydratedIntegrationField$outboundSchema;
+  /** @deprecated use `GetHydratedRevisionRevisionsHydratedIntegrationField$Outbound` instead. */
+  export type Outbound =
+    GetHydratedRevisionRevisionsHydratedIntegrationField$Outbound;
+}
+
+export function getHydratedRevisionRevisionsHydratedIntegrationFieldToJSON(
+  getHydratedRevisionRevisionsHydratedIntegrationField:
+    GetHydratedRevisionRevisionsHydratedIntegrationField,
+): string {
+  return JSON.stringify(
+    GetHydratedRevisionRevisionsHydratedIntegrationField$outboundSchema.parse(
+      getHydratedRevisionRevisionsHydratedIntegrationField,
+    ),
+  );
+}
+
+export function getHydratedRevisionRevisionsHydratedIntegrationFieldFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  GetHydratedRevisionRevisionsHydratedIntegrationField,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      GetHydratedRevisionRevisionsHydratedIntegrationField$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'GetHydratedRevisionRevisionsHydratedIntegrationField' from JSON`,
   );
 }
 
@@ -1114,8 +1204,8 @@ export namespace GetHydratedRevisionValueType$ {
 }
 
 /** @internal */
-export const GetHydratedRevisionValues$inboundSchema: z.ZodType<
-  GetHydratedRevisionValues,
+export const GetHydratedRevisionFieldValue$inboundSchema: z.ZodType<
+  GetHydratedRevisionFieldValue,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -1124,16 +1214,16 @@ export const GetHydratedRevisionValues$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type GetHydratedRevisionValues$Outbound = {
+export type GetHydratedRevisionFieldValue$Outbound = {
   value: string;
   displayValue: string;
 };
 
 /** @internal */
-export const GetHydratedRevisionValues$outboundSchema: z.ZodType<
-  GetHydratedRevisionValues$Outbound,
+export const GetHydratedRevisionFieldValue$outboundSchema: z.ZodType<
+  GetHydratedRevisionFieldValue$Outbound,
   z.ZodTypeDef,
-  GetHydratedRevisionValues
+  GetHydratedRevisionFieldValue
 > = z.object({
   value: z.string(),
   displayValue: z.string(),
@@ -1143,36 +1233,38 @@ export const GetHydratedRevisionValues$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace GetHydratedRevisionValues$ {
-  /** @deprecated use `GetHydratedRevisionValues$inboundSchema` instead. */
-  export const inboundSchema = GetHydratedRevisionValues$inboundSchema;
-  /** @deprecated use `GetHydratedRevisionValues$outboundSchema` instead. */
-  export const outboundSchema = GetHydratedRevisionValues$outboundSchema;
-  /** @deprecated use `GetHydratedRevisionValues$Outbound` instead. */
-  export type Outbound = GetHydratedRevisionValues$Outbound;
+export namespace GetHydratedRevisionFieldValue$ {
+  /** @deprecated use `GetHydratedRevisionFieldValue$inboundSchema` instead. */
+  export const inboundSchema = GetHydratedRevisionFieldValue$inboundSchema;
+  /** @deprecated use `GetHydratedRevisionFieldValue$outboundSchema` instead. */
+  export const outboundSchema = GetHydratedRevisionFieldValue$outboundSchema;
+  /** @deprecated use `GetHydratedRevisionFieldValue$Outbound` instead. */
+  export type Outbound = GetHydratedRevisionFieldValue$Outbound;
 }
 
-export function getHydratedRevisionValuesToJSON(
-  getHydratedRevisionValues: GetHydratedRevisionValues,
+export function getHydratedRevisionFieldValueToJSON(
+  getHydratedRevisionFieldValue: GetHydratedRevisionFieldValue,
 ): string {
   return JSON.stringify(
-    GetHydratedRevisionValues$outboundSchema.parse(getHydratedRevisionValues),
+    GetHydratedRevisionFieldValue$outboundSchema.parse(
+      getHydratedRevisionFieldValue,
+    ),
   );
 }
 
-export function getHydratedRevisionValuesFromJSON(
+export function getHydratedRevisionFieldValueFromJSON(
   jsonString: string,
-): SafeParseResult<GetHydratedRevisionValues, SDKValidationError> {
+): SafeParseResult<GetHydratedRevisionFieldValue, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => GetHydratedRevisionValues$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetHydratedRevisionValues' from JSON`,
+    (x) => GetHydratedRevisionFieldValue$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetHydratedRevisionFieldValue' from JSON`,
   );
 }
 
 /** @internal */
-export const AllFieldsMetadata$inboundSchema: z.ZodType<
-  AllFieldsMetadata,
+export const GetHydratedRevisionFieldMetadata$inboundSchema: z.ZodType<
+  GetHydratedRevisionFieldMetadata,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -1181,32 +1273,32 @@ export const AllFieldsMetadata$inboundSchema: z.ZodType<
   valueType: GetHydratedRevisionValueType$inboundSchema.optional(),
   providerType: z.string().optional(),
   readOnly: z.boolean().optional(),
-  values: z.array(z.lazy(() => GetHydratedRevisionValues$inboundSchema))
+  values: z.array(z.lazy(() => GetHydratedRevisionFieldValue$inboundSchema))
     .optional(),
 });
 
 /** @internal */
-export type AllFieldsMetadata$Outbound = {
+export type GetHydratedRevisionFieldMetadata$Outbound = {
   fieldName: string;
   displayName: string;
   valueType?: string | undefined;
   providerType?: string | undefined;
   readOnly?: boolean | undefined;
-  values?: Array<GetHydratedRevisionValues$Outbound> | undefined;
+  values?: Array<GetHydratedRevisionFieldValue$Outbound> | undefined;
 };
 
 /** @internal */
-export const AllFieldsMetadata$outboundSchema: z.ZodType<
-  AllFieldsMetadata$Outbound,
+export const GetHydratedRevisionFieldMetadata$outboundSchema: z.ZodType<
+  GetHydratedRevisionFieldMetadata$Outbound,
   z.ZodTypeDef,
-  AllFieldsMetadata
+  GetHydratedRevisionFieldMetadata
 > = z.object({
   fieldName: z.string(),
   displayName: z.string(),
   valueType: GetHydratedRevisionValueType$outboundSchema.optional(),
   providerType: z.string().optional(),
   readOnly: z.boolean().optional(),
-  values: z.array(z.lazy(() => GetHydratedRevisionValues$outboundSchema))
+  values: z.array(z.lazy(() => GetHydratedRevisionFieldValue$outboundSchema))
     .optional(),
 });
 
@@ -1214,30 +1306,32 @@ export const AllFieldsMetadata$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace AllFieldsMetadata$ {
-  /** @deprecated use `AllFieldsMetadata$inboundSchema` instead. */
-  export const inboundSchema = AllFieldsMetadata$inboundSchema;
-  /** @deprecated use `AllFieldsMetadata$outboundSchema` instead. */
-  export const outboundSchema = AllFieldsMetadata$outboundSchema;
-  /** @deprecated use `AllFieldsMetadata$Outbound` instead. */
-  export type Outbound = AllFieldsMetadata$Outbound;
+export namespace GetHydratedRevisionFieldMetadata$ {
+  /** @deprecated use `GetHydratedRevisionFieldMetadata$inboundSchema` instead. */
+  export const inboundSchema = GetHydratedRevisionFieldMetadata$inboundSchema;
+  /** @deprecated use `GetHydratedRevisionFieldMetadata$outboundSchema` instead. */
+  export const outboundSchema = GetHydratedRevisionFieldMetadata$outboundSchema;
+  /** @deprecated use `GetHydratedRevisionFieldMetadata$Outbound` instead. */
+  export type Outbound = GetHydratedRevisionFieldMetadata$Outbound;
 }
 
-export function allFieldsMetadataToJSON(
-  allFieldsMetadata: AllFieldsMetadata,
+export function getHydratedRevisionFieldMetadataToJSON(
+  getHydratedRevisionFieldMetadata: GetHydratedRevisionFieldMetadata,
 ): string {
   return JSON.stringify(
-    AllFieldsMetadata$outboundSchema.parse(allFieldsMetadata),
+    GetHydratedRevisionFieldMetadata$outboundSchema.parse(
+      getHydratedRevisionFieldMetadata,
+    ),
   );
 }
 
-export function allFieldsMetadataFromJSON(
+export function getHydratedRevisionFieldMetadataFromJSON(
   jsonString: string,
-): SafeParseResult<AllFieldsMetadata, SDKValidationError> {
+): SafeParseResult<GetHydratedRevisionFieldMetadata, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => AllFieldsMetadata$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AllFieldsMetadata' from JSON`,
+    (x) => GetHydratedRevisionFieldMetadata$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetHydratedRevisionFieldMetadata' from JSON`,
   );
 }
 
@@ -1357,8 +1451,8 @@ export function getHydratedRevisionBackfillFromJSON(
 }
 
 /** @internal */
-export const GetHydratedRevisionObjects$inboundSchema: z.ZodType<
-  GetHydratedRevisionObjects,
+export const HydratedIntegrationObject$inboundSchema: z.ZodType<
+  HydratedIntegrationObject,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -1370,31 +1464,38 @@ export const GetHydratedRevisionObjects$inboundSchema: z.ZodType<
   schedule: z.string(),
   requiredFields: z.array(
     z.union([
-      z.lazy(() => RequiredFields1$inboundSchema),
-      z.lazy(() => RequiredFields2$inboundSchema),
+      z.lazy(() => One$inboundSchema),
+      z.lazy(() =>
+        HydratedIntegrationFieldIntegrationFieldMapping$inboundSchema
+      ),
     ]),
   ).optional(),
   optionalFields: z.array(
     z.union([
-      z.lazy(() => GetHydratedRevisionOptionalFields1$inboundSchema),
-      z.lazy(() => GetHydratedRevisionOptionalFields2$inboundSchema),
+      z.lazy(() => HydratedIntegrationField1$inboundSchema),
+      z.lazy(() =>
+        GetHydratedRevisionHydratedIntegrationFieldIntegrationFieldMapping$inboundSchema
+      ),
     ]),
   ).optional(),
-  optionalFieldsAuto: GetHydratedRevisionOptionalFieldsAuto$inboundSchema
+  optionalFieldsAuto: GetHydratedRevisionOptionalFieldsAutoOption$inboundSchema
     .optional(),
   allFields: z.array(
     z.union([
-      z.lazy(() => AllFields1$inboundSchema),
-      z.lazy(() => AllFields2$inboundSchema),
+      z.lazy(() => GetHydratedRevisionHydratedIntegrationField1$inboundSchema),
+      z.lazy(() =>
+        GetHydratedRevisionHydratedIntegrationFieldRevisionsIntegrationFieldMapping$inboundSchema
+      ),
     ]),
   ).optional(),
-  allFieldsMetadata: z.record(z.lazy(() => AllFieldsMetadata$inboundSchema))
-    .optional(),
+  allFieldsMetadata: z.record(
+    z.lazy(() => GetHydratedRevisionFieldMetadata$inboundSchema),
+  ).optional(),
   backfill: z.lazy(() => GetHydratedRevisionBackfill$inboundSchema).optional(),
 });
 
 /** @internal */
-export type GetHydratedRevisionObjects$Outbound = {
+export type HydratedIntegrationObject$Outbound = {
   objectName: string;
   displayName: string;
   mapToName?: string | undefined;
@@ -1402,25 +1503,34 @@ export type GetHydratedRevisionObjects$Outbound = {
   destination: string;
   schedule: string;
   requiredFields?:
-    | Array<RequiredFields1$Outbound | RequiredFields2$Outbound>
+    | Array<
+      One$Outbound | HydratedIntegrationFieldIntegrationFieldMapping$Outbound
+    >
     | undefined;
   optionalFields?:
     | Array<
-      | GetHydratedRevisionOptionalFields1$Outbound
-      | GetHydratedRevisionOptionalFields2$Outbound
+      | HydratedIntegrationField1$Outbound
+      | GetHydratedRevisionHydratedIntegrationFieldIntegrationFieldMapping$Outbound
     >
     | undefined;
   optionalFieldsAuto?: string | undefined;
-  allFields?: Array<AllFields1$Outbound | AllFields2$Outbound> | undefined;
-  allFieldsMetadata?: { [k: string]: AllFieldsMetadata$Outbound } | undefined;
+  allFields?:
+    | Array<
+      | GetHydratedRevisionHydratedIntegrationField1$Outbound
+      | GetHydratedRevisionHydratedIntegrationFieldRevisionsIntegrationFieldMapping$Outbound
+    >
+    | undefined;
+  allFieldsMetadata?:
+    | { [k: string]: GetHydratedRevisionFieldMetadata$Outbound }
+    | undefined;
   backfill?: GetHydratedRevisionBackfill$Outbound | undefined;
 };
 
 /** @internal */
-export const GetHydratedRevisionObjects$outboundSchema: z.ZodType<
-  GetHydratedRevisionObjects$Outbound,
+export const HydratedIntegrationObject$outboundSchema: z.ZodType<
+  HydratedIntegrationObject$Outbound,
   z.ZodTypeDef,
-  GetHydratedRevisionObjects
+  HydratedIntegrationObject
 > = z.object({
   objectName: z.string(),
   displayName: z.string(),
@@ -1430,26 +1540,33 @@ export const GetHydratedRevisionObjects$outboundSchema: z.ZodType<
   schedule: z.string(),
   requiredFields: z.array(
     z.union([
-      z.lazy(() => RequiredFields1$outboundSchema),
-      z.lazy(() => RequiredFields2$outboundSchema),
+      z.lazy(() => One$outboundSchema),
+      z.lazy(() =>
+        HydratedIntegrationFieldIntegrationFieldMapping$outboundSchema
+      ),
     ]),
   ).optional(),
   optionalFields: z.array(
     z.union([
-      z.lazy(() => GetHydratedRevisionOptionalFields1$outboundSchema),
-      z.lazy(() => GetHydratedRevisionOptionalFields2$outboundSchema),
+      z.lazy(() => HydratedIntegrationField1$outboundSchema),
+      z.lazy(() =>
+        GetHydratedRevisionHydratedIntegrationFieldIntegrationFieldMapping$outboundSchema
+      ),
     ]),
   ).optional(),
-  optionalFieldsAuto: GetHydratedRevisionOptionalFieldsAuto$outboundSchema
+  optionalFieldsAuto: GetHydratedRevisionOptionalFieldsAutoOption$outboundSchema
     .optional(),
   allFields: z.array(
     z.union([
-      z.lazy(() => AllFields1$outboundSchema),
-      z.lazy(() => AllFields2$outboundSchema),
+      z.lazy(() => GetHydratedRevisionHydratedIntegrationField1$outboundSchema),
+      z.lazy(() =>
+        GetHydratedRevisionHydratedIntegrationFieldRevisionsIntegrationFieldMapping$outboundSchema
+      ),
     ]),
   ).optional(),
-  allFieldsMetadata: z.record(z.lazy(() => AllFieldsMetadata$outboundSchema))
-    .optional(),
+  allFieldsMetadata: z.record(
+    z.lazy(() => GetHydratedRevisionFieldMetadata$outboundSchema),
+  ).optional(),
   backfill: z.lazy(() => GetHydratedRevisionBackfill$outboundSchema).optional(),
 });
 
@@ -1457,55 +1574,55 @@ export const GetHydratedRevisionObjects$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace GetHydratedRevisionObjects$ {
-  /** @deprecated use `GetHydratedRevisionObjects$inboundSchema` instead. */
-  export const inboundSchema = GetHydratedRevisionObjects$inboundSchema;
-  /** @deprecated use `GetHydratedRevisionObjects$outboundSchema` instead. */
-  export const outboundSchema = GetHydratedRevisionObjects$outboundSchema;
-  /** @deprecated use `GetHydratedRevisionObjects$Outbound` instead. */
-  export type Outbound = GetHydratedRevisionObjects$Outbound;
+export namespace HydratedIntegrationObject$ {
+  /** @deprecated use `HydratedIntegrationObject$inboundSchema` instead. */
+  export const inboundSchema = HydratedIntegrationObject$inboundSchema;
+  /** @deprecated use `HydratedIntegrationObject$outboundSchema` instead. */
+  export const outboundSchema = HydratedIntegrationObject$outboundSchema;
+  /** @deprecated use `HydratedIntegrationObject$Outbound` instead. */
+  export type Outbound = HydratedIntegrationObject$Outbound;
 }
 
-export function getHydratedRevisionObjectsToJSON(
-  getHydratedRevisionObjects: GetHydratedRevisionObjects,
+export function hydratedIntegrationObjectToJSON(
+  hydratedIntegrationObject: HydratedIntegrationObject,
 ): string {
   return JSON.stringify(
-    GetHydratedRevisionObjects$outboundSchema.parse(getHydratedRevisionObjects),
+    HydratedIntegrationObject$outboundSchema.parse(hydratedIntegrationObject),
   );
 }
 
-export function getHydratedRevisionObjectsFromJSON(
+export function hydratedIntegrationObjectFromJSON(
   jsonString: string,
-): SafeParseResult<GetHydratedRevisionObjects, SDKValidationError> {
+): SafeParseResult<HydratedIntegrationObject, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => GetHydratedRevisionObjects$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetHydratedRevisionObjects' from JSON`,
+    (x) => HydratedIntegrationObject$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'HydratedIntegrationObject' from JSON`,
   );
 }
 
 /** @internal */
-export const GetHydratedRevisionRead$inboundSchema: z.ZodType<
-  GetHydratedRevisionRead,
+export const HydratedReadIntegration$inboundSchema: z.ZodType<
+  HydratedReadIntegration,
   z.ZodTypeDef,
   unknown
 > = z.object({
-  objects: z.array(z.lazy(() => GetHydratedRevisionObjects$inboundSchema))
+  objects: z.array(z.lazy(() => HydratedIntegrationObject$inboundSchema))
     .optional(),
 });
 
 /** @internal */
-export type GetHydratedRevisionRead$Outbound = {
-  objects?: Array<GetHydratedRevisionObjects$Outbound> | undefined;
+export type HydratedReadIntegration$Outbound = {
+  objects?: Array<HydratedIntegrationObject$Outbound> | undefined;
 };
 
 /** @internal */
-export const GetHydratedRevisionRead$outboundSchema: z.ZodType<
-  GetHydratedRevisionRead$Outbound,
+export const HydratedReadIntegration$outboundSchema: z.ZodType<
+  HydratedReadIntegration$Outbound,
   z.ZodTypeDef,
-  GetHydratedRevisionRead
+  HydratedReadIntegration
 > = z.object({
-  objects: z.array(z.lazy(() => GetHydratedRevisionObjects$outboundSchema))
+  objects: z.array(z.lazy(() => HydratedIntegrationObject$outboundSchema))
     .optional(),
 });
 
@@ -1513,30 +1630,30 @@ export const GetHydratedRevisionRead$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace GetHydratedRevisionRead$ {
-  /** @deprecated use `GetHydratedRevisionRead$inboundSchema` instead. */
-  export const inboundSchema = GetHydratedRevisionRead$inboundSchema;
-  /** @deprecated use `GetHydratedRevisionRead$outboundSchema` instead. */
-  export const outboundSchema = GetHydratedRevisionRead$outboundSchema;
-  /** @deprecated use `GetHydratedRevisionRead$Outbound` instead. */
-  export type Outbound = GetHydratedRevisionRead$Outbound;
+export namespace HydratedReadIntegration$ {
+  /** @deprecated use `HydratedReadIntegration$inboundSchema` instead. */
+  export const inboundSchema = HydratedReadIntegration$inboundSchema;
+  /** @deprecated use `HydratedReadIntegration$outboundSchema` instead. */
+  export const outboundSchema = HydratedReadIntegration$outboundSchema;
+  /** @deprecated use `HydratedReadIntegration$Outbound` instead. */
+  export type Outbound = HydratedReadIntegration$Outbound;
 }
 
-export function getHydratedRevisionReadToJSON(
-  getHydratedRevisionRead: GetHydratedRevisionRead,
+export function hydratedReadIntegrationToJSON(
+  hydratedReadIntegration: HydratedReadIntegration,
 ): string {
   return JSON.stringify(
-    GetHydratedRevisionRead$outboundSchema.parse(getHydratedRevisionRead),
+    HydratedReadIntegration$outboundSchema.parse(hydratedReadIntegration),
   );
 }
 
-export function getHydratedRevisionReadFromJSON(
+export function hydratedReadIntegrationFromJSON(
   jsonString: string,
-): SafeParseResult<GetHydratedRevisionRead, SDKValidationError> {
+): SafeParseResult<HydratedReadIntegration, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => GetHydratedRevisionRead$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetHydratedRevisionRead' from JSON`,
+    (x) => HydratedReadIntegration$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'HydratedReadIntegration' from JSON`,
   );
 }
 
@@ -1597,29 +1714,26 @@ export function getHydratedRevisionValueDefaultsFromJSON(
 }
 
 /** @internal */
-export const GetHydratedRevisionRevisionsObjects$inboundSchema: z.ZodType<
-  GetHydratedRevisionRevisionsObjects,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  objectName: z.string(),
-  displayName: z.string(),
-  valueDefaults: z.lazy(() => GetHydratedRevisionValueDefaults$inboundSchema)
-    .optional(),
-});
+export const Objects$inboundSchema: z.ZodType<Objects, z.ZodTypeDef, unknown> =
+  z.object({
+    objectName: z.string(),
+    displayName: z.string(),
+    valueDefaults: z.lazy(() => GetHydratedRevisionValueDefaults$inboundSchema)
+      .optional(),
+  });
 
 /** @internal */
-export type GetHydratedRevisionRevisionsObjects$Outbound = {
+export type Objects$Outbound = {
   objectName: string;
   displayName: string;
   valueDefaults?: GetHydratedRevisionValueDefaults$Outbound | undefined;
 };
 
 /** @internal */
-export const GetHydratedRevisionRevisionsObjects$outboundSchema: z.ZodType<
-  GetHydratedRevisionRevisionsObjects$Outbound,
+export const Objects$outboundSchema: z.ZodType<
+  Objects$Outbound,
   z.ZodTypeDef,
-  GetHydratedRevisionRevisionsObjects
+  Objects
 > = z.object({
   objectName: z.string(),
   displayName: z.string(),
@@ -1631,99 +1745,79 @@ export const GetHydratedRevisionRevisionsObjects$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace GetHydratedRevisionRevisionsObjects$ {
-  /** @deprecated use `GetHydratedRevisionRevisionsObjects$inboundSchema` instead. */
-  export const inboundSchema =
-    GetHydratedRevisionRevisionsObjects$inboundSchema;
-  /** @deprecated use `GetHydratedRevisionRevisionsObjects$outboundSchema` instead. */
-  export const outboundSchema =
-    GetHydratedRevisionRevisionsObjects$outboundSchema;
-  /** @deprecated use `GetHydratedRevisionRevisionsObjects$Outbound` instead. */
-  export type Outbound = GetHydratedRevisionRevisionsObjects$Outbound;
+export namespace Objects$ {
+  /** @deprecated use `Objects$inboundSchema` instead. */
+  export const inboundSchema = Objects$inboundSchema;
+  /** @deprecated use `Objects$outboundSchema` instead. */
+  export const outboundSchema = Objects$outboundSchema;
+  /** @deprecated use `Objects$Outbound` instead. */
+  export type Outbound = Objects$Outbound;
 }
 
-export function getHydratedRevisionRevisionsObjectsToJSON(
-  getHydratedRevisionRevisionsObjects: GetHydratedRevisionRevisionsObjects,
-): string {
-  return JSON.stringify(
-    GetHydratedRevisionRevisionsObjects$outboundSchema.parse(
-      getHydratedRevisionRevisionsObjects,
-    ),
-  );
+export function objectsToJSON(objects: Objects): string {
+  return JSON.stringify(Objects$outboundSchema.parse(objects));
 }
 
-export function getHydratedRevisionRevisionsObjectsFromJSON(
+export function objectsFromJSON(
   jsonString: string,
-): SafeParseResult<GetHydratedRevisionRevisionsObjects, SDKValidationError> {
+): SafeParseResult<Objects, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) =>
-      GetHydratedRevisionRevisionsObjects$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetHydratedRevisionRevisionsObjects' from JSON`,
+    (x) => Objects$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Objects' from JSON`,
   );
 }
 
 /** @internal */
-export const GetHydratedRevisionWrite$inboundSchema: z.ZodType<
-  GetHydratedRevisionWrite,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  objects: z.array(
-    z.lazy(() => GetHydratedRevisionRevisionsObjects$inboundSchema),
-  ).optional(),
-});
+export const Write$inboundSchema: z.ZodType<Write, z.ZodTypeDef, unknown> = z
+  .object({
+    objects: z.array(z.lazy(() => Objects$inboundSchema)).optional(),
+  });
 
 /** @internal */
-export type GetHydratedRevisionWrite$Outbound = {
-  objects?: Array<GetHydratedRevisionRevisionsObjects$Outbound> | undefined;
+export type Write$Outbound = {
+  objects?: Array<Objects$Outbound> | undefined;
 };
 
 /** @internal */
-export const GetHydratedRevisionWrite$outboundSchema: z.ZodType<
-  GetHydratedRevisionWrite$Outbound,
+export const Write$outboundSchema: z.ZodType<
+  Write$Outbound,
   z.ZodTypeDef,
-  GetHydratedRevisionWrite
+  Write
 > = z.object({
-  objects: z.array(
-    z.lazy(() => GetHydratedRevisionRevisionsObjects$outboundSchema),
-  ).optional(),
+  objects: z.array(z.lazy(() => Objects$outboundSchema)).optional(),
 });
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace GetHydratedRevisionWrite$ {
-  /** @deprecated use `GetHydratedRevisionWrite$inboundSchema` instead. */
-  export const inboundSchema = GetHydratedRevisionWrite$inboundSchema;
-  /** @deprecated use `GetHydratedRevisionWrite$outboundSchema` instead. */
-  export const outboundSchema = GetHydratedRevisionWrite$outboundSchema;
-  /** @deprecated use `GetHydratedRevisionWrite$Outbound` instead. */
-  export type Outbound = GetHydratedRevisionWrite$Outbound;
+export namespace Write$ {
+  /** @deprecated use `Write$inboundSchema` instead. */
+  export const inboundSchema = Write$inboundSchema;
+  /** @deprecated use `Write$outboundSchema` instead. */
+  export const outboundSchema = Write$outboundSchema;
+  /** @deprecated use `Write$Outbound` instead. */
+  export type Outbound = Write$Outbound;
 }
 
-export function getHydratedRevisionWriteToJSON(
-  getHydratedRevisionWrite: GetHydratedRevisionWrite,
-): string {
-  return JSON.stringify(
-    GetHydratedRevisionWrite$outboundSchema.parse(getHydratedRevisionWrite),
-  );
+export function writeToJSON(write: Write): string {
+  return JSON.stringify(Write$outboundSchema.parse(write));
 }
 
-export function getHydratedRevisionWriteFromJSON(
+export function writeFromJSON(
   jsonString: string,
-): SafeParseResult<GetHydratedRevisionWrite, SDKValidationError> {
+): SafeParseResult<Write, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => GetHydratedRevisionWrite$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetHydratedRevisionWrite' from JSON`,
+    (x) => Write$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Write' from JSON`,
   );
 }
 
 /** @internal */
-export const GetHydratedRevisionProxy$inboundSchema: z.ZodType<
-  GetHydratedRevisionProxy,
+export const HydratedProxyIntegration$inboundSchema: z.ZodType<
+  HydratedProxyIntegration,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -1731,15 +1825,15 @@ export const GetHydratedRevisionProxy$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type GetHydratedRevisionProxy$Outbound = {
+export type HydratedProxyIntegration$Outbound = {
   enabled?: boolean | undefined;
 };
 
 /** @internal */
-export const GetHydratedRevisionProxy$outboundSchema: z.ZodType<
-  GetHydratedRevisionProxy$Outbound,
+export const HydratedProxyIntegration$outboundSchema: z.ZodType<
+  HydratedProxyIntegration$Outbound,
   z.ZodTypeDef,
-  GetHydratedRevisionProxy
+  HydratedProxyIntegration
 > = z.object({
   enabled: z.boolean().optional(),
 });
@@ -1748,164 +1842,167 @@ export const GetHydratedRevisionProxy$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace GetHydratedRevisionProxy$ {
-  /** @deprecated use `GetHydratedRevisionProxy$inboundSchema` instead. */
-  export const inboundSchema = GetHydratedRevisionProxy$inboundSchema;
-  /** @deprecated use `GetHydratedRevisionProxy$outboundSchema` instead. */
-  export const outboundSchema = GetHydratedRevisionProxy$outboundSchema;
-  /** @deprecated use `GetHydratedRevisionProxy$Outbound` instead. */
-  export type Outbound = GetHydratedRevisionProxy$Outbound;
+export namespace HydratedProxyIntegration$ {
+  /** @deprecated use `HydratedProxyIntegration$inboundSchema` instead. */
+  export const inboundSchema = HydratedProxyIntegration$inboundSchema;
+  /** @deprecated use `HydratedProxyIntegration$outboundSchema` instead. */
+  export const outboundSchema = HydratedProxyIntegration$outboundSchema;
+  /** @deprecated use `HydratedProxyIntegration$Outbound` instead. */
+  export type Outbound = HydratedProxyIntegration$Outbound;
 }
 
-export function getHydratedRevisionProxyToJSON(
-  getHydratedRevisionProxy: GetHydratedRevisionProxy,
+export function hydratedProxyIntegrationToJSON(
+  hydratedProxyIntegration: HydratedProxyIntegration,
 ): string {
   return JSON.stringify(
-    GetHydratedRevisionProxy$outboundSchema.parse(getHydratedRevisionProxy),
+    HydratedProxyIntegration$outboundSchema.parse(hydratedProxyIntegration),
   );
 }
 
-export function getHydratedRevisionProxyFromJSON(
+export function hydratedProxyIntegrationFromJSON(
   jsonString: string,
-): SafeParseResult<GetHydratedRevisionProxy, SDKValidationError> {
+): SafeParseResult<HydratedProxyIntegration, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => GetHydratedRevisionProxy$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetHydratedRevisionProxy' from JSON`,
+    (x) => HydratedProxyIntegration$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'HydratedProxyIntegration' from JSON`,
   );
 }
 
 /** @internal */
-export const GetHydratedRevisionContent$inboundSchema: z.ZodType<
-  GetHydratedRevisionContent,
+export const HydratedIntegration$inboundSchema: z.ZodType<
+  HydratedIntegration,
   z.ZodTypeDef,
   unknown
 > = z.object({
   name: z.string(),
   displayName: z.string().optional(),
   provider: z.string(),
-  read: z.lazy(() => GetHydratedRevisionRead$inboundSchema).optional(),
-  write: z.lazy(() => GetHydratedRevisionWrite$inboundSchema).optional(),
-  proxy: z.lazy(() => GetHydratedRevisionProxy$inboundSchema).optional(),
+  read: z.lazy(() => HydratedReadIntegration$inboundSchema).optional(),
+  write: z.lazy(() => Write$inboundSchema).optional(),
+  proxy: z.lazy(() => HydratedProxyIntegration$inboundSchema).optional(),
 });
 
 /** @internal */
-export type GetHydratedRevisionContent$Outbound = {
+export type HydratedIntegration$Outbound = {
   name: string;
   displayName?: string | undefined;
   provider: string;
-  read?: GetHydratedRevisionRead$Outbound | undefined;
-  write?: GetHydratedRevisionWrite$Outbound | undefined;
-  proxy?: GetHydratedRevisionProxy$Outbound | undefined;
+  read?: HydratedReadIntegration$Outbound | undefined;
+  write?: Write$Outbound | undefined;
+  proxy?: HydratedProxyIntegration$Outbound | undefined;
 };
 
 /** @internal */
-export const GetHydratedRevisionContent$outboundSchema: z.ZodType<
-  GetHydratedRevisionContent$Outbound,
+export const HydratedIntegration$outboundSchema: z.ZodType<
+  HydratedIntegration$Outbound,
   z.ZodTypeDef,
-  GetHydratedRevisionContent
+  HydratedIntegration
 > = z.object({
   name: z.string(),
   displayName: z.string().optional(),
   provider: z.string(),
-  read: z.lazy(() => GetHydratedRevisionRead$outboundSchema).optional(),
-  write: z.lazy(() => GetHydratedRevisionWrite$outboundSchema).optional(),
-  proxy: z.lazy(() => GetHydratedRevisionProxy$outboundSchema).optional(),
+  read: z.lazy(() => HydratedReadIntegration$outboundSchema).optional(),
+  write: z.lazy(() => Write$outboundSchema).optional(),
+  proxy: z.lazy(() => HydratedProxyIntegration$outboundSchema).optional(),
 });
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace GetHydratedRevisionContent$ {
-  /** @deprecated use `GetHydratedRevisionContent$inboundSchema` instead. */
-  export const inboundSchema = GetHydratedRevisionContent$inboundSchema;
-  /** @deprecated use `GetHydratedRevisionContent$outboundSchema` instead. */
-  export const outboundSchema = GetHydratedRevisionContent$outboundSchema;
-  /** @deprecated use `GetHydratedRevisionContent$Outbound` instead. */
-  export type Outbound = GetHydratedRevisionContent$Outbound;
+export namespace HydratedIntegration$ {
+  /** @deprecated use `HydratedIntegration$inboundSchema` instead. */
+  export const inboundSchema = HydratedIntegration$inboundSchema;
+  /** @deprecated use `HydratedIntegration$outboundSchema` instead. */
+  export const outboundSchema = HydratedIntegration$outboundSchema;
+  /** @deprecated use `HydratedIntegration$Outbound` instead. */
+  export type Outbound = HydratedIntegration$Outbound;
 }
 
-export function getHydratedRevisionContentToJSON(
-  getHydratedRevisionContent: GetHydratedRevisionContent,
+export function hydratedIntegrationToJSON(
+  hydratedIntegration: HydratedIntegration,
 ): string {
   return JSON.stringify(
-    GetHydratedRevisionContent$outboundSchema.parse(getHydratedRevisionContent),
+    HydratedIntegration$outboundSchema.parse(hydratedIntegration),
   );
 }
 
-export function getHydratedRevisionContentFromJSON(
+export function hydratedIntegrationFromJSON(
   jsonString: string,
-): SafeParseResult<GetHydratedRevisionContent, SDKValidationError> {
+): SafeParseResult<HydratedIntegration, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => GetHydratedRevisionContent$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetHydratedRevisionContent' from JSON`,
+    (x) => HydratedIntegration$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'HydratedIntegration' from JSON`,
   );
 }
 
 /** @internal */
-export const GetHydratedRevisionResponseBody$inboundSchema: z.ZodType<
-  GetHydratedRevisionResponseBody,
+export const GetHydratedRevisionHydratedRevision$inboundSchema: z.ZodType<
+  GetHydratedRevisionHydratedRevision,
   z.ZodTypeDef,
   unknown
 > = z.object({
   id: z.string(),
   specVersion: z.string(),
   createTime: z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  content: z.lazy(() => GetHydratedRevisionContent$inboundSchema),
+  content: z.lazy(() => HydratedIntegration$inboundSchema),
 });
 
 /** @internal */
-export type GetHydratedRevisionResponseBody$Outbound = {
+export type GetHydratedRevisionHydratedRevision$Outbound = {
   id: string;
   specVersion: string;
   createTime: string;
-  content: GetHydratedRevisionContent$Outbound;
+  content: HydratedIntegration$Outbound;
 };
 
 /** @internal */
-export const GetHydratedRevisionResponseBody$outboundSchema: z.ZodType<
-  GetHydratedRevisionResponseBody$Outbound,
+export const GetHydratedRevisionHydratedRevision$outboundSchema: z.ZodType<
+  GetHydratedRevisionHydratedRevision$Outbound,
   z.ZodTypeDef,
-  GetHydratedRevisionResponseBody
+  GetHydratedRevisionHydratedRevision
 > = z.object({
   id: z.string(),
   specVersion: z.string(),
   createTime: z.date().transform(v => v.toISOString()),
-  content: z.lazy(() => GetHydratedRevisionContent$outboundSchema),
+  content: z.lazy(() => HydratedIntegration$outboundSchema),
 });
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace GetHydratedRevisionResponseBody$ {
-  /** @deprecated use `GetHydratedRevisionResponseBody$inboundSchema` instead. */
-  export const inboundSchema = GetHydratedRevisionResponseBody$inboundSchema;
-  /** @deprecated use `GetHydratedRevisionResponseBody$outboundSchema` instead. */
-  export const outboundSchema = GetHydratedRevisionResponseBody$outboundSchema;
-  /** @deprecated use `GetHydratedRevisionResponseBody$Outbound` instead. */
-  export type Outbound = GetHydratedRevisionResponseBody$Outbound;
+export namespace GetHydratedRevisionHydratedRevision$ {
+  /** @deprecated use `GetHydratedRevisionHydratedRevision$inboundSchema` instead. */
+  export const inboundSchema =
+    GetHydratedRevisionHydratedRevision$inboundSchema;
+  /** @deprecated use `GetHydratedRevisionHydratedRevision$outboundSchema` instead. */
+  export const outboundSchema =
+    GetHydratedRevisionHydratedRevision$outboundSchema;
+  /** @deprecated use `GetHydratedRevisionHydratedRevision$Outbound` instead. */
+  export type Outbound = GetHydratedRevisionHydratedRevision$Outbound;
 }
 
-export function getHydratedRevisionResponseBodyToJSON(
-  getHydratedRevisionResponseBody: GetHydratedRevisionResponseBody,
+export function getHydratedRevisionHydratedRevisionToJSON(
+  getHydratedRevisionHydratedRevision: GetHydratedRevisionHydratedRevision,
 ): string {
   return JSON.stringify(
-    GetHydratedRevisionResponseBody$outboundSchema.parse(
-      getHydratedRevisionResponseBody,
+    GetHydratedRevisionHydratedRevision$outboundSchema.parse(
+      getHydratedRevisionHydratedRevision,
     ),
   );
 }
 
-export function getHydratedRevisionResponseBodyFromJSON(
+export function getHydratedRevisionHydratedRevisionFromJSON(
   jsonString: string,
-): SafeParseResult<GetHydratedRevisionResponseBody, SDKValidationError> {
+): SafeParseResult<GetHydratedRevisionHydratedRevision, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => GetHydratedRevisionResponseBody$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetHydratedRevisionResponseBody' from JSON`,
+    (x) =>
+      GetHydratedRevisionHydratedRevision$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetHydratedRevisionHydratedRevision' from JSON`,
   );
 }
 
@@ -1915,14 +2012,14 @@ export const GetHydratedRevisionResponse$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.union([
-  z.lazy(() => GetHydratedRevisionResponseBody$inboundSchema),
-  z.lazy(() => GetHydratedRevisionRevisionsResponseBody$inboundSchema),
+  z.lazy(() => GetHydratedRevisionHydratedRevision$inboundSchema),
+  z.lazy(() => GetHydratedRevisionAPIProblem$inboundSchema),
 ]);
 
 /** @internal */
 export type GetHydratedRevisionResponse$Outbound =
-  | GetHydratedRevisionResponseBody$Outbound
-  | GetHydratedRevisionRevisionsResponseBody$Outbound;
+  | GetHydratedRevisionHydratedRevision$Outbound
+  | GetHydratedRevisionAPIProblem$Outbound;
 
 /** @internal */
 export const GetHydratedRevisionResponse$outboundSchema: z.ZodType<
@@ -1930,8 +2027,8 @@ export const GetHydratedRevisionResponse$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   GetHydratedRevisionResponse
 > = z.union([
-  z.lazy(() => GetHydratedRevisionResponseBody$outboundSchema),
-  z.lazy(() => GetHydratedRevisionRevisionsResponseBody$outboundSchema),
+  z.lazy(() => GetHydratedRevisionHydratedRevision$outboundSchema),
+  z.lazy(() => GetHydratedRevisionAPIProblem$outboundSchema),
 ]);
 
 /**

@@ -27,7 +27,7 @@ export type ListInstallationsIn = ClosedEnum<typeof ListInstallationsIn>;
  *
  * @remarks
  */
-export type ListInstallationsIssues = {
+export type ListInstallationsInputValidationIssue = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -120,7 +120,7 @@ export type ListInstallationsIssues = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export type ListInstallationsResponseBodyData = {
+export type ListInstallationsInputValidationProblemData = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -192,7 +192,7 @@ export type ListInstallationsResponseBodyData = {
    * Additional context for the problem
    */
   context?: { [k: string]: any } | undefined;
-  issues?: Array<ListInstallationsIssues> | undefined;
+  issues?: Array<ListInstallationsInputValidationIssue> | undefined;
 };
 
 /**
@@ -202,7 +202,7 @@ export type ListInstallationsResponseBodyData = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export class ListInstallationsResponseBody extends Error {
+export class ListInstallationsInputValidationProblem extends Error {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -274,12 +274,12 @@ export class ListInstallationsResponseBody extends Error {
    * Additional context for the problem
    */
   context?: { [k: string]: any } | undefined;
-  issues?: Array<ListInstallationsIssues> | undefined;
+  issues?: Array<ListInstallationsInputValidationIssue> | undefined;
 
   /** The original data that was passed to this error instance. */
-  data$: ListInstallationsResponseBodyData;
+  data$: ListInstallationsInputValidationProblemData;
 
-  constructor(err: ListInstallationsResponseBodyData) {
+  constructor(err: ListInstallationsInputValidationProblemData) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
@@ -305,7 +305,7 @@ export class ListInstallationsResponseBody extends Error {
     if (err.context != null) this.context = err.context;
     if (err.issues != null) this.issues = err.issues;
 
-    this.name = "ListInstallationsResponseBody";
+    this.name = "ListInstallationsInputValidationProblem";
   }
 }
 
@@ -331,8 +331,8 @@ export namespace ListInstallationsIn$ {
 }
 
 /** @internal */
-export const ListInstallationsIssues$inboundSchema: z.ZodType<
-  ListInstallationsIssues,
+export const ListInstallationsInputValidationIssue$inboundSchema: z.ZodType<
+  ListInstallationsInputValidationIssue,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -361,7 +361,7 @@ export const ListInstallationsIssues$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type ListInstallationsIssues$Outbound = {
+export type ListInstallationsInputValidationIssue$Outbound = {
   type: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -385,10 +385,10 @@ export type ListInstallationsIssues$Outbound = {
 };
 
 /** @internal */
-export const ListInstallationsIssues$outboundSchema: z.ZodType<
-  ListInstallationsIssues$Outbound,
+export const ListInstallationsInputValidationIssue$outboundSchema: z.ZodType<
+  ListInstallationsInputValidationIssue$Outbound,
   z.ZodTypeDef,
-  ListInstallationsIssues
+  ListInstallationsInputValidationIssue
 > = z.object({
   type: z.string().default("about:blank"),
   href: z.string().optional(),
@@ -416,36 +416,41 @@ export const ListInstallationsIssues$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace ListInstallationsIssues$ {
-  /** @deprecated use `ListInstallationsIssues$inboundSchema` instead. */
-  export const inboundSchema = ListInstallationsIssues$inboundSchema;
-  /** @deprecated use `ListInstallationsIssues$outboundSchema` instead. */
-  export const outboundSchema = ListInstallationsIssues$outboundSchema;
-  /** @deprecated use `ListInstallationsIssues$Outbound` instead. */
-  export type Outbound = ListInstallationsIssues$Outbound;
+export namespace ListInstallationsInputValidationIssue$ {
+  /** @deprecated use `ListInstallationsInputValidationIssue$inboundSchema` instead. */
+  export const inboundSchema =
+    ListInstallationsInputValidationIssue$inboundSchema;
+  /** @deprecated use `ListInstallationsInputValidationIssue$outboundSchema` instead. */
+  export const outboundSchema =
+    ListInstallationsInputValidationIssue$outboundSchema;
+  /** @deprecated use `ListInstallationsInputValidationIssue$Outbound` instead. */
+  export type Outbound = ListInstallationsInputValidationIssue$Outbound;
 }
 
-export function listInstallationsIssuesToJSON(
-  listInstallationsIssues: ListInstallationsIssues,
+export function listInstallationsInputValidationIssueToJSON(
+  listInstallationsInputValidationIssue: ListInstallationsInputValidationIssue,
 ): string {
   return JSON.stringify(
-    ListInstallationsIssues$outboundSchema.parse(listInstallationsIssues),
+    ListInstallationsInputValidationIssue$outboundSchema.parse(
+      listInstallationsInputValidationIssue,
+    ),
   );
 }
 
-export function listInstallationsIssuesFromJSON(
+export function listInstallationsInputValidationIssueFromJSON(
   jsonString: string,
-): SafeParseResult<ListInstallationsIssues, SDKValidationError> {
+): SafeParseResult<ListInstallationsInputValidationIssue, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => ListInstallationsIssues$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ListInstallationsIssues' from JSON`,
+    (x) =>
+      ListInstallationsInputValidationIssue$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListInstallationsInputValidationIssue' from JSON`,
   );
 }
 
 /** @internal */
-export const ListInstallationsResponseBody$inboundSchema: z.ZodType<
-  ListInstallationsResponseBody,
+export const ListInstallationsInputValidationProblem$inboundSchema: z.ZodType<
+  ListInstallationsInputValidationProblem,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -468,15 +473,16 @@ export const ListInstallationsResponseBody$inboundSchema: z.ZodType<
   retryAfter: z.string().datetime({ offset: true }).transform(v => new Date(v))
     .optional(),
   context: z.record(z.any()).optional(),
-  issues: z.array(z.lazy(() => ListInstallationsIssues$inboundSchema))
-    .optional(),
+  issues: z.array(
+    z.lazy(() => ListInstallationsInputValidationIssue$inboundSchema),
+  ).optional(),
 })
   .transform((v) => {
-    return new ListInstallationsResponseBody(v);
+    return new ListInstallationsInputValidationProblem(v);
   });
 
 /** @internal */
-export type ListInstallationsResponseBody$Outbound = {
+export type ListInstallationsInputValidationProblem$Outbound = {
   type?: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -494,15 +500,15 @@ export type ListInstallationsResponseBody$Outbound = {
   retryable?: boolean | undefined;
   retryAfter?: string | undefined;
   context?: { [k: string]: any } | undefined;
-  issues?: Array<ListInstallationsIssues$Outbound> | undefined;
+  issues?: Array<ListInstallationsInputValidationIssue$Outbound> | undefined;
 };
 
 /** @internal */
-export const ListInstallationsResponseBody$outboundSchema: z.ZodType<
-  ListInstallationsResponseBody$Outbound,
+export const ListInstallationsInputValidationProblem$outboundSchema: z.ZodType<
+  ListInstallationsInputValidationProblem$Outbound,
   z.ZodTypeDef,
-  ListInstallationsResponseBody
-> = z.instanceof(ListInstallationsResponseBody)
+  ListInstallationsInputValidationProblem
+> = z.instanceof(ListInstallationsInputValidationProblem)
   .transform(v => v.data$)
   .pipe(z.object({
     type: z.string().default("about:blank"),
@@ -522,19 +528,22 @@ export const ListInstallationsResponseBody$outboundSchema: z.ZodType<
     retryable: z.boolean().optional(),
     retryAfter: z.date().transform(v => v.toISOString()).optional(),
     context: z.record(z.any()).optional(),
-    issues: z.array(z.lazy(() => ListInstallationsIssues$outboundSchema))
-      .optional(),
+    issues: z.array(
+      z.lazy(() => ListInstallationsInputValidationIssue$outboundSchema),
+    ).optional(),
   }));
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace ListInstallationsResponseBody$ {
-  /** @deprecated use `ListInstallationsResponseBody$inboundSchema` instead. */
-  export const inboundSchema = ListInstallationsResponseBody$inboundSchema;
-  /** @deprecated use `ListInstallationsResponseBody$outboundSchema` instead. */
-  export const outboundSchema = ListInstallationsResponseBody$outboundSchema;
-  /** @deprecated use `ListInstallationsResponseBody$Outbound` instead. */
-  export type Outbound = ListInstallationsResponseBody$Outbound;
+export namespace ListInstallationsInputValidationProblem$ {
+  /** @deprecated use `ListInstallationsInputValidationProblem$inboundSchema` instead. */
+  export const inboundSchema =
+    ListInstallationsInputValidationProblem$inboundSchema;
+  /** @deprecated use `ListInstallationsInputValidationProblem$outboundSchema` instead. */
+  export const outboundSchema =
+    ListInstallationsInputValidationProblem$outboundSchema;
+  /** @deprecated use `ListInstallationsInputValidationProblem$Outbound` instead. */
+  export type Outbound = ListInstallationsInputValidationProblem$Outbound;
 }

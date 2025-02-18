@@ -40,8 +40,8 @@ export function providerAppsCreate(
 ): APIPromise<
   Result<
     operations.CreateProviderAppResponse,
-    | errors.CreateProviderAppResponseBody
-    | errors.CreateProviderAppProviderAppsResponseBody
+    | errors.CreateProviderAppInputValidationProblem
+    | errors.CreateProviderAppProviderAppsInputValidationProblem
     | APIError
     | SDKValidationError
     | UnexpectedClientError
@@ -66,8 +66,8 @@ async function $do(
   [
     Result<
       operations.CreateProviderAppResponse,
-      | errors.CreateProviderAppResponseBody
-      | errors.CreateProviderAppProviderAppsResponseBody
+      | errors.CreateProviderAppInputValidationProblem
+      | errors.CreateProviderAppProviderAppsInputValidationProblem
       | APIError
       | SDKValidationError
       | UnexpectedClientError
@@ -171,8 +171,8 @@ async function $do(
 
   const [result] = await M.match<
     operations.CreateProviderAppResponse,
-    | errors.CreateProviderAppResponseBody
-    | errors.CreateProviderAppProviderAppsResponseBody
+    | errors.CreateProviderAppInputValidationProblem
+    | errors.CreateProviderAppProviderAppsInputValidationProblem
     | APIError
     | SDKValidationError
     | UnexpectedClientError
@@ -182,12 +182,14 @@ async function $do(
     | ConnectionError
   >(
     M.json(200, operations.CreateProviderAppResponse$inboundSchema),
-    M.jsonErr(400, errors.CreateProviderAppResponseBody$inboundSchema, {
-      ctype: "application/problem+json",
-    }),
+    M.jsonErr(
+      400,
+      errors.CreateProviderAppInputValidationProblem$inboundSchema,
+      { ctype: "application/problem+json" },
+    ),
     M.jsonErr(
       422,
-      errors.CreateProviderAppProviderAppsResponseBody$inboundSchema,
+      errors.CreateProviderAppProviderAppsInputValidationProblem$inboundSchema,
       { ctype: "application/problem+json" },
     ),
     M.fail("4XX"),

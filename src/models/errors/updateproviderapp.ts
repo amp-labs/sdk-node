@@ -27,7 +27,7 @@ export type UpdateProviderAppIn = ClosedEnum<typeof UpdateProviderAppIn>;
  *
  * @remarks
  */
-export type UpdateProviderAppIssues = {
+export type UpdateProviderAppInputValidationIssue = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -120,7 +120,7 @@ export type UpdateProviderAppIssues = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export type UpdateProviderAppResponseBodyData = {
+export type UpdateProviderAppInputValidationProblemData = {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -192,7 +192,7 @@ export type UpdateProviderAppResponseBodyData = {
    * Additional context for the problem
    */
   context?: { [k: string]: any } | undefined;
-  issues?: Array<UpdateProviderAppIssues> | undefined;
+  issues?: Array<UpdateProviderAppInputValidationIssue> | undefined;
 };
 
 /**
@@ -202,7 +202,7 @@ export type UpdateProviderAppResponseBodyData = {
  *
  * Additional properties specific to the problem type may be present.
  */
-export class UpdateProviderAppResponseBody extends Error {
+export class UpdateProviderAppInputValidationProblem extends Error {
   /**
    * An absolute URI that identifies the problem type
    */
@@ -274,12 +274,12 @@ export class UpdateProviderAppResponseBody extends Error {
    * Additional context for the problem
    */
   context?: { [k: string]: any } | undefined;
-  issues?: Array<UpdateProviderAppIssues> | undefined;
+  issues?: Array<UpdateProviderAppInputValidationIssue> | undefined;
 
   /** The original data that was passed to this error instance. */
-  data$: UpdateProviderAppResponseBodyData;
+  data$: UpdateProviderAppInputValidationProblemData;
 
-  constructor(err: UpdateProviderAppResponseBodyData) {
+  constructor(err: UpdateProviderAppInputValidationProblemData) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
@@ -305,7 +305,7 @@ export class UpdateProviderAppResponseBody extends Error {
     if (err.context != null) this.context = err.context;
     if (err.issues != null) this.issues = err.issues;
 
-    this.name = "UpdateProviderAppResponseBody";
+    this.name = "UpdateProviderAppInputValidationProblem";
   }
 }
 
@@ -331,8 +331,8 @@ export namespace UpdateProviderAppIn$ {
 }
 
 /** @internal */
-export const UpdateProviderAppIssues$inboundSchema: z.ZodType<
-  UpdateProviderAppIssues,
+export const UpdateProviderAppInputValidationIssue$inboundSchema: z.ZodType<
+  UpdateProviderAppInputValidationIssue,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -361,7 +361,7 @@ export const UpdateProviderAppIssues$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type UpdateProviderAppIssues$Outbound = {
+export type UpdateProviderAppInputValidationIssue$Outbound = {
   type: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -385,10 +385,10 @@ export type UpdateProviderAppIssues$Outbound = {
 };
 
 /** @internal */
-export const UpdateProviderAppIssues$outboundSchema: z.ZodType<
-  UpdateProviderAppIssues$Outbound,
+export const UpdateProviderAppInputValidationIssue$outboundSchema: z.ZodType<
+  UpdateProviderAppInputValidationIssue$Outbound,
   z.ZodTypeDef,
-  UpdateProviderAppIssues
+  UpdateProviderAppInputValidationIssue
 > = z.object({
   type: z.string().default("about:blank"),
   href: z.string().optional(),
@@ -416,36 +416,41 @@ export const UpdateProviderAppIssues$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace UpdateProviderAppIssues$ {
-  /** @deprecated use `UpdateProviderAppIssues$inboundSchema` instead. */
-  export const inboundSchema = UpdateProviderAppIssues$inboundSchema;
-  /** @deprecated use `UpdateProviderAppIssues$outboundSchema` instead. */
-  export const outboundSchema = UpdateProviderAppIssues$outboundSchema;
-  /** @deprecated use `UpdateProviderAppIssues$Outbound` instead. */
-  export type Outbound = UpdateProviderAppIssues$Outbound;
+export namespace UpdateProviderAppInputValidationIssue$ {
+  /** @deprecated use `UpdateProviderAppInputValidationIssue$inboundSchema` instead. */
+  export const inboundSchema =
+    UpdateProviderAppInputValidationIssue$inboundSchema;
+  /** @deprecated use `UpdateProviderAppInputValidationIssue$outboundSchema` instead. */
+  export const outboundSchema =
+    UpdateProviderAppInputValidationIssue$outboundSchema;
+  /** @deprecated use `UpdateProviderAppInputValidationIssue$Outbound` instead. */
+  export type Outbound = UpdateProviderAppInputValidationIssue$Outbound;
 }
 
-export function updateProviderAppIssuesToJSON(
-  updateProviderAppIssues: UpdateProviderAppIssues,
+export function updateProviderAppInputValidationIssueToJSON(
+  updateProviderAppInputValidationIssue: UpdateProviderAppInputValidationIssue,
 ): string {
   return JSON.stringify(
-    UpdateProviderAppIssues$outboundSchema.parse(updateProviderAppIssues),
+    UpdateProviderAppInputValidationIssue$outboundSchema.parse(
+      updateProviderAppInputValidationIssue,
+    ),
   );
 }
 
-export function updateProviderAppIssuesFromJSON(
+export function updateProviderAppInputValidationIssueFromJSON(
   jsonString: string,
-): SafeParseResult<UpdateProviderAppIssues, SDKValidationError> {
+): SafeParseResult<UpdateProviderAppInputValidationIssue, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => UpdateProviderAppIssues$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'UpdateProviderAppIssues' from JSON`,
+    (x) =>
+      UpdateProviderAppInputValidationIssue$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'UpdateProviderAppInputValidationIssue' from JSON`,
   );
 }
 
 /** @internal */
-export const UpdateProviderAppResponseBody$inboundSchema: z.ZodType<
-  UpdateProviderAppResponseBody,
+export const UpdateProviderAppInputValidationProblem$inboundSchema: z.ZodType<
+  UpdateProviderAppInputValidationProblem,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -468,15 +473,16 @@ export const UpdateProviderAppResponseBody$inboundSchema: z.ZodType<
   retryAfter: z.string().datetime({ offset: true }).transform(v => new Date(v))
     .optional(),
   context: z.record(z.any()).optional(),
-  issues: z.array(z.lazy(() => UpdateProviderAppIssues$inboundSchema))
-    .optional(),
+  issues: z.array(
+    z.lazy(() => UpdateProviderAppInputValidationIssue$inboundSchema),
+  ).optional(),
 })
   .transform((v) => {
-    return new UpdateProviderAppResponseBody(v);
+    return new UpdateProviderAppInputValidationProblem(v);
   });
 
 /** @internal */
-export type UpdateProviderAppResponseBody$Outbound = {
+export type UpdateProviderAppInputValidationProblem$Outbound = {
   type?: string;
   href?: string | undefined;
   title?: string | undefined;
@@ -494,15 +500,15 @@ export type UpdateProviderAppResponseBody$Outbound = {
   retryable?: boolean | undefined;
   retryAfter?: string | undefined;
   context?: { [k: string]: any } | undefined;
-  issues?: Array<UpdateProviderAppIssues$Outbound> | undefined;
+  issues?: Array<UpdateProviderAppInputValidationIssue$Outbound> | undefined;
 };
 
 /** @internal */
-export const UpdateProviderAppResponseBody$outboundSchema: z.ZodType<
-  UpdateProviderAppResponseBody$Outbound,
+export const UpdateProviderAppInputValidationProblem$outboundSchema: z.ZodType<
+  UpdateProviderAppInputValidationProblem$Outbound,
   z.ZodTypeDef,
-  UpdateProviderAppResponseBody
-> = z.instanceof(UpdateProviderAppResponseBody)
+  UpdateProviderAppInputValidationProblem
+> = z.instanceof(UpdateProviderAppInputValidationProblem)
   .transform(v => v.data$)
   .pipe(z.object({
     type: z.string().default("about:blank"),
@@ -522,19 +528,22 @@ export const UpdateProviderAppResponseBody$outboundSchema: z.ZodType<
     retryable: z.boolean().optional(),
     retryAfter: z.date().transform(v => v.toISOString()).optional(),
     context: z.record(z.any()).optional(),
-    issues: z.array(z.lazy(() => UpdateProviderAppIssues$outboundSchema))
-      .optional(),
+    issues: z.array(
+      z.lazy(() => UpdateProviderAppInputValidationIssue$outboundSchema),
+    ).optional(),
   }));
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace UpdateProviderAppResponseBody$ {
-  /** @deprecated use `UpdateProviderAppResponseBody$inboundSchema` instead. */
-  export const inboundSchema = UpdateProviderAppResponseBody$inboundSchema;
-  /** @deprecated use `UpdateProviderAppResponseBody$outboundSchema` instead. */
-  export const outboundSchema = UpdateProviderAppResponseBody$outboundSchema;
-  /** @deprecated use `UpdateProviderAppResponseBody$Outbound` instead. */
-  export type Outbound = UpdateProviderAppResponseBody$Outbound;
+export namespace UpdateProviderAppInputValidationProblem$ {
+  /** @deprecated use `UpdateProviderAppInputValidationProblem$inboundSchema` instead. */
+  export const inboundSchema =
+    UpdateProviderAppInputValidationProblem$inboundSchema;
+  /** @deprecated use `UpdateProviderAppInputValidationProblem$outboundSchema` instead. */
+  export const outboundSchema =
+    UpdateProviderAppInputValidationProblem$outboundSchema;
+  /** @deprecated use `UpdateProviderAppInputValidationProblem$Outbound` instead. */
+  export type Outbound = UpdateProviderAppInputValidationProblem$Outbound;
 }

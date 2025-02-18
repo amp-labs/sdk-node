@@ -40,8 +40,8 @@ export function projectsUpdate(
 ): APIPromise<
   Result<
     operations.UpdateProjectResponse,
-    | errors.UpdateProjectResponseBody
-    | errors.UpdateProjectProjectsResponseBody
+    | errors.UpdateProjectInputValidationProblem
+    | errors.UpdateProjectProjectsInputValidationProblem
     | APIError
     | SDKValidationError
     | UnexpectedClientError
@@ -66,8 +66,8 @@ async function $do(
   [
     Result<
       operations.UpdateProjectResponse,
-      | errors.UpdateProjectResponseBody
-      | errors.UpdateProjectProjectsResponseBody
+      | errors.UpdateProjectInputValidationProblem
+      | errors.UpdateProjectProjectsInputValidationProblem
       | APIError
       | SDKValidationError
       | UnexpectedClientError
@@ -167,8 +167,8 @@ async function $do(
 
   const [result] = await M.match<
     operations.UpdateProjectResponse,
-    | errors.UpdateProjectResponseBody
-    | errors.UpdateProjectProjectsResponseBody
+    | errors.UpdateProjectInputValidationProblem
+    | errors.UpdateProjectProjectsInputValidationProblem
     | APIError
     | SDKValidationError
     | UnexpectedClientError
@@ -178,12 +178,14 @@ async function $do(
     | ConnectionError
   >(
     M.json(200, operations.UpdateProjectResponse$inboundSchema),
-    M.jsonErr(400, errors.UpdateProjectResponseBody$inboundSchema, {
+    M.jsonErr(400, errors.UpdateProjectInputValidationProblem$inboundSchema, {
       ctype: "application/problem+json",
     }),
-    M.jsonErr(422, errors.UpdateProjectProjectsResponseBody$inboundSchema, {
-      ctype: "application/problem+json",
-    }),
+    M.jsonErr(
+      422,
+      errors.UpdateProjectProjectsInputValidationProblem$inboundSchema,
+      { ctype: "application/problem+json" },
+    ),
     M.fail("4XX"),
     M.fail("5XX"),
     M.json("default", operations.UpdateProjectResponse$inboundSchema, {
