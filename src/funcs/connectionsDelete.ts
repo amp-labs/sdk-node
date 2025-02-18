@@ -21,16 +21,17 @@ import {
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
 import { DeleteConnectionServerList } from "../models/operations/deleteconnection.js";
 import * as operations from "../models/operations/index.js";
+import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
  * Delete a connection
  */
-export async function connectionsDelete(
+export function connectionsDelete(
   client: SDKCore,
   request: operations.DeleteConnectionRequest,
   options?: RequestOptions,
-): Promise<
+): APIPromise<
   Result<
     operations.DeleteConnectionResponseBody | undefined,
     | APIError
@@ -42,13 +43,39 @@ export async function connectionsDelete(
     | ConnectionError
   >
 > {
+  return new APIPromise($do(
+    client,
+    request,
+    options,
+  ));
+}
+
+async function $do(
+  client: SDKCore,
+  request: operations.DeleteConnectionRequest,
+  options?: RequestOptions,
+): Promise<
+  [
+    Result<
+      operations.DeleteConnectionResponseBody | undefined,
+      | APIError
+      | SDKValidationError
+      | UnexpectedClientError
+      | InvalidRequestError
+      | RequestAbortedError
+      | RequestTimeoutError
+      | ConnectionError
+    >,
+    APICall,
+  ]
+> {
   const parsed = safeParse(
     request,
     (value) => operations.DeleteConnectionRequest$outboundSchema.parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {
-    return parsed;
+    return [parsed, { status: "invalid" }];
   }
   const payload = parsed.value;
   const body = null;
@@ -113,7 +140,7 @@ export async function connectionsDelete(
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
-    return requestRes;
+    return [requestRes, { status: "invalid" }];
   }
   const req = requestRes.value;
 
@@ -124,7 +151,7 @@ export async function connectionsDelete(
     retryCodes: context.retryCodes,
   });
   if (!doResult.ok) {
-    return doResult;
+    return [doResult, { status: "request-error", request: req }];
   }
   const response = doResult.value;
 
@@ -151,8 +178,8 @@ export async function connectionsDelete(
     ),
   )(response);
   if (!result.ok) {
-    return result;
+    return [result, { status: "complete", request: req, response }];
   }
 
-  return result;
+  return [result, { status: "complete", request: req, response }];
 }

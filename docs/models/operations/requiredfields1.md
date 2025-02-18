@@ -7,7 +7,7 @@ import { RequiredFields1 } from "@amp-labs/sdk-node/models/operations";
 
 let value: RequiredFields1 = {
   fieldName: "<value>",
-  displayName: "Cleveland.Schuster83",
+  displayName: "Freida9",
   mapToName: "account_id",
   mapToDisplayName: "Account ID",
 };

@@ -45,7 +45,7 @@ export type TriggerReadRequest = {
   /**
    * Read Request
    */
-  requestBody?: TriggerReadRequestBody | undefined;
+  requestBody: TriggerReadRequestBody;
 };
 
 /**
@@ -232,7 +232,7 @@ export const TriggerReadRequest$inboundSchema: z.ZodType<
   projectIdOrName: z.string(),
   integrationId: z.string(),
   objectName: z.string(),
-  RequestBody: z.lazy(() => TriggerReadRequestBody$inboundSchema).optional(),
+  RequestBody: z.lazy(() => TriggerReadRequestBody$inboundSchema),
 }).transform((v) => {
   return remap$(v, {
     "RequestBody": "requestBody",
@@ -244,7 +244,7 @@ export type TriggerReadRequest$Outbound = {
   projectIdOrName: string;
   integrationId: string;
   objectName: string;
-  RequestBody?: TriggerReadRequestBody$Outbound | undefined;
+  RequestBody: TriggerReadRequestBody$Outbound;
 };
 
 /** @internal */
@@ -256,7 +256,7 @@ export const TriggerReadRequest$outboundSchema: z.ZodType<
   projectIdOrName: z.string(),
   integrationId: z.string(),
   objectName: z.string(),
-  requestBody: z.lazy(() => TriggerReadRequestBody$outboundSchema).optional(),
+  requestBody: z.lazy(() => TriggerReadRequestBody$outboundSchema),
 }).transform((v) => {
   return remap$(v, {
     requestBody: "RequestBody",

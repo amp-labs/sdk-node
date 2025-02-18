@@ -7,7 +7,7 @@ The timing of the registration.
 ```typescript
 import { RegistrationTiming } from "@amp-labs/sdk-node/models/operations";
 
-let value: RegistrationTiming = "installation";
+let value: RegistrationTiming = "providerApp";
 ```
 
 ## Values

@@ -7,7 +7,7 @@ The type of authentication required by the provider.
 ```typescript
 import { GetProviderAuthType } from "@amp-labs/sdk-node/models/operations";
 
-let value: GetProviderAuthType = "basic";
+let value: GetProviderAuthType = "apiKey";
 ```
 
 ## Values

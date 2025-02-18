@@ -29,7 +29,7 @@ export type CreateRevisionRequestBody = {
 export type CreateRevisionRequest = {
   projectIdOrName: string;
   integrationId: string;
-  requestBody?: CreateRevisionRequestBody | undefined;
+  requestBody: CreateRevisionRequestBody;
 };
 
 /**
@@ -178,7 +178,7 @@ export const CreateRevisionRequest$inboundSchema: z.ZodType<
 > = z.object({
   projectIdOrName: z.string(),
   integrationId: z.string(),
-  RequestBody: z.lazy(() => CreateRevisionRequestBody$inboundSchema).optional(),
+  RequestBody: z.lazy(() => CreateRevisionRequestBody$inboundSchema),
 }).transform((v) => {
   return remap$(v, {
     "RequestBody": "requestBody",
@@ -189,7 +189,7 @@ export const CreateRevisionRequest$inboundSchema: z.ZodType<
 export type CreateRevisionRequest$Outbound = {
   projectIdOrName: string;
   integrationId: string;
-  RequestBody?: CreateRevisionRequestBody$Outbound | undefined;
+  RequestBody: CreateRevisionRequestBody$Outbound;
 };
 
 /** @internal */
@@ -200,8 +200,7 @@ export const CreateRevisionRequest$outboundSchema: z.ZodType<
 > = z.object({
   projectIdOrName: z.string(),
   integrationId: z.string(),
-  requestBody: z.lazy(() => CreateRevisionRequestBody$outboundSchema)
-    .optional(),
+  requestBody: z.lazy(() => CreateRevisionRequestBody$outboundSchema),
 }).transform((v) => {
   return remap$(v, {
     requestBody: "RequestBody",

@@ -7,7 +7,7 @@ The location of the invalid input
 ```typescript
 import { GetOperationOperationsIn } from "@amp-labs/sdk-node/models/errors";
 
-let value: GetOperationOperationsIn = "body";
+let value: GetOperationOperationsIn = "header";
 ```
 
 ## Values

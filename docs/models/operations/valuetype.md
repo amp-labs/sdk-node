@@ -7,7 +7,7 @@ A normalized field type
 ```typescript
 import { ValueType } from "@amp-labs/sdk-node/models/operations";
 
-let value: ValueType = "string";
+let value: ValueType = "datetime";
 ```
 
 ## Values

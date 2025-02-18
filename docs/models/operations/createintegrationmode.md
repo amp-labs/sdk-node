@@ -7,7 +7,7 @@ The data delivery mode for this object. If not specified, defaults to automatic.
 ```typescript
 import { CreateIntegrationMode } from "@amp-labs/sdk-node/models/operations";
 
-let value: CreateIntegrationMode = "auto";
+let value: CreateIntegrationMode = "onRequest";
 ```
 
 ## Values

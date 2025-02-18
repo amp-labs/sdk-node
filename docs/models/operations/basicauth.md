@@ -6,8 +6,8 @@
 import { BasicAuth } from "@amp-labs/sdk-node/models/operations";
 
 let value: BasicAuth = {
-  username: "Helen_Stoltenberg27",
-  password: "9LacE2kcjj9DXD3",
+  username: "Arjun.Osinski",
+  password: "rf9LacE2kcjj9DX",
 };
 ```
 

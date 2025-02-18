@@ -8,7 +8,7 @@ import { BatchUpsertIntegrationsLatestRevision } from "@amp-labs/sdk-node/models
 let value: BatchUpsertIntegrationsLatestRevision = {
   id: "revision-id-1",
   specVersion: "1.0.0",
-  createTime: new Date("2023-04-22T20:11:12.127Z"),
+  createTime: new Date("2023-08-17T22:17:39.092Z"),
   content: {
     name: "<value>",
     provider: "<value>",
@@ -29,9 +29,7 @@ let value: BatchUpsertIntegrationsLatestRevision = {
           ],
           optionalFields: [
             {
-              fieldName: "<value>",
-              mapToName: "account_id",
-              mapToDisplayName: "Account ID",
+              mapToName: "<value>",
             },
           ],
           backfill: {

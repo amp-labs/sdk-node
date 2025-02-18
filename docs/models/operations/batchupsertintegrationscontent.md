@@ -18,14 +18,14 @@ let value: BatchUpsertIntegrationsContent = {
         mapToDisplayName: "People",
         requiredFields: [
           {
-            fieldName: "<value>",
-            mapToName: "account_id",
-            mapToDisplayName: "Account ID",
+            mapToName: "<value>",
           },
         ],
         optionalFields: [
           {
-            mapToName: "<value>",
+            fieldName: "<value>",
+            mapToName: "account_id",
+            mapToDisplayName: "Account ID",
           },
         ],
         backfill: {

@@ -23,7 +23,9 @@ let value: Content = {
         ],
         optionalFields: [
           {
-            mapToName: "<value>",
+            fieldName: "<value>",
+            mapToName: "account_id",
+            mapToDisplayName: "Account ID",
           },
         ],
         backfill: {

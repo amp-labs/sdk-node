@@ -7,7 +7,7 @@ The location of the invalid input
 ```typescript
 import { CreateGroupIn } from "@amp-labs/sdk-node/models/errors";
 
-let value: CreateGroupIn = "path";
+let value: CreateGroupIn = "body";
 ```
 
 ## Values

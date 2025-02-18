@@ -21,6 +21,7 @@ import {
 import * as errors from "../models/errors/index.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
 import * as operations from "../models/operations/index.js";
+import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
@@ -29,11 +30,11 @@ import { Result } from "../types/fp.js";
  * @remarks
  * If a read action has delivery mode set to onRequest, then use this endpoint to request for more results. Learn more in [Delivery modes](https://docs.withampersand.com/define-integrations/read-actions#delivery-modes).
  */
-export async function readDeliverResults(
+export function readDeliverResults(
   client: SDKCore,
   request: operations.DeliverResultsRequest,
   options?: RequestOptions,
-): Promise<
+): APIPromise<
   Result<
     operations.DeliverResultsResponseBody | undefined,
     | errors.DeliverResultsResponseBody
@@ -47,13 +48,41 @@ export async function readDeliverResults(
     | ConnectionError
   >
 > {
+  return new APIPromise($do(
+    client,
+    request,
+    options,
+  ));
+}
+
+async function $do(
+  client: SDKCore,
+  request: operations.DeliverResultsRequest,
+  options?: RequestOptions,
+): Promise<
+  [
+    Result<
+      operations.DeliverResultsResponseBody | undefined,
+      | errors.DeliverResultsResponseBody
+      | errors.DeliverResultsReadResponseBody
+      | APIError
+      | SDKValidationError
+      | UnexpectedClientError
+      | InvalidRequestError
+      | RequestAbortedError
+      | RequestTimeoutError
+      | ConnectionError
+    >,
+    APICall,
+  ]
+> {
   const parsed = safeParse(
     request,
     (value) => operations.DeliverResultsRequest$outboundSchema.parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {
-    return parsed;
+    return [parsed, { status: "invalid" }];
   }
   const payload = parsed.value;
   const body = encodeJSON("body", payload.RequestBody, { explode: true });
@@ -120,7 +149,7 @@ export async function readDeliverResults(
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
-    return requestRes;
+    return [requestRes, { status: "invalid" }];
   }
   const req = requestRes.value;
 
@@ -131,7 +160,7 @@ export async function readDeliverResults(
     retryCodes: context.retryCodes,
   });
   if (!doResult.ok) {
-    return doResult;
+    return [doResult, { status: "request-error", request: req }];
   }
   const response = doResult.value;
 
@@ -163,8 +192,8 @@ export async function readDeliverResults(
     ),
   )(response, { extraFields: responseFields });
   if (!result.ok) {
-    return result;
+    return [result, { status: "complete", request: req, response }];
   }
 
-  return result;
+  return [result, { status: "complete", request: req, response }];
 }

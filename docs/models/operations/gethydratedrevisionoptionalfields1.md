@@ -7,7 +7,7 @@ import { GetHydratedRevisionOptionalFields1 } from "@amp-labs/sdk-node/models/op
 
 let value: GetHydratedRevisionOptionalFields1 = {
   fieldName: "<value>",
-  displayName: "Easter.Gulgowski",
+  displayName: "Elena6",
   mapToName: "account_id",
   mapToDisplayName: "Account ID",
 };

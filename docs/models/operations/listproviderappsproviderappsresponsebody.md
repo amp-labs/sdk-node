@@ -14,7 +14,7 @@ let value: ListProviderAppsProviderAppsResponseBody = {
   scopes: [
     "[\"oauth\",\"offline\",\"crm.read\"]",
   ],
-  createTime: new Date("2024-02-25T06:02:44.560Z"),
+  createTime: new Date("2025-05-17T17:32:07.447Z"),
 };
 ```
 

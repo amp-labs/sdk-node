@@ -6,7 +6,7 @@
 import { SelectedValueDefaults2 } from "@amp-labs/sdk-node/models/operations";
 
 let value: SelectedValueDefaults2 = {
-  value: 488056,
+  value: 396060,
 };
 ```
 

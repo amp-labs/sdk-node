@@ -29,7 +29,7 @@ export type BatchUpsertIntegrationsRequestBody = {
 
 export type BatchUpsertIntegrationsRequest = {
   projectIdOrName: string;
-  requestBody?: BatchUpsertIntegrationsRequestBody | undefined;
+  requestBody: BatchUpsertIntegrationsRequestBody;
 };
 
 /**
@@ -394,8 +394,7 @@ export const BatchUpsertIntegrationsRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   projectIdOrName: z.string(),
-  RequestBody: z.lazy(() => BatchUpsertIntegrationsRequestBody$inboundSchema)
-    .optional(),
+  RequestBody: z.lazy(() => BatchUpsertIntegrationsRequestBody$inboundSchema),
 }).transform((v) => {
   return remap$(v, {
     "RequestBody": "requestBody",
@@ -405,7 +404,7 @@ export const BatchUpsertIntegrationsRequest$inboundSchema: z.ZodType<
 /** @internal */
 export type BatchUpsertIntegrationsRequest$Outbound = {
   projectIdOrName: string;
-  RequestBody?: BatchUpsertIntegrationsRequestBody$Outbound | undefined;
+  RequestBody: BatchUpsertIntegrationsRequestBody$Outbound;
 };
 
 /** @internal */
@@ -415,8 +414,7 @@ export const BatchUpsertIntegrationsRequest$outboundSchema: z.ZodType<
   BatchUpsertIntegrationsRequest
 > = z.object({
   projectIdOrName: z.string(),
-  requestBody: z.lazy(() => BatchUpsertIntegrationsRequestBody$outboundSchema)
-    .optional(),
+  requestBody: z.lazy(() => BatchUpsertIntegrationsRequestBody$outboundSchema),
 }).transform((v) => {
   return remap$(v, {
     requestBody: "RequestBody",

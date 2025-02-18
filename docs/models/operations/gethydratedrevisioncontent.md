@@ -12,7 +12,7 @@ let value: GetHydratedRevisionContent = {
     objects: [
       {
         objectName: "<value>",
-        displayName: "Zoila.Stroman61",
+        displayName: "Sanford84",
         mapToName: "people",
         mapToDisplayName: "People",
         destination: "<value>",
@@ -24,7 +24,10 @@ let value: GetHydratedRevisionContent = {
         ],
         optionalFields: [
           {
-            mapToName: "<value>",
+            fieldName: "<value>",
+            displayName: "Annie86",
+            mapToName: "account_id",
+            mapToDisplayName: "Account ID",
           },
         ],
         allFields: [
@@ -59,7 +62,7 @@ let value: GetHydratedRevisionContent = {
     objects: [
       {
         objectName: "<value>",
-        displayName: "Gwendolyn72",
+        displayName: "Adolf.Renner52",
         valueDefaults: {
           allowAnyFields: true,
         },

@@ -7,7 +7,7 @@ The location of the invalid input
 ```typescript
 import { CreateDestinationDestinationsIn } from "@amp-labs/sdk-node/models/errors";
 
-let value: CreateDestinationDestinationsIn = "path";
+let value: CreateDestinationDestinationsIn = "body";
 ```
 
 ## Values

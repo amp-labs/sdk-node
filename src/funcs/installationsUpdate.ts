@@ -22,6 +22,7 @@ import * as errors from "../models/errors/index.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
 import * as operations from "../models/operations/index.js";
 import { UpdateInstallationServerList } from "../models/operations/updateinstallation.js";
+import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 export enum UpdateAcceptEnum {
@@ -32,11 +33,11 @@ export enum UpdateAcceptEnum {
 /**
  * Update an installation
  */
-export async function installationsUpdate(
+export function installationsUpdate(
   client: SDKCore,
   request: operations.UpdateInstallationRequest,
   options?: RequestOptions & { acceptHeaderOverride?: UpdateAcceptEnum },
-): Promise<
+): APIPromise<
   Result<
     operations.UpdateInstallationResponse,
     | errors.UpdateInstallationResponseBody
@@ -50,13 +51,41 @@ export async function installationsUpdate(
     | ConnectionError
   >
 > {
+  return new APIPromise($do(
+    client,
+    request,
+    options,
+  ));
+}
+
+async function $do(
+  client: SDKCore,
+  request: operations.UpdateInstallationRequest,
+  options?: RequestOptions & { acceptHeaderOverride?: UpdateAcceptEnum },
+): Promise<
+  [
+    Result<
+      operations.UpdateInstallationResponse,
+      | errors.UpdateInstallationResponseBody
+      | errors.UpdateInstallationInstallationsResponseBody
+      | APIError
+      | SDKValidationError
+      | UnexpectedClientError
+      | InvalidRequestError
+      | RequestAbortedError
+      | RequestTimeoutError
+      | ConnectionError
+    >,
+    APICall,
+  ]
+> {
   const parsed = safeParse(
     request,
     (value) => operations.UpdateInstallationRequest$outboundSchema.parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {
-    return parsed;
+    return [parsed, { status: "invalid" }];
   }
   const payload = parsed.value;
   const body = encodeJSON("body", payload.RequestBody, { explode: true });
@@ -129,7 +158,7 @@ export async function installationsUpdate(
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
-    return requestRes;
+    return [requestRes, { status: "invalid" }];
   }
   const req = requestRes.value;
 
@@ -140,7 +169,7 @@ export async function installationsUpdate(
     retryCodes: context.retryCodes,
   });
   if (!doResult.ok) {
-    return doResult;
+    return [doResult, { status: "request-error", request: req }];
   }
   const response = doResult.value;
 
@@ -176,8 +205,8 @@ export async function installationsUpdate(
     }),
   )(response, { extraFields: responseFields });
   if (!result.ok) {
-    return result;
+    return [result, { status: "complete", request: req, response }];
   }
 
-  return result;
+  return [result, { status: "complete", request: req, response }];
 }

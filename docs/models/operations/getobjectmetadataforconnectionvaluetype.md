@@ -7,7 +7,7 @@ A normalized field type
 ```typescript
 import { GetObjectMetadataForConnectionValueType } from "@amp-labs/sdk-node/models/operations";
 
-let value: GetObjectMetadataForConnectionValueType = "string";
+let value: GetObjectMetadataForConnectionValueType = "other";
 ```
 
 ## Values

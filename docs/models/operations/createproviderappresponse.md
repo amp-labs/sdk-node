@@ -15,7 +15,7 @@ const value: operations.CreateProviderAppResponseBody = {
   scopes: [
     "[\"oauth\",\"offline\",\"crm.read\"]",
   ],
-  createTime: new Date("2024-09-14T13:50:38.886Z"),
+  createTime: new Date("2025-10-11T10:53:38.306Z"),
 };
 ```
 

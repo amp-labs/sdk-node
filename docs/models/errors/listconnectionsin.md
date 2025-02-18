@@ -7,7 +7,7 @@ The location of the invalid input
 ```typescript
 import { ListConnectionsIn } from "@amp-labs/sdk-node/models/errors";
 
-let value: ListConnectionsIn = "body";
+let value: ListConnectionsIn = "query";
 ```
 
 ## Values

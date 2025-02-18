@@ -8,7 +8,7 @@ Configuration for API key. Must be provided if authType is apiKey.
 import { GetProviderApiKeyOpts } from "@amp-labs/sdk-node/models/operations";
 
 let value: GetProviderApiKeyOpts = {
-  attachmentType: "header",
+  attachmentType: "query",
   query: {
     name: "api_key",
   },

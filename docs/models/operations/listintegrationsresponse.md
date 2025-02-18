@@ -12,11 +12,11 @@ const value: operations.ListIntegrationsIntegrationsResponseBody[] = [
     projectId: "project-456",
     name: "read-accounts",
     provider: "salesforce",
-    createTime: new Date("2024-03-30T11:16:03.610Z"),
+    createTime: new Date("2023-10-17T22:52:14.955Z"),
     latestRevision: {
       id: "revision-id-1",
       specVersion: "1.0.0",
-      createTime: new Date("2023-10-17T22:52:14.955Z"),
+      createTime: new Date("2025-04-28T13:26:34.681Z"),
       content: {
         name: "<value>",
         provider: "<value>",
@@ -30,14 +30,14 @@ const value: operations.ListIntegrationsIntegrationsResponseBody[] = [
               mapToDisplayName: "People",
               requiredFields: [
                 {
-                  mapToName: "<value>",
+                  fieldName: "<value>",
+                  mapToName: "account_id",
+                  mapToDisplayName: "Account ID",
                 },
               ],
               optionalFields: [
                 {
-                  fieldName: "<value>",
-                  mapToName: "account_id",
-                  mapToDisplayName: "Account ID",
+                  mapToName: "<value>",
                 },
               ],
               backfill: {

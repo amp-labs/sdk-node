@@ -15,7 +15,7 @@ const value: operations.SelectedValueDefaults1 = {
 
 ```typescript
 const value: operations.SelectedValueDefaults2 = {
-  value: 940432,
+  value: 183280,
 };
 ```
 

@@ -9,20 +9,23 @@ let value: GetHydratedRevisionRead = {
   objects: [
     {
       objectName: "<value>",
-      displayName: "Verlie_Kassulke1",
+      displayName: "Shannon_Reinger",
       mapToName: "people",
       mapToDisplayName: "People",
       destination: "<value>",
       schedule: "<value>",
       requiredFields: [
         {
-          mapToName: "<value>",
+          fieldName: "<value>",
+          displayName: "Lenna_Gutkowski",
+          mapToName: "account_id",
+          mapToDisplayName: "Account ID",
         },
       ],
       optionalFields: [
         {
           fieldName: "<value>",
-          displayName: "Liana.Collins",
+          displayName: "Brice_Marks",
           mapToName: "account_id",
           mapToDisplayName: "Account ID",
         },

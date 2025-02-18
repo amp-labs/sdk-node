@@ -8,7 +8,7 @@ import { GetInstallationConfig } from "@amp-labs/sdk-node/models/operations";
 let value: GetInstallationConfig = {
   id: "config-123",
   revisionId: "revision-123",
-  createTime: new Date("2025-08-04T18:51:28.290Z"),
+  createTime: new Date("2024-02-15T02:10:01.786Z"),
   createdBy: "builder:builder-123",
   content: {
     provider: "salesforce",

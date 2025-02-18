@@ -19,6 +19,7 @@ import {
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
 import * as operations from "../models/operations/index.js";
 import { ListProvidersServerList } from "../models/operations/listproviders.js";
+import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 export enum ListAcceptEnum {
@@ -29,10 +30,10 @@ export enum ListAcceptEnum {
 /**
  * List providers
  */
-export async function providersList(
+export function providersList(
   client: SDKCore,
   options?: RequestOptions & { acceptHeaderOverride?: ListAcceptEnum },
-): Promise<
+): APIPromise<
   Result<
     operations.ListProvidersResponse,
     | APIError
@@ -43,6 +44,30 @@ export async function providersList(
     | RequestTimeoutError
     | ConnectionError
   >
+> {
+  return new APIPromise($do(
+    client,
+    options,
+  ));
+}
+
+async function $do(
+  client: SDKCore,
+  options?: RequestOptions & { acceptHeaderOverride?: ListAcceptEnum },
+): Promise<
+  [
+    Result<
+      operations.ListProvidersResponse,
+      | APIError
+      | SDKValidationError
+      | UnexpectedClientError
+      | InvalidRequestError
+      | RequestAbortedError
+      | RequestTimeoutError
+      | ConnectionError
+    >,
+    APICall,
+  ]
 > {
   const baseURL = options?.serverURL
     || pathToFunc(ListProvidersServerList[0], { charEncoding: "percent" })();
@@ -91,7 +116,7 @@ export async function providersList(
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
-    return requestRes;
+    return [requestRes, { status: "invalid" }];
   }
   const req = requestRes.value;
 
@@ -102,7 +127,7 @@ export async function providersList(
     retryCodes: context.retryCodes,
   });
   if (!doResult.ok) {
-    return doResult;
+    return [doResult, { status: "request-error", request: req }];
   }
   const response = doResult.value;
 
@@ -124,8 +149,8 @@ export async function providersList(
     }),
   )(response);
   if (!result.ok) {
-    return result;
+    return [result, { status: "complete", request: req, response }];
   }
 
-  return result;
+  return [result, { status: "complete", request: req, response }];
 }

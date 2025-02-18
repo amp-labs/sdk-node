@@ -10,7 +10,7 @@ const value: operations.CreateProjectResponseBody = {
   id: "project-id-123",
   name: "mailmonkey-staging",
   appName: "MailMonkey",
-  createTime: new Date("2024-04-09T07:48:57.030Z"),
+  createTime: new Date("2024-12-08T21:35:55.501Z"),
 };
 ```
 

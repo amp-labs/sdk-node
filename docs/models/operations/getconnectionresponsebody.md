@@ -20,7 +20,7 @@ let value: GetConnectionResponseBody = {
     scopes: [
       "[\"oauth\",\"offline\",\"crm.read\"]",
     ],
-    createTime: new Date("2023-09-21T01:29:35.775Z"),
+    createTime: new Date("2024-11-28T02:57:00.009Z"),
   },
   group: {
     groupRef: "group-123",

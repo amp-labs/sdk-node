@@ -10,7 +10,7 @@ import { GetHydratedRevisionResponseBody } from "@amp-labs/sdk-node/models/opera
 let value: GetHydratedRevisionResponseBody = {
   id: "revision-id-1",
   specVersion: "1.0.0",
-  createTime: new Date("2025-12-05T04:07:03.604Z"),
+  createTime: new Date("2023-08-08T04:42:30.927Z"),
   content: {
     name: "<value>",
     provider: "<value>",
@@ -18,7 +18,7 @@ let value: GetHydratedRevisionResponseBody = {
       objects: [
         {
           objectName: "<value>",
-          displayName: "Russ_Hessel",
+          displayName: "Aidan92",
           mapToName: "people",
           mapToDisplayName: "People",
           destination: "<value>",
@@ -26,7 +26,7 @@ let value: GetHydratedRevisionResponseBody = {
           requiredFields: [
             {
               fieldName: "<value>",
-              displayName: "Cody34",
+              displayName: "Casimer.Mayert",
               mapToName: "account_id",
               mapToDisplayName: "Account ID",
             },
@@ -38,10 +38,7 @@ let value: GetHydratedRevisionResponseBody = {
           ],
           allFields: [
             {
-              fieldName: "<value>",
-              displayName: "Casimer.Mayert",
-              mapToName: "account_id",
-              mapToDisplayName: "Account ID",
+              mapToName: "<value>",
             },
           ],
           allFieldsMetadata: {
@@ -71,7 +68,7 @@ let value: GetHydratedRevisionResponseBody = {
       objects: [
         {
           objectName: "<value>",
-          displayName: "Kailee.Renner39",
+          displayName: "Moriah18",
           valueDefaults: {
             allowAnyFields: true,
           },

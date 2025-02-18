@@ -8,7 +8,7 @@ Configuration for OAuth2.0. Must be provided if authType is oauth2.
 import { Oauth2Opts } from "@amp-labs/sdk-node/models/operations";
 
 let value: Oauth2Opts = {
-  grantType: "password",
+  grantType: "authorizationCode",
   authURL: "https://login.salesforce.com/services/oauth2/authorize",
   tokenURL: "https://login.salesforce.com/services/oauth2/token",
   explicitScopesRequired: true,

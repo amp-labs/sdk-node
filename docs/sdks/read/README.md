@@ -118,6 +118,10 @@ async function run() {
     projectIdOrName: "<value>",
     integrationId: "<id>",
     objectName: "<value>",
+    requestBody: {
+      groupRef: "<value>",
+      pages: 743798,
+    },
   });
 
   // Handle the result
@@ -146,6 +150,10 @@ async function run() {
     projectIdOrName: "<value>",
     integrationId: "<id>",
     objectName: "<value>",
+    requestBody: {
+      groupRef: "<value>",
+      pages: 743798,
+    },
   });
 
   if (!res.ok) {

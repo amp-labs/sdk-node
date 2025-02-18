@@ -6,8 +6,8 @@
 import { Oauth2Password } from "@amp-labs/sdk-node/models/operations";
 
 let value: Oauth2Password = {
-  username: "Jaida.Schmidt51",
-  password: "WIQSaF2vTLtLeFv",
+  username: "Donny4",
+  password: "RWIQSaF2vTLtLeF",
   clientId: "<id>",
   clientSecret: "<value>",
 };

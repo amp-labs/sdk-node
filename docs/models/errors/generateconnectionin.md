@@ -7,7 +7,7 @@ The location of the invalid input
 ```typescript
 import { GenerateConnectionIn } from "@amp-labs/sdk-node/models/errors";
 
-let value: GenerateConnectionIn = "header";
+let value: GenerateConnectionIn = "query";
 ```
 
 ## Values

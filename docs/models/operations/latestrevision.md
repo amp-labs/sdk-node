@@ -27,9 +27,7 @@ let value: LatestRevision = {
           ],
           optionalFields: [
             {
-              fieldName: "<value>",
-              mapToName: "account_id",
-              mapToDisplayName: "Account ID",
+              mapToName: "<value>",
             },
           ],
           backfill: {

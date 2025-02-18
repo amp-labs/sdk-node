@@ -29,7 +29,7 @@ export type DeliverResultsRequest = {
   /**
    * ResultDeliveryRequestBody
    */
-  requestBody?: DeliverResultsRequestBody | undefined;
+  requestBody: DeliverResultsRequestBody;
 };
 
 /**
@@ -179,7 +179,7 @@ export const DeliverResultsRequest$inboundSchema: z.ZodType<
   projectIdOrName: z.string(),
   integrationId: z.string(),
   objectName: z.string(),
-  RequestBody: z.lazy(() => DeliverResultsRequestBody$inboundSchema).optional(),
+  RequestBody: z.lazy(() => DeliverResultsRequestBody$inboundSchema),
 }).transform((v) => {
   return remap$(v, {
     "RequestBody": "requestBody",
@@ -191,7 +191,7 @@ export type DeliverResultsRequest$Outbound = {
   projectIdOrName: string;
   integrationId: string;
   objectName: string;
-  RequestBody?: DeliverResultsRequestBody$Outbound | undefined;
+  RequestBody: DeliverResultsRequestBody$Outbound;
 };
 
 /** @internal */
@@ -203,8 +203,7 @@ export const DeliverResultsRequest$outboundSchema: z.ZodType<
   projectIdOrName: z.string(),
   integrationId: z.string(),
   objectName: z.string(),
-  requestBody: z.lazy(() => DeliverResultsRequestBody$outboundSchema)
-    .optional(),
+  requestBody: z.lazy(() => DeliverResultsRequestBody$outboundSchema),
 }).transform((v) => {
   return remap$(v, {
     requestBody: "RequestBody",

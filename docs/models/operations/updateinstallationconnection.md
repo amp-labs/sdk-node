@@ -18,7 +18,7 @@ let value: UpdateInstallationConnection = {
     scopes: [
       "[\"oauth\",\"offline\",\"crm.read\"]",
     ],
-    createTime: new Date("2025-03-31T12:50:52.284Z"),
+    createTime: new Date("2024-06-18T21:49:56.662Z"),
   },
   group: {
     groupRef: "group-123",

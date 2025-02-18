@@ -23,14 +23,14 @@ let value: CreateIntegrationRequestBody = {
             mapToDisplayName: "People",
             requiredFields: [
               {
-                mapToName: "<value>",
+                fieldName: "<value>",
+                mapToName: "account_id",
+                mapToDisplayName: "Account ID",
               },
             ],
             optionalFields: [
               {
-                fieldName: "<value>",
-                mapToName: "account_id",
-                mapToDisplayName: "Account ID",
+                mapToName: "<value>",
               },
             ],
             backfill: {

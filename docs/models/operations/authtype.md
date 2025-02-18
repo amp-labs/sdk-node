@@ -7,7 +7,7 @@ The type of authentication required by the provider.
 ```typescript
 import { AuthType } from "@amp-labs/sdk-node/models/operations";
 
-let value: AuthType = "none";
+let value: AuthType = "apiKey";
 ```
 
 ## Values

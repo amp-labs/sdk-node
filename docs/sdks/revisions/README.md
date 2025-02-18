@@ -25,6 +25,7 @@ async function run() {
   const result = await sdk.revisions.create({
     projectIdOrName: "<value>",
     integrationId: "<id>",
+    requestBody: {},
   });
 
   // Handle the result
@@ -52,6 +53,7 @@ async function run() {
   const res = await revisionsCreate(sdk, {
     projectIdOrName: "<value>",
     integrationId: "<id>",
+    requestBody: {},
   });
 
   if (!res.ok) {

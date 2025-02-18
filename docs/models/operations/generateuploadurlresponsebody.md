@@ -8,9 +8,9 @@ Signed URL
 import { GenerateUploadUrlResponseBody } from "@amp-labs/sdk-node/models/operations";
 
 let value: GenerateUploadUrlResponseBody = {
-  url: "https://untrue-singing.com",
+  url: "https://sugary-thongs.net",
   bucket: "<value>",
-  path: "/System",
+  path: "/etc/periodic",
 };
 ```
 

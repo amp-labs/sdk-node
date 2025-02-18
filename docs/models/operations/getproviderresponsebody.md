@@ -9,10 +9,10 @@ import { GetProviderResponseBody } from "@amp-labs/sdk-node/models/operations";
 
 let value: GetProviderResponseBody = {
   name: "<value>",
-  authType: "none",
-  baseURL: "https://sorrowful-finger.com",
+  authType: "apiKey",
+  baseURL: "https://tough-vol.org/",
   oauth2Opts: {
-    grantType: "authorizationCodePKCE",
+    grantType: "password",
     authURL: "https://login.salesforce.com/services/oauth2/authorize",
     tokenURL: "https://login.salesforce.com/services/oauth2/token",
     explicitScopesRequired: true,
@@ -32,7 +32,7 @@ let value: GetProviderResponseBody = {
     },
   },
   apiKeyOpts: {
-    attachmentType: "query",
+    attachmentType: "header",
     query: {
       name: "api_key",
     },

@@ -7,7 +7,7 @@ import { GetHydratedRevisionRevisionsObjects } from "@amp-labs/sdk-node/models/o
 
 let value: GetHydratedRevisionRevisionsObjects = {
   objectName: "<value>",
-  displayName: "Madaline_Kemmer",
+  displayName: "Holden89",
   valueDefaults: {
     allowAnyFields: true,
   },

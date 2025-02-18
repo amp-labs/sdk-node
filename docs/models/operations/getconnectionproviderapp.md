@@ -14,7 +14,7 @@ let value: GetConnectionProviderApp = {
   scopes: [
     "[\"oauth\",\"offline\",\"crm.read\"]",
   ],
-  createTime: new Date("2024-11-28T02:57:00.009Z"),
+  createTime: new Date("2025-04-09T10:18:19.507Z"),
 };
 ```
 
