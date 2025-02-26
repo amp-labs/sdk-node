@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod";
+import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -253,6 +254,57 @@ export type ListIntegrationsProxyIntegration = {
   enabled?: boolean | undefined;
 };
 
+export type ListIntegrationsCreateEvent = {
+  /**
+   * If true, the integration will subscribe to create events.
+   */
+  enabled?: boolean | undefined;
+};
+
+export type ListIntegrationsUpdateEvent = {
+  /**
+   * If true, the integration will subscribe to update events.
+   */
+  enabled?: boolean | undefined;
+  requiredWatchFields?: Array<string> | undefined;
+};
+
+export type ListIntegrationsDeleteEvent = {
+  /**
+   * If true, the integration will subscribe to delete events.
+   */
+  enabled?: boolean | undefined;
+};
+
+export type ListIntegrationsAssociationChangeEvent = {
+  /**
+   * If true, the integration will subscribe to association change events.
+   */
+  enabled?: boolean | undefined;
+  /**
+   * If true, the integration will include full records in the event payload.
+   */
+  includeFullRecords?: boolean | undefined;
+};
+
+export type ListIntegrationsIntegrationSubscribeObject = {
+  objectName: string;
+  destination: string;
+  /**
+   * If true, the subscribe object will inherit the fields from the read object.
+   */
+  inheritFields?: boolean | undefined;
+  createEvent?: ListIntegrationsCreateEvent | undefined;
+  updateEvent?: ListIntegrationsUpdateEvent | undefined;
+  deleteEvent?: ListIntegrationsDeleteEvent | undefined;
+  associationChangeEvent?: ListIntegrationsAssociationChangeEvent | undefined;
+  otherEvents?: Array<string> | undefined;
+};
+
+export type ListIntegrationsSubscribeIntegration = {
+  objects?: Array<ListIntegrationsIntegrationSubscribeObject> | undefined;
+};
+
 export type ListIntegrationsIntegrationsIntegration = {
   name: string;
   displayName?: string | undefined;
@@ -260,6 +312,7 @@ export type ListIntegrationsIntegrationsIntegration = {
   read?: ListIntegrationsReadIntegration | undefined;
   write?: ListIntegrationsWriteIntegration | undefined;
   proxy?: ListIntegrationsProxyIntegration | undefined;
+  subscribe?: ListIntegrationsSubscribeIntegration | undefined;
 };
 
 export type Revision = {
@@ -1559,6 +1612,418 @@ export function listIntegrationsProxyIntegrationFromJSON(
 }
 
 /** @internal */
+export const ListIntegrationsCreateEvent$inboundSchema: z.ZodType<
+  ListIntegrationsCreateEvent,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  enabled: z.boolean().optional(),
+});
+
+/** @internal */
+export type ListIntegrationsCreateEvent$Outbound = {
+  enabled?: boolean | undefined;
+};
+
+/** @internal */
+export const ListIntegrationsCreateEvent$outboundSchema: z.ZodType<
+  ListIntegrationsCreateEvent$Outbound,
+  z.ZodTypeDef,
+  ListIntegrationsCreateEvent
+> = z.object({
+  enabled: z.boolean().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace ListIntegrationsCreateEvent$ {
+  /** @deprecated use `ListIntegrationsCreateEvent$inboundSchema` instead. */
+  export const inboundSchema = ListIntegrationsCreateEvent$inboundSchema;
+  /** @deprecated use `ListIntegrationsCreateEvent$outboundSchema` instead. */
+  export const outboundSchema = ListIntegrationsCreateEvent$outboundSchema;
+  /** @deprecated use `ListIntegrationsCreateEvent$Outbound` instead. */
+  export type Outbound = ListIntegrationsCreateEvent$Outbound;
+}
+
+export function listIntegrationsCreateEventToJSON(
+  listIntegrationsCreateEvent: ListIntegrationsCreateEvent,
+): string {
+  return JSON.stringify(
+    ListIntegrationsCreateEvent$outboundSchema.parse(
+      listIntegrationsCreateEvent,
+    ),
+  );
+}
+
+export function listIntegrationsCreateEventFromJSON(
+  jsonString: string,
+): SafeParseResult<ListIntegrationsCreateEvent, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ListIntegrationsCreateEvent$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListIntegrationsCreateEvent' from JSON`,
+  );
+}
+
+/** @internal */
+export const ListIntegrationsUpdateEvent$inboundSchema: z.ZodType<
+  ListIntegrationsUpdateEvent,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  enabled: z.boolean().optional(),
+  requiredWatchFields: z.array(z.string()).optional(),
+});
+
+/** @internal */
+export type ListIntegrationsUpdateEvent$Outbound = {
+  enabled?: boolean | undefined;
+  requiredWatchFields?: Array<string> | undefined;
+};
+
+/** @internal */
+export const ListIntegrationsUpdateEvent$outboundSchema: z.ZodType<
+  ListIntegrationsUpdateEvent$Outbound,
+  z.ZodTypeDef,
+  ListIntegrationsUpdateEvent
+> = z.object({
+  enabled: z.boolean().optional(),
+  requiredWatchFields: z.array(z.string()).optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace ListIntegrationsUpdateEvent$ {
+  /** @deprecated use `ListIntegrationsUpdateEvent$inboundSchema` instead. */
+  export const inboundSchema = ListIntegrationsUpdateEvent$inboundSchema;
+  /** @deprecated use `ListIntegrationsUpdateEvent$outboundSchema` instead. */
+  export const outboundSchema = ListIntegrationsUpdateEvent$outboundSchema;
+  /** @deprecated use `ListIntegrationsUpdateEvent$Outbound` instead. */
+  export type Outbound = ListIntegrationsUpdateEvent$Outbound;
+}
+
+export function listIntegrationsUpdateEventToJSON(
+  listIntegrationsUpdateEvent: ListIntegrationsUpdateEvent,
+): string {
+  return JSON.stringify(
+    ListIntegrationsUpdateEvent$outboundSchema.parse(
+      listIntegrationsUpdateEvent,
+    ),
+  );
+}
+
+export function listIntegrationsUpdateEventFromJSON(
+  jsonString: string,
+): SafeParseResult<ListIntegrationsUpdateEvent, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ListIntegrationsUpdateEvent$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListIntegrationsUpdateEvent' from JSON`,
+  );
+}
+
+/** @internal */
+export const ListIntegrationsDeleteEvent$inboundSchema: z.ZodType<
+  ListIntegrationsDeleteEvent,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  enabled: z.boolean().optional(),
+});
+
+/** @internal */
+export type ListIntegrationsDeleteEvent$Outbound = {
+  enabled?: boolean | undefined;
+};
+
+/** @internal */
+export const ListIntegrationsDeleteEvent$outboundSchema: z.ZodType<
+  ListIntegrationsDeleteEvent$Outbound,
+  z.ZodTypeDef,
+  ListIntegrationsDeleteEvent
+> = z.object({
+  enabled: z.boolean().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace ListIntegrationsDeleteEvent$ {
+  /** @deprecated use `ListIntegrationsDeleteEvent$inboundSchema` instead. */
+  export const inboundSchema = ListIntegrationsDeleteEvent$inboundSchema;
+  /** @deprecated use `ListIntegrationsDeleteEvent$outboundSchema` instead. */
+  export const outboundSchema = ListIntegrationsDeleteEvent$outboundSchema;
+  /** @deprecated use `ListIntegrationsDeleteEvent$Outbound` instead. */
+  export type Outbound = ListIntegrationsDeleteEvent$Outbound;
+}
+
+export function listIntegrationsDeleteEventToJSON(
+  listIntegrationsDeleteEvent: ListIntegrationsDeleteEvent,
+): string {
+  return JSON.stringify(
+    ListIntegrationsDeleteEvent$outboundSchema.parse(
+      listIntegrationsDeleteEvent,
+    ),
+  );
+}
+
+export function listIntegrationsDeleteEventFromJSON(
+  jsonString: string,
+): SafeParseResult<ListIntegrationsDeleteEvent, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ListIntegrationsDeleteEvent$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListIntegrationsDeleteEvent' from JSON`,
+  );
+}
+
+/** @internal */
+export const ListIntegrationsAssociationChangeEvent$inboundSchema: z.ZodType<
+  ListIntegrationsAssociationChangeEvent,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  enabled: z.boolean().optional(),
+  includeFullRecords: z.boolean().optional(),
+});
+
+/** @internal */
+export type ListIntegrationsAssociationChangeEvent$Outbound = {
+  enabled?: boolean | undefined;
+  includeFullRecords?: boolean | undefined;
+};
+
+/** @internal */
+export const ListIntegrationsAssociationChangeEvent$outboundSchema: z.ZodType<
+  ListIntegrationsAssociationChangeEvent$Outbound,
+  z.ZodTypeDef,
+  ListIntegrationsAssociationChangeEvent
+> = z.object({
+  enabled: z.boolean().optional(),
+  includeFullRecords: z.boolean().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace ListIntegrationsAssociationChangeEvent$ {
+  /** @deprecated use `ListIntegrationsAssociationChangeEvent$inboundSchema` instead. */
+  export const inboundSchema =
+    ListIntegrationsAssociationChangeEvent$inboundSchema;
+  /** @deprecated use `ListIntegrationsAssociationChangeEvent$outboundSchema` instead. */
+  export const outboundSchema =
+    ListIntegrationsAssociationChangeEvent$outboundSchema;
+  /** @deprecated use `ListIntegrationsAssociationChangeEvent$Outbound` instead. */
+  export type Outbound = ListIntegrationsAssociationChangeEvent$Outbound;
+}
+
+export function listIntegrationsAssociationChangeEventToJSON(
+  listIntegrationsAssociationChangeEvent:
+    ListIntegrationsAssociationChangeEvent,
+): string {
+  return JSON.stringify(
+    ListIntegrationsAssociationChangeEvent$outboundSchema.parse(
+      listIntegrationsAssociationChangeEvent,
+    ),
+  );
+}
+
+export function listIntegrationsAssociationChangeEventFromJSON(
+  jsonString: string,
+): SafeParseResult<ListIntegrationsAssociationChangeEvent, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      ListIntegrationsAssociationChangeEvent$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListIntegrationsAssociationChangeEvent' from JSON`,
+  );
+}
+
+/** @internal */
+export const ListIntegrationsIntegrationSubscribeObject$inboundSchema:
+  z.ZodType<ListIntegrationsIntegrationSubscribeObject, z.ZodTypeDef, unknown> =
+    z.object({
+      objectName: z.string(),
+      destination: z.string(),
+      inheritFields: z.boolean().optional(),
+      CreateEvent: z.lazy(() => ListIntegrationsCreateEvent$inboundSchema)
+        .optional(),
+      UpdateEvent: z.lazy(() => ListIntegrationsUpdateEvent$inboundSchema)
+        .optional(),
+      DeleteEvent: z.lazy(() => ListIntegrationsDeleteEvent$inboundSchema)
+        .optional(),
+      AssociationChangeEvent: z.lazy(() =>
+        ListIntegrationsAssociationChangeEvent$inboundSchema
+      ).optional(),
+      OtherEvents: z.array(z.string()).optional(),
+    }).transform((v) => {
+      return remap$(v, {
+        "CreateEvent": "createEvent",
+        "UpdateEvent": "updateEvent",
+        "DeleteEvent": "deleteEvent",
+        "AssociationChangeEvent": "associationChangeEvent",
+        "OtherEvents": "otherEvents",
+      });
+    });
+
+/** @internal */
+export type ListIntegrationsIntegrationSubscribeObject$Outbound = {
+  objectName: string;
+  destination: string;
+  inheritFields?: boolean | undefined;
+  CreateEvent?: ListIntegrationsCreateEvent$Outbound | undefined;
+  UpdateEvent?: ListIntegrationsUpdateEvent$Outbound | undefined;
+  DeleteEvent?: ListIntegrationsDeleteEvent$Outbound | undefined;
+  AssociationChangeEvent?:
+    | ListIntegrationsAssociationChangeEvent$Outbound
+    | undefined;
+  OtherEvents?: Array<string> | undefined;
+};
+
+/** @internal */
+export const ListIntegrationsIntegrationSubscribeObject$outboundSchema:
+  z.ZodType<
+    ListIntegrationsIntegrationSubscribeObject$Outbound,
+    z.ZodTypeDef,
+    ListIntegrationsIntegrationSubscribeObject
+  > = z.object({
+    objectName: z.string(),
+    destination: z.string(),
+    inheritFields: z.boolean().optional(),
+    createEvent: z.lazy(() => ListIntegrationsCreateEvent$outboundSchema)
+      .optional(),
+    updateEvent: z.lazy(() => ListIntegrationsUpdateEvent$outboundSchema)
+      .optional(),
+    deleteEvent: z.lazy(() => ListIntegrationsDeleteEvent$outboundSchema)
+      .optional(),
+    associationChangeEvent: z.lazy(() =>
+      ListIntegrationsAssociationChangeEvent$outboundSchema
+    ).optional(),
+    otherEvents: z.array(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      createEvent: "CreateEvent",
+      updateEvent: "UpdateEvent",
+      deleteEvent: "DeleteEvent",
+      associationChangeEvent: "AssociationChangeEvent",
+      otherEvents: "OtherEvents",
+    });
+  });
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace ListIntegrationsIntegrationSubscribeObject$ {
+  /** @deprecated use `ListIntegrationsIntegrationSubscribeObject$inboundSchema` instead. */
+  export const inboundSchema =
+    ListIntegrationsIntegrationSubscribeObject$inboundSchema;
+  /** @deprecated use `ListIntegrationsIntegrationSubscribeObject$outboundSchema` instead. */
+  export const outboundSchema =
+    ListIntegrationsIntegrationSubscribeObject$outboundSchema;
+  /** @deprecated use `ListIntegrationsIntegrationSubscribeObject$Outbound` instead. */
+  export type Outbound = ListIntegrationsIntegrationSubscribeObject$Outbound;
+}
+
+export function listIntegrationsIntegrationSubscribeObjectToJSON(
+  listIntegrationsIntegrationSubscribeObject:
+    ListIntegrationsIntegrationSubscribeObject,
+): string {
+  return JSON.stringify(
+    ListIntegrationsIntegrationSubscribeObject$outboundSchema.parse(
+      listIntegrationsIntegrationSubscribeObject,
+    ),
+  );
+}
+
+export function listIntegrationsIntegrationSubscribeObjectFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  ListIntegrationsIntegrationSubscribeObject,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      ListIntegrationsIntegrationSubscribeObject$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'ListIntegrationsIntegrationSubscribeObject' from JSON`,
+  );
+}
+
+/** @internal */
+export const ListIntegrationsSubscribeIntegration$inboundSchema: z.ZodType<
+  ListIntegrationsSubscribeIntegration,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  objects: z.array(
+    z.lazy(() => ListIntegrationsIntegrationSubscribeObject$inboundSchema),
+  ).optional(),
+});
+
+/** @internal */
+export type ListIntegrationsSubscribeIntegration$Outbound = {
+  objects?:
+    | Array<ListIntegrationsIntegrationSubscribeObject$Outbound>
+    | undefined;
+};
+
+/** @internal */
+export const ListIntegrationsSubscribeIntegration$outboundSchema: z.ZodType<
+  ListIntegrationsSubscribeIntegration$Outbound,
+  z.ZodTypeDef,
+  ListIntegrationsSubscribeIntegration
+> = z.object({
+  objects: z.array(
+    z.lazy(() => ListIntegrationsIntegrationSubscribeObject$outboundSchema),
+  ).optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace ListIntegrationsSubscribeIntegration$ {
+  /** @deprecated use `ListIntegrationsSubscribeIntegration$inboundSchema` instead. */
+  export const inboundSchema =
+    ListIntegrationsSubscribeIntegration$inboundSchema;
+  /** @deprecated use `ListIntegrationsSubscribeIntegration$outboundSchema` instead. */
+  export const outboundSchema =
+    ListIntegrationsSubscribeIntegration$outboundSchema;
+  /** @deprecated use `ListIntegrationsSubscribeIntegration$Outbound` instead. */
+  export type Outbound = ListIntegrationsSubscribeIntegration$Outbound;
+}
+
+export function listIntegrationsSubscribeIntegrationToJSON(
+  listIntegrationsSubscribeIntegration: ListIntegrationsSubscribeIntegration,
+): string {
+  return JSON.stringify(
+    ListIntegrationsSubscribeIntegration$outboundSchema.parse(
+      listIntegrationsSubscribeIntegration,
+    ),
+  );
+}
+
+export function listIntegrationsSubscribeIntegrationFromJSON(
+  jsonString: string,
+): SafeParseResult<ListIntegrationsSubscribeIntegration, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      ListIntegrationsSubscribeIntegration$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListIntegrationsSubscribeIntegration' from JSON`,
+  );
+}
+
+/** @internal */
 export const ListIntegrationsIntegrationsIntegration$inboundSchema: z.ZodType<
   ListIntegrationsIntegrationsIntegration,
   z.ZodTypeDef,
@@ -1572,6 +2037,8 @@ export const ListIntegrationsIntegrationsIntegration$inboundSchema: z.ZodType<
     .optional(),
   proxy: z.lazy(() => ListIntegrationsProxyIntegration$inboundSchema)
     .optional(),
+  subscribe: z.lazy(() => ListIntegrationsSubscribeIntegration$inboundSchema)
+    .optional(),
 });
 
 /** @internal */
@@ -1582,6 +2049,7 @@ export type ListIntegrationsIntegrationsIntegration$Outbound = {
   read?: ListIntegrationsReadIntegration$Outbound | undefined;
   write?: ListIntegrationsWriteIntegration$Outbound | undefined;
   proxy?: ListIntegrationsProxyIntegration$Outbound | undefined;
+  subscribe?: ListIntegrationsSubscribeIntegration$Outbound | undefined;
 };
 
 /** @internal */
@@ -1597,6 +2065,8 @@ export const ListIntegrationsIntegrationsIntegration$outboundSchema: z.ZodType<
   write: z.lazy(() => ListIntegrationsWriteIntegration$outboundSchema)
     .optional(),
   proxy: z.lazy(() => ListIntegrationsProxyIntegration$outboundSchema)
+    .optional(),
+  subscribe: z.lazy(() => ListIntegrationsSubscribeIntegration$outboundSchema)
     .optional(),
 });
 
