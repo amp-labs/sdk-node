@@ -186,6 +186,34 @@ async function run() {
               },
             ],
           },
+          subscribe: {
+            objects: [
+              {
+                objectName: "<value>",
+                destination: "<value>",
+                updateEvent: {
+                  requiredWatchFields: [
+                    "[\"name\",\"domain\"]",
+                  ],
+                },
+                otherEvents: [
+                  "[\"object.merged\",\"object.restored\"]",
+                ],
+              },
+              {
+                objectName: "<value>",
+                destination: "<value>",
+                updateEvent: {
+                  requiredWatchFields: [
+                    "[\"name\",\"domain\"]",
+                  ],
+                },
+                otherEvents: [
+                  "[\"object.merged\",\"object.restored\"]",
+                ],
+              },
+            ],
+          },
         },
       },
     },
@@ -294,6 +322,34 @@ async function run() {
                 valueDefaults: {
                   allowAnyFields: true,
                 },
+              },
+            ],
+          },
+          subscribe: {
+            objects: [
+              {
+                objectName: "<value>",
+                destination: "<value>",
+                updateEvent: {
+                  requiredWatchFields: [
+                    "[\"name\",\"domain\"]",
+                  ],
+                },
+                otherEvents: [
+                  "[\"object.merged\",\"object.restored\"]",
+                ],
+              },
+              {
+                objectName: "<value>",
+                destination: "<value>",
+                updateEvent: {
+                  requiredWatchFields: [
+                    "[\"name\",\"domain\"]",
+                  ],
+                },
+                otherEvents: [
+                  "[\"object.merged\",\"object.restored\"]",
+                ],
               },
             ],
           },
