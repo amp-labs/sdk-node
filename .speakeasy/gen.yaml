@@ -15,7 +15,7 @@ generation:
     oAuth2ClientCredentialsEnabled: false
     oAuth2PasswordEnabled: false
 typescript:
-  version: 0.5.0
+  version: 0.6.0
   additionalDependencies:
     dependencies: {}
     devDependencies: {}
@@ -25,6 +25,7 @@ typescript:
   clientServerStatusCodesAsErrors: true
   defaultErrorName: APIError
   enableCustomCodeRegions: false
+  enableMCPServer: true
   enableReactQuery: false
   enumFormat: union
   flattenGlobalSecurity: true
@@ -38,6 +39,7 @@ typescript:
       shared: models/components
       webhooks: models/webhooks
   inputModelSuffix: input
+  jsonpath: legacy
   maxMethodParams: 0
   methodArguments: require-security-and-request
   moduleFormat: commonjs

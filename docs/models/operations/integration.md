@@ -48,16 +48,33 @@ let value: Integration = {
       },
     ],
   },
+  subscribe: {
+    objects: [
+      {
+        objectName: "<value>",
+        destination: "<value>",
+        updateEvent: {
+          requiredWatchFields: [
+            "[\"name\",\"domain\"]",
+          ],
+        },
+        otherEvents: [
+          "[\"object.merged\",\"object.restored\"]",
+        ],
+      },
+    ],
+  },
 };
 ```
 
 ## Fields
 
-| Field                                                                      | Type                                                                       | Required                                                                   | Description                                                                |
-| -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
-| `name`                                                                     | *string*                                                                   | :heavy_check_mark:                                                         | N/A                                                                        |
-| `displayName`                                                              | *string*                                                                   | :heavy_minus_sign:                                                         | N/A                                                                        |
-| `provider`                                                                 | *string*                                                                   | :heavy_check_mark:                                                         | N/A                                                                        |
-| `read`                                                                     | [operations.ReadIntegration](../../models/operations/readintegration.md)   | :heavy_minus_sign:                                                         | N/A                                                                        |
-| `write`                                                                    | [operations.WriteIntegration](../../models/operations/writeintegration.md) | :heavy_minus_sign:                                                         | N/A                                                                        |
-| `proxy`                                                                    | [operations.ProxyIntegration](../../models/operations/proxyintegration.md) | :heavy_minus_sign:                                                         | N/A                                                                        |
+| Field                                                                              | Type                                                                               | Required                                                                           | Description                                                                        |
+| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `name`                                                                             | *string*                                                                           | :heavy_check_mark:                                                                 | N/A                                                                                |
+| `displayName`                                                                      | *string*                                                                           | :heavy_minus_sign:                                                                 | N/A                                                                                |
+| `provider`                                                                         | *string*                                                                           | :heavy_check_mark:                                                                 | N/A                                                                                |
+| `read`                                                                             | [operations.ReadIntegration](../../models/operations/readintegration.md)           | :heavy_minus_sign:                                                                 | N/A                                                                                |
+| `write`                                                                            | [operations.WriteIntegration](../../models/operations/writeintegration.md)         | :heavy_minus_sign:                                                                 | N/A                                                                                |
+| `proxy`                                                                            | [operations.ProxyIntegration](../../models/operations/proxyintegration.md)         | :heavy_minus_sign:                                                                 | N/A                                                                                |
+| `subscribe`                                                                        | [operations.SubscribeIntegration](../../models/operations/subscribeintegration.md) | :heavy_minus_sign:                                                                 | N/A                                                                                |

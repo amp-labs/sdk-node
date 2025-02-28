@@ -53,6 +53,22 @@ let value: CreateIntegrationRequestBody = {
           },
         ],
       },
+      subscribe: {
+        objects: [
+          {
+            objectName: "<value>",
+            destination: "<value>",
+            updateEvent: {
+              requiredWatchFields: [
+                "[\"name\",\"domain\"]",
+              ],
+            },
+            otherEvents: [
+              "[\"object.merged\",\"object.restored\"]",
+            ],
+          },
+        ],
+      },
     },
   },
 };

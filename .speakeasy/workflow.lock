@@ -1,21 +1,21 @@
-speakeasyVersion: 1.494.0
+speakeasyVersion: 1.507.0
 sources:
     amp-sdk-source:
         sourceNamespace: amp-sdk-source
-        sourceRevisionDigest: sha256:5e50bd8cafdea05bae240f2a692f4ab324aa5c08681382cc0374447e4d546e06
-        sourceBlobDigest: sha256:e2e154170d5c5b17f1b8806ac8d98a0f95455cadadf5f1ad37b1952233eb651b
+        sourceRevisionDigest: sha256:a73133b13777fe097bfb5e71a5c2079ec0c57c23f3e6ce4d1254475935c3a5f2
+        sourceBlobDigest: sha256:43af43c66eea3d286bf61fa58a0b0071aebf685f37191829ead60bce66bc9977
         tags:
             - latest
-            - speakeasy-sdk-regen-1739883396
+            - speakeasy-sdk-regen-1740528742
             - 1.0.0
 targets:
     amp-sdk-ts:
         source: amp-sdk-source
         sourceNamespace: amp-sdk-source
-        sourceRevisionDigest: sha256:5e50bd8cafdea05bae240f2a692f4ab324aa5c08681382cc0374447e4d546e06
-        sourceBlobDigest: sha256:e2e154170d5c5b17f1b8806ac8d98a0f95455cadadf5f1ad37b1952233eb651b
+        sourceRevisionDigest: sha256:a73133b13777fe097bfb5e71a5c2079ec0c57c23f3e6ce4d1254475935c3a5f2
+        sourceBlobDigest: sha256:43af43c66eea3d286bf61fa58a0b0071aebf685f37191829ead60bce66bc9977
         codeSamplesNamespace: amp-sdk-source-typescript-code-samples
-        codeSamplesRevisionDigest: sha256:214e1441853716b3ce6ea71a881a06e707722b27cef3e1934c2748e0880247c5
+        codeSamplesRevisionDigest: sha256:6248c749ee17bc90bcc445b7b59106f2d2c0a37adabd57d4755c9b4c9a39e3b2
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
