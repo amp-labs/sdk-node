@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 9323fb0c-51c0-423a-ae97-da9ff22a9f89
 management:
-  docChecksum: 1fed09d807a84c3f48e904dddeee60ee
+  docChecksum: 036b2352e26a1008fc40801c95abb5c4
   docVersion: 1.0.0
-  speakeasyVersion: 1.494.0
-  generationVersion: 2.515.0
-  releaseVersion: 0.5.0
-  configChecksum: d3fc85b1aaad84c5500b0024209be854
+  speakeasyVersion: 1.507.0
+  generationVersion: 2.533.0
+  releaseVersion: 0.6.0
+  configChecksum: d9979e896141f1e71a29fd0fc8d3e860
   repoURL: https://github.com/amp-labs/sdk-node.git
   installationURL: https://github.com/amp-labs/sdk-node
   published: true
@@ -15,7 +15,7 @@ features:
     acceptHeaders: 2.81.2
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.11
-    core: 3.20.0
+    core: 3.21.3
     defaultEnabledRetries: 0.1.0
     enumUnions: 0.1.0
     envVarSecurityUsage: 0.1.2
@@ -25,9 +25,10 @@ features:
     globalServerURLs: 2.82.4
     groups: 2.81.2
     ignores: 2.81.1
+    mcpServer: 0.3.0
     methodServerURLs: 2.82.1
     nameOverrides: 2.81.2
-    nullables: 0.1.0
+    nullables: 0.1.1
     responseFormat: 0.2.3
     retries: 2.83.0
     sdkHooks: 0.2.0
@@ -188,6 +189,7 @@ generatedFiles:
   - docs/models/operations/apikeyoptions.md
   - docs/models/operations/apikeyqueryoptions.md
   - docs/models/operations/applyonupdate.md
+  - docs/models/operations/associationchangeevent.md
   - docs/models/operations/attachmenttype.md
   - docs/models/operations/authscheme.md
   - docs/models/operations/authtype.md
@@ -201,8 +203,11 @@ generatedFiles:
   - docs/models/operations/basicauth.md
   - docs/models/operations/basicauthoptions.md
   - docs/models/operations/batchupsertintegrationsapiproblem.md
+  - docs/models/operations/batchupsertintegrationsassociationchangeevent.md
   - docs/models/operations/batchupsertintegrationsbackfill.md
+  - docs/models/operations/batchupsertintegrationscreateevent.md
   - docs/models/operations/batchupsertintegrationsdefaultperiod.md
+  - docs/models/operations/batchupsertintegrationsdeleteevent.md
   - docs/models/operations/batchupsertintegrationsdelivery.md
   - docs/models/operations/batchupsertintegrationsintegration.md
   - docs/models/operations/batchupsertintegrationsintegrationfield.md
@@ -213,6 +218,7 @@ generatedFiles:
   - docs/models/operations/batchupsertintegrationsintegrationobject.md
   - docs/models/operations/batchupsertintegrationsintegrationsintegration.md
   - docs/models/operations/batchupsertintegrationsintegrationsintegrationfield.md
+  - docs/models/operations/batchupsertintegrationsintegrationsubscribeobject.md
   - docs/models/operations/batchupsertintegrationsintegrationwriteobject.md
   - docs/models/operations/batchupsertintegrationsmode.md
   - docs/models/operations/batchupsertintegrationsoptionalfieldsautooption.md
@@ -222,6 +228,8 @@ generatedFiles:
   - docs/models/operations/batchupsertintegrationsrequestbody.md
   - docs/models/operations/batchupsertintegrationsresponse.md
   - docs/models/operations/batchupsertintegrationsrevision.md
+  - docs/models/operations/batchupsertintegrationssubscribeintegration.md
+  - docs/models/operations/batchupsertintegrationsupdateevent.md
   - docs/models/operations/batchupsertintegrationsvaluedefaults.md
   - docs/models/operations/batchupsertintegrationswriteintegration.md
   - docs/models/operations/bulkwritesupport.md
@@ -238,6 +246,7 @@ generatedFiles:
   - docs/models/operations/createdestinationrequest.md
   - docs/models/operations/createdestinationrequestbody.md
   - docs/models/operations/createdestinationresponse.md
+  - docs/models/operations/createevent.md
   - docs/models/operations/creategroupapiproblem.md
   - docs/models/operations/creategrouprequest.md
   - docs/models/operations/creategrouprequestbody.md
@@ -282,6 +291,7 @@ generatedFiles:
   - docs/models/operations/deleteconnectionrequest.md
   - docs/models/operations/deletedestinationapiproblem.md
   - docs/models/operations/deletedestinationrequest.md
+  - docs/models/operations/deleteevent.md
   - docs/models/operations/deleteinstallationapiproblem.md
   - docs/models/operations/deleteinstallationrequest.md
   - docs/models/operations/deleteintegrationapiproblem.md
@@ -426,6 +436,7 @@ generatedFiles:
   - docs/models/operations/integrationfieldintegrationfieldmapping.md
   - docs/models/operations/integrationfieldmapping.md
   - docs/models/operations/integrationobject.md
+  - docs/models/operations/integrationsubscribeobject.md
   - docs/models/operations/integrationwriteobject.md
   - docs/models/operations/latestrevision.md
   - docs/models/operations/listconnectionsaccesstoken.md
@@ -457,8 +468,11 @@ generatedFiles:
   - docs/models/operations/listinstallationsresponse.md
   - docs/models/operations/listinstallationsstatus.md
   - docs/models/operations/listintegrationsapiproblem.md
+  - docs/models/operations/listintegrationsassociationchangeevent.md
   - docs/models/operations/listintegrationsbackfill.md
+  - docs/models/operations/listintegrationscreateevent.md
   - docs/models/operations/listintegrationsdefaultperiod.md
+  - docs/models/operations/listintegrationsdeleteevent.md
   - docs/models/operations/listintegrationsdelivery.md
   - docs/models/operations/listintegrationsintegration.md
   - docs/models/operations/listintegrationsintegrationfield.md
@@ -469,6 +483,7 @@ generatedFiles:
   - docs/models/operations/listintegrationsintegrationobject.md
   - docs/models/operations/listintegrationsintegrationsintegration.md
   - docs/models/operations/listintegrationsintegrationsintegrationfield.md
+  - docs/models/operations/listintegrationsintegrationsubscribeobject.md
   - docs/models/operations/listintegrationsintegrationwriteobject.md
   - docs/models/operations/listintegrationsmode.md
   - docs/models/operations/listintegrationsoptionalfieldsautooption.md
@@ -476,6 +491,8 @@ generatedFiles:
   - docs/models/operations/listintegrationsreadintegration.md
   - docs/models/operations/listintegrationsrequest.md
   - docs/models/operations/listintegrationsresponse.md
+  - docs/models/operations/listintegrationssubscribeintegration.md
+  - docs/models/operations/listintegrationsupdateevent.md
   - docs/models/operations/listintegrationsvaluedefaults.md
   - docs/models/operations/listintegrationswriteintegration.md
   - docs/models/operations/listoperationlogsapiproblem.md
@@ -526,6 +543,7 @@ generatedFiles:
   - docs/models/operations/revision.md
   - docs/models/operations/selectedfieldsautoconfig.md
   - docs/models/operations/status.md
+  - docs/models/operations/subscribeintegration.md
   - docs/models/operations/subscribeoptions.md
   - docs/models/operations/subscribesupport.md
   - docs/models/operations/subscriptionscope.md
@@ -544,6 +562,7 @@ generatedFiles:
   - docs/models/operations/updatedestinationrequest.md
   - docs/models/operations/updatedestinationrequestbody.md
   - docs/models/operations/updatedestinationresponse.md
+  - docs/models/operations/updateevent.md
   - docs/models/operations/updateinstallationaccesstoken.md
   - docs/models/operations/updateinstallationapiproblem.md
   - docs/models/operations/updateinstallationauthscheme.md
@@ -666,6 +685,59 @@ generatedFiles:
   - src/lib/sdks.ts
   - src/lib/security.ts
   - src/lib/url.ts
+  - src/mcp-server/build.mts
+  - src/mcp-server/cli.ts
+  - src/mcp-server/cli/start/command.ts
+  - src/mcp-server/cli/start/impl.ts
+  - src/mcp-server/console-logger.ts
+  - src/mcp-server/mcp-server.ts
+  - src/mcp-server/resources.ts
+  - src/mcp-server/scopes.ts
+  - src/mcp-server/server.ts
+  - src/mcp-server/shared.ts
+  - src/mcp-server/tools.ts
+  - src/mcp-server/tools/connectionsDelete.ts
+  - src/mcp-server/tools/connectionsGenerate.ts
+  - src/mcp-server/tools/connectionsGet.ts
+  - src/mcp-server/tools/connectionsList.ts
+  - src/mcp-server/tools/consumersCreate.ts
+  - src/mcp-server/tools/destinationsCreate.ts
+  - src/mcp-server/tools/destinationsDelete.ts
+  - src/mcp-server/tools/destinationsGet.ts
+  - src/mcp-server/tools/destinationsList.ts
+  - src/mcp-server/tools/destinationsUpdate.ts
+  - src/mcp-server/tools/groupsCreate.ts
+  - src/mcp-server/tools/installationsCreate.ts
+  - src/mcp-server/tools/installationsDelete.ts
+  - src/mcp-server/tools/installationsGet.ts
+  - src/mcp-server/tools/installationsList.ts
+  - src/mcp-server/tools/installationsUpdate.ts
+  - src/mcp-server/tools/integrationsBatchUpsert.ts
+  - src/mcp-server/tools/integrationsCreate.ts
+  - src/mcp-server/tools/integrationsDelete.ts
+  - src/mcp-server/tools/integrationsList.ts
+  - src/mcp-server/tools/oauthConnect.ts
+  - src/mcp-server/tools/objectsAndFieldsGetMetadataForConnection.ts
+  - src/mcp-server/tools/objectsAndFieldsGetMetadataForInstallation.ts
+  - src/mcp-server/tools/operationsGet.ts
+  - src/mcp-server/tools/operationsList.ts
+  - src/mcp-server/tools/operationsListLogs.ts
+  - src/mcp-server/tools/projectsCreate.ts
+  - src/mcp-server/tools/projectsDelete.ts
+  - src/mcp-server/tools/projectsGet.ts
+  - src/mcp-server/tools/projectsList.ts
+  - src/mcp-server/tools/projectsUpdate.ts
+  - src/mcp-server/tools/providerAppsCreate.ts
+  - src/mcp-server/tools/providerAppsDelete.ts
+  - src/mcp-server/tools/providerAppsList.ts
+  - src/mcp-server/tools/providerAppsUpdate.ts
+  - src/mcp-server/tools/providersGet.ts
+  - src/mcp-server/tools/providersList.ts
+  - src/mcp-server/tools/readDeliverResults.ts
+  - src/mcp-server/tools/readRecords.ts
+  - src/mcp-server/tools/revisionsCreate.ts
+  - src/mcp-server/tools/revisionsHydrate.ts
+  - src/mcp-server/tools/uploadUrlsGenerate.ts
   - src/models/components/index.ts
   - src/models/components/security.ts
   - src/models/errors/apierror.ts
@@ -954,7 +1026,7 @@ examples:
           projectIdOrName: "<value>"
       responses:
         "200":
-          application/json: [{"id": "integration-123", "projectId": "project-456", "name": "read-accounts", "provider": "salesforce", "createTime": "2025-06-19T04:07:32.520Z", "latestRevision": {"id": "revision-id-1", "specVersion": "1.0.0", "createTime": "2024-10-07T19:55:59.416Z", "content": {"name": "<value>", "provider": "<value>", "read": {"objects": [{"objectName": "<value>", "destination": "<value>", "schedule": "<value>", "mapToName": "people", "mapToDisplayName": "People", "requiredFields": [{"mapToName": "<value>"}, {"fieldName": "<value>", "mapToName": "account_id", "mapToDisplayName": "Account ID"}, {"fieldName": "<value>", "mapToName": "account_id", "mapToDisplayName": "Account ID"}], "optionalFields": [{"mapToName": "<value>"}, {"mapToName": "<value>"}], "backfill": {"defaultPeriod": {"days": 30, "fullHistory": false}}}, {"objectName": "<value>", "destination": "<value>", "schedule": "<value>", "mapToName": "people", "mapToDisplayName": "People", "requiredFields": [{"mapToName": "<value>"}, {"fieldName": "<value>", "mapToName": "account_id", "mapToDisplayName": "Account ID"}, {"fieldName": "<value>", "mapToName": "account_id", "mapToDisplayName": "Account ID"}], "optionalFields": [{"mapToName": "<value>"}, {"fieldName": "<value>", "mapToName": "account_id", "mapToDisplayName": "Account ID"}, {"mapToName": "<value>"}], "backfill": {"defaultPeriod": {"days": 30, "fullHistory": false}}}, {"objectName": "<value>", "destination": "<value>", "schedule": "<value>", "mapToName": "people", "mapToDisplayName": "People", "requiredFields": [{"mapToName": "<value>"}, {"fieldName": "<value>", "mapToName": "account_id", "mapToDisplayName": "Account ID"}], "optionalFields": [{"mapToName": "<value>"}, {"fieldName": "<value>", "mapToName": "account_id", "mapToDisplayName": "Account ID"}], "backfill": {"defaultPeriod": {"days": 30, "fullHistory": false}}}]}, "write": {"objects": [{"objectName": "<value>", "inheritMapping": true, "valueDefaults": {"allowAnyFields": true}}]}}}}]
+          application/json: [{"id": "integration-123", "projectId": "project-456", "name": "read-accounts", "provider": "salesforce", "createTime": "2025-06-19T04:07:32.520Z", "latestRevision": {"id": "revision-id-1", "specVersion": "1.0.0", "createTime": "2024-10-07T19:55:59.416Z", "content": {"name": "<value>", "provider": "<value>", "read": {"objects": [{"objectName": "<value>", "destination": "<value>", "schedule": "<value>", "mapToName": "people", "mapToDisplayName": "People", "requiredFields": [{"mapToName": "<value>"}, {"fieldName": "<value>", "mapToName": "account_id", "mapToDisplayName": "Account ID"}, {"fieldName": "<value>", "mapToName": "account_id", "mapToDisplayName": "Account ID"}], "optionalFields": [{"mapToName": "<value>"}, {"mapToName": "<value>"}], "backfill": {"defaultPeriod": {"days": 30, "fullHistory": false}}}, {"objectName": "<value>", "destination": "<value>", "schedule": "<value>", "mapToName": "people", "mapToDisplayName": "People", "requiredFields": [{"mapToName": "<value>"}, {"fieldName": "<value>", "mapToName": "account_id", "mapToDisplayName": "Account ID"}, {"fieldName": "<value>", "mapToName": "account_id", "mapToDisplayName": "Account ID"}], "optionalFields": [{"mapToName": "<value>"}, {"fieldName": "<value>", "mapToName": "account_id", "mapToDisplayName": "Account ID"}, {"mapToName": "<value>"}], "backfill": {"defaultPeriod": {"days": 30, "fullHistory": false}}}, {"objectName": "<value>", "destination": "<value>", "schedule": "<value>", "mapToName": "people", "mapToDisplayName": "People", "requiredFields": [{"mapToName": "<value>"}, {"fieldName": "<value>", "mapToName": "account_id", "mapToDisplayName": "Account ID"}], "optionalFields": [{"mapToName": "<value>"}, {"fieldName": "<value>", "mapToName": "account_id", "mapToDisplayName": "Account ID"}], "backfill": {"defaultPeriod": {"days": 30, "fullHistory": false}}}]}, "write": {"objects": [{"objectName": "<value>", "inheritMapping": true, "valueDefaults": {"allowAnyFields": true}}]}, "subscribe": {"objects": [{"objectName": "<value>", "destination": "<value>", "UpdateEvent": {"requiredWatchFields": ["[\"name\",\"domain\"]"]}, "OtherEvents": ["[\"object.merged\",\"object.restored\"]"]}, {"objectName": "<value>", "destination": "<value>", "UpdateEvent": {"requiredWatchFields": ["[\"name\",\"domain\"]"]}, "OtherEvents": ["[\"object.merged\",\"object.restored\"]"]}, {"objectName": "<value>", "destination": "<value>", "UpdateEvent": {"requiredWatchFields": ["[\"name\",\"domain\"]"]}, "OtherEvents": ["[\"object.merged\",\"object.restored\"]"]}]}}}}]
         "422":
           application/problem+json: {"type": "about:blank", "href": "https://www.belgif.be/specification/rest/api-guide/#standardized-problem-types", "title": "Service Unavailable", "status": 503, "detail": "The input message is incorrect", "instance": "123456-1234-1235-4567489798", "subsystem": "api", "time": "2024-04-22T18:55:28.456076Z", "requestId": "89eb1ffb-2a54-4105-aaae-7bf990f1aa69#87715", "causes": ["database connection failed"], "remedy": "Shorten your input to be under 100 characters", "supportEmail": "support@withampersand.com", "supportPhone": "+1-555-555-5555", "supportUrl": "https://withampersand.com/support", "retryable": false, "retryAfter": "2024-04-22T18:55:28.456076Z", "context": {"name": "Rick Sanchez"}, "issues": [{"type": "urn:problem-type:exampleOrganization:exampleProblem", "href": "https://www.belgif.be/specification/rest/api-guide/#standardized-problem-types", "title": "Description of the type of problem that occurred", "status": 400, "detail": "Description of specific occurrence of the problem", "instance": "urn:uuid:123e4567-e89b-12d3-a456-426614174000"}]}
         default:
@@ -965,10 +1037,10 @@ examples:
         path:
           projectIdOrName: "<value>"
       requestBody:
-        application/json: {"name": "<value>", "provider": "<value>", "latestRevision": {"specVersion": "1.0.0", "content": {"name": "<value>", "provider": "<value>", "read": {"objects": [{"objectName": "<value>", "destination": "<value>", "schedule": "<value>", "mapToName": "people", "mapToDisplayName": "People", "requiredFields": [{"mapToName": "<value>"}, {"mapToName": "<value>"}, {"fieldName": "<value>", "mapToName": "account_id", "mapToDisplayName": "Account ID"}], "optionalFields": [{"mapToName": "<value>"}], "backfill": {"defaultPeriod": {"days": 30, "fullHistory": false}}}, {"objectName": "<value>", "destination": "<value>", "schedule": "<value>", "mapToName": "people", "mapToDisplayName": "People", "requiredFields": [{"mapToName": "<value>"}], "optionalFields": [{"mapToName": "<value>"}, {"fieldName": "<value>", "mapToName": "account_id", "mapToDisplayName": "Account ID"}], "backfill": {"defaultPeriod": {"days": 30, "fullHistory": false}}}]}, "write": {"objects": [{"objectName": "<value>", "inheritMapping": true, "valueDefaults": {"allowAnyFields": true}}]}}}}
+        application/json: {"name": "<value>", "provider": "<value>", "latestRevision": {"specVersion": "1.0.0", "content": {"name": "<value>", "provider": "<value>", "read": {"objects": [{"objectName": "<value>", "destination": "<value>", "schedule": "<value>", "mapToName": "people", "mapToDisplayName": "People", "requiredFields": [{"mapToName": "<value>"}, {"mapToName": "<value>"}, {"fieldName": "<value>", "mapToName": "account_id", "mapToDisplayName": "Account ID"}], "optionalFields": [{"mapToName": "<value>"}], "backfill": {"defaultPeriod": {"days": 30, "fullHistory": false}}}, {"objectName": "<value>", "destination": "<value>", "schedule": "<value>", "mapToName": "people", "mapToDisplayName": "People", "requiredFields": [{"mapToName": "<value>"}], "optionalFields": [{"mapToName": "<value>"}, {"fieldName": "<value>", "mapToName": "account_id", "mapToDisplayName": "Account ID"}], "backfill": {"defaultPeriod": {"days": 30, "fullHistory": false}}}]}, "write": {"objects": [{"objectName": "<value>", "inheritMapping": true, "valueDefaults": {"allowAnyFields": true}}]}, "subscribe": {"objects": [{"objectName": "<value>", "destination": "<value>", "UpdateEvent": {"requiredWatchFields": ["[\"name\",\"domain\"]"]}, "OtherEvents": ["[\"object.merged\",\"object.restored\"]"]}, {"objectName": "<value>", "destination": "<value>", "UpdateEvent": {"requiredWatchFields": ["[\"name\",\"domain\"]"]}, "OtherEvents": ["[\"object.merged\",\"object.restored\"]"]}]}}}}
       responses:
         "400":
-          application/problem+json: {"type": "about:blank", "href": "https://www.belgif.be/specification/rest/api-guide/#standardized-problem-types", "title": "Service Unavailable", "status": 503, "detail": "The input message is incorrect", "instance": "123456-1234-1235-4567489798", "subsystem": "api", "time": "2024-04-22T18:55:28.456076Z", "requestId": "89eb1ffb-2a54-4105-aaae-7bf990f1aa69#87715", "causes": ["database connection failed"], "remedy": "Shorten your input to be under 100 characters", "supportEmail": "support@withampersand.com", "supportPhone": "+1-555-555-5555", "supportUrl": "https://withampersand.com/support", "retryable": false, "retryAfter": "2024-04-22T18:55:28.456076Z", "context": {"name": "Rick Sanchez"}, "issues": [{"type": "urn:problem-type:exampleOrganization:exampleProblem", "href": "https://www.belgif.be/specification/rest/api-guide/#standardized-problem-types", "title": "Description of the type of problem that occurred", "status": 400, "detail": "Description of specific occurrence of the problem", "instance": "urn:uuid:123e4567-e89b-12d3-a456-426614174000"}]}
+          application/problem+json: {"type": "urn:problem-type:exampleOrganization:exampleProblem", "href": "https://www.belgif.be/specification/rest/api-guide/#standardized-problem-types", "title": "Service Unavailable", "status": 503, "detail": "Description of specific occurrence of the problem", "instance": "urn:uuid:123e4567-e89b-12d3-a456-426614174000", "subsystem": "api", "time": "2024-04-22T18:55:28.456076Z", "requestId": "89eb1ffb-2a54-4105-aaae-7bf990f1aa69#87715", "causes": ["database connection failed"], "remedy": "Shorten your input to be under 100 characters", "supportEmail": "support@withampersand.com", "supportPhone": "+1-555-555-5555", "supportUrl": "https://withampersand.com/support", "retryable": false, "retryAfter": "2024-04-22T18:55:28.456076Z", "context": {"name": "Rick Sanchez"}, "issues": [{"type": "urn:problem-type:exampleOrganization:exampleProblem", "href": "https://www.belgif.be/specification/rest/api-guide/#standardized-problem-types", "title": "Description of the type of problem that occurred", "status": 400, "detail": "Description of specific occurrence of the problem", "instance": "urn:uuid:123e4567-e89b-12d3-a456-426614174000"}]}
         "422":
           application/problem+json: {"type": "urn:problem-type:exampleOrganization:exampleProblem", "href": "https://www.belgif.be/specification/rest/api-guide/#standardized-problem-types", "title": "Service Unavailable", "status": 503, "detail": "Description of specific occurrence of the problem", "instance": "urn:uuid:123e4567-e89b-12d3-a456-426614174000", "subsystem": "api", "time": "2024-04-22T18:55:28.456076Z", "requestId": "89eb1ffb-2a54-4105-aaae-7bf990f1aa69#87715", "causes": ["database connection failed"], "remedy": "Shorten your input to be under 100 characters", "supportEmail": "support@withampersand.com", "supportPhone": "+1-555-555-5555", "supportUrl": "https://withampersand.com/support", "retryable": false, "retryAfter": "2024-04-22T18:55:28.456076Z", "context": {"name": "Rick Sanchez"}, "issues": [{"type": "urn:problem-type:exampleOrganization:exampleProblem", "href": "https://www.belgif.be/specification/rest/api-guide/#standardized-problem-types", "title": "Description of the type of problem that occurred", "status": 400, "detail": "Description of specific occurrence of the problem", "instance": "urn:uuid:123e4567-e89b-12d3-a456-426614174000"}]}
         default:
@@ -995,9 +1067,9 @@ examples:
         application/json: {}
       responses:
         "200":
-          application/json: [{"id": "integration-123", "projectId": "project-456", "name": "read-accounts", "provider": "salesforce", "createTime": "2023-02-19T19:29:43.377Z", "latestRevision": {"id": "revision-id-1", "specVersion": "1.0.0", "createTime": "2024-03-12T05:14:49.197Z", "content": {"name": "<value>", "provider": "<value>", "read": {"objects": [{"objectName": "<value>", "destination": "<value>", "schedule": "<value>", "mapToName": "people", "mapToDisplayName": "People", "requiredFields": [{"fieldName": "<value>", "mapToName": "account_id", "mapToDisplayName": "Account ID"}], "optionalFields": [{"fieldName": "<value>", "mapToName": "account_id", "mapToDisplayName": "Account ID"}, {"mapToName": "<value>"}], "backfill": {"defaultPeriod": {"days": 30, "fullHistory": false}}}, {"objectName": "<value>", "destination": "<value>", "schedule": "<value>", "mapToName": "people", "mapToDisplayName": "People", "requiredFields": [{"mapToName": "<value>"}, {"mapToName": "<value>"}, {"fieldName": "<value>", "mapToName": "account_id", "mapToDisplayName": "Account ID"}], "optionalFields": [{"fieldName": "<value>", "mapToName": "account_id", "mapToDisplayName": "Account ID"}], "backfill": {"defaultPeriod": {"days": 30, "fullHistory": false}}}, {"objectName": "<value>", "destination": "<value>", "schedule": "<value>", "mapToName": "people", "mapToDisplayName": "People", "requiredFields": [{"fieldName": "<value>", "mapToName": "account_id", "mapToDisplayName": "Account ID"}], "optionalFields": [{"mapToName": "<value>"}, {"mapToName": "<value>"}], "backfill": {"defaultPeriod": {"days": 30, "fullHistory": false}}}]}, "write": {"objects": [{"objectName": "<value>", "inheritMapping": true, "valueDefaults": {"allowAnyFields": true}}, {"objectName": "<value>", "inheritMapping": true, "valueDefaults": {"allowAnyFields": true}}]}}}}]
+          application/json: [{"id": "integration-123", "projectId": "project-456", "name": "read-accounts", "provider": "salesforce", "createTime": "2023-02-19T19:29:43.377Z", "latestRevision": {"id": "revision-id-1", "specVersion": "1.0.0", "createTime": "2024-03-12T05:14:49.197Z", "content": {"name": "<value>", "provider": "<value>", "read": {"objects": [{"objectName": "<value>", "destination": "<value>", "schedule": "<value>", "mapToName": "people", "mapToDisplayName": "People", "requiredFields": [{"fieldName": "<value>", "mapToName": "account_id", "mapToDisplayName": "Account ID"}], "optionalFields": [{"fieldName": "<value>", "mapToName": "account_id", "mapToDisplayName": "Account ID"}, {"mapToName": "<value>"}], "backfill": {"defaultPeriod": {"days": 30, "fullHistory": false}}}, {"objectName": "<value>", "destination": "<value>", "schedule": "<value>", "mapToName": "people", "mapToDisplayName": "People", "requiredFields": [{"mapToName": "<value>"}, {"mapToName": "<value>"}, {"fieldName": "<value>", "mapToName": "account_id", "mapToDisplayName": "Account ID"}], "optionalFields": [{"fieldName": "<value>", "mapToName": "account_id", "mapToDisplayName": "Account ID"}], "backfill": {"defaultPeriod": {"days": 30, "fullHistory": false}}}, {"objectName": "<value>", "destination": "<value>", "schedule": "<value>", "mapToName": "people", "mapToDisplayName": "People", "requiredFields": [{"fieldName": "<value>", "mapToName": "account_id", "mapToDisplayName": "Account ID"}], "optionalFields": [{"mapToName": "<value>"}, {"mapToName": "<value>"}], "backfill": {"defaultPeriod": {"days": 30, "fullHistory": false}}}]}, "write": {"objects": [{"objectName": "<value>", "inheritMapping": true, "valueDefaults": {"allowAnyFields": true}}, {"objectName": "<value>", "inheritMapping": true, "valueDefaults": {"allowAnyFields": true}}]}, "subscribe": {"objects": [{"objectName": "<value>", "destination": "<value>", "UpdateEvent": {"requiredWatchFields": ["[\"name\",\"domain\"]"]}, "OtherEvents": ["[\"object.merged\",\"object.restored\"]"]}, {"objectName": "<value>", "destination": "<value>", "UpdateEvent": {"requiredWatchFields": ["[\"name\",\"domain\"]"]}, "OtherEvents": ["[\"object.merged\",\"object.restored\"]"]}]}}}}]
         "422":
-          application/problem+json: {"type": "urn:problem-type:exampleOrganization:exampleProblem", "href": "https://www.belgif.be/specification/rest/api-guide/#standardized-problem-types", "title": "Service Unavailable", "status": 503, "detail": "Description of specific occurrence of the problem", "instance": "urn:uuid:123e4567-e89b-12d3-a456-426614174000", "subsystem": "api", "time": "2024-04-22T18:55:28.456076Z", "requestId": "89eb1ffb-2a54-4105-aaae-7bf990f1aa69#87715", "causes": ["database connection failed"], "remedy": "Shorten your input to be under 100 characters", "supportEmail": "support@withampersand.com", "supportPhone": "+1-555-555-5555", "supportUrl": "https://withampersand.com/support", "retryable": false, "retryAfter": "2024-04-22T18:55:28.456076Z", "context": {"name": "Rick Sanchez"}, "issues": [{"type": "urn:problem-type:exampleOrganization:exampleProblem", "href": "https://www.belgif.be/specification/rest/api-guide/#standardized-problem-types", "title": "Description of the type of problem that occurred", "status": 400, "detail": "Description of specific occurrence of the problem", "instance": "urn:uuid:123e4567-e89b-12d3-a456-426614174000"}]}
+          application/problem+json: {"type": "about:blank", "href": "https://www.belgif.be/specification/rest/api-guide/#standardized-problem-types", "title": "Service Unavailable", "status": 503, "detail": "The input message is incorrect", "instance": "123456-1234-1235-4567489798", "subsystem": "api", "time": "2024-04-22T18:55:28.456076Z", "requestId": "89eb1ffb-2a54-4105-aaae-7bf990f1aa69#87715", "causes": ["database connection failed"], "remedy": "Shorten your input to be under 100 characters", "supportEmail": "support@withampersand.com", "supportPhone": "+1-555-555-5555", "supportUrl": "https://withampersand.com/support", "retryable": false, "retryAfter": "2024-04-22T18:55:28.456076Z", "context": {"name": "Rick Sanchez"}, "issues": [{"type": "urn:problem-type:exampleOrganization:exampleProblem", "href": "https://www.belgif.be/specification/rest/api-guide/#standardized-problem-types", "title": "Description of the type of problem that occurred", "status": 400, "detail": "Description of specific occurrence of the problem", "instance": "urn:uuid:123e4567-e89b-12d3-a456-426614174000"}]}
         default:
           application/problem+json: {"type": "urn:problem-type:exampleOrganization:exampleProblem", "href": "https://www.belgif.be/specification/rest/api-guide/#standardized-problem-types", "title": "Service Unavailable", "status": 503, "detail": "Description of specific occurrence of the problem", "instance": "urn:uuid:123e4567-e89b-12d3-a456-426614174000", "subsystem": "api", "time": "2024-04-22T18:55:28.456076Z", "requestId": "89eb1ffb-2a54-4105-aaae-7bf990f1aa69#87715", "causes": ["database connection failed"], "remedy": "Shorten your input to be under 100 characters", "supportEmail": "support@withampersand.com", "supportPhone": "+1-555-555-5555", "supportUrl": "https://withampersand.com/support", "retryable": false, "retryAfter": "2024-04-22T18:55:28.456076Z", "context": {"name": "Rick Sanchez"}}
   createRevision:
